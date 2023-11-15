@@ -1,0 +1,20 @@
+query GetDeviceInfo($names: [String!]!) {
+    deviceInfo(devices: $names) {
+        result {
+            ... on DeviceInfo {
+                description
+                reading {
+                    primaryUnits
+                    commonUnits
+                }
+                setting {
+                    primaryUnits
+                    commonUnits
+                }
+            }
+            ... on ErrorReply {
+                message
+            }
+        }
+    }
+}

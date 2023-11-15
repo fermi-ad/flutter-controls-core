@@ -11,12 +11,23 @@ dependencies:
     flutter:
         sdk: flutter
 
+    ferry: ^0.15.0
+    ferry_flutter: ^0.9.0
+    gql_http_link: ^1.0.1
+    gql_websocket_link: ^1.1.0
+    web_socket_channel: ^2.4.0
+
+    built_collection: ^5.1.1
+    built_value: ^8.4.4
     go_router: ^10.1.2
 
 dev_dependencies:
     flutter_test:
         sdk: flutter
-    flutter_lints: ^2.0.0
+    flutter_lints: ^3.0.0
+
+    ferry_generator: ^0.9.0-dev.0+1
+    build_runner: ^2.4.6
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
