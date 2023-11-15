@@ -65,8 +65,7 @@ class DeviceInfoProperty {
   final String? commonUnits;
   final String? primaryUnits;
 
-  const DeviceInfoProperty(
-      {required this.commonUnits, required this.primaryUnits});
+  const DeviceInfoProperty({this.commonUnits, this.primaryUnits});
 }
 
 class BasicStatusProperty {
