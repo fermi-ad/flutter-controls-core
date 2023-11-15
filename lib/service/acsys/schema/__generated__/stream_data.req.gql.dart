@@ -65,17 +65,6 @@ abstract class GStreamDataReq
   _i2.GStreamDataData? parseData(Map<String, dynamic> json) =>
       _i2.GStreamDataData.fromJson(json);
 
-  @override
-  Map<String, dynamic> varsToJson() => vars.toJson();
-
-  @override
-  Map<String, dynamic> dataToJson(dynamic data) => data.toJson();
-
-  @override
-  _i1.OperationRequest<_i2.GStreamDataData, _i3.GStreamDataVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
-
   static Serializer<GStreamDataReq> get serializer =>
       _$gStreamDataReqSerializer;
 
