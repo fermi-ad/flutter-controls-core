@@ -192,13 +192,36 @@ class SettingStatus {
   const SettingStatus({required this.facilityCode, required this.errorCode});
 }
 
+/// Defines the API for the GraphQL interface.
+///
+/// The API is declared as an abstract class so that one could `implement` a
+/// class for testing purposes.
+
 abstract class ACSysServiceAPI {
+  /// Takes a list of device names and returns a list of information associated
+  /// with the devices. The information will be in the same order as the devices
+  /// in the request.
   Future<List<DeviceInfo>> getDeviceInfo(List<String> devices);
+
+  /// Takes a list of data acquisition strings and returns a stream that
+  /// provides readings for the requests.
   Stream<Reading> monitorDevices(List<String> drfs);
+
+  /// Takes a list of data acquisition strings and returns a stream that
+  /// provides the setting value of the requests.
   Stream<Reading> monitorSettingProperty(List<String> drfs);
+
+  /// Takes a list of data acquisition strings and returns a stream that
+  /// provides a list of strings that represents the basic status value.
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> drfs);
+
+  /// Takes a device name and a value and sends a request to apply the value to
+  /// the device.
   Future<SettingStatus> submit(
       {required String forDRF, required DeviceValue newSetting});
+
+  /// Takes a device name and a value and sends a request to apply the value to
+  /// the device's digital control property.
   Future<SettingStatus> sendCommand(
       {required String toDRF, required String value});
 }
