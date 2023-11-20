@@ -27,6 +27,11 @@ dependencies:
 
     go_router: ^12.1.0
 
+    # Needed for KeyCloak authentication support.
+
+    openid_client: ^0.4.8
+    url_launcher: ^6.2.1
+
 dev_dependencies:
     flutter_test:
         sdk: flutter
