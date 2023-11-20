@@ -9,14 +9,14 @@ A core set of widgets, types, and services to create Fermilab applications.
 
 ## Getting started
 
-To add this package to your application, add this dependency to your
-`pubspec.yaml` file:
+The latest, stable branch is `v0.1.x`. To add this package to your application,
+add this dependency to your `pubspec.yaml` file:
 
 ```yaml
 flutter_controls_core:
     git:
         url: https://github.com/fermi-ad/flutter-controls-core.git
-        ref: main
+        ref: v0.1.x
 ```
 
 ## Usage
