@@ -1,3 +1,5 @@
+/// A Flutter package with resources that most Fermi applications need.
+
 library flutter_controls_core;
 
 export "src/device_values.dart";

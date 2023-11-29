@@ -1,4 +1,4 @@
-/// Defines a set of widgets that are the foundation of a Fermi application.
+/// A set of widgets that are the foundation of a Fermi application.
 
 library app_scaffold;
 
