@@ -1,16 +1,68 @@
+/// Provides authentication services to Flutter apps.
+///
+///
+
 library auth_widget;
 
 import 'package:flutter/material.dart';
 import 'package:openid_client/openid_client.dart';
 import 'openid_io.dart' if (dart.library.html) 'openid_browser.dart' as oid;
 
-class AuthWidget extends StatefulWidget {
+typedef ScopeList = List<String>;
+
+// Private class that notifies registered clients when the credentials are
+// updated.
+
+class _AuthService extends InheritedWidget {
+  final void Function(ScopeList?) requestAuth;
+  final Credential? credentials;
+
+  const _AuthService(
+      {this.credentials, required this.requestAuth, required super.child});
+
+  // Find an instance of the authentication service in the widget tree. If the
+  // service isn't ready, this will return `null`.
+
+  static _AuthService of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_AuthService>()!;
+
+  // If this widget gets rebuilt, we don't need to notify clients, if the
+  // `Client` object is the same. If it's different, we might need to
+  // re-authenticate, so we'll notify the clients.
+
+  @override
+  bool updateShouldNotify(_AuthService oldWidget) =>
+      oldWidget.credentials != credentials;
+}
+
+/// Provides authentication services.
+///
+/// This widget should be placed near the Scaffold of an application to minimize
+/// updates. Each update may trigger a new sign-on session. When this widget is
+/// created, the application isn't automatically authenticated. To initiate
+/// authentication, the [requestAuthentication] method should be called. This
+/// allows an application to run with limited features when not authenticated.
+
+class AuthService extends StatefulWidget {
   final Uri url;
   final String clientId;
   final String clientSecret;
   final Widget child;
 
-  AuthWidget(
+  /// Creates an instance of an authentication session.
+  ///
+  /// [realm] indicates the realm in which the application wants access.
+  ///
+  /// [clientId] is a site-assigned value for the application. Each application
+  /// should have its own ID. This value generated from our KeyCloak server.
+  ///
+  /// [clientSecret] is a secret associated with the client ID.
+  ///
+  /// [child] is the top-level widget under this widget. All widgets, starting
+  /// at `child`, will be able to request authentication and get access to the
+  /// user's credentials.
+
+  AuthService(
       {required String realm,
       required this.clientId,
       required this.clientSecret,
@@ -22,28 +74,57 @@ class AuthWidget extends StatefulWidget {
             path: "/realms/$realm/");
 
   @override
-  State<AuthWidget> createState() => _AuthState();
+  State<AuthService> createState() => _AuthState();
+
+  /// Accesses the current credentials.
+  ///
+  /// This function should be called from within a widget's `build()` method.
+  /// It returns the current credentials (could be `null` if the user hasn't
+  /// signed in.) This also registers the widget to get updated when the
+  /// credentials change.
+
+  static Credential? getCreds(BuildContext context) =>
+      _AuthService.of(context).credentials;
+
+  /// Requests that the app be authenticated.
+  ///
+  /// This method will start a sign-on session to get the user's credentials.
+  /// The context that is passed to this function will be refreshed when the
+  /// credentials are updated.
+
+  static void requestAuthentication(BuildContext context, ScopeList scope) =>
+      _AuthService.of(context).requestAuth(scope);
+
+  /// Requests the app's credentials be revoked.
+  ///
+  /// This method will clear out the local credentials and request the server
+  /// invalid the authentication token. The context that is passed to this
+  /// function will be refreshed when the credentials are cleared.
+
+  static Future<void> requestLogout(BuildContext context) async {
+    final Credential? creds = AuthService.getCreds(context);
+
+    if (creds != null) {
+      return (await creds.revoke());
+    } else {
+      return Future.value();
+    }
+  }
 }
 
-class _AuthState extends State<AuthWidget> {
-  Future<Client>? _fut;
+class _AuthState extends State<AuthService> {
+  Future<Credential>? _fut;
 
-  // Creates a future which builds an authentication Client asynchronously. If
-  // this method gets called outside of `initState()`, it should be wrapped
-  // with `setState()` like so: `setState(_createFuture)`.
+  Future<Credential?> _initFuture(ScopeList? scopes) async {
+    if (scopes != null) {
+      final issuer = await Issuer.discover(widget.url);
+      final client =
+          Client(issuer, widget.clientId, clientSecret: widget.clientSecret);
 
-  void _createFuture() {
-    _fut = Issuer.discover(widget.url).then((value) =>
-        Client(value, widget.clientId, clientSecret: widget.clientSecret));
-  }
-
-  // Create initial state by starting a Future that builds the authentication
-  // client asynchronously.
-
-  @override
-  void initState() {
-    _createFuture();
-    super.initState();
+      return (await oid.authenticate(client, scopes: scopes));
+    } else {
+      return null;
+    }
   }
 
   // Render the widgets. This uses a FutureBuilder to monitor the life of the
@@ -53,49 +134,21 @@ class _AuthState extends State<AuthWidget> {
   @override
   Widget build(BuildContext context) => FutureBuilder(
       future: _fut,
+      initialData: null,
       builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return AuthService(snapshot.data!, child: widget.child);
-        } else {
-          return widget.child;
+        // If there's an error, report it via SnackBar.
+
+        if (snapshot.hasError) {
+          final snackBar = SnackBar(
+            content: Text('Unable to authenticate: ${snapshot.error}.'),
+          );
+
+          ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
+
+        return _AuthService(
+            credentials: snapshot.data,
+            requestAuth: (scope) => setState(() => _initFuture(scope)),
+            child: widget.child);
       });
-}
-
-/// Handles authenticating the client.
-///
-/// This widget is automatically inserted in the widget tree once the
-/// authentication state has been initialized. Applications do not create
-/// instances of this class directly.
-///
-/// A client uses `AuthService.maybeOf(context)` to retrieve a reference to the
-/// authentication service. If the method returns `null`, it means there was an
-/// error setting up the service. Applications should use a `null` to generate
-/// an interface that doesn't require authentication. It may be impossible for
-/// an application to create a useful interface. In that case, displaying an
-/// error message may be the most appropriate action.
-
-class AuthService extends InheritedWidget {
-  final Client _client;
-
-  const AuthService(this._client, {super.key, required super.child});
-
-  /// Find an instance of the authentication service in the widget tree. If the
-  /// service isn't ready, this will return `null`.
-
-  static AuthService? maybeOf(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<AuthService>();
-
-  /// If this widget gets rebuilt, we don't need to notify clients, if the
-  /// `Client` object is the same. If it's different, we might need to
-  /// re-authenticate, so we'll notify the clients.
-
-  @override
-  bool updateShouldNotify(AuthService oldWidget) =>
-      oldWidget._client != _client;
-
-  /// Performs the authentication asynchronously.
-
-  Future<Credential> authenticate({List<String> scopes = const []}) async =>
-      oid.authenticate(_client, scopes: scopes);
 }
