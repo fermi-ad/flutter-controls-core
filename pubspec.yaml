@@ -1,15 +1,17 @@
 name: flutter_controls_core
 description: A Flutter package to write Fermilab applications.
-version: 0.1.0
+version: 0.1.1
 homepage:
 
 environment:
-    sdk: ">=3.1.5 <4.0.0"
+    sdk: ">=3.1.0 <4.0.0"
     flutter: ">=1.17.0"
 
 dependencies:
     flutter:
         sdk: flutter
+
+    # These packages provide our GraphQL access.
 
     ferry: ^0.14.2+1
     ferry_flutter: ^0.8.1
@@ -17,10 +19,18 @@ dependencies:
     gql_websocket_link: ^2.0.0
     gql_code_builder: ^0.8.0
     web_socket_channel: ^2.4.0
-
     built_collection: ^5.1.1
     built_value: ^8.4.4
+
+    # One of our app types uses the GoRouter widget, so we need to include this
+    # package.
+
     go_router: ^12.1.0
+
+    # Needed for KeyCloak authentication support.
+
+    openid_client: ^0.4.8
+    url_launcher: ^6.2.1
 
 dev_dependencies:
     flutter_test:

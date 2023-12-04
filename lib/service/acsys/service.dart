@@ -197,7 +197,7 @@ class SettingStatus {
 /// The API is declared as an abstract class so that one could `implement` a
 /// class for testing purposes.
 
-abstract class ACSysServiceAPI {
+abstract interface class ACSysServiceAPI {
   /// Takes a list of device names and returns a list of information associated
   /// with the devices. The information will be in the same order as the devices
   /// in the request.
