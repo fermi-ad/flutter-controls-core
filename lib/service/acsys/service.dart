@@ -79,6 +79,10 @@ class BasicStatusProperty {
       required this.color0,
       required this.character1,
       required this.color1});
+
+  BasicStatusAttribute getState(bool value) => value
+      ? BasicStatusAttribute(character: character1, color: color1)
+      : BasicStatusAttribute(character: character0, color: color0);
 }
 
 class DeviceInfoBasicStatus {
