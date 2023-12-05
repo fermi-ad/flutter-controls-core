@@ -79,6 +79,10 @@ class BasicStatusProperty {
       required this.color0,
       required this.character1,
       required this.color1});
+
+  BasicStatusAttribute getState(bool value) => value
+      ? BasicStatusAttribute(character: character1, color: color1)
+      : BasicStatusAttribute(character: character0, color: color0);
 }
 
 class DeviceInfoBasicStatus {
@@ -212,8 +216,8 @@ abstract interface class ACSysServiceAPI {
   Stream<Reading> monitorSettingProperty(List<String> drfs);
 
   /// Takes a list of data acquisition strings and returns a stream that
-  /// provides a list of strings that represents the basic status value.
-  Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> drfs);
+  /// provides up-to-date `DigitalStatus` values of the devices.
+  Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
@@ -399,8 +403,61 @@ class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> drfs) {
-    return const Stream<DigitalStatus>.empty();
+  Stream<DigitalStatus> monitorDigitalStatusDevices(
+      List<String> devices) async* {
+    // Get device information for the list of devices. We need to use this
+    // information to 1) make sure the device actually has a basic status
+    // property and, 2) build a translation table for when value come in.
+
+    final devInfo = await getDeviceInfo(devices);
+
+    // Build up the translation table by iterating through the list of results.
+    // If the device has the status property, add it to the table. Otherwise
+    // return an error to the requestor. We're only going to send DPM valid
+    // devices.
+    //
+    // Also build up a list of DRF strings that represent the basic status of
+    // the devices.
+    //
+    // TODO: This code only works with ACNET devices. We need to implement EPICS
+    // support, too.
+
+    final List<(int, DeviceInfoBasicStatus)> table = [];
+    final List<String> drf = [];
+
+    for (final (idx, item) in devInfo.indexed) {
+      if (item.basicStatus != null) {
+        table.add((idx, item.basicStatus!));
+        drf.add("${item.name}.STATUS.BIT_VALUE");
+      } else {
+        yield DigitalStatus(
+            refId: idx,
+            cycle: 0,
+            timestamp: DateTime.now(),
+            status: -27 * 256 + 17);
+      }
+    }
+
+    // Now set up a monitor for the list of devices and stream the results back.
+
+    final strm = monitorDevices(drf);
+
+    yield* strm.map((rdg) {
+      final (refId, bs) = table[rdg.refId];
+      final statusVal = (rdg.value ?? 0.0).toInt();
+
+      return DigitalStatus(
+        status: rdg.status,
+        refId: refId,
+        cycle: rdg.cycle,
+        timestamp: rdg.timestamp,
+        onOff: bs.onOffProperty?.getState((statusVal & 1) != 0),
+        readyTripped: bs.readyTrippedProperty?.getState((statusVal & 2) != 0),
+        remoteLocal: bs.remoteLocalProperty?.getState((statusVal & 4) != 0),
+        positiveNegative:
+            bs.positiveNegativeProperty?.getState((statusVal & 8) != 0),
+      );
+    });
   }
 
   @override
