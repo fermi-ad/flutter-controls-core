@@ -69,18 +69,25 @@ class DeviceInfoProperty {
 }
 
 class BasicStatusProperty {
+  final int maskVal;
+  final int matchVal;
+  final bool invert;
   final String character0;
   final StatusColor color0;
   final String character1;
   final StatusColor color1;
 
   const BasicStatusProperty(
-      {required this.character0,
+      {required this.maskVal,
+      required this.matchVal,
+      required this.invert,
+      required this.character0,
       required this.color0,
       required this.character1,
       required this.color1});
 
-  BasicStatusAttribute getState(bool value) => value
+  BasicStatusAttribute getState(int value) =>
+      ((invert ? ~value : value) & maskVal) == matchVal
       ? BasicStatusAttribute(character: character1, color: color1)
       : BasicStatusAttribute(character: character0, color: color0);
 }
@@ -148,6 +155,17 @@ class Reading {
 }
 
 enum StatusColor { black, blue, green, cyan, red, magenta, yellow, white }
+
+StatusColor toColor(int value) => switch (value) {
+      0 => StatusColor.black,
+      1 => StatusColor.blue,
+      2 => StatusColor.green,
+      3 => StatusColor.cyan,
+      4 => StatusColor.red,
+      5 => StatusColor.magenta,
+      6 => StatusColor.yellow,
+      _ => StatusColor.white
+    };
 
 class BasicStatusAttribute {
   final String character;
@@ -326,12 +344,54 @@ class ACSysService implements ACSysServiceAPI {
               commonUnits: e.setting!.commonUnits)
           : null;
 
+      DeviceInfoBasicStatus? bs;
+
+      if (e.digStatus
+          case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
+            entries: var data
+          )) {
+        BasicStatusProperty? propOn;
+        BasicStatusProperty? propReady;
+        BasicStatusProperty? propRemote;
+        BasicStatusProperty? propPositive;
+
+        for (final (idx, item) in data.indexed) {
+          final prop = BasicStatusProperty(
+              maskVal: item.maskVal,
+              matchVal: item.matchVal,
+              invert: item.invert,
+              character0: item.falseChar,
+              color0: toColor(item.falseColor),
+              character1: item.trueChar,
+              color1: toColor(item.trueColor));
+
+          switch (idx) {
+            case 0:
+              propOn = prop;
+            case 1:
+              propReady = prop;
+            case 2:
+              propRemote = prop;
+            case 3:
+              propPositive = prop;
+            default:
+          }
+        }
+
+        bs = DeviceInfoBasicStatus(
+            onOffProperty: propOn,
+            readyTrippedProperty: propReady,
+            remoteLocalProperty: propRemote,
+            positiveNegativeProperty: propPositive);
+      }
+
       return DeviceInfo(
         di: 0,
         name: "",
         description: e.description,
         reading: rProp,
         setting: sProp,
+        basicStatus: bs,
       );
     } else {
       if (e is GGetDeviceInfoData_deviceInfo_result__asErrorReply) {
@@ -451,11 +511,10 @@ class ACSysService implements ACSysServiceAPI {
         refId: refId,
         cycle: rdg.cycle,
         timestamp: rdg.timestamp,
-        onOff: bs.onOffProperty?.getState((statusVal & 1) != 0),
-        readyTripped: bs.readyTrippedProperty?.getState((statusVal & 2) != 0),
-        remoteLocal: bs.remoteLocalProperty?.getState((statusVal & 4) != 0),
-        positiveNegative:
-            bs.positiveNegativeProperty?.getState((statusVal & 8) != 0),
+        onOff: bs.onOffProperty?.getState(statusVal),
+        readyTripped: bs.readyTrippedProperty?.getState(statusVal),
+        remoteLocal: bs.remoteLocalProperty?.getState(statusVal),
+        positiveNegative: bs.positiveNegativeProperty?.getState(statusVal),
       );
     });
   }
