@@ -89,8 +89,8 @@ class BasicStatusProperty {
 
   BasicStatusAttribute getState(int value) =>
       ((invert ? ~value : value) & maskVal) == matchVal
-      ? BasicStatusAttribute(character: character1, color: color1)
-      : BasicStatusAttribute(character: character0, color: color0);
+          ? BasicStatusAttribute(character: character1, color: color1)
+          : BasicStatusAttribute(character: character0, color: color0);
 }
 
 class DeviceInfoBasicStatus {
@@ -454,8 +454,9 @@ class ACSysService implements ACSysServiceAPI {
             status: Status.fromInt(result.status));
       }
 
-      // We are only supporting a single, scalar value for the moment. Any types
-      // we don't yet support will report an error and tear down the stream.
+      // TODO: We are only supporting a single, scalar value for the moment. Any
+      // types we don't yet support will report an error and tear down the
+      // stream.
 
       throw ACSysTypeException("can't handle ${result.G__typename} types");
     } else {
@@ -468,14 +469,14 @@ class ACSysService implements ACSysServiceAPI {
       List<String> devices) async* {
     // Get device information for the list of devices. We need to use this
     // information to 1) make sure the device actually has a basic status
-    // property and, 2) build a translation table for when value come in.
+    // property and, 2) build a translation table for when values come in.
 
     final devInfo = await getDeviceInfo(devices);
 
     // Build up the translation table by iterating through the list of results.
     // If the device has the status property, add it to the table. Otherwise
-    // return an error to the requestor. We're only going to send DPM valid
-    // devices.
+    // return an error to the requestor. We're only going to send valid devices
+    // to DPM.
     //
     // Also build up a list of DRF strings that represent the basic status of
     // the devices.
