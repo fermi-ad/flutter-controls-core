@@ -1,31 +1,61 @@
+schema {
+    query: QueryRoot
+    mutation: MutationRoot
+    subscription: SubscriptionRoot
+}
+
 scalar Timestamp
 
-type StatusReply {
-    status: Int!
+"""
+This structure holds information associated with a device's reading, A "reading" is the latest value of any of a device's properties.
+"""
+type DataInfo {
+    """
+    Timestamp representing when the data was sampled. This value is provided as milliseconds since 1970, UTC.
+    """
+    timestamp: Timestamp!
+
+    """
+    The value of the device when sampled.
+    """
+    result: DataType!
+
+    """
+    The device's index (in the device database.)
+    """
+    di: Int!
+
+    """
+    The name of the device.
+    """
+    name: String!
 }
 
-type ScalarArray {
-    scalarArrayValue: [Float]!
+"""
+This structure wraps a device reading with some routing information: a `refId` to correlate which device, in the array of devices passed, this reply is for. It also has a `cycle` field so that reading from different devices can correlate which cycle they correspond.
+"""
+type DataReply {
+    """
+    This is an index to indicate which entry, in the passed array of DRF strings, this reply corresponds.
+    """
+    refId: Int!
+
+    """
+    The cycle number in which the device was sampled. This can be used to correlate readings from several devices.
+    """
+    cycle: Int!
+
+    """
+    The returned data.
+    """
+    data: DataInfo!
 }
 
-type TextArray {
-    textArrayValue: [String]!
-}
-
-type Scalar {
-    scalarValue: Float
-}
-
-type Raw {
-    rawValue: String
-}
-
-type Text {
-    textValue: String
-}
-
+"""
+The control system supports several types and this entity can repesent any of them.
+"""
 union DataType =
-      StatusReply # set when a fatal error occurs
+      StatusReply
     | Scalar
     | ScalarArray
     | Raw
@@ -33,44 +63,12 @@ union DataType =
     | TextArray
     | StructData
 
-type StructData {
-    key: String
-    structValue: DataType
-}
+"""
+Implement the DateTime<Utc> scalar
 
-type DataInfo {
-    timestamp: Timestamp!
-    result: DataType!
-    di: Int!
-    name: String!
-}
-
-type DataReply {
-    refId: Int!
-    cycle: Int!
-    data: DataInfo!
-}
-
-type DeviceProperty {
-    primaryUnits: String
-    commonUnits: String
-}
-
-type DeviceInfo {
-    description: String!
-    reading: DeviceProperty
-    setting: DeviceProperty
-}
-
-type ErrorReply {
-    message: String!
-}
-
-union DeviceInfoResult = DeviceInfo | ErrorReply
-
-type DeviceInfoReply {
-    result: [DeviceInfoResult!]!
-}
+The input/output is a string in RFC3339 format.
+"""
+scalar DateTime
 
 input DevValue {
     intVal: Int
@@ -81,16 +79,152 @@ input DevValue {
     textArrayVal: [String!]
 }
 
-type Query {
-    acceleratorData(drfs: [String!]!): [DataReply!]!
-    deviceInfo(device: [String!]!): DeviceInfoReply!
+"""
+A structure containing device information.
+"""
+type DeviceInfo {
+    """
+    A text field that summarizes the device's purpose.
+    """
+    description: String!
+
+    """
+    Holds informations related to the reading property. If the device doesn't have a reading property, this field will be `null`.
+    """
+    reading: DeviceProperty
+
+    """
+    Holds informations related to the setting property. If the device doesn't have a setting property, this field will be `null`.
+    """
+    setting: DeviceProperty
+    digControl: DigControl
+    digStatus: DigStatus
 }
 
-type Mutation {
+"""
+The reply to the deviceInfo query.
+"""
+type DeviceInfoReply {
+    result: [DeviceInfoResult!]!
+}
+
+"""
+The result of the device info query. It can return device information or an error message describing why information wasn't returned.
+"""
+union DeviceInfoResult = DeviceInfo | ErrorReply
+
+"""
+Holds data associated with a property of a device.
+"""
+type DeviceProperty {
+    """
+    Specifies the engineering units for the primary transform of the device. This field might be `null`, if there aren't units for this transform.
+    """
+    primaryUnits: String
+
+    """
+    Specifies the engineering units for the common transform of the device. This field might be `null`, if there aren't units for this transform.
+    """
+    commonUnits: String
+}
+
+"""
+Describes the digital control commands for a device.
+"""
+type DigControl {
+    entries: [DigControlEntry!]!
+}
+
+"""
+Describes one digital control command used by a device. `name` is the name of the command and can be used by applications to create a descriptive menu. `value` is the actual integer value to send to the device in order to perform the command.
+"""
+type DigControlEntry {
+    value: Int!
+    shortName: String!
+    longName: String!
+}
+
+type DigStatus {
+    entries: [DigStatusEntry!]!
+}
+
+type DigStatusEntry {
+    maskVal: Int!
+    matchVal: Int!
+    invert: Boolean!
+    shortName: String!
+    longName: String!
+    trueStr: String!
+    trueColor: Int!
+    trueChar: String!
+    falseStr: String!
+    falseColor: Int!
+    falseChar: String!
+}
+
+type ErrorReply {
+    message: String!
+}
+
+"""
+Contains information about a clock event that occurred.
+"""
+type EventInfo {
+    timestamp: Timestamp!
+    event: Int!
+}
+
+type MutationRoot {
+    """
+    Sends a setting to a device.
+
+    Not all devices can be set -- most are read-only. For ACNET devices, the `device` string should use DRF notation to specify one of the two settable properties: `.SETTING` and `.CONTROL`.
+    """
     setDevice(device: String!, value: DevValue!): StatusReply!
 }
 
-type Subscription {
-    # Replies come through the same stream so DataReply is not an array
+type QueryRoot {
+    """
+    Retrieve the next data point for the specified devices. Depending upon the event in the DRF string, the data may come back immediately or after a delay.
+    """
+    acceleratorData(drfs: [String!]!): [DataReply!]!
+
+    """
+    Retrieves device information. The parameter specifies the device. The reply will contain the device's information or an error status indicating why the query failed.
+    """
+    deviceInfo(devices: [String!]!): DeviceInfoReply!
+}
+
+type Raw {
+    rawValue: [Int!]!
+}
+
+type Scalar {
+    scalarValue: Float!
+}
+
+type ScalarArray {
+    scalarArrayValue: [Float!]!
+}
+
+type StatusReply {
+    status: Int!
+}
+
+type StructData {
+    key: String!
+    structValue: DataType!
+}
+
+type SubscriptionRoot {
     acceleratorData(drfs: [String!]!): DataReply!
+    reportEvents(events: [Int!]!): EventInfo!
+}
+
+type Text {
+    textValue: String!
+}
+
+type TextArray {
+    textArrayValue: [String!]!
 }
