@@ -331,15 +331,11 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'scalarValue',
+      serializers.serialize(object.scalarValue,
+          specifiedType: const FullType(double)),
     ];
-    Object? value;
-    value = object.scalarValue;
-    if (value != null) {
-      result
-        ..add('scalarValue')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
-    }
+
     return result;
   }
 
@@ -362,7 +358,7 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
           break;
         case 'scalarValue':
           result.scalarValue = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+              specifiedType: const FullType(double))! as double;
           break;
       }
     }
@@ -1018,7 +1014,7 @@ class _$GStreamDataData_acceleratorData_data_result__asScalar
   @override
   final String G__typename;
   @override
-  final double? scalarValue;
+  final double scalarValue;
 
   factory _$GStreamDataData_acceleratorData_data_result__asScalar(
           [void Function(
@@ -1029,12 +1025,16 @@ class _$GStreamDataData_acceleratorData_data_result__asScalar
           ._build();
 
   _$GStreamDataData_acceleratorData_data_result__asScalar._(
-      {required this.G__typename, this.scalarValue})
+      {required this.G__typename, required this.scalarValue})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
         r'GStreamDataData_acceleratorData_data_result__asScalar',
         'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        scalarValue,
+        r'GStreamDataData_acceleratorData_data_result__asScalar',
+        'scalarValue');
   }
 
   @override
@@ -1129,7 +1129,10 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
                 G__typename,
                 r'GStreamDataData_acceleratorData_data_result__asScalar',
                 'G__typename'),
-            scalarValue: scalarValue);
+            scalarValue: BuiltValueNullFieldError.checkNotNull(
+                scalarValue,
+                r'GStreamDataData_acceleratorData_data_result__asScalar',
+                'scalarValue'));
     replace(_$result);
     return _$result;
   }
