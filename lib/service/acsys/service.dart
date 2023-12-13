@@ -2,6 +2,7 @@
 
 library service;
 
+import "package:flutter_controls_core/src/status.dart";
 import "package:flutter_controls_core/src/device_values.dart";
 
 import 'package:built_collection/built_collection.dart';
@@ -137,7 +138,7 @@ class DeviceInfo {
 
 class Reading {
   final int refId;
-  final int status;
+  final Status status;
   final int cycle;
   final DateTime timestamp;
   final double? value;
@@ -146,7 +147,7 @@ class Reading {
 
   const Reading(
       {required this.refId,
-      this.status = 0,
+      this.status = Status.okay,
       required this.cycle,
       required this.timestamp,
       this.value,
@@ -450,7 +451,7 @@ class ACSysService implements ACSysServiceAPI {
             refId: data.refId,
             cycle: data.cycle,
             timestamp: data.data.timestamp,
-            status: result.status);
+            status: Status.fromInt(result.status));
       }
 
       // We are only supporting a single, scalar value for the moment. Any types
@@ -494,7 +495,7 @@ class ACSysService implements ACSysServiceAPI {
             refId: idx,
             cycle: 0,
             timestamp: DateTime.now(),
-            status: -27 * 256 + 17);
+            status: Status.noProperty.code);
       }
     }
 
@@ -507,7 +508,7 @@ class ACSysService implements ACSysServiceAPI {
       final statusVal = (rdg.value ?? 0.0).toInt();
 
       return DigitalStatus(
-        status: rdg.status,
+        status: rdg.status.code,
         refId: refId,
         cycle: rdg.cycle,
         timestamp: rdg.timestamp,
