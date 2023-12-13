@@ -17,7 +17,7 @@ abstract class GSetDeviceData
       _$GSetDeviceData;
 
   static void _initializeBuilder(GSetDeviceDataBuilder b) =>
-      b..G__typename = 'Mutation';
+      b..G__typename = 'MutationRoot';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
