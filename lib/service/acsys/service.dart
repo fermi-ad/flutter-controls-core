@@ -490,7 +490,10 @@ class ACSysService implements ACSysServiceAPI {
     for (final (idx, item) in devInfo.indexed) {
       if (item.basicStatus != null) {
         table.add((idx, item.basicStatus!));
-        drf.add("${item.name}.STATUS.BIT_VALUE");
+
+        // TODO: Need to add the device name to the gRPC reply type.
+
+        drf.add("${devices[idx]}.STATUS.BIT_VALUE");
       } else {
         yield DigitalStatus(
             refId: idx,
