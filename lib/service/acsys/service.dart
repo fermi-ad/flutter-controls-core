@@ -177,7 +177,7 @@ class BasicStatusAttribute {
 
 class ExtendedStatusAttribute {
   final String? description;
-  final String value;
+  final int value;
   final String? valueText;
   final StatusColor? color;
 
