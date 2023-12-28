@@ -195,9 +195,19 @@ class Reading {
       this.primaryValue});
 }
 
+/// Enumeration representing console colors.
+///
+/// These colors are the set of 8 colors used in the legacy console environment.
+/// Our early Flutter applications try to maintain the look and feel, so we
+/// are supporting these values. Hopefully this enumeration, and all dependent
+/// code, will get deprecated and -- eventually -- removed.
+
 enum StatusColor { black, blue, green, cyan, red, magenta, yellow, white }
 
-StatusColor toColor(int value) => switch (value) {
+// Local function that converts an integer value into a `StatusColor`. Any
+// out-of-range values are converted to `white`.
+
+StatusColor _toColor(int value) => switch (value) {
       0 => StatusColor.black,
       1 => StatusColor.blue,
       2 => StatusColor.green,
@@ -403,9 +413,9 @@ class ACSysService implements ACSysServiceAPI {
               matchVal: item.matchVal,
               invert: item.invert,
               character0: item.falseChar,
-              color0: toColor(item.falseColor),
+              color0: _toColor(item.falseColor),
               character1: item.trueChar,
-              color1: toColor(item.trueColor));
+              color1: _toColor(item.trueColor));
 
           switch (idx) {
             case 0:
