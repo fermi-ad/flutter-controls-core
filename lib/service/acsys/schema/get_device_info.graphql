@@ -12,6 +12,14 @@ query GetDeviceInfo($names: [String!]!) {
                     commonUnits
                 }
                 digStatus {
+                    extEntries {
+                        bitNo
+                        color0
+                        name0
+                        color1
+                        name1
+                        description
+                    }
                     entries {
                         maskVal
                         matchVal

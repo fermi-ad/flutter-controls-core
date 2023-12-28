@@ -93,17 +93,57 @@ class BasicStatusProperty {
           : BasicStatusAttribute(character: character0, color: color0);
 }
 
+/// Holds one item of a device's extended basic status.
+///
+/// A device can have "extended status" information associated with it. This
+/// appears as a list of these entries. It defines which bit in the status,
+/// [bitNo], is being defined. Each entry has a [description] which indicates
+/// the use of the bit; a color and descriptive name for when the bit is 0
+/// ([color0], [name0]); and a color and name for when it's 1 ([color1],
+/// [name1]).
+
+class ExtendedBasicStatusEntry {
+  final int bitNo;
+  final String description;
+  final int color0;
+  final String name0;
+  final int color1;
+  final String name1;
+
+  const ExtendedBasicStatusEntry(
+      {required this.bitNo,
+      required this.description,
+      required this.color0,
+      required this.name0,
+      required this.color1,
+      required this.name1});
+
+  ExtendedStatusAttribute getState(int value) => (value & (1 << bitNo)) != 0
+      ? ExtendedStatusAttribute(
+          description: description,
+          value: 1,
+          color: _toColor(color1),
+          valueText: name1)
+      : ExtendedStatusAttribute(
+          description: description,
+          value: 0,
+          color: _toColor(color0),
+          valueText: name0);
+}
+
 class DeviceInfoBasicStatus {
   final BasicStatusProperty? onOffProperty;
   final BasicStatusProperty? readyTrippedProperty;
   final BasicStatusProperty? remoteLocalProperty;
   final BasicStatusProperty? positiveNegativeProperty;
+  final List<ExtendedBasicStatusEntry> extendedBasicStatus;
 
   const DeviceInfoBasicStatus(
       {this.onOffProperty,
       this.readyTrippedProperty,
       this.remoteLocalProperty,
-      this.positiveNegativeProperty});
+      this.positiveNegativeProperty,
+      this.extendedBasicStatus = const []});
 }
 
 class DeviceInfoDigitalControl {
@@ -349,7 +389,8 @@ class ACSysService implements ACSysServiceAPI {
 
       if (e.digStatus
           case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
-            entries: var data
+            entries: var data,
+            extEntries: var extData
           )) {
         BasicStatusProperty? propOn;
         BasicStatusProperty? propReady;
@@ -383,7 +424,16 @@ class ACSysService implements ACSysServiceAPI {
             onOffProperty: propOn,
             readyTrippedProperty: propReady,
             remoteLocalProperty: propRemote,
-            positiveNegativeProperty: propPositive);
+            positiveNegativeProperty: propPositive,
+            extendedBasicStatus: extData
+                .map((e) => ExtendedBasicStatusEntry(
+                    bitNo: e.bitNo,
+                    color0: e.color0,
+                    name0: e.name0,
+                    color1: e.color1,
+                    name1: e.name1,
+                    description: e.description))
+                .toList());
       }
 
       return DeviceInfo(
@@ -520,7 +570,9 @@ class ACSysService implements ACSysServiceAPI {
         readyTripped: bs.readyTrippedProperty?.getState(statusVal),
         remoteLocal: bs.remoteLocalProperty?.getState(statusVal),
         positiveNegative: bs.positiveNegativeProperty?.getState(statusVal),
-      );
+          extendedStatus: bs.extendedBasicStatus
+              .map((item) => item.getState(statusVal))
+              .toList());
     });
   }
 

@@ -106,6 +106,56 @@ const GetDeviceInfo = _i1.OperationDefinitionNode(
                   directives: [],
                   selectionSet: _i1.SelectionSetNode(selections: [
                     _i1.FieldNode(
+                      name: _i1.NameNode(value: 'extEntries'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: _i1.SelectionSetNode(selections: [
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'bitNo'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'color0'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'name0'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'color1'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'name1'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'description'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                      ]),
+                    ),
+                    _i1.FieldNode(
                       name: _i1.NameNode(value: 'entries'),
                       alias: null,
                       arguments: [],
@@ -189,7 +239,7 @@ const GetDeviceInfo = _i1.OperationDefinitionNode(
                           selectionSet: null,
                         ),
                       ]),
-                    )
+                    ),
                   ]),
                 ),
               ]),
