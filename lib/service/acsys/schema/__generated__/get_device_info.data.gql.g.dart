@@ -26,6 +26,10 @@ Serializer<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting>
 Serializer<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus>
     _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusSerializer =
     new _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer();
+Serializer<
+        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
+    _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusExtEntriesSerializer =
+    new _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesSerializer();
 Serializer<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
     _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusEntriesSerializer =
     new _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSerializer();
@@ -450,6 +454,12 @@ class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
+      'extEntries',
+      serializers.serialize(object.extEntries,
+          specifiedType: const FullType(BuiltList, const [
+            const FullType(
+                GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
+          ])),
       'entries',
       serializers.serialize(object.entries,
           specifiedType: const FullType(BuiltList, const [
@@ -478,12 +488,110 @@ class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
+        case 'extEntries':
+          result.extEntries.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(
+                    GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
+              ]))! as BuiltList<Object?>);
+          break;
         case 'entries':
           result.entries.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
                 const FullType(
                     GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries)
               ]))! as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesSerializer
+    implements
+        StructuredSerializer<
+            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries> {
+  @override
+  final Iterable<Type> types = const [
+    GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+    _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+  ];
+  @override
+  final String wireName =
+      'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers,
+      GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+          object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(object.G__typename,
+          specifiedType: const FullType(String)),
+      'bitNo',
+      serializers.serialize(object.bitNo, specifiedType: const FullType(int)),
+      'color0',
+      serializers.serialize(object.color0, specifiedType: const FullType(int)),
+      'name0',
+      serializers.serialize(object.name0,
+          specifiedType: const FullType(String)),
+      'color1',
+      serializers.serialize(object.color1, specifiedType: const FullType(int)),
+      'name1',
+      serializers.serialize(object.name1,
+          specifiedType: const FullType(String)),
+      'description',
+      serializers.serialize(object.description,
+          specifiedType: const FullType(String)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+      deserialize(Serializers serializers, Iterable<Object?> serialized,
+          {FullType specifiedType = FullType.unspecified}) {
+    final result =
+        new GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'bitNo':
+          result.bitNo = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'color0':
+          result.color0 = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'name0':
+          result.name0 = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'color1':
+          result.color1 = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'name1':
+          result.name1 = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'description':
+          result.description = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
           break;
       }
     }
@@ -1492,6 +1600,10 @@ class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
   final String G__typename;
   @override
   final BuiltList<
+          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
+      extEntries;
+  @override
+  final BuiltList<
           GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
       entries;
 
@@ -1504,12 +1616,18 @@ class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
           ._build();
 
   _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._(
-      {required this.G__typename, required this.entries})
+      {required this.G__typename,
+      required this.extEntries,
+      required this.entries})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
         r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
         'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        extEntries,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+        'extEntries');
     BuiltValueNullFieldError.checkNotNull(
         entries,
         r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
@@ -1535,6 +1653,7 @@ class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
     return other
             is GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus &&
         G__typename == other.G__typename &&
+        extEntries == other.extEntries &&
         entries == other.entries;
   }
 
@@ -1542,6 +1661,7 @@ class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, extEntries.hashCode);
     _$hash = $jc(_$hash, entries.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -1552,6 +1672,7 @@ class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
     return (newBuiltValueToStringHelper(
             r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus')
           ..add('G__typename', G__typename)
+          ..add('extEntries', extEntries)
           ..add('entries', entries))
         .toString();
   }
@@ -1566,6 +1687,19 @@ class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<
+          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>?
+      _extEntries;
+  ListBuilder<
+          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
+      get extEntries => _$this._extEntries ??= new ListBuilder<
+          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>();
+  set extEntries(
+          ListBuilder<
+                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>?
+              extEntries) =>
+      _$this._extEntries = extEntries;
 
   ListBuilder<
           GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>?
@@ -1590,6 +1724,7 @@ class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _extEntries = $v.extEntries.toBuilder();
       _entries = $v.entries.toBuilder();
       _$v = null;
     }
@@ -1625,10 +1760,13 @@ class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
                   G__typename,
                   r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
                   'G__typename'),
+              extEntries: extEntries.build(),
               entries: entries.build());
     } catch (_) {
       late String _$failedField;
       try {
+        _$failedField = 'extEntries';
+        extEntries.build();
         _$failedField = 'entries';
         entries.build();
       } catch (e) {
@@ -1639,6 +1777,230 @@ class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+    extends GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries {
+  @override
+  final String G__typename;
+  @override
+  final int bitNo;
+  @override
+  final int color0;
+  @override
+  final String name0;
+  @override
+  final int color1;
+  @override
+  final String name1;
+  @override
+  final String description;
+
+  factory _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries(
+          [void Function(
+                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder)?
+              updates]) =>
+      (new GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._(
+      {required this.G__typename,
+      required this.bitNo,
+      required this.color0,
+      required this.name0,
+      required this.color1,
+      required this.name1,
+      required this.description})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        G__typename,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+        'G__typename');
+    BuiltValueNullFieldError.checkNotNull(
+        bitNo,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+        'bitNo');
+    BuiltValueNullFieldError.checkNotNull(
+        color0,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+        'color0');
+    BuiltValueNullFieldError.checkNotNull(
+        name0,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+        'name0');
+    BuiltValueNullFieldError.checkNotNull(
+        color1,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+        'color1');
+    BuiltValueNullFieldError.checkNotNull(
+        name1,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+        'name1');
+    BuiltValueNullFieldError.checkNotNull(
+        description,
+        r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+        'description');
+  }
+
+  @override
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries rebuild(
+          void Function(
+                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder)
+              updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
+      toBuilder() =>
+          new GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
+            ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries &&
+        G__typename == other.G__typename &&
+        bitNo == other.bitNo &&
+        color0 == other.color0 &&
+        name0 == other.name0 &&
+        color1 == other.color1 &&
+        name1 == other.name1 &&
+        description == other.description;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, bitNo.hashCode);
+    _$hash = $jc(_$hash, color0.hashCode);
+    _$hash = $jc(_$hash, name0.hashCode);
+    _$hash = $jc(_$hash, color1.hashCode);
+    _$hash = $jc(_$hash, name1.hashCode);
+    _$hash = $jc(_$hash, description.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries')
+          ..add('G__typename', G__typename)
+          ..add('bitNo', bitNo)
+          ..add('color0', color0)
+          ..add('name0', name0)
+          ..add('color1', color1)
+          ..add('name1', name1)
+          ..add('description', description))
+        .toString();
+  }
+}
+
+class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
+    implements
+        Builder<
+            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder> {
+  _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries?
+      _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  int? _bitNo;
+  int? get bitNo => _$this._bitNo;
+  set bitNo(int? bitNo) => _$this._bitNo = bitNo;
+
+  int? _color0;
+  int? get color0 => _$this._color0;
+  set color0(int? color0) => _$this._color0 = color0;
+
+  String? _name0;
+  String? get name0 => _$this._name0;
+  set name0(String? name0) => _$this._name0 = name0;
+
+  int? _color1;
+  int? get color1 => _$this._color1;
+  set color1(int? color1) => _$this._color1 = color1;
+
+  String? _name1;
+  String? get name1 => _$this._name1;
+  set name1(String? name1) => _$this._name1 = name1;
+
+  String? _description;
+  String? get description => _$this._description;
+  set description(String? description) => _$this._description = description;
+
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder() {
+    GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+        ._initializeBuilder(this);
+  }
+
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
+      get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _bitNo = $v.bitNo;
+      _color0 = $v.color0;
+      _name0 = $v.name0;
+      _color1 = $v.color1;
+      _name1 = $v.name1;
+      _description = $v.description;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+      GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+          other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other
+        as _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries;
+  }
+
+  @override
+  void update(
+      void Function(
+              GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder)?
+          updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+      build() => _build();
+
+  _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+      _build() {
+    final _$result = _$v ??
+        new _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+                'G__typename'),
+            bitNo: BuiltValueNullFieldError.checkNotNull(
+                bitNo, r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'bitNo'),
+            color0: BuiltValueNullFieldError.checkNotNull(
+                color0, r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'color0'),
+            name0: BuiltValueNullFieldError.checkNotNull(
+                name0, r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'name0'),
+            color1: BuiltValueNullFieldError.checkNotNull(
+                color1,
+                r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+                'color1'),
+            name1: BuiltValueNullFieldError.checkNotNull(
+                name1, r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'name1'),
+            description: BuiltValueNullFieldError.checkNotNull(description, r'GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'description'));
     replace(_$result);
     return _$result;
   }

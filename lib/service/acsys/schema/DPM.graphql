@@ -144,8 +144,18 @@ type DigControlEntry {
     longName: String!
 }
 
+type DigExtStatusEntry {
+    bitNo: Int!
+    color0: Int!
+    name0: String!
+    color1: Int!
+    name1: String!
+    description: String!
+}
+
 type DigStatus {
     entries: [DigStatusEntry!]!
+    extEntries: [DigExtStatusEntry!]!
 }
 
 type DigStatusEntry {

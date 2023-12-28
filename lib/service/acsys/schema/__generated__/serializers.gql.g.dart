@@ -18,6 +18,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
           .serializer)
       ..add(
+          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+              .serializer)
+      ..add(
           GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer)
       ..add(
           GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer)
@@ -42,6 +45,13 @@ Serializers _$serializers = (new Serializers().toBuilder()
           const FullType(BuiltList,
               const [const FullType(GGetDeviceInfoData_deviceInfo_result)]),
           () => new ListBuilder<GGetDeviceInfoData_deviceInfo_result>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(
+                GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
+          ]),
+          () => new ListBuilder<
+              GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
