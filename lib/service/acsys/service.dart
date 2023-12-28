@@ -20,7 +20,7 @@ import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.req.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.var.gql.dart';
 
-import 'dart:developer' as developer;
+import 'dart:developer' as dev;
 
 abstract class ACSysException implements Exception {
   final String message;
@@ -464,8 +464,8 @@ class ACSysService implements ACSysServiceAPI {
 
     return _s
         .request(req)
-        .handleError((error) =>
-            developer.log("error: $error", name: "gql.monitorDevices"))
+        .handleError(
+            (error) => dev.log("error: $error", name: "gql.monitorDevices"))
         .where((event) => !event.loading)
         .map(_convertToReading);
   }
