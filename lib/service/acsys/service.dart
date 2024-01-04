@@ -192,6 +192,23 @@ class SettingStatus {
   const SettingStatus({required this.facilityCode, required this.errorCode});
 }
 
+enum AnalogAlarmState { notAlarming, alarming, bypassed }
+
+class AnalogAlarmStatus {
+  final int refId;
+  final int status;
+  final int cycle;
+  final DateTime timestamp;
+  final AnalogAlarmState state;
+
+  const AnalogAlarmStatus(
+      {required this.refId,
+      this.status = 0,
+      required this.cycle,
+      required this.timestamp,
+      required this.state});
+}
+
 /// Defines the API for the GraphQL interface.
 ///
 /// The API is declared as an abstract class so that one could `implement` a
@@ -214,6 +231,10 @@ abstract class ACSysServiceAPI {
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a list of strings that represents the basic status value.
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> drfs);
+
+  /// Takes a list of data acquisition strings and returns a stream that
+  /// provides a sample of the analog alarm property.
+  Stream<DigitalStatus> monitorAnalogAlarmProperty(List<String> drfs);
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
@@ -435,6 +456,11 @@ class ACSysService implements ACSysServiceAPI {
   Future<SettingStatus> sendCommand(
           {required String toDRF, required String value}) =>
       submit(forDRF: toDRF, newSetting: DevText(value));
+
+  @override
+  Stream<DigitalStatus> monitorAnalogAlarmProperty(List<String> drfs) {
+    return const Stream.empty();
+  }
 }
 
 // And an extension to the DevValue hierarchy which translates a value into a
