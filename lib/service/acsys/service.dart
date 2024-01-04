@@ -458,7 +458,7 @@ class ACSysService implements ACSysServiceAPI {
       submit(forDRF: toDRF, newSetting: DevText(value));
 
   @override
-  Stream<DigitalStatus> monitorAnalogAlarmProperty(List<String> drfs) {
+  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) {
     return const Stream.empty();
   }
 }
