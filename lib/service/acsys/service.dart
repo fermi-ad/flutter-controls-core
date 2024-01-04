@@ -234,7 +234,7 @@ abstract class ACSysServiceAPI {
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
-  Stream<DigitalStatus> monitorAnalogAlarmProperty(List<String> drfs);
+  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
