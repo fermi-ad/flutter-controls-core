@@ -2,6 +2,7 @@
 
 library service;
 
+import "package:flutter_controls_core/src/status.dart";
 import "package:flutter_controls_core/src/device_values.dart";
 
 import 'package:built_collection/built_collection.dart';
@@ -19,7 +20,7 @@ import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.req.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.var.gql.dart';
 
-import 'dart:developer' as developer;
+import 'dart:developer' as dev;
 
 abstract class ACSysException implements Exception {
   final String message;
@@ -69,20 +70,65 @@ class DeviceInfoProperty {
 }
 
 class BasicStatusProperty {
+  final int maskVal;
+  final int matchVal;
+  final bool invert;
   final String character0;
   final StatusColor color0;
   final String character1;
   final StatusColor color1;
 
   const BasicStatusProperty(
-      {required this.character0,
+      {required this.maskVal,
+      required this.matchVal,
+      required this.invert,
+      required this.character0,
       required this.color0,
       required this.character1,
       required this.color1});
 
-  BasicStatusAttribute getState(bool value) => value
-      ? BasicStatusAttribute(character: character1, color: color1)
-      : BasicStatusAttribute(character: character0, color: color0);
+  BasicStatusAttribute getState(int value) =>
+      ((invert ? ~value : value) & maskVal) == matchVal
+          ? BasicStatusAttribute(character: character1, color: color1)
+          : BasicStatusAttribute(character: character0, color: color0);
+}
+
+/// Holds one item of a device's extended basic status.
+///
+/// A device can have "extended status" information associated with it. This
+/// appears as a list of these entries. It defines which bit in the status,
+/// [bitNo], is being defined. Each entry has a [description] which indicates
+/// the use of the bit; a color and descriptive name for when the bit is 0
+/// ([color0], [name0]); and a color and name for when it's 1 ([color1],
+/// [name1]).
+
+class ExtendedBasicStatusEntry {
+  final int bitNo;
+  final String description;
+  final int color0;
+  final String name0;
+  final int color1;
+  final String name1;
+
+  const ExtendedBasicStatusEntry(
+      {required this.bitNo,
+      required this.description,
+      required this.color0,
+      required this.name0,
+      required this.color1,
+      required this.name1});
+
+  ExtendedStatusAttribute getState(int value) => (value & (1 << bitNo)) != 0
+      ? ExtendedStatusAttribute(
+          description: description,
+          value: 1,
+          color: _toColor(color1),
+          valueText: name1)
+      : ExtendedStatusAttribute(
+          description: description,
+          value: 0,
+          color: _toColor(color0),
+          valueText: name0);
 }
 
 class DeviceInfoBasicStatus {
@@ -90,12 +136,14 @@ class DeviceInfoBasicStatus {
   final BasicStatusProperty? readyTrippedProperty;
   final BasicStatusProperty? remoteLocalProperty;
   final BasicStatusProperty? positiveNegativeProperty;
+  final List<ExtendedBasicStatusEntry> extendedBasicStatus;
 
   const DeviceInfoBasicStatus(
       {this.onOffProperty,
       this.readyTrippedProperty,
       this.remoteLocalProperty,
-      this.positiveNegativeProperty});
+      this.positiveNegativeProperty,
+      this.extendedBasicStatus = const []});
 }
 
 class DeviceInfoDigitalControl {
@@ -130,7 +178,7 @@ class DeviceInfo {
 
 class Reading {
   final int refId;
-  final int status;
+  final Status status;
   final int cycle;
   final DateTime timestamp;
   final double? value;
@@ -139,7 +187,7 @@ class Reading {
 
   const Reading(
       {required this.refId,
-      this.status = 0,
+      this.status = Status.okay,
       required this.cycle,
       required this.timestamp,
       this.value,
@@ -147,7 +195,28 @@ class Reading {
       this.primaryValue});
 }
 
+/// Enumeration representing console colors.
+///
+/// These colors are the set of 8 colors used in the legacy console environment.
+/// Our early Flutter applications try to maintain the look and feel, so we
+/// are supporting these values. Hopefully this enumeration, and all dependent
+/// code, will get deprecated and -- eventually -- removed.
+
 enum StatusColor { black, blue, green, cyan, red, magenta, yellow, white }
+
+// Local function that converts an integer value into a `StatusColor`. Any
+// out-of-range values are converted to `white`.
+
+StatusColor _toColor(int value) => switch (value) {
+      0 => StatusColor.black,
+      1 => StatusColor.blue,
+      2 => StatusColor.green,
+      3 => StatusColor.cyan,
+      4 => StatusColor.red,
+      5 => StatusColor.magenta,
+      6 => StatusColor.yellow,
+      _ => StatusColor.white
+    };
 
 class BasicStatusAttribute {
   final String character;
@@ -158,7 +227,7 @@ class BasicStatusAttribute {
 
 class ExtendedStatusAttribute {
   final String? description;
-  final String value;
+  final int value;
   final String? valueText;
   final StatusColor? color;
 
@@ -347,12 +416,64 @@ class ACSysService implements ACSysServiceAPI {
               commonUnits: e.setting!.commonUnits)
           : null;
 
+      DeviceInfoBasicStatus? bs;
+
+      if (e.digStatus
+          case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
+            entries: var data,
+            extEntries: var extData
+          )) {
+        BasicStatusProperty? propOn;
+        BasicStatusProperty? propReady;
+        BasicStatusProperty? propRemote;
+        BasicStatusProperty? propPositive;
+
+        for (final (idx, item) in data.indexed) {
+          final prop = BasicStatusProperty(
+              maskVal: item.maskVal,
+              matchVal: item.matchVal,
+              invert: item.invert,
+              character0: item.falseChar,
+              color0: _toColor(item.falseColor),
+              character1: item.trueChar,
+              color1: _toColor(item.trueColor));
+
+          switch (idx) {
+            case 0:
+              propOn = prop;
+            case 1:
+              propReady = prop;
+            case 2:
+              propRemote = prop;
+            case 3:
+              propPositive = prop;
+            default:
+          }
+        }
+
+        bs = DeviceInfoBasicStatus(
+            onOffProperty: propOn,
+            readyTrippedProperty: propReady,
+            remoteLocalProperty: propRemote,
+            positiveNegativeProperty: propPositive,
+            extendedBasicStatus: extData
+                .map((e) => ExtendedBasicStatusEntry(
+                    bitNo: e.bitNo,
+                    color0: e.color0,
+                    name0: e.name0,
+                    color1: e.color1,
+                    name1: e.name1,
+                    description: e.description))
+                .toList());
+      }
+
       return DeviceInfo(
         di: 0,
         name: "",
         description: e.description,
         reading: rProp,
         setting: sProp,
+        basicStatus: bs,
       );
     } else {
       if (e is GGetDeviceInfoData_deviceInfo_result__asErrorReply) {
@@ -374,8 +495,8 @@ class ACSysService implements ACSysServiceAPI {
 
     return _s
         .request(req)
-        .handleError((error) =>
-            developer.log("error: $error", name: "gql.monitorDevices"))
+        .handleError(
+            (error) => dev.log("error: $error", name: "gql.monitorDevices"))
         .where((event) => !event.loading)
         .map(_convertToReading);
   }
@@ -411,11 +532,12 @@ class ACSysService implements ACSysServiceAPI {
             refId: data.refId,
             cycle: data.cycle,
             timestamp: data.data.timestamp,
-            status: result.status);
+            status: Status.fromInt(result.status));
       }
 
-      // We are only supporting a single, scalar value for the moment. Any types
-      // we don't yet support will report an error and tear down the stream.
+      // TODO: We are only supporting a single, scalar value for the moment. Any
+      // types we don't yet support will report an error and tear down the
+      // stream.
 
       throw ACSysTypeException("can't handle ${result.G__typename} types");
     } else {
@@ -428,14 +550,14 @@ class ACSysService implements ACSysServiceAPI {
       List<String> devices) async* {
     // Get device information for the list of devices. We need to use this
     // information to 1) make sure the device actually has a basic status
-    // property and, 2) build a translation table for when value come in.
+    // property and, 2) build a translation table for when values come in.
 
     final devInfo = await getDeviceInfo(devices);
 
     // Build up the translation table by iterating through the list of results.
     // If the device has the status property, add it to the table. Otherwise
-    // return an error to the requestor. We're only going to send DPM valid
-    // devices.
+    // return an error to the requestor. We're only going to send valid devices
+    // to DPM.
     //
     // Also build up a list of DRF strings that represent the basic status of
     // the devices.
@@ -449,13 +571,16 @@ class ACSysService implements ACSysServiceAPI {
     for (final (idx, item) in devInfo.indexed) {
       if (item.basicStatus != null) {
         table.add((idx, item.basicStatus!));
-        drf.add("${item.name}.STATUS.BIT_VALUE");
+
+        // TODO: Need to add the device name to the gRPC reply type.
+
+        drf.add("${devices[idx]}.STATUS.BIT_VALUE");
       } else {
         yield DigitalStatus(
             refId: idx,
             cycle: 0,
             timestamp: DateTime.now(),
-            status: -27 * 256 + 17);
+            status: Status.noProperty.code);
       }
     }
 
@@ -468,16 +593,17 @@ class ACSysService implements ACSysServiceAPI {
       final statusVal = (rdg.value ?? 0.0).toInt();
 
       return DigitalStatus(
-        status: rdg.status,
+        status: rdg.status.code,
         refId: refId,
         cycle: rdg.cycle,
         timestamp: rdg.timestamp,
-        onOff: bs.onOffProperty?.getState((statusVal & 1) != 0),
-        readyTripped: bs.readyTrippedProperty?.getState((statusVal & 2) != 0),
-        remoteLocal: bs.remoteLocalProperty?.getState((statusVal & 4) != 0),
-        positiveNegative:
-            bs.positiveNegativeProperty?.getState((statusVal & 8) != 0),
-      );
+        onOff: bs.onOffProperty?.getState(statusVal),
+        readyTripped: bs.readyTrippedProperty?.getState(statusVal),
+        remoteLocal: bs.remoteLocalProperty?.getState(statusVal),
+        positiveNegative: bs.positiveNegativeProperty?.getState(statusVal),
+          extendedStatus: bs.extendedBasicStatus
+              .map((item) => item.getState(statusVal))
+              .toList());
     });
   }
 

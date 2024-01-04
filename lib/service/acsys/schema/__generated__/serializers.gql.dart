@@ -6,13 +6,16 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/DPM.schema.gql.dart'
-    show GDevValue;
+    show GDateTime, GDevValue;
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/get_device_info.data.gql.dart'
     show
         GGetDeviceInfoData_deviceInfo_result,
         GGetDeviceInfoData,
         GGetDeviceInfoData_deviceInfo,
         GGetDeviceInfoData_deviceInfo_result__asDeviceInfo,
+        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
         GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
         GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
         GGetDeviceInfoData_deviceInfo_result__asErrorReply,
@@ -54,10 +57,14 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(GStreamDataData_acceleratorData_data_result.serializer)
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
+  GDateTime,
   GDevValue,
   GGetDeviceInfoData,
   GGetDeviceInfoData_deviceInfo,
   GGetDeviceInfoData_deviceInfo_result__asDeviceInfo,
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
   GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
   GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
   GGetDeviceInfoData_deviceInfo_result__asErrorReply,

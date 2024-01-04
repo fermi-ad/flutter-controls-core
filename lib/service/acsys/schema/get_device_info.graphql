@@ -11,6 +11,29 @@ query GetDeviceInfo($names: [String!]!) {
                     primaryUnits
                     commonUnits
                 }
+                digStatus {
+                    extEntries {
+                        bitNo
+                        color0
+                        name0
+                        color1
+                        name1
+                        description
+                    }
+                    entries {
+                        maskVal
+                        matchVal
+                        invert
+                        shortName
+                        longName
+                        trueStr
+                        trueColor
+                        trueChar
+                        falseStr
+                        falseColor
+                        falseChar
+                    }
+                }
             }
             ... on ErrorReply {
                 message

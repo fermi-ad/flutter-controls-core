@@ -19,7 +19,7 @@ abstract class GStreamDataData
       _$GStreamDataData;
 
   static void _initializeBuilder(GStreamDataDataBuilder b) =>
-      b..G__typename = 'Subscription';
+      b..G__typename = 'SubscriptionRoot';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -228,7 +228,7 @@ abstract class GStreamDataData_acceleratorData_data_result__asScalar
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  double? get scalarValue;
+  double get scalarValue;
   static Serializer<GStreamDataData_acceleratorData_data_result__asScalar>
       get serializer =>
           _$gStreamDataDataAcceleratorDataDataResultAsScalarSerializer;
