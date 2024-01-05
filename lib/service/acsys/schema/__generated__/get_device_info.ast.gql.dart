@@ -100,6 +100,43 @@ const GetDeviceInfo = _i1.OperationDefinitionNode(
                   ]),
                 ),
                 _i1.FieldNode(
+                  name: _i1.NameNode(value: 'digControl'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: _i1.SelectionSetNode(selections: [
+                    _i1.FieldNode(
+                      name: _i1.NameNode(value: 'entries'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: _i1.SelectionSetNode(selections: [
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'value'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'shortName'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'longName'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                      ]),
+                    )
+                  ]),
+                ),
+                _i1.FieldNode(
                   name: _i1.NameNode(value: 'digStatus'),
                   alias: null,
                   arguments: [],

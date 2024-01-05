@@ -383,7 +383,11 @@ class ACSysService implements ACSysServiceAPI {
   // into our nicer, flatter one. Used by `getDeviceInfo()`.
 
   static DeviceInfo _convertToDevInfo(GGetDeviceInfoData_deviceInfo_result e) {
+    // Make sure we got a device info structure.
+
     if (e is GGetDeviceInfoData_deviceInfo_result__asDeviceInfo) {
+      // Save off the reading and setting properties, if they exist.
+
       final DeviceInfoProperty? rProp = e.reading != null
           ? DeviceInfoProperty(
               primaryUnits: e.reading!.primaryUnits,
@@ -395,7 +399,12 @@ class ACSysService implements ACSysServiceAPI {
               commonUnits: e.setting!.commonUnits)
           : null;
 
+      // Create a spot to hold the basic status, if it exists.
+
       DeviceInfoBasicStatus? bs;
+
+      // If the device has a basic status property, we need to accumulate the
+      // information and then save it into `bs`.
 
       if (e.digStatus
           case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
@@ -407,7 +416,11 @@ class ACSysService implements ACSysServiceAPI {
         BasicStatusProperty? propRemote;
         BasicStatusProperty? propPositive;
 
+        // Loop through the legacy basic status information.
+
         for (final (idx, item) in data.indexed) {
+          // Convert the gRPC status info into our GraphQL representation.
+
           final prop = BasicStatusProperty(
               maskVal: item.maskVal,
               matchVal: item.matchVal,
@@ -416,6 +429,9 @@ class ACSysService implements ACSysServiceAPI {
               color0: _toColor(item.falseColor),
               character1: item.trueChar,
               color1: _toColor(item.trueColor));
+
+          // The index of the attribute indicates to which legacy status it
+          // applies.
 
           switch (idx) {
             case 0:
@@ -429,6 +445,9 @@ class ACSysService implements ACSysServiceAPI {
             default:
           }
         }
+
+        // Create the final basic status value that will be included with the
+        // device information.
 
         bs = DeviceInfoBasicStatus(
             onOffProperty: propOn,
@@ -446,14 +465,35 @@ class ACSysService implements ACSysServiceAPI {
                 .toList());
       }
 
+      // If the device has digital control, populate the list with the converted
+      // values. These will get inserted into the final device info value.
+
+      List<DeviceInfoDigitalControl> dc = [];
+
+      if (e.digControl
+          case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
+            entries: var entries
+          )) {
+        dc = entries
+            .map(
+              (ii) => DeviceInfoDigitalControl(
+                  value: ii.value,
+                  shortName: ii.shortName,
+                  longName: ii.longName),
+            )
+            .toList();
+      }
+
+      // Create the final, device info structure.
+
       return DeviceInfo(
-        di: 0,
-        name: "",
-        description: e.description,
-        reading: rProp,
-        setting: sProp,
-        basicStatus: bs,
-      );
+          di: 0,
+          name: "",
+          description: e.description,
+          reading: rProp,
+          setting: sProp,
+          basicStatus: bs,
+          digControl: dc);
     } else {
       if (e is GGetDeviceInfoData_deviceInfo_result__asErrorReply) {
         throw UnimplementedError("getDeviceInfo returned an error");
@@ -572,14 +612,14 @@ class ACSysService implements ACSysServiceAPI {
       final statusVal = (rdg.value ?? 0.0).toInt();
 
       return DigitalStatus(
-        status: rdg.status.code,
-        refId: refId,
-        cycle: rdg.cycle,
-        timestamp: rdg.timestamp,
-        onOff: bs.onOffProperty?.getState(statusVal),
-        readyTripped: bs.readyTrippedProperty?.getState(statusVal),
-        remoteLocal: bs.remoteLocalProperty?.getState(statusVal),
-        positiveNegative: bs.positiveNegativeProperty?.getState(statusVal),
+          status: rdg.status.code,
+          refId: refId,
+          cycle: rdg.cycle,
+          timestamp: rdg.timestamp,
+          onOff: bs.onOffProperty?.getState(statusVal),
+          readyTripped: bs.readyTrippedProperty?.getState(statusVal),
+          remoteLocal: bs.remoteLocalProperty?.getState(statusVal),
+          positiveNegative: bs.positiveNegativeProperty?.getState(statusVal),
           extendedStatus: bs.extendedBasicStatus
               .map((item) => item.getState(statusVal))
               .toList());

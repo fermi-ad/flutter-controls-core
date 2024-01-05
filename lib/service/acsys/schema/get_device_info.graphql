@@ -11,6 +11,13 @@ query GetDeviceInfo($names: [String!]!) {
                     primaryUnits
                     commonUnits
                 }
+                digControl {
+                    entries {
+                        value
+                        shortName
+                        longName
+                    }
+                }
                 digStatus {
                     extEntries {
                         bitNo
