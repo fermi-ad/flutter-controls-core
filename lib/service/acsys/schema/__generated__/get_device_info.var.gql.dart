@@ -14,7 +14,8 @@ abstract class GGetDeviceInfoVars
     implements Built<GGetDeviceInfoVars, GGetDeviceInfoVarsBuilder> {
   GGetDeviceInfoVars._();
 
-  factory GGetDeviceInfoVars([Function(GGetDeviceInfoVarsBuilder b) updates]) =
+  factory GGetDeviceInfoVars(
+          [void Function(GGetDeviceInfoVarsBuilder b) updates]) =
       _$GGetDeviceInfoVars;
 
   BuiltList<String> get names;

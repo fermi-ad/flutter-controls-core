@@ -23,7 +23,8 @@ abstract class GGetDeviceInfoReq
         _i1.OperationRequest<_i2.GGetDeviceInfoData, _i3.GGetDeviceInfoVars> {
   GGetDeviceInfoReq._();
 
-  factory GGetDeviceInfoReq([Function(GGetDeviceInfoReqBuilder b) updates]) =
+  factory GGetDeviceInfoReq(
+          [void Function(GGetDeviceInfoReqBuilder b) updates]) =
       _$GGetDeviceInfoReq;
 
   static void _initializeBuilder(GGetDeviceInfoReqBuilder b) => b
@@ -64,6 +65,17 @@ abstract class GGetDeviceInfoReq
   @override
   _i2.GGetDeviceInfoData? parseData(Map<String, dynamic> json) =>
       _i2.GGetDeviceInfoData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GGetDeviceInfoData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GGetDeviceInfoData, _i3.GGetDeviceInfoVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GGetDeviceInfoReq> get serializer =>
       _$gGetDeviceInfoReqSerializer;
