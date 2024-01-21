@@ -49,6 +49,8 @@ class ACSysGraphQLException extends ACSysException {
 // from API changes; hopefully we won't have to change these result classes
 // much, if at all.
 
+class DeviceInfoDigitalAlarm {}
+
 class DeviceInfoAnalogAlarm {
   final String nominal;
   final String tolerance;
@@ -162,6 +164,7 @@ class DeviceInfo {
   final DeviceInfoProperty? reading;
   final DeviceInfoProperty? setting;
   final DeviceInfoAnalogAlarm? alarm;
+  final DeviceInfoDigitalAlarm? digitalAlarm;
   final DeviceInfoBasicStatus? basicStatus;
   final List<DeviceInfoDigitalControl> digControl;
 
@@ -172,6 +175,7 @@ class DeviceInfo {
       this.reading,
       this.setting,
       this.alarm,
+      this.digitalAlarm,
       this.basicStatus,
       this.digControl = const []});
 }
