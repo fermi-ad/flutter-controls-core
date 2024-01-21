@@ -265,16 +265,16 @@ class SettingStatus {
   const SettingStatus({required this.facilityCode, required this.errorCode});
 }
 
-enum AnalogAlarmState { notAlarming, alarming, bypassed }
+enum AlarmState { notAlarming, alarming, bypassed }
 
-class AnalogAlarmStatus {
+class AlarmStatus {
   final int refId;
   final int status;
   final int cycle;
   final DateTime timestamp;
-  final AnalogAlarmState state;
+  final AlarmState state;
 
-  const AnalogAlarmStatus(
+  const AlarmStatus(
       {required this.refId,
       this.status = 0,
       required this.cycle,
@@ -307,7 +307,7 @@ abstract interface class ACSysServiceAPI {
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
-  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
+  Stream<AlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
@@ -681,7 +681,7 @@ class ACSysService implements ACSysServiceAPI {
       submit(forDRF: toDRF, newSetting: DevText(value));
 
   @override
-  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) {
+  Stream<AlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) {
     return const Stream.empty();
   }
 }
