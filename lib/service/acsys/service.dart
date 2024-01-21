@@ -313,6 +313,10 @@ abstract interface class ACSysServiceAPI {
   /// provides a sample of the analog alarm property.
   Stream<AlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
 
+  /// Takes a list of data acquisition strings and returns a stream that
+  /// provides a sample of the analog alarm property.
+  Stream<AlarmStatus> monitorDigitalAlarmProperty(List<String> drfs);
+
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
   Future<SettingStatus> submit(
@@ -686,6 +690,11 @@ class ACSysService implements ACSysServiceAPI {
 
   @override
   Stream<AlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) {
+    return const Stream.empty();
+  }
+
+  @override
+  Stream<AlarmStatus> monitorDigitalAlarmProperty(List<String> drfs) {
     return const Stream.empty();
   }
 }
