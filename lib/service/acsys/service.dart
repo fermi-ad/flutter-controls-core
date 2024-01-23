@@ -49,7 +49,11 @@ class ACSysGraphQLException extends ACSysException {
 // from API changes; hopefully we won't have to change these result classes
 // much, if at all.
 
-class DeviceInfoDigitalAlarm {}
+class DeviceInfoDigitalAlarm {
+  final bool abort;
+
+  DeviceInfoDigitalAlarm({required this.abort});
+}
 
 class DeviceInfoAnalogAlarm {
   final String nominal;
