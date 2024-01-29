@@ -1,7 +1,7 @@
 schema {
-    query: QueryRoot
-    mutation: MutationRoot
-    subscription: SubscriptionRoot
+    query: Queries
+    mutation: Mutations
+    subscription: Subscriptions
 }
 
 scalar Timestamp
@@ -284,7 +284,7 @@ type EventInfo {
     event: Int!
 }
 
-type MutationRoot {
+type Mutations {
     """
     Sends a setting to a device.
 
@@ -293,7 +293,7 @@ type MutationRoot {
     setDevice(device: String!, value: DevValue!): StatusReply!
 }
 
-type QueryRoot {
+type Queries {
     """
     Retrieve the next data point for the specified devices. Depending upon the event in the DRF string, the data may come back immediately or after a delay.
     """
@@ -335,7 +335,7 @@ type StructData {
     structValue: DataType!
 }
 
-type SubscriptionRoot {
+type Subscriptions {
     acceleratorData(drfs: [String!]!): DataReply!
     reportEvents(events: [Int!]!): EventInfo!
 }
