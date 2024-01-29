@@ -136,42 +136,142 @@ type DigControl {
 }
 
 """
-Describes one digital control command used by a device. `name` is the name of the command and can be used by applications to create a descriptive menu. `value` is the actual integer value to send to the device in order to perform the command.
+Describes one digital control command used by a device.
 """
 type DigControlEntry {
+    """
+    The actual integer value to send to the device in order to perform the command.
+    """
     value: Int!
+
+    """
+    The name of the command and can be used by applications to create a descriptive menu.
+    """
     shortName: String!
+
+    """
+    A more descriptive name of the command.
+    """
     longName: String!
 }
 
+"""
+Represents a more modern way to define the bits in the basic status.
+"""
 type DigExtStatusEntry {
+    """
+    Indicates with which bit in the status this entry corresponds. The LSB is 0.
+    """
     bitNo: Int!
+
+    """
+    The color to use when this bit is `false`.
+    """
     color0: Int!
+
+    """
+    The descriptive name when this bit is `false`.
+    """
     name0: String!
+
+    """
+    The color to use when this bit is `true`.
+    """
     color1: Int!
+
+    """
+    The descriptive name when this bit is `false`.
+    """
     name1: String!
+
+    """
+    The description of this bit's purpose.
+    """
     description: String!
 }
 
+"""
+The configuration of the device's basic status property.
+
+This structure contains both the legacy and modern forms of configurations used to describe a device's basic status property.
+"""
 type DigStatus {
+    """
+    Holds the legacy, "power supply" configuration.
+    """
     entries: [DigStatusEntry!]!
+
+    """
+    Hold the modern, bit definitions.
+    """
     extEntries: [DigExtStatusEntry!]!
 }
 
+"""
+Represents a legacy form to describe a basic status bit.
+
+The BASIC STATUS property of a device traditionally modeled a power supply's set of status bits (on/off, ready/tripped, etc.) This structure models the data associated with each of these statuses and allows them to be renamed.
+"""
 type DigStatusEntry {
+    """
+    This value is logically ANDed with the active, raw status to filter the bit that aren't related to the current status.
+    """
     maskVal: Int!
+
+    """
+    This is the value that the masked status needs to be in order to consider it in a good state.
+    """
     matchVal: Int!
+
+    """
+    If this field is true, then the raw status is complemented before masking.
+    """
     invert: Boolean!
+
+    """
+    A short name for this status.
+    """
     shortName: String!
+
+    """
+    A longer version of the name of this status.
+    """
     longName: String!
+
+    """
+    A string representing the value when it's in a good state.
+    """
     trueStr: String!
+
+    """
+    The color to use when the status is in a good state.
+    """
     trueColor: Int!
+
+    """
+    A character to display that represents a good state.
+    """
     trueChar: String!
+
+    """
+    A string representing the value when it's in a bad state.
+    """
     falseStr: String!
+
+    """
+    The color to use when the status is in a bad state.
+    """
     falseColor: Int!
+
+    """
+    A character to display that represents a bad state.
+    """
     falseChar: String!
 }
 
+"""
+Contains an informaive message describing why a request resulted in an error.
+"""
 type ErrorReply {
     message: String!
 }
@@ -205,6 +305,9 @@ type QueryRoot {
     deviceInfo(devices: [String!]!): DeviceInfoReply!
 }
 
+"""
+Contains the raw, unscaled data returned by a device.
+"""
 type Raw {
     rawValue: [Int!]!
 }
@@ -213,6 +316,9 @@ type Scalar {
     scalarValue: Float!
 }
 
+"""
+Represents an array of floating point values.
+"""
 type ScalarArray {
     scalarArrayValue: [Float!]!
 }
@@ -221,6 +327,9 @@ type StatusReply {
     status: Int!
 }
 
+"""
+Represents a generic return type. EPICS devices have a hierarchy and this return type can model those values. Note that the value associated with the key can be another `StructData`, so arbitrarily deep trees can be created.
+"""
 type StructData {
     key: String!
     structValue: DataType!
@@ -231,10 +340,16 @@ type SubscriptionRoot {
     reportEvents(events: [Int!]!): EventInfo!
 }
 
+"""
+Contains a textual value returned by a device.
+"""
 type Text {
     textValue: String!
 }
 
+"""
+Represents an array of textual values.
+"""
 type TextArray {
     textArrayValue: [String!]!
 }
