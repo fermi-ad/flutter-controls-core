@@ -12,303 +12,280 @@ import 'package:gql_code_builder/src/serializers/inline_fragment_serializer.dart
 
 part 'get_device_info.data.gql.g.dart';
 
-abstract class GGetDeviceInfoData
-    implements Built<GGetDeviceInfoData, GGetDeviceInfoDataBuilder> {
-  GGetDeviceInfoData._();
+abstract class GgetDeviceInfoData
+    implements Built<GgetDeviceInfoData, GgetDeviceInfoDataBuilder> {
+  GgetDeviceInfoData._();
 
-  factory GGetDeviceInfoData(
-          [void Function(GGetDeviceInfoDataBuilder b) updates]) =
-      _$GGetDeviceInfoData;
+  factory GgetDeviceInfoData(
+          [void Function(GgetDeviceInfoDataBuilder b) updates]) =
+      _$GgetDeviceInfoData;
 
-  static void _initializeBuilder(GGetDeviceInfoDataBuilder b) =>
-      b..G__typename = 'QueryRoot';
+  static void _initializeBuilder(GgetDeviceInfoDataBuilder b) =>
+      b..G__typename = 'Queries';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  GGetDeviceInfoData_deviceInfo get deviceInfo;
-  static Serializer<GGetDeviceInfoData> get serializer =>
-      _$gGetDeviceInfoDataSerializer;
+  GgetDeviceInfoData_deviceInfo get deviceInfo;
+  static Serializer<GgetDeviceInfoData> get serializer =>
+      _$ggetDeviceInfoDataSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData.serializer,
+        GgetDeviceInfoData.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData? fromJson(Map<String, dynamic> json) =>
+  static GgetDeviceInfoData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData.serializer,
+        GgetDeviceInfoData.serializer,
         json,
       );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo
+abstract class GgetDeviceInfoData_deviceInfo
     implements
-        Built<GGetDeviceInfoData_deviceInfo,
-            GGetDeviceInfoData_deviceInfoBuilder> {
-  GGetDeviceInfoData_deviceInfo._();
+        Built<GgetDeviceInfoData_deviceInfo,
+            GgetDeviceInfoData_deviceInfoBuilder> {
+  GgetDeviceInfoData_deviceInfo._();
 
-  factory GGetDeviceInfoData_deviceInfo(
-          [void Function(GGetDeviceInfoData_deviceInfoBuilder b) updates]) =
-      _$GGetDeviceInfoData_deviceInfo;
+  factory GgetDeviceInfoData_deviceInfo(
+          [void Function(GgetDeviceInfoData_deviceInfoBuilder b) updates]) =
+      _$GgetDeviceInfoData_deviceInfo;
 
-  static void _initializeBuilder(GGetDeviceInfoData_deviceInfoBuilder b) =>
+  static void _initializeBuilder(GgetDeviceInfoData_deviceInfoBuilder b) =>
       b..G__typename = 'DeviceInfoReply';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  BuiltList<GGetDeviceInfoData_deviceInfo_result> get result;
-  static Serializer<GGetDeviceInfoData_deviceInfo> get serializer =>
-      _$gGetDeviceInfoDataDeviceInfoSerializer;
+  BuiltList<GgetDeviceInfoData_deviceInfo_result> get result;
+  static Serializer<GgetDeviceInfoData_deviceInfo> get serializer =>
+      _$ggetDeviceInfoDataDeviceInfoSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo.serializer,
+        GgetDeviceInfoData_deviceInfo.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo? fromJson(Map<String, dynamic> json) =>
+  static GgetDeviceInfoData_deviceInfo? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo.serializer,
+        GgetDeviceInfoData_deviceInfo.serializer,
         json,
       );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result {
+abstract class GgetDeviceInfoData_deviceInfo_result {
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  static Serializer<GGetDeviceInfoData_deviceInfo_result> get serializer =>
-      _i2.InlineFragmentSerializer<GGetDeviceInfoData_deviceInfo_result>(
-        'GGetDeviceInfoData_deviceInfo_result',
-        GGetDeviceInfoData_deviceInfo_result__base,
+  static Serializer<GgetDeviceInfoData_deviceInfo_result> get serializer =>
+      _i2.InlineFragmentSerializer<GgetDeviceInfoData_deviceInfo_result>(
+        'GgetDeviceInfoData_deviceInfo_result',
+        GgetDeviceInfoData_deviceInfo_result__base,
         {
-          'DeviceInfo': GGetDeviceInfoData_deviceInfo_result__asDeviceInfo,
-          'ErrorReply': GGetDeviceInfoData_deviceInfo_result__asErrorReply,
+          'DeviceInfo': GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
+          'ErrorReply': GgetDeviceInfoData_deviceInfo_result__asErrorReply,
         },
       );
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result.serializer,
+        GgetDeviceInfoData_deviceInfo_result.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result? fromJson(
+  static GgetDeviceInfoData_deviceInfo_result? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo_result.serializer,
+        GgetDeviceInfoData_deviceInfo_result.serializer,
         json,
       );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__base
+abstract class GgetDeviceInfoData_deviceInfo_result__base
     implements
-        Built<GGetDeviceInfoData_deviceInfo_result__base,
-            GGetDeviceInfoData_deviceInfo_result__baseBuilder>,
-        GGetDeviceInfoData_deviceInfo_result {
-  GGetDeviceInfoData_deviceInfo_result__base._();
+        Built<GgetDeviceInfoData_deviceInfo_result__base,
+            GgetDeviceInfoData_deviceInfo_result__baseBuilder>,
+        GgetDeviceInfoData_deviceInfo_result {
+  GgetDeviceInfoData_deviceInfo_result__base._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__base(
-      [void Function(GGetDeviceInfoData_deviceInfo_result__baseBuilder b)
-          updates]) = _$GGetDeviceInfoData_deviceInfo_result__base;
+  factory GgetDeviceInfoData_deviceInfo_result__base(
+      [void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder b)
+          updates]) = _$GgetDeviceInfoData_deviceInfo_result__base;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__baseBuilder b) =>
+          GgetDeviceInfoData_deviceInfo_result__baseBuilder b) =>
       b..G__typename = 'DeviceInfoResult';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  static Serializer<GGetDeviceInfoData_deviceInfo_result__base>
-      get serializer => _$gGetDeviceInfoDataDeviceInfoResultBaseSerializer;
+  static Serializer<GgetDeviceInfoData_deviceInfo_result__base>
+      get serializer => _$ggetDeviceInfoDataDeviceInfoResultBaseSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__base.serializer,
+        GgetDeviceInfoData_deviceInfo_result__base.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__base? fromJson(
+  static GgetDeviceInfoData_deviceInfo_result__base? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo_result__base.serializer,
+        GgetDeviceInfoData_deviceInfo_result__base.serializer,
         json,
       );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
     implements
-        Built<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder>,
-        GGetDeviceInfoData_deviceInfo_result {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo._();
+        Built<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder>,
+        GgetDeviceInfoData_deviceInfo_result {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo(
       [void Function(
-              GGetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder b)
-          updates]) = _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo;
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder b)
+          updates]) = _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder b) =>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder b) =>
       b..G__typename = 'DeviceInfo';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   String get description;
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading? get reading;
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? get setting;
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl? get digControl;
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus? get digStatus;
-  static Serializer<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo>
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading? get reading;
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl? get digControl;
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus? get digStatus;
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? get setting;
+  static Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoSerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo? fromJson(
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer,
         json,
       );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
     implements
-        Built<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder> {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._();
+        Built<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder>,
+        GDevicePropertyFields {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading(
       [void Function(
-              GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
                   b)
-          updates]) = _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading;
+          updates]) = _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
               b) =>
-      b..G__typename = 'DeviceProperty';
+      b..G__typename = 'ReadingProp';
 
+  @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  @override
+  double get minVal;
+  @override
+  double get maxVal;
+  @override
   String? get primaryUnits;
+  @override
+  int get primaryIndex;
+  @override
   String? get commonUnits;
-  static Serializer<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading>
+  @override
+  int get commonIndex;
+  @override
+  BuiltList<double> get coeff;
+  static Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoReadingSerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoReadingSerializer;
 
+  @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading? fromJson(
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer,
         json,
       );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
     implements
-        Built<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder> {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._();
+        Built<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder> {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting(
-      [void Function(
-              GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
-                  b)
-          updates]) = _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting;
-
-  static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
-              b) =>
-      b..G__typename = 'DeviceProperty';
-
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  String? get primaryUnits;
-  String? get commonUnits;
-  static Serializer<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting>
-      get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingSerializer;
-
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer,
-        json,
-      );
-}
-
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
-    implements
-        Built<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder> {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._();
-
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
           [void Function(
-                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
+                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
                       b)
               updates]) =
-      _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl;
+      _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
               b) =>
       b..G__typename = 'DigControl';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   BuiltList<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>
       get entries;
   static Serializer<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlSerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
             .serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl?
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl?
       fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
                 .serializer,
             json,
           );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
     implements
         Built<
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder> {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._();
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder> {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries(
           [void Function(
-                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
+                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
                       b)
               updates]) =
-      _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries;
+      _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
               b) =>
       b..G__typename = 'DigControlEntry';
 
@@ -318,84 +295,84 @@ abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_ent
   String get shortName;
   String get longName;
   static Serializer<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlEntriesSerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlEntriesSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
             .serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries?
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries?
       fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
                 .serializer,
             json,
           );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
     implements
-        Built<GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder> {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._();
+        Built<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder> {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
           [void Function(
-                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
+                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
                       b)
               updates]) =
-      _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus;
+      _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
               b) =>
       b..G__typename = 'DigStatus';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   BuiltList<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
       get extEntries;
   BuiltList<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
       get entries;
   static Serializer<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusSerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus? fromJson(
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus.serializer,
         json,
       );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
     implements
         Built<
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder> {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._();
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder> {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries(
           [void Function(
-                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
+                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
                       b)
               updates]) =
-      _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries;
+      _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
               b) =>
       b..G__typename = 'DigExtStatusEntry';
 
@@ -408,40 +385,40 @@ abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extE
   String get name1;
   String get description;
   static Serializer<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusExtEntriesSerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusExtEntriesSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
             .serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries?
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries?
       fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
                 .serializer,
             json,
           );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
     implements
         Built<
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder> {
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._();
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder> {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries(
           [void Function(
-                  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
+                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
                       b)
               updates]) =
-      _$GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries;
+      _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
               b) =>
       b..G__typename = 'DigStatusEntry';
 
@@ -459,58 +436,214 @@ abstract class GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entr
   int get falseColor;
   String get falseChar;
   static Serializer<
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusEntriesSerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusEntriesSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
             .serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries?
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries?
       fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
-            GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
                 .serializer,
             json,
           );
 }
 
-abstract class GGetDeviceInfoData_deviceInfo_result__asErrorReply
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
     implements
-        Built<GGetDeviceInfoData_deviceInfo_result__asErrorReply,
-            GGetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder>,
-        GGetDeviceInfoData_deviceInfo_result {
-  GGetDeviceInfoData_deviceInfo_result__asErrorReply._();
+        Built<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder>,
+        GDevicePropertyFields {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._();
 
-  factory GGetDeviceInfoData_deviceInfo_result__asErrorReply(
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting(
       [void Function(
-              GGetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder b)
-          updates]) = _$GGetDeviceInfoData_deviceInfo_result__asErrorReply;
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
+                  b)
+          updates]) = _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting;
 
   static void _initializeBuilder(
-          GGetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder b) =>
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
+              b) =>
+      b..G__typename = 'SettingProp';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  double get minVal;
+  @override
+  double get maxVal;
+  @override
+  String? get primaryUnits;
+  @override
+  int get primaryIndex;
+  @override
+  String? get commonUnits;
+  @override
+  int get commonIndex;
+  @override
+  BuiltList<double> get coeff;
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+      get knobInfo;
+  static Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting>
+      get serializer =>
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer,
+        json,
+      );
+}
+
+abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+    implements
+        Built<
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder> {
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._();
+
+  factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo(
+          [void Function(
+                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
+                      b)
+              updates]) =
+      _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo;
+
+  static void _initializeBuilder(
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
+              b) =>
+      b..G__typename = 'KnobInfo';
+
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  double get minVal;
+  double get maxVal;
+  double get step;
+  static Serializer<
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo>
+      get serializer =>
+          _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingKnobInfoSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+            .serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo?
+      fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+                .serializer,
+            json,
+          );
+}
+
+abstract class GgetDeviceInfoData_deviceInfo_result__asErrorReply
+    implements
+        Built<GgetDeviceInfoData_deviceInfo_result__asErrorReply,
+            GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder>,
+        GgetDeviceInfoData_deviceInfo_result {
+  GgetDeviceInfoData_deviceInfo_result__asErrorReply._();
+
+  factory GgetDeviceInfoData_deviceInfo_result__asErrorReply(
+      [void Function(
+              GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder b)
+          updates]) = _$GgetDeviceInfoData_deviceInfo_result__asErrorReply;
+
+  static void _initializeBuilder(
+          GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder b) =>
       b..G__typename = 'ErrorReply';
 
   @override
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   String get message;
-  static Serializer<GGetDeviceInfoData_deviceInfo_result__asErrorReply>
+  static Serializer<GgetDeviceInfoData_deviceInfo_result__asErrorReply>
       get serializer =>
-          _$gGetDeviceInfoDataDeviceInfoResultAsErrorReplySerializer;
+          _$ggetDeviceInfoDataDeviceInfoResultAsErrorReplySerializer;
 
   @override
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asErrorReply.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asErrorReply.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoData_deviceInfo_result__asErrorReply? fromJson(
+  static GgetDeviceInfoData_deviceInfo_result__asErrorReply? fromJson(
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoData_deviceInfo_result__asErrorReply.serializer,
+        GgetDeviceInfoData_deviceInfo_result__asErrorReply.serializer,
+        json,
+      );
+}
+
+abstract class GDevicePropertyFields {
+  String get G__typename;
+  double get minVal;
+  double get maxVal;
+  String? get primaryUnits;
+  int get primaryIndex;
+  String? get commonUnits;
+  int get commonIndex;
+  BuiltList<double> get coeff;
+  Map<String, dynamic> toJson();
+}
+
+abstract class GDevicePropertyFieldsData
+    implements
+        Built<GDevicePropertyFieldsData, GDevicePropertyFieldsDataBuilder>,
+        GDevicePropertyFields {
+  GDevicePropertyFieldsData._();
+
+  factory GDevicePropertyFieldsData(
+          [void Function(GDevicePropertyFieldsDataBuilder b) updates]) =
+      _$GDevicePropertyFieldsData;
+
+  static void _initializeBuilder(GDevicePropertyFieldsDataBuilder b) =>
+      b..G__typename = 'DeviceProperty';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  @override
+  double get minVal;
+  @override
+  double get maxVal;
+  @override
+  String? get primaryUnits;
+  @override
+  int get primaryIndex;
+  @override
+  String? get commonUnits;
+  @override
+  int get commonIndex;
+  @override
+  BuiltList<double> get coeff;
+  static Serializer<GDevicePropertyFieldsData> get serializer =>
+      _$gDevicePropertyFieldsDataSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDevicePropertyFieldsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GDevicePropertyFieldsData? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GDevicePropertyFieldsData.serializer,
         json,
       );
 }

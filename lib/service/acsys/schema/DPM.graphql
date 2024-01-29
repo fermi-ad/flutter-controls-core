@@ -91,12 +91,12 @@ type DeviceInfo {
     """
     Holds informations related to the reading property. If the device doesn't have a reading property, this field will be `null`.
     """
-    reading: DeviceProperty
+    reading: ReadingProp
 
     """
     Holds informations related to the setting property. If the device doesn't have a setting property, this field will be `null`.
     """
-    setting: DeviceProperty
+    setting: SettingProp
     digControl: DigControl
     digStatus: DigStatus
 }
@@ -114,18 +114,16 @@ The result of the device info query. It can return device information or an erro
 union DeviceInfoResult = DeviceInfo | ErrorReply
 
 """
-Holds data associated with a property of a device.
+Common set of attributes for reading and setting properties.
 """
-type DeviceProperty {
-    """
-    Specifies the engineering units for the primary transform of the device. This field might be `null`, if there aren't units for this transform.
-    """
+interface DeviceProperty {
     primaryUnits: String
-
-    """
-    Specifies the engineering units for the common transform of the device. This field might be `null`, if there aren't units for this transform.
-    """
     commonUnits: String
+    minVal: Float!
+    maxVal: Float!
+    primaryIndex: Int!
+    commonIndex: Int!
+    coeff: [Float!]!
 }
 
 """
@@ -284,6 +282,26 @@ type EventInfo {
     event: Int!
 }
 
+"""
+Holds information about "knobbing" a device's setting value.
+"""
+type KnobInfo {
+    """
+    The minimum value of the device. When knobbing, the setting shouldn't go lower than this value.
+    """
+    minVal: Float!
+
+    """
+    The maximum value of the device. When knobbing, the setting shouldn't go higher than this value.
+    """
+    maxVal: Float!
+
+    """
+    The recommended step size when sending a stream of settings.
+    """
+    step: Float!
+}
+
 type Mutations {
     """
     Sends a setting to a device.
@@ -312,6 +330,49 @@ type Raw {
     rawValue: [Int!]!
 }
 
+"""
+Holds data associated with the reading property of a device.
+"""
+type ReadingProp implements DeviceProperty {
+    """
+    Specifies the engineering units for the primary transform of the device. This field might be `null`, if there aren't units for this transform.
+    """
+    primaryUnits: String
+
+    """
+    Specifies the engineering units for the common transform of the device. This field might be `null`, if there aren't units for this transform.
+    """
+    commonUnits: String
+
+    """
+    The maximum value this device will read and allow to be set. This field is a recommendation for applications to follow. The actual hardware driver will enforce the limits.
+    """
+    minVal: Float!
+
+    """
+    The minimum value this device will read and allow to be set. This field is a recommendation for applications to follow. The actual hardware driver will enforce the limits.
+    """
+    maxVal: Float!
+
+    """
+    The index of the primary scaling transform.
+    """
+    primaryIndex: Int!
+
+    """
+    The index of the common scaling transform.
+    """
+    commonIndex: Int!
+
+    """
+    The coefficients to be used with the common scaling transform. There will be 0 - 10 coefficients, depending on the transform. The transform documentation refers to the constants as "c1" through "c10". These correspond to the indices 0 through 9, respectively.
+    """
+    coeff: [Float!]!
+}
+
+"""
+Represents a simple, floating point value.
+"""
 type Scalar {
     scalarValue: Float!
 }
@@ -323,6 +384,54 @@ type ScalarArray {
     scalarArrayValue: [Float!]!
 }
 
+"""
+Holds data associated with the setting property of a device.
+"""
+type SettingProp implements DeviceProperty {
+    """
+    Specifies the engineering units for the primary transform of the device. This field might be `null`, if there aren't units for this transform.
+    """
+    primaryUnits: String
+
+    """
+    Specifies the engineering units for the common transform of the device. This field might be `null`, if there aren't units for this transform.
+    """
+    commonUnits: String
+
+    """
+    The maximum value this device will read and allow to be set. This field is a recommendation for applications to follow. The actual hardware driver will enforce the limits.
+    """
+    minVal: Float!
+
+    """
+    The minimum value this device will read and allow to be set. This field is a recommendation for applications to follow. The actual hardware driver will enforce the limits.
+    """
+    maxVal: Float!
+
+    """
+    The index of the primary scaling transform.
+    """
+    primaryIndex: Int!
+
+    """
+    The index of the common scaling transform.
+    """
+    commonIndex: Int!
+
+    """
+    The coefficients to be used with the common scaling transform. There will be 0 - 10 coefficients, depending on the transform. The transform documentation refers to the constants as "c1" through "c10". These correspond to the indices 0 through 9, respectively.
+    """
+    coeff: [Float!]!
+
+    """
+    If the device has associated "knobbing" information, this field will specify the configuration.
+    """
+    knobInfo: KnobInfo!
+}
+
+"""
+Contains an ACNET status code. The Data Pool Manager currently returns these status codes, but they may go away in the future since EPICS has its own set of error codes.
+"""
 type StatusReply {
     status: Int!
 }

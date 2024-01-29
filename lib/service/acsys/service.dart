@@ -369,10 +369,10 @@ class ACSysService implements ACSysServiceAPI {
   Future<List<DeviceInfo>> getDeviceInfo(List<String> devices) async {
     if (devices.isNotEmpty) {
       final req =
-          GGetDeviceInfoReq((b) => b..vars.names = ListBuilder(devices));
+          GgetDeviceInfoReq((b) => b..vars.devices = ListBuilder(devices));
 
       return _rpc(req,
-          xlat: (GGetDeviceInfoData data) =>
+          xlat: (GgetDeviceInfoData data) =>
               data.deviceInfo.result.map(_convertToDevInfo).toList());
     } else {
       throw ACSysInvArgException("empty device list");
@@ -382,10 +382,10 @@ class ACSysService implements ACSysServiceAPI {
   // Private conversion method to convert an obnoxiously named, nested class
   // into our nicer, flatter one. Used by `getDeviceInfo()`.
 
-  static DeviceInfo _convertToDevInfo(GGetDeviceInfoData_deviceInfo_result e) {
+  static DeviceInfo _convertToDevInfo(GgetDeviceInfoData_deviceInfo_result e) {
     // Make sure we got a device info structure.
 
-    if (e is GGetDeviceInfoData_deviceInfo_result__asDeviceInfo) {
+    if (e is GgetDeviceInfoData_deviceInfo_result__asDeviceInfo) {
       // Save off the reading and setting properties, if they exist.
 
       final DeviceInfoProperty? rProp = e.reading != null
@@ -407,7 +407,7 @@ class ACSysService implements ACSysServiceAPI {
       // information and then save it into `bs`.
 
       if (e.digStatus
-          case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
+          case GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
             entries: var data,
             extEntries: var extData
           )) {
@@ -471,7 +471,7 @@ class ACSysService implements ACSysServiceAPI {
       List<DeviceInfoDigitalControl> dc = [];
 
       if (e.digControl
-          case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
+          case GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
             entries: var entries
           )) {
         dc = entries
@@ -495,7 +495,7 @@ class ACSysService implements ACSysServiceAPI {
           basicStatus: bs,
           digControl: dc);
     } else {
-      if (e is GGetDeviceInfoData_deviceInfo_result__asErrorReply) {
+      if (e is GgetDeviceInfoData_deviceInfo_result__asErrorReply) {
         throw UnimplementedError("getDeviceInfo returned an error");
       } else {
         throw UnimplementedError("getDeviceInfo unexpected response");

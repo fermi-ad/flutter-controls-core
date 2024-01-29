@@ -64,4 +64,8 @@ const Map<String, Set<String>> possibleTypesMap = {
     'DeviceInfo',
     'ErrorReply',
   },
+  'DeviceProperty': {
+    'ReadingProp',
+    'SettingProp',
+  },
 };

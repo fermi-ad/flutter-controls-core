@@ -19,7 +19,7 @@ abstract class GStreamDataData
       _$GStreamDataData;
 
   static void _initializeBuilder(GStreamDataDataBuilder b) =>
-      b..G__typename = 'SubscriptionRoot';
+      b..G__typename = 'Subscriptions';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;

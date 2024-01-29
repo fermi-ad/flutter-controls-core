@@ -10,26 +10,50 @@ import 'package:flutter_controls_core/service/acsys/schema/__generated__/seriali
 
 part 'get_device_info.var.gql.g.dart';
 
-abstract class GGetDeviceInfoVars
-    implements Built<GGetDeviceInfoVars, GGetDeviceInfoVarsBuilder> {
-  GGetDeviceInfoVars._();
+abstract class GgetDeviceInfoVars
+    implements Built<GgetDeviceInfoVars, GgetDeviceInfoVarsBuilder> {
+  GgetDeviceInfoVars._();
 
-  factory GGetDeviceInfoVars(
-          [void Function(GGetDeviceInfoVarsBuilder b) updates]) =
-      _$GGetDeviceInfoVars;
+  factory GgetDeviceInfoVars(
+          [void Function(GgetDeviceInfoVarsBuilder b) updates]) =
+      _$GgetDeviceInfoVars;
 
-  BuiltList<String> get names;
-  static Serializer<GGetDeviceInfoVars> get serializer =>
-      _$gGetDeviceInfoVarsSerializer;
+  BuiltList<String> get devices;
+  static Serializer<GgetDeviceInfoVars> get serializer =>
+      _$ggetDeviceInfoVarsSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GGetDeviceInfoVars.serializer,
+        GgetDeviceInfoVars.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoVars? fromJson(Map<String, dynamic> json) =>
+  static GgetDeviceInfoVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GGetDeviceInfoVars.serializer,
+        GgetDeviceInfoVars.serializer,
+        json,
+      );
+}
+
+abstract class GDevicePropertyFieldsVars
+    implements
+        Built<GDevicePropertyFieldsVars, GDevicePropertyFieldsVarsBuilder> {
+  GDevicePropertyFieldsVars._();
+
+  factory GDevicePropertyFieldsVars(
+          [void Function(GDevicePropertyFieldsVarsBuilder b) updates]) =
+      _$GDevicePropertyFieldsVars;
+
+  static Serializer<GDevicePropertyFieldsVars> get serializer =>
+      _$gDevicePropertyFieldsVarsSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDevicePropertyFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GDevicePropertyFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GDevicePropertyFieldsVars.serializer,
         json,
       );
 }

@@ -6,23 +6,25 @@ part of 'get_device_info.var.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GGetDeviceInfoVars> _$gGetDeviceInfoVarsSerializer =
-    new _$GGetDeviceInfoVarsSerializer();
+Serializer<GgetDeviceInfoVars> _$ggetDeviceInfoVarsSerializer =
+    new _$GgetDeviceInfoVarsSerializer();
+Serializer<GDevicePropertyFieldsVars> _$gDevicePropertyFieldsVarsSerializer =
+    new _$GDevicePropertyFieldsVarsSerializer();
 
-class _$GGetDeviceInfoVarsSerializer
-    implements StructuredSerializer<GGetDeviceInfoVars> {
+class _$GgetDeviceInfoVarsSerializer
+    implements StructuredSerializer<GgetDeviceInfoVars> {
   @override
-  final Iterable<Type> types = const [GGetDeviceInfoVars, _$GGetDeviceInfoVars];
+  final Iterable<Type> types = const [GgetDeviceInfoVars, _$GgetDeviceInfoVars];
   @override
-  final String wireName = 'GGetDeviceInfoVars';
+  final String wireName = 'GgetDeviceInfoVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GGetDeviceInfoVars object,
+      Serializers serializers, GgetDeviceInfoVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'names',
-      serializers.serialize(object.names,
+      'devices',
+      serializers.serialize(object.devices,
           specifiedType:
               const FullType(BuiltList, const [const FullType(String)])),
     ];
@@ -31,10 +33,10 @@ class _$GGetDeviceInfoVarsSerializer
   }
 
   @override
-  GGetDeviceInfoVars deserialize(
+  GgetDeviceInfoVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GGetDeviceInfoVarsBuilder();
+    final result = new GgetDeviceInfoVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -42,8 +44,8 @@ class _$GGetDeviceInfoVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
-        case 'names':
-          result.names.replace(serializers.deserialize(value,
+        case 'devices':
+          result.devices.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
@@ -55,98 +57,185 @@ class _$GGetDeviceInfoVarsSerializer
   }
 }
 
-class _$GGetDeviceInfoVars extends GGetDeviceInfoVars {
+class _$GDevicePropertyFieldsVarsSerializer
+    implements StructuredSerializer<GDevicePropertyFieldsVars> {
   @override
-  final BuiltList<String> names;
+  final Iterable<Type> types = const [
+    GDevicePropertyFieldsVars,
+    _$GDevicePropertyFieldsVars
+  ];
+  @override
+  final String wireName = 'GDevicePropertyFieldsVars';
 
-  factory _$GGetDeviceInfoVars(
-          [void Function(GGetDeviceInfoVarsBuilder)? updates]) =>
-      (new GGetDeviceInfoVarsBuilder()..update(updates))._build();
-
-  _$GGetDeviceInfoVars._({required this.names}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        names, r'GGetDeviceInfoVars', 'names');
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GDevicePropertyFieldsVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    return <Object?>[];
   }
 
   @override
-  GGetDeviceInfoVars rebuild(
-          void Function(GGetDeviceInfoVarsBuilder) updates) =>
+  GDevicePropertyFieldsVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    return new GDevicePropertyFieldsVarsBuilder().build();
+  }
+}
+
+class _$GgetDeviceInfoVars extends GgetDeviceInfoVars {
+  @override
+  final BuiltList<String> devices;
+
+  factory _$GgetDeviceInfoVars(
+          [void Function(GgetDeviceInfoVarsBuilder)? updates]) =>
+      (new GgetDeviceInfoVarsBuilder()..update(updates))._build();
+
+  _$GgetDeviceInfoVars._({required this.devices}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        devices, r'GgetDeviceInfoVars', 'devices');
+  }
+
+  @override
+  GgetDeviceInfoVars rebuild(
+          void Function(GgetDeviceInfoVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GGetDeviceInfoVarsBuilder toBuilder() =>
-      new GGetDeviceInfoVarsBuilder()..replace(this);
+  GgetDeviceInfoVarsBuilder toBuilder() =>
+      new GgetDeviceInfoVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GGetDeviceInfoVars && names == other.names;
+    return other is GgetDeviceInfoVars && devices == other.devices;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
-    _$hash = $jc(_$hash, names.hashCode);
+    _$hash = $jc(_$hash, devices.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GGetDeviceInfoVars')
-          ..add('names', names))
+    return (newBuiltValueToStringHelper(r'GgetDeviceInfoVars')
+          ..add('devices', devices))
         .toString();
   }
 }
 
-class GGetDeviceInfoVarsBuilder
-    implements Builder<GGetDeviceInfoVars, GGetDeviceInfoVarsBuilder> {
-  _$GGetDeviceInfoVars? _$v;
+class GgetDeviceInfoVarsBuilder
+    implements Builder<GgetDeviceInfoVars, GgetDeviceInfoVarsBuilder> {
+  _$GgetDeviceInfoVars? _$v;
 
-  ListBuilder<String>? _names;
-  ListBuilder<String> get names => _$this._names ??= new ListBuilder<String>();
-  set names(ListBuilder<String>? names) => _$this._names = names;
+  ListBuilder<String>? _devices;
+  ListBuilder<String> get devices =>
+      _$this._devices ??= new ListBuilder<String>();
+  set devices(ListBuilder<String>? devices) => _$this._devices = devices;
 
-  GGetDeviceInfoVarsBuilder();
+  GgetDeviceInfoVarsBuilder();
 
-  GGetDeviceInfoVarsBuilder get _$this {
+  GgetDeviceInfoVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _names = $v.names.toBuilder();
+      _devices = $v.devices.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GGetDeviceInfoVars other) {
+  void replace(GgetDeviceInfoVars other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GGetDeviceInfoVars;
+    _$v = other as _$GgetDeviceInfoVars;
   }
 
   @override
-  void update(void Function(GGetDeviceInfoVarsBuilder)? updates) {
+  void update(void Function(GgetDeviceInfoVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GGetDeviceInfoVars build() => _build();
+  GgetDeviceInfoVars build() => _build();
 
-  _$GGetDeviceInfoVars _build() {
-    _$GGetDeviceInfoVars _$result;
+  _$GgetDeviceInfoVars _build() {
+    _$GgetDeviceInfoVars _$result;
     try {
-      _$result = _$v ?? new _$GGetDeviceInfoVars._(names: names.build());
+      _$result = _$v ?? new _$GgetDeviceInfoVars._(devices: devices.build());
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'names';
-        names.build();
+        _$failedField = 'devices';
+        devices.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GGetDeviceInfoVars', _$failedField, e.toString());
+            r'GgetDeviceInfoVars', _$failedField, e.toString());
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GDevicePropertyFieldsVars extends GDevicePropertyFieldsVars {
+  factory _$GDevicePropertyFieldsVars(
+          [void Function(GDevicePropertyFieldsVarsBuilder)? updates]) =>
+      (new GDevicePropertyFieldsVarsBuilder()..update(updates))._build();
+
+  _$GDevicePropertyFieldsVars._() : super._();
+
+  @override
+  GDevicePropertyFieldsVars rebuild(
+          void Function(GDevicePropertyFieldsVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GDevicePropertyFieldsVarsBuilder toBuilder() =>
+      new GDevicePropertyFieldsVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GDevicePropertyFieldsVars;
+  }
+
+  @override
+  int get hashCode {
+    return 811644969;
+  }
+
+  @override
+  String toString() {
+    return newBuiltValueToStringHelper(r'GDevicePropertyFieldsVars').toString();
+  }
+}
+
+class GDevicePropertyFieldsVarsBuilder
+    implements
+        Builder<GDevicePropertyFieldsVars, GDevicePropertyFieldsVarsBuilder> {
+  _$GDevicePropertyFieldsVars? _$v;
+
+  GDevicePropertyFieldsVarsBuilder();
+
+  @override
+  void replace(GDevicePropertyFieldsVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GDevicePropertyFieldsVars;
+  }
+
+  @override
+  void update(void Function(GDevicePropertyFieldsVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GDevicePropertyFieldsVars build() => _build();
+
+  _$GDevicePropertyFieldsVars _build() {
+    final _$result = _$v ?? new _$GDevicePropertyFieldsVars._();
     replace(_$result);
     return _$result;
   }
