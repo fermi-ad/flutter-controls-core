@@ -15,11 +15,11 @@ abstract class GStreamDataData
     implements Built<GStreamDataData, GStreamDataDataBuilder> {
   GStreamDataData._();
 
-  factory GStreamDataData([Function(GStreamDataDataBuilder b) updates]) =
+  factory GStreamDataData([void Function(GStreamDataDataBuilder b) updates]) =
       _$GStreamDataData;
 
   static void _initializeBuilder(GStreamDataDataBuilder b) =>
-      b..G__typename = 'SubscriptionRoot';
+      b..G__typename = 'Subscriptions';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -46,7 +46,7 @@ abstract class GStreamDataData_acceleratorData
   GStreamDataData_acceleratorData._();
 
   factory GStreamDataData_acceleratorData(
-          [Function(GStreamDataData_acceleratorDataBuilder b) updates]) =
+          [void Function(GStreamDataData_acceleratorDataBuilder b) updates]) =
       _$GStreamDataData_acceleratorData;
 
   static void _initializeBuilder(GStreamDataData_acceleratorDataBuilder b) =>
@@ -79,8 +79,8 @@ abstract class GStreamDataData_acceleratorData_data
   GStreamDataData_acceleratorData_data._();
 
   factory GStreamDataData_acceleratorData_data(
-          [Function(GStreamDataData_acceleratorData_dataBuilder b) updates]) =
-      _$GStreamDataData_acceleratorData_data;
+      [void Function(GStreamDataData_acceleratorData_dataBuilder b)
+          updates]) = _$GStreamDataData_acceleratorData_data;
 
   static void _initializeBuilder(
           GStreamDataData_acceleratorData_dataBuilder b) =>
@@ -142,7 +142,7 @@ abstract class GStreamDataData_acceleratorData_data_result__base
   GStreamDataData_acceleratorData_data_result__base._();
 
   factory GStreamDataData_acceleratorData_data_result__base(
-      [Function(GStreamDataData_acceleratorData_data_result__baseBuilder b)
+      [void Function(GStreamDataData_acceleratorData_data_result__baseBuilder b)
           updates]) = _$GStreamDataData_acceleratorData_data_result__base;
 
   static void _initializeBuilder(
@@ -178,7 +178,7 @@ abstract class GStreamDataData_acceleratorData_data_result__asStatusReply
   GStreamDataData_acceleratorData_data_result__asStatusReply._();
 
   factory GStreamDataData_acceleratorData_data_result__asStatusReply(
-      [Function(
+      [void Function(
               GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
                   b)
           updates]) = _$GStreamDataData_acceleratorData_data_result__asStatusReply;
@@ -218,7 +218,8 @@ abstract class GStreamDataData_acceleratorData_data_result__asScalar
   GStreamDataData_acceleratorData_data_result__asScalar._();
 
   factory GStreamDataData_acceleratorData_data_result__asScalar(
-      [Function(GStreamDataData_acceleratorData_data_result__asScalarBuilder b)
+      [void Function(
+              GStreamDataData_acceleratorData_data_result__asScalarBuilder b)
           updates]) = _$GStreamDataData_acceleratorData_data_result__asScalar;
 
   static void _initializeBuilder(

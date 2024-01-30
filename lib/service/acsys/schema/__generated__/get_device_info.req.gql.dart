@@ -13,28 +13,30 @@ import 'package:flutter_controls_core/service/acsys/schema/__generated__/get_dev
     as _i3;
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i6;
+import 'package:gql/ast.dart' as _i7;
 import 'package:gql_exec/gql_exec.dart' as _i4;
 
 part 'get_device_info.req.gql.g.dart';
 
-abstract class GGetDeviceInfoReq
+abstract class GgetDeviceInfoReq
     implements
-        Built<GGetDeviceInfoReq, GGetDeviceInfoReqBuilder>,
-        _i1.OperationRequest<_i2.GGetDeviceInfoData, _i3.GGetDeviceInfoVars> {
-  GGetDeviceInfoReq._();
+        Built<GgetDeviceInfoReq, GgetDeviceInfoReqBuilder>,
+        _i1.OperationRequest<_i2.GgetDeviceInfoData, _i3.GgetDeviceInfoVars> {
+  GgetDeviceInfoReq._();
 
-  factory GGetDeviceInfoReq([Function(GGetDeviceInfoReqBuilder b) updates]) =
-      _$GGetDeviceInfoReq;
+  factory GgetDeviceInfoReq(
+          [void Function(GgetDeviceInfoReqBuilder b) updates]) =
+      _$GgetDeviceInfoReq;
 
-  static void _initializeBuilder(GGetDeviceInfoReqBuilder b) => b
+  static void _initializeBuilder(GgetDeviceInfoReqBuilder b) => b
     ..operation = _i4.Operation(
       document: _i5.document,
-      operationName: 'GetDeviceInfo',
+      operationName: 'getDeviceInfo',
     )
     ..executeOnListen = true;
 
   @override
-  _i3.GGetDeviceInfoVars get vars;
+  _i3.GgetDeviceInfoVars get vars;
   @override
   _i4.Operation get operation;
   @override
@@ -47,12 +49,12 @@ abstract class GGetDeviceInfoReq
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GGetDeviceInfoData? Function(
-    _i2.GGetDeviceInfoData?,
-    _i2.GGetDeviceInfoData?,
+  _i2.GgetDeviceInfoData? Function(
+    _i2.GgetDeviceInfoData?,
+    _i2.GgetDeviceInfoData?,
   )? get updateResult;
   @override
-  _i2.GGetDeviceInfoData? get optimisticResponse;
+  _i2.GgetDeviceInfoData? get optimisticResponse;
   @override
   String? get updateCacheHandlerKey;
   @override
@@ -62,20 +64,80 @@ abstract class GGetDeviceInfoReq
   @override
   bool get executeOnListen;
   @override
-  _i2.GGetDeviceInfoData? parseData(Map<String, dynamic> json) =>
-      _i2.GGetDeviceInfoData.fromJson(json);
+  _i2.GgetDeviceInfoData? parseData(Map<String, dynamic> json) =>
+      _i2.GgetDeviceInfoData.fromJson(json);
 
-  static Serializer<GGetDeviceInfoReq> get serializer =>
-      _$gGetDeviceInfoReqSerializer;
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GgetDeviceInfoData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GgetDeviceInfoData, _i3.GgetDeviceInfoVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
+
+  static Serializer<GgetDeviceInfoReq> get serializer =>
+      _$ggetDeviceInfoReqSerializer;
 
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GGetDeviceInfoReq.serializer,
+        GgetDeviceInfoReq.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GGetDeviceInfoReq? fromJson(Map<String, dynamic> json) =>
+  static GgetDeviceInfoReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
-        GGetDeviceInfoReq.serializer,
+        GgetDeviceInfoReq.serializer,
+        json,
+      );
+}
+
+abstract class GDevicePropertyFieldsReq
+    implements
+        Built<GDevicePropertyFieldsReq, GDevicePropertyFieldsReqBuilder>,
+        _i1.FragmentRequest<_i2.GDevicePropertyFieldsData,
+            _i3.GDevicePropertyFieldsVars> {
+  GDevicePropertyFieldsReq._();
+
+  factory GDevicePropertyFieldsReq(
+          [void Function(GDevicePropertyFieldsReqBuilder b) updates]) =
+      _$GDevicePropertyFieldsReq;
+
+  static void _initializeBuilder(GDevicePropertyFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'DevicePropertyFields';
+
+  @override
+  _i3.GDevicePropertyFieldsVars get vars;
+  @override
+  _i7.DocumentNode get document;
+  @override
+  String? get fragmentName;
+  @override
+  Map<String, dynamic> get idFields;
+  @override
+  _i2.GDevicePropertyFieldsData? parseData(Map<String, dynamic> json) =>
+      _i2.GDevicePropertyFieldsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GDevicePropertyFieldsData data) =>
+      data.toJson();
+
+  static Serializer<GDevicePropertyFieldsReq> get serializer =>
+      _$gDevicePropertyFieldsReqSerializer;
+
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GDevicePropertyFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GDevicePropertyFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GDevicePropertyFieldsReq.serializer,
         json,
       );
 }

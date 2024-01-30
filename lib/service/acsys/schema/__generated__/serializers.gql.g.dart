@@ -10,29 +10,9 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FetchPolicy.serializer)
       ..add(GDateTime.serializer)
       ..add(GDevValue.serializer)
-      ..add(GGetDeviceInfoData.serializer)
-      ..add(GGetDeviceInfoData_deviceInfo.serializer)
-      ..add(GGetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer)
-      ..add(GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
-          .serializer)
-      ..add(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-              .serializer)
-      ..add(GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
-          .serializer)
-      ..add(GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-          .serializer)
-      ..add(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-              .serializer)
-      ..add(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer)
-      ..add(
-          GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer)
-      ..add(GGetDeviceInfoData_deviceInfo_result__asErrorReply.serializer)
-      ..add(GGetDeviceInfoData_deviceInfo_result__base.serializer)
-      ..add(GGetDeviceInfoReq.serializer)
-      ..add(GGetDeviceInfoVars.serializer)
+      ..add(GDevicePropertyFieldsData.serializer)
+      ..add(GDevicePropertyFieldsReq.serializer)
+      ..add(GDevicePropertyFieldsVars.serializer)
       ..add(GSetDeviceData.serializer)
       ..add(GSetDeviceData_setDevice.serializer)
       ..add(GSetDeviceReq.serializer)
@@ -46,37 +26,71 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GStreamDataData_acceleratorData_data_result__base.serializer)
       ..add(GStreamDataReq.serializer)
       ..add(GStreamDataVars.serializer)
+      ..add(GgetDeviceInfoData.serializer)
+      ..add(GgetDeviceInfoData_deviceInfo.serializer)
+      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer)
+      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
+          .serializer)
+      ..add(
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+              .serializer)
+      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
+          .serializer)
+      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+          .serializer)
+      ..add(
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+              .serializer)
+      ..add(
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer)
+      ..add(
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer)
+      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+          .serializer)
+      ..add(GgetDeviceInfoData_deviceInfo_result__asErrorReply.serializer)
+      ..add(GgetDeviceInfoData_deviceInfo_result__base.serializer)
+      ..add(GgetDeviceInfoReq.serializer)
+      ..add(GgetDeviceInfoVars.serializer)
       ..addBuilderFactory(
           const FullType(BuiltList,
-              const [const FullType(GGetDeviceInfoData_deviceInfo_result)]),
-          () => new ListBuilder<GGetDeviceInfoData_deviceInfo_result>())
+              const [const FullType(GgetDeviceInfoData_deviceInfo_result)]),
+          () => new ListBuilder<GgetDeviceInfoData_deviceInfo_result>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
-                GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries)
+                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries)
           ]),
           () => new ListBuilder<
-              GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>())
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
-                GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
+                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
           ]),
           () => new ListBuilder<
-              GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>())
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(
-                GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries)
+                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries)
           ]),
           () => new ListBuilder<
-              GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>())
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(double)]),
           () => new ListBuilder<double>())

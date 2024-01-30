@@ -63,10 +63,31 @@ class DeviceInfoAnalogAlarm {
 }
 
 class DeviceInfoProperty {
+  final double minVal;
+  final double maxVal;
   final String? commonUnits;
+  final int commonIndex;
+  final List<double> commonCoeff;
   final String? primaryUnits;
+  final int primaryIndex;
 
-  const DeviceInfoProperty({this.commonUnits, this.primaryUnits});
+  const DeviceInfoProperty(
+      {required this.minVal,
+      required this.maxVal,
+      this.commonUnits,
+      required this.commonIndex,
+      required this.commonCoeff,
+      this.primaryUnits,
+      required this.primaryIndex});
+}
+
+class KnobbingInfo {
+  final double minVal;
+  final double maxVal;
+  final double step;
+
+  const KnobbingInfo(
+      {required this.minVal, required this.maxVal, required this.step});
 }
 
 class BasicStatusProperty {
@@ -160,7 +181,7 @@ class DeviceInfo {
   final String name;
   final String description;
   final DeviceInfoProperty? reading;
-  final DeviceInfoProperty? setting;
+  final (DeviceInfoProperty, KnobbingInfo)? setting;
   final DeviceInfoAnalogAlarm? alarm;
   final DeviceInfoBasicStatus? basicStatus;
   final List<DeviceInfoDigitalControl> digControl;
@@ -390,10 +411,10 @@ class ACSysService implements ACSysServiceAPI {
   Future<List<DeviceInfo>> getDeviceInfo(List<String> devices) async {
     if (devices.isNotEmpty) {
       final req =
-          GGetDeviceInfoReq((b) => b..vars.names = ListBuilder(devices));
+          GgetDeviceInfoReq((b) => b..vars.devices = ListBuilder(devices));
 
       return _rpc(req,
-          xlat: (GGetDeviceInfoData data) =>
+          xlat: (GgetDeviceInfoData data) =>
               data.deviceInfo.result.map(_convertToDevInfo).toList());
     } else {
       throw ACSysInvArgException("empty device list");
@@ -403,21 +424,37 @@ class ACSysService implements ACSysServiceAPI {
   // Private conversion method to convert an obnoxiously named, nested class
   // into our nicer, flatter one. Used by `getDeviceInfo()`.
 
-  static DeviceInfo _convertToDevInfo(GGetDeviceInfoData_deviceInfo_result e) {
+  static DeviceInfo _convertToDevInfo(GgetDeviceInfoData_deviceInfo_result e) {
     // Make sure we got a device info structure.
 
-    if (e is GGetDeviceInfoData_deviceInfo_result__asDeviceInfo) {
+    if (e is GgetDeviceInfoData_deviceInfo_result__asDeviceInfo) {
       // Save off the reading and setting properties, if they exist.
 
       final DeviceInfoProperty? rProp = e.reading != null
           ? DeviceInfoProperty(
+              minVal: e.reading!.minVal,
+              maxVal: e.reading!.maxVal,
               primaryUnits: e.reading!.primaryUnits,
-              commonUnits: e.reading!.commonUnits)
+              primaryIndex: e.reading!.primaryIndex,
+              commonUnits: e.reading!.commonUnits,
+              commonIndex: e.reading!.commonIndex,
+              commonCoeff: e.reading!.coeff.toList())
           : null;
-      final DeviceInfoProperty? sProp = e.setting != null
-          ? DeviceInfoProperty(
-              primaryUnits: e.setting!.primaryUnits,
-              commonUnits: e.setting!.commonUnits)
+      final (DeviceInfoProperty, KnobbingInfo)? sProp = e.setting != null
+          ? (
+              DeviceInfoProperty(
+                  minVal: e.setting!.minVal,
+                  maxVal: e.setting!.maxVal,
+                  primaryUnits: e.setting!.primaryUnits,
+                  primaryIndex: e.setting!.primaryIndex,
+                  commonUnits: e.setting!.commonUnits,
+                  commonIndex: e.setting!.commonIndex,
+                  commonCoeff: e.setting!.coeff.toList()),
+              KnobbingInfo(
+                  minVal: e.setting!.knobInfo.minVal,
+                  maxVal: e.setting!.knobInfo.maxVal,
+                  step: e.setting!.knobInfo.step)
+            )
           : null;
 
       // Create a spot to hold the basic status, if it exists.
@@ -428,7 +465,7 @@ class ACSysService implements ACSysServiceAPI {
       // information and then save it into `bs`.
 
       if (e.digStatus
-          case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
+          case GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
             entries: var data,
             extEntries: var extData
           )) {
@@ -492,7 +529,7 @@ class ACSysService implements ACSysServiceAPI {
       List<DeviceInfoDigitalControl> dc = [];
 
       if (e.digControl
-          case GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
+          case GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
             entries: var entries
           )) {
         dc = entries
@@ -516,7 +553,7 @@ class ACSysService implements ACSysServiceAPI {
           basicStatus: bs,
           digControl: dc);
     } else {
-      if (e is GGetDeviceInfoData_deviceInfo_result__asErrorReply) {
+      if (e is GgetDeviceInfoData_deviceInfo_result__asErrorReply) {
         throw UnimplementedError("getDeviceInfo returned an error");
       } else {
         throw UnimplementedError("getDeviceInfo unexpected response");

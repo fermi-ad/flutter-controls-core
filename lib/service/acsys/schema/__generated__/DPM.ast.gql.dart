@@ -10,21 +10,21 @@ const schema = _i1.SchemaDefinitionNode(
     _i1.OperationTypeDefinitionNode(
       operation: _i1.OperationType.query,
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'QueryRoot'),
+        name: _i1.NameNode(value: 'Queries'),
         isNonNull: false,
       ),
     ),
     _i1.OperationTypeDefinitionNode(
       operation: _i1.OperationType.mutation,
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'MutationRoot'),
+        name: _i1.NameNode(value: 'Mutations'),
         isNonNull: false,
       ),
     ),
     _i1.OperationTypeDefinitionNode(
       operation: _i1.OperationType.subscription,
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'SubscriptionRoot'),
+        name: _i1.NameNode(value: 'Subscriptions'),
         isNonNull: false,
       ),
     ),
@@ -237,7 +237,7 @@ const DeviceInfo = _i1.ObjectTypeDefinitionNode(
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'DeviceProperty'),
+        name: _i1.NameNode(value: 'ReadingProp'),
         isNonNull: false,
       ),
     ),
@@ -246,7 +246,7 @@ const DeviceInfo = _i1.ObjectTypeDefinitionNode(
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'DeviceProperty'),
+        name: _i1.NameNode(value: 'SettingProp'),
         isNonNull: false,
       ),
     ),
@@ -303,7 +303,7 @@ const DeviceInfoResult = _i1.UnionTypeDefinitionNode(
     ),
   ],
 );
-const DeviceProperty = _i1.ObjectTypeDefinitionNode(
+const DeviceProperty = _i1.InterfaceTypeDefinitionNode(
   name: _i1.NameNode(value: 'DeviceProperty'),
   directives: [],
   interfaces: [],
@@ -324,6 +324,54 @@ const DeviceProperty = _i1.ObjectTypeDefinitionNode(
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'String'),
         isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'minVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'maxVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'primaryIndex'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'commonIndex'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'coeff'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Float'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
       ),
     ),
   ],
@@ -620,8 +668,42 @@ const EventInfo = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const MutationRoot = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'MutationRoot'),
+const KnobInfo = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'KnobInfo'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'minVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'maxVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'step'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
+const Mutations = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'Mutations'),
   directives: [],
   interfaces: [],
   fields: [
@@ -655,8 +737,8 @@ const MutationRoot = _i1.ObjectTypeDefinitionNode(
     )
   ],
 );
-const QueryRoot = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'QueryRoot'),
+const Queries = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'Queries'),
   directives: [],
   interfaces: [],
   fields: [
@@ -728,6 +810,84 @@ const Raw = _i1.ObjectTypeDefinitionNode(
     )
   ],
 );
+const ReadingProp = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'ReadingProp'),
+  directives: [],
+  interfaces: [
+    _i1.NamedTypeNode(
+      name: _i1.NameNode(value: 'DeviceProperty'),
+      isNonNull: false,
+    )
+  ],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'primaryUnits'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'commonUnits'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'minVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'maxVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'primaryIndex'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'commonIndex'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'coeff'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Float'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
 const Scalar = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'Scalar'),
   directives: [],
@@ -761,6 +921,93 @@ const ScalarArray = _i1.ObjectTypeDefinitionNode(
         isNonNull: true,
       ),
     )
+  ],
+);
+const SettingProp = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'SettingProp'),
+  directives: [],
+  interfaces: [
+    _i1.NamedTypeNode(
+      name: _i1.NameNode(value: 'DeviceProperty'),
+      isNonNull: false,
+    )
+  ],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'primaryUnits'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'commonUnits'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'minVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'maxVal'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'primaryIndex'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'commonIndex'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'coeff'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Float'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'knobInfo'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'KnobInfo'),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const StatusReply = _i1.ObjectTypeDefinitionNode(
@@ -804,8 +1051,8 @@ const StructData = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const SubscriptionRoot = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'SubscriptionRoot'),
+const Subscriptions = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'Subscriptions'),
   directives: [],
   interfaces: [],
   fields: [
@@ -909,14 +1156,17 @@ const document = _i1.DocumentNode(definitions: [
   DigStatusEntry,
   ErrorReply,
   EventInfo,
-  MutationRoot,
-  QueryRoot,
+  KnobInfo,
+  Mutations,
+  Queries,
   Raw,
+  ReadingProp,
   Scalar,
   ScalarArray,
+  SettingProp,
   StatusReply,
   StructData,
-  SubscriptionRoot,
+  Subscriptions,
   Text,
   TextArray,
 ]);

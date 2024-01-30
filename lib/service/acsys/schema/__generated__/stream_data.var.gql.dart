@@ -14,7 +14,7 @@ abstract class GStreamDataVars
     implements Built<GStreamDataVars, GStreamDataVarsBuilder> {
   GStreamDataVars._();
 
-  factory GStreamDataVars([Function(GStreamDataVarsBuilder b) updates]) =
+  factory GStreamDataVars([void Function(GStreamDataVarsBuilder b) updates]) =
       _$GStreamDataVars;
 
   BuiltList<String> get drfs;

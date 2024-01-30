@@ -28,7 +28,7 @@ abstract class GDateTime implements Built<GDateTime, GDateTimeBuilder> {
 abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
   GDevValue._();
 
-  factory GDevValue([Function(GDevValueBuilder b) updates]) = _$GDevValue;
+  factory GDevValue([void Function(GDevValueBuilder b) updates]) = _$GDevValue;
 
   int? get intVal;
   double? get scalarVal;
@@ -63,5 +63,9 @@ const Map<String, Set<String>> possibleTypesMap = {
   'DeviceInfoResult': {
     'DeviceInfo',
     'ErrorReply',
+  },
+  'DeviceProperty': {
+    'ReadingProp',
+    'SettingProp',
   },
 };
