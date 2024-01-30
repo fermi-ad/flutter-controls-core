@@ -63,10 +63,31 @@ class DeviceInfoAnalogAlarm {
 }
 
 class DeviceInfoProperty {
+  final double minVal;
+  final double maxVal;
   final String? commonUnits;
+  final int commonIndex;
+  final List<double> commonCoeff;
   final String? primaryUnits;
+  final int primaryIndex;
 
-  const DeviceInfoProperty({this.commonUnits, this.primaryUnits});
+  const DeviceInfoProperty(
+      {required this.minVal,
+      required this.maxVal,
+      this.commonUnits,
+      required this.commonIndex,
+      required this.commonCoeff,
+      this.primaryUnits,
+      required this.primaryIndex});
+}
+
+class KnobbingInfo {
+  final double minVal;
+  final double maxVal;
+  final double step;
+
+  const KnobbingInfo(
+      {required this.minVal, required this.maxVal, required this.step});
 }
 
 class BasicStatusProperty {
@@ -160,7 +181,7 @@ class DeviceInfo {
   final String name;
   final String description;
   final DeviceInfoProperty? reading;
-  final DeviceInfoProperty? setting;
+  final (DeviceInfoProperty, KnobbingInfo)? setting;
   final DeviceInfoAnalogAlarm? alarm;
   final DeviceInfoBasicStatus? basicStatus;
   final List<DeviceInfoDigitalControl> digControl;
@@ -390,13 +411,29 @@ class ACSysService implements ACSysServiceAPI {
 
       final DeviceInfoProperty? rProp = e.reading != null
           ? DeviceInfoProperty(
+              minVal: e.reading!.minVal,
+              maxVal: e.reading!.maxVal,
               primaryUnits: e.reading!.primaryUnits,
-              commonUnits: e.reading!.commonUnits)
+              primaryIndex: e.reading!.primaryIndex,
+              commonUnits: e.reading!.commonUnits,
+              commonIndex: e.reading!.commonIndex,
+              commonCoeff: e.reading!.coeff.toList())
           : null;
-      final DeviceInfoProperty? sProp = e.setting != null
-          ? DeviceInfoProperty(
-              primaryUnits: e.setting!.primaryUnits,
-              commonUnits: e.setting!.commonUnits)
+      final (DeviceInfoProperty, KnobbingInfo)? sProp = e.setting != null
+          ? (
+              DeviceInfoProperty(
+                  minVal: e.setting!.minVal,
+                  maxVal: e.setting!.maxVal,
+                  primaryUnits: e.setting!.primaryUnits,
+                  primaryIndex: e.setting!.primaryIndex,
+                  commonUnits: e.setting!.commonUnits,
+                  commonIndex: e.setting!.commonIndex,
+                  commonCoeff: e.setting!.coeff.toList()),
+              KnobbingInfo(
+                  minVal: e.setting!.knobInfo.minVal,
+                  maxVal: e.setting!.knobInfo.maxVal,
+                  step: e.setting!.knobInfo.step)
+            )
           : null;
 
       // Create a spot to hold the basic status, if it exists.
