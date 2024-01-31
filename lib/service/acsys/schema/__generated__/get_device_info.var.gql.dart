@@ -14,8 +14,7 @@ abstract class GgetDeviceInfoVars
     implements Built<GgetDeviceInfoVars, GgetDeviceInfoVarsBuilder> {
   GgetDeviceInfoVars._();
 
-  factory GgetDeviceInfoVars(
-          [void Function(GgetDeviceInfoVarsBuilder b) updates]) =
+  factory GgetDeviceInfoVars([Function(GgetDeviceInfoVarsBuilder b) updates]) =
       _$GgetDeviceInfoVars;
 
   BuiltList<String> get devices;
@@ -40,7 +39,7 @@ abstract class GDevicePropertyFieldsVars
   GDevicePropertyFieldsVars._();
 
   factory GDevicePropertyFieldsVars(
-          [void Function(GDevicePropertyFieldsVarsBuilder b) updates]) =
+          [Function(GDevicePropertyFieldsVarsBuilder b) updates]) =
       _$GDevicePropertyFieldsVars;
 
   static Serializer<GDevicePropertyFieldsVars> get serializer =>
