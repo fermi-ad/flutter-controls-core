@@ -24,8 +24,7 @@ abstract class GgetDeviceInfoReq
         _i1.OperationRequest<_i2.GgetDeviceInfoData, _i3.GgetDeviceInfoVars> {
   GgetDeviceInfoReq._();
 
-  factory GgetDeviceInfoReq(
-          [void Function(GgetDeviceInfoReqBuilder b) updates]) =
+  factory GgetDeviceInfoReq([Function(GgetDeviceInfoReqBuilder b) updates]) =
       _$GgetDeviceInfoReq;
 
   static void _initializeBuilder(GgetDeviceInfoReqBuilder b) => b
@@ -67,17 +66,6 @@ abstract class GgetDeviceInfoReq
   _i2.GgetDeviceInfoData? parseData(Map<String, dynamic> json) =>
       _i2.GgetDeviceInfoData.fromJson(json);
 
-  @override
-  Map<String, dynamic> varsToJson() => vars.toJson();
-
-  @override
-  Map<String, dynamic> dataToJson(_i2.GgetDeviceInfoData data) => data.toJson();
-
-  @override
-  _i1.OperationRequest<_i2.GgetDeviceInfoData, _i3.GgetDeviceInfoVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
-
   static Serializer<GgetDeviceInfoReq> get serializer =>
       _$ggetDeviceInfoReqSerializer;
 
@@ -101,7 +89,7 @@ abstract class GDevicePropertyFieldsReq
   GDevicePropertyFieldsReq._();
 
   factory GDevicePropertyFieldsReq(
-          [void Function(GDevicePropertyFieldsReqBuilder b) updates]) =
+          [Function(GDevicePropertyFieldsReqBuilder b) updates]) =
       _$GDevicePropertyFieldsReq;
 
   static void _initializeBuilder(GDevicePropertyFieldsReqBuilder b) => b
@@ -119,13 +107,6 @@ abstract class GDevicePropertyFieldsReq
   @override
   _i2.GDevicePropertyFieldsData? parseData(Map<String, dynamic> json) =>
       _i2.GDevicePropertyFieldsData.fromJson(json);
-
-  @override
-  Map<String, dynamic> varsToJson() => vars.toJson();
-
-  @override
-  Map<String, dynamic> dataToJson(_i2.GDevicePropertyFieldsData data) =>
-      data.toJson();
 
   static Serializer<GDevicePropertyFieldsReq> get serializer =>
       _$gDevicePropertyFieldsReqSerializer;

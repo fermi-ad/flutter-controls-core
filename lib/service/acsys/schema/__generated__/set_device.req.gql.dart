@@ -23,7 +23,7 @@ abstract class GSetDeviceReq
         _i1.OperationRequest<_i2.GSetDeviceData, _i3.GSetDeviceVars> {
   GSetDeviceReq._();
 
-  factory GSetDeviceReq([void Function(GSetDeviceReqBuilder b) updates]) =
+  factory GSetDeviceReq([Function(GSetDeviceReqBuilder b) updates]) =
       _$GSetDeviceReq;
 
   static void _initializeBuilder(GSetDeviceReqBuilder b) => b
@@ -64,17 +64,6 @@ abstract class GSetDeviceReq
   @override
   _i2.GSetDeviceData? parseData(Map<String, dynamic> json) =>
       _i2.GSetDeviceData.fromJson(json);
-
-  @override
-  Map<String, dynamic> varsToJson() => vars.toJson();
-
-  @override
-  Map<String, dynamic> dataToJson(_i2.GSetDeviceData data) => data.toJson();
-
-  @override
-  _i1.OperationRequest<_i2.GSetDeviceData, _i3.GSetDeviceVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GSetDeviceReq> get serializer => _$gSetDeviceReqSerializer;
 

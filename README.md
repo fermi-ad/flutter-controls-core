@@ -19,6 +19,12 @@ flutter_controls_core:
         ref: v0.1.x
 ```
 
+_NOTE:_ This project is under very active development so calling this the
+"stable" branch is a stretch. With each pull request, we will create a tag to
+point to it. If the HEAD of the `v0.1.x` produces a regression, you can
+temporarily use a tag as the `git` "ref:" parameter to get back to a more
+reliable version.
+
 ## Usage
 
 TODO: Need to add content here.
