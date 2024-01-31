@@ -9,23 +9,25 @@ import 'package:flutter_controls_core/service/acsys/schema/__generated__/DPM.sch
     show GDateTime, GDevValue;
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/get_device_info.data.gql.dart'
     show
-        GGetDeviceInfoData_deviceInfo_result,
-        GGetDeviceInfoData,
-        GGetDeviceInfoData_deviceInfo,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
-        GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
-        GGetDeviceInfoData_deviceInfo_result__asErrorReply,
-        GGetDeviceInfoData_deviceInfo_result__base;
+        GgetDeviceInfoData_deviceInfo_result,
+        GDevicePropertyFieldsData,
+        GgetDeviceInfoData,
+        GgetDeviceInfoData_deviceInfo,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
+        GgetDeviceInfoData_deviceInfo_result__asErrorReply,
+        GgetDeviceInfoData_deviceInfo_result__base;
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/get_device_info.req.gql.dart'
-    show GGetDeviceInfoReq;
+    show GDevicePropertyFieldsReq, GgetDeviceInfoReq;
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/get_device_info.var.gql.dart'
-    show GGetDeviceInfoVars;
+    show GDevicePropertyFieldsVars, GgetDeviceInfoVars;
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_device.data.gql.dart'
     show GSetDeviceData, GSetDeviceData_setDevice;
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_device.req.gql.dart'
@@ -55,26 +57,15 @@ part 'serializers.gql.g.dart';
 final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..add(DateSerializer())
-  ..add(GGetDeviceInfoData_deviceInfo_result.serializer)
   ..add(GStreamDataData_acceleratorData_data_result.serializer)
+  ..add(GgetDeviceInfoData_deviceInfo_result.serializer)
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GDateTime,
   GDevValue,
-  GGetDeviceInfoData,
-  GGetDeviceInfoData_deviceInfo,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
-  GGetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
-  GGetDeviceInfoData_deviceInfo_result__asErrorReply,
-  GGetDeviceInfoData_deviceInfo_result__base,
-  GGetDeviceInfoReq,
-  GGetDeviceInfoVars,
+  GDevicePropertyFieldsData,
+  GDevicePropertyFieldsReq,
+  GDevicePropertyFieldsVars,
   GSetDeviceData,
   GSetDeviceData_setDevice,
   GSetDeviceReq,
@@ -87,5 +78,20 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GStreamDataData_acceleratorData_data_result__base,
   GStreamDataReq,
   GStreamDataVars,
+  GgetDeviceInfoData,
+  GgetDeviceInfoData_deviceInfo,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
+  GgetDeviceInfoData_deviceInfo_result__asErrorReply,
+  GgetDeviceInfoData_deviceInfo_result__base,
+  GgetDeviceInfoReq,
+  GgetDeviceInfoVars,
 ])
 final Serializers serializers = _serializersBuilder.build();

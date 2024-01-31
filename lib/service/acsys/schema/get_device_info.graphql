@@ -1,15 +1,10 @@
-query GetDeviceInfo($names: [String!]!) {
-    deviceInfo(devices: $names) {
+query getDeviceInfo($devices: [String!]!) {
+    deviceInfo(devices: $devices) {
         result {
             ... on DeviceInfo {
                 description
                 reading {
-                    primaryUnits
-                    commonUnits
-                }
-                setting {
-                    primaryUnits
-                    commonUnits
+                    ...DevicePropertyFields
                 }
                 digControl {
                     entries {
@@ -41,10 +36,28 @@ query GetDeviceInfo($names: [String!]!) {
                         falseChar
                     }
                 }
+                setting {
+                    ...DevicePropertyFields
+                    knobInfo {
+                        minVal
+                        maxVal
+                        step
+                    }
+                }
             }
             ... on ErrorReply {
                 message
             }
         }
     }
+}
+
+fragment DevicePropertyFields on DeviceProperty {
+    minVal
+    maxVal
+    primaryUnits
+    primaryIndex
+    commonUnits
+    commonIndex
+    coeff
 }
