@@ -181,7 +181,7 @@ class DeviceInfo {
   final String name;
   final String description;
   final DeviceInfoProperty? reading;
-  final (DeviceInfoProperty, KnobbingInfo)? setting;
+  final (DeviceInfoProperty, KnobbingInfo?)? setting;
   final DeviceInfoAnalogAlarm? alarm;
   final DeviceInfoBasicStatus? basicStatus;
   final List<DeviceInfoDigitalControl> digControl;
