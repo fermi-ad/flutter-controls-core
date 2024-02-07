@@ -124,6 +124,10 @@ interface DeviceProperty {
     primaryIndex: Int!
     commonIndex: Int!
     coeff: [Float!]!
+    isStepMotor: Boolean!
+    isDestructiveRead: Boolean!
+    isFeScaling: Boolean!
+    isContrSetting: Boolean!
 }
 
 """
@@ -368,6 +372,26 @@ type ReadingProp implements DeviceProperty {
     The coefficients to be used with the common scaling transform. There will be 0 - 10 coefficients, depending on the transform. The transform documentation refers to the constants as "c1" through "c10". These correspond to the indices 0 through 9, respectively.
     """
     coeff: [Float!]!
+
+    """
+    Indicates whether the property is associated with a stepper motor.
+    """
+    isStepMotor: Boolean!
+
+    """
+    Indicates whether reading the property results in a destructive read.
+    """
+    isDestructiveRead: Boolean!
+
+    """
+    Indicates that the front-end does the scaling for this property.
+    """
+    isFeScaling: Boolean!
+
+    """
+    UNKNOWN
+    """
+    isContrSetting: Boolean!
 }
 
 """
@@ -424,9 +448,29 @@ type SettingProp implements DeviceProperty {
     coeff: [Float!]!
 
     """
+    Indicates whether the property is associated with a stepper motor.
+    """
+    isStepMotor: Boolean!
+
+    """
+    Indicates whether reading the property results in a destructive read.
+    """
+    isDestructiveRead: Boolean!
+
+    """
+    Indicates that the front-end does the scaling for this property.
+    """
+    isFeScaling: Boolean!
+
+    """
+    UNKNOWN
+    """
+    isContrSetting: Boolean!
+
+    """
     If the device has associated "knobbing" information, this field will specify the configuration.
     """
-    knobInfo: KnobInfo!
+    knobInfo: KnobInfo
 }
 
 """

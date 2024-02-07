@@ -352,6 +352,18 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer
       serializers.serialize(object.coeff,
           specifiedType:
               const FullType(BuiltList, const [const FullType(double)])),
+      'isContrSetting',
+      serializers.serialize(object.isContrSetting,
+          specifiedType: const FullType(bool)),
+      'isDestructiveRead',
+      serializers.serialize(object.isDestructiveRead,
+          specifiedType: const FullType(bool)),
+      'isFeScaling',
+      serializers.serialize(object.isFeScaling,
+          specifiedType: const FullType(bool)),
+      'isStepMotor',
+      serializers.serialize(object.isStepMotor,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
     value = object.primaryUnits;
@@ -417,6 +429,22 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(double)]))!
               as BuiltList<Object?>);
+          break;
+        case 'isContrSetting':
+          result.isContrSetting = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isDestructiveRead':
+          result.isDestructiveRead = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isFeScaling':
+          result.isFeScaling = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isStepMotor':
+          result.isStepMotor = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -891,10 +919,18 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer
       serializers.serialize(object.coeff,
           specifiedType:
               const FullType(BuiltList, const [const FullType(double)])),
-      'knobInfo',
-      serializers.serialize(object.knobInfo,
-          specifiedType: const FullType(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo)),
+      'isContrSetting',
+      serializers.serialize(object.isContrSetting,
+          specifiedType: const FullType(bool)),
+      'isDestructiveRead',
+      serializers.serialize(object.isDestructiveRead,
+          specifiedType: const FullType(bool)),
+      'isFeScaling',
+      serializers.serialize(object.isFeScaling,
+          specifiedType: const FullType(bool)),
+      'isStepMotor',
+      serializers.serialize(object.isStepMotor,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
     value = object.primaryUnits;
@@ -910,6 +946,14 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer
         ..add('commonUnits')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(String)));
+    }
+    value = object.knobInfo;
+    if (value != null) {
+      result
+        ..add('knobInfo')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo)));
     }
     return result;
   }
@@ -960,6 +1004,22 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(double)]))!
               as BuiltList<Object?>);
+          break;
+        case 'isContrSetting':
+          result.isContrSetting = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isDestructiveRead':
+          result.isDestructiveRead = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isFeScaling':
+          result.isFeScaling = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isStepMotor':
+          result.isStepMotor = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
         case 'knobInfo':
           result.knobInfo.replace(serializers.deserialize(value,
@@ -1136,6 +1196,18 @@ class _$GDevicePropertyFieldsDataSerializer
       serializers.serialize(object.coeff,
           specifiedType:
               const FullType(BuiltList, const [const FullType(double)])),
+      'isContrSetting',
+      serializers.serialize(object.isContrSetting,
+          specifiedType: const FullType(bool)),
+      'isDestructiveRead',
+      serializers.serialize(object.isDestructiveRead,
+          specifiedType: const FullType(bool)),
+      'isFeScaling',
+      serializers.serialize(object.isFeScaling,
+          specifiedType: const FullType(bool)),
+      'isStepMotor',
+      serializers.serialize(object.isStepMotor,
+          specifiedType: const FullType(bool)),
     ];
     Object? value;
     value = object.primaryUnits;
@@ -1200,6 +1272,22 @@ class _$GDevicePropertyFieldsDataSerializer
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(double)]))!
               as BuiltList<Object?>);
+          break;
+        case 'isContrSetting':
+          result.isContrSetting = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isDestructiveRead':
+          result.isDestructiveRead = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isFeScaling':
+          result.isFeScaling = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isStepMotor':
+          result.isStepMotor = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
       }
     }
@@ -1784,6 +1872,14 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
   final int commonIndex;
   @override
   final BuiltList<double> coeff;
+  @override
+  final bool isContrSetting;
+  @override
+  final bool isDestructiveRead;
+  @override
+  final bool isFeScaling;
+  @override
+  final bool isStepMotor;
 
   factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading(
           [void Function(
@@ -1801,7 +1897,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
       required this.primaryIndex,
       this.commonUnits,
       required this.commonIndex,
-      required this.coeff})
+      required this.coeff,
+      required this.isContrSetting,
+      required this.isDestructiveRead,
+      required this.isFeScaling,
+      required this.isStepMotor})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -1825,6 +1925,22 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
         'commonIndex');
     BuiltValueNullFieldError.checkNotNull(coeff,
         r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'coeff');
+    BuiltValueNullFieldError.checkNotNull(
+        isContrSetting,
+        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+        'isContrSetting');
+    BuiltValueNullFieldError.checkNotNull(
+        isDestructiveRead,
+        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+        'isDestructiveRead');
+    BuiltValueNullFieldError.checkNotNull(
+        isFeScaling,
+        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+        'isFeScaling');
+    BuiltValueNullFieldError.checkNotNull(
+        isStepMotor,
+        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+        'isStepMotor');
   }
 
   @override
@@ -1852,7 +1968,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
         primaryIndex == other.primaryIndex &&
         commonUnits == other.commonUnits &&
         commonIndex == other.commonIndex &&
-        coeff == other.coeff;
+        coeff == other.coeff &&
+        isContrSetting == other.isContrSetting &&
+        isDestructiveRead == other.isDestructiveRead &&
+        isFeScaling == other.isFeScaling &&
+        isStepMotor == other.isStepMotor;
   }
 
   @override
@@ -1866,6 +1986,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
     _$hash = $jc(_$hash, commonUnits.hashCode);
     _$hash = $jc(_$hash, commonIndex.hashCode);
     _$hash = $jc(_$hash, coeff.hashCode);
+    _$hash = $jc(_$hash, isContrSetting.hashCode);
+    _$hash = $jc(_$hash, isDestructiveRead.hashCode);
+    _$hash = $jc(_$hash, isFeScaling.hashCode);
+    _$hash = $jc(_$hash, isStepMotor.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -1881,7 +2005,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
           ..add('primaryIndex', primaryIndex)
           ..add('commonUnits', commonUnits)
           ..add('commonIndex', commonIndex)
-          ..add('coeff', coeff))
+          ..add('coeff', coeff)
+          ..add('isContrSetting', isContrSetting)
+          ..add('isDestructiveRead', isDestructiveRead)
+          ..add('isFeScaling', isFeScaling)
+          ..add('isStepMotor', isStepMotor))
         .toString();
   }
 }
@@ -1924,6 +2052,24 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
   ListBuilder<double> get coeff => _$this._coeff ??= new ListBuilder<double>();
   set coeff(ListBuilder<double>? coeff) => _$this._coeff = coeff;
 
+  bool? _isContrSetting;
+  bool? get isContrSetting => _$this._isContrSetting;
+  set isContrSetting(bool? isContrSetting) =>
+      _$this._isContrSetting = isContrSetting;
+
+  bool? _isDestructiveRead;
+  bool? get isDestructiveRead => _$this._isDestructiveRead;
+  set isDestructiveRead(bool? isDestructiveRead) =>
+      _$this._isDestructiveRead = isDestructiveRead;
+
+  bool? _isFeScaling;
+  bool? get isFeScaling => _$this._isFeScaling;
+  set isFeScaling(bool? isFeScaling) => _$this._isFeScaling = isFeScaling;
+
+  bool? _isStepMotor;
+  bool? get isStepMotor => _$this._isStepMotor;
+  set isStepMotor(bool? isStepMotor) => _$this._isStepMotor = isStepMotor;
+
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder() {
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
         ._initializeBuilder(this);
@@ -1940,6 +2086,10 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
       _commonUnits = $v.commonUnits;
       _commonIndex = $v.commonIndex;
       _coeff = $v.coeff.toBuilder();
+      _isContrSetting = $v.isContrSetting;
+      _isDestructiveRead = $v.isDestructiveRead;
+      _isFeScaling = $v.isFeScaling;
+      _isStepMotor = $v.isStepMotor;
       _$v = null;
     }
     return this;
@@ -1972,13 +2122,9 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'G__typename'),
               minVal: BuiltValueNullFieldError.checkNotNull(
-                  minVal,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                  'minVal'),
+                  minVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'minVal'),
               maxVal: BuiltValueNullFieldError.checkNotNull(
-                  maxVal,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                  'maxVal'),
+                  maxVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'maxVal'),
               primaryUnits: primaryUnits,
               primaryIndex: BuiltValueNullFieldError.checkNotNull(
                   primaryIndex,
@@ -1986,10 +2132,15 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
                   'primaryIndex'),
               commonUnits: commonUnits,
               commonIndex: BuiltValueNullFieldError.checkNotNull(
-                  commonIndex,
+                  commonIndex, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'commonIndex'),
+              coeff: coeff.build(),
+              isContrSetting: BuiltValueNullFieldError.checkNotNull(
+                  isContrSetting,
                   r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                  'commonIndex'),
-              coeff: coeff.build());
+                  'isContrSetting'),
+              isDestructiveRead: BuiltValueNullFieldError.checkNotNull(isDestructiveRead, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'isDestructiveRead'),
+              isFeScaling: BuiltValueNullFieldError.checkNotNull(isFeScaling, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'isFeScaling'),
+              isStepMotor: BuiltValueNullFieldError.checkNotNull(isStepMotor, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'isStepMotor'));
     } catch (_) {
       late String _$failedField;
       try {
@@ -3078,7 +3229,15 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
   @override
   final BuiltList<double> coeff;
   @override
-  final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+  final bool isContrSetting;
+  @override
+  final bool isDestructiveRead;
+  @override
+  final bool isFeScaling;
+  @override
+  final bool isStepMotor;
+  @override
+  final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo?
       knobInfo;
 
   factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting(
@@ -3098,7 +3257,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
       this.commonUnits,
       required this.commonIndex,
       required this.coeff,
-      required this.knobInfo})
+      required this.isContrSetting,
+      required this.isDestructiveRead,
+      required this.isFeScaling,
+      required this.isStepMotor,
+      this.knobInfo})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
@@ -3123,9 +3286,21 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
     BuiltValueNullFieldError.checkNotNull(coeff,
         r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'coeff');
     BuiltValueNullFieldError.checkNotNull(
-        knobInfo,
+        isContrSetting,
         r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'knobInfo');
+        'isContrSetting');
+    BuiltValueNullFieldError.checkNotNull(
+        isDestructiveRead,
+        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+        'isDestructiveRead');
+    BuiltValueNullFieldError.checkNotNull(
+        isFeScaling,
+        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+        'isFeScaling');
+    BuiltValueNullFieldError.checkNotNull(
+        isStepMotor,
+        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+        'isStepMotor');
   }
 
   @override
@@ -3154,6 +3329,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
         commonUnits == other.commonUnits &&
         commonIndex == other.commonIndex &&
         coeff == other.coeff &&
+        isContrSetting == other.isContrSetting &&
+        isDestructiveRead == other.isDestructiveRead &&
+        isFeScaling == other.isFeScaling &&
+        isStepMotor == other.isStepMotor &&
         knobInfo == other.knobInfo;
   }
 
@@ -3168,6 +3347,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
     _$hash = $jc(_$hash, commonUnits.hashCode);
     _$hash = $jc(_$hash, commonIndex.hashCode);
     _$hash = $jc(_$hash, coeff.hashCode);
+    _$hash = $jc(_$hash, isContrSetting.hashCode);
+    _$hash = $jc(_$hash, isDestructiveRead.hashCode);
+    _$hash = $jc(_$hash, isFeScaling.hashCode);
+    _$hash = $jc(_$hash, isStepMotor.hashCode);
     _$hash = $jc(_$hash, knobInfo.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -3185,6 +3368,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
           ..add('commonUnits', commonUnits)
           ..add('commonIndex', commonIndex)
           ..add('coeff', coeff)
+          ..add('isContrSetting', isContrSetting)
+          ..add('isDestructiveRead', isDestructiveRead)
+          ..add('isFeScaling', isFeScaling)
+          ..add('isStepMotor', isStepMotor)
           ..add('knobInfo', knobInfo))
         .toString();
   }
@@ -3228,6 +3415,24 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   ListBuilder<double> get coeff => _$this._coeff ??= new ListBuilder<double>();
   set coeff(ListBuilder<double>? coeff) => _$this._coeff = coeff;
 
+  bool? _isContrSetting;
+  bool? get isContrSetting => _$this._isContrSetting;
+  set isContrSetting(bool? isContrSetting) =>
+      _$this._isContrSetting = isContrSetting;
+
+  bool? _isDestructiveRead;
+  bool? get isDestructiveRead => _$this._isDestructiveRead;
+  set isDestructiveRead(bool? isDestructiveRead) =>
+      _$this._isDestructiveRead = isDestructiveRead;
+
+  bool? _isFeScaling;
+  bool? get isFeScaling => _$this._isFeScaling;
+  set isFeScaling(bool? isFeScaling) => _$this._isFeScaling = isFeScaling;
+
+  bool? _isStepMotor;
+  bool? get isStepMotor => _$this._isStepMotor;
+  set isStepMotor(bool? isStepMotor) => _$this._isStepMotor = isStepMotor;
+
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder?
       _knobInfo;
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
@@ -3254,7 +3459,11 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
       _commonUnits = $v.commonUnits;
       _commonIndex = $v.commonIndex;
       _coeff = $v.coeff.toBuilder();
-      _knobInfo = $v.knobInfo.toBuilder();
+      _isContrSetting = $v.isContrSetting;
+      _isDestructiveRead = $v.isDestructiveRead;
+      _isFeScaling = $v.isFeScaling;
+      _isStepMotor = $v.isStepMotor;
+      _knobInfo = $v.knobInfo?.toBuilder();
       _$v = null;
     }
     return this;
@@ -3287,13 +3496,9 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
               G__typename: BuiltValueNullFieldError.checkNotNull(
                   G__typename, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'G__typename'),
               minVal: BuiltValueNullFieldError.checkNotNull(
-                  minVal,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                  'minVal'),
+                  minVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'minVal'),
               maxVal: BuiltValueNullFieldError.checkNotNull(
-                  maxVal,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                  'maxVal'),
+                  maxVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'maxVal'),
               primaryUnits: primaryUnits,
               primaryIndex: BuiltValueNullFieldError.checkNotNull(
                   primaryIndex,
@@ -3301,18 +3506,24 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
                   'primaryIndex'),
               commonUnits: commonUnits,
               commonIndex: BuiltValueNullFieldError.checkNotNull(
-                  commonIndex,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                  'commonIndex'),
+                  commonIndex, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'commonIndex'),
               coeff: coeff.build(),
-              knobInfo: knobInfo.build());
+              isContrSetting: BuiltValueNullFieldError.checkNotNull(
+                  isContrSetting,
+                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                  'isContrSetting'),
+              isDestructiveRead: BuiltValueNullFieldError.checkNotNull(isDestructiveRead, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'isDestructiveRead'),
+              isFeScaling: BuiltValueNullFieldError.checkNotNull(isFeScaling, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'isFeScaling'),
+              isStepMotor: BuiltValueNullFieldError.checkNotNull(isStepMotor, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'isStepMotor'),
+              knobInfo: _knobInfo?.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'coeff';
         coeff.build();
+
         _$failedField = 'knobInfo';
-        knobInfo.build();
+        _knobInfo?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
@@ -3644,6 +3855,14 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
   final int commonIndex;
   @override
   final BuiltList<double> coeff;
+  @override
+  final bool isContrSetting;
+  @override
+  final bool isDestructiveRead;
+  @override
+  final bool isFeScaling;
+  @override
+  final bool isStepMotor;
 
   factory _$GDevicePropertyFieldsData(
           [void Function(GDevicePropertyFieldsDataBuilder)? updates]) =>
@@ -3657,7 +3876,11 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
       required this.primaryIndex,
       this.commonUnits,
       required this.commonIndex,
-      required this.coeff})
+      required this.coeff,
+      required this.isContrSetting,
+      required this.isDestructiveRead,
+      required this.isFeScaling,
+      required this.isStepMotor})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GDevicePropertyFieldsData', 'G__typename');
@@ -3671,6 +3894,14 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
         commonIndex, r'GDevicePropertyFieldsData', 'commonIndex');
     BuiltValueNullFieldError.checkNotNull(
         coeff, r'GDevicePropertyFieldsData', 'coeff');
+    BuiltValueNullFieldError.checkNotNull(
+        isContrSetting, r'GDevicePropertyFieldsData', 'isContrSetting');
+    BuiltValueNullFieldError.checkNotNull(
+        isDestructiveRead, r'GDevicePropertyFieldsData', 'isDestructiveRead');
+    BuiltValueNullFieldError.checkNotNull(
+        isFeScaling, r'GDevicePropertyFieldsData', 'isFeScaling');
+    BuiltValueNullFieldError.checkNotNull(
+        isStepMotor, r'GDevicePropertyFieldsData', 'isStepMotor');
   }
 
   @override
@@ -3693,7 +3924,11 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
         primaryIndex == other.primaryIndex &&
         commonUnits == other.commonUnits &&
         commonIndex == other.commonIndex &&
-        coeff == other.coeff;
+        coeff == other.coeff &&
+        isContrSetting == other.isContrSetting &&
+        isDestructiveRead == other.isDestructiveRead &&
+        isFeScaling == other.isFeScaling &&
+        isStepMotor == other.isStepMotor;
   }
 
   @override
@@ -3707,6 +3942,10 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
     _$hash = $jc(_$hash, commonUnits.hashCode);
     _$hash = $jc(_$hash, commonIndex.hashCode);
     _$hash = $jc(_$hash, coeff.hashCode);
+    _$hash = $jc(_$hash, isContrSetting.hashCode);
+    _$hash = $jc(_$hash, isDestructiveRead.hashCode);
+    _$hash = $jc(_$hash, isFeScaling.hashCode);
+    _$hash = $jc(_$hash, isStepMotor.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -3721,7 +3960,11 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
           ..add('primaryIndex', primaryIndex)
           ..add('commonUnits', commonUnits)
           ..add('commonIndex', commonIndex)
-          ..add('coeff', coeff))
+          ..add('coeff', coeff)
+          ..add('isContrSetting', isContrSetting)
+          ..add('isDestructiveRead', isDestructiveRead)
+          ..add('isFeScaling', isFeScaling)
+          ..add('isStepMotor', isStepMotor))
         .toString();
   }
 }
@@ -3763,6 +4006,24 @@ class GDevicePropertyFieldsDataBuilder
   ListBuilder<double> get coeff => _$this._coeff ??= new ListBuilder<double>();
   set coeff(ListBuilder<double>? coeff) => _$this._coeff = coeff;
 
+  bool? _isContrSetting;
+  bool? get isContrSetting => _$this._isContrSetting;
+  set isContrSetting(bool? isContrSetting) =>
+      _$this._isContrSetting = isContrSetting;
+
+  bool? _isDestructiveRead;
+  bool? get isDestructiveRead => _$this._isDestructiveRead;
+  set isDestructiveRead(bool? isDestructiveRead) =>
+      _$this._isDestructiveRead = isDestructiveRead;
+
+  bool? _isFeScaling;
+  bool? get isFeScaling => _$this._isFeScaling;
+  set isFeScaling(bool? isFeScaling) => _$this._isFeScaling = isFeScaling;
+
+  bool? _isStepMotor;
+  bool? get isStepMotor => _$this._isStepMotor;
+  set isStepMotor(bool? isStepMotor) => _$this._isStepMotor = isStepMotor;
+
   GDevicePropertyFieldsDataBuilder() {
     GDevicePropertyFieldsData._initializeBuilder(this);
   }
@@ -3778,6 +4039,10 @@ class GDevicePropertyFieldsDataBuilder
       _commonUnits = $v.commonUnits;
       _commonIndex = $v.commonIndex;
       _coeff = $v.coeff.toBuilder();
+      _isContrSetting = $v.isContrSetting;
+      _isDestructiveRead = $v.isDestructiveRead;
+      _isFeScaling = $v.isFeScaling;
+      _isStepMotor = $v.isStepMotor;
       _$v = null;
     }
     return this;
@@ -3814,7 +4079,14 @@ class GDevicePropertyFieldsDataBuilder
               commonUnits: commonUnits,
               commonIndex: BuiltValueNullFieldError.checkNotNull(
                   commonIndex, r'GDevicePropertyFieldsData', 'commonIndex'),
-              coeff: coeff.build());
+              coeff: coeff.build(),
+              isContrSetting: BuiltValueNullFieldError.checkNotNull(
+                  isContrSetting, r'GDevicePropertyFieldsData', 'isContrSetting'),
+              isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
+                  isDestructiveRead, r'GDevicePropertyFieldsData', 'isDestructiveRead'),
+              isFeScaling: BuiltValueNullFieldError.checkNotNull(
+                  isFeScaling, r'GDevicePropertyFieldsData', 'isFeScaling'),
+              isStepMotor: BuiltValueNullFieldError.checkNotNull(isStepMotor, r'GDevicePropertyFieldsData', 'isStepMotor'));
     } catch (_) {
       late String _$failedField;
       try {

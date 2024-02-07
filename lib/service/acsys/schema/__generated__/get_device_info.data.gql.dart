@@ -208,6 +208,14 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
   int get commonIndex;
   @override
   BuiltList<double> get coeff;
+  @override
+  bool get isContrSetting;
+  @override
+  bool get isDestructiveRead;
+  @override
+  bool get isFeScaling;
+  @override
+  bool get isStepMotor;
   static Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading>
       get serializer =>
           _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoReadingSerializer;
@@ -487,7 +495,15 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
   int get commonIndex;
   @override
   BuiltList<double> get coeff;
-  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+  @override
+  bool get isContrSetting;
+  @override
+  bool get isDestructiveRead;
+  @override
+  bool get isFeScaling;
+  @override
+  bool get isStepMotor;
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo?
       get knobInfo;
   static Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting>
       get serializer =>
@@ -596,6 +612,10 @@ abstract class GDevicePropertyFields {
   String? get commonUnits;
   int get commonIndex;
   BuiltList<double> get coeff;
+  bool get isContrSetting;
+  bool get isDestructiveRead;
+  bool get isFeScaling;
+  bool get isStepMotor;
   Map<String, dynamic> toJson();
 }
 
@@ -629,6 +649,14 @@ abstract class GDevicePropertyFieldsData
   int get commonIndex;
   @override
   BuiltList<double> get coeff;
+  @override
+  bool get isContrSetting;
+  @override
+  bool get isDestructiveRead;
+  @override
+  bool get isFeScaling;
+  @override
+  bool get isStepMotor;
   static Serializer<GDevicePropertyFieldsData> get serializer =>
       _$gDevicePropertyFieldsDataSerializer;
 

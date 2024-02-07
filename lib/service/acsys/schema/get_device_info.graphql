@@ -60,4 +60,8 @@ fragment DevicePropertyFields on DeviceProperty {
     commonUnits
     commonIndex
     coeff
+    isContrSetting
+    isDestructiveRead
+    isFeScaling
+    isStepMotor
 }
