@@ -70,6 +70,10 @@ class DeviceInfoProperty {
   final List<double> commonCoeff;
   final String? primaryUnits;
   final int primaryIndex;
+  final bool isContrSetting;
+  final bool isDestructiveRead;
+  final bool isFeScaling;
+  final bool isStepMotor;
 
   const DeviceInfoProperty(
       {required this.minVal,
@@ -78,7 +82,11 @@ class DeviceInfoProperty {
       required this.commonIndex,
       required this.commonCoeff,
       this.primaryUnits,
-      required this.primaryIndex});
+      required this.primaryIndex,
+      required this.isContrSetting,
+      required this.isDestructiveRead,
+      required this.isFeScaling,
+      required this.isStepMotor});
 }
 
 class KnobbingInfo {
@@ -421,6 +429,37 @@ class ACSysService implements ACSysServiceAPI {
     }
   }
 
+  static (DeviceInfoProperty, KnobbingInfo?)? processSetting(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? s) {
+    if (s != null) {
+      final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo?
+          ki = s.knobInfo;
+
+      return (
+        DeviceInfoProperty(
+            minVal: s.minVal,
+            maxVal: s.maxVal,
+            primaryUnits: s.primaryUnits,
+            primaryIndex: s.primaryIndex,
+            commonUnits: s.commonUnits,
+            commonIndex: s.commonIndex,
+            commonCoeff: s.coeff.toList(),
+            isContrSetting: s.isContrSetting,
+            isDestructiveRead: s.isDestructiveRead,
+            isFeScaling: s.isFeScaling,
+            isStepMotor: s.isStepMotor),
+        ki != null
+            ? KnobbingInfo(
+                minVal: s.knobInfo!.minVal,
+                maxVal: s.knobInfo!.maxVal,
+                step: s.knobInfo!.step)
+            : null
+      );
+    } else {
+      return null;
+    }
+  }
+
   // Private conversion method to convert an obnoxiously named, nested class
   // into our nicer, flatter one. Used by `getDeviceInfo()`.
 
@@ -438,24 +477,13 @@ class ACSysService implements ACSysServiceAPI {
               primaryIndex: e.reading!.primaryIndex,
               commonUnits: e.reading!.commonUnits,
               commonIndex: e.reading!.commonIndex,
-              commonCoeff: e.reading!.coeff.toList())
+              commonCoeff: e.reading!.coeff.toList(),
+              isContrSetting: e.reading!.isContrSetting,
+              isDestructiveRead: e.reading!.isDestructiveRead,
+              isFeScaling: e.reading!.isFeScaling,
+              isStepMotor: e.reading!.isStepMotor)
           : null;
-      final (DeviceInfoProperty, KnobbingInfo)? sProp = e.setting != null
-          ? (
-              DeviceInfoProperty(
-                  minVal: e.setting!.minVal,
-                  maxVal: e.setting!.maxVal,
-                  primaryUnits: e.setting!.primaryUnits,
-                  primaryIndex: e.setting!.primaryIndex,
-                  commonUnits: e.setting!.commonUnits,
-                  commonIndex: e.setting!.commonIndex,
-                  commonCoeff: e.setting!.coeff.toList()),
-              KnobbingInfo(
-                  minVal: e.setting!.knobInfo.minVal,
-                  maxVal: e.setting!.knobInfo.maxVal,
-                  step: e.setting!.knobInfo.step)
-            )
-          : null;
+      final sProp = processSetting(e.setting);
 
       // Create a spot to hold the basic status, if it exists.
 

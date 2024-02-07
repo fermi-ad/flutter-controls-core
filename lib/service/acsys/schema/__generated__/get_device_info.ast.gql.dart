@@ -371,6 +371,34 @@ const DevicePropertyFields = _i1.FragmentDefinitionNode(
       directives: [],
       selectionSet: null,
     ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'isContrSetting'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'isDestructiveRead'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'isFeScaling'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'isStepMotor'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: null,
+    ),
   ]),
 );
 const document = _i1.DocumentNode(definitions: [
