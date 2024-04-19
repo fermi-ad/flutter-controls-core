@@ -15,7 +15,6 @@ import 'dart:developer' as dev;
 typedef ScopeList = List<String>;
 
 Credential? _credentials;
-Client? _client;
 
 Future<void> initAuth(String realm, String clientId, String clientSecret,
     List<String> scopes) async {
@@ -27,16 +26,18 @@ Future<void> initAuth(String realm, String clientId, String clientSecret,
 
     final issuer = await Issuer.discover(uri).timeout(tmo);
 
-    dev.log('getting client', name: "auth");
+    dev.log('got issuer: ${issuer.metadata.authorizationEndpoint}',
+        name: "auth");
 
-    _client = Client(issuer, clientId, clientSecret: clientSecret);
-    _credentials = await oid.getRedirectResult(_client!, scopes: scopes);
+    final Client client = Client(issuer, clientId, clientSecret: clientSecret);
+
+    _credentials = await oid.getRedirectResult(client, scopes: scopes);
 
     if (_credentials == null) {
       dev.log('performing authentication', name: "auth");
 
       _credentials =
-          await oid.authenticate(_client!, scopes: scopes).timeout(tmo);
+          await oid.authenticate(client, scopes: scopes).timeout(tmo);
     }
   } on TimeoutException {
     dev.log('timeout communicating with KeyCloak', name: "auth");
