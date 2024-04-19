@@ -44,6 +44,16 @@ Future<void> initAuth(String realm, String clientId, String clientSecret,
   }
 }
 
+class _AuthCredentials extends InheritedWidget {
+  final Credential? credentials;
+
+  _AuthCredentials({required super.child}) : credentials = _credentials;
+
+  @override
+  bool updateShouldNotify(covariant _AuthCredentials oldWidget) =>
+      oldWidget.credentials != credentials;
+}
+
 /// Provides authentication services.
 ///
 /// This widget should be placed near the Scaffold of an application to minimize
@@ -60,7 +70,9 @@ class AuthService extends StatefulWidget {
   @override
   State<AuthService> createState() => _AuthState();
 
-  static Credential? getCreds() => _credentials;
+  static Credential? getCreds(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
+      ?.credentials;
 
   /// Requests the app's credentials be revoked.
   ///
@@ -72,10 +84,6 @@ class AuthService extends StatefulWidget {
 }
 
 class _AuthState extends State<AuthService> {
-  // Render the widgets. This uses a FutureBuilder to monitor the life of the
-  // authentication Client. All of what gets rendered in the widget tree,
-  // however, is based on the child widget.
-
   @override
-  Widget build(BuildContext context) => Container(child: widget.child);
+  Widget build(BuildContext context) => _AuthCredentials(child: widget.child);
 }
