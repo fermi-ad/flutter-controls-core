@@ -18,6 +18,41 @@ class _GlobalAppTheme {
       ThemeData(useMaterial3: true, colorScheme: darkColorScheme);
 }
 
+/// Creates the foundation of a non-authenticated, scaffold app.
+///
+/// This creates a scaffold widget that uses Fermilab's theme. [title] will
+/// be used for the title of the web page (for web targets.) [appBar] will
+/// be displayed as the application's title bar. [body] is the body of the
+/// application.
+
+class StandardApp extends StatelessWidget {
+  final String title;
+  final Widget? body;
+  final Widget? drawer;
+  final Widget? floatingActionButton;
+  final PreferredSizeWidget? appBar;
+
+  const StandardApp(
+      {required this.title,
+      this.appBar,
+      this.body,
+      this.drawer,
+      this.floatingActionButton,
+      super.key});
+
+  @override
+  Widget build(BuildContext context) => MaterialApp(
+      title: title,
+      theme: _GlobalAppTheme.lightTheme,
+      darkTheme: _GlobalAppTheme.darkTheme,
+      home: AuthService(
+          child: Scaffold(
+              appBar: appBar,
+              body: body,
+              drawer: drawer,
+              floatingActionButton: floatingActionButton)));
+}
+
 /// Creates an application scaffold that uses the `GoRouter` package.
 ///
 /// This class creates a widget that supports Material Design and uses the
