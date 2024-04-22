@@ -28,6 +28,8 @@
 
 library device_values;
 
+import 'package:flutter/foundation.dart';
+
 /// Use this type to indicate any device type is allowed.
 ///
 /// Functions that use this as a parameter will accept any of the derived
@@ -36,6 +38,35 @@ library device_values;
 
 sealed class DeviceValue {
   const DeviceValue();
+
+  @override
+  bool operator ==(covariant DeviceValue other) {
+    if (identical(this, other)) return true;
+
+    switch ((this, other)) {
+      case ((DevRaw(value: var v), DevRaw(value: var o))):
+        return listEquals(v, o);
+      case ((DevScalar(value: var v), DevScalar(value: var o))):
+        return v == o;
+      case ((DevScalarArray(value: var v), DevScalarArray(value: var o))):
+        return listEquals(v, o);
+      case ((DevText(value: var v), DevText(value: var o))):
+        return v == o;
+      case ((DevTextArray(value: var v), DevTextArray(value: var o))):
+        return listEquals(v, o);
+      default:
+        return false;
+    }
+  }
+
+  @override
+  int get hashCode => switch (this) {
+        DevRaw(value: var v) => v.hashCode,
+        DevScalar(value: var v) => v.hashCode,
+        DevText(value: var v) => v.hashCode,
+        DevScalarArray(value: var v) => v.hashCode,
+        DevTextArray(value: var v) => v.hashCode,
+      };
 }
 
 /// Represents a raw, byte array.
@@ -87,4 +118,31 @@ class DevTextArray extends DeviceValue {
   final List<String> value;
 
   const DevTextArray(this.value);
+}
+
+// The `ToDeviceValue` extension allows us to convert primitive types into a
+// `DeviceValue`.
+
+extension ToDeviceValue on DeviceValue {
+  DeviceValue toDevVal() => this;
+}
+
+extension DoubleToDeviceValue on double {
+  DeviceValue toDevVal() => DevScalar(this);
+}
+
+extension TextToDeviceValue on String {
+  DeviceValue toDevVal() => DevText(this);
+}
+
+extension RawToDeviceValue on List<int> {
+  DeviceValue toDevVal() => DevRaw(this);
+}
+
+extension DoubleArrayToDeviceValue on List<double> {
+  DeviceValue toDevVal() => DevScalarArray(this);
+}
+
+extension TextArrayToDeviceValue on List<String> {
+  DeviceValue toDevVal() => DevTextArray(this);
 }
