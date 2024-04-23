@@ -12,7 +12,7 @@ export 'src/auth_widget.dart';
 
 export 'service/acsys/service.dart';
 
-export 'package:openid_client/openid_client.dart' show Credential;
+export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 
 class AuthInfo {
   final String realm;

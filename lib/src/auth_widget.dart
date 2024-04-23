@@ -32,13 +32,8 @@ Future<void> initAuth(String realm, String clientId, String clientSecret,
     final Client client = Client(issuer, clientId, clientSecret: clientSecret);
 
     _credentials = await oid.getRedirectResult(client, scopes: scopes);
-
-    if (_credentials == null) {
-      dev.log('performing authentication', name: "auth");
-
-      _credentials =
+    _credentials ??=
           await oid.authenticate(client, scopes: scopes).timeout(tmo);
-    }
   } on TimeoutException {
     dev.log('timeout communicating with KeyCloak', name: "auth");
   }
@@ -46,12 +41,14 @@ Future<void> initAuth(String realm, String clientId, String clientSecret,
 
 class _AuthCredentials extends InheritedWidget {
   final Credential? credentials;
+  final UserInfo? userInfo;
 
-  _AuthCredentials({required super.child}) : credentials = _credentials;
+  _AuthCredentials({this.userInfo, required super.child})
+      : credentials = _credentials;
 
   @override
   bool updateShouldNotify(covariant _AuthCredentials oldWidget) =>
-      oldWidget.credentials != credentials;
+      oldWidget.credentials != credentials || oldWidget.userInfo != userInfo;
 }
 
 /// Provides authentication services.
@@ -74,6 +71,9 @@ class AuthService extends StatefulWidget {
       .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
       ?.credentials;
 
+  static UserInfo? getUserInfo(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_AuthCredentials>()?.userInfo;
+
   /// Requests the app's credentials be revoked.
   ///
   /// This method will clear out the local credentials and request the server
@@ -84,6 +84,18 @@ class AuthService extends StatefulWidget {
 }
 
 class _AuthState extends State<AuthService> {
+  UserInfo? userInfo;
+
   @override
-  Widget build(BuildContext context) => _AuthCredentials(child: widget.child);
+  void initState() {
+    super.initState();
+    _credentials
+        ?.getUserInfo()
+        .then((value) => setState(() => userInfo = value))
+        .catchError((err) => dev.log("userInfo returned $err"));
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      _AuthCredentials(userInfo: userInfo, child: widget.child);
 }
