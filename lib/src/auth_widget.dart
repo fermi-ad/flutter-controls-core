@@ -22,13 +22,7 @@ Future<void> initAuth(String realm, String clientId, String clientSecret,
     final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
     const Duration tmo = Duration(seconds: 2);
 
-    dev.log('getting issuer', name: "auth");
-
     final issuer = await Issuer.discover(uri).timeout(tmo);
-
-    dev.log('got issuer: ${issuer.metadata.authorizationEndpoint}',
-        name: "auth");
-
     final Client client = Client(issuer, clientId, clientSecret: clientSecret);
 
     _credentials = await oid.getRedirectResult(client, scopes: scopes);
