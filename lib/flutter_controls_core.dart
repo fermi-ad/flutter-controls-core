@@ -14,19 +14,6 @@ export 'service/acsys/service.dart';
 
 export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 
-class AuthInfo {
-  final String realm;
-  final String clientId;
-  final String clientSecret;
-  final List<String> scopes;
-
-  const AuthInfo(
-      {required this.realm,
-      required this.clientId,
-      required this.clientSecret,
-      this.scopes = const []});
-}
-
 Future<void> runFermiApp(
     {required Widget appWidget, AuthInfo? authInfo}) async {
   if (authInfo != null) {

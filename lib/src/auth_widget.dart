@@ -14,6 +14,19 @@ import 'dart:developer' as dev;
 
 typedef ScopeList = List<String>;
 
+class AuthInfo {
+  final String realm;
+  final String clientId;
+  final String clientSecret;
+  final List<String> scopes;
+
+  const AuthInfo(
+      {required this.realm,
+      required this.clientId,
+      required this.clientSecret,
+      this.scopes = const []});
+}
+
 Credential? _credentials;
 
 Future<void> initAuth(String realm, String clientId, String clientSecret,
