@@ -79,8 +79,7 @@ class AuthService extends StatefulWidget {
   /// This method will clear out the local credentials and request the server
   /// invalid the authentication token.
 
-  static Future<void> requestLogout() =>
-      _credentials?.revoke() ?? Future.value();
+  static Future<void> requestLogout() async => _credentials?.revoke();
 }
 
 class _AuthState extends State<AuthService> {
