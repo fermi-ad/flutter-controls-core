@@ -14,33 +14,55 @@ import 'dart:developer' as dev;
 
 typedef ScopeList = List<String>;
 
+class AuthInfo {
+  final String realm;
+  final String clientId;
+  final String clientSecret;
+  final List<String> scopes;
+
+  const AuthInfo(
+      {required this.realm,
+      required this.clientId,
+      required this.clientSecret,
+      this.scopes = const []});
+}
+
 Credential? _credentials;
-Client? _client;
+late Future<Credential?> Function() _authenticate;
 
 Future<void> initAuth(String realm, String clientId, String clientSecret,
     List<String> scopes) async {
-  try {
-    final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
-    const Duration tmo = Duration(seconds: 2);
+  final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
+  const Duration tmo = Duration(seconds: 2);
 
-    dev.log('getting issuer', name: "auth");
+  final issuer = await Issuer.discover(uri).timeout(tmo);
+  final Client client = Client(issuer, clientId, clientSecret: clientSecret);
 
-    final issuer = await Issuer.discover(uri).timeout(tmo);
-
-    dev.log('getting client', name: "auth");
-
-    _client = Client(issuer, clientId, clientSecret: clientSecret);
-    _credentials = await oid.getRedirectResult(_client!, scopes: scopes);
-
+  _authenticate = () async {
     if (_credentials == null) {
-      dev.log('performing authentication', name: "auth");
-
-      _credentials =
-          await oid.authenticate(_client!, scopes: scopes).timeout(tmo);
+      try {
+        return oid.authenticate(client, scopes: scopes).timeout(tmo);
+      } on TimeoutException {
+        dev.log('timeout communicating with KeyCloak', name: "auth");
+        return null;
+      }
     }
-  } on TimeoutException {
-    dev.log('timeout communicating with KeyCloak', name: "auth");
-  }
+    return _credentials;
+  };
+
+  _credentials = await oid.getRedirectResult(client, scopes: scopes);
+}
+
+class _AuthCredentials extends InheritedWidget {
+  final Credential? credentials;
+  final UserInfo? userInfo;
+
+  _AuthCredentials({this.userInfo, required super.child})
+      : credentials = _credentials;
+
+  @override
+  bool updateShouldNotify(covariant _AuthCredentials oldWidget) =>
+      oldWidget.credentials != credentials || oldWidget.userInfo != userInfo;
 }
 
 /// Provides authentication services.
@@ -59,22 +81,82 @@ class AuthService extends StatefulWidget {
   @override
   State<AuthService> createState() => _AuthState();
 
-  static Credential? getCreds() => _credentials;
+  static Credential? getCreds(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
+      ?.credentials;
+
+  static UserInfo? getUserInfo(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_AuthCredentials>()?.userInfo;
+
+  static Future<void> requestLogin(BuildContext context) async =>
+      await context.findAncestorStateOfType<_AuthState>()?.requestLogin();
+
+  static Future<void> requestLogout(BuildContext context) async =>
+      await context.findAncestorStateOfType<_AuthState>()?.requestLogout();
+}
+
+class _AuthState extends State<AuthService> {
+  UserInfo? userInfo;
+
+  bool get authenticated => _credentials != null;
+
+  // Set-up a background process to retrieve the user's information.
+
+  Future<void> getUserInfo() async {
+    _credentials
+        ?.getUserInfo()
+        .then((value) => setState(() => userInfo = value))
+        .catchError((err) => dev.log("userInfo returned $err"));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    // If the credentials aren't `null`, then we can retrieve the user
+    // information. Start a background task to access the user info.
+
+    if (authenticated) {
+      Future<void>.microtask(getUserInfo);
+    }
+  }
+
+  Future<void> requestLogin() async {
+    if (!authenticated) {
+      final creds = await _authenticate();
+
+      // If we successfully get credentials, try to get the user's
+      // information.
+
+      if (creds != null) {
+        final user = await creds.getUserInfo();
+
+        setState(() {
+          _credentials = creds;
+          userInfo = user;
+        });
+      }
+    }
+  }
 
   /// Requests the app's credentials be revoked.
   ///
   /// This method will clear out the local credentials and request the server
   /// invalid the authentication token.
 
-  static Future<void> requestLogout() =>
-      _credentials?.revoke() ?? Future.value();
-}
-
-class _AuthState extends State<AuthService> {
-  // Render the widgets. This uses a FutureBuilder to monitor the life of the
-  // authentication Client. All of what gets rendered in the widget tree,
-  // however, is based on the child widget.
+  Future<void> requestLogout() async {
+    if (authenticated) {
+      Future<void>.microtask(() async => await _credentials
+          ?.revoke()
+          .onError((error, trace) => dev.log("revoke error: $error")));
+      setState(() {
+        _credentials = null;
+        userInfo = null;
+      });
+    }
+  }
 
   @override
-  Widget build(BuildContext context) => Container(child: widget.child);
+  Widget build(BuildContext context) =>
+      _AuthCredentials(userInfo: userInfo, child: widget.child);
 }
