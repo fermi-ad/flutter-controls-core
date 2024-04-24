@@ -122,7 +122,11 @@ class _AuthState extends State<AuthService> {
   }
 
   Future<void> requestLogin() async {
+    if (!authenticated) {
     final creds = await _authenticate();
+
+      // If we successfully get credentials, try to get the user's
+      // information.
 
     if (creds != null) {
       final user = await creds.getUserInfo();
@@ -131,6 +135,7 @@ class _AuthState extends State<AuthService> {
         _credentials = creds;
         userInfo = user;
       });
+      }
     }
   }
 
