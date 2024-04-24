@@ -4,6 +4,7 @@ library app_scaffold;
 
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'auth_widget.dart';
 import 'fermi_theme.dart';
 
 // Our Fermi theme generated with - https://m3.material.io/theme-builder#/custom
