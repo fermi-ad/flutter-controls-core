@@ -145,11 +145,15 @@ class _AuthState extends State<AuthService> {
   /// invalid the authentication token.
 
   Future<void> requestLogout() async {
-    // await _credentials?.revoke();
+    if (authenticated) {
+      Future<void>.microtask(() async => await _credentials
+          ?.revoke()
+          .onError((error, trace) => dev.log("revoke error: $error")));
     setState(() {
       _credentials = null;
       userInfo = null;
     });
+    }
   }
 
   @override
