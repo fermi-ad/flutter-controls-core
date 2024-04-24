@@ -98,6 +98,8 @@ class AuthService extends StatefulWidget {
 class _AuthState extends State<AuthService> {
   UserInfo? userInfo;
 
+  bool get authenticated => _credentials != null;
+
   // Set-up a background process to retrieve the user's information.
 
   Future<void> getUserInfo() async {
