@@ -28,22 +28,29 @@ class AuthInfo {
 }
 
 Credential? _credentials;
+late Future<Credential?> Function() _authenticate;
 
 Future<void> initAuth(String realm, String clientId, String clientSecret,
     List<String> scopes) async {
-  try {
-    final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
-    const Duration tmo = Duration(seconds: 2);
+  final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
+  const Duration tmo = Duration(seconds: 2);
 
-    final issuer = await Issuer.discover(uri).timeout(tmo);
-    final Client client = Client(issuer, clientId, clientSecret: clientSecret);
+  final issuer = await Issuer.discover(uri).timeout(tmo);
+  final Client client = Client(issuer, clientId, clientSecret: clientSecret);
 
-    _credentials = await oid.getRedirectResult(client, scopes: scopes);
-    _credentials ??=
-          await oid.authenticate(client, scopes: scopes).timeout(tmo);
-  } on TimeoutException {
-    dev.log('timeout communicating with KeyCloak', name: "auth");
-  }
+  _authenticate = () async {
+    if (_credentials == null) {
+      try {
+        return oid.authenticate(client, scopes: scopes).timeout(tmo);
+      } on TimeoutException {
+        dev.log('timeout communicating with KeyCloak', name: "auth");
+        return null;
+      }
+    }
+    return _credentials;
+  };
+
+  _credentials = await oid.getRedirectResult(client, scopes: scopes);
 }
 
 class _AuthCredentials extends InheritedWidget {
@@ -81,24 +88,57 @@ class AuthService extends StatefulWidget {
   static UserInfo? getUserInfo(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_AuthCredentials>()?.userInfo;
 
-  /// Requests the app's credentials be revoked.
-  ///
-  /// This method will clear out the local credentials and request the server
-  /// invalid the authentication token.
+  static Future<void> requestLogin(BuildContext context) async =>
+      await context.findAncestorStateOfType<_AuthState>()?.requestLogin();
 
-  static Future<void> requestLogout() async => _credentials?.revoke();
+  static Future<void> requestLogout(BuildContext context) async =>
+      await context.findAncestorStateOfType<_AuthState>()?.requestLogout();
 }
 
 class _AuthState extends State<AuthService> {
   UserInfo? userInfo;
 
-  @override
-  void initState() {
-    super.initState();
+  // Set-up a background process to retrieve the user's information.
+
+  Future<void> getUserInfo() async {
     _credentials
         ?.getUserInfo()
         .then((value) => setState(() => userInfo = value))
         .catchError((err) => dev.log("userInfo returned $err"));
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (_credentials != null) {
+      Future<void>.microtask(() async => await getUserInfo());
+    }
+  }
+
+  Future<void> requestLogin() async {
+    final creds = await _authenticate();
+
+    if (creds != null) {
+      final user = await creds.getUserInfo();
+
+      setState(() {
+        _credentials = creds;
+        userInfo = user;
+      });
+    }
+  }
+
+  /// Requests the app's credentials be revoked.
+  ///
+  /// This method will clear out the local credentials and request the server
+  /// invalid the authentication token.
+
+  Future<void> requestLogout() async {
+    // await _credentials?.revoke();
+    setState(() {
+      _credentials = null;
+      userInfo = null;
+    });
   }
 
   @override
