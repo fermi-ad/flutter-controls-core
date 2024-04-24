@@ -112,8 +112,12 @@ class _AuthState extends State<AuthService> {
   @override
   void initState() {
     super.initState();
-    if (_credentials != null) {
-      Future<void>.microtask(() async => await getUserInfo());
+
+    // If the credentials aren't `null`, then we can retrieve the user
+    // information. Start a background task to access the user info.
+
+    if (authenticated) {
+      Future<void>.microtask(getUserInfo);
     }
   }
 
