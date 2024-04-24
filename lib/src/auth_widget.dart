@@ -123,18 +123,18 @@ class _AuthState extends State<AuthService> {
 
   Future<void> requestLogin() async {
     if (!authenticated) {
-    final creds = await _authenticate();
+      final creds = await _authenticate();
 
       // If we successfully get credentials, try to get the user's
       // information.
 
-    if (creds != null) {
-      final user = await creds.getUserInfo();
+      if (creds != null) {
+        final user = await creds.getUserInfo();
 
-      setState(() {
-        _credentials = creds;
-        userInfo = user;
-      });
+        setState(() {
+          _credentials = creds;
+          userInfo = user;
+        });
       }
     }
   }
@@ -149,10 +149,10 @@ class _AuthState extends State<AuthService> {
       Future<void>.microtask(() async => await _credentials
           ?.revoke()
           .onError((error, trace) => dev.log("revoke error: $error")));
-    setState(() {
-      _credentials = null;
-      userInfo = null;
-    });
+      setState(() {
+        _credentials = null;
+        userInfo = null;
+      });
     }
   }
 
