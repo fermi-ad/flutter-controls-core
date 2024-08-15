@@ -379,7 +379,7 @@ class ACSysService implements ACSysServiceAPI {
                       scheme: "wss",
                       host: "acsys-proxy.fnal.gov",
                       port: 8000,
-                      path: "/acsys",
+                      path: "/acsys/s",
                     ),
                     protocols: ["graphql-ws"],
                   ),
