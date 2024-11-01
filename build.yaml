@@ -4,14 +4,18 @@ targets:
             ferry_generator|graphql_builder:
                 enabled: true
                 options:
-                    schema: flutter_controls_core|lib/service/acsys/schema/DPM.graphql
+                    schemas:
+                        - flutter_controls_core|lib/service/acsys/schema/DPM.graphql
+                        - flutter_controls_core|lib/service/devdb/schema/DEVDB.graphql
                     type_overrides:
                         Timestamp:
                             name: DateTime
             ferry_generator|serializer_builder:
                 enabled: true
                 options:
-                    schema: flutter_controls_core|lib/service/acsys/schema/DPM.graphql
+                    schemas:
+                        - flutter_controls_core|lib/service/acsys/schema/DPM.graphql
+                        - flutter_controls_core|lib/service/devdb/schema/DEVDB.graphql
                     custom_serializers:
-                        - import: "package:flutter_controls_core/service/acsys/schema/date_serializer.dart"
+                        - import: "package:flutter_controls_core/service/date_serializer.dart"
                           name: DateSerializer

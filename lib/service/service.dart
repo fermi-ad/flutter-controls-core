@@ -13,12 +13,12 @@ import 'package:ferry/ferry.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/DPM.schema.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/get_device_info.req.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/get_device_info.data.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_device.req.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.data.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.req.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.var.gql.dart';
+import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.req.gql.dart';
+import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.data.gql.dart';
 
 import 'dart:developer' as dev;
 
@@ -357,6 +357,8 @@ class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
 
+  final Client _qDevDb;
+
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
@@ -385,6 +387,17 @@ class ACSysService implements ACSysServiceAPI {
                   ),
               reconnectInterval: const Duration(seconds: 1)),
           cache: Cache(),
+        ),
+        _qDevDb = Client(
+          link: HttpLink(
+            Uri(
+              scheme: "https",
+              host: "acsys-proxy.fnal.gov",
+              port: 8000,
+              path: "/devdb",
+            ).toString(),
+          ),
+          cache: Cache(),
         );
 
   // Common code needed to do RPCs. The caller sends in a protobuf request and,
@@ -394,6 +407,27 @@ class ACSysService implements ACSysServiceAPI {
   Future<Result> _rpc<TData, TVars, Result>(OperationRequest<TData, TVars> req,
           {Result Function(TData)? xlat}) =>
       _q
+          .request(req)
+          .where((response) => !response.loading)
+          .first
+          .then((value) {
+        if (value.hasErrors) {
+          throw Exception(value.graphqlErrors);
+        } else {
+          final data = value.data;
+
+          if (data != null) {
+            return xlat != null ? xlat(data) : data as Result;
+          } else {
+            throw Exception("no data was returned from request");
+          }
+        }
+      });
+
+  Future<Result> _rpcDevDb<TData, TVars, Result>(
+          OperationRequest<TData, TVars> req,
+          {Result Function(TData)? xlat}) =>
+      _qDevDb
           .request(req)
           .where((response) => !response.loading)
           .first
@@ -421,7 +455,7 @@ class ACSysService implements ACSysServiceAPI {
       final req =
           GgetDeviceInfoReq((b) => b..vars.devices = ListBuilder(devices));
 
-      return _rpc(req,
+      return _rpcDevDb(req,
           xlat: (GgetDeviceInfoData data) =>
               data.deviceInfo.result.map(_convertToDevInfo).toList());
     } else {

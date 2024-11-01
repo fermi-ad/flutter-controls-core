@@ -1,0 +1,221 @@
+// GENERATED CODE - DO NOT MODIFY BY HAND
+
+part of 'start_plot.var.gql.dart';
+
+// **************************************************************************
+// BuiltValueGenerator
+// **************************************************************************
+
+Serializer<GStartPlotVars> _$gStartPlotVarsSerializer =
+    new _$GStartPlotVarsSerializer();
+
+class _$GStartPlotVarsSerializer
+    implements StructuredSerializer<GStartPlotVars> {
+  @override
+  final Iterable<Type> types = const [GStartPlotVars, _$GStartPlotVars];
+  @override
+  final String wireName = 'GStartPlotVars';
+
+  @override
+  Iterable<Object?> serialize(Serializers serializers, GStartPlotVars object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'drfList',
+      serializers.serialize(object.drfList,
+          specifiedType:
+              const FullType(BuiltList, const [const FullType(String)])),
+    ];
+    Object? value;
+    value = object.xMin;
+    if (value != null) {
+      result
+        ..add('xMin')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.xMax;
+    if (value != null) {
+      result
+        ..add('xMax')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.windowSize;
+    if (value != null) {
+      result
+        ..add('windowSize')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    return result;
+  }
+
+  @override
+  GStartPlotVars deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GStartPlotVarsBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'drfList':
+          result.drfList.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'xMin':
+          result.xMin = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+        case 'xMax':
+          result.xMax = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+        case 'windowSize':
+          result.windowSize = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GStartPlotVars extends GStartPlotVars {
+  @override
+  final BuiltList<String> drfList;
+  @override
+  final int? xMin;
+  @override
+  final int? xMax;
+  @override
+  final int? windowSize;
+
+  factory _$GStartPlotVars([void Function(GStartPlotVarsBuilder)? updates]) =>
+      (new GStartPlotVarsBuilder()..update(updates))._build();
+
+  _$GStartPlotVars._(
+      {required this.drfList, this.xMin, this.xMax, this.windowSize})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        drfList, r'GStartPlotVars', 'drfList');
+  }
+
+  @override
+  GStartPlotVars rebuild(void Function(GStartPlotVarsBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GStartPlotVarsBuilder toBuilder() =>
+      new GStartPlotVarsBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GStartPlotVars &&
+        drfList == other.drfList &&
+        xMin == other.xMin &&
+        xMax == other.xMax &&
+        windowSize == other.windowSize;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, drfList.hashCode);
+    _$hash = $jc(_$hash, xMin.hashCode);
+    _$hash = $jc(_$hash, xMax.hashCode);
+    _$hash = $jc(_$hash, windowSize.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GStartPlotVars')
+          ..add('drfList', drfList)
+          ..add('xMin', xMin)
+          ..add('xMax', xMax)
+          ..add('windowSize', windowSize))
+        .toString();
+  }
+}
+
+class GStartPlotVarsBuilder
+    implements Builder<GStartPlotVars, GStartPlotVarsBuilder> {
+  _$GStartPlotVars? _$v;
+
+  ListBuilder<String>? _drfList;
+  ListBuilder<String> get drfList =>
+      _$this._drfList ??= new ListBuilder<String>();
+  set drfList(ListBuilder<String>? drfList) => _$this._drfList = drfList;
+
+  int? _xMin;
+  int? get xMin => _$this._xMin;
+  set xMin(int? xMin) => _$this._xMin = xMin;
+
+  int? _xMax;
+  int? get xMax => _$this._xMax;
+  set xMax(int? xMax) => _$this._xMax = xMax;
+
+  int? _windowSize;
+  int? get windowSize => _$this._windowSize;
+  set windowSize(int? windowSize) => _$this._windowSize = windowSize;
+
+  GStartPlotVarsBuilder();
+
+  GStartPlotVarsBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _drfList = $v.drfList.toBuilder();
+      _xMin = $v.xMin;
+      _xMax = $v.xMax;
+      _windowSize = $v.windowSize;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GStartPlotVars other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GStartPlotVars;
+  }
+
+  @override
+  void update(void Function(GStartPlotVarsBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GStartPlotVars build() => _build();
+
+  _$GStartPlotVars _build() {
+    _$GStartPlotVars _$result;
+    try {
+      _$result = _$v ??
+          new _$GStartPlotVars._(
+              drfList: drfList.build(),
+              xMin: xMin,
+              xMax: xMax,
+              windowSize: windowSize);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'drfList';
+        drfList.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GStartPlotVars', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+// ignore_for_file: deprecated_member_use_from_same_package,type=lint

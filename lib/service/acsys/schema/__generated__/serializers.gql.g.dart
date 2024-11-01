@@ -8,15 +8,17 @@ part of 'serializers.gql.dart';
 
 Serializers _$serializers = (new Serializers().toBuilder()
       ..add(FetchPolicy.serializer)
-      ..add(GDateTime.serializer)
       ..add(GDevValue.serializer)
-      ..add(GDevicePropertyFieldsData.serializer)
-      ..add(GDevicePropertyFieldsReq.serializer)
-      ..add(GDevicePropertyFieldsVars.serializer)
       ..add(GSetDeviceData.serializer)
       ..add(GSetDeviceData_setDevice.serializer)
       ..add(GSetDeviceReq.serializer)
       ..add(GSetDeviceVars.serializer)
+      ..add(GStartPlotData.serializer)
+      ..add(GStartPlotData_startPlot.serializer)
+      ..add(GStartPlotData_startPlot_data.serializer)
+      ..add(GStartPlotData_startPlot_data_channelData.serializer)
+      ..add(GStartPlotReq.serializer)
+      ..add(GStartPlotVars.serializer)
       ..add(GStreamDataData.serializer)
       ..add(GStreamDataData_acceleratorData.serializer)
       ..add(GStreamDataData_acceleratorData_data.serializer)
@@ -26,71 +28,25 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GStreamDataData_acceleratorData_data_result__base.serializer)
       ..add(GStreamDataReq.serializer)
       ..add(GStreamDataVars.serializer)
-      ..add(GgetDeviceInfoData.serializer)
-      ..add(GgetDeviceInfoData_deviceInfo.serializer)
-      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer)
-      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
-          .serializer)
-      ..add(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-              .serializer)
-      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
-          .serializer)
-      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-          .serializer)
-      ..add(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-              .serializer)
-      ..add(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading.serializer)
-      ..add(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting.serializer)
-      ..add(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-          .serializer)
-      ..add(GgetDeviceInfoData_deviceInfo_result__asErrorReply.serializer)
-      ..add(GgetDeviceInfoData_deviceInfo_result__base.serializer)
-      ..add(GgetDeviceInfoReq.serializer)
-      ..add(GgetDeviceInfoVars.serializer)
+      ..add(GXformAvgExpr.serializer)
+      ..add(GXformDeviceExpr.serializer)
+      ..add(GXformExpr.serializer)
+      ..add(GXformRequest.serializer)
       ..addBuilderFactory(
-          const FullType(BuiltList,
-              const [const FullType(GgetDeviceInfoData_deviceInfo_result)]),
-          () => new ListBuilder<GgetDeviceInfoData_deviceInfo_result>())
+          const FullType(
+              BuiltList, const [const FullType(GStartPlotData_startPlot_data)]),
+          () => new ListBuilder<GStartPlotData_startPlot_data>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [
-            const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries)
+            const FullType(GStartPlotData_startPlot_data_channelData)
           ]),
-          () => new ListBuilder<
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
-          ]),
-          () => new ListBuilder<
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [
-            const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries)
-          ]),
-          () => new ListBuilder<
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>())
+          () => new ListBuilder<GStartPlotData_startPlot_data_channelData>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(double)]),
-          () => new ListBuilder<double>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(double)]),
-          () => new ListBuilder<double>())
-      ..addBuilderFactory(
-          const FullType(BuiltList, const [const FullType(double)]),
-          () => new ListBuilder<double>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(double)]),
           () => new ListBuilder<double>())

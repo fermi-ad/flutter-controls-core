@@ -1,0 +1,13 @@
+subscription StartPlot($drfList: [String!]!, $xMin: Int, $xMax: Int, $windowSize: Int) {
+  startPlot(drfList: $drfList, xMin: $xMin, xMax: $xMax, windowSize: $windowSize) {
+    plotId
+    data {
+      channelUnits
+      channelStatus
+      channelData {
+        x
+        y
+      }
+    }
+  }
+}
