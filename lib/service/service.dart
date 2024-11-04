@@ -17,6 +17,8 @@ import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_dev
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.data.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.req.gql.dart';
 import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.var.gql.dart';
+import 'package:flutter_controls_core/service/acsys/schema/__generated__/start_plot.data.gql.dart';
+import 'package:flutter_controls_core/service/acsys/schema/__generated__/start_plot.req.gql.dart';
 import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.req.gql.dart';
 import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.data.gql.dart';
 
@@ -311,6 +313,22 @@ class AnalogAlarmStatus {
       required this.state});
 }
 
+class PlotReply {
+  final String plotId;
+  final List<PlotChannelData> data;
+
+  const PlotReply(this.plotId, this.data);
+}
+
+class PlotChannelData {
+  final String units;
+  final int status;
+  final List<(double, double)> points;
+
+  const PlotChannelData(
+      {this.units = "", this.status = 0, this.points = const []});
+}
+
 /// Defines the API for the GraphQL interface.
 ///
 /// The API is declared as an abstract class so that one could `implement` a
@@ -337,6 +355,9 @@ abstract interface class ACSysServiceAPI {
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
+
+  Stream<PlotReply> startPlot(List<String> drfs,
+      {int? xMin, int? xMax, int? windowSize, int? updateRate});
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
@@ -780,9 +801,36 @@ class ACSysService implements ACSysServiceAPI {
       submit(forDRF: toDRF, newSetting: DevText(value));
 
   @override
-  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) {
-    return const Stream.empty();
+  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) =>
+      const Stream.empty();
+
+  @override
+  Stream<PlotReply> startPlot(List<String> drfs,
+      {int? xMin, int? xMax, int? windowSize, int? updateRate}) {
+    final req = GStartPlotReq((b) => b
+      ..vars.drfList = ListBuilder(drfs)
+      ..vars.xMin = xMin
+      ..vars.xMax = xMax
+      ..vars.windowSize = windowSize);
+
+    return _s
+        .request(req)
+        .handleError((error) => dev.log("error: $error", name: "gql.startPlot"))
+        .where((event) => !event.loading)
+        .map((e) => e.data!.startPlot.toPlotReply());
   }
+}
+
+extension on GStartPlotData_startPlot_data {
+  PlotChannelData toPlotChannelData() => PlotChannelData(
+      units: channelUnits,
+      status: channelStatus,
+      points: channelData.map((e) => (e.x, e.y)).toList());
+}
+
+extension on GStartPlotData_startPlot {
+  PlotReply toPlotReply() =>
+      PlotReply(plotId, data.map((e) => e.toPlotChannelData()).toList());
 }
 
 // And an extension to the DevValue hierarchy which translates a value into a
