@@ -389,7 +389,7 @@ class ACSysService implements ACSysServiceAPI {
             Uri(
               scheme: "https",
               host: "acsys-proxy.fnal.gov",
-              port: 8000,
+              port: 8001,
               path: "/acsys",
             ).toString(),
           ),
@@ -401,7 +401,7 @@ class ACSysService implements ACSysServiceAPI {
                     Uri(
                       scheme: "wss",
                       host: "acsys-proxy.fnal.gov",
-                      port: 8000,
+                      port: 8001,
                       path: "/acsys/s",
                     ),
                     protocols: ["graphql-ws"],
@@ -414,7 +414,7 @@ class ACSysService implements ACSysServiceAPI {
             Uri(
               scheme: "https",
               host: "acsys-proxy.fnal.gov",
-              port: 8000,
+              port: 8001,
               path: "/devdb",
             ).toString(),
           ),
