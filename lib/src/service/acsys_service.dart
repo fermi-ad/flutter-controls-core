@@ -13,15 +13,15 @@ import 'package:gql_http_link/gql_http_link.dart';
 import 'package:ferry/ferry.dart';
 import 'package:web_socket_channel/web_socket_channel.dart';
 
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/DPM.schema.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_device.req.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.data.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.req.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/stream_data.var.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/start_plot.data.gql.dart';
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/start_plot.req.gql.dart';
-import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.req.gql.dart';
-import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.var.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.req.gql.dart';
+import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.req.gql.dart';
+import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.data.gql.dart';
 
 import 'dart:developer' as dev;
 

@@ -5,8 +5,8 @@ targets:
                 enabled: true
                 options:
                     schemas:
-                        - flutter_controls_core|lib/service/acsys/schema/DPM.graphql
-                        - flutter_controls_core|lib/service/devdb/schema/DEVDB.graphql
+                        - flutter_controls_core|lib/src/service/acsys/schema/DPM.graphql
+                        - flutter_controls_core|lib/src/service/devdb/schema/DEVDB.graphql
                     type_overrides:
                         Timestamp:
                             name: DateTime
@@ -14,8 +14,8 @@ targets:
                 enabled: true
                 options:
                     schemas:
-                        - flutter_controls_core|lib/service/acsys/schema/DPM.graphql
-                        - flutter_controls_core|lib/service/devdb/schema/DEVDB.graphql
+                        - flutter_controls_core|lib/src/service/acsys/schema/DPM.graphql
+                        - flutter_controls_core|lib/src/service/devdb/schema/DEVDB.graphql
                     custom_serializers:
-                        - import: "package:flutter_controls_core/service/date_serializer.dart"
+                        - import: "package:flutter_controls_core/src/service/date_serializer.dart"
                           name: DateSerializer

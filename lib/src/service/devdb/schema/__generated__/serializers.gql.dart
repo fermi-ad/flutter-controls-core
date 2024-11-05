@@ -5,9 +5,9 @@ import 'package:built_collection/built_collection.dart';
 import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
-import 'package:flutter_controls_core/service/date_serializer.dart'
+import 'package:flutter_controls_core/src/service/date_serializer.dart'
     show DateSerializer;
-import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.data.gql.dart'
+import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.data.gql.dart'
     show
         GgetDeviceInfoData_deviceInfo_result,
         GDevicePropertyFieldsData,
@@ -24,9 +24,9 @@ import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_dev
         GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
         GgetDeviceInfoData_deviceInfo_result__asErrorReply,
         GgetDeviceInfoData_deviceInfo_result__base;
-import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.req.gql.dart'
+import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.req.gql.dart'
     show GDevicePropertyFieldsReq, GgetDeviceInfoReq;
-import 'package:flutter_controls_core/service/devdb/schema/__generated__/get_device_info.var.gql.dart'
+import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.var.gql.dart'
     show GDevicePropertyFieldsVars, GgetDeviceInfoVars;
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
     show OperationSerializer;
