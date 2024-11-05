@@ -10,7 +10,7 @@ export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
 export 'src/auth_widget.dart';
 
-export 'service/service.dart';
+export 'service/acsys_service.dart';
 
 export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 
