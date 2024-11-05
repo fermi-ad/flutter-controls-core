@@ -2,6 +2,7 @@
 
 library service;
 
+import 'package:flutter/material.dart';
 import "package:flutter_controls_core/src/status.dart";
 import "package:flutter_controls_core/src/device_values.dart";
 
@@ -329,19 +330,27 @@ class PlotChannelData {
       {this.units = "", this.status = 0, this.points = const []});
 }
 
-/// Defines the API for the GraphQL interface.
+/// Defines the ACSys API.
 ///
-/// The API is declared as an abstract class so that one could `implement` a
-/// class for testing purposes.
+/// This class is used by other classes to implement the ACSys API. The class
+/// that supports the actual API is [ACSysService]. For testing, it is
+/// recommended to define a class that implements this interface using well-
+/// known data responses.
 
 abstract interface class ACSysServiceAPI {
-  /// Takes a list of device names and returns a list of information associated
-  /// with the devices. The information will be in the same order as the devices
-  /// in the request.
+  /// Returns information about a device.
+  ///
+  /// - [devices] is a list of device names
+  ///
+  /// This function queries the device database for all the devices in the
+  /// list and returns a list of information associated with the devices.
+  /// The information will be in the same order as the devices in the request.
+
   Future<List<DeviceInfo>> getDeviceInfo(List<String> devices);
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides readings for the requests.
+
   Stream<Reading> monitorDevices(List<String> drfs);
 
   /// Takes a list of data acquisition strings and returns a stream that
@@ -370,14 +379,15 @@ abstract interface class ACSysServiceAPI {
       {required String toDRF, required String value});
 }
 
-// This class provides an interface to Fermi's DPM API via GraphQL. This widget
-// should be placed near the top of your widget tree. Widgets further down can
-// access this object by calling `DpmService.of(context)`.
+/// Provides an interface to Fermi's data acquisition API.
+///
+/// An instance of this class could be used in an application to acquire data
+/// from the control system. But a better way is to use the [ACSysProvider]
+/// widget which manages an object of this class.
 
 class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
-
   final Client _qDevDb;
 
   // Constructor. This creates the HTTP links needed to communicate with our
@@ -385,41 +395,24 @@ class ACSysService implements ACSysServiceAPI {
 
   ACSysService()
       : _q = Client(
-          link: HttpLink(
-            Uri(
-              scheme: "https",
-              host: "acsys-proxy.fnal.gov",
-              port: 8001,
-              path: "/acsys",
-            ).toString(),
-          ),
-          cache: Cache(),
-        ),
+            link: HttpLink("https://acsys-proxy.fnal.gov:8001/acsys"),
+            cache: Cache()),
         _s = Client(
-          link: WebSocketLink(null,
-              channelGenerator: () => WebSocketChannel.connect(
-                    Uri(
-                      scheme: "wss",
-                      host: "acsys-proxy.fnal.gov",
-                      port: 8001,
-                      path: "/acsys/s",
+            link: WebSocketLink(null,
+                channelGenerator: () => WebSocketChannel.connect(
+                      Uri(
+                        scheme: "wss",
+                        host: "acsys-proxy.fnal.gov",
+                        port: 8001,
+                        path: "/acsys/s",
+                      ),
+                      protocols: ["graphql-ws"],
                     ),
-                    protocols: ["graphql-ws"],
-                  ),
-              reconnectInterval: const Duration(seconds: 1)),
-          cache: Cache(),
-        ),
+                reconnectInterval: const Duration(seconds: 1)),
+            cache: Cache()),
         _qDevDb = Client(
-          link: HttpLink(
-            Uri(
-              scheme: "https",
-              host: "acsys-proxy.fnal.gov",
-              port: 8001,
-              path: "/devdb",
-            ).toString(),
-          ),
-          cache: Cache(),
-        );
+            link: HttpLink("https://acsys-proxy.fnal.gov:8001/devdb"),
+            cache: Cache());
 
   // Common code needed to do RPCs. The caller sends in a protobuf request and,
   // optionally, a function to translate the protobuf reply into some other data
@@ -466,10 +459,11 @@ class ACSysService implements ACSysServiceAPI {
         }
       });
 
-  // Returns information about devices. The caller provides a list of device
-  // names and will receive a list of `DeviceInfo` objects. The order of the
-  // results in the returned list correspond to the order of the devices in the
-  // source list.
+  /// Returns information about devices. The caller provides a list of device
+  /// names and will receive a list of `DeviceInfo` objects. The order of the
+  /// results in the returned list correspond to the order of the devices in the
+  /// source list.
+
   @override
   Future<List<DeviceInfo>> getDeviceInfo(List<String> devices) async {
     if (devices.isNotEmpty) {
@@ -849,4 +843,65 @@ extension on DeviceValue {
         ..textArrayVal = ListBuilder(v)
     };
   }
+}
+
+/// A widget that provides access to the ACSys Service API.
+///
+/// This widget has no public constructor and so can't be created by an
+/// application. It gets created automatically, however, by the
+/// [ACSysProvider] widget. Once an `ACSysProvider` widget is placed in
+/// the widget tree, the API can be accessed through the [ACSys.api()]
+/// method.
+
+class ACSys extends StatelessWidget {
+  final Widget child;
+
+  const ACSys._({required this.child});
+
+  /// Returns an object supporting the ACSys API.
+  ///
+  /// Any widget that uses this to retrieve the ACSys service object will
+  /// get registered if the [ACSysProvider] gets rebuilt.
+
+  static ACSysServiceAPI api(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<ACSysProvider>()!.service;
+
+  @override
+  Widget build(BuildContext context) => child;
+}
+
+/// Provides the ACSys API to the application.
+///
+/// If an application wishes to use the ACSys API, it should place an instance
+/// of this widget near the top of its tree so it doesn't get rebuilt. With
+/// this in the tree, other widgets can use the API by calling [ACSys.api()]
+/// to get an [ACSysServiceAPI] object which implements the API.
+
+class ACSysProvider extends InheritedWidget {
+  final ACSysServiceAPI _service;
+
+  /// Creates the widget.
+  ///
+  /// Provides support to the ACSys API.
+  ///
+  /// - [child] is the widget subtree that gets added to the tree below this
+  ///   widget.
+  /// - [key] is an optional identifier for the widget.
+  /// - [service] is an optional obect which implements the [ACSysServiceAPI]
+  ///   interface. If this option is omitted, the widget will use an
+  ///   implementation that communicates over the network to the offcial
+  ///   control system API. This option is mainly to mock-up a service to
+  ///   use in unit tests.
+
+  ACSysProvider({required Widget child, ACSysServiceAPI? service, super.key})
+      : _service = service ?? ACSysService(),
+        super(child: ACSys._(child: child));
+
+  /// Returns the object tha implements the [ACSysServiceAPI] interface.
+
+  ACSysServiceAPI get service => _service;
+
+  @override
+  bool updateShouldNotify(covariant ACSysProvider oldWidget) =>
+      _service != oldWidget._service;
 }
