@@ -317,16 +317,33 @@ class PlotReply {
   final String plotId;
   final List<PlotChannelData> data;
 
-  const PlotReply(this.plotId, this.data);
+  const PlotReply({required this.plotId, required this.data});
 }
 
 class PlotChannelData {
-  final String units;
+  final String name;
+  final String xAxisUnits;
+  final double? xAxisMin;
+  final double? xAxisMax;
+  final int? windowSize;
   final int status;
-  final List<(double, double)> points;
+  final List<PlotPoint> points;
 
   const PlotChannelData(
-      {this.units = "", this.status = 0, this.points = const []});
+      {required this.name,
+      this.status = 0,
+      required this.xAxisUnits,
+      this.xAxisMin,
+      this.xAxisMax,
+      this.windowSize,
+      this.points = const []});
+}
+
+class PlotPoint {
+  final double x;
+  final double y;
+
+  const PlotPoint({required this.x, required this.y});
 }
 
 /// Defines the ACSys API.
@@ -810,20 +827,27 @@ class ACSysService implements ACSysServiceAPI {
         .request(req)
         .handleError((error) => dev.log("error: $error", name: "gql.startPlot"))
         .where((event) => !event.loading)
-        .map((e) => e.data!.startPlot.toPlotReply());
+        .map((e) => e.data!.startPlot.toPlotReply(req));
   }
 }
 
 extension on GStartPlotData_startPlot_data {
-  PlotChannelData toPlotChannelData() => PlotChannelData(
-      units: channelUnits,
-      status: channelStatus,
-      points: channelData.map((e) => (e.x, e.y)).toList());
+  PlotChannelData toPlotChannelData(int idx, GStartPlotReq req) =>
+      PlotChannelData(
+          name: req.vars.drfList[idx],
+          xAxisUnits: channelUnits,
+          xAxisMin: req.vars.xMin?.toDouble(),
+          xAxisMax: req.vars.xMax?.toDouble(),
+          windowSize: req.vars.windowSize,
+          status: channelStatus,
+          points: channelData.map((e) => PlotPoint(x: e.x, y: e.y)).toList());
 }
 
 extension on GStartPlotData_startPlot {
-  PlotReply toPlotReply() =>
-      PlotReply(plotId, data.map((e) => e.toPlotChannelData()).toList());
+  PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
+      plotId: plotId,
+      data:
+          data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, req)).toList());
 }
 
 // And an extension to the DevValue hierarchy which translates a value into a
