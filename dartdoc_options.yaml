@@ -1,0 +1,2 @@
+dartdoc:
+  #nodoc: ['lib/service/*/schema/__generated__/*.dart']

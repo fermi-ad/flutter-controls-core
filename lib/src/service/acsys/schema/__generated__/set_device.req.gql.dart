@@ -5,13 +5,13 @@
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/serializers.gql.dart'
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i6;
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_device.ast.gql.dart'
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.ast.gql.dart'
     as _i5;
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_device.data.gql.dart'
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.data.gql.dart'
     as _i2;
-import 'package:flutter_controls_core/service/acsys/schema/__generated__/set_device.var.gql.dart'
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.var.gql.dart'
     as _i3;
 import 'package:gql_exec/gql_exec.dart' as _i4;
 
