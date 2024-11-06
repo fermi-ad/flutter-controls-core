@@ -1,6 +1,5 @@
-// Declare an exception type that's specific to the ACSys API.
-
-library service;
+/// {@category Data Acquisition}
+library acsys_service;
 
 import 'package:flutter/material.dart';
 import "package:flutter_controls_core/src/status.dart";
