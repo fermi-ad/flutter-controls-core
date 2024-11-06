@@ -315,27 +315,31 @@ class AnalogAlarmStatus {
 
 class PlotReply {
   final String plotId;
-  final List<PlotChannelData> data;
-
-  const PlotReply({required this.plotId, required this.data});
-}
-
-class PlotChannelData {
-  final String name;
   final String xAxisUnits;
   final double? xAxisMin;
   final double? xAxisMax;
   final int? windowSize;
+  final List<PlotChannelData> data;
+
+  const PlotReply(
+      {required this.plotId,
+      required this.xAxisUnits,
+      this.xAxisMin,
+      this.xAxisMax,
+      this.windowSize,
+      required this.data});
+}
+
+class PlotChannelData {
+  final String name;
+  final String units;
   final int status;
   final List<PlotPoint> points;
 
   const PlotChannelData(
       {required this.name,
+      required this.units,
       this.status = 0,
-      required this.xAxisUnits,
-      this.xAxisMin,
-      this.xAxisMax,
-      this.windowSize,
       this.points = const []});
 }
 
@@ -835,10 +839,7 @@ extension on GStartPlotData_startPlot_data {
   PlotChannelData toPlotChannelData(int idx, GStartPlotReq req) =>
       PlotChannelData(
           name: req.vars.drfList[idx],
-          xAxisUnits: channelUnits,
-          xAxisMin: req.vars.xMin?.toDouble(),
-          xAxisMax: req.vars.xMax?.toDouble(),
-          windowSize: req.vars.windowSize,
+          units: channelUnits,
           status: channelStatus,
           points: channelData.map((e) => PlotPoint(x: e.x, y: e.y)).toList());
 }
@@ -846,6 +847,10 @@ extension on GStartPlotData_startPlot_data {
 extension on GStartPlotData_startPlot {
   PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
       plotId: plotId,
+      xAxisUnits: "Time",
+      xAxisMin: req.vars.xMin?.toDouble(),
+      xAxisMax: req.vars.xMax?.toDouble(),
+      windowSize: req.vars.windowSize,
       data:
           data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, req)).toList());
 }
