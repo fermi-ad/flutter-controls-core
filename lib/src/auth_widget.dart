@@ -30,7 +30,6 @@ class AuthInfo {
 Credential? _credentials;
 late Future<Credential?> Function() _authenticate;
 
-/// @nodoc
 Future<void> initAuth(String realm, String clientId, String clientSecret,
     List<String> scopes) async {
   final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
