@@ -3,6 +3,7 @@
 library app_scaffold;
 
 import 'package:flutter/material.dart';
+import 'package:openid_client/openid_client.dart';
 import 'package:go_router/go_router.dart';
 import 'fermi_theme.dart';
 import 'auth_widget.dart';
@@ -18,7 +19,86 @@ class _GlobalAppTheme {
       ThemeData(useMaterial3: true, colorScheme: darkColorScheme);
 }
 
-/// Creates the foundation of a non-authenticated, scaffold app.
+// Private widget used to display content in the side, drawer menu's header.
+
+class _DrawerHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData td = Theme.of(context);
+    final UserInfo? userInfo = AuthService.getUserInfo(context);
+
+    final content = switch ((userInfo, AuthService.authRequired)) {
+      // For this case, the application didn't set up authentication parameters so
+      // it plans to run with no privilieges. If the application tries to use a service
+      // that needs authorization, the service will return an error.
+
+      (_, false) => [
+          Expanded(
+              child: Icon(Icons.no_accounts_sharp,
+                  size: 48.0,
+                  semanticLabel: "No login required",
+                  color: td.disabledColor)),
+          const Text("No privileges required.", textAlign: TextAlign.center),
+        ],
+      (null, true) => [
+          Expanded(
+              child: Icon(Icons.no_accounts_sharp,
+                  size: 48.0,
+                  semanticLabel: "Login required",
+                  color: td.disabledColor)),
+          const Text("Unauthorized"),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: ElevatedButton(
+                style: ButtonStyle(
+                    backgroundColor: WidgetStatePropertyAll(td.disabledColor)),
+                onPressed: () => AuthService.requestLogin(context),
+                child: const Text("Login")),
+          )
+        ],
+      (UserInfo user, true) => [
+          Expanded(
+              child: Icon(Icons.account_circle,
+                  size: 48.0, semanticLabel: "Logged in as ${user.name}")),
+          Text(user.name ?? "** no name in system **"),
+          Padding(
+            padding: const EdgeInsets.only(top: 8.0),
+            child: ElevatedButton(
+                onPressed: () => AuthService.requestLogout(context),
+                child: const Text("Logout")),
+          )
+        ]
+    };
+
+    return DrawerHeader(child: Column(children: content));
+  }
+}
+
+class _Drawer extends StatelessWidget {
+  final List<ListTile>? content;
+
+  const _Drawer(this.content);
+
+  @override
+  Widget build(BuildContext context) {
+    final ThemeData td = Theme.of(context);
+
+    return Drawer(
+        child: ListView(children: [
+      _DrawerHeader(),
+      ...?content,
+
+      // Change to "Fermi Forward Discovery Group, LLC" in 2025.
+
+      Text(
+          "© 2024 Fermi Research Alliance, LLC\n© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
+          textAlign: TextAlign.center,
+          style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor))
+    ]));
+  }
+}
+
+/// Creates the foundation of a scaffold-based app.
 ///
 /// This creates a scaffold widget that uses Fermilab's theme. [title] will
 /// be used for the title of the web page (for web targets.) [appBar] will
@@ -28,7 +108,7 @@ class _GlobalAppTheme {
 class StandardApp extends StatelessWidget {
   final String title;
   final Widget? body;
-  final Widget? drawer;
+  final List<ListTile>? drawerContents;
   final Widget? floatingActionButton;
   final PreferredSizeWidget? appBar;
 
@@ -36,7 +116,7 @@ class StandardApp extends StatelessWidget {
       {required this.title,
       this.appBar,
       this.body,
-      this.drawer,
+      this.drawerContents,
       this.floatingActionButton,
       super.key});
 
@@ -49,7 +129,7 @@ class StandardApp extends StatelessWidget {
           child: Scaffold(
               appBar: appBar,
               body: body,
-              drawer: drawer,
+              drawer: _Drawer(drawerContents),
               floatingActionButton: floatingActionButton)));
 }
 
