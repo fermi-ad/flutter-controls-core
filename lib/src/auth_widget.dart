@@ -28,12 +28,15 @@ class AuthInfo {
 }
 
 Credential? _credentials;
-late Future<Credential?> Function() _authenticate;
+Future<Credential?> Function() _authenticate = () async => null;
+bool _authRequired = false;
 
 Future<void> initAuth(String realm, String clientId, String clientSecret,
     List<String> scopes) async {
   final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
   const Duration tmo = Duration(seconds: 2);
+
+  _authRequired = true;
 
   final issuer = await Issuer.discover(uri).timeout(tmo);
   final Client client = Client(issuer, clientId, clientSecret: clientSecret);
@@ -80,6 +83,8 @@ class AuthService extends StatefulWidget {
 
   @override
   State<AuthService> createState() => _AuthState();
+
+  static bool get authRequired => _authRequired;
 
   static Credential? getCreds(BuildContext context) => context
       .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
