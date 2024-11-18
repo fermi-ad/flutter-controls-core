@@ -24,6 +24,8 @@ import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get
 
 import 'dart:developer' as dev;
 
+// Declare an exception type that's specific to the ACSys API.
+
 abstract class ACSysException implements Exception {
   final String message;
 

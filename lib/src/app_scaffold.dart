@@ -75,7 +75,7 @@ class _DrawerHeader extends StatelessWidget {
 }
 
 class _Drawer extends StatelessWidget {
-  final List<ListTile>? content;
+  final List<Widget>? content;
 
   const _Drawer(this.content);
 
@@ -108,7 +108,7 @@ class _Drawer extends StatelessWidget {
 class StandardApp extends StatelessWidget {
   final String title;
   final Widget? body;
-  final List<ListTile>? drawerContents;
+  final List<Widget>? drawerContents;
   final Widget? floatingActionButton;
   final PreferredSizeWidget? appBar;
 
