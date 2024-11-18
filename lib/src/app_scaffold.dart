@@ -84,17 +84,21 @@ class _Drawer extends StatelessWidget {
     final ThemeData td = Theme.of(context);
 
     return Drawer(
-        child: ListView(children: [
-      _DrawerHeader(),
-      ...?content,
+        child: Column(
+      children: [
+        Expanded(child: ListView(children: [_DrawerHeader(), ...?content])),
 
-      // Change to "Fermi Forward Discovery Group, LLC" in 2025.
+        // Change to "Fermi Forward Discovery Group, LLC" in 2025.
 
-      Text(
-          "© 2024 Fermi Research Alliance, LLC\n© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
-          textAlign: TextAlign.center,
-          style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor))
-    ]));
+        Padding(
+          padding: const EdgeInsets.only(bottom: 8.0),
+          child: Text(
+              "© 2024 Fermi Research Alliance, LLC\n© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
+              textAlign: TextAlign.center,
+              style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor)),
+        ),
+      ],
+    ));
   }
 }
 
