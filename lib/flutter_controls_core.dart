@@ -8,7 +8,7 @@ import "src/auth_widget.dart";
 export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
-export 'src/auth_widget.dart';
+export 'src/auth_widget.dart' show ScopeList, AuthInfo, AuthService;
 
 export 'src/service/acsys_service.dart';
 
