@@ -34,6 +34,8 @@ dependencies:
     flutter_test:
         sdk: flutter
 
+    flutter_dotenv: ^5.1.0
+
 dev_dependencies:
     flutter_test:
         sdk: flutter
@@ -84,3 +86,5 @@ flutter:
     #
     # For details regarding fonts in packages, see
     # https://flutter.dev/custom-fonts/#from-packages
+  assets:
+    - .env
