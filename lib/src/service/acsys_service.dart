@@ -824,13 +824,20 @@ class ACSysService implements ACSysServiceAPI {
 
   @override
   Stream<PlotReply> startPlot(List<String> drfs,
-      {int? xMin, int? xMax, int? windowSize, int? updateRate}) {
+      {int? xMin,
+      int? xMax,
+      int? windowSize,
+      int? updateRate,
+      int? nAcquisitions,
+      int? triggerEvent}) {
     final req = GStartPlotReq((b) => b
       ..fetchPolicy = FetchPolicy.NetworkOnly
       ..vars.drfList = ListBuilder(drfs)
       ..vars.xMin = xMin
       ..vars.xMax = xMax
-      ..vars.windowSize = windowSize);
+      ..vars.windowSize = windowSize
+      ..vars.nAcquisitions = nAcquisitions
+      ..vars.triggerEvent = triggerEvent);
 
     return _s
         .request(req)
