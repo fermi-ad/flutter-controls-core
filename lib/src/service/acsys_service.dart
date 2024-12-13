@@ -667,7 +667,9 @@ class ACSysService implements ACSysServiceAPI {
   // be sent for a device in error.
   @override
   Stream<Reading> monitorDevices(List<String> drfs) {
-    final req = GStreamDataReq((b) => b..vars.drfs = ListBuilder(drfs));
+    final req = GStreamDataReq((b) => b
+      ..vars.drfs = ListBuilder(drfs)
+      ..fetchPolicy = FetchPolicy.NetworkOnly);
 
     return _s
         .request(req)
@@ -824,6 +826,7 @@ class ACSysService implements ACSysServiceAPI {
   Stream<PlotReply> startPlot(List<String> drfs,
       {int? xMin, int? xMax, int? windowSize, int? updateRate}) {
     final req = GStartPlotReq((b) => b
+      ..fetchPolicy = FetchPolicy.NetworkOnly
       ..vars.drfList = ListBuilder(drfs)
       ..vars.xMin = xMin
       ..vars.xMax = xMax
