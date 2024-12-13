@@ -44,6 +44,12 @@ class _$GStartPlotVarsSerializer
         ..add('windowSize')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.updateDelay;
+    if (value != null) {
+      result
+        ..add('updateDelay')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -77,6 +83,10 @@ class _$GStartPlotVarsSerializer
           result.windowSize = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'updateDelay':
+          result.updateDelay = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
       }
     }
 
@@ -93,12 +103,18 @@ class _$GStartPlotVars extends GStartPlotVars {
   final int? xMax;
   @override
   final int? windowSize;
+  @override
+  final int? updateDelay;
 
   factory _$GStartPlotVars([void Function(GStartPlotVarsBuilder)? updates]) =>
       (new GStartPlotVarsBuilder()..update(updates))._build();
 
   _$GStartPlotVars._(
-      {required this.drfList, this.xMin, this.xMax, this.windowSize})
+      {required this.drfList,
+      this.xMin,
+      this.xMax,
+      this.windowSize,
+      this.updateDelay})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         drfList, r'GStartPlotVars', 'drfList');
@@ -119,7 +135,8 @@ class _$GStartPlotVars extends GStartPlotVars {
         drfList == other.drfList &&
         xMin == other.xMin &&
         xMax == other.xMax &&
-        windowSize == other.windowSize;
+        windowSize == other.windowSize &&
+        updateDelay == other.updateDelay;
   }
 
   @override
@@ -129,6 +146,7 @@ class _$GStartPlotVars extends GStartPlotVars {
     _$hash = $jc(_$hash, xMin.hashCode);
     _$hash = $jc(_$hash, xMax.hashCode);
     _$hash = $jc(_$hash, windowSize.hashCode);
+    _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -139,7 +157,8 @@ class _$GStartPlotVars extends GStartPlotVars {
           ..add('drfList', drfList)
           ..add('xMin', xMin)
           ..add('xMax', xMax)
-          ..add('windowSize', windowSize))
+          ..add('windowSize', windowSize)
+          ..add('updateDelay', updateDelay))
         .toString();
   }
 }
@@ -165,6 +184,10 @@ class GStartPlotVarsBuilder
   int? get windowSize => _$this._windowSize;
   set windowSize(int? windowSize) => _$this._windowSize = windowSize;
 
+  int? _updateDelay;
+  int? get updateDelay => _$this._updateDelay;
+  set updateDelay(int? updateDelay) => _$this._updateDelay = updateDelay;
+
   GStartPlotVarsBuilder();
 
   GStartPlotVarsBuilder get _$this {
@@ -174,6 +197,7 @@ class GStartPlotVarsBuilder
       _xMin = $v.xMin;
       _xMax = $v.xMax;
       _windowSize = $v.windowSize;
+      _updateDelay = $v.updateDelay;
       _$v = null;
     }
     return this;
@@ -201,7 +225,8 @@ class GStartPlotVarsBuilder
               drfList: drfList.build(),
               xMin: xMin,
               xMax: xMax,
-              windowSize: windowSize);
+              windowSize: windowSize,
+              updateDelay: updateDelay);
     } catch (_) {
       late String _$failedField;
       try {

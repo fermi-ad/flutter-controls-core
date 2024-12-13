@@ -47,6 +47,15 @@ const StartPlot = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'updateDelay')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(selections: [
@@ -69,6 +78,10 @@ const StartPlot = _i1.OperationDefinitionNode(
         _i1.ArgumentNode(
           name: _i1.NameNode(value: 'windowSize'),
           value: _i1.VariableNode(name: _i1.NameNode(value: 'windowSize')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'updateDelay'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'updateDelay')),
         ),
       ],
       directives: [],
