@@ -388,7 +388,12 @@ abstract interface class ACSysServiceAPI {
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
 
   Stream<PlotReply> startPlot(List<String> drfs,
-      {int? xMin, int? xMax, int? windowSize, int? updateRate});
+      {int? xMin,
+      int? xMax,
+      int? windowSize,
+      int? updateRate,
+      int? nAcquisitions,
+      int? triggerEvent});
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
