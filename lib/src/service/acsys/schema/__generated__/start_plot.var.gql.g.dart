@@ -50,6 +50,18 @@ class _$GStartPlotVarsSerializer
         ..add('updateDelay')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.nAcquisitions;
+    if (value != null) {
+      result
+        ..add('nAcquisitions')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.triggerEvent;
+    if (value != null) {
+      result
+        ..add('triggerEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -87,6 +99,14 @@ class _$GStartPlotVarsSerializer
           result.updateDelay = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
           break;
+        case 'nAcquisitions':
+          result.nAcquisitions = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+        case 'triggerEvent':
+          result.triggerEvent = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
       }
     }
 
@@ -105,6 +125,10 @@ class _$GStartPlotVars extends GStartPlotVars {
   final int? windowSize;
   @override
   final int? updateDelay;
+  @override
+  final int? nAcquisitions;
+  @override
+  final int? triggerEvent;
 
   factory _$GStartPlotVars([void Function(GStartPlotVarsBuilder)? updates]) =>
       (new GStartPlotVarsBuilder()..update(updates))._build();
@@ -114,7 +138,9 @@ class _$GStartPlotVars extends GStartPlotVars {
       this.xMin,
       this.xMax,
       this.windowSize,
-      this.updateDelay})
+      this.updateDelay,
+      this.nAcquisitions,
+      this.triggerEvent})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         drfList, r'GStartPlotVars', 'drfList');
@@ -136,7 +162,9 @@ class _$GStartPlotVars extends GStartPlotVars {
         xMin == other.xMin &&
         xMax == other.xMax &&
         windowSize == other.windowSize &&
-        updateDelay == other.updateDelay;
+        updateDelay == other.updateDelay &&
+        nAcquisitions == other.nAcquisitions &&
+        triggerEvent == other.triggerEvent;
   }
 
   @override
@@ -147,6 +175,8 @@ class _$GStartPlotVars extends GStartPlotVars {
     _$hash = $jc(_$hash, xMax.hashCode);
     _$hash = $jc(_$hash, windowSize.hashCode);
     _$hash = $jc(_$hash, updateDelay.hashCode);
+    _$hash = $jc(_$hash, nAcquisitions.hashCode);
+    _$hash = $jc(_$hash, triggerEvent.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -158,7 +188,9 @@ class _$GStartPlotVars extends GStartPlotVars {
           ..add('xMin', xMin)
           ..add('xMax', xMax)
           ..add('windowSize', windowSize)
-          ..add('updateDelay', updateDelay))
+          ..add('updateDelay', updateDelay)
+          ..add('nAcquisitions', nAcquisitions)
+          ..add('triggerEvent', triggerEvent))
         .toString();
   }
 }
@@ -188,6 +220,15 @@ class GStartPlotVarsBuilder
   int? get updateDelay => _$this._updateDelay;
   set updateDelay(int? updateDelay) => _$this._updateDelay = updateDelay;
 
+  int? _nAcquisitions;
+  int? get nAcquisitions => _$this._nAcquisitions;
+  set nAcquisitions(int? nAcquisitions) =>
+      _$this._nAcquisitions = nAcquisitions;
+
+  int? _triggerEvent;
+  int? get triggerEvent => _$this._triggerEvent;
+  set triggerEvent(int? triggerEvent) => _$this._triggerEvent = triggerEvent;
+
   GStartPlotVarsBuilder();
 
   GStartPlotVarsBuilder get _$this {
@@ -198,6 +239,8 @@ class GStartPlotVarsBuilder
       _xMax = $v.xMax;
       _windowSize = $v.windowSize;
       _updateDelay = $v.updateDelay;
+      _nAcquisitions = $v.nAcquisitions;
+      _triggerEvent = $v.triggerEvent;
       _$v = null;
     }
     return this;
@@ -226,7 +269,9 @@ class GStartPlotVarsBuilder
               xMin: xMin,
               xMax: xMax,
               windowSize: windowSize,
-              updateDelay: updateDelay);
+              updateDelay: updateDelay,
+              nAcquisitions: nAcquisitions,
+              triggerEvent: triggerEvent);
     } catch (_) {
       late String _$failedField;
       try {

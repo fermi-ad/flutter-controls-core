@@ -22,6 +22,8 @@ abstract class GStartPlotVars
   int? get xMax;
   int? get windowSize;
   int? get updateDelay;
+  int? get nAcquisitions;
+  int? get triggerEvent;
   static Serializer<GStartPlotVars> get serializer =>
       _$gStartPlotVarsSerializer;
 
