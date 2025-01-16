@@ -23,7 +23,7 @@ const StartPlot = _i1.OperationDefinitionNode(
     _i1.VariableDefinitionNode(
       variable: _i1.VariableNode(name: _i1.NameNode(value: 'xMin')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
+        name: _i1.NameNode(value: 'Float'),
         isNonNull: false,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
@@ -32,7 +32,7 @@ const StartPlot = _i1.OperationDefinitionNode(
     _i1.VariableDefinitionNode(
       variable: _i1.VariableNode(name: _i1.NameNode(value: 'xMax')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
+        name: _i1.NameNode(value: 'Float'),
         isNonNull: false,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),

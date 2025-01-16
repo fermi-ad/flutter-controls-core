@@ -18,8 +18,8 @@ abstract class GStartPlotVars
       _$GStartPlotVars;
 
   BuiltList<String> get drfList;
-  int? get xMin;
-  int? get xMax;
+  double? get xMin;
+  double? get xMax;
   int? get windowSize;
   int? get updateDelay;
   int? get nAcquisitions;

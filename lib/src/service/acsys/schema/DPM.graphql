@@ -7,6 +7,24 @@ directive @oneOf on INPUT_OBJECT
 scalar Timestamp
 
 """
+Holds the configuration for a plot channel.
+"""
+type ChannelSettingSnapshot {
+  device: String!
+  lineColor: Int
+  markerIndex: String
+}
+
+"""
+Holds the configuration for a plot channel.
+"""
+input ChannelSettingSnapshotIn {
+  device: String!
+  lineColor: Int
+  markerIndex: String
+}
+
+"""
 This structure holds information associated with a device's reading, A "reading" is the latest value of any of a device's properties.
 """
 type DataInfo {
@@ -100,12 +118,64 @@ type Mutation {
     """
     value: DevValue!
   ): StatusReply!
+  updatePlotConfiguration(config: PlotConfigurationSnapshotIn!): StatusReply!
+  deletePlotConfiguration(configurationId: Int!): StatusReply!
 }
 
 type PlotChannelData {
   channelUnits: String!
   channelStatus: Int!
   channelData: [PlotDataPoint!]!
+}
+
+type PlotConfigurationSnapshot {
+  """
+  Unique identifier for the plot configuration
+  """
+  configurationId: Int!
+  configurationName: String!
+  channels: [ChannelSettingSnapshot!]!
+  xMin: Float
+  xMax: Float
+  yMin: Float
+  yMax: Float
+  isShowLabels: Boolean!
+
+  """
+  If `triggerEvent` is null, this parameter specifies the delay, in milliseconds, between points in a waveform. If a trigger event is specified, then this specifies the delay after the event when the signal should be sampled. If this parameter is null, then there will be no delay after a trigger event or a 1 Hz sample rate will be used.
+  """
+  updateDelay: Int
+
+  """
+  The number of waveforms to return. If omitted, the service will return waveforms until the client cancels the subscription.
+  """
+  nAcquisitions: Int
+  tclkEvent: Int
+}
+
+input PlotConfigurationSnapshotIn {
+  """
+  Unique identifier for the plot configuration
+  """
+  configurationId: Int!
+  configurationName: String!
+  channels: [ChannelSettingSnapshotIn!]!
+  xMin: Float
+  xMax: Float
+  yMin: Float
+  yMax: Float
+  isShowLabels: Boolean!
+
+  """
+  If `triggerEvent` is null, this parameter specifies the delay, in milliseconds, between points in a waveform. If a trigger event is specified, then this specifies the delay after the event when the signal should be sampled. If this parameter is null, then there will be no delay after a trigger event or a 1 Hz sample rate will be used.
+  """
+  updateDelay: Int
+
+  """
+  The number of waveforms to return. If omitted, the service will return waveforms until the client cancels the subscription.
+  """
+  nAcquisitions: Int
+  tclkEvent: Int
 }
 
 type PlotDataPoint {
@@ -144,6 +214,7 @@ type Query {
     """
     when: Timestamp
   ): [DataReply!]!
+  plotConfiguration(configurationId: Int): [PlotConfigurationSnapshot!]!
 }
 
 """
@@ -187,6 +258,9 @@ This section contains requests that return a stream of results. These requests a
 """
 type Subscription {
   """
+  Retrieve data from accelerator devices.
+
+  Accepts a list of DRF strings and streams the resulting data as it gets generated.
   """
   acceleratorData(
     """
@@ -206,6 +280,9 @@ type Subscription {
   ): DataReply!
 
   """
+  Retrieve correlated plot data.
+
+  This query sets up a request which returns a stream of data, presumably used for plotting. Unlike the `acceleratorData` query, this stream returns data for all the devices in one reply. Since the data is correlated, all the devices are collected on the same event.
   """
   startPlot(
     """
@@ -219,19 +296,29 @@ type Subscription {
     windowSize: Int
 
     """
-    The delay between points in a waveform.
+    The number of waveforms to return. If omitted, the service will return waveforms until the client cancels the subscription.
+    """
+    nAcquisitions: Int
+
+    """
+    If `triggerEvent` is null, this parameter specifies the delay, in milliseconds, between points in a waveform. If a trigger event is specified, then this specifies the delay after the event when the signal should be sampled. If this parameter is null, then there will be no delay after a trigger event or a 1 Hz sample rate will be used.
     """
     updateDelay: Int
 
     """
+    The number of waveforms to return. If omitted, the service will return waveforms until the client cancels the subscription.
+    """
+    triggerEvent: Int
+
+    """
     Minimum timestamp. All data before this timestamp will be filtered from the result set.
     """
-    xMin: Int
+    xMin: Float
 
     """
     Maximum timestamp. All data after this timestamp will be filtered from the result set.
     """
-    xMax: Int
+    xMax: Float
     nAcquisitions: Int
     triggerEvent: Int
   ): PlotReplyData!

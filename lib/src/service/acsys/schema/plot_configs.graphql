@@ -1,0 +1,19 @@
+query PlotConfigs($id: Int) {
+  plotConfiguration(configurationId: $id) {
+    configurationId
+    configurationName
+    channels {
+      device
+      lineColor
+      markerIndex
+    }
+    xMin
+    xMax
+    yMin
+    yMax
+    isShowLabels
+    updateDelay
+    nAcquisitions
+    tclkEvent
+  }
+}

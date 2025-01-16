@@ -10,6 +10,33 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/ser
 
 part 'DPM.schema.gql.g.dart';
 
+abstract class GChannelSettingSnapshotIn
+    implements
+        Built<GChannelSettingSnapshotIn, GChannelSettingSnapshotInBuilder> {
+  GChannelSettingSnapshotIn._();
+
+  factory GChannelSettingSnapshotIn(
+          [Function(GChannelSettingSnapshotInBuilder b) updates]) =
+      _$GChannelSettingSnapshotIn;
+
+  String get device;
+  int? get lineColor;
+  String? get markerIndex;
+  static Serializer<GChannelSettingSnapshotIn> get serializer =>
+      _$gChannelSettingSnapshotInSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GChannelSettingSnapshotIn.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GChannelSettingSnapshotIn? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GChannelSettingSnapshotIn.serializer,
+        json,
+      );
+}
+
 abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
   GDevValue._();
 
@@ -31,6 +58,42 @@ abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
   static GDevValue? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GDevValue.serializer,
+        json,
+      );
+}
+
+abstract class GPlotConfigurationSnapshotIn
+    implements
+        Built<GPlotConfigurationSnapshotIn,
+            GPlotConfigurationSnapshotInBuilder> {
+  GPlotConfigurationSnapshotIn._();
+
+  factory GPlotConfigurationSnapshotIn(
+          [Function(GPlotConfigurationSnapshotInBuilder b) updates]) =
+      _$GPlotConfigurationSnapshotIn;
+
+  int get configurationId;
+  String get configurationName;
+  BuiltList<GChannelSettingSnapshotIn> get channels;
+  double? get xMin;
+  double? get xMax;
+  double? get yMin;
+  double? get yMax;
+  bool get isShowLabels;
+  int? get updateDelay;
+  int? get nAcquisitions;
+  int? get tclkEvent;
+  static Serializer<GPlotConfigurationSnapshotIn> get serializer =>
+      _$gPlotConfigurationSnapshotInSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GPlotConfigurationSnapshotIn.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GPlotConfigurationSnapshotIn? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GPlotConfigurationSnapshotIn.serializer,
         json,
       );
 }

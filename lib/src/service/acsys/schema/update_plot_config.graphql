@@ -1,0 +1,5 @@
+mutation UpdatePlotConfig($cfg: PlotConfigurationSnapshotIn!) {
+  updatePlotConfiguration(config: $cfg) {
+    status
+  }
+}
