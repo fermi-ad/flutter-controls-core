@@ -449,7 +449,7 @@ abstract interface class ACSysServiceAPI {
       int? triggerEvent});
 
   /// Saves the plot configuration to the database.
-  Future<()> savePlotConfiguration(
+  Future<void> savePlotConfiguration(
       {required PlotConfigurationSnapshot snapshot});
 
   /// Queries the database for a plot configuration.
@@ -460,7 +460,7 @@ abstract interface class ACSysServiceAPI {
   Future<List<PlotConfigurationListing>> listPlotConfigurations();
 
   /// Removes a plot configuration from the database.
-  Future<()> removePlotConfiguration({required int configurationId});
+  Future<void> removePlotConfiguration({required int configurationId});
 
   /// Returns the last plot configuration that the user saved.
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
@@ -935,7 +935,7 @@ class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<()> removePlotConfiguration({required int configurationId}) {
+  Future<void> removePlotConfiguration({required int configurationId}) {
     final req = GDeletePlotConfigReq((b) => b..vars.id = configurationId);
 
     return _rpc(req, xlat: (GDeletePlotConfigData data) => ());
@@ -1006,7 +1006,7 @@ class ACSysService implements ACSysServiceAPI {
         ..tclkEvent = cfg.tclkEvent;
 
   @override
-  Future<()> savePlotConfiguration(
+  Future<void> savePlotConfiguration(
       {required PlotConfigurationSnapshot snapshot}) {
     final req = GUpdatePlotConfigReq(
         (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot));
