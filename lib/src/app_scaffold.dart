@@ -3,7 +3,6 @@
 library app_scaffold;
 
 import 'package:flutter/material.dart';
-import 'package:openid_client/openid_client.dart';
 import 'package:go_router/go_router.dart';
 import 'fermi_theme.dart';
 import 'auth_widget.dart';
@@ -21,13 +20,20 @@ class _GlobalAppTheme {
 
 // Private widget used to display content in the side, drawer menu's header.
 
-class _DrawerHeader extends StatelessWidget {
+class _DrawerHeader extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => _DrawerHeaderState();
+}
+
+class _DrawerHeaderState extends State<_DrawerHeader> {
+  bool get isLoggedIn => AuthService.isLoggedIn(context);
+
   @override
   Widget build(BuildContext context) {
     final ThemeData td = Theme.of(context);
-    final UserInfo? userInfo = AuthService.getUserInfo(context);
+    // final UserInfo? userInfo = AuthService.getUserInfo(context);
 
-    final content = switch ((userInfo, AuthService.authRequired)) {
+    final content = switch ((isLoggedIn, AuthService.authRequired)) {
       // For this case, the application didn't set up authentication parameters so
       // it plans to run with no privilieges. If the application tries to use a service
       // that needs authorization, the service will return an error.
@@ -40,7 +46,7 @@ class _DrawerHeader extends StatelessWidget {
                   color: td.disabledColor)),
           const Text("No privileges required.", textAlign: TextAlign.center),
         ],
-      (null, true) => [
+      (false, true) => [
           Expanded(
               child: Icon(Icons.no_accounts_sharp,
                   size: 48.0,
@@ -52,19 +58,27 @@ class _DrawerHeader extends StatelessWidget {
             child: ElevatedButton(
                 style: ButtonStyle(
                     backgroundColor: WidgetStatePropertyAll(td.disabledColor)),
-                onPressed: () => AuthService.requestLogin(context),
+                onPressed: () {
+                  AuthService.requestLogin(context);
+                  setState(() {});
+                },
                 child: const Text("Login")),
           )
         ],
-      (UserInfo user, true) => [
+      (true, true) => [
           Expanded(
               child: Icon(Icons.account_circle,
-                  size: 48.0, semanticLabel: "Logged in as ${user.name}")),
-          Text(user.name ?? "** no name in system **"),
+                  size: 48.0,
+                  semanticLabel:
+                      "Logged in as ${AuthService.getUsersName(context)}")),
+          Text(AuthService.getUsersName(context) ?? "** no name in system **"),
           Padding(
             padding: const EdgeInsets.only(top: 8.0),
             child: ElevatedButton(
-                onPressed: () => AuthService.requestLogout(context),
+                onPressed: () {
+                  AuthService.requestLogout(context);
+                  setState(() {});
+                },
                 child: const Text("Logout")),
           )
         ]

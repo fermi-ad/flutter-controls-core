@@ -30,9 +30,20 @@ class AuthInfo {
 Credential? _credentials;
 Future<Credential?> Function() _authenticate = () async => null;
 bool _authRequired = false;
+bool _useFakeAuth = false;
+bool _fakeLogin = false;
 
 Future<void> initAuth(String realm, String clientId, String clientSecret,
     List<String> scopes) async {
+  if (realm == "test_realm" &&
+      clientId == "test_client_id" &&
+      clientSecret == "test_client_secret") {
+    _useFakeAuth = true;
+    _authRequired = true;
+    _authenticate = () async => null;
+    return;
+  }
+
   final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
   const Duration tmo = Duration(seconds: 2);
 
@@ -93,11 +104,17 @@ class AuthService extends StatefulWidget {
   static UserInfo? getUserInfo(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_AuthCredentials>()?.userInfo;
 
+  static String? getUsersName(BuildContext context) =>
+      (_useFakeAuth && _fakeLogin) ? "Test User" : getUserInfo(context)?.name;
+
   static Future<void> requestLogin(BuildContext context) async =>
       await context.findAncestorStateOfType<_AuthState>()?.requestLogin();
 
   static Future<void> requestLogout(BuildContext context) async =>
       await context.findAncestorStateOfType<_AuthState>()?.requestLogout();
+
+  static bool isLoggedIn(BuildContext context) =>
+      _useFakeAuth ? _fakeLogin : getCreds(context) != null;
 }
 
 class _AuthState extends State<AuthService> {
@@ -108,6 +125,11 @@ class _AuthState extends State<AuthService> {
   // Set-up a background process to retrieve the user's information.
 
   Future<void> getUserInfo() async {
+    if (_useFakeAuth) {
+      setState(() => userInfo = null);
+      return;
+    }
+
     _credentials
         ?.getUserInfo()
         .then((value) => setState(() => userInfo = value))
@@ -127,6 +149,15 @@ class _AuthState extends State<AuthService> {
   }
 
   Future<void> requestLogin() async {
+    if (_useFakeAuth) {
+      setState(() {
+        _credentials = null;
+        userInfo = null;
+        _fakeLogin = true;
+      });
+      return;
+    }
+
     if (!authenticated) {
       final creds = await _authenticate();
 
@@ -150,6 +181,14 @@ class _AuthState extends State<AuthService> {
   /// invalid the authentication token.
 
   Future<void> requestLogout() async {
+    if (_useFakeAuth) {
+      setState(() {
+        _credentials = null;
+        userInfo = null;
+        _fakeLogin = false;
+      });
+    }
+
     if (authenticated) {
       Future<void>.microtask(() async => await _credentials
           ?.revoke()
