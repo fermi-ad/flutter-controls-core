@@ -43,15 +43,19 @@ abstract class ACSysException implements Exception {
 }
 
 class ACSysInvArgException extends ACSysException {
-  ACSysInvArgException(String message) : super("InvArg: $message");
+  const ACSysInvArgException(String message) : super("InvArg: $message");
 }
 
 class ACSysTypeException extends ACSysException {
-  ACSysTypeException(String message) : super("Type: $message");
+  const ACSysTypeException(String message) : super("Type: $message");
+}
+
+class ACSysConfigurationException extends ACSysException {
+  const ACSysConfigurationException(String message) : super("Config: $message");
 }
 
 class ACSysGraphQLException extends ACSysException {
-  ACSysGraphQLException(String message) : super("GraphQL: $message");
+  const ACSysGraphQLException(String message) : super("GraphQL: $message");
 }
 
 // The classes in this section are used to return results from the queries /
@@ -449,7 +453,7 @@ abstract interface class ACSysServiceAPI {
       {required PlotConfigurationSnapshot snapshot});
 
   /// Queries the database for a plot configuration.
-  Future<List<PlotConfigurationSnapshot>> retrievePlotConfiguration(
+  Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
       {required int configurationId});
 
   /// Returns every plot configuration in the database.
@@ -944,7 +948,7 @@ class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<List<PlotConfigurationSnapshot>> retrievePlotConfiguration(
+  Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
       {required int configurationId}) {
     final req = GPlotConfigsReq((b) => b..vars.id = configurationId);
 
@@ -967,7 +971,19 @@ class ACSysService implements ACSysServiceAPI {
                 updateDelay: e.updateDelay,
                 nAcquisitions: e.nAcquisitions,
                 tclkEvent: e.tclkEvent))
-            .toList());
+            .toList()).then(
+      (value) {
+        switch (value) {
+          case []:
+            throw const ACSysConfigurationException("no configuration found");
+          case [PlotConfigurationSnapshot e]:
+            return e;
+          default:
+            throw const ACSysConfigurationException(
+                "multiple configurations found");
+        }
+      },
+    );
   }
 
   GPlotConfigurationSnapshotInBuilder _plotConfigurationSnapshotIn(
