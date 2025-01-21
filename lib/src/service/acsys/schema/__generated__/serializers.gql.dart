@@ -59,7 +59,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/str
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.var.gql.dart'
     show GStreamDataVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart'
-    show GUpdatePlotConfigData, GUpdatePlotConfigData_updatePlotConfiguration;
+    show GUpdatePlotConfigData;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.req.gql.dart'
     show GUpdatePlotConfigReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.var.gql.dart'
@@ -108,7 +108,6 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GStreamDataReq,
   GStreamDataVars,
   GUpdatePlotConfigData,
-  GUpdatePlotConfigData_updatePlotConfiguration,
   GUpdatePlotConfigReq,
   GUpdatePlotConfigVars,
   GXformAvgExpr,

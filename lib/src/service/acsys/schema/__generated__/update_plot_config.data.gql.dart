@@ -22,7 +22,7 @@ abstract class GUpdatePlotConfigData
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  GUpdatePlotConfigData_updatePlotConfiguration get updatePlotConfiguration;
+  int? get updatePlotConfiguration;
   static Serializer<GUpdatePlotConfigData> get serializer =>
       _$gUpdatePlotConfigDataSerializer;
 
@@ -34,40 +34,6 @@ abstract class GUpdatePlotConfigData
   static GUpdatePlotConfigData? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GUpdatePlotConfigData.serializer,
-        json,
-      );
-}
-
-abstract class GUpdatePlotConfigData_updatePlotConfiguration
-    implements
-        Built<GUpdatePlotConfigData_updatePlotConfiguration,
-            GUpdatePlotConfigData_updatePlotConfigurationBuilder> {
-  GUpdatePlotConfigData_updatePlotConfiguration._();
-
-  factory GUpdatePlotConfigData_updatePlotConfiguration(
-      [Function(GUpdatePlotConfigData_updatePlotConfigurationBuilder b)
-          updates]) = _$GUpdatePlotConfigData_updatePlotConfiguration;
-
-  static void _initializeBuilder(
-          GUpdatePlotConfigData_updatePlotConfigurationBuilder b) =>
-      b..G__typename = 'StatusReply';
-
-  @BuiltValueField(wireName: '__typename')
-  String get G__typename;
-  int get status;
-  static Serializer<GUpdatePlotConfigData_updatePlotConfiguration>
-      get serializer =>
-          _$gUpdatePlotConfigDataUpdatePlotConfigurationSerializer;
-
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GUpdatePlotConfigData_updatePlotConfiguration.serializer,
-        this,
-      ) as Map<String, dynamic>);
-
-  static GUpdatePlotConfigData_updatePlotConfiguration? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GUpdatePlotConfigData_updatePlotConfiguration.serializer,
         json,
       );
 }

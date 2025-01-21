@@ -1006,12 +1006,14 @@ class ACSysService implements ACSysServiceAPI {
         ..tclkEvent = cfg.tclkEvent;
 
   @override
-  Future<void> savePlotConfiguration(
+  Future<PlotConfigurationSnapshot> savePlotConfiguration(
       {required PlotConfigurationSnapshot snapshot}) {
     final req = GUpdatePlotConfigReq(
         (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot));
 
-    return _rpc(req, xlat: (GUpdatePlotConfigData data) => ());
+    return _rpc(req,
+            xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration)
+        .then((id) => snapshot..configurationId = id);
   }
 }
 

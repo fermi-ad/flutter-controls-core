@@ -85,9 +85,6 @@ class _$GPlotConfigsData_plotConfigurationSerializer
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'configurationId',
-      serializers.serialize(object.configurationId,
-          specifiedType: const FullType(int)),
       'configurationName',
       serializers.serialize(object.configurationName,
           specifiedType: const FullType(String)),
@@ -101,6 +98,12 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.configurationId;
+    if (value != null) {
+      result
+        ..add('configurationId')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.xMin;
     if (value != null) {
       result
@@ -168,7 +171,7 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           break;
         case 'configurationId':
           result.configurationId = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'configurationName':
           result.configurationName = serializers.deserialize(value,
@@ -420,7 +423,7 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final String G__typename;
   @override
-  final int configurationId;
+  final int? configurationId;
   @override
   final String configurationName;
   @override
@@ -450,7 +453,7 @@ class _$GPlotConfigsData_plotConfiguration
 
   _$GPlotConfigsData_plotConfiguration._(
       {required this.G__typename,
-      required this.configurationId,
+      this.configurationId,
       required this.configurationName,
       required this.channels,
       this.xMin,
@@ -464,8 +467,6 @@ class _$GPlotConfigsData_plotConfiguration
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename, r'GPlotConfigsData_plotConfiguration', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(configurationId,
-        r'GPlotConfigsData_plotConfiguration', 'configurationId');
     BuiltValueNullFieldError.checkNotNull(configurationName,
         r'GPlotConfigsData_plotConfiguration', 'configurationName');
     BuiltValueNullFieldError.checkNotNull(
@@ -646,10 +647,7 @@ class GPlotConfigsData_plotConfigurationBuilder
           new _$GPlotConfigsData_plotConfiguration._(
               G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
                   r'GPlotConfigsData_plotConfiguration', 'G__typename'),
-              configurationId: BuiltValueNullFieldError.checkNotNull(
-                  configurationId,
-                  r'GPlotConfigsData_plotConfiguration',
-                  'configurationId'),
+              configurationId: configurationId,
               configurationName: BuiltValueNullFieldError.checkNotNull(
                   configurationName,
                   r'GPlotConfigsData_plotConfiguration',

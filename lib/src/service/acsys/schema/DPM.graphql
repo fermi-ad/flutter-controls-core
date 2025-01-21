@@ -118,7 +118,7 @@ type Mutation {
     """
     value: DevValue!
   ): StatusReply!
-  updatePlotConfiguration(config: PlotConfigurationSnapshotIn!): StatusReply!
+  updatePlotConfiguration(config: PlotConfigurationSnapshotIn!): Int
   deletePlotConfiguration(configurationId: Int!): StatusReply!
 }
 
@@ -132,7 +132,7 @@ type PlotConfigurationSnapshot {
   """
   Unique identifier for the plot configuration
   """
-  configurationId: Int!
+  configurationId: Int
   configurationName: String!
   channels: [ChannelSettingSnapshot!]!
   xMin: Float
