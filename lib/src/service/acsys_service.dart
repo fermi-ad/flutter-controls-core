@@ -371,26 +371,26 @@ class ChannelSettingSnapshot {
 }
 
 class PlotConfigurationListing {
-  final int configurationId;
-  final String configurationName;
+  int? configurationId;
+  String configurationName;
 
-  const PlotConfigurationListing(
-      {required this.configurationId, required this.configurationName});
+  PlotConfigurationListing(
+      {this.configurationId, required this.configurationName});
 }
 
 class PlotConfigurationSnapshot extends PlotConfigurationListing {
-  final Map<String, ChannelSettingSnapshot> channels;
-  final double? yMin;
-  final double? yMax;
-  final double? xMin;
-  final double? xMax;
-  final bool isShowLabels;
-  final int? updateDelay;
-  final int? nAcquisitions;
-  final int? tclkEvent;
+  Map<String, ChannelSettingSnapshot> channels;
+  double? yMin;
+  double? yMax;
+  double? xMin;
+  double? xMax;
+  bool isShowLabels;
+  int? updateDelay;
+  int? nAcquisitions;
+  int? tclkEvent;
 
-  const PlotConfigurationSnapshot(
-      {required super.configurationId,
+  PlotConfigurationSnapshot(
+      {super.configurationId,
       required super.configurationName,
       required this.channels,
       this.yMin,
