@@ -365,7 +365,7 @@ class PlotPoint {
 
 class ChannelSettingSnapshot {
   final Color? lineColor;
-  final String? markerIndex;
+  final int? markerIndex;
 
   const ChannelSettingSnapshot({this.lineColor, this.markerIndex});
 }

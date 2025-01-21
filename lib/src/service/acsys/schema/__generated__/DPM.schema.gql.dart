@@ -21,7 +21,7 @@ abstract class GChannelSettingSnapshotIn
 
   String get device;
   int? get lineColor;
-  String? get markerIndex;
+  int? get markerIndex;
   static Serializer<GChannelSettingSnapshotIn> get serializer =>
       _$gChannelSettingSnapshotInSerializer;
 

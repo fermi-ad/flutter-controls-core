@@ -42,7 +42,7 @@ const ChannelSettingSnapshot = _i1.ObjectTypeDefinitionNode(
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
+        name: _i1.NameNode(value: 'Int'),
         isNonNull: false,
       ),
     ),
@@ -74,7 +74,7 @@ const ChannelSettingSnapshotIn = _i1.InputObjectTypeDefinitionNode(
       name: _i1.NameNode(value: 'markerIndex'),
       directives: [],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
+        name: _i1.NameNode(value: 'Int'),
         isNonNull: false,
       ),
       defaultValue: null,

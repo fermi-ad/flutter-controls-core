@@ -98,7 +98,7 @@ abstract class GPlotConfigsData_plotConfiguration_channels
   String get G__typename;
   String get device;
   int? get lineColor;
-  String? get markerIndex;
+  int? get markerIndex;
   static Serializer<GPlotConfigsData_plotConfiguration_channels>
       get serializer => _$gPlotConfigsDataPlotConfigurationChannelsSerializer;
 

@@ -12,7 +12,7 @@ Holds the configuration for a plot channel.
 type ChannelSettingSnapshot {
   device: String!
   lineColor: Int
-  markerIndex: String
+  markerIndex: Int
 }
 
 """
@@ -21,7 +21,7 @@ Holds the configuration for a plot channel.
 input ChannelSettingSnapshotIn {
   device: String!
   lineColor: Int
-  markerIndex: String
+  markerIndex: Int
 }
 
 """

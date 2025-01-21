@@ -256,8 +256,7 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
     if (value != null) {
       result
         ..add('markerIndex')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
     return result;
   }
@@ -288,7 +287,7 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
           break;
         case 'markerIndex':
           result.markerIndex = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -687,7 +686,7 @@ class _$GPlotConfigsData_plotConfiguration_channels
   @override
   final int? lineColor;
   @override
-  final String? markerIndex;
+  final int? markerIndex;
 
   factory _$GPlotConfigsData_plotConfiguration_channels(
           [void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)?
@@ -769,9 +768,9 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   int? get lineColor => _$this._lineColor;
   set lineColor(int? lineColor) => _$this._lineColor = lineColor;
 
-  String? _markerIndex;
-  String? get markerIndex => _$this._markerIndex;
-  set markerIndex(String? markerIndex) => _$this._markerIndex = markerIndex;
+  int? _markerIndex;
+  int? get markerIndex => _$this._markerIndex;
+  set markerIndex(int? markerIndex) => _$this._markerIndex = markerIndex;
 
   GPlotConfigsData_plotConfiguration_channelsBuilder() {
     GPlotConfigsData_plotConfiguration_channels._initializeBuilder(this);
