@@ -14,6 +14,73 @@ const Timestamp = _i1.ScalarTypeDefinitionNode(
   name: _i1.NameNode(value: 'Timestamp'),
   directives: [],
 );
+const ChannelSettingSnapshot = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'ChannelSettingSnapshot'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'device'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'lineColor'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'markerIndex'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+  ],
+);
+const ChannelSettingSnapshotIn = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'ChannelSettingSnapshotIn'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'device'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'lineColor'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'markerIndex'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+  ],
+);
 const DataInfo = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'DataInfo'),
   directives: [],
@@ -251,7 +318,45 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'StatusReply'),
         isNonNull: true,
       ),
-    )
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'updatePlotConfiguration'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'config'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'PlotConfigurationSnapshotIn'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'deletePlotConfiguration'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'configurationId'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'StatusReply'),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const PlotChannelData = _i1.ObjectTypeDefinitionNode(
@@ -288,6 +393,223 @@ const PlotChannelData = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
+    ),
+  ],
+);
+const PlotConfigurationSnapshot = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'PlotConfigurationSnapshot'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'configurationId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'configurationName'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'channels'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'ChannelSettingSnapshot'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'xMin'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'xMax'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'yMin'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'yMax'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'isShowLabels'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'updateDelay'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'nAcquisitions'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'tclkEvent'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+  ],
+);
+const PlotConfigurationSnapshotIn = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'PlotConfigurationSnapshotIn'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'configurationId'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'configurationName'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'channels'),
+      directives: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'ChannelSettingSnapshotIn'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'xMin'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'xMax'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'yMin'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'yMax'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'isShowLabels'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'updateDelay'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'nAcquisitions'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'tclkEvent'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
     ),
   ],
 );
@@ -382,7 +704,29 @@ const Query = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    )
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'plotConfiguration'),
+      directives: [],
+      args: [
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'configurationId'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        )
+      ],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'PlotConfigurationSnapshot'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const Raw = _i1.ObjectTypeDefinitionNode(
@@ -551,7 +895,25 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
           defaultValue: null,
         ),
         _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'nAcquisitions'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'updateDelay'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'triggerEvent'),
           directives: [],
           type: _i1.NamedTypeNode(
             name: _i1.NameNode(value: 'Int'),
@@ -563,7 +925,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'xMin'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
+            name: _i1.NameNode(value: 'Float'),
             isNonNull: false,
           ),
           defaultValue: null,
@@ -572,7 +934,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'xMax'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
+            name: _i1.NameNode(value: 'Float'),
             isNonNull: false,
           ),
           defaultValue: null,
@@ -794,6 +1156,8 @@ const XformResult = _i1.ObjectTypeDefinitionNode(
 const document = _i1.DocumentNode(definitions: [
   oneOf,
   Timestamp,
+  ChannelSettingSnapshot,
+  ChannelSettingSnapshotIn,
   DataInfo,
   DataReply,
   DataType,
@@ -801,6 +1165,8 @@ const document = _i1.DocumentNode(definitions: [
   EventInfo,
   Mutation,
   PlotChannelData,
+  PlotConfigurationSnapshot,
+  PlotConfigurationSnapshotIn,
   PlotDataPoint,
   PlotReplyData,
   Query,

@@ -6,7 +6,12 @@ part of 'DPM.schema.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+Serializer<GChannelSettingSnapshotIn> _$gChannelSettingSnapshotInSerializer =
+    new _$GChannelSettingSnapshotInSerializer();
 Serializer<GDevValue> _$gDevValueSerializer = new _$GDevValueSerializer();
+Serializer<GPlotConfigurationSnapshotIn>
+    _$gPlotConfigurationSnapshotInSerializer =
+    new _$GPlotConfigurationSnapshotInSerializer();
 Serializer<GXformAvgExpr> _$gXformAvgExprSerializer =
     new _$GXformAvgExprSerializer();
 Serializer<GXformDeviceExpr> _$gXformDeviceExprSerializer =
@@ -14,6 +19,72 @@ Serializer<GXformDeviceExpr> _$gXformDeviceExprSerializer =
 Serializer<GXformExpr> _$gXformExprSerializer = new _$GXformExprSerializer();
 Serializer<GXformRequest> _$gXformRequestSerializer =
     new _$GXformRequestSerializer();
+
+class _$GChannelSettingSnapshotInSerializer
+    implements StructuredSerializer<GChannelSettingSnapshotIn> {
+  @override
+  final Iterable<Type> types = const [
+    GChannelSettingSnapshotIn,
+    _$GChannelSettingSnapshotIn
+  ];
+  @override
+  final String wireName = 'GChannelSettingSnapshotIn';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GChannelSettingSnapshotIn object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'device',
+      serializers.serialize(object.device,
+          specifiedType: const FullType(String)),
+    ];
+    Object? value;
+    value = object.lineColor;
+    if (value != null) {
+      result
+        ..add('lineColor')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.markerIndex;
+    if (value != null) {
+      result
+        ..add('markerIndex')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    return result;
+  }
+
+  @override
+  GChannelSettingSnapshotIn deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GChannelSettingSnapshotInBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'device':
+          result.device = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'lineColor':
+          result.lineColor = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+        case 'markerIndex':
+          result.markerIndex = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
 
 class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
   @override
@@ -113,6 +184,150 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GPlotConfigurationSnapshotInSerializer
+    implements StructuredSerializer<GPlotConfigurationSnapshotIn> {
+  @override
+  final Iterable<Type> types = const [
+    GPlotConfigurationSnapshotIn,
+    _$GPlotConfigurationSnapshotIn
+  ];
+  @override
+  final String wireName = 'GPlotConfigurationSnapshotIn';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GPlotConfigurationSnapshotIn object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'configurationId',
+      serializers.serialize(object.configurationId,
+          specifiedType: const FullType(int)),
+      'configurationName',
+      serializers.serialize(object.configurationName,
+          specifiedType: const FullType(String)),
+      'channels',
+      serializers.serialize(object.channels,
+          specifiedType: const FullType(
+              BuiltList, const [const FullType(GChannelSettingSnapshotIn)])),
+      'isShowLabels',
+      serializers.serialize(object.isShowLabels,
+          specifiedType: const FullType(bool)),
+    ];
+    Object? value;
+    value = object.xMin;
+    if (value != null) {
+      result
+        ..add('xMin')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.xMax;
+    if (value != null) {
+      result
+        ..add('xMax')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.yMin;
+    if (value != null) {
+      result
+        ..add('yMin')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.yMax;
+    if (value != null) {
+      result
+        ..add('yMax')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.updateDelay;
+    if (value != null) {
+      result
+        ..add('updateDelay')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.nAcquisitions;
+    if (value != null) {
+      result
+        ..add('nAcquisitions')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.tclkEvent;
+    if (value != null) {
+      result
+        ..add('tclkEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    return result;
+  }
+
+  @override
+  GPlotConfigurationSnapshotIn deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GPlotConfigurationSnapshotInBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'configurationId':
+          result.configurationId = serializers.deserialize(value,
+              specifiedType: const FullType(int))! as int;
+          break;
+        case 'configurationName':
+          result.configurationName = serializers.deserialize(value,
+              specifiedType: const FullType(String))! as String;
+          break;
+        case 'channels':
+          result.channels.replace(serializers.deserialize(value,
+              specifiedType: const FullType(BuiltList, const [
+                const FullType(GChannelSettingSnapshotIn)
+              ]))! as BuiltList<Object?>);
+          break;
+        case 'xMin':
+          result.xMin = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
+        case 'xMax':
+          result.xMax = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
+        case 'yMin':
+          result.yMin = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
+        case 'yMax':
+          result.yMax = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
+        case 'isShowLabels':
+          result.isShowLabels = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'updateDelay':
+          result.updateDelay = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+        case 'nAcquisitions':
+          result.nAcquisitions = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
+          break;
+        case 'tclkEvent':
+          result.tclkEvent = serializers.deserialize(value,
+              specifiedType: const FullType(int)) as int?;
           break;
       }
     }
@@ -313,6 +528,119 @@ class _$GXformRequestSerializer implements StructuredSerializer<GXformRequest> {
   }
 }
 
+class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
+  @override
+  final String device;
+  @override
+  final int? lineColor;
+  @override
+  final int? markerIndex;
+
+  factory _$GChannelSettingSnapshotIn(
+          [void Function(GChannelSettingSnapshotInBuilder)? updates]) =>
+      (new GChannelSettingSnapshotInBuilder()..update(updates))._build();
+
+  _$GChannelSettingSnapshotIn._(
+      {required this.device, this.lineColor, this.markerIndex})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        device, r'GChannelSettingSnapshotIn', 'device');
+  }
+
+  @override
+  GChannelSettingSnapshotIn rebuild(
+          void Function(GChannelSettingSnapshotInBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GChannelSettingSnapshotInBuilder toBuilder() =>
+      new GChannelSettingSnapshotInBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GChannelSettingSnapshotIn &&
+        device == other.device &&
+        lineColor == other.lineColor &&
+        markerIndex == other.markerIndex;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, device.hashCode);
+    _$hash = $jc(_$hash, lineColor.hashCode);
+    _$hash = $jc(_$hash, markerIndex.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GChannelSettingSnapshotIn')
+          ..add('device', device)
+          ..add('lineColor', lineColor)
+          ..add('markerIndex', markerIndex))
+        .toString();
+  }
+}
+
+class GChannelSettingSnapshotInBuilder
+    implements
+        Builder<GChannelSettingSnapshotIn, GChannelSettingSnapshotInBuilder> {
+  _$GChannelSettingSnapshotIn? _$v;
+
+  String? _device;
+  String? get device => _$this._device;
+  set device(String? device) => _$this._device = device;
+
+  int? _lineColor;
+  int? get lineColor => _$this._lineColor;
+  set lineColor(int? lineColor) => _$this._lineColor = lineColor;
+
+  int? _markerIndex;
+  int? get markerIndex => _$this._markerIndex;
+  set markerIndex(int? markerIndex) => _$this._markerIndex = markerIndex;
+
+  GChannelSettingSnapshotInBuilder();
+
+  GChannelSettingSnapshotInBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _device = $v.device;
+      _lineColor = $v.lineColor;
+      _markerIndex = $v.markerIndex;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GChannelSettingSnapshotIn other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GChannelSettingSnapshotIn;
+  }
+
+  @override
+  void update(void Function(GChannelSettingSnapshotInBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GChannelSettingSnapshotIn build() => _build();
+
+  _$GChannelSettingSnapshotIn _build() {
+    final _$result = _$v ??
+        new _$GChannelSettingSnapshotIn._(
+            device: BuiltValueNullFieldError.checkNotNull(
+                device, r'GChannelSettingSnapshotIn', 'device'),
+            lineColor: lineColor,
+            markerIndex: markerIndex);
+    replace(_$result);
+    return _$result;
+  }
+}
+
 class _$GDevValue extends GDevValue {
   @override
   final int? intVal;
@@ -469,6 +797,248 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GDevValue', _$failedField, e.toString());
+      }
+      rethrow;
+    }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
+  @override
+  final int configurationId;
+  @override
+  final String configurationName;
+  @override
+  final BuiltList<GChannelSettingSnapshotIn> channels;
+  @override
+  final double? xMin;
+  @override
+  final double? xMax;
+  @override
+  final double? yMin;
+  @override
+  final double? yMax;
+  @override
+  final bool isShowLabels;
+  @override
+  final int? updateDelay;
+  @override
+  final int? nAcquisitions;
+  @override
+  final int? tclkEvent;
+
+  factory _$GPlotConfigurationSnapshotIn(
+          [void Function(GPlotConfigurationSnapshotInBuilder)? updates]) =>
+      (new GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
+
+  _$GPlotConfigurationSnapshotIn._(
+      {required this.configurationId,
+      required this.configurationName,
+      required this.channels,
+      this.xMin,
+      this.xMax,
+      this.yMin,
+      this.yMax,
+      required this.isShowLabels,
+      this.updateDelay,
+      this.nAcquisitions,
+      this.tclkEvent})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        configurationId, r'GPlotConfigurationSnapshotIn', 'configurationId');
+    BuiltValueNullFieldError.checkNotNull(configurationName,
+        r'GPlotConfigurationSnapshotIn', 'configurationName');
+    BuiltValueNullFieldError.checkNotNull(
+        channels, r'GPlotConfigurationSnapshotIn', 'channels');
+    BuiltValueNullFieldError.checkNotNull(
+        isShowLabels, r'GPlotConfigurationSnapshotIn', 'isShowLabels');
+  }
+
+  @override
+  GPlotConfigurationSnapshotIn rebuild(
+          void Function(GPlotConfigurationSnapshotInBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GPlotConfigurationSnapshotInBuilder toBuilder() =>
+      new GPlotConfigurationSnapshotInBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GPlotConfigurationSnapshotIn &&
+        configurationId == other.configurationId &&
+        configurationName == other.configurationName &&
+        channels == other.channels &&
+        xMin == other.xMin &&
+        xMax == other.xMax &&
+        yMin == other.yMin &&
+        yMax == other.yMax &&
+        isShowLabels == other.isShowLabels &&
+        updateDelay == other.updateDelay &&
+        nAcquisitions == other.nAcquisitions &&
+        tclkEvent == other.tclkEvent;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, configurationId.hashCode);
+    _$hash = $jc(_$hash, configurationName.hashCode);
+    _$hash = $jc(_$hash, channels.hashCode);
+    _$hash = $jc(_$hash, xMin.hashCode);
+    _$hash = $jc(_$hash, xMax.hashCode);
+    _$hash = $jc(_$hash, yMin.hashCode);
+    _$hash = $jc(_$hash, yMax.hashCode);
+    _$hash = $jc(_$hash, isShowLabels.hashCode);
+    _$hash = $jc(_$hash, updateDelay.hashCode);
+    _$hash = $jc(_$hash, nAcquisitions.hashCode);
+    _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GPlotConfigurationSnapshotIn')
+          ..add('configurationId', configurationId)
+          ..add('configurationName', configurationName)
+          ..add('channels', channels)
+          ..add('xMin', xMin)
+          ..add('xMax', xMax)
+          ..add('yMin', yMin)
+          ..add('yMax', yMax)
+          ..add('isShowLabels', isShowLabels)
+          ..add('updateDelay', updateDelay)
+          ..add('nAcquisitions', nAcquisitions)
+          ..add('tclkEvent', tclkEvent))
+        .toString();
+  }
+}
+
+class GPlotConfigurationSnapshotInBuilder
+    implements
+        Builder<GPlotConfigurationSnapshotIn,
+            GPlotConfigurationSnapshotInBuilder> {
+  _$GPlotConfigurationSnapshotIn? _$v;
+
+  int? _configurationId;
+  int? get configurationId => _$this._configurationId;
+  set configurationId(int? configurationId) =>
+      _$this._configurationId = configurationId;
+
+  String? _configurationName;
+  String? get configurationName => _$this._configurationName;
+  set configurationName(String? configurationName) =>
+      _$this._configurationName = configurationName;
+
+  ListBuilder<GChannelSettingSnapshotIn>? _channels;
+  ListBuilder<GChannelSettingSnapshotIn> get channels =>
+      _$this._channels ??= new ListBuilder<GChannelSettingSnapshotIn>();
+  set channels(ListBuilder<GChannelSettingSnapshotIn>? channels) =>
+      _$this._channels = channels;
+
+  double? _xMin;
+  double? get xMin => _$this._xMin;
+  set xMin(double? xMin) => _$this._xMin = xMin;
+
+  double? _xMax;
+  double? get xMax => _$this._xMax;
+  set xMax(double? xMax) => _$this._xMax = xMax;
+
+  double? _yMin;
+  double? get yMin => _$this._yMin;
+  set yMin(double? yMin) => _$this._yMin = yMin;
+
+  double? _yMax;
+  double? get yMax => _$this._yMax;
+  set yMax(double? yMax) => _$this._yMax = yMax;
+
+  bool? _isShowLabels;
+  bool? get isShowLabels => _$this._isShowLabels;
+  set isShowLabels(bool? isShowLabels) => _$this._isShowLabels = isShowLabels;
+
+  int? _updateDelay;
+  int? get updateDelay => _$this._updateDelay;
+  set updateDelay(int? updateDelay) => _$this._updateDelay = updateDelay;
+
+  int? _nAcquisitions;
+  int? get nAcquisitions => _$this._nAcquisitions;
+  set nAcquisitions(int? nAcquisitions) =>
+      _$this._nAcquisitions = nAcquisitions;
+
+  int? _tclkEvent;
+  int? get tclkEvent => _$this._tclkEvent;
+  set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
+
+  GPlotConfigurationSnapshotInBuilder();
+
+  GPlotConfigurationSnapshotInBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _configurationId = $v.configurationId;
+      _configurationName = $v.configurationName;
+      _channels = $v.channels.toBuilder();
+      _xMin = $v.xMin;
+      _xMax = $v.xMax;
+      _yMin = $v.yMin;
+      _yMax = $v.yMax;
+      _isShowLabels = $v.isShowLabels;
+      _updateDelay = $v.updateDelay;
+      _nAcquisitions = $v.nAcquisitions;
+      _tclkEvent = $v.tclkEvent;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GPlotConfigurationSnapshotIn other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GPlotConfigurationSnapshotIn;
+  }
+
+  @override
+  void update(void Function(GPlotConfigurationSnapshotInBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GPlotConfigurationSnapshotIn build() => _build();
+
+  _$GPlotConfigurationSnapshotIn _build() {
+    _$GPlotConfigurationSnapshotIn _$result;
+    try {
+      _$result = _$v ??
+          new _$GPlotConfigurationSnapshotIn._(
+              configurationId: BuiltValueNullFieldError.checkNotNull(
+                  configurationId,
+                  r'GPlotConfigurationSnapshotIn',
+                  'configurationId'),
+              configurationName: BuiltValueNullFieldError.checkNotNull(
+                  configurationName,
+                  r'GPlotConfigurationSnapshotIn',
+                  'configurationName'),
+              channels: channels.build(),
+              xMin: xMin,
+              xMax: xMax,
+              yMin: yMin,
+              yMax: yMax,
+              isShowLabels: BuiltValueNullFieldError.checkNotNull(isShowLabels,
+                  r'GPlotConfigurationSnapshotIn', 'isShowLabels'),
+              updateDelay: updateDelay,
+              nAcquisitions: nAcquisitions,
+              tclkEvent: tclkEvent);
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'channels';
+        channels.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+            r'GPlotConfigurationSnapshotIn', _$failedField, e.toString());
       }
       rethrow;
     }

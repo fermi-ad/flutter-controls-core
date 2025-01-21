@@ -93,7 +93,7 @@ class _Drawer extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.only(bottom: 8.0),
           child: Text(
-              "© 2024 Fermi Research Alliance, LLC\n© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
+              "© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
               textAlign: TextAlign.center,
               style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor)),
         ),

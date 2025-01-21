@@ -30,13 +30,15 @@ class _$GStartPlotVarsSerializer
     if (value != null) {
       result
         ..add('xMin')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
     }
     value = object.xMax;
     if (value != null) {
       result
         ..add('xMax')
-        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
     }
     value = object.windowSize;
     if (value != null) {
@@ -85,11 +87,11 @@ class _$GStartPlotVarsSerializer
           break;
         case 'xMin':
           result.xMin = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'xMax':
           result.xMax = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+              specifiedType: const FullType(double)) as double?;
           break;
         case 'windowSize':
           result.windowSize = serializers.deserialize(value,
@@ -118,9 +120,9 @@ class _$GStartPlotVars extends GStartPlotVars {
   @override
   final BuiltList<String> drfList;
   @override
-  final int? xMin;
+  final double? xMin;
   @override
-  final int? xMax;
+  final double? xMax;
   @override
   final int? windowSize;
   @override
@@ -204,13 +206,13 @@ class GStartPlotVarsBuilder
       _$this._drfList ??= new ListBuilder<String>();
   set drfList(ListBuilder<String>? drfList) => _$this._drfList = drfList;
 
-  int? _xMin;
-  int? get xMin => _$this._xMin;
-  set xMin(int? xMin) => _$this._xMin = xMin;
+  double? _xMin;
+  double? get xMin => _$this._xMin;
+  set xMin(double? xMin) => _$this._xMin = xMin;
 
-  int? _xMax;
-  int? get xMax => _$this._xMax;
-  set xMax(int? xMax) => _$this._xMax = xMax;
+  double? _xMax;
+  double? get xMax => _$this._xMax;
+  set xMax(double? xMax) => _$this._xMax = xMax;
 
   int? _windowSize;
   int? get windowSize => _$this._windowSize;

@@ -19,6 +19,13 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/str
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.var.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.req.gql.dart';
+
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.req.gql.dart';
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.data.gql.dart';
 
@@ -36,15 +43,19 @@ abstract class ACSysException implements Exception {
 }
 
 class ACSysInvArgException extends ACSysException {
-  ACSysInvArgException(String message) : super("InvArg: $message");
+  const ACSysInvArgException(String message) : super("InvArg: $message");
 }
 
 class ACSysTypeException extends ACSysException {
-  ACSysTypeException(String message) : super("Type: $message");
+  const ACSysTypeException(String message) : super("Type: $message");
+}
+
+class ACSysConfigurationException extends ACSysException {
+  const ACSysConfigurationException(String message) : super("Config: $message");
 }
 
 class ACSysGraphQLException extends ACSysException {
-  ACSysGraphQLException(String message) : super("GraphQL: $message");
+  const ACSysGraphQLException(String message) : super("GraphQL: $message");
 }
 
 // The classes in this section are used to return results from the queries /
@@ -352,6 +363,46 @@ class PlotPoint {
   const PlotPoint({required this.x, required this.y});
 }
 
+class ChannelSettingSnapshot {
+  final Color? lineColor;
+  final int? markerIndex;
+
+  const ChannelSettingSnapshot({this.lineColor, this.markerIndex});
+}
+
+class PlotConfigurationListing {
+  int? configurationId;
+  String configurationName;
+
+  PlotConfigurationListing(
+      {this.configurationId, required this.configurationName});
+}
+
+class PlotConfigurationSnapshot extends PlotConfigurationListing {
+  Map<String, ChannelSettingSnapshot> channels;
+  double? yMin;
+  double? yMax;
+  double? xMin;
+  double? xMax;
+  bool isShowLabels;
+  int? updateDelay;
+  int? nAcquisitions;
+  int? tclkEvent;
+
+  PlotConfigurationSnapshot(
+      {super.configurationId,
+      required super.configurationName,
+      required this.channels,
+      this.yMin,
+      this.yMax,
+      this.xMin,
+      this.xMax,
+      required this.isShowLabels,
+      this.updateDelay,
+      this.nAcquisitions,
+      this.tclkEvent});
+}
+
 /// Defines the ACSys API.
 ///
 /// This class is used by other classes to implement the ACSys API. The class
@@ -387,13 +438,32 @@ abstract interface class ACSysServiceAPI {
   /// provides a sample of the analog alarm property.
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
 
+  /// Returns a stream which provides plot data for the devices specified in
+  /// the parameter list.
   Stream<PlotReply> startPlot(List<String> drfs,
-      {int? xMin,
-      int? xMax,
+      {double? xMin,
+      double? xMax,
       int? windowSize,
       int? updateRate,
       int? nAcquisitions,
       int? triggerEvent});
+
+  /// Saves the plot configuration to the database.
+  Future<void> savePlotConfiguration(
+      {required PlotConfigurationSnapshot snapshot});
+
+  /// Queries the database for a plot configuration.
+  Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
+      {required int configurationId});
+
+  /// Returns every plot configuration in the database.
+  Future<List<PlotConfigurationListing>> listPlotConfigurations();
+
+  /// Removes a plot configuration from the database.
+  Future<void> removePlotConfiguration({required int configurationId});
+
+  /// Returns the last plot configuration that the user saved.
+  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
@@ -829,8 +899,8 @@ class ACSysService implements ACSysServiceAPI {
 
   @override
   Stream<PlotReply> startPlot(List<String> drfs,
-      {int? xMin,
-      int? xMax,
+      {double? xMin,
+      double? xMax,
       int? windowSize,
       int? updateRate,
       int? nAcquisitions,
@@ -849,6 +919,101 @@ class ACSysService implements ACSysServiceAPI {
         .handleError((error) => dev.log("error: $error", name: "gql.startPlot"))
         .where((event) => !event.loading)
         .map((e) => e.data!.startPlot.toPlotReply(req));
+  }
+
+  @override
+  Future<List<PlotConfigurationListing>> listPlotConfigurations() {
+    final req =
+        GPlotConfigsReq((b) => b..fetchPolicy = FetchPolicy.NetworkOnly);
+
+    return _rpc(req,
+        xlat: (GPlotConfigsData data) => data.plotConfiguration
+            .map((e) => PlotConfigurationListing(
+                configurationId: e.configurationId,
+                configurationName: e.configurationName))
+            .toList());
+  }
+
+  @override
+  Future<void> removePlotConfiguration({required int configurationId}) {
+    final req = GDeletePlotConfigReq((b) => b..vars.id = configurationId);
+
+    return _rpc(req, xlat: (GDeletePlotConfigData data) => ());
+  }
+
+  @override
+  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration() {
+    // TODO: implement retrieveLastUserConfiguration
+    throw UnimplementedError();
+  }
+
+  @override
+  Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
+      {required int configurationId}) {
+    final req = GPlotConfigsReq((b) => b..vars.id = configurationId);
+
+    return _rpc(req,
+        xlat: (GPlotConfigsData data) => data.plotConfiguration
+            .map((e) => PlotConfigurationSnapshot(
+                configurationId: e.configurationId,
+                configurationName: e.configurationName,
+                channels: Map.fromEntries(e.channels.map((e) => MapEntry(
+                    e.device,
+                    ChannelSettingSnapshot(
+                        lineColor:
+                            e.lineColor != null ? Color(e.lineColor!) : null,
+                        markerIndex: e.markerIndex)))),
+                yMin: e.yMin,
+                yMax: e.yMax,
+                xMin: e.xMin,
+                xMax: e.xMax,
+                isShowLabels: e.isShowLabels,
+                updateDelay: e.updateDelay,
+                nAcquisitions: e.nAcquisitions,
+                tclkEvent: e.tclkEvent))
+            .toList()).then(
+      (value) {
+        switch (value) {
+          case []:
+            throw const ACSysConfigurationException("no configuration found");
+          case [PlotConfigurationSnapshot e]:
+            return e;
+          default:
+            throw const ACSysConfigurationException(
+                "multiple configurations found");
+        }
+      },
+    );
+  }
+
+  GPlotConfigurationSnapshotInBuilder _plotConfigurationSnapshotIn(
+          PlotConfigurationSnapshot cfg) =>
+      GPlotConfigurationSnapshotInBuilder()
+        ..configurationId = cfg.configurationId
+        ..configurationName = cfg.configurationName
+        ..channels = ListBuilder(
+            cfg.channels.entries.map((e) => GChannelSettingSnapshotIn((b) => b
+              ..device = e.key
+              ..lineColor = e.value.lineColor?.value
+              ..markerIndex = e.value.markerIndex)))
+        ..yMin = cfg.yMin
+        ..yMax = cfg.yMax
+        ..xMin = cfg.xMin
+        ..xMax = cfg.xMax
+        ..isShowLabels = cfg.isShowLabels
+        ..updateDelay = cfg.updateDelay
+        ..nAcquisitions = cfg.nAcquisitions
+        ..tclkEvent = cfg.tclkEvent;
+
+  @override
+  Future<PlotConfigurationSnapshot> savePlotConfiguration(
+      {required PlotConfigurationSnapshot snapshot}) {
+    final req = GUpdatePlotConfigReq(
+        (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot));
+
+    return _rpc(req,
+            xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration)
+        .then((id) => snapshot..configurationId = id);
   }
 }
 

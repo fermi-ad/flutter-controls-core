@@ -6,7 +6,29 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
-    show GDevValue, GXformAvgExpr, GXformDeviceExpr, GXformExpr, GXformRequest;
+    show
+        GChannelSettingSnapshotIn,
+        GDevValue,
+        GPlotConfigurationSnapshotIn,
+        GXformAvgExpr,
+        GXformDeviceExpr,
+        GXformExpr,
+        GXformRequest;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart'
+    show
+        GPlotConfigsData,
+        GPlotConfigsData_plotConfiguration,
+        GPlotConfigsData_plotConfiguration_channels;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.req.gql.dart'
+    show GPlotConfigsReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.var.gql.dart'
+    show GPlotConfigsVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.data.gql.dart'
+    show GDeletePlotConfigData, GDeletePlotConfigData_deletePlotConfiguration;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart'
+    show GDeletePlotConfigReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.var.gql.dart'
+    show GDeletePlotConfigVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.data.gql.dart'
     show GSetDeviceData, GSetDeviceData_setDevice;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.req.gql.dart'
@@ -36,6 +58,12 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/str
     show GStreamDataReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.var.gql.dart'
     show GStreamDataVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart'
+    show GUpdatePlotConfigData;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.req.gql.dart'
+    show GUpdatePlotConfigReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.var.gql.dart'
+    show GUpdatePlotConfigVars;
 import 'package:flutter_controls_core/src/service/date_serializer.dart'
     show DateSerializer;
 import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
@@ -49,7 +77,18 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(GStreamDataData_acceleratorData_data_result.serializer)
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
+  GChannelSettingSnapshotIn,
+  GDeletePlotConfigData,
+  GDeletePlotConfigData_deletePlotConfiguration,
+  GDeletePlotConfigReq,
+  GDeletePlotConfigVars,
   GDevValue,
+  GPlotConfigsData,
+  GPlotConfigsData_plotConfiguration,
+  GPlotConfigsData_plotConfiguration_channels,
+  GPlotConfigsReq,
+  GPlotConfigsVars,
+  GPlotConfigurationSnapshotIn,
   GSetDeviceData,
   GSetDeviceData_setDevice,
   GSetDeviceReq,
@@ -68,6 +107,9 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GStreamDataData_acceleratorData_data_result__base,
   GStreamDataReq,
   GStreamDataVars,
+  GUpdatePlotConfigData,
+  GUpdatePlotConfigReq,
+  GUpdatePlotConfigVars,
   GXformAvgExpr,
   GXformDeviceExpr,
   GXformExpr,
