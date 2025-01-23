@@ -571,7 +571,7 @@ class ACSysService implements ACSysServiceAPI {
           xlat: (GgetDeviceInfoData data) =>
               data.deviceInfo.result.map(_convertToDevInfo).toList());
     } else {
-      throw ACSysInvArgException("empty device list");
+      throw const ACSysInvArgException("empty device list");
     }
   }
 
