@@ -449,7 +449,7 @@ abstract interface class ACSysServiceAPI {
       int? triggerEvent});
 
   /// Saves the plot configuration to the database.
-  Future<void> savePlotConfiguration(
+  Future<PlotConfigurationSnapshot> savePlotConfiguration(
       {required PlotConfigurationSnapshot snapshot});
 
   /// Queries the database for a plot configuration.
