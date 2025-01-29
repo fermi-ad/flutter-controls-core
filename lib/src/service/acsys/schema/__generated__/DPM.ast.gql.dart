@@ -407,7 +407,7 @@ const PlotConfigurationSnapshot = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
-        isNonNull: false,
+        isNonNull: true,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -514,7 +514,7 @@ const PlotConfigurationSnapshotIn = _i1.InputObjectTypeDefinitionNode(
       directives: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
+        isNonNull: false,
       ),
       defaultValue: null,
     ),

@@ -72,7 +72,7 @@ abstract class GPlotConfigurationSnapshotIn
           [Function(GPlotConfigurationSnapshotInBuilder b) updates]) =
       _$GPlotConfigurationSnapshotIn;
 
-  int get configurationId;
+  int? get configurationId;
   String get configurationName;
   BuiltList<GChannelSettingSnapshotIn> get channels;
   double? get xMin;
