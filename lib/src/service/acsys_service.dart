@@ -369,8 +369,18 @@ class ChannelSettingSnapshot {
   const ChannelSettingSnapshot({this.lineColor, this.markerIndex});
 }
 
+/// Wrap an integer with the semantics of a plot configuration ID. An ID
+/// is only an identifer and can't be manipulated as an integer. It only
+/// supports comparisons.
+
+extension type PlotConfigId._(int raw) implements Comparable {
+  PlotConfigId._fromInt(this.raw);
+  int get _value => raw;
+  int compareTo(PlotConfigId other) => raw.compareTo(other.raw);
+}
+
 class PlotConfigurationListing {
-  int? configurationId;
+  PlotConfigId? configurationId;
   String configurationName;
 
   PlotConfigurationListing(
@@ -453,13 +463,13 @@ abstract interface class ACSysServiceAPI {
 
   /// Queries the database for a plot configuration.
   Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
-      {required int configurationId});
+      {required PlotConfigId configurationId});
 
   /// Returns every plot configuration in the database.
   Future<List<PlotConfigurationListing>> listPlotConfigurations();
 
   /// Removes a plot configuration from the database.
-  Future<void> removePlotConfiguration({required int configurationId});
+  Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
@@ -928,14 +938,16 @@ class ACSysService implements ACSysServiceAPI {
     return _rpc(req,
         xlat: (GPlotConfigsData data) => data.plotConfiguration
             .map((e) => PlotConfigurationListing(
-                configurationId: e.configurationId,
+                configurationId: PlotConfigId._fromInt(e.configurationId),
                 configurationName: e.configurationName))
             .toList());
   }
 
   @override
-  Future<void> removePlotConfiguration({required int configurationId}) {
-    final req = GDeletePlotConfigReq((b) => b..vars.id = configurationId);
+  Future<void> removePlotConfiguration(
+      {required PlotConfigId configurationId}) {
+    final req =
+        GDeletePlotConfigReq((b) => b..vars.id = configurationId._value);
 
     return _rpc(req, xlat: (GDeletePlotConfigData data) => ());
   }
@@ -948,13 +960,13 @@ class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
-      {required int configurationId}) {
-    final req = GPlotConfigsReq((b) => b..vars.id = configurationId);
+      {required PlotConfigId configurationId}) {
+    final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
 
     return _rpc(req,
         xlat: (GPlotConfigsData data) => data.plotConfiguration
             .map((e) => PlotConfigurationSnapshot(
-                configurationId: e.configurationId,
+                configurationId: PlotConfigId._fromInt(e.configurationId),
                 configurationName: e.configurationName,
                 channels: Map.fromEntries(e.channels.map((e) => MapEntry(
                     e.device,
@@ -988,7 +1000,7 @@ class ACSysService implements ACSysServiceAPI {
   GPlotConfigurationSnapshotInBuilder _plotConfigurationSnapshotIn(
           PlotConfigurationSnapshot cfg) =>
       GPlotConfigurationSnapshotInBuilder()
-        ..configurationId = cfg.configurationId
+        ..configurationId = cfg.configurationId?._value
         ..configurationName = cfg.configurationName
         ..channels = ListBuilder(
             cfg.channels.entries.map((e) => GChannelSettingSnapshotIn((b) => b
@@ -1012,7 +1024,8 @@ class ACSysService implements ACSysServiceAPI {
 
     return _rpc(req,
             xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration)
-        .then((id) => snapshot..configurationId = id);
+        .then((id) => snapshot
+          ..configurationId = id == null ? null : PlotConfigId._fromInt(id));
   }
 }
 
