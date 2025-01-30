@@ -2,14 +2,13 @@
 library acsys_service;
 
 import 'package:flutter/material.dart';
-import "package:flutter_controls_core/src/status.dart";
-import "package:flutter_controls_core/src/device_values.dart";
+import 'package:flutter_controls_core/flutter_controls_core.dart';
 
 import 'package:built_collection/built_collection.dart';
 
-import "package:gql_websocket_link/gql_websocket_link.dart";
-import 'package:gql_http_link/gql_http_link.dart';
 import 'package:ferry/ferry.dart';
+import 'package:gql_http_link/gql_http_link.dart';
+import "package:gql_websocket_link/gql_websocket_link.dart";
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart';
