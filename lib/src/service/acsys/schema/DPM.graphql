@@ -132,7 +132,7 @@ type PlotConfigurationSnapshot {
   """
   Unique identifier for the plot configuration
   """
-  configurationId: Int
+  configurationId: Int!
   configurationName: String!
   channels: [ChannelSettingSnapshot!]!
   xMin: Float
@@ -157,7 +157,7 @@ input PlotConfigurationSnapshotIn {
   """
   Unique identifier for the plot configuration
   """
-  configurationId: Int!
+  configurationId: Int
   configurationName: String!
   channels: [ChannelSettingSnapshotIn!]!
   xMin: Float

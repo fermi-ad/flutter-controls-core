@@ -207,9 +207,6 @@ class _$GPlotConfigurationSnapshotInSerializer
       Serializers serializers, GPlotConfigurationSnapshotIn object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
-      'configurationId',
-      serializers.serialize(object.configurationId,
-          specifiedType: const FullType(int)),
       'configurationName',
       serializers.serialize(object.configurationName,
           specifiedType: const FullType(String)),
@@ -222,6 +219,12 @@ class _$GPlotConfigurationSnapshotInSerializer
           specifiedType: const FullType(bool)),
     ];
     Object? value;
+    value = object.configurationId;
+    if (value != null) {
+      result
+        ..add('configurationId')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.xMin;
     if (value != null) {
       result
@@ -285,7 +288,7 @@ class _$GPlotConfigurationSnapshotInSerializer
       switch (key) {
         case 'configurationId':
           result.configurationId = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+              specifiedType: const FullType(int)) as int?;
           break;
         case 'configurationName':
           result.configurationName = serializers.deserialize(value,
@@ -807,7 +810,7 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
 class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   @override
-  final int configurationId;
+  final int? configurationId;
   @override
   final String configurationName;
   @override
@@ -834,7 +837,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
       (new GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
 
   _$GPlotConfigurationSnapshotIn._(
-      {required this.configurationId,
+      {this.configurationId,
       required this.configurationName,
       required this.channels,
       this.xMin,
@@ -846,8 +849,6 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
       this.nAcquisitions,
       this.tclkEvent})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        configurationId, r'GPlotConfigurationSnapshotIn', 'configurationId');
     BuiltValueNullFieldError.checkNotNull(configurationName,
         r'GPlotConfigurationSnapshotIn', 'configurationName');
     BuiltValueNullFieldError.checkNotNull(
@@ -1013,10 +1014,7 @@ class GPlotConfigurationSnapshotInBuilder
     try {
       _$result = _$v ??
           new _$GPlotConfigurationSnapshotIn._(
-              configurationId: BuiltValueNullFieldError.checkNotNull(
-                  configurationId,
-                  r'GPlotConfigurationSnapshotIn',
-                  'configurationId'),
+              configurationId: configurationId,
               configurationName: BuiltValueNullFieldError.checkNotNull(
                   configurationName,
                   r'GPlotConfigurationSnapshotIn',
