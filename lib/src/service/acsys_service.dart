@@ -63,7 +63,7 @@ class ACSysGraphQLException extends ACSysException {
 // from API changes; hopefully we won't have to change these result classes
 // much, if at all.
 
-class DeviceInfoAnalogAlarm {
+final class DeviceInfoAnalogAlarm {
   final String nominal;
   final String tolerance;
   final String min;
@@ -76,7 +76,7 @@ class DeviceInfoAnalogAlarm {
       required this.max});
 }
 
-class DeviceInfoProperty {
+final class DeviceInfoProperty {
   final double minVal;
   final double maxVal;
   final String? commonUnits;
@@ -103,7 +103,7 @@ class DeviceInfoProperty {
       required this.isStepMotor});
 }
 
-class KnobbingInfo {
+final class KnobbingInfo {
   final double minVal;
   final double maxVal;
   final double step;
@@ -112,7 +112,7 @@ class KnobbingInfo {
       {required this.minVal, required this.maxVal, required this.step});
 }
 
-class BasicStatusProperty {
+final class BasicStatusProperty {
   final int maskVal;
   final int matchVal;
   final bool invert;
@@ -145,7 +145,7 @@ class BasicStatusProperty {
 /// ([color0], [name0]); and a color and name for when it's 1 ([color1],
 /// [name1]).
 
-class ExtendedBasicStatusEntry {
+final class ExtendedBasicStatusEntry {
   final int bitNo;
   final String description;
   final int color0;
@@ -174,7 +174,7 @@ class ExtendedBasicStatusEntry {
           valueText: name0);
 }
 
-class DeviceInfoBasicStatus {
+final class DeviceInfoBasicStatus {
   final BasicStatusProperty? onOffProperty;
   final BasicStatusProperty? readyTrippedProperty;
   final BasicStatusProperty? remoteLocalProperty;
@@ -189,7 +189,7 @@ class DeviceInfoBasicStatus {
       this.extendedBasicStatus = const []});
 }
 
-class DeviceInfoDigitalControl {
+final class DeviceInfoDigitalControl {
   final int value;
   final String shortName;
   final String longName;
@@ -198,7 +198,7 @@ class DeviceInfoDigitalControl {
       {required this.value, required this.shortName, required this.longName});
 }
 
-class DeviceInfo {
+final class DeviceInfo {
   final int di;
   final String name;
   final String description;
@@ -219,7 +219,7 @@ class DeviceInfo {
       this.digControl = const []});
 }
 
-class Reading {
+final class Reading {
   final int refId;
   final Status status;
   final int cycle;
@@ -261,14 +261,14 @@ StatusColor _toColor(int value) => switch (value) {
       _ => StatusColor.white
     };
 
-class BasicStatusAttribute {
+final class BasicStatusAttribute {
   final String character;
   final StatusColor color;
 
   const BasicStatusAttribute({required this.character, required this.color});
 }
 
-class ExtendedStatusAttribute {
+final class ExtendedStatusAttribute {
   final String? description;
   final int value;
   final String? valueText;
@@ -278,7 +278,7 @@ class ExtendedStatusAttribute {
       {this.description, required this.value, this.valueText, this.color});
 }
 
-class DigitalStatus {
+final class DigitalStatus {
   final int refId;
   final int status;
   final int cycle;
@@ -301,7 +301,7 @@ class DigitalStatus {
       this.extendedStatus});
 }
 
-class SettingStatus {
+final class SettingStatus {
   final int facilityCode;
   final int errorCode;
 
@@ -310,7 +310,7 @@ class SettingStatus {
 
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
 
-class AnalogAlarmStatus {
+final class AnalogAlarmStatus {
   final int refId;
   final int status;
   final int cycle;
@@ -325,7 +325,7 @@ class AnalogAlarmStatus {
       required this.state});
 }
 
-class PlotReply {
+final class PlotReply {
   final String plotId;
   final String xAxisUnits;
   final double? xAxisMin;
@@ -342,7 +342,7 @@ class PlotReply {
       required this.data});
 }
 
-class PlotChannelData {
+final class PlotChannelData {
   final String name;
   final String units;
   final int status;
@@ -355,14 +355,14 @@ class PlotChannelData {
       this.points = const []});
 }
 
-class PlotPoint {
+final class PlotPoint {
   final double x;
   final double y;
 
   const PlotPoint({required this.x, required this.y});
 }
 
-class ChannelSettingSnapshot {
+final class ChannelSettingSnapshot {
   final Color? lineColor;
   final int? markerIndex;
 
@@ -392,7 +392,7 @@ class PlotConfigurationListing {
       {this.configurationId, required this.configurationName});
 }
 
-class PlotConfigurationSnapshot extends PlotConfigurationListing {
+final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   Map<String, ChannelSettingSnapshot> channels;
   double? yMin;
   double? yMax;
@@ -496,7 +496,7 @@ abstract interface class ACSysServiceAPI {
 /// from the control system. But a better way is to use the [ACSysProvider]
 /// widget which manages an object of this class.
 
-class ACSysService implements ACSysServiceAPI {
+final class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
