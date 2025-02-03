@@ -151,8 +151,10 @@ class _AuthState extends State<AuthService> {
 
   Future<void> requestLogout() async {
     if (authenticated) {
-      Future<void>.microtask(() async => await _credentials
-          ?.revoke()
+      final Credential tmp = _credentials!;
+
+      Future<void>.microtask(() async => await tmp
+          .revoke()
           .onError((error, trace) => dev.log("revoke error: $error")));
       setState(() {
         _credentials = null;
