@@ -1,6 +1,6 @@
 /// A set of widgets that are the foundation of a Fermi application.
 
-library app_scaffold;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:openid_client/openid_client.dart';

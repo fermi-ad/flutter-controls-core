@@ -1,8 +1,5 @@
 /// Provides authentication services to Flutter apps.
-///
-///
-
-library auth_widget;
+library;
 
 import 'dart:async';
 

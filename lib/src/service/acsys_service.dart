@@ -1,5 +1,5 @@
 /// {@category Data Acquisition}
-library acsys_service;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';

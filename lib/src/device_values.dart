@@ -25,8 +25,7 @@
 ///     print("M:OUTTMP didn't return a floating point number!");
 /// }
 /// ```
-
-library device_values;
+library;
 
 import 'package:flutter/foundation.dart';
 

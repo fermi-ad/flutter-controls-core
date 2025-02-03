@@ -1,6 +1,5 @@
 /// A Flutter package with resources that most Fermi applications need.
-
-library flutter_controls_core;
+library;
 
 import "package:flutter/material.dart";
 import "src/auth_widget.dart";
