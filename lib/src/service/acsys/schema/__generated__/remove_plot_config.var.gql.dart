@@ -14,7 +14,7 @@ abstract class GDeletePlotConfigVars
   GDeletePlotConfigVars._();
 
   factory GDeletePlotConfigVars(
-          [Function(GDeletePlotConfigVarsBuilder b) updates]) =
+          [void Function(GDeletePlotConfigVarsBuilder b) updates]) =
       _$GDeletePlotConfigVars;
 
   int get id;

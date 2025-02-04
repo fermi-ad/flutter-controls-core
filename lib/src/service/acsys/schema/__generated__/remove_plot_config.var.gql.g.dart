@@ -133,8 +133,9 @@ class GDeletePlotConfigVarsBuilder
   _$GDeletePlotConfigVars _build() {
     final _$result = _$v ??
         new _$GDeletePlotConfigVars._(
-            id: BuiltValueNullFieldError.checkNotNull(
-                id, r'GDeletePlotConfigVars', 'id'));
+          id: BuiltValueNullFieldError.checkNotNull(
+              id, r'GDeletePlotConfigVars', 'id'),
+        );
     replace(_$result);
     return _$result;
   }

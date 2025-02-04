@@ -1,0 +1,19 @@
+query UsersLastConfig {
+    usersLastConfiguration {
+        configurationId
+        configurationName
+        channels {
+            device
+            lineColor
+            markerIndex
+        }
+        xMin
+        xMax
+        yMin
+        yMax
+        isShowLabels
+        updateDelay
+        nAcquisitions
+        tclkEvent
+    }
+}

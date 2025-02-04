@@ -226,9 +226,10 @@ class GDeletePlotConfigDataBuilder
     try {
       _$result = _$v ??
           new _$GDeletePlotConfigData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GDeletePlotConfigData', 'G__typename'),
-              deletePlotConfiguration: deletePlotConfiguration.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GDeletePlotConfigData', 'G__typename'),
+            deletePlotConfiguration: deletePlotConfiguration.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -352,12 +353,11 @@ class GDeletePlotConfigData_deletePlotConfigurationBuilder
   _$GDeletePlotConfigData_deletePlotConfiguration _build() {
     final _$result = _$v ??
         new _$GDeletePlotConfigData_deletePlotConfiguration._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GDeletePlotConfigData_deletePlotConfiguration',
-                'G__typename'),
-            status: BuiltValueNullFieldError.checkNotNull(status,
-                r'GDeletePlotConfigData_deletePlotConfiguration', 'status'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GDeletePlotConfigData_deletePlotConfiguration', 'G__typename'),
+          status: BuiltValueNullFieldError.checkNotNull(status,
+              r'GDeletePlotConfigData_deletePlotConfiguration', 'status'),
+        );
     replace(_$result);
     return _$result;
   }

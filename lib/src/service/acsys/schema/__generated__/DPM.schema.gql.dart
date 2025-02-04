@@ -16,7 +16,7 @@ abstract class GChannelSettingSnapshotIn
   GChannelSettingSnapshotIn._();
 
   factory GChannelSettingSnapshotIn(
-          [Function(GChannelSettingSnapshotInBuilder b) updates]) =
+          [void Function(GChannelSettingSnapshotInBuilder b) updates]) =
       _$GChannelSettingSnapshotIn;
 
   String get device;
@@ -40,7 +40,7 @@ abstract class GChannelSettingSnapshotIn
 abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
   GDevValue._();
 
-  factory GDevValue([Function(GDevValueBuilder b) updates]) = _$GDevValue;
+  factory GDevValue([void Function(GDevValueBuilder b) updates]) = _$GDevValue;
 
   int? get intVal;
   double? get scalarVal;
@@ -69,7 +69,7 @@ abstract class GPlotConfigurationSnapshotIn
   GPlotConfigurationSnapshotIn._();
 
   factory GPlotConfigurationSnapshotIn(
-          [Function(GPlotConfigurationSnapshotInBuilder b) updates]) =
+          [void Function(GPlotConfigurationSnapshotInBuilder b) updates]) =
       _$GPlotConfigurationSnapshotIn;
 
   int? get configurationId;
@@ -102,7 +102,7 @@ abstract class GXformAvgExpr
     implements Built<GXformAvgExpr, GXformAvgExprBuilder> {
   GXformAvgExpr._();
 
-  factory GXformAvgExpr([Function(GXformAvgExprBuilder b) updates]) =
+  factory GXformAvgExpr([void Function(GXformAvgExprBuilder b) updates]) =
       _$GXformAvgExpr;
 
   GXformExpr get expr;
@@ -125,7 +125,7 @@ abstract class GXformDeviceExpr
     implements Built<GXformDeviceExpr, GXformDeviceExprBuilder> {
   GXformDeviceExpr._();
 
-  factory GXformDeviceExpr([Function(GXformDeviceExprBuilder b) updates]) =
+  factory GXformDeviceExpr([void Function(GXformDeviceExprBuilder b) updates]) =
       _$GXformDeviceExpr;
 
   String get device;
@@ -147,7 +147,8 @@ abstract class GXformDeviceExpr
 abstract class GXformExpr implements Built<GXformExpr, GXformExprBuilder> {
   GXformExpr._();
 
-  factory GXformExpr([Function(GXformExprBuilder b) updates]) = _$GXformExpr;
+  factory GXformExpr([void Function(GXformExprBuilder b) updates]) =
+      _$GXformExpr;
 
   GXformDeviceExpr? get devEx;
   GXformAvgExpr? get avgEx;
@@ -169,7 +170,7 @@ abstract class GXformRequest
     implements Built<GXformRequest, GXformRequestBuilder> {
   GXformRequest._();
 
-  factory GXformRequest([Function(GXformRequestBuilder b) updates]) =
+  factory GXformRequest([void Function(GXformRequestBuilder b) updates]) =
       _$GXformRequest;
 
   String get event;

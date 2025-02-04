@@ -14,7 +14,7 @@ abstract class GStartPlotVars
     implements Built<GStartPlotVars, GStartPlotVarsBuilder> {
   GStartPlotVars._();
 
-  factory GStartPlotVars([Function(GStartPlotVarsBuilder b) updates]) =
+  factory GStartPlotVars([void Function(GStartPlotVarsBuilder b) updates]) =
       _$GStartPlotVars;
 
   BuiltList<String> get drfList;

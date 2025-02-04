@@ -163,7 +163,10 @@ class GgetDeviceInfoVarsBuilder
   _$GgetDeviceInfoVars _build() {
     _$GgetDeviceInfoVars _$result;
     try {
-      _$result = _$v ?? new _$GgetDeviceInfoVars._(devices: devices.build());
+      _$result = _$v ??
+          new _$GgetDeviceInfoVars._(
+            devices: devices.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {

@@ -467,9 +467,10 @@ class GStreamDataDataBuilder
     try {
       _$result = _$v ??
           new _$GStreamDataData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GStreamDataData', 'G__typename'),
-              acceleratorData: acceleratorData.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GStreamDataData', 'G__typename'),
+            acceleratorData: acceleratorData.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -617,13 +618,14 @@ class GStreamDataData_acceleratorDataBuilder
     try {
       _$result = _$v ??
           new _$GStreamDataData_acceleratorData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                  r'GStreamDataData_acceleratorData', 'G__typename'),
-              refId: BuiltValueNullFieldError.checkNotNull(
-                  refId, r'GStreamDataData_acceleratorData', 'refId'),
-              cycle: BuiltValueNullFieldError.checkNotNull(
-                  cycle, r'GStreamDataData_acceleratorData', 'cycle'),
-              data: data.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GStreamDataData_acceleratorData', 'G__typename'),
+            refId: BuiltValueNullFieldError.checkNotNull(
+                refId, r'GStreamDataData_acceleratorData', 'refId'),
+            cycle: BuiltValueNullFieldError.checkNotNull(
+                cycle, r'GStreamDataData_acceleratorData', 'cycle'),
+            data: data.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -758,12 +760,13 @@ class GStreamDataData_acceleratorData_dataBuilder
   _$GStreamDataData_acceleratorData_data _build() {
     final _$result = _$v ??
         new _$GStreamDataData_acceleratorData_data._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GStreamDataData_acceleratorData_data', 'G__typename'),
-            timestamp: BuiltValueNullFieldError.checkNotNull(timestamp,
-                r'GStreamDataData_acceleratorData_data', 'timestamp'),
-            result: BuiltValueNullFieldError.checkNotNull(
-                result, r'GStreamDataData_acceleratorData_data', 'result'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GStreamDataData_acceleratorData_data', 'G__typename'),
+          timestamp: BuiltValueNullFieldError.checkNotNull(
+              timestamp, r'GStreamDataData_acceleratorData_data', 'timestamp'),
+          result: BuiltValueNullFieldError.checkNotNull(
+              result, r'GStreamDataData_acceleratorData_data', 'result'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -867,10 +870,11 @@ class GStreamDataData_acceleratorData_data_result__baseBuilder
   _$GStreamDataData_acceleratorData_data_result__base _build() {
     final _$result = _$v ??
         new _$GStreamDataData_acceleratorData_data_result__base._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GStreamDataData_acceleratorData_data_result__base',
-                'G__typename'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GStreamDataData_acceleratorData_data_result__base',
+              'G__typename'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -996,14 +1000,15 @@ class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
   _$GStreamDataData_acceleratorData_data_result__asStatusReply _build() {
     final _$result = _$v ??
         new _$GStreamDataData_acceleratorData_data_result__asStatusReply._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GStreamDataData_acceleratorData_data_result__asStatusReply',
-                'G__typename'),
-            status: BuiltValueNullFieldError.checkNotNull(
-                status,
-                r'GStreamDataData_acceleratorData_data_result__asStatusReply',
-                'status'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+              'G__typename'),
+          status: BuiltValueNullFieldError.checkNotNull(
+              status,
+              r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+              'status'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -1125,14 +1130,15 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
   _$GStreamDataData_acceleratorData_data_result__asScalar _build() {
     final _$result = _$v ??
         new _$GStreamDataData_acceleratorData_data_result__asScalar._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GStreamDataData_acceleratorData_data_result__asScalar',
-                'G__typename'),
-            scalarValue: BuiltValueNullFieldError.checkNotNull(
-                scalarValue,
-                r'GStreamDataData_acceleratorData_data_result__asScalar',
-                'scalarValue'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GStreamDataData_acceleratorData_data_result__asScalar',
+              'G__typename'),
+          scalarValue: BuiltValueNullFieldError.checkNotNull(
+              scalarValue,
+              r'GStreamDataData_acceleratorData_data_result__asScalar',
+              'scalarValue'),
+        );
     replace(_$result);
     return _$result;
   }

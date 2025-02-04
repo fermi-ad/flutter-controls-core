@@ -130,7 +130,10 @@ class GStreamDataVarsBuilder
   _$GStreamDataVars _build() {
     _$GStreamDataVars _$result;
     try {
-      _$result = _$v ?? new _$GStreamDataVars._(drfs: drfs.build());
+      _$result = _$v ??
+          new _$GStreamDataVars._(
+            drfs: drfs.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {

@@ -24,6 +24,10 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/rem
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_users_config.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_users_config.req.gql.dart';
 
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.req.gql.dart';
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.data.gql.dart';
@@ -478,6 +482,10 @@ abstract interface class ACSysServiceAPI {
 
   /// Returns the last plot configuration that the user saved.
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
+
+  /// Sets the provided plot configuration as the last one the user saved.
+  Future<void> saveUserConfiguration(
+      {required PlotConfigurationSnapshot snapshot});
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
@@ -959,8 +967,37 @@ final class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration() {
-    // TODO: implement retrieveLastUserConfiguration
-    throw UnimplementedError();
+    final req = GUsersLastConfigReq((b) => b);
+
+    return _rpc(req, xlat: (GUsersLastConfigData data) {
+      final e = data.usersLastConfiguration!;
+
+      return PlotConfigurationSnapshot(
+          configurationId: PlotConfigId._fromInt(e.configurationId),
+          configurationName: e.configurationName,
+          channels: Map.fromEntries(e.channels.map((e) => MapEntry(
+              e.device,
+              ChannelSettingSnapshot(
+                  lineColor: e.lineColor != null ? Color(e.lineColor!) : null,
+                  markerIndex: e.markerIndex)))),
+          yMin: e.yMin,
+          yMax: e.yMax,
+          xMin: e.xMin,
+          xMax: e.xMax,
+          isShowLabels: e.isShowLabels,
+          updateDelay: e.updateDelay,
+          nAcquisitions: e.nAcquisitions,
+          tclkEvent: e.tclkEvent);
+    });
+  }
+
+  @override
+  Future<void> saveUserConfiguration(
+      {required PlotConfigurationSnapshot snapshot}) {
+    final req = GSetUsersConfigReq(
+        (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot));
+
+    return _rpc(req, xlat: (GSetUsersConfigData data) => ());
   }
 
   @override

@@ -35,6 +35,12 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set
     show GSetDeviceReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.var.gql.dart'
     show GSetDeviceVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_users_config.data.gql.dart'
+    show GSetUsersConfigData, GSetUsersConfigData_usersConfiguration;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_users_config.req.gql.dart'
+    show GSetUsersConfigReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_users_config.var.gql.dart'
+    show GSetUsersConfigVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.data.gql.dart'
     show
         GStartPlotData,
@@ -64,9 +70,18 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/upd
     show GUpdatePlotConfigReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.var.gql.dart'
     show GUpdatePlotConfigVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.data.gql.dart'
+    show
+        GUsersLastConfigData,
+        GUsersLastConfigData_usersLastConfiguration,
+        GUsersLastConfigData_usersLastConfiguration_channels;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.req.gql.dart'
+    show GUsersLastConfigReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.var.gql.dart'
+    show GUsersLastConfigVars;
 import 'package:flutter_controls_core/src/service/date_serializer.dart'
     show DateSerializer;
-import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
+import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
     show OperationSerializer;
 
 part 'serializers.gql.g.dart';
@@ -93,6 +108,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GSetDeviceData_setDevice,
   GSetDeviceReq,
   GSetDeviceVars,
+  GSetUsersConfigData,
+  GSetUsersConfigData_usersConfiguration,
+  GSetUsersConfigReq,
+  GSetUsersConfigVars,
   GStartPlotData,
   GStartPlotData_startPlot,
   GStartPlotData_startPlot_data,
@@ -110,6 +129,11 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GUpdatePlotConfigData,
   GUpdatePlotConfigReq,
   GUpdatePlotConfigVars,
+  GUsersLastConfigData,
+  GUsersLastConfigData_usersLastConfiguration,
+  GUsersLastConfigData_usersLastConfiguration_channels,
+  GUsersLastConfigReq,
+  GUsersLastConfigVars,
   GXformAvgExpr,
   GXformDeviceExpr,
   GXformExpr,

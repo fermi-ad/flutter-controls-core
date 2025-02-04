@@ -23,7 +23,7 @@ abstract class GStreamDataReq
         _i1.OperationRequest<_i2.GStreamDataData, _i3.GStreamDataVars> {
   GStreamDataReq._();
 
-  factory GStreamDataReq([Function(GStreamDataReqBuilder b) updates]) =
+  factory GStreamDataReq([void Function(GStreamDataReqBuilder b) updates]) =
       _$GStreamDataReq;
 
   static void _initializeBuilder(GStreamDataReqBuilder b) => b
@@ -41,6 +41,7 @@ abstract class GStreamDataReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -62,8 +63,22 @@ abstract class GStreamDataReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GStreamDataData? parseData(Map<String, dynamic> json) =>
       _i2.GStreamDataData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GStreamDataData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GStreamDataData, _i3.GStreamDataVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GStreamDataReq> get serializer =>
       _$gStreamDataReqSerializer;

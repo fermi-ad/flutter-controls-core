@@ -23,7 +23,7 @@ abstract class GPlotConfigsReq
         _i1.OperationRequest<_i2.GPlotConfigsData, _i3.GPlotConfigsVars> {
   GPlotConfigsReq._();
 
-  factory GPlotConfigsReq([Function(GPlotConfigsReqBuilder b) updates]) =
+  factory GPlotConfigsReq([void Function(GPlotConfigsReqBuilder b) updates]) =
       _$GPlotConfigsReq;
 
   static void _initializeBuilder(GPlotConfigsReqBuilder b) => b
@@ -41,6 +41,7 @@ abstract class GPlotConfigsReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -62,8 +63,22 @@ abstract class GPlotConfigsReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GPlotConfigsData? parseData(Map<String, dynamic> json) =>
       _i2.GPlotConfigsData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GPlotConfigsData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GPlotConfigsData, _i3.GPlotConfigsVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GPlotConfigsReq> get serializer =>
       _$gPlotConfigsReqSerializer;

@@ -7,36 +7,36 @@ import 'package:built_value/serializer.dart';
 import 'package:ferry_exec/ferry_exec.dart' as _i1;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i6;
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.ast.gql.dart'
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.ast.gql.dart'
     as _i5;
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart'
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.data.gql.dart'
     as _i2;
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.var.gql.dart'
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.var.gql.dart'
     as _i3;
 import 'package:gql_exec/gql_exec.dart' as _i4;
 
-part 'update_plot_config.req.gql.g.dart';
+part 'users_last_config.req.gql.g.dart';
 
-abstract class GUpdatePlotConfigReq
+abstract class GUsersLastConfigReq
     implements
-        Built<GUpdatePlotConfigReq, GUpdatePlotConfigReqBuilder>,
-        _i1.OperationRequest<_i2.GUpdatePlotConfigData,
-            _i3.GUpdatePlotConfigVars> {
-  GUpdatePlotConfigReq._();
+        Built<GUsersLastConfigReq, GUsersLastConfigReqBuilder>,
+        _i1
+        .OperationRequest<_i2.GUsersLastConfigData, _i3.GUsersLastConfigVars> {
+  GUsersLastConfigReq._();
 
-  factory GUpdatePlotConfigReq(
-          [void Function(GUpdatePlotConfigReqBuilder b) updates]) =
-      _$GUpdatePlotConfigReq;
+  factory GUsersLastConfigReq(
+          [void Function(GUsersLastConfigReqBuilder b) updates]) =
+      _$GUsersLastConfigReq;
 
-  static void _initializeBuilder(GUpdatePlotConfigReqBuilder b) => b
+  static void _initializeBuilder(GUsersLastConfigReqBuilder b) => b
     ..operation = _i4.Operation(
       document: _i5.document,
-      operationName: 'UpdatePlotConfig',
+      operationName: 'UsersLastConfig',
     )
     ..executeOnListen = true;
 
   @override
-  _i3.GUpdatePlotConfigVars get vars;
+  _i3.GUsersLastConfigVars get vars;
   @override
   _i4.Operation get operation;
   @override
@@ -50,12 +50,12 @@ abstract class GUpdatePlotConfigReq
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GUpdatePlotConfigData? Function(
-    _i2.GUpdatePlotConfigData?,
-    _i2.GUpdatePlotConfigData?,
+  _i2.GUsersLastConfigData? Function(
+    _i2.GUsersLastConfigData?,
+    _i2.GUsersLastConfigData?,
   )? get updateResult;
   @override
-  _i2.GUpdatePlotConfigData? get optimisticResponse;
+  _i2.GUsersLastConfigData? get optimisticResponse;
   @override
   String? get updateCacheHandlerKey;
   @override
@@ -68,32 +68,32 @@ abstract class GUpdatePlotConfigReq
   @BuiltValueField(serialize: false)
   _i4.Context? get context;
   @override
-  _i2.GUpdatePlotConfigData? parseData(Map<String, dynamic> json) =>
-      _i2.GUpdatePlotConfigData.fromJson(json);
+  _i2.GUsersLastConfigData? parseData(Map<String, dynamic> json) =>
+      _i2.GUsersLastConfigData.fromJson(json);
 
   @override
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(_i2.GUpdatePlotConfigData data) =>
+  Map<String, dynamic> dataToJson(_i2.GUsersLastConfigData data) =>
       data.toJson();
 
   @override
-  _i1.OperationRequest<_i2.GUpdatePlotConfigData, _i3.GUpdatePlotConfigVars>
+  _i1.OperationRequest<_i2.GUsersLastConfigData, _i3.GUsersLastConfigVars>
       transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
           this.rebuild((b) => b..operation = transform(operation));
 
-  static Serializer<GUpdatePlotConfigReq> get serializer =>
-      _$gUpdatePlotConfigReqSerializer;
+  static Serializer<GUsersLastConfigReq> get serializer =>
+      _$gUsersLastConfigReqSerializer;
 
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GUpdatePlotConfigReq.serializer,
+        GUsersLastConfigReq.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GUpdatePlotConfigReq? fromJson(Map<String, dynamic> json) =>
+  static GUsersLastConfigReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
-        GUpdatePlotConfigReq.serializer,
+        GUsersLastConfigReq.serializer,
         json,
       );
 }

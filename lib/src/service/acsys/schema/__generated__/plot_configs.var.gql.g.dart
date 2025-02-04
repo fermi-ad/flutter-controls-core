@@ -126,7 +126,10 @@ class GPlotConfigsVarsBuilder
   GPlotConfigsVars build() => _build();
 
   _$GPlotConfigsVars _build() {
-    final _$result = _$v ?? new _$GPlotConfigsVars._(id: id);
+    final _$result = _$v ??
+        new _$GPlotConfigsVars._(
+          id: id,
+        );
     replace(_$result);
     return _$result;
   }

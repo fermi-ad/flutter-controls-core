@@ -28,7 +28,7 @@ import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get
     show GDevicePropertyFieldsReq, GgetDeviceInfoReq;
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.var.gql.dart'
     show GDevicePropertyFieldsVars, GgetDeviceInfoVars;
-import 'package:gql_code_builder/src/serializers/operation_serializer.dart'
+import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
     show OperationSerializer;
 
 part 'serializers.gql.g.dart';

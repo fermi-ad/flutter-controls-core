@@ -23,7 +23,7 @@ abstract class GStartPlotReq
         _i1.OperationRequest<_i2.GStartPlotData, _i3.GStartPlotVars> {
   GStartPlotReq._();
 
-  factory GStartPlotReq([Function(GStartPlotReqBuilder b) updates]) =
+  factory GStartPlotReq([void Function(GStartPlotReqBuilder b) updates]) =
       _$GStartPlotReq;
 
   static void _initializeBuilder(GStartPlotReqBuilder b) => b
@@ -41,6 +41,7 @@ abstract class GStartPlotReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -62,8 +63,22 @@ abstract class GStartPlotReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GStartPlotData? parseData(Map<String, dynamic> json) =>
       _i2.GStartPlotData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GStartPlotData data) => data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GStartPlotData, _i3.GStartPlotVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GStartPlotReq> get serializer => _$gStartPlotReqSerializer;
 

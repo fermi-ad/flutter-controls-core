@@ -14,7 +14,7 @@ abstract class GDeletePlotConfigData
   GDeletePlotConfigData._();
 
   factory GDeletePlotConfigData(
-          [Function(GDeletePlotConfigDataBuilder b) updates]) =
+          [void Function(GDeletePlotConfigDataBuilder b) updates]) =
       _$GDeletePlotConfigData;
 
   static void _initializeBuilder(GDeletePlotConfigDataBuilder b) =>
@@ -45,7 +45,7 @@ abstract class GDeletePlotConfigData_deletePlotConfiguration
   GDeletePlotConfigData_deletePlotConfiguration._();
 
   factory GDeletePlotConfigData_deletePlotConfiguration(
-      [Function(GDeletePlotConfigData_deletePlotConfigurationBuilder b)
+      [void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder b)
           updates]) = _$GDeletePlotConfigData_deletePlotConfiguration;
 
   static void _initializeBuilder(

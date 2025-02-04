@@ -24,6 +24,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GSetDeviceData_setDevice.serializer)
       ..add(GSetDeviceReq.serializer)
       ..add(GSetDeviceVars.serializer)
+      ..add(GSetUsersConfigData.serializer)
+      ..add(GSetUsersConfigData_usersConfiguration.serializer)
+      ..add(GSetUsersConfigReq.serializer)
+      ..add(GSetUsersConfigVars.serializer)
       ..add(GStartPlotData.serializer)
       ..add(GStartPlotData_startPlot.serializer)
       ..add(GStartPlotData_startPlot_data.serializer)
@@ -42,6 +46,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GUpdatePlotConfigData.serializer)
       ..add(GUpdatePlotConfigReq.serializer)
       ..add(GUpdatePlotConfigVars.serializer)
+      ..add(GUsersLastConfigData.serializer)
+      ..add(GUsersLastConfigData_usersLastConfiguration.serializer)
+      ..add(GUsersLastConfigData_usersLastConfiguration_channels.serializer)
+      ..add(GUsersLastConfigReq.serializer)
+      ..add(GUsersLastConfigVars.serializer)
       ..add(GXformAvgExpr.serializer)
       ..add(GXformDeviceExpr.serializer)
       ..add(GXformExpr.serializer)
@@ -68,6 +77,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
             const FullType(GStartPlotData_startPlot_data_channelData)
           ]),
           () => new ListBuilder<GStartPlotData_startPlot_data_channelData>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [
+            const FullType(GUsersLastConfigData_usersLastConfiguration_channels)
+          ]),
+          () => new ListBuilder<
+              GUsersLastConfigData_usersLastConfiguration_channels>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())

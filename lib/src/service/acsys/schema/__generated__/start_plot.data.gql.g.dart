@@ -357,9 +357,10 @@ class GStartPlotDataBuilder
     try {
       _$result = _$v ??
           new _$GStartPlotData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GStartPlotData', 'G__typename'),
-              startPlot: startPlot.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GStartPlotData', 'G__typename'),
+            startPlot: startPlot.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -490,11 +491,12 @@ class GStartPlotData_startPlotBuilder
     try {
       _$result = _$v ??
           new _$GStartPlotData_startPlot._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GStartPlotData_startPlot', 'G__typename'),
-              plotId: BuiltValueNullFieldError.checkNotNull(
-                  plotId, r'GStartPlotData_startPlot', 'plotId'),
-              data: data.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GStartPlotData_startPlot', 'G__typename'),
+            plotId: BuiltValueNullFieldError.checkNotNull(
+                plotId, r'GStartPlotData_startPlot', 'plotId'),
+            data: data.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -645,15 +647,14 @@ class GStartPlotData_startPlot_dataBuilder
     try {
       _$result = _$v ??
           new _$GStartPlotData_startPlot_data._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GStartPlotData_startPlot_data', 'G__typename'),
-              channelUnits: BuiltValueNullFieldError.checkNotNull(channelUnits,
-                  r'GStartPlotData_startPlot_data', 'channelUnits'),
-              channelStatus: BuiltValueNullFieldError.checkNotNull(
-                  channelStatus,
-                  r'GStartPlotData_startPlot_data',
-                  'channelStatus'),
-              channelData: channelData.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GStartPlotData_startPlot_data', 'G__typename'),
+            channelUnits: BuiltValueNullFieldError.checkNotNull(
+                channelUnits, r'GStartPlotData_startPlot_data', 'channelUnits'),
+            channelStatus: BuiltValueNullFieldError.checkNotNull(channelStatus,
+                r'GStartPlotData_startPlot_data', 'channelStatus'),
+            channelData: channelData.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -788,12 +789,13 @@ class GStartPlotData_startPlot_data_channelDataBuilder
   _$GStartPlotData_startPlot_data_channelData _build() {
     final _$result = _$v ??
         new _$GStartPlotData_startPlot_data_channelData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GStartPlotData_startPlot_data_channelData', 'G__typename'),
-            x: BuiltValueNullFieldError.checkNotNull(
-                x, r'GStartPlotData_startPlot_data_channelData', 'x'),
-            y: BuiltValueNullFieldError.checkNotNull(
-                y, r'GStartPlotData_startPlot_data_channelData', 'y'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GStartPlotData_startPlot_data_channelData', 'G__typename'),
+          x: BuiltValueNullFieldError.checkNotNull(
+              x, r'GStartPlotData_startPlot_data_channelData', 'x'),
+          y: BuiltValueNullFieldError.checkNotNull(
+              y, r'GStartPlotData_startPlot_data_channelData', 'y'),
+        );
     replace(_$result);
     return _$result;
   }

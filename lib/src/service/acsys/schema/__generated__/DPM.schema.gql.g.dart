@@ -635,10 +635,11 @@ class GChannelSettingSnapshotInBuilder
   _$GChannelSettingSnapshotIn _build() {
     final _$result = _$v ??
         new _$GChannelSettingSnapshotIn._(
-            device: BuiltValueNullFieldError.checkNotNull(
-                device, r'GChannelSettingSnapshotIn', 'device'),
-            lineColor: lineColor,
-            markerIndex: markerIndex);
+          device: BuiltValueNullFieldError.checkNotNull(
+              device, r'GChannelSettingSnapshotIn', 'device'),
+          lineColor: lineColor,
+          markerIndex: markerIndex,
+        );
     replace(_$result);
     return _$result;
   }
@@ -781,12 +782,13 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
     try {
       _$result = _$v ??
           new _$GDevValue._(
-              intVal: intVal,
-              scalarVal: scalarVal,
-              scalarArrayVal: _scalarArrayVal?.build(),
-              rawVal: _rawVal?.build(),
-              textVal: textVal,
-              textArrayVal: _textArrayVal?.build());
+            intVal: intVal,
+            scalarVal: scalarVal,
+            scalarArrayVal: _scalarArrayVal?.build(),
+            rawVal: _rawVal?.build(),
+            textVal: textVal,
+            textArrayVal: _textArrayVal?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1014,21 +1016,22 @@ class GPlotConfigurationSnapshotInBuilder
     try {
       _$result = _$v ??
           new _$GPlotConfigurationSnapshotIn._(
-              configurationId: configurationId,
-              configurationName: BuiltValueNullFieldError.checkNotNull(
-                  configurationName,
-                  r'GPlotConfigurationSnapshotIn',
-                  'configurationName'),
-              channels: channels.build(),
-              xMin: xMin,
-              xMax: xMax,
-              yMin: yMin,
-              yMax: yMax,
-              isShowLabels: BuiltValueNullFieldError.checkNotNull(isShowLabels,
-                  r'GPlotConfigurationSnapshotIn', 'isShowLabels'),
-              updateDelay: updateDelay,
-              nAcquisitions: nAcquisitions,
-              tclkEvent: tclkEvent);
+            configurationId: configurationId,
+            configurationName: BuiltValueNullFieldError.checkNotNull(
+                configurationName,
+                r'GPlotConfigurationSnapshotIn',
+                'configurationName'),
+            channels: channels.build(),
+            xMin: xMin,
+            xMax: xMax,
+            yMin: yMin,
+            yMax: yMax,
+            isShowLabels: BuiltValueNullFieldError.checkNotNull(
+                isShowLabels, r'GPlotConfigurationSnapshotIn', 'isShowLabels'),
+            updateDelay: updateDelay,
+            nAcquisitions: nAcquisitions,
+            tclkEvent: tclkEvent,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1133,9 +1136,9 @@ class GXformAvgExprBuilder
     try {
       _$result = _$v ??
           new _$GXformAvgExpr._(
-              expr: expr.build(),
-              n: BuiltValueNullFieldError.checkNotNull(
-                  n, r'GXformAvgExpr', 'n'));
+            expr: expr.build(),
+            n: BuiltValueNullFieldError.checkNotNull(n, r'GXformAvgExpr', 'n'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1231,8 +1234,9 @@ class GXformDeviceExprBuilder
   _$GXformDeviceExpr _build() {
     final _$result = _$v ??
         new _$GXformDeviceExpr._(
-            device: BuiltValueNullFieldError.checkNotNull(
-                device, r'GXformDeviceExpr', 'device'));
+          device: BuiltValueNullFieldError.checkNotNull(
+              device, r'GXformDeviceExpr', 'device'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -1323,7 +1327,10 @@ class GXformExprBuilder implements Builder<GXformExpr, GXformExprBuilder> {
     _$GXformExpr _$result;
     try {
       _$result = _$v ??
-          new _$GXformExpr._(devEx: _devEx?.build(), avgEx: _avgEx?.build());
+          new _$GXformExpr._(
+            devEx: _devEx?.build(),
+            avgEx: _avgEx?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1430,9 +1437,10 @@ class GXformRequestBuilder
     try {
       _$result = _$v ??
           new _$GXformRequest._(
-              event: BuiltValueNullFieldError.checkNotNull(
-                  event, r'GXformRequest', 'event'),
-              expr: expr.build());
+            event: BuiltValueNullFieldError.checkNotNull(
+                event, r'GXformRequest', 'event'),
+            expr: expr.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
