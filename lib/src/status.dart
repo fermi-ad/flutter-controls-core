@@ -1,10 +1,6 @@
 library status;
 
-class Status {
-  final int code;
-
-  const Status(int facCode, int errCode) : code = errCode * 256 + facCode;
-
+extension type Status._(int code) {
   const Status.fromInt(int value) : code = value;
 
   int get facility => code ~/ 256;
@@ -16,7 +12,6 @@ class Status {
 
   // Global, predefined status codes.
 
-  static const Status okay = Status(0, 0);
-
-  static const Status noProperty = Status(17, -27);
+  static const Status okay = Status.fromInt(0);
+  static const Status noProperty = Status.fromInt(-6785);
 }

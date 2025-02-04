@@ -76,7 +76,7 @@ sealed class DeviceValue {
 /// scale it. This type is mostly useful for diagnostics or for actual, binary
 /// data buffers (i.e. image data.)
 
-class DevRaw extends DeviceValue {
+final class DevRaw extends DeviceValue {
   final List<int> value;
 
   const DevRaw(this.value);
@@ -87,7 +87,7 @@ class DevRaw extends DeviceValue {
 /// Most devices deal with floating point values. This is the type to send to
 /// a device and what would be returned when reading it.
 
-class DevScalar extends DeviceValue {
+final class DevScalar extends DeviceValue {
   final double value;
 
   const DevScalar(this.value);
@@ -98,7 +98,7 @@ class DevScalar extends DeviceValue {
 /// Some devices are "array devices" and will return an array of floating point
 /// values. This type is also used by EPICS "waveform" devices.
 
-class DevScalarArray extends DeviceValue {
+final class DevScalarArray extends DeviceValue {
   final List<double> value;
 
   const DevScalarArray(this.value);
@@ -106,7 +106,7 @@ class DevScalarArray extends DeviceValue {
 
 /// Represents a single string of characters.
 
-class DevText extends DeviceValue {
+final class DevText extends DeviceValue {
   final String value;
 
   const DevText(this.value);
@@ -114,7 +114,7 @@ class DevText extends DeviceValue {
 
 /// Represents an array of strings.
 
-class DevTextArray extends DeviceValue {
+final class DevTextArray extends DeviceValue {
   final List<String> value;
 
   const DevTextArray(this.value);

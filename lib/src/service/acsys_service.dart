@@ -2,14 +2,13 @@
 library acsys_service;
 
 import 'package:flutter/material.dart';
-import "package:flutter_controls_core/src/status.dart";
-import "package:flutter_controls_core/src/device_values.dart";
+import 'package:flutter_controls_core/flutter_controls_core.dart';
 
 import 'package:built_collection/built_collection.dart';
 
-import "package:gql_websocket_link/gql_websocket_link.dart";
-import 'package:gql_http_link/gql_http_link.dart';
 import 'package:ferry/ferry.dart';
+import 'package:gql_http_link/gql_http_link.dart';
+import "package:gql_websocket_link/gql_websocket_link.dart";
 import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart';
@@ -64,7 +63,7 @@ class ACSysGraphQLException extends ACSysException {
 // from API changes; hopefully we won't have to change these result classes
 // much, if at all.
 
-class DeviceInfoAnalogAlarm {
+final class DeviceInfoAnalogAlarm {
   final String nominal;
   final String tolerance;
   final String min;
@@ -77,7 +76,7 @@ class DeviceInfoAnalogAlarm {
       required this.max});
 }
 
-class DeviceInfoProperty {
+final class DeviceInfoProperty {
   final double minVal;
   final double maxVal;
   final String? commonUnits;
@@ -104,7 +103,7 @@ class DeviceInfoProperty {
       required this.isStepMotor});
 }
 
-class KnobbingInfo {
+final class KnobbingInfo {
   final double minVal;
   final double maxVal;
   final double step;
@@ -113,7 +112,7 @@ class KnobbingInfo {
       {required this.minVal, required this.maxVal, required this.step});
 }
 
-class BasicStatusProperty {
+final class BasicStatusProperty {
   final int maskVal;
   final int matchVal;
   final bool invert;
@@ -146,7 +145,7 @@ class BasicStatusProperty {
 /// ([color0], [name0]); and a color and name for when it's 1 ([color1],
 /// [name1]).
 
-class ExtendedBasicStatusEntry {
+final class ExtendedBasicStatusEntry {
   final int bitNo;
   final String description;
   final int color0;
@@ -175,7 +174,7 @@ class ExtendedBasicStatusEntry {
           valueText: name0);
 }
 
-class DeviceInfoBasicStatus {
+final class DeviceInfoBasicStatus {
   final BasicStatusProperty? onOffProperty;
   final BasicStatusProperty? readyTrippedProperty;
   final BasicStatusProperty? remoteLocalProperty;
@@ -190,7 +189,7 @@ class DeviceInfoBasicStatus {
       this.extendedBasicStatus = const []});
 }
 
-class DeviceInfoDigitalControl {
+final class DeviceInfoDigitalControl {
   final int value;
   final String shortName;
   final String longName;
@@ -199,7 +198,7 @@ class DeviceInfoDigitalControl {
       {required this.value, required this.shortName, required this.longName});
 }
 
-class DeviceInfo {
+final class DeviceInfo {
   final int di;
   final String name;
   final String description;
@@ -220,7 +219,7 @@ class DeviceInfo {
       this.digControl = const []});
 }
 
-class Reading {
+final class Reading {
   final int refId;
   final Status status;
   final int cycle;
@@ -262,14 +261,14 @@ StatusColor _toColor(int value) => switch (value) {
       _ => StatusColor.white
     };
 
-class BasicStatusAttribute {
+final class BasicStatusAttribute {
   final String character;
   final StatusColor color;
 
   const BasicStatusAttribute({required this.character, required this.color});
 }
 
-class ExtendedStatusAttribute {
+final class ExtendedStatusAttribute {
   final String? description;
   final int value;
   final String? valueText;
@@ -279,7 +278,7 @@ class ExtendedStatusAttribute {
       {this.description, required this.value, this.valueText, this.color});
 }
 
-class DigitalStatus {
+final class DigitalStatus {
   final int refId;
   final int status;
   final int cycle;
@@ -302,7 +301,7 @@ class DigitalStatus {
       this.extendedStatus});
 }
 
-class SettingStatus {
+final class SettingStatus {
   final int facilityCode;
   final int errorCode;
 
@@ -311,7 +310,7 @@ class SettingStatus {
 
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
 
-class AnalogAlarmStatus {
+final class AnalogAlarmStatus {
   final int refId;
   final int status;
   final int cycle;
@@ -326,7 +325,7 @@ class AnalogAlarmStatus {
       required this.state});
 }
 
-class PlotReply {
+final class PlotReply {
   final String plotId;
   final String xAxisUnits;
   final double? xAxisMin;
@@ -343,7 +342,7 @@ class PlotReply {
       required this.data});
 }
 
-class PlotChannelData {
+final class PlotChannelData {
   final String name;
   final String units;
   final int status;
@@ -356,29 +355,44 @@ class PlotChannelData {
       this.points = const []});
 }
 
-class PlotPoint {
+final class PlotPoint {
   final double x;
   final double y;
 
   const PlotPoint({required this.x, required this.y});
 }
 
-class ChannelSettingSnapshot {
+final class ChannelSettingSnapshot {
   final Color? lineColor;
   final int? markerIndex;
 
   const ChannelSettingSnapshot({this.lineColor, this.markerIndex});
 }
 
+// Only used by the plot ID class to generate IDs for testing.
+
+int _genPlotId = 1_000_000;
+
+/// Wrap an integer with the semantics of a plot configuration ID. An ID
+/// is only an identifer and can't be manipulated as an integer. It only
+/// supports comparisons.
+
+extension type PlotConfigId._(int raw) implements Comparable {
+  PlotConfigId._fromInt(this.raw);
+  PlotConfigId.generate() : raw = _genPlotId++;
+  int get _value => raw;
+  int compareTo(PlotConfigId other) => raw.compareTo(other.raw);
+}
+
 class PlotConfigurationListing {
-  int? configurationId;
+  PlotConfigId? configurationId;
   String configurationName;
 
   PlotConfigurationListing(
       {this.configurationId, required this.configurationName});
 }
 
-class PlotConfigurationSnapshot extends PlotConfigurationListing {
+final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   Map<String, ChannelSettingSnapshot> channels;
   double? yMin;
   double? yMax;
@@ -454,13 +468,13 @@ abstract interface class ACSysServiceAPI {
 
   /// Queries the database for a plot configuration.
   Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
-      {required int configurationId});
+      {required PlotConfigId configurationId});
 
   /// Returns every plot configuration in the database.
   Future<List<PlotConfigurationListing>> listPlotConfigurations();
 
   /// Removes a plot configuration from the database.
-  Future<void> removePlotConfiguration({required int configurationId});
+  Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
@@ -482,7 +496,7 @@ abstract interface class ACSysServiceAPI {
 /// from the control system. But a better way is to use the [ACSysProvider]
 /// widget which manages an object of this class.
 
-class ACSysService implements ACSysServiceAPI {
+final class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
@@ -929,14 +943,16 @@ class ACSysService implements ACSysServiceAPI {
     return _rpc(req,
         xlat: (GPlotConfigsData data) => data.plotConfiguration
             .map((e) => PlotConfigurationListing(
-                configurationId: e.configurationId,
+                configurationId: PlotConfigId._fromInt(e.configurationId),
                 configurationName: e.configurationName))
             .toList());
   }
 
   @override
-  Future<void> removePlotConfiguration({required int configurationId}) {
-    final req = GDeletePlotConfigReq((b) => b..vars.id = configurationId);
+  Future<void> removePlotConfiguration(
+      {required PlotConfigId configurationId}) {
+    final req =
+        GDeletePlotConfigReq((b) => b..vars.id = configurationId._value);
 
     return _rpc(req, xlat: (GDeletePlotConfigData data) => ());
   }
@@ -949,13 +965,13 @@ class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
-      {required int configurationId}) {
-    final req = GPlotConfigsReq((b) => b..vars.id = configurationId);
+      {required PlotConfigId configurationId}) {
+    final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
 
     return _rpc(req,
         xlat: (GPlotConfigsData data) => data.plotConfiguration
             .map((e) => PlotConfigurationSnapshot(
-                configurationId: e.configurationId,
+                configurationId: PlotConfigId._fromInt(e.configurationId),
                 configurationName: e.configurationName,
                 channels: Map.fromEntries(e.channels.map((e) => MapEntry(
                     e.device,
@@ -989,7 +1005,7 @@ class ACSysService implements ACSysServiceAPI {
   GPlotConfigurationSnapshotInBuilder _plotConfigurationSnapshotIn(
           PlotConfigurationSnapshot cfg) =>
       GPlotConfigurationSnapshotInBuilder()
-        ..configurationId = cfg.configurationId
+        ..configurationId = cfg.configurationId?._value
         ..configurationName = cfg.configurationName
         ..channels = ListBuilder(
             cfg.channels.entries.map((e) => GChannelSettingSnapshotIn((b) => b
@@ -1013,7 +1029,8 @@ class ACSysService implements ACSysServiceAPI {
 
     return _rpc(req,
             xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration)
-        .then((id) => snapshot..configurationId = id);
+        .then((id) => snapshot
+          ..configurationId = id == null ? null : PlotConfigId._fromInt(id));
   }
 }
 
