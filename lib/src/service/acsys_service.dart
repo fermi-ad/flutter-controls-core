@@ -371,7 +371,7 @@ final class ChannelSettingSnapshot {
 
 // Only used by the plot ID class to generate IDs for testing.
 
-int _genPlotId = 1000000;
+int _genPlotId = 1_000_000;
 
 /// Wrap an integer with the semantics of a plot configuration ID. An ID
 /// is only an identifer and can't be manipulated as an integer. It only
