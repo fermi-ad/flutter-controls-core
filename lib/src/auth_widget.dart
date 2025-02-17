@@ -87,6 +87,12 @@ class AuthService extends StatefulWidget {
       .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
       ?.credentials;
 
+  static String? getJwt(BuildContext context) => context
+      .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
+      ?.credentials
+      ?.idToken
+      .toCompactSerialization();
+
   static UserInfo? getUserInfo(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_AuthCredentials>()?.userInfo;
 

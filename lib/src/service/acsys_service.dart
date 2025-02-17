@@ -375,7 +375,7 @@ final class ChannelSettingSnapshot {
 
 // Only used by the plot ID class to generate IDs for testing.
 
-int _genPlotId = 1_000_000;
+int _genPlotId = 1000000;
 
 /// Wrap an integer with the semantics of a plot configuration ID. An ID
 /// is only an identifer and can't be manipulated as an integer. It only
@@ -509,12 +509,16 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _s;
   final Client _qDevDb;
 
+  static Map<String, String> _buildAuthHeader(String? jwt) =>
+      jwt != null ? {"Authorization": "Bearer $jwt"} : {};
+
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  ACSysService()
+  ACSysService({String? jwt})
       : _q = Client(
-            link: HttpLink("https://acsys-proxy.fnal.gov:8001/acsys"),
+            link: HttpLink("https://acsys-proxy.fnal.gov:8001/acsys",
+                defaultHeaders: _buildAuthHeader(jwt)),
             cache: Cache()),
         _s = Client(
             link: WebSocketLink(null,
@@ -530,7 +534,8 @@ final class ACSysService implements ACSysServiceAPI {
                 reconnectInterval: const Duration(seconds: 1)),
             cache: Cache()),
         _qDevDb = Client(
-            link: HttpLink("https://acsys-proxy.fnal.gov:8001/devdb"),
+            link: HttpLink("https://acsys-proxy.fnal.gov:8001/devdb",
+                defaultHeaders: _buildAuthHeader(jwt)),
             cache: Cache());
 
   // Common code needed to do RPCs. The caller sends in a protobuf request and,
@@ -1110,28 +1115,15 @@ extension on DeviceValue {
 }
 
 /// A widget that provides access to the ACSys Service API.
-///
-/// This widget has no public constructor and so can't be created by an
-/// application. It gets created automatically, however, by the
-/// [ACSysProvider] widget. Once an `ACSysProvider` widget is placed in
-/// the widget tree, the API can be accessed through the [ACSys.api()]
-/// method.
 
-class ACSys extends StatelessWidget {
-  final Widget child;
-
-  const ACSys._({required this.child});
-
+final class ACSys {
   /// Returns an object supporting the ACSys API.
   ///
   /// Any widget that uses this to retrieve the ACSys service object will
   /// get registered if the [ACSysProvider] gets rebuilt.
 
   static ACSysServiceAPI api(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<ACSysProvider>()!.service;
-
-  @override
-  Widget build(BuildContext context) => child;
+      context.dependOnInheritedWidgetOfExactType<_ACSysProviderIW>()!.service;
 }
 
 /// Provides the ACSys API to the application.
@@ -1140,13 +1132,10 @@ class ACSys extends StatelessWidget {
 /// of this widget near the top of its tree so it doesn't get rebuilt. With
 /// this in the tree, other widgets can use the API by calling [ACSys.api()]
 /// to get an [ACSysServiceAPI] object which implements the API.
-
-class ACSysProvider extends InheritedWidget {
-  final ACSysServiceAPI _service;
+final class ACSysProvider extends StatelessWidget {
+  final Widget child;
 
   /// Creates the widget.
-  ///
-  /// Provides support to the ACSys API.
   ///
   /// - [child] is the widget subtree that gets added to the tree below this
   ///   widget.
@@ -1156,16 +1145,27 @@ class ACSysProvider extends InheritedWidget {
   ///   implementation that communicates over the network to the offcial
   ///   control system API. This option is mainly to mock-up a service to
   ///   use in unit tests.
+  const ACSysProvider({required this.child, super.key});
 
-  ACSysProvider({required Widget child, ACSysServiceAPI? service, super.key})
-      : _service = service ?? ACSysService(),
-        super(child: ACSys._(child: child));
+  @override
+  Widget build(BuildContext context) {
+    return _ACSysProviderIW(
+        service: ACSysService(jwt: AuthService.getJwt(context)), child: child);
+  }
+}
 
-  /// Returns the object tha implements the [ACSysServiceAPI] interface.
+final class _ACSysProviderIW extends InheritedWidget {
+  final ACSysServiceAPI _service;
+
+  const _ACSysProviderIW(
+      {required ACSysServiceAPI service, required super.child})
+      : _service = service;
+
+  /// Returns the object that implements the [ACSysServiceAPI] interface.
 
   ACSysServiceAPI get service => _service;
 
   @override
-  bool updateShouldNotify(covariant ACSysProvider oldWidget) =>
+  bool updateShouldNotify(covariant _ACSysProviderIW oldWidget) =>
       _service != oldWidget._service;
 }
