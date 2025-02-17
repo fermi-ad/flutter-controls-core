@@ -145,3 +145,41 @@ extension DoubleArrayToDeviceValue on List<double> {
 extension TextArrayToDeviceValue on List<String> {
   DeviceValue toDevVal() => DevTextArray(this);
 }
+
+// The `FromDeviceValue` extension allows us to convert a `DeviceValue` into a
+// primitive type.
+
+extension FromDevValToDouble on DeviceValue {
+  double toDouble() => switch (this) {
+        DevScalar(value: var value) => value,
+        _ => throw Exception("DeviceValue is not a DevScalar")
+      };
+}
+
+extension FromDevValToText on DeviceValue {
+  String toText() => switch (this) {
+        DevText(value: var value) => value,
+        _ => throw Exception("DeviceValue is not a DevText")
+      };
+}
+
+extension FromDevValToRaw on DeviceValue {
+  List<int> toRaw() => switch (this) {
+        DevRaw(value: var value) => value,
+        _ => throw Exception("DeviceValue is not a DevRaw")
+      };
+}
+
+extension FromDevValToDoubleArray on DeviceValue {
+  List<double> toDoubleArray() => switch (this) {
+        DevScalarArray(value: var value) => value,
+        _ => throw Exception("DeviceValue is not a DevScalarArray")
+      };
+}
+
+extension FromDevValToTextArray on DeviceValue {
+  List<String> toTextArray() => switch (this) {
+        DevTextArray(value: var value) => value,
+        _ => throw Exception("DeviceValue is not a DevTextArray")
+      };
+}
