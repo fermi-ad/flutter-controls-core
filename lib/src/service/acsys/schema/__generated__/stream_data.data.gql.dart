@@ -2,6 +2,7 @@
 // ignore_for_file: type=lint
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
+import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
@@ -118,6 +119,11 @@ abstract class GStreamDataData_acceleratorData_data_result {
               'StatusReply':
                   GStreamDataData_acceleratorData_data_result__asStatusReply,
               'Scalar': GStreamDataData_acceleratorData_data_result__asScalar,
+              'ScalarArray':
+                  GStreamDataData_acceleratorData_data_result__asScalarArray,
+              'Text': GStreamDataData_acceleratorData_data_result__asText,
+              'TextArray':
+                  GStreamDataData_acceleratorData_data_result__asTextArray,
             },
           );
 
@@ -244,6 +250,122 @@ abstract class GStreamDataData_acceleratorData_data_result__asScalar
           Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GStreamDataData_acceleratorData_data_result__asScalar.serializer,
+        json,
+      );
+}
+
+abstract class GStreamDataData_acceleratorData_data_result__asScalarArray
+    implements
+        Built<GStreamDataData_acceleratorData_data_result__asScalarArray,
+            GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder>,
+        GStreamDataData_acceleratorData_data_result {
+  GStreamDataData_acceleratorData_data_result__asScalarArray._();
+
+  factory GStreamDataData_acceleratorData_data_result__asScalarArray(
+      [void Function(
+              GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
+                  b)
+          updates]) = _$GStreamDataData_acceleratorData_data_result__asScalarArray;
+
+  static void _initializeBuilder(
+          GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
+              b) =>
+      b..G__typename = 'ScalarArray';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<double> get scalarArrayValue;
+  static Serializer<GStreamDataData_acceleratorData_data_result__asScalarArray>
+      get serializer =>
+          _$gStreamDataDataAcceleratorDataDataResultAsScalarArraySerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStreamDataData_acceleratorData_data_result__asScalarArray.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GStreamDataData_acceleratorData_data_result__asScalarArray? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GStreamDataData_acceleratorData_data_result__asScalarArray.serializer,
+        json,
+      );
+}
+
+abstract class GStreamDataData_acceleratorData_data_result__asText
+    implements
+        Built<GStreamDataData_acceleratorData_data_result__asText,
+            GStreamDataData_acceleratorData_data_result__asTextBuilder>,
+        GStreamDataData_acceleratorData_data_result {
+  GStreamDataData_acceleratorData_data_result__asText._();
+
+  factory GStreamDataData_acceleratorData_data_result__asText(
+      [void Function(
+              GStreamDataData_acceleratorData_data_result__asTextBuilder b)
+          updates]) = _$GStreamDataData_acceleratorData_data_result__asText;
+
+  static void _initializeBuilder(
+          GStreamDataData_acceleratorData_data_result__asTextBuilder b) =>
+      b..G__typename = 'Text';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  String get textValue;
+  static Serializer<GStreamDataData_acceleratorData_data_result__asText>
+      get serializer =>
+          _$gStreamDataDataAcceleratorDataDataResultAsTextSerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStreamDataData_acceleratorData_data_result__asText.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GStreamDataData_acceleratorData_data_result__asText? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GStreamDataData_acceleratorData_data_result__asText.serializer,
+        json,
+      );
+}
+
+abstract class GStreamDataData_acceleratorData_data_result__asTextArray
+    implements
+        Built<GStreamDataData_acceleratorData_data_result__asTextArray,
+            GStreamDataData_acceleratorData_data_result__asTextArrayBuilder>,
+        GStreamDataData_acceleratorData_data_result {
+  GStreamDataData_acceleratorData_data_result__asTextArray._();
+
+  factory GStreamDataData_acceleratorData_data_result__asTextArray(
+      [void Function(
+              GStreamDataData_acceleratorData_data_result__asTextArrayBuilder b)
+          updates]) = _$GStreamDataData_acceleratorData_data_result__asTextArray;
+
+  static void _initializeBuilder(
+          GStreamDataData_acceleratorData_data_result__asTextArrayBuilder b) =>
+      b..G__typename = 'TextArray';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<String> get textArrayValue;
+  static Serializer<GStreamDataData_acceleratorData_data_result__asTextArray>
+      get serializer =>
+          _$gStreamDataDataAcceleratorDataDataResultAsTextArraySerializer;
+
+  @override
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStreamDataData_acceleratorData_data_result__asTextArray.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GStreamDataData_acceleratorData_data_result__asTextArray? fromJson(
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GStreamDataData_acceleratorData_data_result__asTextArray.serializer,
         json,
       );
 }

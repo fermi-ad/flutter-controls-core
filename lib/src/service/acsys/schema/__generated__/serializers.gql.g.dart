@@ -39,7 +39,11 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GStreamDataData_acceleratorData_data.serializer)
       ..add(GStreamDataData_acceleratorData_data_result__asScalar.serializer)
       ..add(
+          GStreamDataData_acceleratorData_data_result__asScalarArray.serializer)
+      ..add(
           GStreamDataData_acceleratorData_data_result__asStatusReply.serializer)
+      ..add(GStreamDataData_acceleratorData_data_result__asText.serializer)
+      ..add(GStreamDataData_acceleratorData_data_result__asTextArray.serializer)
       ..add(GStreamDataData_acceleratorData_data_result__base.serializer)
       ..add(GStreamDataReq.serializer)
       ..add(GStreamDataVars.serializer)
@@ -89,6 +93,12 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(double)]),
           () => new ListBuilder<double>())

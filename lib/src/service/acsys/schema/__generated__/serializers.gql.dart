@@ -58,7 +58,10 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/str
         GStreamDataData_acceleratorData,
         GStreamDataData_acceleratorData_data,
         GStreamDataData_acceleratorData_data_result__asScalar,
+        GStreamDataData_acceleratorData_data_result__asScalarArray,
         GStreamDataData_acceleratorData_data_result__asStatusReply,
+        GStreamDataData_acceleratorData_data_result__asText,
+        GStreamDataData_acceleratorData_data_result__asTextArray,
         GStreamDataData_acceleratorData_data_result__base;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.req.gql.dart'
     show GStreamDataReq;
@@ -122,7 +125,10 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GStreamDataData_acceleratorData,
   GStreamDataData_acceleratorData_data,
   GStreamDataData_acceleratorData_data_result__asScalar,
+  GStreamDataData_acceleratorData_data_result__asScalarArray,
   GStreamDataData_acceleratorData_data_result__asStatusReply,
+  GStreamDataData_acceleratorData_data_result__asText,
+  GStreamDataData_acceleratorData_data_result__asTextArray,
   GStreamDataData_acceleratorData_data_result__base,
   GStreamDataReq,
   GStreamDataVars,

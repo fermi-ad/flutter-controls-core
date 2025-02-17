@@ -228,18 +228,14 @@ final class Reading {
   final Status status;
   final int cycle;
   final DateTime timestamp;
-  final double? value;
-  final String? rawValue;
-  final double? primaryValue;
+  final DeviceValue? value;
 
   const Reading(
       {required this.refId,
       this.status = Status.okay,
       required this.cycle,
       required this.timestamp,
-      this.value,
-      this.rawValue,
-      this.primaryValue});
+      this.value});
 }
 
 /// Enumeration representing console colors.
@@ -793,33 +789,36 @@ final class ACSysService implements ACSysServiceAPI {
       final GStreamDataData_acceleratorData_data_result result =
           data.data.result;
 
-      // If the result has a scalar value, return a `Reading` with the value.
-
-      if (result is GStreamDataData_acceleratorData_data_result__asScalar) {
-        return Reading(
+      return switch (result) {
+        GStreamDataData_acceleratorData_data_result__asScalar _ => Reading(
             refId: data.refId,
             cycle: data.cycle,
             timestamp: data.data.timestamp,
-            value: result.scalarValue);
-      }
-
-      // If the result is a status, then the value is `null` and we save the
-      // status code.
-
-      if (result
-          is GStreamDataData_acceleratorData_data_result__asStatusReply) {
-        return Reading(
+            value: DevScalar(result.scalarValue)),
+        GStreamDataData_acceleratorData_data_result__asScalarArray _ => Reading(
             refId: data.refId,
             cycle: data.cycle,
             timestamp: data.data.timestamp,
-            status: Status.fromInt(result.status));
-      }
-
-      // TODO: We are only supporting a single, scalar value for the moment. Any
-      // types we don't yet support will report an error and tear down the
-      // stream.
-
-      throw ACSysTypeException("can't handle ${result.G__typename} types");
+            value: DevScalarArray(result.scalarArrayValue.toList())),
+        GStreamDataData_acceleratorData_data_result__asText _ => Reading(
+            refId: data.refId,
+            cycle: data.cycle,
+            timestamp: data.data.timestamp,
+            value: DevText(result.textValue)),
+        GStreamDataData_acceleratorData_data_result__asTextArray _ => Reading(
+            refId: data.refId,
+            cycle: data.cycle,
+            timestamp: data.data.timestamp,
+            value: DevTextArray(result.textArrayValue.toList()),
+          ),
+        GStreamDataData_acceleratorData_data_result__asStatusReply _ => Reading(
+            refId: data.refId,
+            cycle: data.cycle,
+            timestamp: data.data.timestamp,
+            status: Status.fromInt(result.status)),
+        _ => throw ACSysTypeException(
+            "unexpected data type, ${result.runtimeType}")
+      };
     } else {
       throw ACSysGraphQLException(e.graphqlErrors.toString());
     }
@@ -870,7 +869,10 @@ final class ACSysService implements ACSysServiceAPI {
 
     yield* strm.map((rdg) {
       final (refId, bs) = table[rdg.refId];
-      final statusVal = (rdg.value ?? 0.0).toInt();
+      final statusVal = switch (rdg.value) {
+        DevScalar(value: double value) => value.toInt(),
+        _ => 0
+      };
 
       return DigitalStatus(
           status: rdg.status.code,
