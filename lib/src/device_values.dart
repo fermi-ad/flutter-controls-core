@@ -150,36 +150,26 @@ extension TextArrayToDeviceValue on List<String> {
 // primitive type.
 
 extension FromDevValToDouble on DeviceValue {
-  double toDouble() => switch (this) {
-        DevScalar(value: var value) => value,
-        _ => throw Exception("DeviceValue is not a DevScalar")
-      };
+  double? toDouble() =>
+      switch (this) { DevScalar(value: var value) => value, _ => null };
 }
 
 extension FromDevValToText on DeviceValue {
-  String toText() => switch (this) {
-        DevText(value: var value) => value,
-        _ => throw Exception("DeviceValue is not a DevText")
-      };
+  String? toText() =>
+      switch (this) { DevText(value: var value) => value, _ => null };
 }
 
 extension FromDevValToRaw on DeviceValue {
-  List<int> toRaw() => switch (this) {
-        DevRaw(value: var value) => value,
-        _ => throw Exception("DeviceValue is not a DevRaw")
-      };
+  List<int>? toRaw() =>
+      switch (this) { DevRaw(value: var value) => value, _ => null };
 }
 
 extension FromDevValToDoubleArray on DeviceValue {
-  List<double> toDoubleArray() => switch (this) {
-        DevScalarArray(value: var value) => value,
-        _ => throw Exception("DeviceValue is not a DevScalarArray")
-      };
+  List<double>? toDoubleArray() =>
+      switch (this) { DevScalarArray(value: var value) => value, _ => null };
 }
 
 extension FromDevValToTextArray on DeviceValue {
-  List<String> toTextArray() => switch (this) {
-        DevTextArray(value: var value) => value,
-        _ => throw Exception("DeviceValue is not a DevTextArray")
-      };
+  List<String>? toTextArray() =>
+      switch (this) { DevTextArray(value: var value) => value, _ => null };
 }

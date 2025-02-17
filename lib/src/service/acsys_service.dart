@@ -869,10 +869,7 @@ final class ACSysService implements ACSysServiceAPI {
 
     yield* strm.map((rdg) {
       final (refId, bs) = table[rdg.refId];
-      final statusVal = switch (rdg.value) {
-        DevScalar(value: double value) => value.toInt(),
-        _ => 0
-      };
+      final statusVal = rdg.value?.toDouble()?.toInt() ?? 0;
 
       return DigitalStatus(
           status: rdg.status.code,
