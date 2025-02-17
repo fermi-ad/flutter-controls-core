@@ -1113,7 +1113,9 @@ extension on DeviceValue {
   }
 }
 
-/// A widget that provides access to the ACSys Service API.
+/// A widget that provides access to the ACSys Service API. This doesn't
+/// exist in the widget, nor does it do anything but provide access to the
+/// API using the coolly named `ACSys.api()` method.
 
 final class ACSys {
   /// Returns an object supporting the ACSys API.
@@ -1122,7 +1124,7 @@ final class ACSys {
   /// get registered if the [ACSysProvider] gets rebuilt.
 
   static ACSysServiceAPI api(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_ACSysProviderIW>()!.service;
+      context.dependOnInheritedWidgetOfExactType<_ACSysProviderIW>()!._service;
 }
 
 /// Provides the ACSys API to the application.
@@ -1153,16 +1155,17 @@ final class ACSysProvider extends StatelessWidget {
   }
 }
 
+// The inherited widget that provides the ACSys API to the application. This
+// is a private class which holds a spot in the widget tree where the service
+// object is stored. Inherited Widgets provide registration so that widgets
+// can be rapidly rebuilt when the service object changes.
+
 final class _ACSysProviderIW extends InheritedWidget {
   final ACSysServiceAPI _service;
 
   const _ACSysProviderIW(
       {required ACSysServiceAPI service, required super.child})
       : _service = service;
-
-  /// Returns the object that implements the [ACSysServiceAPI] interface.
-
-  ACSysServiceAPI get service => _service;
 
   @override
   bool updateShouldNotify(covariant _ACSysProviderIW oldWidget) =>
