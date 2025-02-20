@@ -25,7 +25,7 @@ abstract class GDeletePlotConfigReq
   GDeletePlotConfigReq._();
 
   factory GDeletePlotConfigReq(
-          [Function(GDeletePlotConfigReqBuilder b) updates]) =
+          [void Function(GDeletePlotConfigReqBuilder b) updates]) =
       _$GDeletePlotConfigReq;
 
   static void _initializeBuilder(GDeletePlotConfigReqBuilder b) => b
@@ -43,6 +43,7 @@ abstract class GDeletePlotConfigReq
   _i4.Request get execRequest => _i4.Request(
         operation: operation,
         variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
       );
 
   @override
@@ -64,8 +65,23 @@ abstract class GDeletePlotConfigReq
   @override
   bool get executeOnListen;
   @override
+  @BuiltValueField(serialize: false)
+  _i4.Context? get context;
+  @override
   _i2.GDeletePlotConfigData? parseData(Map<String, dynamic> json) =>
       _i2.GDeletePlotConfigData.fromJson(json);
+
+  @override
+  Map<String, dynamic> varsToJson() => vars.toJson();
+
+  @override
+  Map<String, dynamic> dataToJson(_i2.GDeletePlotConfigData data) =>
+      data.toJson();
+
+  @override
+  _i1.OperationRequest<_i2.GDeletePlotConfigData, _i3.GDeletePlotConfigVars>
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GDeletePlotConfigReq> get serializer =>
       _$gDeletePlotConfigReqSerializer;

@@ -211,9 +211,10 @@ class GSetDeviceDataBuilder
     try {
       _$result = _$v ??
           new _$GSetDeviceData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GSetDeviceData', 'G__typename'),
-              setDevice: setDevice.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GSetDeviceData', 'G__typename'),
+            setDevice: setDevice.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -328,10 +329,11 @@ class GSetDeviceData_setDeviceBuilder
   _$GSetDeviceData_setDevice _build() {
     final _$result = _$v ??
         new _$GSetDeviceData_setDevice._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GSetDeviceData_setDevice', 'G__typename'),
-            status: BuiltValueNullFieldError.checkNotNull(
-                status, r'GSetDeviceData_setDevice', 'status'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GSetDeviceData_setDevice', 'G__typename'),
+          status: BuiltValueNullFieldError.checkNotNull(
+              status, r'GSetDeviceData_setDevice', 'status'),
+        );
     replace(_$result);
     return _$result;
   }

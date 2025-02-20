@@ -13,7 +13,7 @@ abstract class GPlotConfigsVars
     implements Built<GPlotConfigsVars, GPlotConfigsVarsBuilder> {
   GPlotConfigsVars._();
 
-  factory GPlotConfigsVars([Function(GPlotConfigsVarsBuilder b) updates]) =
+  factory GPlotConfigsVars([void Function(GPlotConfigsVarsBuilder b) updates]) =
       _$GPlotConfigsVars;
 
   int? get id;

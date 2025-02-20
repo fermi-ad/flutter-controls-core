@@ -1,27 +1,27 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'update_plot_config.var.gql.dart';
+part of 'set_users_config.var.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GUpdatePlotConfigVars> _$gUpdatePlotConfigVarsSerializer =
-    new _$GUpdatePlotConfigVarsSerializer();
+Serializer<GSetUsersConfigVars> _$gSetUsersConfigVarsSerializer =
+    new _$GSetUsersConfigVarsSerializer();
 
-class _$GUpdatePlotConfigVarsSerializer
-    implements StructuredSerializer<GUpdatePlotConfigVars> {
+class _$GSetUsersConfigVarsSerializer
+    implements StructuredSerializer<GSetUsersConfigVars> {
   @override
   final Iterable<Type> types = const [
-    GUpdatePlotConfigVars,
-    _$GUpdatePlotConfigVars
+    GSetUsersConfigVars,
+    _$GSetUsersConfigVars
   ];
   @override
-  final String wireName = 'GUpdatePlotConfigVars';
+  final String wireName = 'GSetUsersConfigVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GUpdatePlotConfigVars object,
+      Serializers serializers, GSetUsersConfigVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'cfg',
@@ -33,10 +33,10 @@ class _$GUpdatePlotConfigVarsSerializer
   }
 
   @override
-  GUpdatePlotConfigVars deserialize(
+  GSetUsersConfigVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GUpdatePlotConfigVarsBuilder();
+    final result = new GSetUsersConfigVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -57,31 +57,31 @@ class _$GUpdatePlotConfigVarsSerializer
   }
 }
 
-class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
+class _$GSetUsersConfigVars extends GSetUsersConfigVars {
   @override
   final _i1.GPlotConfigurationSnapshotIn cfg;
 
-  factory _$GUpdatePlotConfigVars(
-          [void Function(GUpdatePlotConfigVarsBuilder)? updates]) =>
-      (new GUpdatePlotConfigVarsBuilder()..update(updates))._build();
+  factory _$GSetUsersConfigVars(
+          [void Function(GSetUsersConfigVarsBuilder)? updates]) =>
+      (new GSetUsersConfigVarsBuilder()..update(updates))._build();
 
-  _$GUpdatePlotConfigVars._({required this.cfg}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(cfg, r'GUpdatePlotConfigVars', 'cfg');
+  _$GSetUsersConfigVars._({required this.cfg}) : super._() {
+    BuiltValueNullFieldError.checkNotNull(cfg, r'GSetUsersConfigVars', 'cfg');
   }
 
   @override
-  GUpdatePlotConfigVars rebuild(
-          void Function(GUpdatePlotConfigVarsBuilder) updates) =>
+  GSetUsersConfigVars rebuild(
+          void Function(GSetUsersConfigVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GUpdatePlotConfigVarsBuilder toBuilder() =>
-      new GUpdatePlotConfigVarsBuilder()..replace(this);
+  GSetUsersConfigVarsBuilder toBuilder() =>
+      new GSetUsersConfigVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GUpdatePlotConfigVars && cfg == other.cfg;
+    return other is GSetUsersConfigVars && cfg == other.cfg;
   }
 
   @override
@@ -94,24 +94,24 @@ class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GUpdatePlotConfigVars')
+    return (newBuiltValueToStringHelper(r'GSetUsersConfigVars')
           ..add('cfg', cfg))
         .toString();
   }
 }
 
-class GUpdatePlotConfigVarsBuilder
-    implements Builder<GUpdatePlotConfigVars, GUpdatePlotConfigVarsBuilder> {
-  _$GUpdatePlotConfigVars? _$v;
+class GSetUsersConfigVarsBuilder
+    implements Builder<GSetUsersConfigVars, GSetUsersConfigVarsBuilder> {
+  _$GSetUsersConfigVars? _$v;
 
   _i1.GPlotConfigurationSnapshotInBuilder? _cfg;
   _i1.GPlotConfigurationSnapshotInBuilder get cfg =>
       _$this._cfg ??= new _i1.GPlotConfigurationSnapshotInBuilder();
   set cfg(_i1.GPlotConfigurationSnapshotInBuilder? cfg) => _$this._cfg = cfg;
 
-  GUpdatePlotConfigVarsBuilder();
+  GSetUsersConfigVarsBuilder();
 
-  GUpdatePlotConfigVarsBuilder get _$this {
+  GSetUsersConfigVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _cfg = $v.cfg.toBuilder();
@@ -121,24 +121,24 @@ class GUpdatePlotConfigVarsBuilder
   }
 
   @override
-  void replace(GUpdatePlotConfigVars other) {
+  void replace(GSetUsersConfigVars other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GUpdatePlotConfigVars;
+    _$v = other as _$GSetUsersConfigVars;
   }
 
   @override
-  void update(void Function(GUpdatePlotConfigVarsBuilder)? updates) {
+  void update(void Function(GSetUsersConfigVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GUpdatePlotConfigVars build() => _build();
+  GSetUsersConfigVars build() => _build();
 
-  _$GUpdatePlotConfigVars _build() {
-    _$GUpdatePlotConfigVars _$result;
+  _$GSetUsersConfigVars _build() {
+    _$GSetUsersConfigVars _$result;
     try {
       _$result = _$v ??
-          new _$GUpdatePlotConfigVars._(
+          new _$GSetUsersConfigVars._(
             cfg: cfg.build(),
           );
     } catch (_) {
@@ -148,7 +148,7 @@ class GUpdatePlotConfigVarsBuilder
         cfg.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GUpdatePlotConfigVars', _$failedField, e.toString());
+            r'GSetUsersConfigVars', _$failedField, e.toString());
       }
       rethrow;
     }

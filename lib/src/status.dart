@@ -1,4 +1,4 @@
-library status;
+library;
 
 extension type Status._(int code) {
   const Status.fromInt(int value) : code = value;

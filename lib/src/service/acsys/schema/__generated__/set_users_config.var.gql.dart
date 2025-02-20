@@ -9,28 +9,28 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i2;
 
-part 'set_device.var.gql.g.dart';
+part 'set_users_config.var.gql.g.dart';
 
-abstract class GSetDeviceVars
-    implements Built<GSetDeviceVars, GSetDeviceVarsBuilder> {
-  GSetDeviceVars._();
+abstract class GSetUsersConfigVars
+    implements Built<GSetUsersConfigVars, GSetUsersConfigVarsBuilder> {
+  GSetUsersConfigVars._();
 
-  factory GSetDeviceVars([void Function(GSetDeviceVarsBuilder b) updates]) =
-      _$GSetDeviceVars;
+  factory GSetUsersConfigVars(
+          [void Function(GSetUsersConfigVarsBuilder b) updates]) =
+      _$GSetUsersConfigVars;
 
-  String get device;
-  _i1.GDevValue get value;
-  static Serializer<GSetDeviceVars> get serializer =>
-      _$gSetDeviceVarsSerializer;
+  _i1.GPlotConfigurationSnapshotIn get cfg;
+  static Serializer<GSetUsersConfigVars> get serializer =>
+      _$gSetUsersConfigVarsSerializer;
 
   Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GSetDeviceVars.serializer,
+        GSetUsersConfigVars.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GSetDeviceVars? fromJson(Map<String, dynamic> json) =>
+  static GSetUsersConfigVars? fromJson(Map<String, dynamic> json) =>
       _i2.serializers.deserializeWith(
-        GSetDeviceVars.serializer,
+        GSetUsersConfigVars.serializer,
         json,
       );
 }

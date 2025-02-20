@@ -14,7 +14,7 @@ abstract class GUpdatePlotConfigData
   GUpdatePlotConfigData._();
 
   factory GUpdatePlotConfigData(
-          [Function(GUpdatePlotConfigDataBuilder b) updates]) =
+          [void Function(GUpdatePlotConfigDataBuilder b) updates]) =
       _$GUpdatePlotConfigData;
 
   static void _initializeBuilder(GUpdatePlotConfigDataBuilder b) =>

@@ -161,9 +161,10 @@ class GUpdatePlotConfigDataBuilder
   _$GUpdatePlotConfigData _build() {
     final _$result = _$v ??
         new _$GUpdatePlotConfigData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GUpdatePlotConfigData', 'G__typename'),
-            updatePlotConfiguration: updatePlotConfiguration);
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename, r'GUpdatePlotConfigData', 'G__typename'),
+          updatePlotConfiguration: updatePlotConfiguration,
+        );
     replace(_$result);
     return _$result;
   }

@@ -150,9 +150,10 @@ class GSetDeviceVarsBuilder
     try {
       _$result = _$v ??
           new _$GSetDeviceVars._(
-              device: BuiltValueNullFieldError.checkNotNull(
-                  device, r'GSetDeviceVars', 'device'),
-              value: value.build());
+            device: BuiltValueNullFieldError.checkNotNull(
+                device, r'GSetDeviceVars', 'device'),
+            value: value.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {

@@ -11,6 +11,15 @@ subscription StreamData($drfs: [String!]!) {
                 ... on Scalar {
                     scalarValue
                 }
+                ... on ScalarArray {
+                    scalarArrayValue
+                }
+                ... on Text {
+                    textValue
+                }
+                ... on TextArray {
+                    textArrayValue
+                }
             }
         }
     }

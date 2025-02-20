@@ -25,8 +25,7 @@
 ///     print("M:OUTTMP didn't return a floating point number!");
 /// }
 /// ```
-
-library device_values;
+library;
 
 import 'package:flutter/foundation.dart';
 
@@ -145,4 +144,32 @@ extension DoubleArrayToDeviceValue on List<double> {
 
 extension TextArrayToDeviceValue on List<String> {
   DeviceValue toDevVal() => DevTextArray(this);
+}
+
+// The `FromDeviceValue` extension allows us to convert a `DeviceValue` into a
+// primitive type.
+
+extension FromDevValToDouble on DeviceValue {
+  double? toDouble() =>
+      switch (this) { DevScalar(value: var value) => value, _ => null };
+}
+
+extension FromDevValToText on DeviceValue {
+  String? toText() =>
+      switch (this) { DevText(value: var value) => value, _ => null };
+}
+
+extension FromDevValToRaw on DeviceValue {
+  List<int>? toRaw() =>
+      switch (this) { DevRaw(value: var value) => value, _ => null };
+}
+
+extension FromDevValToDoubleArray on DeviceValue {
+  List<double>? toDoubleArray() =>
+      switch (this) { DevScalarArray(value: var value) => value, _ => null };
+}
+
+extension FromDevValToTextArray on DeviceValue {
+  List<String>? toTextArray() =>
+      switch (this) { DevTextArray(value: var value) => value, _ => null };
 }

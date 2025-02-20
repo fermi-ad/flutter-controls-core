@@ -16,7 +16,7 @@ abstract class GUpdatePlotConfigVars
   GUpdatePlotConfigVars._();
 
   factory GUpdatePlotConfigVars(
-          [Function(GUpdatePlotConfigVarsBuilder b) updates]) =
+          [void Function(GUpdatePlotConfigVarsBuilder b) updates]) =
       _$GUpdatePlotConfigVars;
 
   _i1.GPlotConfigurationSnapshotIn get cfg;

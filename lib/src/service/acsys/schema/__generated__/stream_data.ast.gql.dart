@@ -101,6 +101,57 @@ const StreamData = _i1.OperationDefinitionNode(
                     )
                   ]),
                 ),
+                _i1.InlineFragmentNode(
+                  typeCondition: _i1.TypeConditionNode(
+                      on: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'ScalarArray'),
+                    isNonNull: false,
+                  )),
+                  directives: [],
+                  selectionSet: _i1.SelectionSetNode(selections: [
+                    _i1.FieldNode(
+                      name: _i1.NameNode(value: 'scalarArrayValue'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    )
+                  ]),
+                ),
+                _i1.InlineFragmentNode(
+                  typeCondition: _i1.TypeConditionNode(
+                      on: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'Text'),
+                    isNonNull: false,
+                  )),
+                  directives: [],
+                  selectionSet: _i1.SelectionSetNode(selections: [
+                    _i1.FieldNode(
+                      name: _i1.NameNode(value: 'textValue'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    )
+                  ]),
+                ),
+                _i1.InlineFragmentNode(
+                  typeCondition: _i1.TypeConditionNode(
+                      on: _i1.NamedTypeNode(
+                    name: _i1.NameNode(value: 'TextArray'),
+                    isNonNull: false,
+                  )),
+                  directives: [],
+                  selectionSet: _i1.SelectionSetNode(selections: [
+                    _i1.FieldNode(
+                      name: _i1.NameNode(value: 'textArrayValue'),
+                      alias: null,
+                      arguments: [],
+                      directives: [],
+                      selectionSet: null,
+                    )
+                  ]),
+                ),
               ]),
             ),
           ]),

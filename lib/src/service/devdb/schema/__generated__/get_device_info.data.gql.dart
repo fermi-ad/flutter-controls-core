@@ -7,7 +7,7 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/serializers.gql.dart'
     as _i1;
-import 'package:gql_code_builder/src/serializers/inline_fragment_serializer.dart'
+import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
     as _i2;
 
 part 'get_device_info.data.gql.g.dart';
@@ -16,7 +16,8 @@ abstract class GgetDeviceInfoData
     implements Built<GgetDeviceInfoData, GgetDeviceInfoDataBuilder> {
   GgetDeviceInfoData._();
 
-  factory GgetDeviceInfoData([Function(GgetDeviceInfoDataBuilder b) updates]) =
+  factory GgetDeviceInfoData(
+          [void Function(GgetDeviceInfoDataBuilder b) updates]) =
       _$GgetDeviceInfoData;
 
   static void _initializeBuilder(GgetDeviceInfoDataBuilder b) =>
@@ -47,7 +48,7 @@ abstract class GgetDeviceInfoData_deviceInfo
   GgetDeviceInfoData_deviceInfo._();
 
   factory GgetDeviceInfoData_deviceInfo(
-          [Function(GgetDeviceInfoData_deviceInfoBuilder b) updates]) =
+          [void Function(GgetDeviceInfoData_deviceInfoBuilder b) updates]) =
       _$GgetDeviceInfoData_deviceInfo;
 
   static void _initializeBuilder(GgetDeviceInfoData_deviceInfoBuilder b) =>
@@ -105,7 +106,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__base
   GgetDeviceInfoData_deviceInfo_result__base._();
 
   factory GgetDeviceInfoData_deviceInfo_result__base(
-      [Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder b)
+      [void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder b)
           updates]) = _$GgetDeviceInfoData_deviceInfo_result__base;
 
   static void _initializeBuilder(
@@ -140,7 +141,8 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo(
-      [Function(GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder b)
+      [void Function(
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder b)
           updates]) = _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo;
 
   static void _initializeBuilder(
@@ -181,7 +183,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading(
-      [Function(
+      [void Function(
               GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
                   b)
           updates]) = _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading;
@@ -241,7 +243,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
-          [Function(
+          [void Function(
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
                       b)
               updates]) =
@@ -284,7 +286,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_ent
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries(
-          [Function(
+          [void Function(
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
                       b)
               updates]) =
@@ -326,7 +328,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
-          [Function(
+          [void Function(
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
                       b)
               updates]) =
@@ -371,7 +373,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extE
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries(
-          [Function(
+          [void Function(
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
                       b)
               updates]) =
@@ -417,7 +419,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entr
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries(
-          [Function(
+          [void Function(
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
                       b)
               updates]) =
@@ -468,7 +470,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting(
-      [Function(
+      [void Function(
               GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
                   b)
           updates]) = _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting;
@@ -531,7 +533,7 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobIn
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo(
-          [Function(
+          [void Function(
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
                       b)
               updates]) =
@@ -574,7 +576,8 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asErrorReply
   GgetDeviceInfoData_deviceInfo_result__asErrorReply._();
 
   factory GgetDeviceInfoData_deviceInfo_result__asErrorReply(
-      [Function(GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder b)
+      [void Function(
+              GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder b)
           updates]) = _$GgetDeviceInfoData_deviceInfo_result__asErrorReply;
 
   static void _initializeBuilder(
@@ -626,7 +629,7 @@ abstract class GDevicePropertyFieldsData
   GDevicePropertyFieldsData._();
 
   factory GDevicePropertyFieldsData(
-          [Function(GDevicePropertyFieldsDataBuilder b) updates]) =
+          [void Function(GDevicePropertyFieldsDataBuilder b) updates]) =
       _$GDevicePropertyFieldsData;
 
   static void _initializeBuilder(GDevicePropertyFieldsDataBuilder b) =>

@@ -1,5 +1,5 @@
 /// {@category Data Acquisition}
-library acsys_service;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';
@@ -24,6 +24,10 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/rem
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_users_config.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_users_config.req.gql.dart';
 
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.req.gql.dart';
 import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get_device_info.data.gql.dart';
@@ -224,18 +228,14 @@ final class Reading {
   final Status status;
   final int cycle;
   final DateTime timestamp;
-  final double? value;
-  final String? rawValue;
-  final double? primaryValue;
+  final DeviceValue? value;
 
   const Reading(
       {required this.refId,
       this.status = Status.okay,
       required this.cycle,
       required this.timestamp,
-      this.value,
-      this.rawValue,
-      this.primaryValue});
+      this.value});
 }
 
 /// Enumeration representing console colors.
@@ -479,6 +479,10 @@ abstract interface class ACSysServiceAPI {
   /// Returns the last plot configuration that the user saved.
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
 
+  /// Sets the provided plot configuration as the last one the user saved.
+  Future<void> saveUserConfiguration(
+      {required PlotConfigurationSnapshot snapshot});
+
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
   Future<SettingStatus> submit(
@@ -501,12 +505,16 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _s;
   final Client _qDevDb;
 
+  static Map<String, String> _buildAuthHeader(String? jwt) =>
+      jwt != null ? {"Authorization": "Bearer $jwt"} : {};
+
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  ACSysService()
+  ACSysService({String? jwt})
       : _q = Client(
-            link: HttpLink("https://acsys-proxy.fnal.gov:8001/acsys"),
+            link: HttpLink("https://acsys-proxy.fnal.gov:8001/acsys",
+                defaultHeaders: _buildAuthHeader(jwt)),
             cache: Cache()),
         _s = Client(
             link: WebSocketLink(null,
@@ -522,7 +530,8 @@ final class ACSysService implements ACSysServiceAPI {
                 reconnectInterval: const Duration(seconds: 1)),
             cache: Cache()),
         _qDevDb = Client(
-            link: HttpLink("https://acsys-proxy.fnal.gov:8001/devdb"),
+            link: HttpLink("https://acsys-proxy.fnal.gov:8001/devdb",
+                defaultHeaders: _buildAuthHeader(jwt)),
             cache: Cache());
 
   // Common code needed to do RPCs. The caller sends in a protobuf request and,
@@ -780,33 +789,36 @@ final class ACSysService implements ACSysServiceAPI {
       final GStreamDataData_acceleratorData_data_result result =
           data.data.result;
 
-      // If the result has a scalar value, return a `Reading` with the value.
-
-      if (result is GStreamDataData_acceleratorData_data_result__asScalar) {
-        return Reading(
+      return switch (result) {
+        GStreamDataData_acceleratorData_data_result__asScalar _ => Reading(
             refId: data.refId,
             cycle: data.cycle,
             timestamp: data.data.timestamp,
-            value: result.scalarValue);
-      }
-
-      // If the result is a status, then the value is `null` and we save the
-      // status code.
-
-      if (result
-          is GStreamDataData_acceleratorData_data_result__asStatusReply) {
-        return Reading(
+            value: DevScalar(result.scalarValue)),
+        GStreamDataData_acceleratorData_data_result__asScalarArray _ => Reading(
             refId: data.refId,
             cycle: data.cycle,
             timestamp: data.data.timestamp,
-            status: Status.fromInt(result.status));
-      }
-
-      // TODO: We are only supporting a single, scalar value for the moment. Any
-      // types we don't yet support will report an error and tear down the
-      // stream.
-
-      throw ACSysTypeException("can't handle ${result.G__typename} types");
+            value: DevScalarArray(result.scalarArrayValue.toList())),
+        GStreamDataData_acceleratorData_data_result__asText _ => Reading(
+            refId: data.refId,
+            cycle: data.cycle,
+            timestamp: data.data.timestamp,
+            value: DevText(result.textValue)),
+        GStreamDataData_acceleratorData_data_result__asTextArray _ => Reading(
+            refId: data.refId,
+            cycle: data.cycle,
+            timestamp: data.data.timestamp,
+            value: DevTextArray(result.textArrayValue.toList()),
+          ),
+        GStreamDataData_acceleratorData_data_result__asStatusReply _ => Reading(
+            refId: data.refId,
+            cycle: data.cycle,
+            timestamp: data.data.timestamp,
+            status: Status.fromInt(result.status)),
+        _ => throw ACSysTypeException(
+            "unexpected data type, ${result.runtimeType}")
+      };
     } else {
       throw ACSysGraphQLException(e.graphqlErrors.toString());
     }
@@ -857,7 +869,7 @@ final class ACSysService implements ACSysServiceAPI {
 
     yield* strm.map((rdg) {
       final (refId, bs) = table[rdg.refId];
-      final statusVal = (rdg.value ?? 0.0).toInt();
+      final statusVal = rdg.value?.toDouble()?.toInt() ?? 0;
 
       return DigitalStatus(
           status: rdg.status.code,
@@ -959,8 +971,37 @@ final class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration() {
-    // TODO: implement retrieveLastUserConfiguration
-    throw UnimplementedError();
+    final req = GUsersLastConfigReq((b) => b);
+
+    return _rpc(req, xlat: (GUsersLastConfigData data) {
+      final e = data.usersLastConfiguration!;
+
+      return PlotConfigurationSnapshot(
+          configurationId: PlotConfigId._fromInt(e.configurationId),
+          configurationName: e.configurationName,
+          channels: Map.fromEntries(e.channels.map((e) => MapEntry(
+              e.device,
+              ChannelSettingSnapshot(
+                  lineColor: e.lineColor != null ? Color(e.lineColor!) : null,
+                  markerIndex: e.markerIndex)))),
+          yMin: e.yMin,
+          yMax: e.yMax,
+          xMin: e.xMin,
+          xMax: e.xMax,
+          isShowLabels: e.isShowLabels,
+          updateDelay: e.updateDelay,
+          nAcquisitions: e.nAcquisitions,
+          tclkEvent: e.tclkEvent);
+    });
+  }
+
+  @override
+  Future<void> saveUserConfiguration(
+      {required PlotConfigurationSnapshot snapshot}) {
+    final req = GSetUsersConfigReq(
+        (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot));
+
+    return _rpc(req, xlat: (GSetUsersConfigData data) => ());
   }
 
   @override
@@ -1072,29 +1113,18 @@ extension on DeviceValue {
   }
 }
 
-/// A widget that provides access to the ACSys Service API.
-///
-/// This widget has no public constructor and so can't be created by an
-/// application. It gets created automatically, however, by the
-/// [ACSysProvider] widget. Once an `ACSysProvider` widget is placed in
-/// the widget tree, the API can be accessed through the [ACSys.api()]
-/// method.
+/// A widget that provides access to the ACSys Service API. This doesn't
+/// exist in the widget, nor does it do anything but provide access to the
+/// API using the coolly named `ACSys.api()` method.
 
-class ACSys extends StatelessWidget {
-  final Widget child;
-
-  const ACSys._({required this.child});
-
+final class ACSys {
   /// Returns an object supporting the ACSys API.
   ///
   /// Any widget that uses this to retrieve the ACSys service object will
   /// get registered if the [ACSysProvider] gets rebuilt.
 
   static ACSysServiceAPI api(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<ACSysProvider>()!.service;
-
-  @override
-  Widget build(BuildContext context) => child;
+      context.dependOnInheritedWidgetOfExactType<_ACSysProviderIW>()!._service;
 }
 
 /// Provides the ACSys API to the application.
@@ -1103,13 +1133,10 @@ class ACSys extends StatelessWidget {
 /// of this widget near the top of its tree so it doesn't get rebuilt. With
 /// this in the tree, other widgets can use the API by calling [ACSys.api()]
 /// to get an [ACSysServiceAPI] object which implements the API.
-
-class ACSysProvider extends InheritedWidget {
-  final ACSysServiceAPI _service;
+final class ACSysProvider extends StatelessWidget {
+  final Widget child;
 
   /// Creates the widget.
-  ///
-  /// Provides support to the ACSys API.
   ///
   /// - [child] is the widget subtree that gets added to the tree below this
   ///   widget.
@@ -1119,16 +1146,28 @@ class ACSysProvider extends InheritedWidget {
   ///   implementation that communicates over the network to the offcial
   ///   control system API. This option is mainly to mock-up a service to
   ///   use in unit tests.
-
-  ACSysProvider({required Widget child, ACSysServiceAPI? service, super.key})
-      : _service = service ?? ACSysService(),
-        super(child: ACSys._(child: child));
-
-  /// Returns the object tha implements the [ACSysServiceAPI] interface.
-
-  ACSysServiceAPI get service => _service;
+  const ACSysProvider({required this.child, super.key});
 
   @override
-  bool updateShouldNotify(covariant ACSysProvider oldWidget) =>
+  Widget build(BuildContext context) {
+    return _ACSysProviderIW(
+        service: ACSysService(jwt: AuthService.getJwt(context)), child: child);
+  }
+}
+
+// The inherited widget that provides the ACSys API to the application. This
+// is a private class which holds a spot in the widget tree where the service
+// object is stored. Inherited Widgets provide registration so that widgets
+// can be rapidly rebuilt when the service object changes.
+
+final class _ACSysProviderIW extends InheritedWidget {
+  final ACSysServiceAPI _service;
+
+  const _ACSysProviderIW(
+      {required ACSysServiceAPI service, required super.child})
+      : _service = service;
+
+  @override
+  bool updateShouldNotify(covariant _ACSysProviderIW oldWidget) =>
       _service != oldWidget._service;
 }

@@ -120,6 +120,7 @@ type Mutation {
   ): StatusReply!
   updatePlotConfiguration(config: PlotConfigurationSnapshotIn!): Int
   deletePlotConfiguration(configurationId: Int!): StatusReply!
+  usersConfiguration(config: PlotConfigurationSnapshotIn!): StatusReply!
 }
 
 type PlotChannelData {
@@ -215,6 +216,7 @@ type Query {
     when: Timestamp
   ): [DataReply!]!
   plotConfiguration(configurationId: Int): [PlotConfigurationSnapshot!]!
+  usersLastConfiguration(): PlotConfigurationSnapshot
 }
 
 """

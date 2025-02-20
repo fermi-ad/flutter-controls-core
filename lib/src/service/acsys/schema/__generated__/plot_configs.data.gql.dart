@@ -14,7 +14,7 @@ abstract class GPlotConfigsData
     implements Built<GPlotConfigsData, GPlotConfigsDataBuilder> {
   GPlotConfigsData._();
 
-  factory GPlotConfigsData([Function(GPlotConfigsDataBuilder b) updates]) =
+  factory GPlotConfigsData([void Function(GPlotConfigsDataBuilder b) updates]) =
       _$GPlotConfigsData;
 
   static void _initializeBuilder(GPlotConfigsDataBuilder b) =>
@@ -45,8 +45,8 @@ abstract class GPlotConfigsData_plotConfiguration
   GPlotConfigsData_plotConfiguration._();
 
   factory GPlotConfigsData_plotConfiguration(
-          [Function(GPlotConfigsData_plotConfigurationBuilder b) updates]) =
-      _$GPlotConfigsData_plotConfiguration;
+      [void Function(GPlotConfigsData_plotConfigurationBuilder b)
+          updates]) = _$GPlotConfigsData_plotConfiguration;
 
   static void _initializeBuilder(GPlotConfigsData_plotConfigurationBuilder b) =>
       b..G__typename = 'PlotConfigurationSnapshot';
@@ -87,7 +87,7 @@ abstract class GPlotConfigsData_plotConfiguration_channels
   GPlotConfigsData_plotConfiguration_channels._();
 
   factory GPlotConfigsData_plotConfiguration_channels(
-      [Function(GPlotConfigsData_plotConfiguration_channelsBuilder b)
+      [void Function(GPlotConfigsData_plotConfiguration_channelsBuilder b)
           updates]) = _$GPlotConfigsData_plotConfiguration_channels;
 
   static void _initializeBuilder(

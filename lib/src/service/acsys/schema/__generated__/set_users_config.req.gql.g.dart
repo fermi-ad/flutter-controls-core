@@ -1,28 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'stream_data.req.gql.dart';
+part of 'set_users_config.req.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GStreamDataReq> _$gStreamDataReqSerializer =
-    new _$GStreamDataReqSerializer();
+Serializer<GSetUsersConfigReq> _$gSetUsersConfigReqSerializer =
+    new _$GSetUsersConfigReqSerializer();
 
-class _$GStreamDataReqSerializer
-    implements StructuredSerializer<GStreamDataReq> {
+class _$GSetUsersConfigReqSerializer
+    implements StructuredSerializer<GSetUsersConfigReq> {
   @override
-  final Iterable<Type> types = const [GStreamDataReq, _$GStreamDataReq];
+  final Iterable<Type> types = const [GSetUsersConfigReq, _$GSetUsersConfigReq];
   @override
-  final String wireName = 'GStreamDataReq';
+  final String wireName = 'GSetUsersConfigReq';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamDataReq object,
+  Iterable<Object?> serialize(
+      Serializers serializers, GSetUsersConfigReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GStreamDataVars)),
+          specifiedType: const FullType(_i3.GSetUsersConfigVars)),
       'operation',
       serializers.serialize(object.operation,
           specifiedType: const FullType(_i4.Operation)),
@@ -43,7 +44,7 @@ class _$GStreamDataReqSerializer
       result
         ..add('optimisticResponse')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GStreamDataData)));
+            specifiedType: const FullType(_i2.GSetUsersConfigData)));
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
@@ -71,10 +72,10 @@ class _$GStreamDataReqSerializer
   }
 
   @override
-  GStreamDataReq deserialize(
+  GSetUsersConfigReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GStreamDataReqBuilder();
+    final result = new GSetUsersConfigReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -84,8 +85,8 @@ class _$GStreamDataReqSerializer
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GStreamDataVars))!
-              as _i3.GStreamDataVars);
+                  specifiedType: const FullType(_i3.GSetUsersConfigVars))!
+              as _i3.GSetUsersConfigVars);
           break;
         case 'operation':
           result.operation = serializers.deserialize(value,
@@ -97,8 +98,8 @@ class _$GStreamDataReqSerializer
           break;
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GStreamDataData))!
-              as _i2.GStreamDataData);
+                  specifiedType: const FullType(_i2.GSetUsersConfigData))!
+              as _i2.GSetUsersConfigData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -127,18 +128,18 @@ class _$GStreamDataReqSerializer
   }
 }
 
-class _$GStreamDataReq extends GStreamDataReq {
+class _$GSetUsersConfigReq extends GSetUsersConfigReq {
   @override
-  final _i3.GStreamDataVars vars;
+  final _i3.GSetUsersConfigVars vars;
   @override
   final _i4.Operation operation;
   @override
   final String? requestId;
   @override
-  final _i2.GStreamDataData? Function(
-      _i2.GStreamDataData?, _i2.GStreamDataData?)? updateResult;
+  final _i2.GSetUsersConfigData? Function(
+      _i2.GSetUsersConfigData?, _i2.GSetUsersConfigData?)? updateResult;
   @override
-  final _i2.GStreamDataData? optimisticResponse;
+  final _i2.GSetUsersConfigData? optimisticResponse;
   @override
   final String? updateCacheHandlerKey;
   @override
@@ -150,10 +151,11 @@ class _$GStreamDataReq extends GStreamDataReq {
   @override
   final _i4.Context? context;
 
-  factory _$GStreamDataReq([void Function(GStreamDataReqBuilder)? updates]) =>
-      (new GStreamDataReqBuilder()..update(updates))._build();
+  factory _$GSetUsersConfigReq(
+          [void Function(GSetUsersConfigReqBuilder)? updates]) =>
+      (new GSetUsersConfigReqBuilder()..update(updates))._build();
 
-  _$GStreamDataReq._(
+  _$GSetUsersConfigReq._(
       {required this.vars,
       required this.operation,
       this.requestId,
@@ -165,26 +167,27 @@ class _$GStreamDataReq extends GStreamDataReq {
       required this.executeOnListen,
       this.context})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GStreamDataReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(vars, r'GSetUsersConfigReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, r'GStreamDataReq', 'operation');
+        operation, r'GSetUsersConfigReq', 'operation');
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GStreamDataReq', 'executeOnListen');
+        executeOnListen, r'GSetUsersConfigReq', 'executeOnListen');
   }
 
   @override
-  GStreamDataReq rebuild(void Function(GStreamDataReqBuilder) updates) =>
+  GSetUsersConfigReq rebuild(
+          void Function(GSetUsersConfigReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataReqBuilder toBuilder() =>
-      new GStreamDataReqBuilder()..replace(this);
+  GSetUsersConfigReqBuilder toBuilder() =>
+      new GSetUsersConfigReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     final dynamic _$dynamicOther = other;
-    return other is GStreamDataReq &&
+    return other is GSetUsersConfigReq &&
         vars == other.vars &&
         operation == other.operation &&
         requestId == other.requestId &&
@@ -216,7 +219,7 @@ class _$GStreamDataReq extends GStreamDataReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataReq')
+    return (newBuiltValueToStringHelper(r'GSetUsersConfigReq')
           ..add('vars', vars)
           ..add('operation', operation)
           ..add('requestId', requestId)
@@ -231,14 +234,14 @@ class _$GStreamDataReq extends GStreamDataReq {
   }
 }
 
-class GStreamDataReqBuilder
-    implements Builder<GStreamDataReq, GStreamDataReqBuilder> {
-  _$GStreamDataReq? _$v;
+class GSetUsersConfigReqBuilder
+    implements Builder<GSetUsersConfigReq, GSetUsersConfigReqBuilder> {
+  _$GSetUsersConfigReq? _$v;
 
-  _i3.GStreamDataVarsBuilder? _vars;
-  _i3.GStreamDataVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GStreamDataVarsBuilder();
-  set vars(_i3.GStreamDataVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GSetUsersConfigVarsBuilder? _vars;
+  _i3.GSetUsersConfigVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GSetUsersConfigVarsBuilder();
+  set vars(_i3.GSetUsersConfigVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
   _i4.Operation? get operation => _$this._operation;
@@ -248,20 +251,21 @@ class GStreamDataReqBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
-      _updateResult;
-  _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
+  _i2.GSetUsersConfigData? Function(
+      _i2.GSetUsersConfigData?, _i2.GSetUsersConfigData?)? _updateResult;
+  _i2.GSetUsersConfigData? Function(
+          _i2.GSetUsersConfigData?, _i2.GSetUsersConfigData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GStreamDataData? Function(
-                  _i2.GStreamDataData?, _i2.GStreamDataData?)?
+          _i2.GSetUsersConfigData? Function(
+                  _i2.GSetUsersConfigData?, _i2.GSetUsersConfigData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GStreamDataDataBuilder? _optimisticResponse;
-  _i2.GStreamDataDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GStreamDataDataBuilder();
-  set optimisticResponse(_i2.GStreamDataDataBuilder? optimisticResponse) =>
+  _i2.GSetUsersConfigDataBuilder? _optimisticResponse;
+  _i2.GSetUsersConfigDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GSetUsersConfigDataBuilder();
+  set optimisticResponse(_i2.GSetUsersConfigDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
@@ -290,11 +294,11 @@ class GStreamDataReqBuilder
   _i4.Context? get context => _$this._context;
   set context(_i4.Context? context) => _$this._context = context;
 
-  GStreamDataReqBuilder() {
-    GStreamDataReq._initializeBuilder(this);
+  GSetUsersConfigReqBuilder() {
+    GSetUsersConfigReq._initializeBuilder(this);
   }
 
-  GStreamDataReqBuilder get _$this {
+  GSetUsersConfigReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -313,27 +317,27 @@ class GStreamDataReqBuilder
   }
 
   @override
-  void replace(GStreamDataReq other) {
+  void replace(GSetUsersConfigReq other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataReq;
+    _$v = other as _$GSetUsersConfigReq;
   }
 
   @override
-  void update(void Function(GStreamDataReqBuilder)? updates) {
+  void update(void Function(GSetUsersConfigReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataReq build() => _build();
+  GSetUsersConfigReq build() => _build();
 
-  _$GStreamDataReq _build() {
-    _$GStreamDataReq _$result;
+  _$GSetUsersConfigReq _build() {
+    _$GSetUsersConfigReq _$result;
     try {
       _$result = _$v ??
-          new _$GStreamDataReq._(
+          new _$GSetUsersConfigReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GStreamDataReq', 'operation'),
+                operation, r'GSetUsersConfigReq', 'operation'),
             requestId: requestId,
             updateResult: updateResult,
             optimisticResponse: _optimisticResponse?.build(),
@@ -341,7 +345,7 @@ class GStreamDataReqBuilder
             updateCacheHandlerContext: updateCacheHandlerContext,
             fetchPolicy: fetchPolicy,
             executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GStreamDataReq', 'executeOnListen'),
+                executeOnListen, r'GSetUsersConfigReq', 'executeOnListen'),
             context: context,
           );
     } catch (_) {
@@ -354,7 +358,7 @@ class GStreamDataReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataReq', _$failedField, e.toString());
+            r'GSetUsersConfigReq', _$failedField, e.toString());
       }
       rethrow;
     }

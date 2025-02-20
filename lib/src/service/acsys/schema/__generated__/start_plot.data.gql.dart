@@ -14,7 +14,7 @@ abstract class GStartPlotData
     implements Built<GStartPlotData, GStartPlotDataBuilder> {
   GStartPlotData._();
 
-  factory GStartPlotData([Function(GStartPlotDataBuilder b) updates]) =
+  factory GStartPlotData([void Function(GStartPlotDataBuilder b) updates]) =
       _$GStartPlotData;
 
   static void _initializeBuilder(GStartPlotDataBuilder b) =>
@@ -44,7 +44,7 @@ abstract class GStartPlotData_startPlot
   GStartPlotData_startPlot._();
 
   factory GStartPlotData_startPlot(
-          [Function(GStartPlotData_startPlotBuilder b) updates]) =
+          [void Function(GStartPlotData_startPlotBuilder b) updates]) =
       _$GStartPlotData_startPlot;
 
   static void _initializeBuilder(GStartPlotData_startPlotBuilder b) =>
@@ -76,7 +76,7 @@ abstract class GStartPlotData_startPlot_data
   GStartPlotData_startPlot_data._();
 
   factory GStartPlotData_startPlot_data(
-          [Function(GStartPlotData_startPlot_dataBuilder b) updates]) =
+          [void Function(GStartPlotData_startPlot_dataBuilder b) updates]) =
       _$GStartPlotData_startPlot_data;
 
   static void _initializeBuilder(GStartPlotData_startPlot_dataBuilder b) =>
@@ -109,7 +109,7 @@ abstract class GStartPlotData_startPlot_data_channelData
   GStartPlotData_startPlot_data_channelData._();
 
   factory GStartPlotData_startPlot_data_channelData(
-      [Function(GStartPlotData_startPlot_data_channelDataBuilder b)
+      [void Function(GStartPlotData_startPlot_data_channelDataBuilder b)
           updates]) = _$GStartPlotData_startPlot_data_channelData;
 
   static void _initializeBuilder(

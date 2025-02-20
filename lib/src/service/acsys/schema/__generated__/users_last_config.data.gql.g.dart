@@ -1,48 +1,56 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'plot_configs.data.gql.dart';
+part of 'users_last_config.data.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GPlotConfigsData> _$gPlotConfigsDataSerializer =
-    new _$GPlotConfigsDataSerializer();
-Serializer<GPlotConfigsData_plotConfiguration>
-    _$gPlotConfigsDataPlotConfigurationSerializer =
-    new _$GPlotConfigsData_plotConfigurationSerializer();
-Serializer<GPlotConfigsData_plotConfiguration_channels>
-    _$gPlotConfigsDataPlotConfigurationChannelsSerializer =
-    new _$GPlotConfigsData_plotConfiguration_channelsSerializer();
+Serializer<GUsersLastConfigData> _$gUsersLastConfigDataSerializer =
+    new _$GUsersLastConfigDataSerializer();
+Serializer<GUsersLastConfigData_usersLastConfiguration>
+    _$gUsersLastConfigDataUsersLastConfigurationSerializer =
+    new _$GUsersLastConfigData_usersLastConfigurationSerializer();
+Serializer<GUsersLastConfigData_usersLastConfiguration_channels>
+    _$gUsersLastConfigDataUsersLastConfigurationChannelsSerializer =
+    new _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer();
 
-class _$GPlotConfigsDataSerializer
-    implements StructuredSerializer<GPlotConfigsData> {
+class _$GUsersLastConfigDataSerializer
+    implements StructuredSerializer<GUsersLastConfigData> {
   @override
-  final Iterable<Type> types = const [GPlotConfigsData, _$GPlotConfigsData];
+  final Iterable<Type> types = const [
+    GUsersLastConfigData,
+    _$GUsersLastConfigData
+  ];
   @override
-  final String wireName = 'GPlotConfigsData';
+  final String wireName = 'GUsersLastConfigData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GPlotConfigsData object,
+  Iterable<Object?> serialize(
+      Serializers serializers, GUsersLastConfigData object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
       serializers.serialize(object.G__typename,
           specifiedType: const FullType(String)),
-      'plotConfiguration',
-      serializers.serialize(object.plotConfiguration,
-          specifiedType: const FullType(BuiltList,
-              const [const FullType(GPlotConfigsData_plotConfiguration)])),
     ];
-
+    Object? value;
+    value = object.usersLastConfiguration;
+    if (value != null) {
+      result
+        ..add('usersLastConfiguration')
+        ..add(serializers.serialize(value,
+            specifiedType:
+                const FullType(GUsersLastConfigData_usersLastConfiguration)));
+    }
     return result;
   }
 
   @override
-  GPlotConfigsData deserialize(
+  GUsersLastConfigData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GPlotConfigsDataBuilder();
+    final result = new GUsersLastConfigDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -54,11 +62,11 @@ class _$GPlotConfigsDataSerializer
           result.G__typename = serializers.deserialize(value,
               specifiedType: const FullType(String))! as String;
           break;
-        case 'plotConfiguration':
-          result.plotConfiguration.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GPlotConfigsData_plotConfiguration)
-              ]))! as BuiltList<Object?>);
+        case 'usersLastConfiguration':
+          result.usersLastConfiguration.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      GUsersLastConfigData_usersLastConfiguration))!
+              as GUsersLastConfigData_usersLastConfiguration);
           break;
       }
     }
@@ -67,19 +75,20 @@ class _$GPlotConfigsDataSerializer
   }
 }
 
-class _$GPlotConfigsData_plotConfigurationSerializer
-    implements StructuredSerializer<GPlotConfigsData_plotConfiguration> {
+class _$GUsersLastConfigData_usersLastConfigurationSerializer
+    implements
+        StructuredSerializer<GUsersLastConfigData_usersLastConfiguration> {
   @override
   final Iterable<Type> types = const [
-    GPlotConfigsData_plotConfiguration,
-    _$GPlotConfigsData_plotConfiguration
+    GUsersLastConfigData_usersLastConfiguration,
+    _$GUsersLastConfigData_usersLastConfiguration
   ];
   @override
-  final String wireName = 'GPlotConfigsData_plotConfiguration';
+  final String wireName = 'GUsersLastConfigData_usersLastConfiguration';
 
   @override
-  Iterable<Object?> serialize(
-      Serializers serializers, GPlotConfigsData_plotConfiguration object,
+  Iterable<Object?> serialize(Serializers serializers,
+      GUsersLastConfigData_usersLastConfiguration object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -94,7 +103,7 @@ class _$GPlotConfigsData_plotConfigurationSerializer
       'channels',
       serializers.serialize(object.channels,
           specifiedType: const FullType(BuiltList, const [
-            const FullType(GPlotConfigsData_plotConfiguration_channels)
+            const FullType(GUsersLastConfigData_usersLastConfiguration_channels)
           ])),
       'isShowLabels',
       serializers.serialize(object.isShowLabels,
@@ -151,10 +160,10 @@ class _$GPlotConfigsData_plotConfigurationSerializer
   }
 
   @override
-  GPlotConfigsData_plotConfiguration deserialize(
+  GUsersLastConfigData_usersLastConfiguration deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GPlotConfigsData_plotConfigurationBuilder();
+    final result = new GUsersLastConfigData_usersLastConfigurationBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -177,7 +186,8 @@ class _$GPlotConfigsData_plotConfigurationSerializer
         case 'channels':
           result.channels.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
-                const FullType(GPlotConfigsData_plotConfiguration_channels)
+                const FullType(
+                    GUsersLastConfigData_usersLastConfiguration_channels)
               ]))! as BuiltList<Object?>);
           break;
         case 'xMin':
@@ -219,20 +229,22 @@ class _$GPlotConfigsData_plotConfigurationSerializer
   }
 }
 
-class _$GPlotConfigsData_plotConfiguration_channelsSerializer
+class _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer
     implements
-        StructuredSerializer<GPlotConfigsData_plotConfiguration_channels> {
+        StructuredSerializer<
+            GUsersLastConfigData_usersLastConfiguration_channels> {
   @override
   final Iterable<Type> types = const [
-    GPlotConfigsData_plotConfiguration_channels,
-    _$GPlotConfigsData_plotConfiguration_channels
+    GUsersLastConfigData_usersLastConfiguration_channels,
+    _$GUsersLastConfigData_usersLastConfiguration_channels
   ];
   @override
-  final String wireName = 'GPlotConfigsData_plotConfiguration_channels';
+  final String wireName =
+      'GUsersLastConfigData_usersLastConfiguration_channels';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GPlotConfigsData_plotConfiguration_channels object,
+      GUsersLastConfigData_usersLastConfiguration_channels object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -259,10 +271,11 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
   }
 
   @override
-  GPlotConfigsData_plotConfiguration_channels deserialize(
+  GUsersLastConfigData_usersLastConfiguration_channels deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GPlotConfigsData_plotConfiguration_channelsBuilder();
+    final result =
+        new GUsersLastConfigData_usersLastConfiguration_channelsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -293,120 +306,120 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
   }
 }
 
-class _$GPlotConfigsData extends GPlotConfigsData {
+class _$GUsersLastConfigData extends GUsersLastConfigData {
   @override
   final String G__typename;
   @override
-  final BuiltList<GPlotConfigsData_plotConfiguration> plotConfiguration;
+  final GUsersLastConfigData_usersLastConfiguration? usersLastConfiguration;
 
-  factory _$GPlotConfigsData(
-          [void Function(GPlotConfigsDataBuilder)? updates]) =>
-      (new GPlotConfigsDataBuilder()..update(updates))._build();
+  factory _$GUsersLastConfigData(
+          [void Function(GUsersLastConfigDataBuilder)? updates]) =>
+      (new GUsersLastConfigDataBuilder()..update(updates))._build();
 
-  _$GPlotConfigsData._(
-      {required this.G__typename, required this.plotConfiguration})
+  _$GUsersLastConfigData._(
+      {required this.G__typename, this.usersLastConfiguration})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GPlotConfigsData', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        plotConfiguration, r'GPlotConfigsData', 'plotConfiguration');
+        G__typename, r'GUsersLastConfigData', 'G__typename');
   }
 
   @override
-  GPlotConfigsData rebuild(void Function(GPlotConfigsDataBuilder) updates) =>
+  GUsersLastConfigData rebuild(
+          void Function(GUsersLastConfigDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GPlotConfigsDataBuilder toBuilder() =>
-      new GPlotConfigsDataBuilder()..replace(this);
+  GUsersLastConfigDataBuilder toBuilder() =>
+      new GUsersLastConfigDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GPlotConfigsData &&
+    return other is GUsersLastConfigData &&
         G__typename == other.G__typename &&
-        plotConfiguration == other.plotConfiguration;
+        usersLastConfiguration == other.usersLastConfiguration;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, plotConfiguration.hashCode);
+    _$hash = $jc(_$hash, usersLastConfiguration.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GPlotConfigsData')
+    return (newBuiltValueToStringHelper(r'GUsersLastConfigData')
           ..add('G__typename', G__typename)
-          ..add('plotConfiguration', plotConfiguration))
+          ..add('usersLastConfiguration', usersLastConfiguration))
         .toString();
   }
 }
 
-class GPlotConfigsDataBuilder
-    implements Builder<GPlotConfigsData, GPlotConfigsDataBuilder> {
-  _$GPlotConfigsData? _$v;
+class GUsersLastConfigDataBuilder
+    implements Builder<GUsersLastConfigData, GUsersLastConfigDataBuilder> {
+  _$GUsersLastConfigData? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  ListBuilder<GPlotConfigsData_plotConfiguration>? _plotConfiguration;
-  ListBuilder<GPlotConfigsData_plotConfiguration> get plotConfiguration =>
-      _$this._plotConfiguration ??=
-          new ListBuilder<GPlotConfigsData_plotConfiguration>();
-  set plotConfiguration(
-          ListBuilder<GPlotConfigsData_plotConfiguration>? plotConfiguration) =>
-      _$this._plotConfiguration = plotConfiguration;
+  GUsersLastConfigData_usersLastConfigurationBuilder? _usersLastConfiguration;
+  GUsersLastConfigData_usersLastConfigurationBuilder
+      get usersLastConfiguration => _$this._usersLastConfiguration ??=
+          new GUsersLastConfigData_usersLastConfigurationBuilder();
+  set usersLastConfiguration(
+          GUsersLastConfigData_usersLastConfigurationBuilder?
+              usersLastConfiguration) =>
+      _$this._usersLastConfiguration = usersLastConfiguration;
 
-  GPlotConfigsDataBuilder() {
-    GPlotConfigsData._initializeBuilder(this);
+  GUsersLastConfigDataBuilder() {
+    GUsersLastConfigData._initializeBuilder(this);
   }
 
-  GPlotConfigsDataBuilder get _$this {
+  GUsersLastConfigDataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _plotConfiguration = $v.plotConfiguration.toBuilder();
+      _usersLastConfiguration = $v.usersLastConfiguration?.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GPlotConfigsData other) {
+  void replace(GUsersLastConfigData other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GPlotConfigsData;
+    _$v = other as _$GUsersLastConfigData;
   }
 
   @override
-  void update(void Function(GPlotConfigsDataBuilder)? updates) {
+  void update(void Function(GUsersLastConfigDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GPlotConfigsData build() => _build();
+  GUsersLastConfigData build() => _build();
 
-  _$GPlotConfigsData _build() {
-    _$GPlotConfigsData _$result;
+  _$GUsersLastConfigData _build() {
+    _$GUsersLastConfigData _$result;
     try {
       _$result = _$v ??
-          new _$GPlotConfigsData._(
+          new _$GUsersLastConfigData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GPlotConfigsData', 'G__typename'),
-            plotConfiguration: plotConfiguration.build(),
+                G__typename, r'GUsersLastConfigData', 'G__typename'),
+            usersLastConfiguration: _usersLastConfiguration?.build(),
           );
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'plotConfiguration';
-        plotConfiguration.build();
+        _$failedField = 'usersLastConfiguration';
+        _usersLastConfiguration?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GPlotConfigsData', _$failedField, e.toString());
+            r'GUsersLastConfigData', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -415,8 +428,8 @@ class GPlotConfigsDataBuilder
   }
 }
 
-class _$GPlotConfigsData_plotConfiguration
-    extends GPlotConfigsData_plotConfiguration {
+class _$GUsersLastConfigData_usersLastConfiguration
+    extends GUsersLastConfigData_usersLastConfiguration {
   @override
   final String G__typename;
   @override
@@ -424,7 +437,8 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final String configurationName;
   @override
-  final BuiltList<GPlotConfigsData_plotConfiguration_channels> channels;
+  final BuiltList<GUsersLastConfigData_usersLastConfiguration_channels>
+      channels;
   @override
   final double? xMin;
   @override
@@ -442,13 +456,14 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final int? tclkEvent;
 
-  factory _$GPlotConfigsData_plotConfiguration(
-          [void Function(GPlotConfigsData_plotConfigurationBuilder)?
+  factory _$GUsersLastConfigData_usersLastConfiguration(
+          [void Function(GUsersLastConfigData_usersLastConfigurationBuilder)?
               updates]) =>
-      (new GPlotConfigsData_plotConfigurationBuilder()..update(updates))
+      (new GUsersLastConfigData_usersLastConfigurationBuilder()
+            ..update(updates))
           ._build();
 
-  _$GPlotConfigsData_plotConfiguration._(
+  _$GUsersLastConfigData_usersLastConfiguration._(
       {required this.G__typename,
       required this.configurationId,
       required this.configurationName,
@@ -462,31 +477,32 @@ class _$GPlotConfigsData_plotConfiguration
       this.nAcquisitions,
       this.tclkEvent})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GPlotConfigsData_plotConfiguration', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(G__typename,
+        r'GUsersLastConfigData_usersLastConfiguration', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(configurationId,
-        r'GPlotConfigsData_plotConfiguration', 'configurationId');
+        r'GUsersLastConfigData_usersLastConfiguration', 'configurationId');
     BuiltValueNullFieldError.checkNotNull(configurationName,
-        r'GPlotConfigsData_plotConfiguration', 'configurationName');
+        r'GUsersLastConfigData_usersLastConfiguration', 'configurationName');
     BuiltValueNullFieldError.checkNotNull(
-        channels, r'GPlotConfigsData_plotConfiguration', 'channels');
-    BuiltValueNullFieldError.checkNotNull(
-        isShowLabels, r'GPlotConfigsData_plotConfiguration', 'isShowLabels');
+        channels, r'GUsersLastConfigData_usersLastConfiguration', 'channels');
+    BuiltValueNullFieldError.checkNotNull(isShowLabels,
+        r'GUsersLastConfigData_usersLastConfiguration', 'isShowLabels');
   }
 
   @override
-  GPlotConfigsData_plotConfiguration rebuild(
-          void Function(GPlotConfigsData_plotConfigurationBuilder) updates) =>
+  GUsersLastConfigData_usersLastConfiguration rebuild(
+          void Function(GUsersLastConfigData_usersLastConfigurationBuilder)
+              updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GPlotConfigsData_plotConfigurationBuilder toBuilder() =>
-      new GPlotConfigsData_plotConfigurationBuilder()..replace(this);
+  GUsersLastConfigData_usersLastConfigurationBuilder toBuilder() =>
+      new GUsersLastConfigData_usersLastConfigurationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GPlotConfigsData_plotConfiguration &&
+    return other is GUsersLastConfigData_usersLastConfiguration &&
         G__typename == other.G__typename &&
         configurationId == other.configurationId &&
         configurationName == other.configurationName &&
@@ -522,7 +538,8 @@ class _$GPlotConfigsData_plotConfiguration
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GPlotConfigsData_plotConfiguration')
+    return (newBuiltValueToStringHelper(
+            r'GUsersLastConfigData_usersLastConfiguration')
           ..add('G__typename', G__typename)
           ..add('configurationId', configurationId)
           ..add('configurationName', configurationName)
@@ -539,11 +556,11 @@ class _$GPlotConfigsData_plotConfiguration
   }
 }
 
-class GPlotConfigsData_plotConfigurationBuilder
+class GUsersLastConfigData_usersLastConfigurationBuilder
     implements
-        Builder<GPlotConfigsData_plotConfiguration,
-            GPlotConfigsData_plotConfigurationBuilder> {
-  _$GPlotConfigsData_plotConfiguration? _$v;
+        Builder<GUsersLastConfigData_usersLastConfiguration,
+            GUsersLastConfigData_usersLastConfigurationBuilder> {
+  _$GUsersLastConfigData_usersLastConfiguration? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -559,12 +576,13 @@ class GPlotConfigsData_plotConfigurationBuilder
   set configurationName(String? configurationName) =>
       _$this._configurationName = configurationName;
 
-  ListBuilder<GPlotConfigsData_plotConfiguration_channels>? _channels;
-  ListBuilder<GPlotConfigsData_plotConfiguration_channels> get channels =>
-      _$this._channels ??=
-          new ListBuilder<GPlotConfigsData_plotConfiguration_channels>();
+  ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>? _channels;
+  ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>
+      get channels => _$this._channels ??= new ListBuilder<
+          GUsersLastConfigData_usersLastConfiguration_channels>();
   set channels(
-          ListBuilder<GPlotConfigsData_plotConfiguration_channels>? channels) =>
+          ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>?
+              channels) =>
       _$this._channels = channels;
 
   double? _xMin;
@@ -600,11 +618,11 @@ class GPlotConfigsData_plotConfigurationBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
-  GPlotConfigsData_plotConfigurationBuilder() {
-    GPlotConfigsData_plotConfiguration._initializeBuilder(this);
+  GUsersLastConfigData_usersLastConfigurationBuilder() {
+    GUsersLastConfigData_usersLastConfiguration._initializeBuilder(this);
   }
 
-  GPlotConfigsData_plotConfigurationBuilder get _$this {
+  GUsersLastConfigData_usersLastConfigurationBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -625,34 +643,35 @@ class GPlotConfigsData_plotConfigurationBuilder
   }
 
   @override
-  void replace(GPlotConfigsData_plotConfiguration other) {
+  void replace(GUsersLastConfigData_usersLastConfiguration other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GPlotConfigsData_plotConfiguration;
+    _$v = other as _$GUsersLastConfigData_usersLastConfiguration;
   }
 
   @override
   void update(
-      void Function(GPlotConfigsData_plotConfigurationBuilder)? updates) {
+      void Function(GUsersLastConfigData_usersLastConfigurationBuilder)?
+          updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GPlotConfigsData_plotConfiguration build() => _build();
+  GUsersLastConfigData_usersLastConfiguration build() => _build();
 
-  _$GPlotConfigsData_plotConfiguration _build() {
-    _$GPlotConfigsData_plotConfiguration _$result;
+  _$GUsersLastConfigData_usersLastConfiguration _build() {
+    _$GUsersLastConfigData_usersLastConfiguration _$result;
     try {
       _$result = _$v ??
-          new _$GPlotConfigsData_plotConfiguration._(
+          new _$GUsersLastConfigData_usersLastConfiguration._(
             G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GPlotConfigsData_plotConfiguration', 'G__typename'),
+                r'GUsersLastConfigData_usersLastConfiguration', 'G__typename'),
             configurationId: BuiltValueNullFieldError.checkNotNull(
                 configurationId,
-                r'GPlotConfigsData_plotConfiguration',
+                r'GUsersLastConfigData_usersLastConfiguration',
                 'configurationId'),
             configurationName: BuiltValueNullFieldError.checkNotNull(
                 configurationName,
-                r'GPlotConfigsData_plotConfiguration',
+                r'GUsersLastConfigData_usersLastConfiguration',
                 'configurationName'),
             channels: channels.build(),
             xMin: xMin,
@@ -660,7 +679,7 @@ class GPlotConfigsData_plotConfigurationBuilder
             yMin: yMin,
             yMax: yMax,
             isShowLabels: BuiltValueNullFieldError.checkNotNull(isShowLabels,
-                r'GPlotConfigsData_plotConfiguration', 'isShowLabels'),
+                r'GUsersLastConfigData_usersLastConfiguration', 'isShowLabels'),
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
@@ -672,7 +691,9 @@ class GPlotConfigsData_plotConfigurationBuilder
         channels.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GPlotConfigsData_plotConfiguration', _$failedField, e.toString());
+            r'GUsersLastConfigData_usersLastConfiguration',
+            _$failedField,
+            e.toString());
       }
       rethrow;
     }
@@ -681,8 +702,8 @@ class GPlotConfigsData_plotConfigurationBuilder
   }
 }
 
-class _$GPlotConfigsData_plotConfiguration_channels
-    extends GPlotConfigsData_plotConfiguration_channels {
+class _$GUsersLastConfigData_usersLastConfiguration_channels
+    extends GUsersLastConfigData_usersLastConfiguration_channels {
   @override
   final String G__typename;
   @override
@@ -692,39 +713,42 @@ class _$GPlotConfigsData_plotConfiguration_channels
   @override
   final int? markerIndex;
 
-  factory _$GPlotConfigsData_plotConfiguration_channels(
-          [void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)?
+  factory _$GUsersLastConfigData_usersLastConfiguration_channels(
+          [void Function(
+                  GUsersLastConfigData_usersLastConfiguration_channelsBuilder)?
               updates]) =>
-      (new GPlotConfigsData_plotConfiguration_channelsBuilder()
+      (new GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
             ..update(updates))
           ._build();
 
-  _$GPlotConfigsData_plotConfiguration_channels._(
+  _$GUsersLastConfigData_usersLastConfiguration_channels._(
       {required this.G__typename,
       required this.device,
       this.lineColor,
       this.markerIndex})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GPlotConfigsData_plotConfiguration_channels', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(
-        device, r'GPlotConfigsData_plotConfiguration_channels', 'device');
+        r'GUsersLastConfigData_usersLastConfiguration_channels', 'G__typename');
+    BuiltValueNullFieldError.checkNotNull(device,
+        r'GUsersLastConfigData_usersLastConfiguration_channels', 'device');
   }
 
   @override
-  GPlotConfigsData_plotConfiguration_channels rebuild(
-          void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)
+  GUsersLastConfigData_usersLastConfiguration_channels rebuild(
+          void Function(
+                  GUsersLastConfigData_usersLastConfiguration_channelsBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GPlotConfigsData_plotConfiguration_channelsBuilder toBuilder() =>
-      new GPlotConfigsData_plotConfiguration_channelsBuilder()..replace(this);
+  GUsersLastConfigData_usersLastConfiguration_channelsBuilder toBuilder() =>
+      new GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GPlotConfigsData_plotConfiguration_channels &&
+    return other is GUsersLastConfigData_usersLastConfiguration_channels &&
         G__typename == other.G__typename &&
         device == other.device &&
         lineColor == other.lineColor &&
@@ -745,7 +769,7 @@ class _$GPlotConfigsData_plotConfiguration_channels
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GPlotConfigsData_plotConfiguration_channels')
+            r'GUsersLastConfigData_usersLastConfiguration_channels')
           ..add('G__typename', G__typename)
           ..add('device', device)
           ..add('lineColor', lineColor)
@@ -754,11 +778,11 @@ class _$GPlotConfigsData_plotConfiguration_channels
   }
 }
 
-class GPlotConfigsData_plotConfiguration_channelsBuilder
+class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
     implements
-        Builder<GPlotConfigsData_plotConfiguration_channels,
-            GPlotConfigsData_plotConfiguration_channelsBuilder> {
-  _$GPlotConfigsData_plotConfiguration_channels? _$v;
+        Builder<GUsersLastConfigData_usersLastConfiguration_channels,
+            GUsersLastConfigData_usersLastConfiguration_channelsBuilder> {
+  _$GUsersLastConfigData_usersLastConfiguration_channels? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -776,11 +800,12 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   int? get markerIndex => _$this._markerIndex;
   set markerIndex(int? markerIndex) => _$this._markerIndex = markerIndex;
 
-  GPlotConfigsData_plotConfiguration_channelsBuilder() {
-    GPlotConfigsData_plotConfiguration_channels._initializeBuilder(this);
+  GUsersLastConfigData_usersLastConfiguration_channelsBuilder() {
+    GUsersLastConfigData_usersLastConfiguration_channels._initializeBuilder(
+        this);
   }
 
-  GPlotConfigsData_plotConfiguration_channelsBuilder get _$this {
+  GUsersLastConfigData_usersLastConfiguration_channelsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -793,28 +818,33 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   }
 
   @override
-  void replace(GPlotConfigsData_plotConfiguration_channels other) {
+  void replace(GUsersLastConfigData_usersLastConfiguration_channels other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GPlotConfigsData_plotConfiguration_channels;
+    _$v = other as _$GUsersLastConfigData_usersLastConfiguration_channels;
   }
 
   @override
   void update(
-      void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)?
+      void Function(
+              GUsersLastConfigData_usersLastConfiguration_channelsBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GPlotConfigsData_plotConfiguration_channels build() => _build();
+  GUsersLastConfigData_usersLastConfiguration_channels build() => _build();
 
-  _$GPlotConfigsData_plotConfiguration_channels _build() {
+  _$GUsersLastConfigData_usersLastConfiguration_channels _build() {
     final _$result = _$v ??
-        new _$GPlotConfigsData_plotConfiguration_channels._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GPlotConfigsData_plotConfiguration_channels', 'G__typename'),
+        new _$GUsersLastConfigData_usersLastConfiguration_channels._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GUsersLastConfigData_usersLastConfiguration_channels',
+              'G__typename'),
           device: BuiltValueNullFieldError.checkNotNull(
-              device, r'GPlotConfigsData_plotConfiguration_channels', 'device'),
+              device,
+              r'GUsersLastConfigData_usersLastConfiguration_channels',
+              'device'),
           lineColor: lineColor,
           markerIndex: markerIndex,
         );

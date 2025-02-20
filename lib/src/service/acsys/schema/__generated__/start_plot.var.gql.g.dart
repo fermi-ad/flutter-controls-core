@@ -267,13 +267,14 @@ class GStartPlotVarsBuilder
     try {
       _$result = _$v ??
           new _$GStartPlotVars._(
-              drfList: drfList.build(),
-              xMin: xMin,
-              xMax: xMax,
-              windowSize: windowSize,
-              updateDelay: updateDelay,
-              nAcquisitions: nAcquisitions,
-              triggerEvent: triggerEvent);
+            drfList: drfList.build(),
+            xMin: xMin,
+            xMax: xMax,
+            windowSize: windowSize,
+            updateDelay: updateDelay,
+            nAcquisitions: nAcquisitions,
+            triggerEvent: triggerEvent,
+          );
     } catch (_) {
       late String _$failedField;
       try {

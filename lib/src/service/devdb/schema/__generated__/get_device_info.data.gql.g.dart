@@ -1396,9 +1396,10 @@ class GgetDeviceInfoDataBuilder
     try {
       _$result = _$v ??
           new _$GgetDeviceInfoData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetDeviceInfoData', 'G__typename'),
-              deviceInfo: deviceInfo.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetDeviceInfoData', 'G__typename'),
+            deviceInfo: deviceInfo.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1519,9 +1520,10 @@ class GgetDeviceInfoData_deviceInfoBuilder
     try {
       _$result = _$v ??
           new _$GgetDeviceInfoData_deviceInfo._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetDeviceInfoData_deviceInfo', 'G__typename'),
-              result: result.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GgetDeviceInfoData_deviceInfo', 'G__typename'),
+            result: result.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -1631,8 +1633,9 @@ class GgetDeviceInfoData_deviceInfo_result__baseBuilder
   _$GgetDeviceInfoData_deviceInfo_result__base _build() {
     final _$result = _$v ??
         new _$GgetDeviceInfoData_deviceInfo_result__base._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__base', 'G__typename'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__base', 'G__typename'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -1818,18 +1821,19 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
     try {
       _$result = _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
-                  'G__typename'),
-              description: BuiltValueNullFieldError.checkNotNull(
-                  description,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
-                  'description'),
-              reading: _reading?.build(),
-              digControl: _digControl?.build(),
-              digStatus: _digStatus?.build(),
-              setting: _setting?.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+                'G__typename'),
+            description: BuiltValueNullFieldError.checkNotNull(
+                description,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+                'description'),
+            reading: _reading?.build(),
+            digControl: _digControl?.build(),
+            digStatus: _digStatus?.build(),
+            setting: _setting?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2119,28 +2123,46 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
     try {
       _$result = _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'G__typename'),
-              minVal: BuiltValueNullFieldError.checkNotNull(
-                  minVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'minVal'),
-              maxVal: BuiltValueNullFieldError.checkNotNull(
-                  maxVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'maxVal'),
-              primaryUnits: primaryUnits,
-              primaryIndex: BuiltValueNullFieldError.checkNotNull(
-                  primaryIndex,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                  'primaryIndex'),
-              commonUnits: commonUnits,
-              commonIndex: BuiltValueNullFieldError.checkNotNull(
-                  commonIndex, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'commonIndex'),
-              coeff: coeff.build(),
-              isContrSetting: BuiltValueNullFieldError.checkNotNull(
-                  isContrSetting,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                  'isContrSetting'),
-              isDestructiveRead: BuiltValueNullFieldError.checkNotNull(isDestructiveRead, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'isDestructiveRead'),
-              isFeScaling: BuiltValueNullFieldError.checkNotNull(isFeScaling, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'isFeScaling'),
-              isStepMotor: BuiltValueNullFieldError.checkNotNull(isStepMotor, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'isStepMotor'));
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'G__typename'),
+            minVal: BuiltValueNullFieldError.checkNotNull(
+                minVal,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'minVal'),
+            maxVal: BuiltValueNullFieldError.checkNotNull(
+                maxVal,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'maxVal'),
+            primaryUnits: primaryUnits,
+            primaryIndex: BuiltValueNullFieldError.checkNotNull(
+                primaryIndex,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'primaryIndex'),
+            commonUnits: commonUnits,
+            commonIndex: BuiltValueNullFieldError.checkNotNull(
+                commonIndex,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'commonIndex'),
+            coeff: coeff.build(),
+            isContrSetting: BuiltValueNullFieldError.checkNotNull(
+                isContrSetting,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'isContrSetting'),
+            isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
+                isDestructiveRead,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'isDestructiveRead'),
+            isFeScaling: BuiltValueNullFieldError.checkNotNull(
+                isFeScaling,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'isFeScaling'),
+            isStepMotor: BuiltValueNullFieldError.checkNotNull(
+                isStepMotor,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+                'isStepMotor'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2294,11 +2316,12 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
     try {
       _$result = _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
-                  'G__typename'),
-              entries: entries.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
+                'G__typename'),
+            entries: entries.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2472,23 +2495,25 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuild
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
       _build() {
     final _$result = _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-                'G__typename'),
-            value: BuiltValueNullFieldError.checkNotNull(
-                value,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-                'value'),
-            shortName: BuiltValueNullFieldError.checkNotNull(
-                shortName,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-                'shortName'),
-            longName: BuiltValueNullFieldError.checkNotNull(
-                longName,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-                'longName'));
+        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+            ._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+              'G__typename'),
+          value: BuiltValueNullFieldError.checkNotNull(
+              value,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+              'value'),
+          shortName: BuiltValueNullFieldError.checkNotNull(
+              shortName,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+              'shortName'),
+          longName: BuiltValueNullFieldError.checkNotNull(
+              longName,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+              'longName'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -2656,12 +2681,13 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
     try {
       _$result = _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-                  'G__typename'),
-              extEntries: extEntries.build(),
-              entries: entries.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+                'G__typename'),
+            extEntries: extEntries.build(),
+            entries: entries.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -2883,24 +2909,37 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBui
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
       _build() {
     final _$result = _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-                'G__typename'),
-            bitNo: BuiltValueNullFieldError.checkNotNull(
-                bitNo, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'bitNo'),
-            color0: BuiltValueNullFieldError.checkNotNull(
-                color0, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'color0'),
-            name0: BuiltValueNullFieldError.checkNotNull(
-                name0, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'name0'),
-            color1: BuiltValueNullFieldError.checkNotNull(
-                color1,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-                'color1'),
-            name1: BuiltValueNullFieldError.checkNotNull(
-                name1, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'name1'),
-            description: BuiltValueNullFieldError.checkNotNull(description, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries', 'description'));
+        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+            ._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+              'G__typename'),
+          bitNo: BuiltValueNullFieldError.checkNotNull(
+              bitNo,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+              'bitNo'),
+          color0: BuiltValueNullFieldError.checkNotNull(
+              color0,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+              'color0'),
+          name0: BuiltValueNullFieldError.checkNotNull(
+              name0,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+              'name0'),
+          color1: BuiltValueNullFieldError.checkNotNull(
+              color1,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+              'color1'),
+          name1: BuiltValueNullFieldError.checkNotNull(
+              name1,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+              'name1'),
+          description: BuiltValueNullFieldError.checkNotNull(
+              description,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+              'description'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -3181,30 +3220,57 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilde
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
       _build() {
     final _$result = _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-                'G__typename'),
-            maskVal: BuiltValueNullFieldError.checkNotNull(
-                maskVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'maskVal'),
-            matchVal: BuiltValueNullFieldError.checkNotNull(
-                matchVal,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-                'matchVal'),
-            invert: BuiltValueNullFieldError.checkNotNull(
-                invert, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'invert'),
-            shortName: BuiltValueNullFieldError.checkNotNull(
-                shortName,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-                'shortName'),
-            longName: BuiltValueNullFieldError.checkNotNull(longName, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'longName'),
-            trueStr: BuiltValueNullFieldError.checkNotNull(trueStr, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'trueStr'),
-            trueColor: BuiltValueNullFieldError.checkNotNull(trueColor, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'trueColor'),
-            trueChar: BuiltValueNullFieldError.checkNotNull(trueChar, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'trueChar'),
-            falseStr: BuiltValueNullFieldError.checkNotNull(falseStr, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'falseStr'),
-            falseColor: BuiltValueNullFieldError.checkNotNull(falseColor, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'falseColor'),
-            falseChar: BuiltValueNullFieldError.checkNotNull(falseChar, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries', 'falseChar'));
+        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+            ._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'G__typename'),
+          maskVal: BuiltValueNullFieldError.checkNotNull(
+              maskVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'maskVal'),
+          matchVal: BuiltValueNullFieldError.checkNotNull(
+              matchVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'matchVal'),
+          invert: BuiltValueNullFieldError.checkNotNull(
+              invert,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'invert'),
+          shortName: BuiltValueNullFieldError.checkNotNull(
+              shortName,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'shortName'),
+          longName: BuiltValueNullFieldError.checkNotNull(
+              longName,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'longName'),
+          trueStr: BuiltValueNullFieldError.checkNotNull(
+              trueStr,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'trueStr'),
+          trueColor: BuiltValueNullFieldError.checkNotNull(
+              trueColor,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'trueColor'),
+          trueChar: BuiltValueNullFieldError.checkNotNull(
+              trueChar,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'trueChar'),
+          falseStr: BuiltValueNullFieldError.checkNotNull(
+              falseStr,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'falseStr'),
+          falseColor: BuiltValueNullFieldError.checkNotNull(
+              falseColor,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'falseColor'),
+          falseChar: BuiltValueNullFieldError.checkNotNull(
+              falseChar,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+              'falseChar'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -3493,29 +3559,47 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
     try {
       _$result = _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'G__typename'),
-              minVal: BuiltValueNullFieldError.checkNotNull(
-                  minVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'minVal'),
-              maxVal: BuiltValueNullFieldError.checkNotNull(
-                  maxVal, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'maxVal'),
-              primaryUnits: primaryUnits,
-              primaryIndex: BuiltValueNullFieldError.checkNotNull(
-                  primaryIndex,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                  'primaryIndex'),
-              commonUnits: commonUnits,
-              commonIndex: BuiltValueNullFieldError.checkNotNull(
-                  commonIndex, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'commonIndex'),
-              coeff: coeff.build(),
-              isContrSetting: BuiltValueNullFieldError.checkNotNull(
-                  isContrSetting,
-                  r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                  'isContrSetting'),
-              isDestructiveRead: BuiltValueNullFieldError.checkNotNull(isDestructiveRead, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'isDestructiveRead'),
-              isFeScaling: BuiltValueNullFieldError.checkNotNull(isFeScaling, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'isFeScaling'),
-              isStepMotor: BuiltValueNullFieldError.checkNotNull(isStepMotor, r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'isStepMotor'),
-              knobInfo: _knobInfo?.build());
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'G__typename'),
+            minVal: BuiltValueNullFieldError.checkNotNull(
+                minVal,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'minVal'),
+            maxVal: BuiltValueNullFieldError.checkNotNull(
+                maxVal,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'maxVal'),
+            primaryUnits: primaryUnits,
+            primaryIndex: BuiltValueNullFieldError.checkNotNull(
+                primaryIndex,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'primaryIndex'),
+            commonUnits: commonUnits,
+            commonIndex: BuiltValueNullFieldError.checkNotNull(
+                commonIndex,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'commonIndex'),
+            coeff: coeff.build(),
+            isContrSetting: BuiltValueNullFieldError.checkNotNull(
+                isContrSetting,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'isContrSetting'),
+            isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
+                isDestructiveRead,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'isDestructiveRead'),
+            isFeScaling: BuiltValueNullFieldError.checkNotNull(
+                isFeScaling,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'isFeScaling'),
+            isStepMotor: BuiltValueNullFieldError.checkNotNull(
+                isStepMotor,
+                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+                'isStepMotor'),
+            knobInfo: _knobInfo?.build(),
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -3694,22 +3778,23 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
     final _$result = _$v ??
         new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
             ._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-                'G__typename'),
-            minVal: BuiltValueNullFieldError.checkNotNull(
-                minVal,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-                'minVal'),
-            maxVal: BuiltValueNullFieldError.checkNotNull(
-                maxVal,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-                'maxVal'),
-            step: BuiltValueNullFieldError.checkNotNull(
-                step,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-                'step'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+              'G__typename'),
+          minVal: BuiltValueNullFieldError.checkNotNull(
+              minVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+              'minVal'),
+          maxVal: BuiltValueNullFieldError.checkNotNull(
+              maxVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+              'maxVal'),
+          step: BuiltValueNullFieldError.checkNotNull(
+              step,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+              'step'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -3825,14 +3910,13 @@ class GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder
   _$GgetDeviceInfoData_deviceInfo_result__asErrorReply _build() {
     final _$result = _$v ??
         new _$GgetDeviceInfoData_deviceInfo_result__asErrorReply._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
-                'G__typename'),
-            message: BuiltValueNullFieldError.checkNotNull(
-                message,
-                r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
-                'message'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
+              'G__typename'),
+          message: BuiltValueNullFieldError.checkNotNull(message,
+              r'GgetDeviceInfoData_deviceInfo_result__asErrorReply', 'message'),
+        );
     replace(_$result);
     return _$result;
   }
@@ -4067,26 +4151,30 @@ class GDevicePropertyFieldsDataBuilder
     try {
       _$result = _$v ??
           new _$GDevicePropertyFieldsData._(
-              G__typename: BuiltValueNullFieldError.checkNotNull(
-                  G__typename, r'GDevicePropertyFieldsData', 'G__typename'),
-              minVal: BuiltValueNullFieldError.checkNotNull(
-                  minVal, r'GDevicePropertyFieldsData', 'minVal'),
-              maxVal: BuiltValueNullFieldError.checkNotNull(
-                  maxVal, r'GDevicePropertyFieldsData', 'maxVal'),
-              primaryUnits: primaryUnits,
-              primaryIndex: BuiltValueNullFieldError.checkNotNull(
-                  primaryIndex, r'GDevicePropertyFieldsData', 'primaryIndex'),
-              commonUnits: commonUnits,
-              commonIndex: BuiltValueNullFieldError.checkNotNull(
-                  commonIndex, r'GDevicePropertyFieldsData', 'commonIndex'),
-              coeff: coeff.build(),
-              isContrSetting: BuiltValueNullFieldError.checkNotNull(
-                  isContrSetting, r'GDevicePropertyFieldsData', 'isContrSetting'),
-              isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
-                  isDestructiveRead, r'GDevicePropertyFieldsData', 'isDestructiveRead'),
-              isFeScaling: BuiltValueNullFieldError.checkNotNull(
-                  isFeScaling, r'GDevicePropertyFieldsData', 'isFeScaling'),
-              isStepMotor: BuiltValueNullFieldError.checkNotNull(isStepMotor, r'GDevicePropertyFieldsData', 'isStepMotor'));
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+                G__typename, r'GDevicePropertyFieldsData', 'G__typename'),
+            minVal: BuiltValueNullFieldError.checkNotNull(
+                minVal, r'GDevicePropertyFieldsData', 'minVal'),
+            maxVal: BuiltValueNullFieldError.checkNotNull(
+                maxVal, r'GDevicePropertyFieldsData', 'maxVal'),
+            primaryUnits: primaryUnits,
+            primaryIndex: BuiltValueNullFieldError.checkNotNull(
+                primaryIndex, r'GDevicePropertyFieldsData', 'primaryIndex'),
+            commonUnits: commonUnits,
+            commonIndex: BuiltValueNullFieldError.checkNotNull(
+                commonIndex, r'GDevicePropertyFieldsData', 'commonIndex'),
+            coeff: coeff.build(),
+            isContrSetting: BuiltValueNullFieldError.checkNotNull(
+                isContrSetting, r'GDevicePropertyFieldsData', 'isContrSetting'),
+            isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
+                isDestructiveRead,
+                r'GDevicePropertyFieldsData',
+                'isDestructiveRead'),
+            isFeScaling: BuiltValueNullFieldError.checkNotNull(
+                isFeScaling, r'GDevicePropertyFieldsData', 'isFeScaling'),
+            isStepMotor: BuiltValueNullFieldError.checkNotNull(
+                isStepMotor, r'GDevicePropertyFieldsData', 'isStepMotor'),
+          );
     } catch (_) {
       late String _$failedField;
       try {
