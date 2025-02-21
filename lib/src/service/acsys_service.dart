@@ -398,7 +398,10 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   double? yMax;
   double? xMin;
   double? xMax;
+  double? timeDelta; 
   bool isShowLabels;
+  bool isScalar;   
+  bool isOneShot;
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
@@ -411,7 +414,10 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
       this.yMax,
       this.xMin,
       this.xMax,
+      this.timeDelta, 
       required this.isShowLabels,
+      required this.isScalar, 
+      required this.isOneShot, 
       this.updateDelay,
       this.nAcquisitions,
       this.tclkEvent});
@@ -1024,6 +1030,12 @@ final class ACSysService implements ACSysServiceAPI {
                 yMax: e.yMax,
                 xMin: e.xMin,
                 xMax: e.xMax,
+
+                // TODO replace with real values from API. 
+                timeDelta: null,
+                isOneShot: false,
+                isScalar: false,
+
                 isShowLabels: e.isShowLabels,
                 updateDelay: e.updateDelay,
                 nAcquisitions: e.nAcquisitions,
