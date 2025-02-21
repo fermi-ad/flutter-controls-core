@@ -11,6 +11,9 @@ query UsersLastConfig {
         xMax
         yMin
         yMax
+        timeDelta
+        isScalar
+        isOneShot
         isShowLabels
         updateDelay
         nAcquisitions
