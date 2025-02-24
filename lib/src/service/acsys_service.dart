@@ -1150,6 +1150,7 @@ final class ACSys {
 /// to get an [ACSysServiceAPI] object which implements the API.
 final class ACSysProvider extends StatelessWidget {
   final Widget child;
+  final ACSysServiceAPI? service;
 
   /// Creates the widget.
   ///
@@ -1161,12 +1162,12 @@ final class ACSysProvider extends StatelessWidget {
   ///   implementation that communicates over the network to the offcial
   ///   control system API. This option is mainly to mock-up a service to
   ///   use in unit tests.
-  const ACSysProvider({required this.child, super.key});
+  const ACSysProvider({this.service, required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {
     return _ACSysProviderIW(
-        service: ACSysService(jwt: AuthService.getJwt(context)), child: child);
+        service: service ?? ACSysService(jwt: AuthService.getJwt(context)), child: child);
   }
 }
 
