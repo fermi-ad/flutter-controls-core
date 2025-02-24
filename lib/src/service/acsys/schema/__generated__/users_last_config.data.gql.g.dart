@@ -105,6 +105,12 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
           specifiedType: const FullType(BuiltList, const [
             const FullType(GUsersLastConfigData_usersLastConfiguration_channels)
           ])),
+      'isScalar',
+      serializers.serialize(object.isScalar,
+          specifiedType: const FullType(bool)),
+      'isOneShot',
+      serializers.serialize(object.isOneShot,
+          specifiedType: const FullType(bool)),
       'isShowLabels',
       serializers.serialize(object.isShowLabels,
           specifiedType: const FullType(bool)),
@@ -135,6 +141,13 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
     if (value != null) {
       result
         ..add('yMax')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(double)));
+    }
+    value = object.timeDelta;
+    if (value != null) {
+      result
+        ..add('timeDelta')
         ..add(serializers.serialize(value,
             specifiedType: const FullType(double)));
     }
@@ -205,6 +218,18 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
         case 'yMax':
           result.yMax = serializers.deserialize(value,
               specifiedType: const FullType(double)) as double?;
+          break;
+        case 'timeDelta':
+          result.timeDelta = serializers.deserialize(value,
+              specifiedType: const FullType(double)) as double?;
+          break;
+        case 'isScalar':
+          result.isScalar = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
+          break;
+        case 'isOneShot':
+          result.isOneShot = serializers.deserialize(value,
+              specifiedType: const FullType(bool))! as bool;
           break;
         case 'isShowLabels':
           result.isShowLabels = serializers.deserialize(value,
@@ -448,6 +473,12 @@ class _$GUsersLastConfigData_usersLastConfiguration
   @override
   final double? yMax;
   @override
+  final double? timeDelta;
+  @override
+  final bool isScalar;
+  @override
+  final bool isOneShot;
+  @override
   final bool isShowLabels;
   @override
   final int? updateDelay;
@@ -472,6 +503,9 @@ class _$GUsersLastConfigData_usersLastConfiguration
       this.xMax,
       this.yMin,
       this.yMax,
+      this.timeDelta,
+      required this.isScalar,
+      required this.isOneShot,
       required this.isShowLabels,
       this.updateDelay,
       this.nAcquisitions,
@@ -485,6 +519,10 @@ class _$GUsersLastConfigData_usersLastConfiguration
         r'GUsersLastConfigData_usersLastConfiguration', 'configurationName');
     BuiltValueNullFieldError.checkNotNull(
         channels, r'GUsersLastConfigData_usersLastConfiguration', 'channels');
+    BuiltValueNullFieldError.checkNotNull(
+        isScalar, r'GUsersLastConfigData_usersLastConfiguration', 'isScalar');
+    BuiltValueNullFieldError.checkNotNull(
+        isOneShot, r'GUsersLastConfigData_usersLastConfiguration', 'isOneShot');
     BuiltValueNullFieldError.checkNotNull(isShowLabels,
         r'GUsersLastConfigData_usersLastConfiguration', 'isShowLabels');
   }
@@ -511,6 +549,9 @@ class _$GUsersLastConfigData_usersLastConfiguration
         xMax == other.xMax &&
         yMin == other.yMin &&
         yMax == other.yMax &&
+        timeDelta == other.timeDelta &&
+        isScalar == other.isScalar &&
+        isOneShot == other.isOneShot &&
         isShowLabels == other.isShowLabels &&
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
@@ -528,6 +569,9 @@ class _$GUsersLastConfigData_usersLastConfiguration
     _$hash = $jc(_$hash, xMax.hashCode);
     _$hash = $jc(_$hash, yMin.hashCode);
     _$hash = $jc(_$hash, yMax.hashCode);
+    _$hash = $jc(_$hash, timeDelta.hashCode);
+    _$hash = $jc(_$hash, isScalar.hashCode);
+    _$hash = $jc(_$hash, isOneShot.hashCode);
     _$hash = $jc(_$hash, isShowLabels.hashCode);
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
@@ -548,6 +592,9 @@ class _$GUsersLastConfigData_usersLastConfiguration
           ..add('xMax', xMax)
           ..add('yMin', yMin)
           ..add('yMax', yMax)
+          ..add('timeDelta', timeDelta)
+          ..add('isScalar', isScalar)
+          ..add('isOneShot', isOneShot)
           ..add('isShowLabels', isShowLabels)
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
@@ -601,6 +648,18 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   double? get yMax => _$this._yMax;
   set yMax(double? yMax) => _$this._yMax = yMax;
 
+  double? _timeDelta;
+  double? get timeDelta => _$this._timeDelta;
+  set timeDelta(double? timeDelta) => _$this._timeDelta = timeDelta;
+
+  bool? _isScalar;
+  bool? get isScalar => _$this._isScalar;
+  set isScalar(bool? isScalar) => _$this._isScalar = isScalar;
+
+  bool? _isOneShot;
+  bool? get isOneShot => _$this._isOneShot;
+  set isOneShot(bool? isOneShot) => _$this._isOneShot = isOneShot;
+
   bool? _isShowLabels;
   bool? get isShowLabels => _$this._isShowLabels;
   set isShowLabels(bool? isShowLabels) => _$this._isShowLabels = isShowLabels;
@@ -633,6 +692,9 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
       _xMax = $v.xMax;
       _yMin = $v.yMin;
       _yMax = $v.yMax;
+      _timeDelta = $v.timeDelta;
+      _isScalar = $v.isScalar;
+      _isOneShot = $v.isOneShot;
       _isShowLabels = $v.isShowLabels;
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
@@ -678,6 +740,11 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
             xMax: xMax,
             yMin: yMin,
             yMax: yMax,
+            timeDelta: timeDelta,
+            isScalar: BuiltValueNullFieldError.checkNotNull(isScalar,
+                r'GUsersLastConfigData_usersLastConfiguration', 'isScalar'),
+            isOneShot: BuiltValueNullFieldError.checkNotNull(isOneShot,
+                r'GUsersLastConfigData_usersLastConfiguration', 'isOneShot'),
             isShowLabels: BuiltValueNullFieldError.checkNotNull(isShowLabels,
                 r'GUsersLastConfigData_usersLastConfiguration', 'isShowLabels'),
             updateDelay: updateDelay,

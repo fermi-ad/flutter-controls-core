@@ -62,6 +62,9 @@ abstract class GUsersLastConfigData_usersLastConfiguration
   double? get xMax;
   double? get yMin;
   double? get yMax;
+  double? get timeDelta;
+  bool get isScalar;
+  bool get isOneShot;
   bool get isShowLabels;
   int? get updateDelay;
   int? get nAcquisitions;

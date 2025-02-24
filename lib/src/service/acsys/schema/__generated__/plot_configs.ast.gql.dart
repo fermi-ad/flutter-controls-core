@@ -103,6 +103,27 @@ const PlotConfigs = _i1.OperationDefinitionNode(
           selectionSet: null,
         ),
         _i1.FieldNode(
+          name: _i1.NameNode(value: 'timeDelta'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'isScalar'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'isOneShot'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
           name: _i1.NameNode(value: 'isShowLabels'),
           alias: null,
           arguments: [],
