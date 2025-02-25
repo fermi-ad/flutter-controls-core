@@ -944,6 +944,7 @@ final class ACSysService implements ACSysServiceAPI {
       ..vars.xMax = xMax
       ..vars.windowSize = windowSize
       ..vars.nAcquisitions = nAcquisitions
+      ..vars.updateDelay = updateRate
       ..vars.triggerEvent = triggerEvent);
 
     return _s
