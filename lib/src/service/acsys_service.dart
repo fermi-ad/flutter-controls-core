@@ -1033,12 +1033,9 @@ final class ACSysService implements ACSysServiceAPI {
                 yMax: e.yMax,
                 xMin: e.xMin,
                 xMax: e.xMax,
-
-                // TODO replace with real values from API. 
-                timeDelta: null,
-                isOneShot: false,
-                isScalar: false,
-
+                timeDelta: e.timeDelta,
+                isOneShot: e.isOneShot,
+                isScalar: e.isScalar,
                 isShowLabels: e.isShowLabels,
                 updateDelay: e.updateDelay,
                 nAcquisitions: e.nAcquisitions,
@@ -1072,6 +1069,9 @@ final class ACSysService implements ACSysServiceAPI {
         ..yMax = cfg.yMax
         ..xMin = cfg.xMin
         ..xMax = cfg.xMax
+        ..timeDelta = cfg.timeDelta
+        ..isOneShot = cfg.isOneShot
+        ..isScalar = cfg.isScalar
         ..isShowLabels = cfg.isShowLabels
         ..updateDelay = cfg.updateDelay
         ..nAcquisitions = cfg.nAcquisitions
