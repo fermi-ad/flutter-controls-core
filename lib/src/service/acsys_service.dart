@@ -356,11 +356,12 @@ final class PlotChannelData {
 }
 
 final class PlotPoint {
-  final double? eventX;
+  // TODO make this required. 
+  final double? t;
   final double x;
   final double y;
 
-  const PlotPoint({required this.x, required this.y, this.eventX});
+  const PlotPoint({required this.x, required this.y, this.t});
 }
 
 final class ChannelSettingSnapshot {
