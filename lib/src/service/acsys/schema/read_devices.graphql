@@ -1,4 +1,4 @@
-query StreamData($devList: [String!]!, $when: Timestamp) {
+query ReadDevices($devList: [String!]!, $when: Timestamp) {
     acceleratorData(deviceList: $devList, when: $when) {
         refId
         cycle

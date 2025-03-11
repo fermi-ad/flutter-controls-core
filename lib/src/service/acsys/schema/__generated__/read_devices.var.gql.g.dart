@@ -6,18 +6,18 @@ part of 'read_devices.var.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GStreamDataVars> _$gStreamDataVarsSerializer =
-    new _$GStreamDataVarsSerializer();
+Serializer<GReadDevicesVars> _$gReadDevicesVarsSerializer =
+    new _$GReadDevicesVarsSerializer();
 
-class _$GStreamDataVarsSerializer
-    implements StructuredSerializer<GStreamDataVars> {
+class _$GReadDevicesVarsSerializer
+    implements StructuredSerializer<GReadDevicesVars> {
   @override
-  final Iterable<Type> types = const [GStreamDataVars, _$GStreamDataVars];
+  final Iterable<Type> types = const [GReadDevicesVars, _$GReadDevicesVars];
   @override
-  final String wireName = 'GStreamDataVars';
+  final String wireName = 'GReadDevicesVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamDataVars object,
+  Iterable<Object?> serialize(Serializers serializers, GReadDevicesVars object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'devList',
@@ -37,10 +37,10 @@ class _$GStreamDataVarsSerializer
   }
 
   @override
-  GStreamDataVars deserialize(
+  GReadDevicesVars deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GStreamDataVarsBuilder();
+    final result = new GReadDevicesVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -65,32 +65,33 @@ class _$GStreamDataVarsSerializer
   }
 }
 
-class _$GStreamDataVars extends GStreamDataVars {
+class _$GReadDevicesVars extends GReadDevicesVars {
   @override
   final BuiltList<String> devList;
   @override
   final DateTime? when;
 
-  factory _$GStreamDataVars([void Function(GStreamDataVarsBuilder)? updates]) =>
-      (new GStreamDataVarsBuilder()..update(updates))._build();
+  factory _$GReadDevicesVars(
+          [void Function(GReadDevicesVarsBuilder)? updates]) =>
+      (new GReadDevicesVarsBuilder()..update(updates))._build();
 
-  _$GStreamDataVars._({required this.devList, this.when}) : super._() {
+  _$GReadDevicesVars._({required this.devList, this.when}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        devList, r'GStreamDataVars', 'devList');
+        devList, r'GReadDevicesVars', 'devList');
   }
 
   @override
-  GStreamDataVars rebuild(void Function(GStreamDataVarsBuilder) updates) =>
+  GReadDevicesVars rebuild(void Function(GReadDevicesVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataVarsBuilder toBuilder() =>
-      new GStreamDataVarsBuilder()..replace(this);
+  GReadDevicesVarsBuilder toBuilder() =>
+      new GReadDevicesVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataVars &&
+    return other is GReadDevicesVars &&
         devList == other.devList &&
         when == other.when;
   }
@@ -106,16 +107,16 @@ class _$GStreamDataVars extends GStreamDataVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataVars')
+    return (newBuiltValueToStringHelper(r'GReadDevicesVars')
           ..add('devList', devList)
           ..add('when', when))
         .toString();
   }
 }
 
-class GStreamDataVarsBuilder
-    implements Builder<GStreamDataVars, GStreamDataVarsBuilder> {
-  _$GStreamDataVars? _$v;
+class GReadDevicesVarsBuilder
+    implements Builder<GReadDevicesVars, GReadDevicesVarsBuilder> {
+  _$GReadDevicesVars? _$v;
 
   ListBuilder<String>? _devList;
   ListBuilder<String> get devList =>
@@ -126,9 +127,9 @@ class GStreamDataVarsBuilder
   DateTime? get when => _$this._when;
   set when(DateTime? when) => _$this._when = when;
 
-  GStreamDataVarsBuilder();
+  GReadDevicesVarsBuilder();
 
-  GStreamDataVarsBuilder get _$this {
+  GReadDevicesVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _devList = $v.devList.toBuilder();
@@ -139,24 +140,24 @@ class GStreamDataVarsBuilder
   }
 
   @override
-  void replace(GStreamDataVars other) {
+  void replace(GReadDevicesVars other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataVars;
+    _$v = other as _$GReadDevicesVars;
   }
 
   @override
-  void update(void Function(GStreamDataVarsBuilder)? updates) {
+  void update(void Function(GReadDevicesVarsBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataVars build() => _build();
+  GReadDevicesVars build() => _build();
 
-  _$GStreamDataVars _build() {
-    _$GStreamDataVars _$result;
+  _$GReadDevicesVars _build() {
+    _$GReadDevicesVars _$result;
     try {
       _$result = _$v ??
-          new _$GStreamDataVars._(
+          new _$GReadDevicesVars._(
             devList: devList.build(),
             when: when,
           );
@@ -167,7 +168,7 @@ class GStreamDataVarsBuilder
         devList.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataVars', _$failedField, e.toString());
+            r'GReadDevicesVars', _$failedField, e.toString());
       }
       rethrow;
     }

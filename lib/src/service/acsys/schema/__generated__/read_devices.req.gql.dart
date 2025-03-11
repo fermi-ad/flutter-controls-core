@@ -17,24 +17,24 @@ import 'package:gql_exec/gql_exec.dart' as _i4;
 
 part 'read_devices.req.gql.g.dart';
 
-abstract class GStreamDataReq
+abstract class GReadDevicesReq
     implements
-        Built<GStreamDataReq, GStreamDataReqBuilder>,
-        _i1.OperationRequest<_i2.GStreamDataData, _i3.GStreamDataVars> {
-  GStreamDataReq._();
+        Built<GReadDevicesReq, GReadDevicesReqBuilder>,
+        _i1.OperationRequest<_i2.GReadDevicesData, _i3.GReadDevicesVars> {
+  GReadDevicesReq._();
 
-  factory GStreamDataReq([void Function(GStreamDataReqBuilder b) updates]) =
-      _$GStreamDataReq;
+  factory GReadDevicesReq([void Function(GReadDevicesReqBuilder b) updates]) =
+      _$GReadDevicesReq;
 
-  static void _initializeBuilder(GStreamDataReqBuilder b) => b
+  static void _initializeBuilder(GReadDevicesReqBuilder b) => b
     ..operation = _i4.Operation(
       document: _i5.document,
-      operationName: 'StreamData',
+      operationName: 'ReadDevices',
     )
     ..executeOnListen = true;
 
   @override
-  _i3.GStreamDataVars get vars;
+  _i3.GReadDevicesVars get vars;
   @override
   _i4.Operation get operation;
   @override
@@ -48,12 +48,12 @@ abstract class GStreamDataReq
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GStreamDataData? Function(
-    _i2.GStreamDataData?,
-    _i2.GStreamDataData?,
+  _i2.GReadDevicesData? Function(
+    _i2.GReadDevicesData?,
+    _i2.GReadDevicesData?,
   )? get updateResult;
   @override
-  _i2.GStreamDataData? get optimisticResponse;
+  _i2.GReadDevicesData? get optimisticResponse;
   @override
   String? get updateCacheHandlerKey;
   @override
@@ -66,31 +66,31 @@ abstract class GStreamDataReq
   @BuiltValueField(serialize: false)
   _i4.Context? get context;
   @override
-  _i2.GStreamDataData? parseData(Map<String, dynamic> json) =>
-      _i2.GStreamDataData.fromJson(json);
+  _i2.GReadDevicesData? parseData(Map<String, dynamic> json) =>
+      _i2.GReadDevicesData.fromJson(json);
 
   @override
   Map<String, dynamic> varsToJson() => vars.toJson();
 
   @override
-  Map<String, dynamic> dataToJson(_i2.GStreamDataData data) => data.toJson();
+  Map<String, dynamic> dataToJson(_i2.GReadDevicesData data) => data.toJson();
 
   @override
-  _i1.OperationRequest<_i2.GStreamDataData, _i3.GStreamDataVars>
+  _i1.OperationRequest<_i2.GReadDevicesData, _i3.GReadDevicesVars>
       transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
           this.rebuild((b) => b..operation = transform(operation));
 
-  static Serializer<GStreamDataReq> get serializer =>
-      _$gStreamDataReqSerializer;
+  static Serializer<GReadDevicesReq> get serializer =>
+      _$gReadDevicesReqSerializer;
 
   Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GStreamDataReq.serializer,
+        GReadDevicesReq.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GStreamDataReq? fromJson(Map<String, dynamic> json) =>
+  static GReadDevicesReq? fromJson(Map<String, dynamic> json) =>
       _i6.serializers.deserializeWith(
-        GStreamDataReq.serializer,
+        GReadDevicesReq.serializer,
         json,
       );
 }

@@ -6,23 +6,23 @@ part of 'read_devices.req.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GStreamDataReq> _$gStreamDataReqSerializer =
-    new _$GStreamDataReqSerializer();
+Serializer<GReadDevicesReq> _$gReadDevicesReqSerializer =
+    new _$GReadDevicesReqSerializer();
 
-class _$GStreamDataReqSerializer
-    implements StructuredSerializer<GStreamDataReq> {
+class _$GReadDevicesReqSerializer
+    implements StructuredSerializer<GReadDevicesReq> {
   @override
-  final Iterable<Type> types = const [GStreamDataReq, _$GStreamDataReq];
+  final Iterable<Type> types = const [GReadDevicesReq, _$GReadDevicesReq];
   @override
-  final String wireName = 'GStreamDataReq';
+  final String wireName = 'GReadDevicesReq';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamDataReq object,
+  Iterable<Object?> serialize(Serializers serializers, GReadDevicesReq object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       'vars',
       serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GStreamDataVars)),
+          specifiedType: const FullType(_i3.GReadDevicesVars)),
       'operation',
       serializers.serialize(object.operation,
           specifiedType: const FullType(_i4.Operation)),
@@ -43,7 +43,7 @@ class _$GStreamDataReqSerializer
       result
         ..add('optimisticResponse')
         ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GStreamDataData)));
+            specifiedType: const FullType(_i2.GReadDevicesData)));
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
@@ -71,10 +71,10 @@ class _$GStreamDataReqSerializer
   }
 
   @override
-  GStreamDataReq deserialize(
+  GReadDevicesReq deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GStreamDataReqBuilder();
+    final result = new GReadDevicesReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -84,8 +84,8 @@ class _$GStreamDataReqSerializer
       switch (key) {
         case 'vars':
           result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GStreamDataVars))!
-              as _i3.GStreamDataVars);
+                  specifiedType: const FullType(_i3.GReadDevicesVars))!
+              as _i3.GReadDevicesVars);
           break;
         case 'operation':
           result.operation = serializers.deserialize(value,
@@ -97,8 +97,8 @@ class _$GStreamDataReqSerializer
           break;
         case 'optimisticResponse':
           result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GStreamDataData))!
-              as _i2.GStreamDataData);
+                  specifiedType: const FullType(_i2.GReadDevicesData))!
+              as _i2.GReadDevicesData);
           break;
         case 'updateCacheHandlerKey':
           result.updateCacheHandlerKey = serializers.deserialize(value,
@@ -127,18 +127,18 @@ class _$GStreamDataReqSerializer
   }
 }
 
-class _$GStreamDataReq extends GStreamDataReq {
+class _$GReadDevicesReq extends GReadDevicesReq {
   @override
-  final _i3.GStreamDataVars vars;
+  final _i3.GReadDevicesVars vars;
   @override
   final _i4.Operation operation;
   @override
   final String? requestId;
   @override
-  final _i2.GStreamDataData? Function(
-      _i2.GStreamDataData?, _i2.GStreamDataData?)? updateResult;
+  final _i2.GReadDevicesData? Function(
+      _i2.GReadDevicesData?, _i2.GReadDevicesData?)? updateResult;
   @override
-  final _i2.GStreamDataData? optimisticResponse;
+  final _i2.GReadDevicesData? optimisticResponse;
   @override
   final String? updateCacheHandlerKey;
   @override
@@ -150,10 +150,10 @@ class _$GStreamDataReq extends GStreamDataReq {
   @override
   final _i4.Context? context;
 
-  factory _$GStreamDataReq([void Function(GStreamDataReqBuilder)? updates]) =>
-      (new GStreamDataReqBuilder()..update(updates))._build();
+  factory _$GReadDevicesReq([void Function(GReadDevicesReqBuilder)? updates]) =>
+      (new GReadDevicesReqBuilder()..update(updates))._build();
 
-  _$GStreamDataReq._(
+  _$GReadDevicesReq._(
       {required this.vars,
       required this.operation,
       this.requestId,
@@ -165,26 +165,26 @@ class _$GStreamDataReq extends GStreamDataReq {
       required this.executeOnListen,
       this.context})
       : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GStreamDataReq', 'vars');
+    BuiltValueNullFieldError.checkNotNull(vars, r'GReadDevicesReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, r'GStreamDataReq', 'operation');
+        operation, r'GReadDevicesReq', 'operation');
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GStreamDataReq', 'executeOnListen');
+        executeOnListen, r'GReadDevicesReq', 'executeOnListen');
   }
 
   @override
-  GStreamDataReq rebuild(void Function(GStreamDataReqBuilder) updates) =>
+  GReadDevicesReq rebuild(void Function(GReadDevicesReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataReqBuilder toBuilder() =>
-      new GStreamDataReqBuilder()..replace(this);
+  GReadDevicesReqBuilder toBuilder() =>
+      new GReadDevicesReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     final dynamic _$dynamicOther = other;
-    return other is GStreamDataReq &&
+    return other is GReadDevicesReq &&
         vars == other.vars &&
         operation == other.operation &&
         requestId == other.requestId &&
@@ -216,7 +216,7 @@ class _$GStreamDataReq extends GStreamDataReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataReq')
+    return (newBuiltValueToStringHelper(r'GReadDevicesReq')
           ..add('vars', vars)
           ..add('operation', operation)
           ..add('requestId', requestId)
@@ -231,14 +231,14 @@ class _$GStreamDataReq extends GStreamDataReq {
   }
 }
 
-class GStreamDataReqBuilder
-    implements Builder<GStreamDataReq, GStreamDataReqBuilder> {
-  _$GStreamDataReq? _$v;
+class GReadDevicesReqBuilder
+    implements Builder<GReadDevicesReq, GReadDevicesReqBuilder> {
+  _$GReadDevicesReq? _$v;
 
-  _i3.GStreamDataVarsBuilder? _vars;
-  _i3.GStreamDataVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GStreamDataVarsBuilder();
-  set vars(_i3.GStreamDataVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GReadDevicesVarsBuilder? _vars;
+  _i3.GReadDevicesVarsBuilder get vars =>
+      _$this._vars ??= new _i3.GReadDevicesVarsBuilder();
+  set vars(_i3.GReadDevicesVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
   _i4.Operation? get operation => _$this._operation;
@@ -248,20 +248,20 @@ class GStreamDataReqBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
+  _i2.GReadDevicesData? Function(_i2.GReadDevicesData?, _i2.GReadDevicesData?)?
       _updateResult;
-  _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
+  _i2.GReadDevicesData? Function(_i2.GReadDevicesData?, _i2.GReadDevicesData?)?
       get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GStreamDataData? Function(
-                  _i2.GStreamDataData?, _i2.GStreamDataData?)?
+          _i2.GReadDevicesData? Function(
+                  _i2.GReadDevicesData?, _i2.GReadDevicesData?)?
               updateResult) =>
       _$this._updateResult = updateResult;
 
-  _i2.GStreamDataDataBuilder? _optimisticResponse;
-  _i2.GStreamDataDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GStreamDataDataBuilder();
-  set optimisticResponse(_i2.GStreamDataDataBuilder? optimisticResponse) =>
+  _i2.GReadDevicesDataBuilder? _optimisticResponse;
+  _i2.GReadDevicesDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= new _i2.GReadDevicesDataBuilder();
+  set optimisticResponse(_i2.GReadDevicesDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
@@ -290,11 +290,11 @@ class GStreamDataReqBuilder
   _i4.Context? get context => _$this._context;
   set context(_i4.Context? context) => _$this._context = context;
 
-  GStreamDataReqBuilder() {
-    GStreamDataReq._initializeBuilder(this);
+  GReadDevicesReqBuilder() {
+    GReadDevicesReq._initializeBuilder(this);
   }
 
-  GStreamDataReqBuilder get _$this {
+  GReadDevicesReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -313,27 +313,27 @@ class GStreamDataReqBuilder
   }
 
   @override
-  void replace(GStreamDataReq other) {
+  void replace(GReadDevicesReq other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataReq;
+    _$v = other as _$GReadDevicesReq;
   }
 
   @override
-  void update(void Function(GStreamDataReqBuilder)? updates) {
+  void update(void Function(GReadDevicesReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataReq build() => _build();
+  GReadDevicesReq build() => _build();
 
-  _$GStreamDataReq _build() {
-    _$GStreamDataReq _$result;
+  _$GReadDevicesReq _build() {
+    _$GReadDevicesReq _$result;
     try {
       _$result = _$v ??
-          new _$GStreamDataReq._(
+          new _$GReadDevicesReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GStreamDataReq', 'operation'),
+                operation, r'GReadDevicesReq', 'operation'),
             requestId: requestId,
             updateResult: updateResult,
             optimisticResponse: _optimisticResponse?.build(),
@@ -341,7 +341,7 @@ class GStreamDataReqBuilder
             updateCacheHandlerContext: updateCacheHandlerContext,
             fetchPolicy: fetchPolicy,
             executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GStreamDataReq', 'executeOnListen'),
+                executeOnListen, r'GReadDevicesReq', 'executeOnListen'),
             context: context,
           );
     } catch (_) {
@@ -354,7 +354,7 @@ class GStreamDataReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataReq', _$failedField, e.toString());
+            r'GReadDevicesReq', _$failedField, e.toString());
       }
       rethrow;
     }

@@ -6,42 +6,42 @@ part of 'read_devices.data.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GStreamDataData> _$gStreamDataDataSerializer =
-    new _$GStreamDataDataSerializer();
-Serializer<GStreamDataData_acceleratorData>
-    _$gStreamDataDataAcceleratorDataSerializer =
-    new _$GStreamDataData_acceleratorDataSerializer();
-Serializer<GStreamDataData_acceleratorData_data>
-    _$gStreamDataDataAcceleratorDataDataSerializer =
-    new _$GStreamDataData_acceleratorData_dataSerializer();
-Serializer<GStreamDataData_acceleratorData_data_result__base>
-    _$gStreamDataDataAcceleratorDataDataResultBaseSerializer =
-    new _$GStreamDataData_acceleratorData_data_result__baseSerializer();
-Serializer<GStreamDataData_acceleratorData_data_result__asStatusReply>
-    _$gStreamDataDataAcceleratorDataDataResultAsStatusReplySerializer =
-    new _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer();
-Serializer<GStreamDataData_acceleratorData_data_result__asScalar>
-    _$gStreamDataDataAcceleratorDataDataResultAsScalarSerializer =
-    new _$GStreamDataData_acceleratorData_data_result__asScalarSerializer();
-Serializer<GStreamDataData_acceleratorData_data_result__asScalarArray>
-    _$gStreamDataDataAcceleratorDataDataResultAsScalarArraySerializer =
-    new _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer();
-Serializer<GStreamDataData_acceleratorData_data_result__asText>
-    _$gStreamDataDataAcceleratorDataDataResultAsTextSerializer =
-    new _$GStreamDataData_acceleratorData_data_result__asTextSerializer();
-Serializer<GStreamDataData_acceleratorData_data_result__asTextArray>
-    _$gStreamDataDataAcceleratorDataDataResultAsTextArraySerializer =
-    new _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer();
+Serializer<GReadDevicesData> _$gReadDevicesDataSerializer =
+    new _$GReadDevicesDataSerializer();
+Serializer<GReadDevicesData_acceleratorData>
+    _$gReadDevicesDataAcceleratorDataSerializer =
+    new _$GReadDevicesData_acceleratorDataSerializer();
+Serializer<GReadDevicesData_acceleratorData_data>
+    _$gReadDevicesDataAcceleratorDataDataSerializer =
+    new _$GReadDevicesData_acceleratorData_dataSerializer();
+Serializer<GReadDevicesData_acceleratorData_data_result__base>
+    _$gReadDevicesDataAcceleratorDataDataResultBaseSerializer =
+    new _$GReadDevicesData_acceleratorData_data_result__baseSerializer();
+Serializer<GReadDevicesData_acceleratorData_data_result__asStatusReply>
+    _$gReadDevicesDataAcceleratorDataDataResultAsStatusReplySerializer =
+    new _$GReadDevicesData_acceleratorData_data_result__asStatusReplySerializer();
+Serializer<GReadDevicesData_acceleratorData_data_result__asScalar>
+    _$gReadDevicesDataAcceleratorDataDataResultAsScalarSerializer =
+    new _$GReadDevicesData_acceleratorData_data_result__asScalarSerializer();
+Serializer<GReadDevicesData_acceleratorData_data_result__asScalarArray>
+    _$gReadDevicesDataAcceleratorDataDataResultAsScalarArraySerializer =
+    new _$GReadDevicesData_acceleratorData_data_result__asScalarArraySerializer();
+Serializer<GReadDevicesData_acceleratorData_data_result__asText>
+    _$gReadDevicesDataAcceleratorDataDataResultAsTextSerializer =
+    new _$GReadDevicesData_acceleratorData_data_result__asTextSerializer();
+Serializer<GReadDevicesData_acceleratorData_data_result__asTextArray>
+    _$gReadDevicesDataAcceleratorDataDataResultAsTextArraySerializer =
+    new _$GReadDevicesData_acceleratorData_data_result__asTextArraySerializer();
 
-class _$GStreamDataDataSerializer
-    implements StructuredSerializer<GStreamDataData> {
+class _$GReadDevicesDataSerializer
+    implements StructuredSerializer<GReadDevicesData> {
   @override
-  final Iterable<Type> types = const [GStreamDataData, _$GStreamDataData];
+  final Iterable<Type> types = const [GReadDevicesData, _$GReadDevicesData];
   @override
-  final String wireName = 'GStreamDataData';
+  final String wireName = 'GReadDevicesData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamDataData object,
+  Iterable<Object?> serialize(Serializers serializers, GReadDevicesData object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -50,17 +50,17 @@ class _$GStreamDataDataSerializer
       'acceleratorData',
       serializers.serialize(object.acceleratorData,
           specifiedType: const FullType(BuiltList,
-              const [const FullType(GStreamDataData_acceleratorData)])),
+              const [const FullType(GReadDevicesData_acceleratorData)])),
     ];
 
     return result;
   }
 
   @override
-  GStreamDataData deserialize(
+  GReadDevicesData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GStreamDataDataBuilder();
+    final result = new GReadDevicesDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -75,7 +75,7 @@ class _$GStreamDataDataSerializer
         case 'acceleratorData':
           result.acceleratorData.replace(serializers.deserialize(value,
               specifiedType: const FullType(BuiltList, const [
-                const FullType(GStreamDataData_acceleratorData)
+                const FullType(GReadDevicesData_acceleratorData)
               ]))! as BuiltList<Object?>);
           break;
       }
@@ -85,19 +85,19 @@ class _$GStreamDataDataSerializer
   }
 }
 
-class _$GStreamDataData_acceleratorDataSerializer
-    implements StructuredSerializer<GStreamDataData_acceleratorData> {
+class _$GReadDevicesData_acceleratorDataSerializer
+    implements StructuredSerializer<GReadDevicesData_acceleratorData> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData,
-    _$GStreamDataData_acceleratorData
+    GReadDevicesData_acceleratorData,
+    _$GReadDevicesData_acceleratorData
   ];
   @override
-  final String wireName = 'GStreamDataData_acceleratorData';
+  final String wireName = 'GReadDevicesData_acceleratorData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GStreamDataData_acceleratorData object,
+      Serializers serializers, GReadDevicesData_acceleratorData object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -109,17 +109,17 @@ class _$GStreamDataData_acceleratorDataSerializer
       serializers.serialize(object.cycle, specifiedType: const FullType(int)),
       'data',
       serializers.serialize(object.data,
-          specifiedType: const FullType(GStreamDataData_acceleratorData_data)),
+          specifiedType: const FullType(GReadDevicesData_acceleratorData_data)),
     ];
 
     return result;
   }
 
   @override
-  GStreamDataData_acceleratorData deserialize(
+  GReadDevicesData_acceleratorData deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GStreamDataData_acceleratorDataBuilder();
+    final result = new GReadDevicesData_acceleratorDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -142,8 +142,8 @@ class _$GStreamDataData_acceleratorDataSerializer
         case 'data':
           result.data.replace(serializers.deserialize(value,
                   specifiedType:
-                      const FullType(GStreamDataData_acceleratorData_data))!
-              as GStreamDataData_acceleratorData_data);
+                      const FullType(GReadDevicesData_acceleratorData_data))!
+              as GReadDevicesData_acceleratorData_data);
           break;
       }
     }
@@ -152,19 +152,19 @@ class _$GStreamDataData_acceleratorDataSerializer
   }
 }
 
-class _$GStreamDataData_acceleratorData_dataSerializer
-    implements StructuredSerializer<GStreamDataData_acceleratorData_data> {
+class _$GReadDevicesData_acceleratorData_dataSerializer
+    implements StructuredSerializer<GReadDevicesData_acceleratorData_data> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData_data,
-    _$GStreamDataData_acceleratorData_data
+    GReadDevicesData_acceleratorData_data,
+    _$GReadDevicesData_acceleratorData_data
   ];
   @override
-  final String wireName = 'GStreamDataData_acceleratorData_data';
+  final String wireName = 'GReadDevicesData_acceleratorData_data';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GStreamDataData_acceleratorData_data object,
+      Serializers serializers, GReadDevicesData_acceleratorData_data object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -176,17 +176,17 @@ class _$GStreamDataData_acceleratorData_dataSerializer
       'result',
       serializers.serialize(object.result,
           specifiedType:
-              const FullType(GStreamDataData_acceleratorData_data_result)),
+              const FullType(GReadDevicesData_acceleratorData_data_result)),
     ];
 
     return result;
   }
 
   @override
-  GStreamDataData_acceleratorData_data deserialize(
+  GReadDevicesData_acceleratorData_data deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
-    final result = new GStreamDataData_acceleratorData_dataBuilder();
+    final result = new GReadDevicesData_acceleratorData_dataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -205,8 +205,8 @@ class _$GStreamDataData_acceleratorData_dataSerializer
         case 'result':
           result.result = serializers.deserialize(value,
                   specifiedType: const FullType(
-                      GStreamDataData_acceleratorData_data_result))!
-              as GStreamDataData_acceleratorData_data_result;
+                      GReadDevicesData_acceleratorData_data_result))!
+              as GReadDevicesData_acceleratorData_data_result;
           break;
       }
     }
@@ -215,21 +215,21 @@ class _$GStreamDataData_acceleratorData_dataSerializer
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__baseSerializer
+class _$GReadDevicesData_acceleratorData_data_result__baseSerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__base> {
+            GReadDevicesData_acceleratorData_data_result__base> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData_data_result__base,
-    _$GStreamDataData_acceleratorData_data_result__base
+    GReadDevicesData_acceleratorData_data_result__base,
+    _$GReadDevicesData_acceleratorData_data_result__base
   ];
   @override
-  final String wireName = 'GStreamDataData_acceleratorData_data_result__base';
+  final String wireName = 'GReadDevicesData_acceleratorData_data_result__base';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__base object,
+      GReadDevicesData_acceleratorData_data_result__base object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -241,11 +241,11 @@ class _$GStreamDataData_acceleratorData_data_result__baseSerializer
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__base deserialize(
+  GReadDevicesData_acceleratorData_data_result__base deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GStreamDataData_acceleratorData_data_result__baseBuilder();
+        new GReadDevicesData_acceleratorData_data_result__baseBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -264,22 +264,22 @@ class _$GStreamDataData_acceleratorData_data_result__baseSerializer
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer
+class _$GReadDevicesData_acceleratorData_data_result__asStatusReplySerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asStatusReply> {
+            GReadDevicesData_acceleratorData_data_result__asStatusReply> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData_data_result__asStatusReply,
-    _$GStreamDataData_acceleratorData_data_result__asStatusReply
+    GReadDevicesData_acceleratorData_data_result__asStatusReply,
+    _$GReadDevicesData_acceleratorData_data_result__asStatusReply
   ];
   @override
   final String wireName =
-      'GStreamDataData_acceleratorData_data_result__asStatusReply';
+      'GReadDevicesData_acceleratorData_data_result__asStatusReply';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asStatusReply object,
+      GReadDevicesData_acceleratorData_data_result__asStatusReply object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -293,11 +293,11 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asStatusReply deserialize(
+  GReadDevicesData_acceleratorData_data_result__asStatusReply deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder();
+        new GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -320,22 +320,22 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
+class _$GReadDevicesData_acceleratorData_data_result__asScalarSerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asScalar> {
+            GReadDevicesData_acceleratorData_data_result__asScalar> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData_data_result__asScalar,
-    _$GStreamDataData_acceleratorData_data_result__asScalar
+    GReadDevicesData_acceleratorData_data_result__asScalar,
+    _$GReadDevicesData_acceleratorData_data_result__asScalar
   ];
   @override
   final String wireName =
-      'GStreamDataData_acceleratorData_data_result__asScalar';
+      'GReadDevicesData_acceleratorData_data_result__asScalar';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asScalar object,
+      GReadDevicesData_acceleratorData_data_result__asScalar object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -350,11 +350,11 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalar deserialize(
+  GReadDevicesData_acceleratorData_data_result__asScalar deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GStreamDataData_acceleratorData_data_result__asScalarBuilder();
+        new GReadDevicesData_acceleratorData_data_result__asScalarBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -377,22 +377,22 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer
+class _$GReadDevicesData_acceleratorData_data_result__asScalarArraySerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asScalarArray> {
+            GReadDevicesData_acceleratorData_data_result__asScalarArray> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData_data_result__asScalarArray,
-    _$GStreamDataData_acceleratorData_data_result__asScalarArray
+    GReadDevicesData_acceleratorData_data_result__asScalarArray,
+    _$GReadDevicesData_acceleratorData_data_result__asScalarArray
   ];
   @override
   final String wireName =
-      'GStreamDataData_acceleratorData_data_result__asScalarArray';
+      'GReadDevicesData_acceleratorData_data_result__asScalarArray';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asScalarArray object,
+      GReadDevicesData_acceleratorData_data_result__asScalarArray object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -408,11 +408,11 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalarArray deserialize(
+  GReadDevicesData_acceleratorData_data_result__asScalarArray deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder();
+        new GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -437,21 +437,22 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asTextSerializer
+class _$GReadDevicesData_acceleratorData_data_result__asTextSerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asText> {
+            GReadDevicesData_acceleratorData_data_result__asText> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData_data_result__asText,
-    _$GStreamDataData_acceleratorData_data_result__asText
+    GReadDevicesData_acceleratorData_data_result__asText,
+    _$GReadDevicesData_acceleratorData_data_result__asText
   ];
   @override
-  final String wireName = 'GStreamDataData_acceleratorData_data_result__asText';
+  final String wireName =
+      'GReadDevicesData_acceleratorData_data_result__asText';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asText object,
+      GReadDevicesData_acceleratorData_data_result__asText object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -466,11 +467,11 @@ class _$GStreamDataData_acceleratorData_data_result__asTextSerializer
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asText deserialize(
+  GReadDevicesData_acceleratorData_data_result__asText deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GStreamDataData_acceleratorData_data_result__asTextBuilder();
+        new GReadDevicesData_acceleratorData_data_result__asTextBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -493,22 +494,22 @@ class _$GStreamDataData_acceleratorData_data_result__asTextSerializer
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer
+class _$GReadDevicesData_acceleratorData_data_result__asTextArraySerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asTextArray> {
+            GReadDevicesData_acceleratorData_data_result__asTextArray> {
   @override
   final Iterable<Type> types = const [
-    GStreamDataData_acceleratorData_data_result__asTextArray,
-    _$GStreamDataData_acceleratorData_data_result__asTextArray
+    GReadDevicesData_acceleratorData_data_result__asTextArray,
+    _$GReadDevicesData_acceleratorData_data_result__asTextArray
   ];
   @override
   final String wireName =
-      'GStreamDataData_acceleratorData_data_result__asTextArray';
+      'GReadDevicesData_acceleratorData_data_result__asTextArray';
 
   @override
   Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asTextArray object,
+      GReadDevicesData_acceleratorData_data_result__asTextArray object,
       {FullType specifiedType = FullType.unspecified}) {
     final result = <Object?>[
       '__typename',
@@ -524,11 +525,11 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asTextArray deserialize(
+  GReadDevicesData_acceleratorData_data_result__asTextArray deserialize(
       Serializers serializers, Iterable<Object?> serialized,
       {FullType specifiedType = FullType.unspecified}) {
     final result =
-        new GStreamDataData_acceleratorData_data_result__asTextArrayBuilder();
+        new GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -553,36 +554,37 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer
   }
 }
 
-class _$GStreamDataData extends GStreamDataData {
+class _$GReadDevicesData extends GReadDevicesData {
   @override
   final String G__typename;
   @override
-  final BuiltList<GStreamDataData_acceleratorData> acceleratorData;
+  final BuiltList<GReadDevicesData_acceleratorData> acceleratorData;
 
-  factory _$GStreamDataData([void Function(GStreamDataDataBuilder)? updates]) =>
-      (new GStreamDataDataBuilder()..update(updates))._build();
+  factory _$GReadDevicesData(
+          [void Function(GReadDevicesDataBuilder)? updates]) =>
+      (new GReadDevicesDataBuilder()..update(updates))._build();
 
-  _$GStreamDataData._(
+  _$GReadDevicesData._(
       {required this.G__typename, required this.acceleratorData})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStreamDataData', 'G__typename');
+        G__typename, r'GReadDevicesData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        acceleratorData, r'GStreamDataData', 'acceleratorData');
+        acceleratorData, r'GReadDevicesData', 'acceleratorData');
   }
 
   @override
-  GStreamDataData rebuild(void Function(GStreamDataDataBuilder) updates) =>
+  GReadDevicesData rebuild(void Function(GReadDevicesDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataDataBuilder toBuilder() =>
-      new GStreamDataDataBuilder()..replace(this);
+  GReadDevicesDataBuilder toBuilder() =>
+      new GReadDevicesDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataData &&
+    return other is GReadDevicesData &&
         G__typename == other.G__typename &&
         acceleratorData == other.acceleratorData;
   }
@@ -598,34 +600,34 @@ class _$GStreamDataData extends GStreamDataData {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataData')
+    return (newBuiltValueToStringHelper(r'GReadDevicesData')
           ..add('G__typename', G__typename)
           ..add('acceleratorData', acceleratorData))
         .toString();
   }
 }
 
-class GStreamDataDataBuilder
-    implements Builder<GStreamDataData, GStreamDataDataBuilder> {
-  _$GStreamDataData? _$v;
+class GReadDevicesDataBuilder
+    implements Builder<GReadDevicesData, GReadDevicesDataBuilder> {
+  _$GReadDevicesData? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  ListBuilder<GStreamDataData_acceleratorData>? _acceleratorData;
-  ListBuilder<GStreamDataData_acceleratorData> get acceleratorData =>
+  ListBuilder<GReadDevicesData_acceleratorData>? _acceleratorData;
+  ListBuilder<GReadDevicesData_acceleratorData> get acceleratorData =>
       _$this._acceleratorData ??=
-          new ListBuilder<GStreamDataData_acceleratorData>();
+          new ListBuilder<GReadDevicesData_acceleratorData>();
   set acceleratorData(
-          ListBuilder<GStreamDataData_acceleratorData>? acceleratorData) =>
+          ListBuilder<GReadDevicesData_acceleratorData>? acceleratorData) =>
       _$this._acceleratorData = acceleratorData;
 
-  GStreamDataDataBuilder() {
-    GStreamDataData._initializeBuilder(this);
+  GReadDevicesDataBuilder() {
+    GReadDevicesData._initializeBuilder(this);
   }
 
-  GStreamDataDataBuilder get _$this {
+  GReadDevicesDataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -636,26 +638,26 @@ class GStreamDataDataBuilder
   }
 
   @override
-  void replace(GStreamDataData other) {
+  void replace(GReadDevicesData other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData;
+    _$v = other as _$GReadDevicesData;
   }
 
   @override
-  void update(void Function(GStreamDataDataBuilder)? updates) {
+  void update(void Function(GReadDevicesDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData build() => _build();
+  GReadDevicesData build() => _build();
 
-  _$GStreamDataData _build() {
-    _$GStreamDataData _$result;
+  _$GReadDevicesData _build() {
+    _$GReadDevicesData _$result;
     try {
       _$result = _$v ??
-          new _$GStreamDataData._(
+          new _$GReadDevicesData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStreamDataData', 'G__typename'),
+                G__typename, r'GReadDevicesData', 'G__typename'),
             acceleratorData: acceleratorData.build(),
           );
     } catch (_) {
@@ -665,7 +667,7 @@ class GStreamDataDataBuilder
         acceleratorData.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData', _$failedField, e.toString());
+            r'GReadDevicesData', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -674,8 +676,8 @@ class GStreamDataDataBuilder
   }
 }
 
-class _$GStreamDataData_acceleratorData
-    extends GStreamDataData_acceleratorData {
+class _$GReadDevicesData_acceleratorData
+    extends GReadDevicesData_acceleratorData {
   @override
   final String G__typename;
   @override
@@ -683,41 +685,41 @@ class _$GStreamDataData_acceleratorData
   @override
   final int cycle;
   @override
-  final GStreamDataData_acceleratorData_data data;
+  final GReadDevicesData_acceleratorData_data data;
 
-  factory _$GStreamDataData_acceleratorData(
-          [void Function(GStreamDataData_acceleratorDataBuilder)? updates]) =>
-      (new GStreamDataData_acceleratorDataBuilder()..update(updates))._build();
+  factory _$GReadDevicesData_acceleratorData(
+          [void Function(GReadDevicesData_acceleratorDataBuilder)? updates]) =>
+      (new GReadDevicesData_acceleratorDataBuilder()..update(updates))._build();
 
-  _$GStreamDataData_acceleratorData._(
+  _$GReadDevicesData_acceleratorData._(
       {required this.G__typename,
       required this.refId,
       required this.cycle,
       required this.data})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStreamDataData_acceleratorData', 'G__typename');
+        G__typename, r'GReadDevicesData_acceleratorData', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        refId, r'GStreamDataData_acceleratorData', 'refId');
+        refId, r'GReadDevicesData_acceleratorData', 'refId');
     BuiltValueNullFieldError.checkNotNull(
-        cycle, r'GStreamDataData_acceleratorData', 'cycle');
+        cycle, r'GReadDevicesData_acceleratorData', 'cycle');
     BuiltValueNullFieldError.checkNotNull(
-        data, r'GStreamDataData_acceleratorData', 'data');
+        data, r'GReadDevicesData_acceleratorData', 'data');
   }
 
   @override
-  GStreamDataData_acceleratorData rebuild(
-          void Function(GStreamDataData_acceleratorDataBuilder) updates) =>
+  GReadDevicesData_acceleratorData rebuild(
+          void Function(GReadDevicesData_acceleratorDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorDataBuilder toBuilder() =>
-      new GStreamDataData_acceleratorDataBuilder()..replace(this);
+  GReadDevicesData_acceleratorDataBuilder toBuilder() =>
+      new GReadDevicesData_acceleratorDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataData_acceleratorData &&
+    return other is GReadDevicesData_acceleratorData &&
         G__typename == other.G__typename &&
         refId == other.refId &&
         cycle == other.cycle &&
@@ -737,7 +739,7 @@ class _$GStreamDataData_acceleratorData
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataData_acceleratorData')
+    return (newBuiltValueToStringHelper(r'GReadDevicesData_acceleratorData')
           ..add('G__typename', G__typename)
           ..add('refId', refId)
           ..add('cycle', cycle)
@@ -746,11 +748,11 @@ class _$GStreamDataData_acceleratorData
   }
 }
 
-class GStreamDataData_acceleratorDataBuilder
+class GReadDevicesData_acceleratorDataBuilder
     implements
-        Builder<GStreamDataData_acceleratorData,
-            GStreamDataData_acceleratorDataBuilder> {
-  _$GStreamDataData_acceleratorData? _$v;
+        Builder<GReadDevicesData_acceleratorData,
+            GReadDevicesData_acceleratorDataBuilder> {
+  _$GReadDevicesData_acceleratorData? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -764,17 +766,17 @@ class GStreamDataData_acceleratorDataBuilder
   int? get cycle => _$this._cycle;
   set cycle(int? cycle) => _$this._cycle = cycle;
 
-  GStreamDataData_acceleratorData_dataBuilder? _data;
-  GStreamDataData_acceleratorData_dataBuilder get data =>
-      _$this._data ??= new GStreamDataData_acceleratorData_dataBuilder();
-  set data(GStreamDataData_acceleratorData_dataBuilder? data) =>
+  GReadDevicesData_acceleratorData_dataBuilder? _data;
+  GReadDevicesData_acceleratorData_dataBuilder get data =>
+      _$this._data ??= new GReadDevicesData_acceleratorData_dataBuilder();
+  set data(GReadDevicesData_acceleratorData_dataBuilder? data) =>
       _$this._data = data;
 
-  GStreamDataData_acceleratorDataBuilder() {
-    GStreamDataData_acceleratorData._initializeBuilder(this);
+  GReadDevicesData_acceleratorDataBuilder() {
+    GReadDevicesData_acceleratorData._initializeBuilder(this);
   }
 
-  GStreamDataData_acceleratorDataBuilder get _$this {
+  GReadDevicesData_acceleratorDataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -787,30 +789,30 @@ class GStreamDataData_acceleratorDataBuilder
   }
 
   @override
-  void replace(GStreamDataData_acceleratorData other) {
+  void replace(GReadDevicesData_acceleratorData other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData;
+    _$v = other as _$GReadDevicesData_acceleratorData;
   }
 
   @override
-  void update(void Function(GStreamDataData_acceleratorDataBuilder)? updates) {
+  void update(void Function(GReadDevicesData_acceleratorDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData build() => _build();
+  GReadDevicesData_acceleratorData build() => _build();
 
-  _$GStreamDataData_acceleratorData _build() {
-    _$GStreamDataData_acceleratorData _$result;
+  _$GReadDevicesData_acceleratorData _build() {
+    _$GReadDevicesData_acceleratorData _$result;
     try {
       _$result = _$v ??
-          new _$GStreamDataData_acceleratorData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStreamDataData_acceleratorData', 'G__typename'),
+          new _$GReadDevicesData_acceleratorData._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
+                r'GReadDevicesData_acceleratorData', 'G__typename'),
             refId: BuiltValueNullFieldError.checkNotNull(
-                refId, r'GStreamDataData_acceleratorData', 'refId'),
+                refId, r'GReadDevicesData_acceleratorData', 'refId'),
             cycle: BuiltValueNullFieldError.checkNotNull(
-                cycle, r'GStreamDataData_acceleratorData', 'cycle'),
+                cycle, r'GReadDevicesData_acceleratorData', 'cycle'),
             data: data.build(),
           );
     } catch (_) {
@@ -820,7 +822,7 @@ class GStreamDataData_acceleratorDataBuilder
         data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData_acceleratorData', _$failedField, e.toString());
+            r'GReadDevicesData_acceleratorData', _$failedField, e.toString());
       }
       rethrow;
     }
@@ -829,47 +831,48 @@ class GStreamDataData_acceleratorDataBuilder
   }
 }
 
-class _$GStreamDataData_acceleratorData_data
-    extends GStreamDataData_acceleratorData_data {
+class _$GReadDevicesData_acceleratorData_data
+    extends GReadDevicesData_acceleratorData_data {
   @override
   final String G__typename;
   @override
   final DateTime timestamp;
   @override
-  final GStreamDataData_acceleratorData_data_result result;
+  final GReadDevicesData_acceleratorData_data_result result;
 
-  factory _$GStreamDataData_acceleratorData_data(
-          [void Function(GStreamDataData_acceleratorData_dataBuilder)?
+  factory _$GReadDevicesData_acceleratorData_data(
+          [void Function(GReadDevicesData_acceleratorData_dataBuilder)?
               updates]) =>
-      (new GStreamDataData_acceleratorData_dataBuilder()..update(updates))
+      (new GReadDevicesData_acceleratorData_dataBuilder()..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data._(
+  _$GReadDevicesData_acceleratorData_data._(
       {required this.G__typename,
       required this.timestamp,
       required this.result})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStreamDataData_acceleratorData_data', 'G__typename');
+        G__typename, r'GReadDevicesData_acceleratorData_data', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(
-        timestamp, r'GStreamDataData_acceleratorData_data', 'timestamp');
+        timestamp, r'GReadDevicesData_acceleratorData_data', 'timestamp');
     BuiltValueNullFieldError.checkNotNull(
-        result, r'GStreamDataData_acceleratorData_data', 'result');
+        result, r'GReadDevicesData_acceleratorData_data', 'result');
   }
 
   @override
-  GStreamDataData_acceleratorData_data rebuild(
-          void Function(GStreamDataData_acceleratorData_dataBuilder) updates) =>
+  GReadDevicesData_acceleratorData_data rebuild(
+          void Function(GReadDevicesData_acceleratorData_dataBuilder)
+              updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorData_dataBuilder toBuilder() =>
-      new GStreamDataData_acceleratorData_dataBuilder()..replace(this);
+  GReadDevicesData_acceleratorData_dataBuilder toBuilder() =>
+      new GReadDevicesData_acceleratorData_dataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataData_acceleratorData_data &&
+    return other is GReadDevicesData_acceleratorData_data &&
         G__typename == other.G__typename &&
         timestamp == other.timestamp &&
         result == other.result;
@@ -887,7 +890,8 @@ class _$GStreamDataData_acceleratorData_data
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataData_acceleratorData_data')
+    return (newBuiltValueToStringHelper(
+            r'GReadDevicesData_acceleratorData_data')
           ..add('G__typename', G__typename)
           ..add('timestamp', timestamp)
           ..add('result', result))
@@ -895,11 +899,11 @@ class _$GStreamDataData_acceleratorData_data
   }
 }
 
-class GStreamDataData_acceleratorData_dataBuilder
+class GReadDevicesData_acceleratorData_dataBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data,
-            GStreamDataData_acceleratorData_dataBuilder> {
-  _$GStreamDataData_acceleratorData_data? _$v;
+        Builder<GReadDevicesData_acceleratorData_data,
+            GReadDevicesData_acceleratorData_dataBuilder> {
+  _$GReadDevicesData_acceleratorData_data? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -909,16 +913,16 @@ class GStreamDataData_acceleratorData_dataBuilder
   DateTime? get timestamp => _$this._timestamp;
   set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
 
-  GStreamDataData_acceleratorData_data_result? _result;
-  GStreamDataData_acceleratorData_data_result? get result => _$this._result;
-  set result(GStreamDataData_acceleratorData_data_result? result) =>
+  GReadDevicesData_acceleratorData_data_result? _result;
+  GReadDevicesData_acceleratorData_data_result? get result => _$this._result;
+  set result(GReadDevicesData_acceleratorData_data_result? result) =>
       _$this._result = result;
 
-  GStreamDataData_acceleratorData_dataBuilder() {
-    GStreamDataData_acceleratorData_data._initializeBuilder(this);
+  GReadDevicesData_acceleratorData_dataBuilder() {
+    GReadDevicesData_acceleratorData_data._initializeBuilder(this);
   }
 
-  GStreamDataData_acceleratorData_dataBuilder get _$this {
+  GReadDevicesData_acceleratorData_dataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -930,71 +934,71 @@ class GStreamDataData_acceleratorData_dataBuilder
   }
 
   @override
-  void replace(GStreamDataData_acceleratorData_data other) {
+  void replace(GReadDevicesData_acceleratorData_data other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData_data;
+    _$v = other as _$GReadDevicesData_acceleratorData_data;
   }
 
   @override
   void update(
-      void Function(GStreamDataData_acceleratorData_dataBuilder)? updates) {
+      void Function(GReadDevicesData_acceleratorData_dataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData_data build() => _build();
+  GReadDevicesData_acceleratorData_data build() => _build();
 
-  _$GStreamDataData_acceleratorData_data _build() {
+  _$GReadDevicesData_acceleratorData_data _build() {
     final _$result = _$v ??
-        new _$GStreamDataData_acceleratorData_data._(
+        new _$GReadDevicesData_acceleratorData_data._(
           G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GStreamDataData_acceleratorData_data', 'G__typename'),
+              r'GReadDevicesData_acceleratorData_data', 'G__typename'),
           timestamp: BuiltValueNullFieldError.checkNotNull(
-              timestamp, r'GStreamDataData_acceleratorData_data', 'timestamp'),
+              timestamp, r'GReadDevicesData_acceleratorData_data', 'timestamp'),
           result: BuiltValueNullFieldError.checkNotNull(
-              result, r'GStreamDataData_acceleratorData_data', 'result'),
+              result, r'GReadDevicesData_acceleratorData_data', 'result'),
         );
     replace(_$result);
     return _$result;
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__base
-    extends GStreamDataData_acceleratorData_data_result__base {
+class _$GReadDevicesData_acceleratorData_data_result__base
+    extends GReadDevicesData_acceleratorData_data_result__base {
   @override
   final String G__typename;
 
-  factory _$GStreamDataData_acceleratorData_data_result__base(
+  factory _$GReadDevicesData_acceleratorData_data_result__base(
           [void Function(
-                  GStreamDataData_acceleratorData_data_result__baseBuilder)?
+                  GReadDevicesData_acceleratorData_data_result__baseBuilder)?
               updates]) =>
-      (new GStreamDataData_acceleratorData_data_result__baseBuilder()
+      (new GReadDevicesData_acceleratorData_data_result__baseBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__base._(
+  _$GReadDevicesData_acceleratorData_data_result__base._(
       {required this.G__typename})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GStreamDataData_acceleratorData_data_result__base', 'G__typename');
+        r'GReadDevicesData_acceleratorData_data_result__base', 'G__typename');
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__base rebuild(
+  GReadDevicesData_acceleratorData_data_result__base rebuild(
           void Function(
-                  GStreamDataData_acceleratorData_data_result__baseBuilder)
+                  GReadDevicesData_acceleratorData_data_result__baseBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorData_data_result__baseBuilder toBuilder() =>
-      new GStreamDataData_acceleratorData_data_result__baseBuilder()
+  GReadDevicesData_acceleratorData_data_result__baseBuilder toBuilder() =>
+      new GReadDevicesData_acceleratorData_data_result__baseBuilder()
         ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataData_acceleratorData_data_result__base &&
+    return other is GReadDevicesData_acceleratorData_data_result__base &&
         G__typename == other.G__typename;
   }
 
@@ -1009,27 +1013,27 @@ class _$GStreamDataData_acceleratorData_data_result__base
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__base')
+            r'GReadDevicesData_acceleratorData_data_result__base')
           ..add('G__typename', G__typename))
         .toString();
   }
 }
 
-class GStreamDataData_acceleratorData_data_result__baseBuilder
+class GReadDevicesData_acceleratorData_data_result__baseBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__base,
-            GStreamDataData_acceleratorData_data_result__baseBuilder> {
-  _$GStreamDataData_acceleratorData_data_result__base? _$v;
+        Builder<GReadDevicesData_acceleratorData_data_result__base,
+            GReadDevicesData_acceleratorData_data_result__baseBuilder> {
+  _$GReadDevicesData_acceleratorData_data_result__base? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GStreamDataData_acceleratorData_data_result__baseBuilder() {
-    GStreamDataData_acceleratorData_data_result__base._initializeBuilder(this);
+  GReadDevicesData_acceleratorData_data_result__baseBuilder() {
+    GReadDevicesData_acceleratorData_data_result__base._initializeBuilder(this);
   }
 
-  GStreamDataData_acceleratorData_data_result__baseBuilder get _$this {
+  GReadDevicesData_acceleratorData_data_result__baseBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1039,27 +1043,27 @@ class GStreamDataData_acceleratorData_data_result__baseBuilder
   }
 
   @override
-  void replace(GStreamDataData_acceleratorData_data_result__base other) {
+  void replace(GReadDevicesData_acceleratorData_data_result__base other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData_data_result__base;
+    _$v = other as _$GReadDevicesData_acceleratorData_data_result__base;
   }
 
   @override
   void update(
-      void Function(GStreamDataData_acceleratorData_data_result__baseBuilder)?
+      void Function(GReadDevicesData_acceleratorData_data_result__baseBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__base build() => _build();
+  GReadDevicesData_acceleratorData_data_result__base build() => _build();
 
-  _$GStreamDataData_acceleratorData_data_result__base _build() {
+  _$GReadDevicesData_acceleratorData_data_result__base _build() {
     final _$result = _$v ??
-        new _$GStreamDataData_acceleratorData_data_result__base._(
+        new _$GReadDevicesData_acceleratorData_data_result__base._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
-              r'GStreamDataData_acceleratorData_data_result__base',
+              r'GReadDevicesData_acceleratorData_data_result__base',
               'G__typename'),
         );
     replace(_$result);
@@ -1067,52 +1071,52 @@ class GStreamDataData_acceleratorData_data_result__baseBuilder
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asStatusReply
-    extends GStreamDataData_acceleratorData_data_result__asStatusReply {
+class _$GReadDevicesData_acceleratorData_data_result__asStatusReply
+    extends GReadDevicesData_acceleratorData_data_result__asStatusReply {
   @override
   final String G__typename;
   @override
   final int status;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asStatusReply(
+  factory _$GReadDevicesData_acceleratorData_data_result__asStatusReply(
           [void Function(
-                  GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder)?
+                  GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder)?
               updates]) =>
-      (new GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder()
+      (new GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asStatusReply._(
+  _$GReadDevicesData_acceleratorData_data_result__asStatusReply._(
       {required this.G__typename, required this.status})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+        r'GReadDevicesData_acceleratorData_data_result__asStatusReply',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         status,
-        r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+        r'GReadDevicesData_acceleratorData_data_result__asStatusReply',
         'status');
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asStatusReply rebuild(
+  GReadDevicesData_acceleratorData_data_result__asStatusReply rebuild(
           void Function(
-                  GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder)
+                  GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
+  GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder
       toBuilder() =>
-          new GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder()
+          new GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder()
             ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other
-            is GStreamDataData_acceleratorData_data_result__asStatusReply &&
+            is GReadDevicesData_acceleratorData_data_result__asStatusReply &&
         G__typename == other.G__typename &&
         status == other.status;
   }
@@ -1129,18 +1133,18 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReply
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asStatusReply')
+            r'GReadDevicesData_acceleratorData_data_result__asStatusReply')
           ..add('G__typename', G__typename)
           ..add('status', status))
         .toString();
   }
 }
 
-class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
+class GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asStatusReply,
-            GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder> {
-  _$GStreamDataData_acceleratorData_data_result__asStatusReply? _$v;
+        Builder<GReadDevicesData_acceleratorData_data_result__asStatusReply,
+            GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder> {
+  _$GReadDevicesData_acceleratorData_data_result__asStatusReply? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1150,12 +1154,13 @@ class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
   int? get status => _$this._status;
   set status(int? status) => _$this._status = status;
 
-  GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder() {
-    GStreamDataData_acceleratorData_data_result__asStatusReply
+  GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder() {
+    GReadDevicesData_acceleratorData_data_result__asStatusReply
         ._initializeBuilder(this);
   }
 
-  GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder get _$this {
+  GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder
+      get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1167,33 +1172,34 @@ class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
 
   @override
   void replace(
-      GStreamDataData_acceleratorData_data_result__asStatusReply other) {
+      GReadDevicesData_acceleratorData_data_result__asStatusReply other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData_data_result__asStatusReply;
+    _$v =
+        other as _$GReadDevicesData_acceleratorData_data_result__asStatusReply;
   }
 
   @override
   void update(
       void Function(
-              GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder)?
+              GReadDevicesData_acceleratorData_data_result__asStatusReplyBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asStatusReply build() =>
+  GReadDevicesData_acceleratorData_data_result__asStatusReply build() =>
       _build();
 
-  _$GStreamDataData_acceleratorData_data_result__asStatusReply _build() {
+  _$GReadDevicesData_acceleratorData_data_result__asStatusReply _build() {
     final _$result = _$v ??
-        new _$GStreamDataData_acceleratorData_data_result__asStatusReply._(
+        new _$GReadDevicesData_acceleratorData_data_result__asStatusReply._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
-              r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+              r'GReadDevicesData_acceleratorData_data_result__asStatusReply',
               'G__typename'),
           status: BuiltValueNullFieldError.checkNotNull(
               status,
-              r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+              r'GReadDevicesData_acceleratorData_data_result__asStatusReply',
               'status'),
         );
     replace(_$result);
@@ -1201,50 +1207,50 @@ class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asScalar
-    extends GStreamDataData_acceleratorData_data_result__asScalar {
+class _$GReadDevicesData_acceleratorData_data_result__asScalar
+    extends GReadDevicesData_acceleratorData_data_result__asScalar {
   @override
   final String G__typename;
   @override
   final double scalarValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asScalar(
+  factory _$GReadDevicesData_acceleratorData_data_result__asScalar(
           [void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarBuilder)?
+                  GReadDevicesData_acceleratorData_data_result__asScalarBuilder)?
               updates]) =>
-      (new GStreamDataData_acceleratorData_data_result__asScalarBuilder()
+      (new GReadDevicesData_acceleratorData_data_result__asScalarBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asScalar._(
+  _$GReadDevicesData_acceleratorData_data_result__asScalar._(
       {required this.G__typename, required this.scalarValue})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asScalar',
+        r'GReadDevicesData_acceleratorData_data_result__asScalar',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         scalarValue,
-        r'GStreamDataData_acceleratorData_data_result__asScalar',
+        r'GReadDevicesData_acceleratorData_data_result__asScalar',
         'scalarValue');
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalar rebuild(
+  GReadDevicesData_acceleratorData_data_result__asScalar rebuild(
           void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarBuilder)
+                  GReadDevicesData_acceleratorData_data_result__asScalarBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalarBuilder toBuilder() =>
-      new GStreamDataData_acceleratorData_data_result__asScalarBuilder()
+  GReadDevicesData_acceleratorData_data_result__asScalarBuilder toBuilder() =>
+      new GReadDevicesData_acceleratorData_data_result__asScalarBuilder()
         ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataData_acceleratorData_data_result__asScalar &&
+    return other is GReadDevicesData_acceleratorData_data_result__asScalar &&
         G__typename == other.G__typename &&
         scalarValue == other.scalarValue;
   }
@@ -1261,18 +1267,18 @@ class _$GStreamDataData_acceleratorData_data_result__asScalar
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asScalar')
+            r'GReadDevicesData_acceleratorData_data_result__asScalar')
           ..add('G__typename', G__typename)
           ..add('scalarValue', scalarValue))
         .toString();
   }
 }
 
-class GStreamDataData_acceleratorData_data_result__asScalarBuilder
+class GReadDevicesData_acceleratorData_data_result__asScalarBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asScalar,
-            GStreamDataData_acceleratorData_data_result__asScalarBuilder> {
-  _$GStreamDataData_acceleratorData_data_result__asScalar? _$v;
+        Builder<GReadDevicesData_acceleratorData_data_result__asScalar,
+            GReadDevicesData_acceleratorData_data_result__asScalarBuilder> {
+  _$GReadDevicesData_acceleratorData_data_result__asScalar? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1282,12 +1288,12 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
   double? get scalarValue => _$this._scalarValue;
   set scalarValue(double? scalarValue) => _$this._scalarValue = scalarValue;
 
-  GStreamDataData_acceleratorData_data_result__asScalarBuilder() {
-    GStreamDataData_acceleratorData_data_result__asScalar._initializeBuilder(
+  GReadDevicesData_acceleratorData_data_result__asScalarBuilder() {
+    GReadDevicesData_acceleratorData_data_result__asScalar._initializeBuilder(
         this);
   }
 
-  GStreamDataData_acceleratorData_data_result__asScalarBuilder get _$this {
+  GReadDevicesData_acceleratorData_data_result__asScalarBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1298,32 +1304,32 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
   }
 
   @override
-  void replace(GStreamDataData_acceleratorData_data_result__asScalar other) {
+  void replace(GReadDevicesData_acceleratorData_data_result__asScalar other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData_data_result__asScalar;
+    _$v = other as _$GReadDevicesData_acceleratorData_data_result__asScalar;
   }
 
   @override
   void update(
       void Function(
-              GStreamDataData_acceleratorData_data_result__asScalarBuilder)?
+              GReadDevicesData_acceleratorData_data_result__asScalarBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalar build() => _build();
+  GReadDevicesData_acceleratorData_data_result__asScalar build() => _build();
 
-  _$GStreamDataData_acceleratorData_data_result__asScalar _build() {
+  _$GReadDevicesData_acceleratorData_data_result__asScalar _build() {
     final _$result = _$v ??
-        new _$GStreamDataData_acceleratorData_data_result__asScalar._(
+        new _$GReadDevicesData_acceleratorData_data_result__asScalar._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
-              r'GStreamDataData_acceleratorData_data_result__asScalar',
+              r'GReadDevicesData_acceleratorData_data_result__asScalar',
               'G__typename'),
           scalarValue: BuiltValueNullFieldError.checkNotNull(
               scalarValue,
-              r'GStreamDataData_acceleratorData_data_result__asScalar',
+              r'GReadDevicesData_acceleratorData_data_result__asScalar',
               'scalarValue'),
         );
     replace(_$result);
@@ -1331,52 +1337,52 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asScalarArray
-    extends GStreamDataData_acceleratorData_data_result__asScalarArray {
+class _$GReadDevicesData_acceleratorData_data_result__asScalarArray
+    extends GReadDevicesData_acceleratorData_data_result__asScalarArray {
   @override
   final String G__typename;
   @override
   final BuiltList<double> scalarArrayValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asScalarArray(
+  factory _$GReadDevicesData_acceleratorData_data_result__asScalarArray(
           [void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder)?
+                  GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder)?
               updates]) =>
-      (new GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder()
+      (new GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asScalarArray._(
+  _$GReadDevicesData_acceleratorData_data_result__asScalarArray._(
       {required this.G__typename, required this.scalarArrayValue})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+        r'GReadDevicesData_acceleratorData_data_result__asScalarArray',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         scalarArrayValue,
-        r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+        r'GReadDevicesData_acceleratorData_data_result__asScalarArray',
         'scalarArrayValue');
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalarArray rebuild(
+  GReadDevicesData_acceleratorData_data_result__asScalarArray rebuild(
           void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder)
+                  GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
+  GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder
       toBuilder() =>
-          new GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder()
+          new GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder()
             ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     return other
-            is GStreamDataData_acceleratorData_data_result__asScalarArray &&
+            is GReadDevicesData_acceleratorData_data_result__asScalarArray &&
         G__typename == other.G__typename &&
         scalarArrayValue == other.scalarArrayValue;
   }
@@ -1393,18 +1399,18 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArray
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asScalarArray')
+            r'GReadDevicesData_acceleratorData_data_result__asScalarArray')
           ..add('G__typename', G__typename)
           ..add('scalarArrayValue', scalarArrayValue))
         .toString();
   }
 }
 
-class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
+class GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asScalarArray,
-            GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder> {
-  _$GStreamDataData_acceleratorData_data_result__asScalarArray? _$v;
+        Builder<GReadDevicesData_acceleratorData_data_result__asScalarArray,
+            GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder> {
+  _$GReadDevicesData_acceleratorData_data_result__asScalarArray? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1416,12 +1422,13 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
   set scalarArrayValue(ListBuilder<double>? scalarArrayValue) =>
       _$this._scalarArrayValue = scalarArrayValue;
 
-  GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder() {
-    GStreamDataData_acceleratorData_data_result__asScalarArray
+  GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder() {
+    GReadDevicesData_acceleratorData_data_result__asScalarArray
         ._initializeBuilder(this);
   }
 
-  GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder get _$this {
+  GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder
+      get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1433,31 +1440,32 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
 
   @override
   void replace(
-      GStreamDataData_acceleratorData_data_result__asScalarArray other) {
+      GReadDevicesData_acceleratorData_data_result__asScalarArray other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData_data_result__asScalarArray;
+    _$v =
+        other as _$GReadDevicesData_acceleratorData_data_result__asScalarArray;
   }
 
   @override
   void update(
       void Function(
-              GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder)?
+              GReadDevicesData_acceleratorData_data_result__asScalarArrayBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asScalarArray build() =>
+  GReadDevicesData_acceleratorData_data_result__asScalarArray build() =>
       _build();
 
-  _$GStreamDataData_acceleratorData_data_result__asScalarArray _build() {
-    _$GStreamDataData_acceleratorData_data_result__asScalarArray _$result;
+  _$GReadDevicesData_acceleratorData_data_result__asScalarArray _build() {
+    _$GReadDevicesData_acceleratorData_data_result__asScalarArray _$result;
     try {
       _$result = _$v ??
-          new _$GStreamDataData_acceleratorData_data_result__asScalarArray._(
+          new _$GReadDevicesData_acceleratorData_data_result__asScalarArray._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename,
-                r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+                r'GReadDevicesData_acceleratorData_data_result__asScalarArray',
                 'G__typename'),
             scalarArrayValue: scalarArrayValue.build(),
           );
@@ -1468,7 +1476,7 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
         scalarArrayValue.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+            r'GReadDevicesData_acceleratorData_data_result__asScalarArray',
             _$failedField,
             e.toString());
       }
@@ -1479,46 +1487,46 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asText
-    extends GStreamDataData_acceleratorData_data_result__asText {
+class _$GReadDevicesData_acceleratorData_data_result__asText
+    extends GReadDevicesData_acceleratorData_data_result__asText {
   @override
   final String G__typename;
   @override
   final String textValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asText(
+  factory _$GReadDevicesData_acceleratorData_data_result__asText(
           [void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextBuilder)?
+                  GReadDevicesData_acceleratorData_data_result__asTextBuilder)?
               updates]) =>
-      (new GStreamDataData_acceleratorData_data_result__asTextBuilder()
+      (new GReadDevicesData_acceleratorData_data_result__asTextBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asText._(
+  _$GReadDevicesData_acceleratorData_data_result__asText._(
       {required this.G__typename, required this.textValue})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asText', 'G__typename');
+        r'GReadDevicesData_acceleratorData_data_result__asText', 'G__typename');
     BuiltValueNullFieldError.checkNotNull(textValue,
-        r'GStreamDataData_acceleratorData_data_result__asText', 'textValue');
+        r'GReadDevicesData_acceleratorData_data_result__asText', 'textValue');
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asText rebuild(
+  GReadDevicesData_acceleratorData_data_result__asText rebuild(
           void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextBuilder)
+                  GReadDevicesData_acceleratorData_data_result__asTextBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorData_data_result__asTextBuilder toBuilder() =>
-      new GStreamDataData_acceleratorData_data_result__asTextBuilder()
+  GReadDevicesData_acceleratorData_data_result__asTextBuilder toBuilder() =>
+      new GReadDevicesData_acceleratorData_data_result__asTextBuilder()
         ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataData_acceleratorData_data_result__asText &&
+    return other is GReadDevicesData_acceleratorData_data_result__asText &&
         G__typename == other.G__typename &&
         textValue == other.textValue;
   }
@@ -1535,18 +1543,18 @@ class _$GStreamDataData_acceleratorData_data_result__asText
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asText')
+            r'GReadDevicesData_acceleratorData_data_result__asText')
           ..add('G__typename', G__typename)
           ..add('textValue', textValue))
         .toString();
   }
 }
 
-class GStreamDataData_acceleratorData_data_result__asTextBuilder
+class GReadDevicesData_acceleratorData_data_result__asTextBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asText,
-            GStreamDataData_acceleratorData_data_result__asTextBuilder> {
-  _$GStreamDataData_acceleratorData_data_result__asText? _$v;
+        Builder<GReadDevicesData_acceleratorData_data_result__asText,
+            GReadDevicesData_acceleratorData_data_result__asTextBuilder> {
+  _$GReadDevicesData_acceleratorData_data_result__asText? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1556,12 +1564,12 @@ class GStreamDataData_acceleratorData_data_result__asTextBuilder
   String? get textValue => _$this._textValue;
   set textValue(String? textValue) => _$this._textValue = textValue;
 
-  GStreamDataData_acceleratorData_data_result__asTextBuilder() {
-    GStreamDataData_acceleratorData_data_result__asText._initializeBuilder(
+  GReadDevicesData_acceleratorData_data_result__asTextBuilder() {
+    GReadDevicesData_acceleratorData_data_result__asText._initializeBuilder(
         this);
   }
 
-  GStreamDataData_acceleratorData_data_result__asTextBuilder get _$this {
+  GReadDevicesData_acceleratorData_data_result__asTextBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1572,31 +1580,32 @@ class GStreamDataData_acceleratorData_data_result__asTextBuilder
   }
 
   @override
-  void replace(GStreamDataData_acceleratorData_data_result__asText other) {
+  void replace(GReadDevicesData_acceleratorData_data_result__asText other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData_data_result__asText;
+    _$v = other as _$GReadDevicesData_acceleratorData_data_result__asText;
   }
 
   @override
   void update(
-      void Function(GStreamDataData_acceleratorData_data_result__asTextBuilder)?
+      void Function(
+              GReadDevicesData_acceleratorData_data_result__asTextBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asText build() => _build();
+  GReadDevicesData_acceleratorData_data_result__asText build() => _build();
 
-  _$GStreamDataData_acceleratorData_data_result__asText _build() {
+  _$GReadDevicesData_acceleratorData_data_result__asText _build() {
     final _$result = _$v ??
-        new _$GStreamDataData_acceleratorData_data_result__asText._(
+        new _$GReadDevicesData_acceleratorData_data_result__asText._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
-              r'GStreamDataData_acceleratorData_data_result__asText',
+              r'GReadDevicesData_acceleratorData_data_result__asText',
               'G__typename'),
           textValue: BuiltValueNullFieldError.checkNotNull(
               textValue,
-              r'GStreamDataData_acceleratorData_data_result__asText',
+              r'GReadDevicesData_acceleratorData_data_result__asText',
               'textValue'),
         );
     replace(_$result);
@@ -1604,50 +1613,51 @@ class GStreamDataData_acceleratorData_data_result__asTextBuilder
   }
 }
 
-class _$GStreamDataData_acceleratorData_data_result__asTextArray
-    extends GStreamDataData_acceleratorData_data_result__asTextArray {
+class _$GReadDevicesData_acceleratorData_data_result__asTextArray
+    extends GReadDevicesData_acceleratorData_data_result__asTextArray {
   @override
   final String G__typename;
   @override
   final BuiltList<String> textArrayValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asTextArray(
+  factory _$GReadDevicesData_acceleratorData_data_result__asTextArray(
           [void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextArrayBuilder)?
+                  GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder)?
               updates]) =>
-      (new GStreamDataData_acceleratorData_data_result__asTextArrayBuilder()
+      (new GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asTextArray._(
+  _$GReadDevicesData_acceleratorData_data_result__asTextArray._(
       {required this.G__typename, required this.textArrayValue})
       : super._() {
     BuiltValueNullFieldError.checkNotNull(
         G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asTextArray',
+        r'GReadDevicesData_acceleratorData_data_result__asTextArray',
         'G__typename');
     BuiltValueNullFieldError.checkNotNull(
         textArrayValue,
-        r'GStreamDataData_acceleratorData_data_result__asTextArray',
+        r'GReadDevicesData_acceleratorData_data_result__asTextArray',
         'textArrayValue');
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asTextArray rebuild(
+  GReadDevicesData_acceleratorData_data_result__asTextArray rebuild(
           void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextArrayBuilder)
+                  GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder)
               updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataData_acceleratorData_data_result__asTextArrayBuilder toBuilder() =>
-      new GStreamDataData_acceleratorData_data_result__asTextArrayBuilder()
-        ..replace(this);
+  GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder
+      toBuilder() =>
+          new GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder()
+            ..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamDataData_acceleratorData_data_result__asTextArray &&
+    return other is GReadDevicesData_acceleratorData_data_result__asTextArray &&
         G__typename == other.G__typename &&
         textArrayValue == other.textArrayValue;
   }
@@ -1664,18 +1674,18 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArray
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asTextArray')
+            r'GReadDevicesData_acceleratorData_data_result__asTextArray')
           ..add('G__typename', G__typename)
           ..add('textArrayValue', textArrayValue))
         .toString();
   }
 }
 
-class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
+class GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asTextArray,
-            GStreamDataData_acceleratorData_data_result__asTextArrayBuilder> {
-  _$GStreamDataData_acceleratorData_data_result__asTextArray? _$v;
+        Builder<GReadDevicesData_acceleratorData_data_result__asTextArray,
+            GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder> {
+  _$GReadDevicesData_acceleratorData_data_result__asTextArray? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -1687,12 +1697,12 @@ class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
   set textArrayValue(ListBuilder<String>? textArrayValue) =>
       _$this._textArrayValue = textArrayValue;
 
-  GStreamDataData_acceleratorData_data_result__asTextArrayBuilder() {
-    GStreamDataData_acceleratorData_data_result__asTextArray._initializeBuilder(
-        this);
+  GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder() {
+    GReadDevicesData_acceleratorData_data_result__asTextArray
+        ._initializeBuilder(this);
   }
 
-  GStreamDataData_acceleratorData_data_result__asTextArrayBuilder get _$this {
+  GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -1703,30 +1713,31 @@ class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
   }
 
   @override
-  void replace(GStreamDataData_acceleratorData_data_result__asTextArray other) {
+  void replace(
+      GReadDevicesData_acceleratorData_data_result__asTextArray other) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GStreamDataData_acceleratorData_data_result__asTextArray;
+    _$v = other as _$GReadDevicesData_acceleratorData_data_result__asTextArray;
   }
 
   @override
   void update(
       void Function(
-              GStreamDataData_acceleratorData_data_result__asTextArrayBuilder)?
+              GReadDevicesData_acceleratorData_data_result__asTextArrayBuilder)?
           updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataData_acceleratorData_data_result__asTextArray build() => _build();
+  GReadDevicesData_acceleratorData_data_result__asTextArray build() => _build();
 
-  _$GStreamDataData_acceleratorData_data_result__asTextArray _build() {
-    _$GStreamDataData_acceleratorData_data_result__asTextArray _$result;
+  _$GReadDevicesData_acceleratorData_data_result__asTextArray _build() {
+    _$GReadDevicesData_acceleratorData_data_result__asTextArray _$result;
     try {
       _$result = _$v ??
-          new _$GStreamDataData_acceleratorData_data_result__asTextArray._(
+          new _$GReadDevicesData_acceleratorData_data_result__asTextArray._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
                 G__typename,
-                r'GStreamDataData_acceleratorData_data_result__asTextArray',
+                r'GReadDevicesData_acceleratorData_data_result__asTextArray',
                 'G__typename'),
             textArrayValue: textArrayValue.build(),
           );
@@ -1737,7 +1748,7 @@ class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
         textArrayValue.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData_acceleratorData_data_result__asTextArray',
+            r'GReadDevicesData_acceleratorData_data_result__asTextArray',
             _$failedField,
             e.toString());
       }

@@ -10,26 +10,26 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/ser
 
 part 'read_devices.var.gql.g.dart';
 
-abstract class GStreamDataVars
-    implements Built<GStreamDataVars, GStreamDataVarsBuilder> {
-  GStreamDataVars._();
+abstract class GReadDevicesVars
+    implements Built<GReadDevicesVars, GReadDevicesVarsBuilder> {
+  GReadDevicesVars._();
 
-  factory GStreamDataVars([void Function(GStreamDataVarsBuilder b) updates]) =
-      _$GStreamDataVars;
+  factory GReadDevicesVars([void Function(GReadDevicesVarsBuilder b) updates]) =
+      _$GReadDevicesVars;
 
   BuiltList<String> get devList;
   DateTime? get when;
-  static Serializer<GStreamDataVars> get serializer =>
-      _$gStreamDataVarsSerializer;
+  static Serializer<GReadDevicesVars> get serializer =>
+      _$gReadDevicesVarsSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GStreamDataVars.serializer,
+        GReadDevicesVars.serializer,
         this,
       ) as Map<String, dynamic>);
 
-  static GStreamDataVars? fromJson(Map<String, dynamic> json) =>
+  static GReadDevicesVars? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
-        GStreamDataVars.serializer,
+        GReadDevicesVars.serializer,
         json,
       );
 }

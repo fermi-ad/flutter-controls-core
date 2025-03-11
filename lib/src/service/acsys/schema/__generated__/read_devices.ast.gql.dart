@@ -4,9 +4,9 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:gql/ast.dart' as _i1;
 
-const StreamData = _i1.OperationDefinitionNode(
+const ReadDevices = _i1.OperationDefinitionNode(
   type: _i1.OperationType.query,
-  name: _i1.NameNode(value: 'StreamData'),
+  name: _i1.NameNode(value: 'ReadDevices'),
   variableDefinitions: [
     _i1.VariableDefinitionNode(
       variable: _i1.VariableNode(name: _i1.NameNode(value: 'devList')),
@@ -173,4 +173,4 @@ const StreamData = _i1.OperationDefinitionNode(
     )
   ]),
 );
-const document = _i1.DocumentNode(definitions: [StreamData]);
+const document = _i1.DocumentNode(definitions: [ReadDevices]);
