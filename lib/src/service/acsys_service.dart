@@ -13,13 +13,20 @@ import 'package:web_socket_channel/web_socket_channel.dart';
 
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set_device.req.gql.dart';
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.data.gql.dart';
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.req.gql.dart';
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.var.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.data.gql.dart'
+    as sd_data;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.req.gql.dart'
+    as sd_req;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.var.gql.dart'
+    as sd_var;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.data.gql.dart'
+    as rd_data;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.req.gql.dart'
+    as rd_req;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart';
@@ -446,6 +453,10 @@ abstract interface class ACSysServiceAPI {
 
   Stream<Reading> monitorDevices(List<String> drfs);
 
+  /// Takes a list of device names and returns their current reading.
+
+  Future<List<Reading>> readDevices(List<String> devices);
+
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides the setting value of the requests.
   Stream<Reading> monitorSettingProperty(List<String> drfs);
@@ -602,6 +613,15 @@ final class ACSysService implements ACSysServiceAPI {
     } else {
       throw const ACSysInvArgException("empty device list");
     }
+  }
+
+  @override
+  Future<List<Reading>> readDevices(List<String> devices) {
+    final req = rd_req.GStreamDataReq((b) => b
+      ..vars.devList = ListBuilder(devices)
+      ..fetchPolicy = FetchPolicy.NetworkOnly);
+
+    return _rpc(req, xlat: _convertReading);
   }
 
   static (DeviceInfoProperty, KnobbingInfo?)? processSetting(
@@ -771,7 +791,7 @@ final class ACSysService implements ACSysServiceAPI {
   // be sent for a device in error.
   @override
   Stream<Reading> monitorDevices(List<String> drfs) {
-    final req = GStreamDataReq((b) => b
+    final req = sd_req.GStreamDataReq((b) => b
       ..vars.drfs = ListBuilder(drfs)
       ..fetchPolicy = FetchPolicy.NetworkOnly);
 
@@ -780,55 +800,40 @@ final class ACSysService implements ACSysServiceAPI {
         .handleError(
             (error) => dev.log("error: $error", name: "gql.monitorDevices"))
         .where((event) => !event.loading)
-        .map(_convertToReading);
+        .map(_convertMonitor);
   }
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
-  static Reading _convertToReading(
-      OperationResponse<GStreamDataData, GStreamDataVars> e) {
+  static Reading _convertMonitor(
+      OperationResponse<sd_data.GStreamDataData, sd_var.GStreamDataVars> e) {
     // If the packet doesn't have GraphQL errors, then we can process the
     // payload.
 
     if (!e.hasErrors) {
-      final GStreamDataData_acceleratorData data = e.data!.acceleratorData;
-      final GStreamDataData_acceleratorData_data_result result =
+      final sd_data.GStreamDataData_acceleratorData data =
+          e.data!.acceleratorData;
+      final sd_data.GStreamDataData_acceleratorData_data_result result =
           data.data.result;
 
-      return switch (result) {
-        GStreamDataData_acceleratorData_data_result__asScalar _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevScalar(result.scalarValue)),
-        GStreamDataData_acceleratorData_data_result__asScalarArray _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevScalarArray(result.scalarArrayValue.toList())),
-        GStreamDataData_acceleratorData_data_result__asText _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevText(result.textValue)),
-        GStreamDataData_acceleratorData_data_result__asTextArray _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevTextArray(result.textArrayValue.toList()),
-          ),
-        GStreamDataData_acceleratorData_data_result__asStatusReply _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            status: Status.fromInt(result.status)),
-        _ => throw ACSysTypeException(
-            "unexpected data type, ${result.runtimeType}")
-      };
+      return Reading(
+          refId: data.refId,
+          cycle: data.cycle,
+          timestamp: data.data.timestamp,
+          value: result.toDevValue());
     } else {
       throw ACSysGraphQLException(e.graphqlErrors.toString());
     }
   }
+
+  static List<Reading> _convertReading(rd_data.GStreamDataData e) =>
+      e.acceleratorData
+          .map((v) => Reading(
+              refId: v.refId,
+              cycle: v.cycle,
+              timestamp: v.data.timestamp,
+              value: v.data.result.toDevValue()))
+          .toList();
 
   @override
   Stream<DigitalStatus> monitorDigitalStatusDevices(
@@ -1089,6 +1094,36 @@ final class ACSysService implements ACSysServiceAPI {
         .then((id) => snapshot
           ..configurationId = id == null ? null : PlotConfigId._fromInt(id));
   }
+}
+
+extension on sd_data.GStreamDataData_acceleratorData_data_result {
+  DeviceValue toDevValue() => switch (this) {
+        sd_data.GStreamDataData_acceleratorData_data_result__asScalar val =>
+          DevScalar(val.scalarValue),
+        sd_data.GStreamDataData_acceleratorData_data_result__asScalarArray
+          val =>
+          DevScalarArray(val.scalarArrayValue.toList()),
+        sd_data.GStreamDataData_acceleratorData_data_result__asText val =>
+          DevText(val.textValue),
+        sd_data.GStreamDataData_acceleratorData_data_result__asTextArray val =>
+          DevTextArray(val.textArrayValue.toList()),
+        _ => throw ACSysTypeException("unexpected data type, $runtimeType")
+      };
+}
+
+extension on rd_data.GStreamDataData_acceleratorData_data_result {
+  DeviceValue toDevValue() => switch (this) {
+        sd_data.GStreamDataData_acceleratorData_data_result__asScalar val =>
+          DevScalar(val.scalarValue),
+        sd_data.GStreamDataData_acceleratorData_data_result__asScalarArray
+          val =>
+          DevScalarArray(val.scalarArrayValue.toList()),
+        sd_data.GStreamDataData_acceleratorData_data_result__asText val =>
+          DevText(val.textValue),
+        sd_data.GStreamDataData_acceleratorData_data_result__asTextArray val =>
+          DevTextArray(val.textArrayValue.toList()),
+        _ => throw ACSysTypeException("unexpected data type, $runtimeType")
+      };
 }
 
 extension on GStartPlotData_startPlot_data {
