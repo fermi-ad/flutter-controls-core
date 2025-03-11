@@ -405,9 +405,9 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   double? yMax;
   double? xMin;
   double? xMax;
-  double? timeDelta; 
+  double? timeDelta;
   bool isShowLabels;
-  bool isScalar;   
+  bool isScalar;
   bool isOneShot;
   int? updateDelay;
   int? nAcquisitions;
@@ -421,10 +421,10 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
       this.yMax,
       this.xMin,
       this.xMax,
-      this.timeDelta, 
+      this.timeDelta,
       required this.isShowLabels,
-      required this.isScalar, 
-      required this.isOneShot, 
+      required this.isScalar,
+      required this.isOneShot,
       this.updateDelay,
       this.nAcquisitions,
       this.tclkEvent});
@@ -1203,7 +1203,8 @@ final class ACSysProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _ACSysProviderIW(
-        service: service ?? ACSysService(jwt: AuthService.getJwt(context)), child: child);
+        service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
+        child: child);
   }
 }
 
