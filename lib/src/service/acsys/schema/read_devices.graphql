@@ -1,0 +1,26 @@
+query StreamData($devList: [String!]!, $when: Timestamp) {
+    acceleratorData(deviceList: $devList, when: $when) {
+        refId
+        cycle
+        data {
+            timestamp
+            result {
+                ... on StatusReply {
+                    status
+                }
+                ... on Scalar {
+                    scalarValue
+                }
+                ... on ScalarArray {
+                    scalarArrayValue
+                }
+                ... on Text {
+                    textValue
+                }
+                ... on TextArray {
+                    textArrayValue
+                }
+            }
+        }
+    }
+}

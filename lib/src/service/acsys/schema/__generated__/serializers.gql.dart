@@ -23,6 +23,22 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plo
     show GPlotConfigsReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.var.gql.dart'
     show GPlotConfigsVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.data.gql.dart'
+    show
+        GStreamDataData_acceleratorData_data_result,
+        GStreamDataData,
+        GStreamDataData_acceleratorData,
+        GStreamDataData_acceleratorData_data,
+        GStreamDataData_acceleratorData_data_result__asScalar,
+        GStreamDataData_acceleratorData_data_result__asScalarArray,
+        GStreamDataData_acceleratorData_data_result__asStatusReply,
+        GStreamDataData_acceleratorData_data_result__asText,
+        GStreamDataData_acceleratorData_data_result__asTextArray,
+        GStreamDataData_acceleratorData_data_result__base;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.req.gql.dart'
+    show GStreamDataReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.var.gql.dart'
+    show GStreamDataVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.data.gql.dart'
     show GDeletePlotConfigData, GDeletePlotConfigData_deletePlotConfiguration;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart'
@@ -51,22 +67,6 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/sta
     show GStartPlotReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.var.gql.dart'
     show GStartPlotVars;
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.data.gql.dart'
-    show
-        GStreamDataData_acceleratorData_data_result,
-        GStreamDataData,
-        GStreamDataData_acceleratorData,
-        GStreamDataData_acceleratorData_data,
-        GStreamDataData_acceleratorData_data_result__asScalar,
-        GStreamDataData_acceleratorData_data_result__asScalarArray,
-        GStreamDataData_acceleratorData_data_result__asStatusReply,
-        GStreamDataData_acceleratorData_data_result__asText,
-        GStreamDataData_acceleratorData_data_result__asTextArray,
-        GStreamDataData_acceleratorData_data_result__base;
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.req.gql.dart'
-    show GStreamDataReq;
-import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.var.gql.dart'
-    show GStreamDataVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart'
     show GUpdatePlotConfigData;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.req.gql.dart'

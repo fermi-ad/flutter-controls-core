@@ -82,6 +82,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           ]),
           () => new ListBuilder<GStartPlotData_startPlot_data_channelData>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GStreamDataData_acceleratorData)]),
+          () => new ListBuilder<GStreamDataData_acceleratorData>())
+      ..addBuilderFactory(
           const FullType(BuiltList, const [
             const FullType(GUsersLastConfigData_usersLastConfiguration_channels)
           ]),
