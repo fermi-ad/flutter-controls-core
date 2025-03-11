@@ -23,6 +23,22 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plo
     show GPlotConfigsReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.var.gql.dart'
     show GPlotConfigsVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.data.gql.dart'
+    show
+        GReadDevicesData_acceleratorData_data_result,
+        GReadDevicesData,
+        GReadDevicesData_acceleratorData,
+        GReadDevicesData_acceleratorData_data,
+        GReadDevicesData_acceleratorData_data_result__asScalar,
+        GReadDevicesData_acceleratorData_data_result__asScalarArray,
+        GReadDevicesData_acceleratorData_data_result__asStatusReply,
+        GReadDevicesData_acceleratorData_data_result__asText,
+        GReadDevicesData_acceleratorData_data_result__asTextArray,
+        GReadDevicesData_acceleratorData_data_result__base;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.req.gql.dart'
+    show GReadDevicesReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.var.gql.dart'
+    show GReadDevicesVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.data.gql.dart'
     show GDeletePlotConfigData, GDeletePlotConfigData_deletePlotConfiguration;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart'
@@ -92,6 +108,7 @@ part 'serializers.gql.g.dart';
 final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   ..add(OperationSerializer())
   ..add(DateSerializer())
+  ..add(GReadDevicesData_acceleratorData_data_result.serializer)
   ..add(GStreamDataData_acceleratorData_data_result.serializer)
   ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
@@ -107,6 +124,17 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GPlotConfigsReq,
   GPlotConfigsVars,
   GPlotConfigurationSnapshotIn,
+  GReadDevicesData,
+  GReadDevicesData_acceleratorData,
+  GReadDevicesData_acceleratorData_data,
+  GReadDevicesData_acceleratorData_data_result__asScalar,
+  GReadDevicesData_acceleratorData_data_result__asScalarArray,
+  GReadDevicesData_acceleratorData_data_result__asStatusReply,
+  GReadDevicesData_acceleratorData_data_result__asText,
+  GReadDevicesData_acceleratorData_data_result__asTextArray,
+  GReadDevicesData_acceleratorData_data_result__base,
+  GReadDevicesReq,
+  GReadDevicesVars,
   GSetDeviceData,
   GSetDeviceData_setDevice,
   GSetDeviceReq,

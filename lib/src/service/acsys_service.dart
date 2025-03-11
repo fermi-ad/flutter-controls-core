@@ -20,6 +20,8 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/sta
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/remove_plot_config.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.data.gql.dart';
@@ -400,9 +402,9 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   double? yMax;
   double? xMin;
   double? xMax;
-  double? timeDelta; 
+  double? timeDelta;
   bool isShowLabels;
-  bool isScalar;   
+  bool isScalar;
   bool isOneShot;
   int? updateDelay;
   int? nAcquisitions;
@@ -416,10 +418,10 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
       this.yMax,
       this.xMin,
       this.xMax,
-      this.timeDelta, 
+      this.timeDelta,
       required this.isShowLabels,
-      required this.isScalar, 
-      required this.isOneShot, 
+      required this.isScalar,
+      required this.isOneShot,
       this.updateDelay,
       this.nAcquisitions,
       this.tclkEvent});
@@ -447,6 +449,10 @@ abstract interface class ACSysServiceAPI {
   /// provides readings for the requests.
 
   Stream<Reading> monitorDevices(List<String> drfs);
+
+  /// Takes a list of device names and returns their current reading.
+
+  Future<List<Reading>> readDevices(List<String> devices);
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides the setting value of the requests.
@@ -604,6 +610,15 @@ final class ACSysService implements ACSysServiceAPI {
     } else {
       throw const ACSysInvArgException("empty device list");
     }
+  }
+
+  @override
+  Future<List<Reading>> readDevices(List<String> devices) {
+    final req = GReadDevicesReq((b) => b
+      ..vars.devList = ListBuilder(devices)
+      ..fetchPolicy = FetchPolicy.NetworkOnly);
+
+    return _rpc(req, xlat: _convertReading);
   }
 
   static (DeviceInfoProperty, KnobbingInfo?)? processSetting(
@@ -782,12 +797,12 @@ final class ACSysService implements ACSysServiceAPI {
         .handleError(
             (error) => dev.log("error: $error", name: "gql.monitorDevices"))
         .where((event) => !event.loading)
-        .map(_convertToReading);
+        .map(_convertMonitor);
   }
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
-  static Reading _convertToReading(
+  static Reading _convertMonitor(
       OperationResponse<GStreamDataData, GStreamDataVars> e) {
     // If the packet doesn't have GraphQL errors, then we can process the
     // payload.
@@ -797,40 +812,23 @@ final class ACSysService implements ACSysServiceAPI {
       final GStreamDataData_acceleratorData_data_result result =
           data.data.result;
 
-      return switch (result) {
-        GStreamDataData_acceleratorData_data_result__asScalar _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevScalar(result.scalarValue)),
-        GStreamDataData_acceleratorData_data_result__asScalarArray _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevScalarArray(result.scalarArrayValue.toList())),
-        GStreamDataData_acceleratorData_data_result__asText _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevText(result.textValue)),
-        GStreamDataData_acceleratorData_data_result__asTextArray _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            value: DevTextArray(result.textArrayValue.toList()),
-          ),
-        GStreamDataData_acceleratorData_data_result__asStatusReply _ => Reading(
-            refId: data.refId,
-            cycle: data.cycle,
-            timestamp: data.data.timestamp,
-            status: Status.fromInt(result.status)),
-        _ => throw ACSysTypeException(
-            "unexpected data type, ${result.runtimeType}")
-      };
+      return Reading(
+          refId: data.refId,
+          cycle: data.cycle,
+          timestamp: data.data.timestamp,
+          value: result.toDevValue());
     } else {
       throw ACSysGraphQLException(e.graphqlErrors.toString());
     }
   }
+
+  static List<Reading> _convertReading(GReadDevicesData e) => e.acceleratorData
+      .map((v) => Reading(
+          refId: v.refId,
+          cycle: v.cycle,
+          timestamp: v.data.timestamp,
+          value: v.data.result.toDevValue()))
+      .toList();
 
   @override
   Stream<DigitalStatus> monitorDigitalStatusDevices(
@@ -1093,6 +1091,34 @@ final class ACSysService implements ACSysServiceAPI {
   }
 }
 
+extension on GStreamDataData_acceleratorData_data_result {
+  DeviceValue toDevValue() => switch (this) {
+        GStreamDataData_acceleratorData_data_result__asScalar val =>
+          DevScalar(val.scalarValue),
+        GStreamDataData_acceleratorData_data_result__asScalarArray val =>
+          DevScalarArray(val.scalarArrayValue.toList()),
+        GStreamDataData_acceleratorData_data_result__asText val =>
+          DevText(val.textValue),
+        GStreamDataData_acceleratorData_data_result__asTextArray val =>
+          DevTextArray(val.textArrayValue.toList()),
+        _ => throw ACSysTypeException("unexpected data type, $runtimeType")
+      };
+}
+
+extension on GReadDevicesData_acceleratorData_data_result {
+  DeviceValue toDevValue() => switch (this) {
+        GStreamDataData_acceleratorData_data_result__asScalar val =>
+          DevScalar(val.scalarValue),
+        GStreamDataData_acceleratorData_data_result__asScalarArray val =>
+          DevScalarArray(val.scalarArrayValue.toList()),
+        GStreamDataData_acceleratorData_data_result__asText val =>
+          DevText(val.textValue),
+        GStreamDataData_acceleratorData_data_result__asTextArray val =>
+          DevTextArray(val.textArrayValue.toList()),
+        _ => throw ACSysTypeException("unexpected data type, $runtimeType")
+      };
+}
+
 extension on GStartPlotData_startPlot_data {
   PlotChannelData toPlotChannelData(int idx, GStartPlotReq req) =>
       PlotChannelData(
@@ -1170,7 +1196,8 @@ final class ACSysProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _ACSysProviderIW(
-        service: service ?? ACSysService(jwt: AuthService.getJwt(context)), child: child);
+        service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
+        child: child);
   }
 }
 

@@ -20,6 +20,20 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GPlotConfigsReq.serializer)
       ..add(GPlotConfigsVars.serializer)
       ..add(GPlotConfigurationSnapshotIn.serializer)
+      ..add(GReadDevicesData.serializer)
+      ..add(GReadDevicesData_acceleratorData.serializer)
+      ..add(GReadDevicesData_acceleratorData_data.serializer)
+      ..add(GReadDevicesData_acceleratorData_data_result__asScalar.serializer)
+      ..add(GReadDevicesData_acceleratorData_data_result__asScalarArray
+          .serializer)
+      ..add(GReadDevicesData_acceleratorData_data_result__asStatusReply
+          .serializer)
+      ..add(GReadDevicesData_acceleratorData_data_result__asText.serializer)
+      ..add(
+          GReadDevicesData_acceleratorData_data_result__asTextArray.serializer)
+      ..add(GReadDevicesData_acceleratorData_data_result__base.serializer)
+      ..add(GReadDevicesReq.serializer)
+      ..add(GReadDevicesVars.serializer)
       ..add(GSetDeviceData.serializer)
       ..add(GSetDeviceData_setDevice.serializer)
       ..add(GSetDeviceReq.serializer)
@@ -73,6 +87,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           ]),
           () => new ListBuilder<GPlotConfigsData_plotConfiguration_channels>())
       ..addBuilderFactory(
+          const FullType(BuiltList,
+              const [const FullType(GReadDevicesData_acceleratorData)]),
+          () => new ListBuilder<GReadDevicesData_acceleratorData>())
+      ..addBuilderFactory(
           const FullType(
               BuiltList, const [const FullType(GStartPlotData_startPlot_data)]),
           () => new ListBuilder<GStartPlotData_startPlot_data>())
@@ -96,6 +114,15 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
           () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(String)]),
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(double)]),
+          () => new ListBuilder<double>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(double)]),
           () => new ListBuilder<double>())
