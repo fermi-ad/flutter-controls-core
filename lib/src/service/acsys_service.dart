@@ -1181,6 +1181,11 @@ final class ACSysProvider extends StatelessWidget {
   final Widget child;
   final ACSysServiceAPI? service;
 
+  static Widget Function({required Widget child}) factory(
+          {ACSysServiceAPI? service}) =>
+      ({required Widget child}) =>
+          ACSysProvider(service: service, child: child);
+
   /// Creates the widget.
   ///
   /// - [child] is the widget subtree that gets added to the tree below this
