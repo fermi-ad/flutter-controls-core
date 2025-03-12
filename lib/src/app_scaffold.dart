@@ -113,6 +113,7 @@ final class StandardApp extends StatelessWidget {
   final String title;
   final Widget? body;
   final List<Widget>? drawerContents;
+  final List<Widget Function({required Widget child})> providers;
   final Widget? floatingActionButton;
   final PreferredSizeWidget? appBar;
 
@@ -122,19 +123,25 @@ final class StandardApp extends StatelessWidget {
       this.body,
       this.drawerContents,
       this.floatingActionButton,
+      this.providers = const [],
       super.key});
 
   @override
-  Widget build(BuildContext context) => MaterialApp(
-      title: title,
-      theme: _GlobalAppTheme.lightTheme,
-      darkTheme: _GlobalAppTheme.darkTheme,
-      home: AuthService(
-          child: Scaffold(
-              appBar: appBar,
-              body: body,
-              drawer: _Drawer(drawerContents),
-              floatingActionButton: floatingActionButton)));
+  Widget build(BuildContext context) {
+    final scaffold = providers.fold<Widget>(
+        Scaffold(
+            appBar: appBar,
+            body: body,
+            drawer: _Drawer(drawerContents),
+            floatingActionButton: floatingActionButton),
+        (w, p) => p(child: w));
+
+    return MaterialApp(
+        title: title,
+        theme: _GlobalAppTheme.lightTheme,
+        darkTheme: _GlobalAppTheme.darkTheme,
+        home: AuthService(child: scaffold));
+  }
 }
 
 final class _RouterApp extends StatelessWidget {

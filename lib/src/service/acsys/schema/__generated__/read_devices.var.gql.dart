@@ -18,7 +18,6 @@ abstract class GReadDevicesVars
       _$GReadDevicesVars;
 
   BuiltList<String> get devList;
-  DateTime? get when;
   static Serializer<GReadDevicesVars> get serializer =>
       _$gReadDevicesVarsSerializer;
 
