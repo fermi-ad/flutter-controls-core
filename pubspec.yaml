@@ -1,6 +1,6 @@
 name: flutter_controls_core
 description: A Flutter package to write Fermilab applications.
-version: 0.2.12
+version: 0.2.13
 
 environment:
     sdk: ">=3.6.0 <4.0.0"
