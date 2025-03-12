@@ -25,14 +25,7 @@ class _$GReadDevicesVarsSerializer
           specifiedType:
               const FullType(BuiltList, const [const FullType(String)])),
     ];
-    Object? value;
-    value = object.when;
-    if (value != null) {
-      result
-        ..add('when')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(DateTime)));
-    }
+
     return result;
   }
 
@@ -54,10 +47,6 @@ class _$GReadDevicesVarsSerializer
                       BuiltList, const [const FullType(String)]))!
               as BuiltList<Object?>);
           break;
-        case 'when':
-          result.when = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime)) as DateTime?;
-          break;
       }
     }
 
@@ -68,14 +57,12 @@ class _$GReadDevicesVarsSerializer
 class _$GReadDevicesVars extends GReadDevicesVars {
   @override
   final BuiltList<String> devList;
-  @override
-  final DateTime? when;
 
   factory _$GReadDevicesVars(
           [void Function(GReadDevicesVarsBuilder)? updates]) =>
       (new GReadDevicesVarsBuilder()..update(updates))._build();
 
-  _$GReadDevicesVars._({required this.devList, this.when}) : super._() {
+  _$GReadDevicesVars._({required this.devList}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
         devList, r'GReadDevicesVars', 'devList');
   }
@@ -91,16 +78,13 @@ class _$GReadDevicesVars extends GReadDevicesVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GReadDevicesVars &&
-        devList == other.devList &&
-        when == other.when;
+    return other is GReadDevicesVars && devList == other.devList;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, devList.hashCode);
-    _$hash = $jc(_$hash, when.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -108,8 +92,7 @@ class _$GReadDevicesVars extends GReadDevicesVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GReadDevicesVars')
-          ..add('devList', devList)
-          ..add('when', when))
+          ..add('devList', devList))
         .toString();
   }
 }
@@ -123,17 +106,12 @@ class GReadDevicesVarsBuilder
       _$this._devList ??= new ListBuilder<String>();
   set devList(ListBuilder<String>? devList) => _$this._devList = devList;
 
-  DateTime? _when;
-  DateTime? get when => _$this._when;
-  set when(DateTime? when) => _$this._when = when;
-
   GReadDevicesVarsBuilder();
 
   GReadDevicesVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _devList = $v.devList.toBuilder();
-      _when = $v.when;
       _$v = null;
     }
     return this;
@@ -159,7 +137,6 @@ class GReadDevicesVarsBuilder
       _$result = _$v ??
           new _$GReadDevicesVars._(
             devList: devList.build(),
-            when: when,
           );
     } catch (_) {
       late String _$failedField;

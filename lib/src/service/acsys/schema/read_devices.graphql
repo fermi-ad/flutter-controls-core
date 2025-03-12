@@ -1,5 +1,5 @@
-query ReadDevices($devList: [String!]!, $when: Timestamp) {
-    acceleratorData(deviceList: $devList, when: $when) {
+query ReadDevices($devList: [String!]!) {
+    acceleratorData(deviceList: $devList) {
         refId
         cycle
         data {
