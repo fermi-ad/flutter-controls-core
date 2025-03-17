@@ -4,8 +4,11 @@ import 'package:openid_client/openid_client.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:openid_client/openid_client_io.dart' as io;
 
-Future<Credential> authenticate(Client client,
-    {List<String> scopes = const [], int port = 4000}) async {
+Future<Credential> authenticate(
+  Client client, {
+  List<String> scopes = const [],
+  int port = 4000,
+}) async {
   // create an authenticator
   final authenticator = io.Authenticator(
     client,
@@ -34,6 +37,7 @@ Future<Credential> authenticate(Client client,
   }
 }
 
-Future<Credential?> getRedirectResult(Client client,
-        {List<String> scopes = const []}) async =>
-    null;
+Future<Credential?> getRedirectResult(
+  Client client, {
+  List<String> scopes = const [],
+}) async => null;

@@ -7,8 +7,10 @@ class DateSerializer implements PrimitiveSerializer<DateTime> {
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    assert(serialized is String,
-        "DateSerializer expected 'String' but got ${serialized.runtimeType}");
+    assert(
+      serialized is String,
+      "DateSerializer expected 'String' but got ${serialized.runtimeType}",
+    );
     return DateTime.parse(serialized as String);
   }
 
@@ -17,8 +19,7 @@ class DateSerializer implements PrimitiveSerializer<DateTime> {
     Serializers serializers,
     DateTime date, {
     FullType specifiedType = FullType.unspecified,
-  }) =>
-      date.toIso8601String();
+  }) => date.toIso8601String();
 
   @override
   Iterable<Type> get types => [DateTime];

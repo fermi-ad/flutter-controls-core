@@ -26,11 +26,17 @@ export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 ///   services won't let your application make modifications to the control
 ///   system.)
 
-Future<void> runFermiApp(
-    {required Widget appWidget, AuthInfo? authInfo}) async {
+Future<void> runFermiApp({
+  required Widget appWidget,
+  AuthInfo? authInfo,
+}) async {
   if (authInfo != null) {
-    await initAuth(authInfo.realm, authInfo.clientId, authInfo.clientSecret,
-        authInfo.scopes);
+    await initAuth(
+      authInfo.realm,
+      authInfo.clientId,
+      authInfo.clientSecret,
+      authInfo.scopes,
+    );
   }
 
   return runApp(appWidget);

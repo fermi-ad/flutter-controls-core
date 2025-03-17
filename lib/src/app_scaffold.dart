@@ -13,10 +13,14 @@ import 'auth_widget.dart';
 final class _GlobalAppTheme {
   _GlobalAppTheme._();
 
-  static ThemeData lightTheme =
-      ThemeData(useMaterial3: true, colorScheme: lightColorScheme);
-  static ThemeData darkTheme =
-      ThemeData(useMaterial3: true, colorScheme: darkColorScheme);
+  static ThemeData lightTheme = ThemeData(
+    useMaterial3: true,
+    colorScheme: lightColorScheme,
+  );
+  static ThemeData darkTheme = ThemeData(
+    useMaterial3: true,
+    colorScheme: darkColorScheme,
+  );
 }
 
 // Private widget used to display content in the side, drawer menu's header.
@@ -31,43 +35,55 @@ final class _DrawerHeader extends StatelessWidget {
       // For this case, the application didn't set up authentication parameters so
       // it plans to run with no privilieges. If the application tries to use a service
       // that needs authorization, the service will return an error.
-
       (_, false) => [
-          Expanded(
-              child: Icon(Icons.no_accounts_sharp,
-                  size: 48.0,
-                  semanticLabel: "No login required",
-                  color: td.disabledColor)),
-          const Text("No privileges required.", textAlign: TextAlign.center),
-        ],
+        Expanded(
+          child: Icon(
+            Icons.no_accounts_sharp,
+            size: 48.0,
+            semanticLabel: "No login required",
+            color: td.disabledColor,
+          ),
+        ),
+        const Text("No privileges required.", textAlign: TextAlign.center),
+      ],
       (null, true) => [
-          Expanded(
-              child: Icon(Icons.no_accounts_sharp,
-                  size: 48.0,
-                  semanticLabel: "Login required",
-                  color: td.disabledColor)),
-          const Text("Unauthorized"),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: ElevatedButton(
-                style: ButtonStyle(
-                    backgroundColor: WidgetStatePropertyAll(td.disabledColor)),
-                onPressed: () => AuthService.requestLogin(context),
-                child: const Text("Login")),
-          )
-        ],
+        Expanded(
+          child: Icon(
+            Icons.no_accounts_sharp,
+            size: 48.0,
+            semanticLabel: "Login required",
+            color: td.disabledColor,
+          ),
+        ),
+        const Text("Unauthorized"),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: ElevatedButton(
+            style: ButtonStyle(
+              backgroundColor: WidgetStatePropertyAll(td.disabledColor),
+            ),
+            onPressed: () => AuthService.requestLogin(context),
+            child: const Text("Login"),
+          ),
+        ),
+      ],
       (UserInfo user, true) => [
-          Expanded(
-              child: Icon(Icons.account_circle,
-                  size: 48.0, semanticLabel: "Logged in as ${user.name}")),
-          Text(user.name ?? "** no name in system **"),
-          Padding(
-            padding: const EdgeInsets.only(top: 8.0),
-            child: ElevatedButton(
-                onPressed: () => AuthService.requestLogout(context),
-                child: const Text("Logout")),
-          )
-        ]
+        Expanded(
+          child: Icon(
+            Icons.account_circle,
+            size: 48.0,
+            semanticLabel: "Logged in as ${user.name}",
+          ),
+        ),
+        Text(user.name ?? "** no name in system **"),
+        Padding(
+          padding: const EdgeInsets.only(top: 8.0),
+          child: ElevatedButton(
+            onPressed: () => AuthService.requestLogout(context),
+            child: const Text("Logout"),
+          ),
+        ),
+      ],
     };
 
     return DrawerHeader(child: Column(children: content));
@@ -84,21 +100,22 @@ final class _Drawer extends StatelessWidget {
     final ThemeData td = Theme.of(context);
 
     return Drawer(
-        child: Column(
-      children: [
-        Expanded(child: ListView(children: [_DrawerHeader(), ...?content])),
+      child: Column(
+        children: [
+          Expanded(child: ListView(children: [_DrawerHeader(), ...?content])),
 
-        // Change to "Fermi Forward Discovery Group, LLC" in 2025.
-
-        Padding(
-          padding: const EdgeInsets.only(bottom: 8.0),
-          child: Text(
+          // Change to "Fermi Forward Discovery Group, LLC" in 2025.
+          Padding(
+            padding: const EdgeInsets.only(bottom: 8.0),
+            child: Text(
               "© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
               textAlign: TextAlign.center,
-              style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor)),
-        ),
-      ],
-    ));
+              style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 }
 
@@ -117,30 +134,34 @@ final class StandardApp extends StatelessWidget {
   final Widget? floatingActionButton;
   final PreferredSizeWidget? appBar;
 
-  const StandardApp(
-      {required this.title,
-      this.appBar,
-      this.body,
-      this.drawerContents,
-      this.floatingActionButton,
-      this.providers = const [],
-      super.key});
+  const StandardApp({
+    required this.title,
+    this.appBar,
+    this.body,
+    this.drawerContents,
+    this.floatingActionButton,
+    this.providers = const [],
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     final scaffold = providers.fold<Widget>(
-        Scaffold(
-            appBar: appBar,
-            body: body,
-            drawer: _Drawer(drawerContents),
-            floatingActionButton: floatingActionButton),
-        (w, p) => p(child: w));
+      Scaffold(
+        appBar: appBar,
+        body: body,
+        drawer: _Drawer(drawerContents),
+        floatingActionButton: floatingActionButton,
+      ),
+      (w, p) => p(child: w),
+    );
 
     return MaterialApp(
-        title: title,
-        theme: _GlobalAppTheme.lightTheme,
-        darkTheme: _GlobalAppTheme.darkTheme,
-        home: AuthService(child: scaffold));
+      title: title,
+      theme: _GlobalAppTheme.lightTheme,
+      darkTheme: _GlobalAppTheme.darkTheme,
+      home: AuthService(child: scaffold),
+    );
   }
 }
 
@@ -154,11 +175,11 @@ final class _RouterApp extends StatelessWidget {
   // application.
   @override
   Widget build(BuildContext context) => MaterialApp.router(
-        title: title,
-        theme: _GlobalAppTheme.lightTheme,
-        darkTheme: _GlobalAppTheme.darkTheme,
-        routerConfig: router,
-      );
+    title: title,
+    theme: _GlobalAppTheme.lightTheme,
+    darkTheme: _GlobalAppTheme.darkTheme,
+    routerConfig: router,
+  );
 }
 
 /// Creates an application scaffold that uses the `GoRouter` package.
@@ -171,7 +192,7 @@ final class NonAuthRouterApp extends StatelessWidget {
   final _RouterApp _app;
 
   NonAuthRouterApp({required String title, required GoRouter router, super.key})
-      : _app = _RouterApp(title: title, router: router);
+    : _app = _RouterApp(title: title, router: router);
 
   // Return the MaterialApp widget which will define the look-and-feel for the
   // application.
@@ -194,14 +215,14 @@ final class AuthRouterApp extends StatelessWidget {
   final String clientId;
   final String clientSecret;
 
-  AuthRouterApp(
-      {required String title,
-      required GoRouter router,
-      required this.realm,
-      required this.clientId,
-      required this.clientSecret,
-      super.key})
-      : _app = _RouterApp(title: title, router: router);
+  AuthRouterApp({
+    required String title,
+    required GoRouter router,
+    required this.realm,
+    required this.clientId,
+    required this.clientSecret,
+    super.key,
+  }) : _app = _RouterApp(title: title, router: router);
 
   // Return the MaterialApp widget which will define the look-and-feel for the
   // application.

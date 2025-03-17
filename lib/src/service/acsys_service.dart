@@ -75,11 +75,12 @@ final class DeviceInfoAnalogAlarm {
   final String min;
   final String max;
 
-  const DeviceInfoAnalogAlarm(
-      {required this.nominal,
-      required this.tolerance,
-      required this.min,
-      required this.max});
+  const DeviceInfoAnalogAlarm({
+    required this.nominal,
+    required this.tolerance,
+    required this.min,
+    required this.max,
+  });
 }
 
 final class DeviceInfoProperty {
@@ -95,18 +96,19 @@ final class DeviceInfoProperty {
   final bool isFeScaling;
   final bool isStepMotor;
 
-  const DeviceInfoProperty(
-      {required this.minVal,
-      required this.maxVal,
-      this.commonUnits,
-      required this.commonIndex,
-      required this.commonCoeff,
-      this.primaryUnits,
-      required this.primaryIndex,
-      required this.isContrSetting,
-      required this.isDestructiveRead,
-      required this.isFeScaling,
-      required this.isStepMotor});
+  const DeviceInfoProperty({
+    required this.minVal,
+    required this.maxVal,
+    this.commonUnits,
+    required this.commonIndex,
+    required this.commonCoeff,
+    this.primaryUnits,
+    required this.primaryIndex,
+    required this.isContrSetting,
+    required this.isDestructiveRead,
+    required this.isFeScaling,
+    required this.isStepMotor,
+  });
 }
 
 final class KnobbingInfo {
@@ -114,8 +116,11 @@ final class KnobbingInfo {
   final double maxVal;
   final double step;
 
-  const KnobbingInfo(
-      {required this.minVal, required this.maxVal, required this.step});
+  const KnobbingInfo({
+    required this.minVal,
+    required this.maxVal,
+    required this.step,
+  });
 }
 
 final class BasicStatusProperty {
@@ -127,14 +132,15 @@ final class BasicStatusProperty {
   final String character1;
   final StatusColor color1;
 
-  const BasicStatusProperty(
-      {required this.maskVal,
-      required this.matchVal,
-      required this.invert,
-      required this.character0,
-      required this.color0,
-      required this.character1,
-      required this.color1});
+  const BasicStatusProperty({
+    required this.maskVal,
+    required this.matchVal,
+    required this.invert,
+    required this.character0,
+    required this.color0,
+    required this.character1,
+    required this.color1,
+  });
 
   BasicStatusAttribute getState(int value) =>
       ((invert ? ~value : value) & maskVal) == matchVal
@@ -159,25 +165,29 @@ final class ExtendedBasicStatusEntry {
   final int color1;
   final String name1;
 
-  const ExtendedBasicStatusEntry(
-      {required this.bitNo,
-      required this.description,
-      required this.color0,
-      required this.name0,
-      required this.color1,
-      required this.name1});
+  const ExtendedBasicStatusEntry({
+    required this.bitNo,
+    required this.description,
+    required this.color0,
+    required this.name0,
+    required this.color1,
+    required this.name1,
+  });
 
-  ExtendedStatusAttribute getState(int value) => (value & (1 << bitNo)) != 0
-      ? ExtendedStatusAttribute(
-          description: description,
-          value: 1,
-          color: _toColor(color1),
-          valueText: name1)
-      : ExtendedStatusAttribute(
-          description: description,
-          value: 0,
-          color: _toColor(color0),
-          valueText: name0);
+  ExtendedStatusAttribute getState(int value) =>
+      (value & (1 << bitNo)) != 0
+          ? ExtendedStatusAttribute(
+            description: description,
+            value: 1,
+            color: _toColor(color1),
+            valueText: name1,
+          )
+          : ExtendedStatusAttribute(
+            description: description,
+            value: 0,
+            color: _toColor(color0),
+            valueText: name0,
+          );
 }
 
 final class DeviceInfoBasicStatus {
@@ -187,12 +197,13 @@ final class DeviceInfoBasicStatus {
   final BasicStatusProperty? positiveNegativeProperty;
   final List<ExtendedBasicStatusEntry> extendedBasicStatus;
 
-  const DeviceInfoBasicStatus(
-      {this.onOffProperty,
-      this.readyTrippedProperty,
-      this.remoteLocalProperty,
-      this.positiveNegativeProperty,
-      this.extendedBasicStatus = const []});
+  const DeviceInfoBasicStatus({
+    this.onOffProperty,
+    this.readyTrippedProperty,
+    this.remoteLocalProperty,
+    this.positiveNegativeProperty,
+    this.extendedBasicStatus = const [],
+  });
 }
 
 final class DeviceInfoDigitalControl {
@@ -200,8 +211,11 @@ final class DeviceInfoDigitalControl {
   final String shortName;
   final String longName;
 
-  const DeviceInfoDigitalControl(
-      {required this.value, required this.shortName, required this.longName});
+  const DeviceInfoDigitalControl({
+    required this.value,
+    required this.shortName,
+    required this.longName,
+  });
 }
 
 final class DeviceInfo {
@@ -214,15 +228,16 @@ final class DeviceInfo {
   final DeviceInfoBasicStatus? basicStatus;
   final List<DeviceInfoDigitalControl> digControl;
 
-  const DeviceInfo(
-      {required this.di,
-      required this.name,
-      required this.description,
-      this.reading,
-      this.setting,
-      this.alarm,
-      this.basicStatus,
-      this.digControl = const []});
+  const DeviceInfo({
+    required this.di,
+    required this.name,
+    required this.description,
+    this.reading,
+    this.setting,
+    this.alarm,
+    this.basicStatus,
+    this.digControl = const [],
+  });
 }
 
 final class Reading {
@@ -232,12 +247,13 @@ final class Reading {
   final DateTime timestamp;
   final DeviceValue? value;
 
-  const Reading(
-      {required this.refId,
-      this.status = Status.okay,
-      required this.cycle,
-      required this.timestamp,
-      this.value});
+  const Reading({
+    required this.refId,
+    this.status = Status.okay,
+    required this.cycle,
+    required this.timestamp,
+    this.value,
+  });
 }
 
 /// Enumeration representing console colors.
@@ -253,15 +269,15 @@ enum StatusColor { black, blue, green, cyan, red, magenta, yellow, white }
 // out-of-range values are converted to `white`.
 
 StatusColor _toColor(int value) => switch (value) {
-      0 => StatusColor.black,
-      1 => StatusColor.blue,
-      2 => StatusColor.green,
-      3 => StatusColor.cyan,
-      4 => StatusColor.red,
-      5 => StatusColor.magenta,
-      6 => StatusColor.yellow,
-      _ => StatusColor.white
-    };
+  0 => StatusColor.black,
+  1 => StatusColor.blue,
+  2 => StatusColor.green,
+  3 => StatusColor.cyan,
+  4 => StatusColor.red,
+  5 => StatusColor.magenta,
+  6 => StatusColor.yellow,
+  _ => StatusColor.white,
+};
 
 final class BasicStatusAttribute {
   final String character;
@@ -276,8 +292,12 @@ final class ExtendedStatusAttribute {
   final String? valueText;
   final StatusColor? color;
 
-  const ExtendedStatusAttribute(
-      {this.description, required this.value, this.valueText, this.color});
+  const ExtendedStatusAttribute({
+    this.description,
+    required this.value,
+    this.valueText,
+    this.color,
+  });
 }
 
 final class DigitalStatus {
@@ -291,16 +311,17 @@ final class DigitalStatus {
   final BasicStatusAttribute? positiveNegative;
   final List<ExtendedStatusAttribute>? extendedStatus;
 
-  const DigitalStatus(
-      {required this.refId,
-      this.status = 0,
-      required this.cycle,
-      required this.timestamp,
-      this.onOff,
-      this.readyTripped,
-      this.remoteLocal,
-      this.positiveNegative,
-      this.extendedStatus});
+  const DigitalStatus({
+    required this.refId,
+    this.status = 0,
+    required this.cycle,
+    required this.timestamp,
+    this.onOff,
+    this.readyTripped,
+    this.remoteLocal,
+    this.positiveNegative,
+    this.extendedStatus,
+  });
 }
 
 final class SettingStatus {
@@ -319,12 +340,13 @@ final class AnalogAlarmStatus {
   final DateTime timestamp;
   final AnalogAlarmState state;
 
-  const AnalogAlarmStatus(
-      {required this.refId,
-      this.status = 0,
-      required this.cycle,
-      required this.timestamp,
-      required this.state});
+  const AnalogAlarmStatus({
+    required this.refId,
+    this.status = 0,
+    required this.cycle,
+    required this.timestamp,
+    required this.state,
+  });
 }
 
 final class PlotReply {
@@ -335,35 +357,28 @@ final class PlotReply {
   final int? windowSize;
   final List<PlotChannelData> data;
 
-  const PlotReply(
-      {required this.plotId,
-      required this.xAxisUnits,
-      this.xAxisMin,
-      this.xAxisMax,
-      this.windowSize,
-      required this.data});
+  const PlotReply({
+    required this.plotId,
+    required this.xAxisUnits,
+    this.xAxisMin,
+    this.xAxisMax,
+    this.windowSize,
+    required this.data,
+  });
 }
 
 final class PlotChannelData {
   final String name;
   final String units;
   final int status;
-  final List<PlotPoint> points;
+  final DevTimeSeries data;
 
-  const PlotChannelData(
-      {required this.name,
-      required this.units,
-      this.status = 0,
-      this.points = const []});
-}
-
-final class PlotPoint {
-  // TODO make this required. 
-  final double? t;
-  final double x;
-  final double y;
-
-  const PlotPoint({required this.x, required this.y, this.t});
+  const PlotChannelData({
+    required this.name,
+    required this.units,
+    this.status = 0,
+    this.data = const DevTimeSeries([]),
+  });
 }
 
 final class ChannelSettingSnapshot {
@@ -392,8 +407,10 @@ class PlotConfigurationListing {
   PlotConfigId? configurationId;
   String configurationName;
 
-  PlotConfigurationListing(
-      {this.configurationId, required this.configurationName});
+  PlotConfigurationListing({
+    this.configurationId,
+    required this.configurationName,
+  });
 }
 
 final class PlotConfigurationSnapshot extends PlotConfigurationListing {
@@ -410,21 +427,22 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? nAcquisitions;
   int? tclkEvent;
 
-  PlotConfigurationSnapshot(
-      {super.configurationId,
-      required super.configurationName,
-      required this.channels,
-      this.yMin,
-      this.yMax,
-      this.xMin,
-      this.xMax,
-      this.timeDelta,
-      required this.isShowLabels,
-      required this.isScalar,
-      required this.isOneShot,
-      this.updateDelay,
-      this.nAcquisitions,
-      this.tclkEvent});
+  PlotConfigurationSnapshot({
+    super.configurationId,
+    required super.configurationName,
+    required this.channels,
+    this.yMin,
+    this.yMax,
+    this.xMin,
+    this.xMax,
+    this.timeDelta,
+    required this.isShowLabels,
+    required this.isScalar,
+    required this.isOneShot,
+    this.updateDelay,
+    this.nAcquisitions,
+    this.tclkEvent,
+  });
 }
 
 /// Defines the ACSys API.
@@ -468,21 +486,25 @@ abstract interface class ACSysServiceAPI {
 
   /// Returns a stream which provides plot data for the devices specified in
   /// the parameter list.
-  Stream<PlotReply> startPlot(List<String> drfs,
-      {double? xMin,
-      double? xMax,
-      int? windowSize,
-      int? updateRate,
-      int? nAcquisitions,
-      int? triggerEvent});
+  Stream<PlotReply> startPlot(
+    List<String> drfs, {
+    double? xMin,
+    double? xMax,
+    int? windowSize,
+    int? updateRate,
+    int? nAcquisitions,
+    int? triggerEvent,
+  });
 
   /// Saves the plot configuration to the database.
-  Future<PlotConfigurationSnapshot> savePlotConfiguration(
-      {required PlotConfigurationSnapshot snapshot});
+  Future<PlotConfigurationSnapshot> savePlotConfiguration({
+    required PlotConfigurationSnapshot snapshot,
+  });
 
   /// Queries the database for a plot configuration.
-  Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
-      {required PlotConfigId configurationId});
+  Future<PlotConfigurationSnapshot> retrievePlotConfiguration({
+    required PlotConfigId configurationId,
+  });
 
   /// Returns every plot configuration in the database.
   Future<List<PlotConfigurationListing>> listPlotConfigurations();
@@ -494,18 +516,23 @@ abstract interface class ACSysServiceAPI {
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
 
   /// Sets the provided plot configuration as the last one the user saved.
-  Future<void> saveUserConfiguration(
-      {required PlotConfigurationSnapshot snapshot});
+  Future<void> saveUserConfiguration({
+    required PlotConfigurationSnapshot snapshot,
+  });
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device.
-  Future<SettingStatus> submit(
-      {required String forDRF, required DeviceValue newSetting});
+  Future<SettingStatus> submit({
+    required String forDRF,
+    required DeviceValue newSetting,
+  });
 
   /// Takes a device name and a value and sends a request to apply the value to
   /// the device's digital control property.
-  Future<SettingStatus> sendCommand(
-      {required String toDRF, required String value});
+  Future<SettingStatus> sendCommand({
+    required String toDRF,
+    required String value,
+  });
 }
 
 /// Provides an interface to Fermi's data acquisition API.
@@ -526,72 +553,79 @@ final class ACSysService implements ACSysServiceAPI {
   // GraphQL endpoints.
 
   ACSysService({String? jwt})
-      : _q = Client(
-            link: HttpLink("https://acsys-proxy.fnal.gov:8001/acsys",
-                defaultHeaders: _buildAuthHeader(jwt)),
-            cache: Cache()),
-        _s = Client(
-            link: WebSocketLink(null,
-                channelGenerator: () => WebSocketChannel.connect(
-                      Uri(
-                        scheme: "wss",
-                        host: "acsys-proxy.fnal.gov",
-                        port: 8001,
-                        path: "/acsys/s",
-                      ),
-                      protocols: ["graphql-ws"],
-                    ),
-                reconnectInterval: const Duration(seconds: 1)),
-            cache: Cache()),
-        _qDevDb = Client(
-            link: HttpLink("https://acsys-proxy.fnal.gov:8001/devdb",
-                defaultHeaders: _buildAuthHeader(jwt)),
-            cache: Cache());
+    : _q = Client(
+        link: HttpLink(
+          "https://acsys-proxy.fnal.gov:8001/acsys",
+          defaultHeaders: _buildAuthHeader(jwt),
+        ),
+        cache: Cache(),
+      ),
+      _s = Client(
+        link: WebSocketLink(
+          null,
+          channelGenerator:
+              () => WebSocketChannel.connect(
+                Uri(
+                  scheme: "wss",
+                  host: "acsys-proxy.fnal.gov",
+                  port: 8001,
+                  path: "/acsys/s",
+                ),
+                protocols: ["graphql-ws"],
+              ),
+          reconnectInterval: const Duration(seconds: 1),
+        ),
+        cache: Cache(),
+      ),
+      _qDevDb = Client(
+        link: HttpLink(
+          "https://acsys-proxy.fnal.gov:8001/devdb",
+          defaultHeaders: _buildAuthHeader(jwt),
+        ),
+        cache: Cache(),
+      );
 
   // Common code needed to do RPCs. The caller sends in a protobuf request and,
   // optionally, a function to translate the protobuf reply into some other data
   // type.
 
-  Future<Result> _rpc<TData, TVars, Result>(OperationRequest<TData, TVars> req,
-          {Result Function(TData)? xlat}) =>
-      _q
-          .request(req)
-          .where((response) => !response.loading)
-          .first
-          .then((value) {
-        if (value.hasErrors) {
-          throw Exception(value.graphqlErrors);
-        } else {
-          final data = value.data;
+  Future<Result> _rpc<TData, TVars, Result>(
+    OperationRequest<TData, TVars> req, {
+    Result Function(TData)? xlat,
+  }) => _q.request(req).where((response) => !response.loading).first.then((
+    value,
+  ) {
+    if (value.hasErrors) {
+      throw Exception(value.graphqlErrors);
+    } else {
+      final data = value.data;
 
-          if (data != null) {
-            return xlat != null ? xlat(data) : data as Result;
-          } else {
-            throw Exception("no data was returned from request");
-          }
-        }
-      });
+      if (data != null) {
+        return xlat != null ? xlat(data) : data as Result;
+      } else {
+        throw Exception("no data was returned from request");
+      }
+    }
+  });
 
   Future<Result> _rpcDevDb<TData, TVars, Result>(
-          OperationRequest<TData, TVars> req,
-          {Result Function(TData)? xlat}) =>
-      _qDevDb
-          .request(req)
-          .where((response) => !response.loading)
-          .first
-          .then((value) {
-        if (value.hasErrors) {
-          throw Exception(value.graphqlErrors);
-        } else {
-          final data = value.data;
+    OperationRequest<TData, TVars> req, {
+    Result Function(TData)? xlat,
+  }) => _qDevDb.request(req).where((response) => !response.loading).first.then((
+    value,
+  ) {
+    if (value.hasErrors) {
+      throw Exception(value.graphqlErrors);
+    } else {
+      final data = value.data;
 
-          if (data != null) {
-            return xlat != null ? xlat(data) : data as Result;
-          } else {
-            throw Exception("no data was returned from request");
-          }
-        }
-      });
+      if (data != null) {
+        return xlat != null ? xlat(data) : data as Result;
+      } else {
+        throw Exception("no data was returned from request");
+      }
+    }
+  });
 
   /// Returns information about devices. The caller provides a list of device
   /// names and will receive a list of `DeviceInfo` objects. The order of the
@@ -601,12 +635,16 @@ final class ACSysService implements ACSysServiceAPI {
   @override
   Future<List<DeviceInfo>> getDeviceInfo(List<String> devices) async {
     if (devices.isNotEmpty) {
-      final req =
-          GgetDeviceInfoReq((b) => b..vars.devices = ListBuilder(devices));
+      final req = GgetDeviceInfoReq(
+        (b) => b..vars.devices = ListBuilder(devices),
+      );
 
-      return _rpcDevDb(req,
-          xlat: (GgetDeviceInfoData data) =>
-              data.deviceInfo.result.map(_convertToDevInfo).toList());
+      return _rpcDevDb(
+        req,
+        xlat:
+            (GgetDeviceInfoData data) =>
+                data.deviceInfo.result.map(_convertToDevInfo).toList(),
+      );
     } else {
       throw const ACSysInvArgException("empty device list");
     }
@@ -614,38 +652,44 @@ final class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<List<Reading>> readDevices(List<String> devices) {
-    final req = GReadDevicesReq((b) => b
-      ..vars.devList = ListBuilder(devices)
-      ..fetchPolicy = FetchPolicy.NetworkOnly);
+    final req = GReadDevicesReq(
+      (b) =>
+          b
+            ..vars.devList = ListBuilder(devices)
+            ..fetchPolicy = FetchPolicy.NetworkOnly,
+    );
 
     return _rpc(req, xlat: _convertReading);
   }
 
   static (DeviceInfoProperty, KnobbingInfo?)? processSetting(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? s) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? s,
+  ) {
     if (s != null) {
       final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo?
-          ki = s.knobInfo;
+      ki = s.knobInfo;
 
       return (
         DeviceInfoProperty(
-            minVal: s.minVal,
-            maxVal: s.maxVal,
-            primaryUnits: s.primaryUnits,
-            primaryIndex: s.primaryIndex,
-            commonUnits: s.commonUnits,
-            commonIndex: s.commonIndex,
-            commonCoeff: s.coeff.toList(),
-            isContrSetting: s.isContrSetting,
-            isDestructiveRead: s.isDestructiveRead,
-            isFeScaling: s.isFeScaling,
-            isStepMotor: s.isStepMotor),
+          minVal: s.minVal,
+          maxVal: s.maxVal,
+          primaryUnits: s.primaryUnits,
+          primaryIndex: s.primaryIndex,
+          commonUnits: s.commonUnits,
+          commonIndex: s.commonIndex,
+          commonCoeff: s.coeff.toList(),
+          isContrSetting: s.isContrSetting,
+          isDestructiveRead: s.isDestructiveRead,
+          isFeScaling: s.isFeScaling,
+          isStepMotor: s.isStepMotor,
+        ),
         ki != null
             ? KnobbingInfo(
-                minVal: s.knobInfo!.minVal,
-                maxVal: s.knobInfo!.maxVal,
-                step: s.knobInfo!.step)
-            : null
+              minVal: s.knobInfo!.minVal,
+              maxVal: s.knobInfo!.maxVal,
+              step: s.knobInfo!.step,
+            )
+            : null,
       );
     } else {
       return null;
@@ -661,20 +705,22 @@ final class ACSysService implements ACSysServiceAPI {
     if (e is GgetDeviceInfoData_deviceInfo_result__asDeviceInfo) {
       // Save off the reading and setting properties, if they exist.
 
-      final DeviceInfoProperty? rProp = e.reading != null
-          ? DeviceInfoProperty(
-              minVal: e.reading!.minVal,
-              maxVal: e.reading!.maxVal,
-              primaryUnits: e.reading!.primaryUnits,
-              primaryIndex: e.reading!.primaryIndex,
-              commonUnits: e.reading!.commonUnits,
-              commonIndex: e.reading!.commonIndex,
-              commonCoeff: e.reading!.coeff.toList(),
-              isContrSetting: e.reading!.isContrSetting,
-              isDestructiveRead: e.reading!.isDestructiveRead,
-              isFeScaling: e.reading!.isFeScaling,
-              isStepMotor: e.reading!.isStepMotor)
-          : null;
+      final DeviceInfoProperty? rProp =
+          e.reading != null
+              ? DeviceInfoProperty(
+                minVal: e.reading!.minVal,
+                maxVal: e.reading!.maxVal,
+                primaryUnits: e.reading!.primaryUnits,
+                primaryIndex: e.reading!.primaryIndex,
+                commonUnits: e.reading!.commonUnits,
+                commonIndex: e.reading!.commonIndex,
+                commonCoeff: e.reading!.coeff.toList(),
+                isContrSetting: e.reading!.isContrSetting,
+                isDestructiveRead: e.reading!.isDestructiveRead,
+                isFeScaling: e.reading!.isFeScaling,
+                isStepMotor: e.reading!.isStepMotor,
+              )
+              : null;
       final sProp = processSetting(e.setting);
 
       // Create a spot to hold the basic status, if it exists.
@@ -687,7 +733,7 @@ final class ACSysService implements ACSysServiceAPI {
       if (e.digStatus
           case GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
             entries: var data,
-            extEntries: var extData
+            extEntries: var extData,
           )) {
         BasicStatusProperty? propOn;
         BasicStatusProperty? propReady;
@@ -700,13 +746,14 @@ final class ACSysService implements ACSysServiceAPI {
           // Convert the gRPC status info into our GraphQL representation.
 
           final prop = BasicStatusProperty(
-              maskVal: item.maskVal,
-              matchVal: item.matchVal,
-              invert: item.invert,
-              character0: item.falseChar,
-              color0: _toColor(item.falseColor),
-              character1: item.trueChar,
-              color1: _toColor(item.trueColor));
+            maskVal: item.maskVal,
+            matchVal: item.matchVal,
+            invert: item.invert,
+            character0: item.falseChar,
+            color0: _toColor(item.falseColor),
+            character1: item.trueChar,
+            color1: _toColor(item.trueColor),
+          );
 
           // The index of the attribute indicates to which legacy status it
           // applies.
@@ -728,19 +775,24 @@ final class ACSysService implements ACSysServiceAPI {
         // device information.
 
         bs = DeviceInfoBasicStatus(
-            onOffProperty: propOn,
-            readyTrippedProperty: propReady,
-            remoteLocalProperty: propRemote,
-            positiveNegativeProperty: propPositive,
-            extendedBasicStatus: extData
-                .map((e) => ExtendedBasicStatusEntry(
-                    bitNo: e.bitNo,
-                    color0: e.color0,
-                    name0: e.name0,
-                    color1: e.color1,
-                    name1: e.name1,
-                    description: e.description))
-                .toList());
+          onOffProperty: propOn,
+          readyTrippedProperty: propReady,
+          remoteLocalProperty: propRemote,
+          positiveNegativeProperty: propPositive,
+          extendedBasicStatus:
+              extData
+                  .map(
+                    (e) => ExtendedBasicStatusEntry(
+                      bitNo: e.bitNo,
+                      color0: e.color0,
+                      name0: e.name0,
+                      color1: e.color1,
+                      name1: e.name1,
+                      description: e.description,
+                    ),
+                  )
+                  .toList(),
+        );
       }
 
       // If the device has digital control, populate the list with the converted
@@ -750,28 +802,31 @@ final class ACSysService implements ACSysServiceAPI {
 
       if (e.digControl
           case GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
-            entries: var entries
+            entries: var entries,
           )) {
-        dc = entries
-            .map(
-              (ii) => DeviceInfoDigitalControl(
-                  value: ii.value,
-                  shortName: ii.shortName,
-                  longName: ii.longName),
-            )
-            .toList();
+        dc =
+            entries
+                .map(
+                  (ii) => DeviceInfoDigitalControl(
+                    value: ii.value,
+                    shortName: ii.shortName,
+                    longName: ii.longName,
+                  ),
+                )
+                .toList();
       }
 
       // Create the final, device info structure.
 
       return DeviceInfo(
-          di: 0,
-          name: "",
-          description: e.description,
-          reading: rProp,
-          setting: sProp,
-          basicStatus: bs,
-          digControl: dc);
+        di: 0,
+        name: "",
+        description: e.description,
+        reading: rProp,
+        setting: sProp,
+        basicStatus: bs,
+        digControl: dc,
+      );
     } else {
       if (e is GgetDeviceInfoData_deviceInfo_result__asErrorReply) {
         throw UnimplementedError("getDeviceInfo returned an error");
@@ -788,14 +843,18 @@ final class ACSysService implements ACSysServiceAPI {
   // be sent for a device in error.
   @override
   Stream<Reading> monitorDevices(List<String> drfs) {
-    final req = GStreamDataReq((b) => b
-      ..vars.drfs = ListBuilder(drfs)
-      ..fetchPolicy = FetchPolicy.NetworkOnly);
+    final req = GStreamDataReq(
+      (b) =>
+          b
+            ..vars.drfs = ListBuilder(drfs)
+            ..fetchPolicy = FetchPolicy.NetworkOnly,
+    );
 
     return _s
         .request(req)
         .handleError(
-            (error) => dev.log("error: $error", name: "gql.monitorDevices"))
+          (error) => dev.log("error: $error", name: "gql.monitorDevices"),
+        )
         .where((event) => !event.loading)
         .map(_convertMonitor);
   }
@@ -803,7 +862,8 @@ final class ACSysService implements ACSysServiceAPI {
   // Convert the incoming GraphQL messages into `Reading` objects.
 
   static Reading _convertMonitor(
-      OperationResponse<GStreamDataData, GStreamDataVars> e) {
+    OperationResponse<GStreamDataData, GStreamDataVars> e,
+  ) {
     // If the packet doesn't have GraphQL errors, then we can process the
     // payload.
 
@@ -813,26 +873,32 @@ final class ACSysService implements ACSysServiceAPI {
           data.data.result;
 
       return Reading(
-          refId: data.refId,
-          cycle: data.cycle,
-          timestamp: data.data.timestamp,
-          value: result.toDevValue());
+        refId: data.refId,
+        cycle: data.cycle,
+        timestamp: data.data.timestamp,
+        value: result.toDevValue(),
+      );
     } else {
       throw ACSysGraphQLException(e.graphqlErrors.toString());
     }
   }
 
-  static List<Reading> _convertReading(GReadDevicesData e) => e.acceleratorData
-      .map((v) => Reading(
-          refId: v.refId,
-          cycle: v.cycle,
-          timestamp: v.data.timestamp,
-          value: v.data.result.toDevValue()))
-      .toList();
+  static List<Reading> _convertReading(GReadDevicesData e) =>
+      e.acceleratorData
+          .map(
+            (v) => Reading(
+              refId: v.refId,
+              cycle: v.cycle,
+              timestamp: v.data.timestamp,
+              value: v.data.result.toDevValue(),
+            ),
+          )
+          .toList();
 
   @override
   Stream<DigitalStatus> monitorDigitalStatusDevices(
-      List<String> devices) async* {
+    List<String> devices,
+  ) async* {
     // Get device information for the list of devices. We need to use this
     // information to 1) make sure the device actually has a basic status
     // property and, 2) build a translation table for when values come in.
@@ -862,10 +928,11 @@ final class ACSysService implements ACSysServiceAPI {
         drf.add("${devices[idx]}.STATUS.BIT_VALUE");
       } else {
         yield DigitalStatus(
-            refId: idx,
-            cycle: 0,
-            timestamp: DateTime.now(),
-            status: Status.noProperty.code);
+          refId: idx,
+          cycle: 0,
+          timestamp: DateTime.now(),
+          status: Status.noProperty.code,
+        );
       }
     }
 
@@ -878,17 +945,19 @@ final class ACSysService implements ACSysServiceAPI {
       final statusVal = rdg.value?.toDouble()?.toInt() ?? 0;
 
       return DigitalStatus(
-          status: rdg.status.code,
-          refId: refId,
-          cycle: rdg.cycle,
-          timestamp: rdg.timestamp,
-          onOff: bs.onOffProperty?.getState(statusVal),
-          readyTripped: bs.readyTrippedProperty?.getState(statusVal),
-          remoteLocal: bs.remoteLocalProperty?.getState(statusVal),
-          positiveNegative: bs.positiveNegativeProperty?.getState(statusVal),
-          extendedStatus: bs.extendedBasicStatus
-              .map((item) => item.getState(statusVal))
-              .toList());
+        status: rdg.status.code,
+        refId: refId,
+        cycle: rdg.cycle,
+        timestamp: rdg.timestamp,
+        onOff: bs.onOffProperty?.getState(statusVal),
+        readyTripped: bs.readyTrippedProperty?.getState(statusVal),
+        remoteLocal: bs.remoteLocalProperty?.getState(statusVal),
+        positiveNegative: bs.positiveNegativeProperty?.getState(statusVal),
+        extendedStatus:
+            bs.extendedBasicStatus
+                .map((item) => item.getState(statusVal))
+                .toList(),
+      );
     });
   }
 
@@ -902,50 +971,62 @@ final class ACSysService implements ACSysServiceAPI {
   // status of the setting.
 
   @override
-  Future<SettingStatus> submit(
-      {required String forDRF, required DeviceValue newSetting}) {
+  Future<SettingStatus> submit({
+    required String forDRF,
+    required DeviceValue newSetting,
+  }) {
     // Define a nested function which converts the GraphQL reply into a
     // SettingStatus.
 
     xlat(e) => SettingStatus(
-        facilityCode: e.setDevice.status ~/ 256,
-        errorCode: e.setDevice.status & 255);
+      facilityCode: e.setDevice.status ~/ 256,
+      errorCode: e.setDevice.status & 255,
+    );
 
     // Build the request.
 
-    final req = GSetDeviceReq((b) => b
-      ..vars.device = forDRF
-      ..vars.value = newSetting._toGDevValue());
+    final req = GSetDeviceReq(
+      (b) =>
+          b
+            ..vars.device = forDRF
+            ..vars.value = newSetting._toGDevValue(),
+    );
 
     return _rpc(req, xlat: xlat);
   }
 
   @override
-  Future<SettingStatus> sendCommand(
-          {required String toDRF, required String value}) =>
-      submit(forDRF: toDRF, newSetting: DevText(value));
+  Future<SettingStatus> sendCommand({
+    required String toDRF,
+    required String value,
+  }) => submit(forDRF: toDRF, newSetting: DevText(value));
 
   @override
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) =>
       const Stream.empty();
 
   @override
-  Stream<PlotReply> startPlot(List<String> drfs,
-      {double? xMin,
-      double? xMax,
-      int? windowSize,
-      int? updateRate,
-      int? nAcquisitions,
-      int? triggerEvent}) {
-    final req = GStartPlotReq((b) => b
-      ..fetchPolicy = FetchPolicy.NetworkOnly
-      ..vars.drfList = ListBuilder(drfs)
-      ..vars.xMin = xMin
-      ..vars.xMax = xMax
-      ..vars.windowSize = windowSize
-      ..vars.nAcquisitions = nAcquisitions
-      ..vars.updateDelay = updateRate
-      ..vars.triggerEvent = triggerEvent);
+  Stream<PlotReply> startPlot(
+    List<String> drfs, {
+    double? xMin,
+    double? xMax,
+    int? windowSize,
+    int? updateRate,
+    int? nAcquisitions,
+    int? triggerEvent,
+  }) {
+    final req = GStartPlotReq(
+      (b) =>
+          b
+            ..fetchPolicy = FetchPolicy.NetworkOnly
+            ..vars.drfList = ListBuilder(drfs)
+            ..vars.xMin = xMin
+            ..vars.xMax = xMax
+            ..vars.windowSize = windowSize
+            ..vars.nAcquisitions = nAcquisitions
+            ..vars.updateDelay = updateRate
+            ..vars.triggerEvent = triggerEvent,
+    );
 
     return _s
         .request(req)
@@ -956,22 +1037,32 @@ final class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<List<PlotConfigurationListing>> listPlotConfigurations() {
-    final req =
-        GPlotConfigsReq((b) => b..fetchPolicy = FetchPolicy.NetworkOnly);
+    final req = GPlotConfigsReq(
+      (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
+    );
 
-    return _rpc(req,
-        xlat: (GPlotConfigsData data) => data.plotConfiguration
-            .map((e) => PlotConfigurationListing(
-                configurationId: PlotConfigId._fromInt(e.configurationId),
-                configurationName: e.configurationName))
-            .toList());
+    return _rpc(
+      req,
+      xlat:
+          (GPlotConfigsData data) =>
+              data.plotConfiguration
+                  .map(
+                    (e) => PlotConfigurationListing(
+                      configurationId: PlotConfigId._fromInt(e.configurationId),
+                      configurationName: e.configurationName,
+                    ),
+                  )
+                  .toList(),
+    );
   }
 
   @override
-  Future<void> removePlotConfiguration(
-      {required PlotConfigId configurationId}) {
-    final req =
-        GDeletePlotConfigReq((b) => b..vars.id = configurationId._value);
+  Future<void> removePlotConfiguration({
+    required PlotConfigId configurationId,
+  }) {
+    final req = GDeletePlotConfigReq(
+      (b) => b..vars.id = configurationId._value,
+    );
 
     return _rpc(req, xlat: (GDeletePlotConfigData data) => ());
   }
@@ -980,17 +1071,25 @@ final class ACSysService implements ACSysServiceAPI {
   Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration() {
     final req = GUsersLastConfigReq((b) => b);
 
-    return _rpc(req, xlat: (GUsersLastConfigData data) {
-      final e = data.usersLastConfiguration!;
+    return _rpc(
+      req,
+      xlat: (GUsersLastConfigData data) {
+        final e = data.usersLastConfiguration!;
 
-      return PlotConfigurationSnapshot(
+        return PlotConfigurationSnapshot(
           configurationId: PlotConfigId._fromInt(e.configurationId),
           configurationName: e.configurationName,
-          channels: Map.fromEntries(e.channels.map((e) => MapEntry(
-              e.device,
-              ChannelSettingSnapshot(
+          channels: Map.fromEntries(
+            e.channels.map(
+              (e) => MapEntry(
+                e.device,
+                ChannelSettingSnapshot(
                   lineColor: e.lineColor != null ? Color(e.lineColor!) : null,
-                  markerIndex: e.markerIndex)))),
+                  markerIndex: e.markerIndex,
+                ),
+              ),
+            ),
+          ),
           yMin: e.yMin,
           yMax: e.yMax,
           xMin: e.xMin,
@@ -1001,71 +1100,97 @@ final class ACSysService implements ACSysServiceAPI {
           isShowLabels: e.isShowLabels,
           updateDelay: e.updateDelay,
           nAcquisitions: e.nAcquisitions,
-          tclkEvent: e.tclkEvent);
-    });
+          tclkEvent: e.tclkEvent,
+        );
+      },
+    );
   }
 
   @override
-  Future<void> saveUserConfiguration(
-      {required PlotConfigurationSnapshot snapshot}) {
+  Future<void> saveUserConfiguration({
+    required PlotConfigurationSnapshot snapshot,
+  }) {
     final req = GSetUsersConfigReq(
-        (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot));
+      (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
+    );
 
     return _rpc(req, xlat: (GSetUsersConfigData data) => ());
   }
 
   @override
-  Future<PlotConfigurationSnapshot> retrievePlotConfiguration(
-      {required PlotConfigId configurationId}) {
+  Future<PlotConfigurationSnapshot> retrievePlotConfiguration({
+    required PlotConfigId configurationId,
+  }) {
     final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
 
-    return _rpc(req,
-        xlat: (GPlotConfigsData data) => data.plotConfiguration
-            .map((e) => PlotConfigurationSnapshot(
-                configurationId: PlotConfigId._fromInt(e.configurationId),
-                configurationName: e.configurationName,
-                channels: Map.fromEntries(e.channels.map((e) => MapEntry(
-                    e.device,
-                    ChannelSettingSnapshot(
-                        lineColor:
-                            e.lineColor != null ? Color(e.lineColor!) : null,
-                        markerIndex: e.markerIndex)))),
-                yMin: e.yMin,
-                yMax: e.yMax,
-                xMin: e.xMin,
-                xMax: e.xMax,
-                timeDelta: e.timeDelta,
-                isOneShot: e.isOneShot,
-                isScalar: e.isScalar,
-                isShowLabels: e.isShowLabels,
-                updateDelay: e.updateDelay,
-                nAcquisitions: e.nAcquisitions,
-                tclkEvent: e.tclkEvent))
-            .toList()).then(
-      (value) {
-        switch (value) {
-          case []:
-            throw const ACSysConfigurationException("no configuration found");
-          case [PlotConfigurationSnapshot e]:
-            return e;
-          default:
-            throw const ACSysConfigurationException(
-                "multiple configurations found");
-        }
-      },
-    );
+    return _rpc(
+      req,
+      xlat:
+          (GPlotConfigsData data) =>
+              data.plotConfiguration
+                  .map(
+                    (e) => PlotConfigurationSnapshot(
+                      configurationId: PlotConfigId._fromInt(e.configurationId),
+                      configurationName: e.configurationName,
+                      channels: Map.fromEntries(
+                        e.channels.map(
+                          (e) => MapEntry(
+                            e.device,
+                            ChannelSettingSnapshot(
+                              lineColor:
+                                  e.lineColor != null
+                                      ? Color(e.lineColor!)
+                                      : null,
+                              markerIndex: e.markerIndex,
+                            ),
+                          ),
+                        ),
+                      ),
+                      yMin: e.yMin,
+                      yMax: e.yMax,
+                      xMin: e.xMin,
+                      xMax: e.xMax,
+                      timeDelta: e.timeDelta,
+                      isOneShot: e.isOneShot,
+                      isScalar: e.isScalar,
+                      isShowLabels: e.isShowLabels,
+                      updateDelay: e.updateDelay,
+                      nAcquisitions: e.nAcquisitions,
+                      tclkEvent: e.tclkEvent,
+                    ),
+                  )
+                  .toList(),
+    ).then((value) {
+      switch (value) {
+        case []:
+          throw const ACSysConfigurationException("no configuration found");
+        case [PlotConfigurationSnapshot e]:
+          return e;
+        default:
+          throw const ACSysConfigurationException(
+            "multiple configurations found",
+          );
+      }
+    });
   }
 
   GPlotConfigurationSnapshotInBuilder _plotConfigurationSnapshotIn(
-          PlotConfigurationSnapshot cfg) =>
+    PlotConfigurationSnapshot cfg,
+  ) =>
       GPlotConfigurationSnapshotInBuilder()
         ..configurationId = cfg.configurationId?._value
         ..configurationName = cfg.configurationName
         ..channels = ListBuilder(
-            cfg.channels.entries.map((e) => GChannelSettingSnapshotIn((b) => b
-              ..device = e.key
-              ..lineColor = e.value.lineColor?.value
-              ..markerIndex = e.value.markerIndex)))
+          cfg.channels.entries.map(
+            (e) => GChannelSettingSnapshotIn(
+              (b) =>
+                  b
+                    ..device = e.key
+                    ..lineColor = e.value.lineColor?.value
+                    ..markerIndex = e.value.markerIndex,
+            ),
+          ),
+        )
         ..yMin = cfg.yMin
         ..yMax = cfg.yMax
         ..xMin = cfg.xMin
@@ -1079,64 +1204,75 @@ final class ACSysService implements ACSysServiceAPI {
         ..tclkEvent = cfg.tclkEvent;
 
   @override
-  Future<PlotConfigurationSnapshot> savePlotConfiguration(
-      {required PlotConfigurationSnapshot snapshot}) {
+  Future<PlotConfigurationSnapshot> savePlotConfiguration({
+    required PlotConfigurationSnapshot snapshot,
+  }) {
     final req = GUpdatePlotConfigReq(
-        (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot));
+      (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
+    );
 
-    return _rpc(req,
-            xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration)
-        .then((id) => snapshot
-          ..configurationId = id == null ? null : PlotConfigId._fromInt(id));
+    return _rpc(
+      req,
+      xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration,
+    ).then(
+      (id) =>
+          snapshot
+            ..configurationId = id == null ? null : PlotConfigId._fromInt(id),
+    );
   }
 }
 
 extension on GStreamDataData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
-        GStreamDataData_acceleratorData_data_result__asScalar val =>
-          DevScalar(val.scalarValue),
-        GStreamDataData_acceleratorData_data_result__asScalarArray val =>
-          DevScalarArray(val.scalarArrayValue.toList()),
-        GStreamDataData_acceleratorData_data_result__asText val =>
-          DevText(val.textValue),
-        GStreamDataData_acceleratorData_data_result__asTextArray val =>
-          DevTextArray(val.textArrayValue.toList()),
-        _ => throw ACSysTypeException("unexpected data type, $runtimeType")
-      };
+    GStreamDataData_acceleratorData_data_result__asScalar val => DevScalar(
+      val.scalarValue,
+    ),
+    GStreamDataData_acceleratorData_data_result__asScalarArray val =>
+      DevScalarArray(val.scalarArrayValue.toList()),
+    GStreamDataData_acceleratorData_data_result__asText val => DevText(
+      val.textValue,
+    ),
+    GStreamDataData_acceleratorData_data_result__asTextArray val =>
+      DevTextArray(val.textArrayValue.toList()),
+    _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
+  };
 }
 
 extension on GReadDevicesData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
-        GStreamDataData_acceleratorData_data_result__asScalar val =>
-          DevScalar(val.scalarValue),
-        GStreamDataData_acceleratorData_data_result__asScalarArray val =>
-          DevScalarArray(val.scalarArrayValue.toList()),
-        GStreamDataData_acceleratorData_data_result__asText val =>
-          DevText(val.textValue),
-        GStreamDataData_acceleratorData_data_result__asTextArray val =>
-          DevTextArray(val.textArrayValue.toList()),
-        _ => throw ACSysTypeException("unexpected data type, $runtimeType")
-      };
+    GReadDevicesData_acceleratorData_data_result__asScalar val => DevScalar(
+      val.scalarValue,
+    ),
+    GReadDevicesData_acceleratorData_data_result__asScalarArray val =>
+      DevScalarArray(val.scalarArrayValue.toList()),
+    GReadDevicesData_acceleratorData_data_result__asText val => DevText(
+      val.textValue,
+    ),
+    GReadDevicesData_acceleratorData_data_result__asTextArray val =>
+      DevTextArray(val.textArrayValue.toList()),
+    _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
+  };
 }
 
 extension on GStartPlotData_startPlot_data {
   PlotChannelData toPlotChannelData(int idx, GStartPlotReq req) =>
       PlotChannelData(
-          name: req.vars.drfList[idx],
-          units: channelUnits,
-          status: channelStatus,
-          points: channelData.map((e) => PlotPoint(x: e.x, y: e.y)).toList());
+        name: req.vars.drfList[idx],
+        units: channelUnits,
+        status: channelStatus,
+        data: DevTimeSeries([...channelData.map((e) => (e.x, e.y))]),
+      );
 }
 
 extension on GStartPlotData_startPlot {
   PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
-      plotId: plotId,
-      xAxisUnits: "Time",
-      xAxisMin: req.vars.xMin?.toDouble(),
-      xAxisMax: req.vars.xMax?.toDouble(),
-      windowSize: req.vars.windowSize,
-      data:
-          data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, req)).toList());
+    plotId: plotId,
+    xAxisUnits: "Time",
+    xAxisMin: req.vars.xMin?.toDouble(),
+    xAxisMax: req.vars.xMax?.toDouble(),
+    windowSize: req.vars.windowSize,
+    data: data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, req)).toList(),
+  );
 }
 
 // And an extension to the DevValue hierarchy which translates a value into a
@@ -1148,11 +1284,13 @@ extension on DeviceValue {
     return switch (this) {
       DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
       DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
-      DevScalarArray(value: var v) => GDevValueBuilder()
-        ..scalarArrayVal = ListBuilder(v),
+      DevScalarArray(value: var v) =>
+        GDevValueBuilder()..scalarArrayVal = ListBuilder(v),
       DevText(value: var v) => GDevValueBuilder()..textVal = v,
-      DevTextArray(value: var v) => GDevValueBuilder()
-        ..textArrayVal = ListBuilder(v)
+      DevTextArray(value: var v) =>
+        GDevValueBuilder()..textArrayVal = ListBuilder(v),
+      DevTimeSeries(values: var v) =>
+        GDevValueBuilder()..timeSeriesVal = ListBuilder(v),
     };
   }
 }
@@ -1181,8 +1319,9 @@ final class ACSysProvider extends StatelessWidget {
   final Widget child;
   final ACSysServiceAPI? service;
 
-  static Widget Function({required Widget child}) factory(
-          {ACSysServiceAPI? service}) =>
+  static Widget Function({required Widget child}) factory({
+    ACSysServiceAPI? service,
+  }) =>
       ({required Widget child}) =>
           ACSysProvider(service: service, child: child);
 
@@ -1201,8 +1340,9 @@ final class ACSysProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _ACSysProviderIW(
-        service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
-        child: child);
+      service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
+      child: child,
+    );
   }
 }
 
@@ -1214,9 +1354,10 @@ final class ACSysProvider extends StatelessWidget {
 final class _ACSysProviderIW extends InheritedWidget {
   final ACSysServiceAPI _service;
 
-  const _ACSysProviderIW(
-      {required ACSysServiceAPI service, required super.child})
-      : _service = service;
+  const _ACSysProviderIW({
+    required ACSysServiceAPI service,
+    required super.child,
+  }) : _service = service;
 
   @override
   bool updateShouldNotify(covariant _ACSysProviderIW oldWidget) =>
