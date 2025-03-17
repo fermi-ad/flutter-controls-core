@@ -12,6 +12,8 @@ Serializer<GDevValue> _$gDevValueSerializer = new _$GDevValueSerializer();
 Serializer<GPlotConfigurationSnapshotIn>
     _$gPlotConfigurationSnapshotInSerializer =
     new _$GPlotConfigurationSnapshotInSerializer();
+Serializer<GTimeSeriesEntryIn> _$gTimeSeriesEntryInSerializer =
+    new _$GTimeSeriesEntryInSerializer();
 Serializer<GXformAvgExpr> _$gXformAvgExprSerializer =
     new _$GXformAvgExprSerializer();
 Serializer<GXformDeviceExpr> _$gXformDeviceExprSerializer =
@@ -141,6 +143,14 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
             specifiedType:
                 const FullType(BuiltList, const [const FullType(String)])));
     }
+    value = object.timeSeriesVal;
+    if (value != null) {
+      result
+        ..add('timeSeriesVal')
+        ..add(serializers.serialize(value,
+            specifiedType: const FullType(
+                BuiltList, const [const FullType(GTimeSeriesEntryIn)])));
+    }
     return result;
   }
 
@@ -183,6 +193,12 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
           result.textArrayVal.replace(serializers.deserialize(value,
                   specifiedType: const FullType(
                       BuiltList, const [const FullType(String)]))!
+              as BuiltList<Object?>);
+          break;
+        case 'timeSeriesVal':
+          result.timeSeriesVal.replace(serializers.deserialize(value,
+                  specifiedType: const FullType(
+                      BuiltList, const [const FullType(GTimeSeriesEntryIn)]))!
               as BuiltList<Object?>);
           break;
       }
@@ -356,6 +372,56 @@ class _$GPlotConfigurationSnapshotInSerializer
         case 'tclkEvent':
           result.tclkEvent = serializers.deserialize(value,
               specifiedType: const FullType(int)) as int?;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GTimeSeriesEntryInSerializer
+    implements StructuredSerializer<GTimeSeriesEntryIn> {
+  @override
+  final Iterable<Type> types = const [GTimeSeriesEntryIn, _$GTimeSeriesEntryIn];
+  @override
+  final String wireName = 'GTimeSeriesEntryIn';
+
+  @override
+  Iterable<Object?> serialize(
+      Serializers serializers, GTimeSeriesEntryIn object,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = <Object?>[
+      'stamp',
+      serializers.serialize(object.stamp,
+          specifiedType: const FullType(double)),
+      'value',
+      serializers.serialize(object.value,
+          specifiedType: const FullType(double)),
+    ];
+
+    return result;
+  }
+
+  @override
+  GTimeSeriesEntryIn deserialize(
+      Serializers serializers, Iterable<Object?> serialized,
+      {FullType specifiedType = FullType.unspecified}) {
+    final result = new GTimeSeriesEntryInBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case 'stamp':
+          result.stamp = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
+          break;
+        case 'value':
+          result.value = serializers.deserialize(value,
+              specifiedType: const FullType(double))! as double;
           break;
       }
     }
@@ -683,6 +749,8 @@ class _$GDevValue extends GDevValue {
   final String? textVal;
   @override
   final BuiltList<String>? textArrayVal;
+  @override
+  final BuiltList<GTimeSeriesEntryIn>? timeSeriesVal;
 
   factory _$GDevValue([void Function(GDevValueBuilder)? updates]) =>
       (new GDevValueBuilder()..update(updates))._build();
@@ -693,7 +761,8 @@ class _$GDevValue extends GDevValue {
       this.scalarArrayVal,
       this.rawVal,
       this.textVal,
-      this.textArrayVal})
+      this.textArrayVal,
+      this.timeSeriesVal})
       : super._();
 
   @override
@@ -712,7 +781,8 @@ class _$GDevValue extends GDevValue {
         scalarArrayVal == other.scalarArrayVal &&
         rawVal == other.rawVal &&
         textVal == other.textVal &&
-        textArrayVal == other.textArrayVal;
+        textArrayVal == other.textArrayVal &&
+        timeSeriesVal == other.timeSeriesVal;
   }
 
   @override
@@ -724,6 +794,7 @@ class _$GDevValue extends GDevValue {
     _$hash = $jc(_$hash, rawVal.hashCode);
     _$hash = $jc(_$hash, textVal.hashCode);
     _$hash = $jc(_$hash, textArrayVal.hashCode);
+    _$hash = $jc(_$hash, timeSeriesVal.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -736,7 +807,8 @@ class _$GDevValue extends GDevValue {
           ..add('scalarArrayVal', scalarArrayVal)
           ..add('rawVal', rawVal)
           ..add('textVal', textVal)
-          ..add('textArrayVal', textArrayVal))
+          ..add('textArrayVal', textArrayVal)
+          ..add('timeSeriesVal', timeSeriesVal))
         .toString();
   }
 }
@@ -772,6 +844,12 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
   set textArrayVal(ListBuilder<String>? textArrayVal) =>
       _$this._textArrayVal = textArrayVal;
 
+  ListBuilder<GTimeSeriesEntryIn>? _timeSeriesVal;
+  ListBuilder<GTimeSeriesEntryIn> get timeSeriesVal =>
+      _$this._timeSeriesVal ??= new ListBuilder<GTimeSeriesEntryIn>();
+  set timeSeriesVal(ListBuilder<GTimeSeriesEntryIn>? timeSeriesVal) =>
+      _$this._timeSeriesVal = timeSeriesVal;
+
   GDevValueBuilder();
 
   GDevValueBuilder get _$this {
@@ -783,6 +861,7 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
       _rawVal = $v.rawVal?.toBuilder();
       _textVal = $v.textVal;
       _textArrayVal = $v.textArrayVal?.toBuilder();
+      _timeSeriesVal = $v.timeSeriesVal?.toBuilder();
       _$v = null;
     }
     return this;
@@ -813,6 +892,7 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
             rawVal: _rawVal?.build(),
             textVal: textVal,
             textArrayVal: _textArrayVal?.build(),
+            timeSeriesVal: _timeSeriesVal?.build(),
           );
     } catch (_) {
       late String _$failedField;
@@ -824,6 +904,8 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
         _$failedField = 'textArrayVal';
         _textArrayVal?.build();
+        _$failedField = 'timeSeriesVal';
+        _timeSeriesVal?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
             r'GDevValue', _$failedField, e.toString());
@@ -1110,6 +1192,110 @@ class GPlotConfigurationSnapshotInBuilder
       }
       rethrow;
     }
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GTimeSeriesEntryIn extends GTimeSeriesEntryIn {
+  @override
+  final double stamp;
+  @override
+  final double value;
+
+  factory _$GTimeSeriesEntryIn(
+          [void Function(GTimeSeriesEntryInBuilder)? updates]) =>
+      (new GTimeSeriesEntryInBuilder()..update(updates))._build();
+
+  _$GTimeSeriesEntryIn._({required this.stamp, required this.value})
+      : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+        stamp, r'GTimeSeriesEntryIn', 'stamp');
+    BuiltValueNullFieldError.checkNotNull(
+        value, r'GTimeSeriesEntryIn', 'value');
+  }
+
+  @override
+  GTimeSeriesEntryIn rebuild(
+          void Function(GTimeSeriesEntryInBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GTimeSeriesEntryInBuilder toBuilder() =>
+      new GTimeSeriesEntryInBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GTimeSeriesEntryIn &&
+        stamp == other.stamp &&
+        value == other.value;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, stamp.hashCode);
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GTimeSeriesEntryIn')
+          ..add('stamp', stamp)
+          ..add('value', value))
+        .toString();
+  }
+}
+
+class GTimeSeriesEntryInBuilder
+    implements Builder<GTimeSeriesEntryIn, GTimeSeriesEntryInBuilder> {
+  _$GTimeSeriesEntryIn? _$v;
+
+  double? _stamp;
+  double? get stamp => _$this._stamp;
+  set stamp(double? stamp) => _$this._stamp = stamp;
+
+  double? _value;
+  double? get value => _$this._value;
+  set value(double? value) => _$this._value = value;
+
+  GTimeSeriesEntryInBuilder();
+
+  GTimeSeriesEntryInBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _stamp = $v.stamp;
+      _value = $v.value;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GTimeSeriesEntryIn other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GTimeSeriesEntryIn;
+  }
+
+  @override
+  void update(void Function(GTimeSeriesEntryInBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GTimeSeriesEntryIn build() => _build();
+
+  _$GTimeSeriesEntryIn _build() {
+    final _$result = _$v ??
+        new _$GTimeSeriesEntryIn._(
+          stamp: BuiltValueNullFieldError.checkNotNull(
+              stamp, r'GTimeSeriesEntryIn', 'stamp'),
+          value: BuiltValueNullFieldError.checkNotNull(
+              value, r'GTimeSeriesEntryIn', 'value'),
+        );
     replace(_$result);
     return _$result;
   }

@@ -79,6 +79,7 @@ union DataType =
   | Raw
   | Text
   | TextArray
+  | TimeSeries
   | StructData
 
 input DevValue {
@@ -88,6 +89,7 @@ input DevValue {
   rawVal: [Int!]
   textVal: String
   textArrayVal: [String!]
+  timeSeriesVal: [TimeSeriesEntryIn!]
 }
 
 """
@@ -251,6 +253,20 @@ Contains an ACNET status code. The Data Pool Manager currently returns these sta
 """
 type StatusReply {
   status: Int!
+}
+
+type TimeSeriesEntry {
+  stamp: Float!
+  value: Float!
+}
+
+input TimeSeriesEntryIn {
+  stamp: Float!
+  value: Float!
+}
+
+type TimeSeries {
+  values: [TimeSeriesEntry!]!
 }
 
 """

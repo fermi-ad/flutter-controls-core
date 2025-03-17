@@ -48,6 +48,7 @@ abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
   BuiltList<int>? get rawVal;
   String? get textVal;
   BuiltList<String>? get textArrayVal;
+  BuiltList<GTimeSeriesEntryIn>? get timeSeriesVal;
   static Serializer<GDevValue> get serializer => _$gDevValueSerializer;
 
   Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
@@ -97,6 +98,31 @@ abstract class GPlotConfigurationSnapshotIn
   static GPlotConfigurationSnapshotIn? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GPlotConfigurationSnapshotIn.serializer,
+        json,
+      );
+}
+
+abstract class GTimeSeriesEntryIn
+    implements Built<GTimeSeriesEntryIn, GTimeSeriesEntryInBuilder> {
+  GTimeSeriesEntryIn._();
+
+  factory GTimeSeriesEntryIn(
+          [void Function(GTimeSeriesEntryInBuilder b) updates]) =
+      _$GTimeSeriesEntryIn;
+
+  double get stamp;
+  double get value;
+  static Serializer<GTimeSeriesEntryIn> get serializer =>
+      _$gTimeSeriesEntryInSerializer;
+
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GTimeSeriesEntryIn.serializer,
+        this,
+      ) as Map<String, dynamic>);
+
+  static GTimeSeriesEntryIn? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GTimeSeriesEntryIn.serializer,
         json,
       );
 }
@@ -200,6 +226,7 @@ const Map<String, Set<String>> possibleTypesMap = {
     'Raw',
     'Text',
     'TextArray',
+    'TimeSeries',
     'StructData',
   }
 };

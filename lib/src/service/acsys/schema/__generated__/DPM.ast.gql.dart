@@ -187,6 +187,10 @@ const DataType = _i1.UnionTypeDefinitionNode(
       isNonNull: false,
     ),
     _i1.NamedTypeNode(
+      name: _i1.NameNode(value: 'TimeSeries'),
+      isNonNull: false,
+    ),
+    _i1.NamedTypeNode(
       name: _i1.NameNode(value: 'StructData'),
       isNonNull: false,
     ),
@@ -253,6 +257,18 @@ const DevValue = _i1.InputObjectTypeDefinitionNode(
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
           name: _i1.NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'timeSeriesVal'),
+      directives: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'TimeSeriesEntryIn'),
           isNonNull: true,
         ),
         isNonNull: false,
@@ -881,6 +897,74 @@ const StatusReply = _i1.ObjectTypeDefinitionNode(
     )
   ],
 );
+const TimeSeriesEntry = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TimeSeriesEntry'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'stamp'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'value'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
+const TimeSeriesEntryIn = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TimeSeriesEntryIn'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'stamp'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'value'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+  ],
+);
+const TimeSeries = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TimeSeries'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'values'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'TimeSeriesEntry'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    )
+  ],
+);
 const StructData = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'StructData'),
   directives: [],
@@ -1256,6 +1340,9 @@ const document = _i1.DocumentNode(definitions: [
   Scalar,
   ScalarArray,
   StatusReply,
+  TimeSeriesEntry,
+  TimeSeriesEntryIn,
+  TimeSeries,
   StructData,
   Subscription,
   Text,
