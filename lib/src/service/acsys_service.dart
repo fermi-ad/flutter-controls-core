@@ -332,6 +332,8 @@ final class PlotReply {
   final String xAxisUnits;
   final double? xAxisMin;
   final double? xAxisMax;
+  // TODO make this required.
+  final double? requestTime;
   final int? windowSize;
   final List<PlotChannelData> data;
 
@@ -341,6 +343,7 @@ final class PlotReply {
       this.xAxisMin,
       this.xAxisMax,
       this.windowSize,
+      this.requestTime,
       required this.data});
 }
 
