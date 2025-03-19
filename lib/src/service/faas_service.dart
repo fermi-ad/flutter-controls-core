@@ -39,7 +39,13 @@ final class _FaasService implements FaasServiceAPI {
     value,
   ) {
     if (value.hasErrors) {
-      throw Exception(value.graphqlErrors);
+      if (value.linkException != null) {
+        throw value.linkException!;
+      } else if (value.graphqlErrors != null) {
+        throw Exception(value.graphqlErrors);
+      } else {
+        throw Exception("unknown error");
+      }
     } else {
       final data = value.data;
 
