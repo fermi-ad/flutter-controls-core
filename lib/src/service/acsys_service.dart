@@ -541,7 +541,7 @@ abstract interface class ACSysServiceAPI {
 /// from the control system. But a better way is to use the [ACSysProvider]
 /// widget which manages an object of this class.
 
-final class ACSysService implements ACSysServiceAPI {
+final class _ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
@@ -552,7 +552,7 @@ final class ACSysService implements ACSysServiceAPI {
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  ACSysService({String? jwt})
+  _ACSysService({String? jwt})
     : _q = Client(
         link: HttpLink(
           "https://acsys-proxy.fnal.gov:8001/acsys",
@@ -1319,28 +1319,39 @@ final class ACSysProvider extends StatelessWidget {
   final Widget child;
   final ACSysServiceAPI? service;
 
+  /// A factory function that creates a [ACSysProvider] widget.
+  ///
+  /// This function returns a function that can be added to the list passed to
+  /// the `providers` parameter of the [StandardApp] widget.
+  ///
+  /// - [service] is an optional object which implements the [ACSysServiceAPI]
+  ///   interface. If this option is omitted, the widget will use communicate
+  ///   with the official GraphQL service.
+  /// - [key] is an optional identifier for the widget.
+
   static Widget Function({required Widget child}) factory({
     ACSysServiceAPI? service,
+    Key? key,
   }) =>
       ({required Widget child}) =>
-          ACSysProvider(service: service, child: child);
+          ACSysProvider._(service: service, key: key, child: child);
 
-  /// Creates the widget.
-  ///
-  /// - [child] is the widget subtree that gets added to the tree below this
-  ///   widget.
-  /// - [key] is an optional identifier for the widget.
-  /// - [service] is an optional obect which implements the [ACSysServiceAPI]
-  ///   interface. If this option is omitted, the widget will use an
-  ///   implementation that communicates over the network to the offcial
-  ///   control system API. This option is mainly to mock-up a service to
-  ///   use in unit tests.
-  const ACSysProvider({this.service, required this.child, super.key});
+  // Creates the widget.
+  //
+  // - [child] is the widget subtree that gets added to the tree below this
+  //   widget.
+  // - [key] is an optional identifier for the widget.
+  // - [service] is an optional obect which implements the [ACSysServiceAPI]
+  //   interface. If this option is omitted, the widget will use an
+  //   implementation that communicates over the network to the offcial
+  //   control system API. This option is mainly to mock-up a service to
+  //   use in unit tests.
+  const ACSysProvider._({this.service, required this.child, super.key});
 
   @override
   Widget build(BuildContext context) {
     return _ACSysProviderIW(
-      service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
+      service: service ?? _ACSysService(jwt: AuthService.getJwt(context)),
       child: child,
     );
   }
