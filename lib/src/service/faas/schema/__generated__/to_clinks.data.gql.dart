@@ -24,14 +24,10 @@ abstract class GToClinksData
   int? get unixToClinks;
   static Serializer<GToClinksData> get serializer => _$gToClinksDataSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GToClinksData.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GToClinksData.serializer, this)
+          as Map<String, dynamic>);
 
   static GToClinksData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GToClinksData.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GToClinksData.serializer, json);
 }

@@ -17,13 +17,19 @@ class _$GReadDevicesVarsSerializer
   final String wireName = 'GReadDevicesVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GReadDevicesVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GReadDevicesVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'devList',
-      serializers.serialize(object.devList,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.devList,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
     ];
 
     return result;
@@ -31,8 +37,10 @@ class _$GReadDevicesVarsSerializer
 
   @override
   GReadDevicesVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GReadDevicesVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -42,10 +50,15 @@ class _$GReadDevicesVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'devList':
-          result.devList.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.devList.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -58,13 +71,16 @@ class _$GReadDevicesVars extends GReadDevicesVars {
   @override
   final BuiltList<String> devList;
 
-  factory _$GReadDevicesVars(
-          [void Function(GReadDevicesVarsBuilder)? updates]) =>
-      (new GReadDevicesVarsBuilder()..update(updates))._build();
+  factory _$GReadDevicesVars([
+    void Function(GReadDevicesVarsBuilder)? updates,
+  ]) => (new GReadDevicesVarsBuilder()..update(updates))._build();
 
   _$GReadDevicesVars._({required this.devList}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        devList, r'GReadDevicesVars', 'devList');
+      devList,
+      r'GReadDevicesVars',
+      'devList',
+    );
   }
 
   @override
@@ -92,8 +108,7 @@ class _$GReadDevicesVars extends GReadDevicesVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GReadDevicesVars')
-          ..add('devList', devList))
-        .toString();
+      ..add('devList', devList)).toString();
   }
 }
 
@@ -134,10 +149,7 @@ class GReadDevicesVarsBuilder
   _$GReadDevicesVars _build() {
     _$GReadDevicesVars _$result;
     try {
-      _$result = _$v ??
-          new _$GReadDevicesVars._(
-            devList: devList.build(),
-          );
+      _$result = _$v ?? new _$GReadDevicesVars._(devList: devList.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -145,7 +157,10 @@ class GReadDevicesVarsBuilder
         devList.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GReadDevicesVars', _$failedField, e.toString());
+          r'GReadDevicesVars',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

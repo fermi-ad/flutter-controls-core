@@ -10,7 +10,7 @@ Serializer<GChannelSettingSnapshotIn> _$gChannelSettingSnapshotInSerializer =
     new _$GChannelSettingSnapshotInSerializer();
 Serializer<GDevValue> _$gDevValueSerializer = new _$GDevValueSerializer();
 Serializer<GPlotConfigurationSnapshotIn>
-    _$gPlotConfigurationSnapshotInSerializer =
+_$gPlotConfigurationSnapshotInSerializer =
     new _$GPlotConfigurationSnapshotInSerializer();
 Serializer<GTimeSeriesEntryIn> _$gTimeSeriesEntryInSerializer =
     new _$GTimeSeriesEntryInSerializer();
@@ -27,19 +27,23 @@ class _$GChannelSettingSnapshotInSerializer
   @override
   final Iterable<Type> types = const [
     GChannelSettingSnapshotIn,
-    _$GChannelSettingSnapshotIn
+    _$GChannelSettingSnapshotIn,
   ];
   @override
   final String wireName = 'GChannelSettingSnapshotIn';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GChannelSettingSnapshotIn object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GChannelSettingSnapshotIn object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'device',
-      serializers.serialize(object.device,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.device,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.lineColor;
@@ -59,8 +63,10 @@ class _$GChannelSettingSnapshotInSerializer
 
   @override
   GChannelSettingSnapshotIn deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GChannelSettingSnapshotInBuilder();
 
     final iterator = serialized.iterator;
@@ -70,16 +76,22 @@ class _$GChannelSettingSnapshotInSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'device':
-          result.device = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.device =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'lineColor':
-          result.lineColor = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.lineColor =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'markerIndex':
-          result.markerIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.markerIndex =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -95,8 +107,11 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
   final String wireName = 'GDevValue';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GDevValue object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GDevValue object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.intVal;
@@ -109,54 +124,79 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
     if (value != null) {
       result
         ..add('scalarVal')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.scalarArrayVal;
     if (value != null) {
       result
         ..add('scalarArrayVal')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(double)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(double),
+            ]),
+          ),
+        );
     }
     value = object.rawVal;
     if (value != null) {
       result
         ..add('rawVal')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(int)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(int),
+            ]),
+          ),
+        );
     }
     value = object.textVal;
     if (value != null) {
       result
         ..add('textVal')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.textArrayVal;
     if (value != null) {
       result
         ..add('textArrayVal')
-        ..add(serializers.serialize(value,
-            specifiedType:
-                const FullType(BuiltList, const [const FullType(String)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(String),
+            ]),
+          ),
+        );
     }
     value = object.timeSeriesVal;
     if (value != null) {
       result
         ..add('timeSeriesVal')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                BuiltList, const [const FullType(GTimeSeriesEntryIn)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(BuiltList, const [
+              const FullType(GTimeSeriesEntryIn),
+            ]),
+          ),
+        );
     }
     return result;
   }
 
   @override
-  GDevValue deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  GDevValue deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GDevValueBuilder();
 
     final iterator = serialized.iterator;
@@ -166,40 +206,69 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
       final Object? value = iterator.current;
       switch (key) {
         case 'intVal':
-          result.intVal = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.intVal =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'scalarVal':
-          result.scalarVal = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.scalarVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'scalarArrayVal':
-          result.scalarArrayVal.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(double)]))!
-              as BuiltList<Object?>);
+          result.scalarArrayVal.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(double),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'rawVal':
-          result.rawVal.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(BuiltList, const [const FullType(int)]))!
-              as BuiltList<Object?>);
+          result.rawVal.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(int),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'textVal':
-          result.textVal = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.textVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'textArrayVal':
-          result.textArrayVal.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.textArrayVal.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'timeSeriesVal':
-          result.timeSeriesVal.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(GTimeSeriesEntryIn)]))!
-              as BuiltList<Object?>);
+          result.timeSeriesVal.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GTimeSeriesEntryIn),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -213,32 +282,45 @@ class _$GPlotConfigurationSnapshotInSerializer
   @override
   final Iterable<Type> types = const [
     GPlotConfigurationSnapshotIn,
-    _$GPlotConfigurationSnapshotIn
+    _$GPlotConfigurationSnapshotIn,
   ];
   @override
   final String wireName = 'GPlotConfigurationSnapshotIn';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GPlotConfigurationSnapshotIn object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GPlotConfigurationSnapshotIn object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'configurationName',
-      serializers.serialize(object.configurationName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.configurationName,
+        specifiedType: const FullType(String),
+      ),
       'channels',
-      serializers.serialize(object.channels,
-          specifiedType: const FullType(
-              BuiltList, const [const FullType(GChannelSettingSnapshotIn)])),
+      serializers.serialize(
+        object.channels,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GChannelSettingSnapshotIn),
+        ]),
+      ),
       'isScalar',
-      serializers.serialize(object.isScalar,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isScalar,
+        specifiedType: const FullType(bool),
+      ),
       'isOneShot',
-      serializers.serialize(object.isOneShot,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isOneShot,
+        specifiedType: const FullType(bool),
+      ),
       'isShowLabels',
-      serializers.serialize(object.isShowLabels,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isShowLabels,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.configurationId;
@@ -251,36 +333,41 @@ class _$GPlotConfigurationSnapshotInSerializer
     if (value != null) {
       result
         ..add('xMin')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.xMax;
     if (value != null) {
       result
         ..add('xMax')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.yMin;
     if (value != null) {
       result
         ..add('yMin')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.yMax;
     if (value != null) {
       result
         ..add('yMax')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.timeDelta;
     if (value != null) {
       result
         ..add('timeDelta')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.updateDelay;
     if (value != null) {
@@ -305,8 +392,10 @@ class _$GPlotConfigurationSnapshotInSerializer
 
   @override
   GPlotConfigurationSnapshotIn deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GPlotConfigurationSnapshotInBuilder();
 
     final iterator = serialized.iterator;
@@ -316,62 +405,107 @@ class _$GPlotConfigurationSnapshotInSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'configurationId':
-          result.configurationId = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.configurationId =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'configurationName':
-          result.configurationName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.configurationName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'channels':
-          result.channels.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GChannelSettingSnapshotIn)
-              ]))! as BuiltList<Object?>);
+          result.channels.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GChannelSettingSnapshotIn),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'xMin':
-          result.xMin = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.xMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'xMax':
-          result.xMax = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.xMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'yMin':
-          result.yMin = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.yMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'yMax':
-          result.yMax = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.yMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'timeDelta':
-          result.timeDelta = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.timeDelta =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'isScalar':
-          result.isScalar = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isScalar =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isOneShot':
-          result.isOneShot = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isOneShot =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isShowLabels':
-          result.isShowLabels = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isShowLabels =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'updateDelay':
-          result.updateDelay = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.updateDelay =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'nAcquisitions':
-          result.nAcquisitions = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.nAcquisitions =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'tclkEvent':
-          result.tclkEvent = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.tclkEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -389,15 +523,21 @@ class _$GTimeSeriesEntryInSerializer
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GTimeSeriesEntryIn object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GTimeSeriesEntryIn object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'stamp',
-      serializers.serialize(object.stamp,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.stamp,
+        specifiedType: const FullType(double),
+      ),
       'value',
-      serializers.serialize(object.value,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.value,
+        specifiedType: const FullType(double),
+      ),
     ];
 
     return result;
@@ -405,8 +545,10 @@ class _$GTimeSeriesEntryInSerializer
 
   @override
   GTimeSeriesEntryIn deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GTimeSeriesEntryInBuilder();
 
     final iterator = serialized.iterator;
@@ -416,12 +558,20 @@ class _$GTimeSeriesEntryInSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'stamp':
-          result.stamp = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.stamp =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'value':
-          result.value = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.value =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
       }
     }
@@ -437,12 +587,17 @@ class _$GXformAvgExprSerializer implements StructuredSerializer<GXformAvgExpr> {
   final String wireName = 'GXformAvgExpr';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GXformAvgExpr object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GXformAvgExpr object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'expr',
-      serializers.serialize(object.expr,
-          specifiedType: const FullType(GXformExpr)),
+      serializers.serialize(
+        object.expr,
+        specifiedType: const FullType(GXformExpr),
+      ),
       'n',
       serializers.serialize(object.n, specifiedType: const FullType(int)),
     ];
@@ -452,8 +607,10 @@ class _$GXformAvgExprSerializer implements StructuredSerializer<GXformAvgExpr> {
 
   @override
   GXformAvgExpr deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GXformAvgExprBuilder();
 
     final iterator = serialized.iterator;
@@ -463,12 +620,21 @@ class _$GXformAvgExprSerializer implements StructuredSerializer<GXformAvgExpr> {
       final Object? value = iterator.current;
       switch (key) {
         case 'expr':
-          result.expr.replace(serializers.deserialize(value,
-              specifiedType: const FullType(GXformExpr))! as GXformExpr);
+          result.expr.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GXformExpr),
+                )!
+                as GXformExpr,
+          );
           break;
         case 'n':
-          result.n = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.n =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -485,12 +651,17 @@ class _$GXformDeviceExprSerializer
   final String wireName = 'GXformDeviceExpr';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GXformDeviceExpr object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GXformDeviceExpr object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'device',
-      serializers.serialize(object.device,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.device,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -498,8 +669,10 @@ class _$GXformDeviceExprSerializer
 
   @override
   GXformDeviceExpr deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GXformDeviceExprBuilder();
 
     final iterator = serialized.iterator;
@@ -509,8 +682,12 @@ class _$GXformDeviceExprSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'device':
-          result.device = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.device =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -526,30 +703,44 @@ class _$GXformExprSerializer implements StructuredSerializer<GXformExpr> {
   final String wireName = 'GXformExpr';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GXformExpr object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GXformExpr object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.devEx;
     if (value != null) {
       result
         ..add('devEx')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(GXformDeviceExpr)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(GXformDeviceExpr),
+          ),
+        );
     }
     value = object.avgEx;
     if (value != null) {
       result
         ..add('avgEx')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(GXformAvgExpr)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(GXformAvgExpr),
+          ),
+        );
     }
     return result;
   }
 
   @override
-  GXformExpr deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  GXformExpr deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GXformExprBuilder();
 
     final iterator = serialized.iterator;
@@ -559,13 +750,22 @@ class _$GXformExprSerializer implements StructuredSerializer<GXformExpr> {
       final Object? value = iterator.current;
       switch (key) {
         case 'devEx':
-          result.devEx.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GXformDeviceExpr))!
-              as GXformDeviceExpr);
+          result.devEx.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GXformDeviceExpr),
+                )!
+                as GXformDeviceExpr,
+          );
           break;
         case 'avgEx':
-          result.avgEx.replace(serializers.deserialize(value,
-              specifiedType: const FullType(GXformAvgExpr))! as GXformAvgExpr);
+          result.avgEx.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GXformAvgExpr),
+                )!
+                as GXformAvgExpr,
+          );
           break;
       }
     }
@@ -581,15 +781,22 @@ class _$GXformRequestSerializer implements StructuredSerializer<GXformRequest> {
   final String wireName = 'GXformRequest';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GXformRequest object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GXformRequest object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'event',
-      serializers.serialize(object.event,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.event,
+        specifiedType: const FullType(String),
+      ),
       'expr',
-      serializers.serialize(object.expr,
-          specifiedType: const FullType(GXformExpr)),
+      serializers.serialize(
+        object.expr,
+        specifiedType: const FullType(GXformExpr),
+      ),
     ];
 
     return result;
@@ -597,8 +804,10 @@ class _$GXformRequestSerializer implements StructuredSerializer<GXformRequest> {
 
   @override
   GXformRequest deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GXformRequestBuilder();
 
     final iterator = serialized.iterator;
@@ -608,12 +817,21 @@ class _$GXformRequestSerializer implements StructuredSerializer<GXformRequest> {
       final Object? value = iterator.current;
       switch (key) {
         case 'event':
-          result.event = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.event =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'expr':
-          result.expr.replace(serializers.deserialize(value,
-              specifiedType: const FullType(GXformExpr))! as GXformExpr);
+          result.expr.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GXformExpr),
+                )!
+                as GXformExpr,
+          );
           break;
       }
     }
@@ -630,21 +848,26 @@ class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
   @override
   final int? markerIndex;
 
-  factory _$GChannelSettingSnapshotIn(
-          [void Function(GChannelSettingSnapshotInBuilder)? updates]) =>
-      (new GChannelSettingSnapshotInBuilder()..update(updates))._build();
+  factory _$GChannelSettingSnapshotIn([
+    void Function(GChannelSettingSnapshotInBuilder)? updates,
+  ]) => (new GChannelSettingSnapshotInBuilder()..update(updates))._build();
 
-  _$GChannelSettingSnapshotIn._(
-      {required this.device, this.lineColor, this.markerIndex})
-      : super._() {
+  _$GChannelSettingSnapshotIn._({
+    required this.device,
+    this.lineColor,
+    this.markerIndex,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        device, r'GChannelSettingSnapshotIn', 'device');
+      device,
+      r'GChannelSettingSnapshotIn',
+      'device',
+    );
   }
 
   @override
   GChannelSettingSnapshotIn rebuild(
-          void Function(GChannelSettingSnapshotInBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GChannelSettingSnapshotInBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GChannelSettingSnapshotInBuilder toBuilder() =>
@@ -724,10 +947,14 @@ class GChannelSettingSnapshotInBuilder
   GChannelSettingSnapshotIn build() => _build();
 
   _$GChannelSettingSnapshotIn _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GChannelSettingSnapshotIn._(
           device: BuiltValueNullFieldError.checkNotNull(
-              device, r'GChannelSettingSnapshotIn', 'device'),
+            device,
+            r'GChannelSettingSnapshotIn',
+            'device',
+          ),
           lineColor: lineColor,
           markerIndex: markerIndex,
         );
@@ -755,15 +982,15 @@ class _$GDevValue extends GDevValue {
   factory _$GDevValue([void Function(GDevValueBuilder)? updates]) =>
       (new GDevValueBuilder()..update(updates))._build();
 
-  _$GDevValue._(
-      {this.intVal,
-      this.scalarVal,
-      this.scalarArrayVal,
-      this.rawVal,
-      this.textVal,
-      this.textArrayVal,
-      this.timeSeriesVal})
-      : super._();
+  _$GDevValue._({
+    this.intVal,
+    this.scalarVal,
+    this.scalarArrayVal,
+    this.rawVal,
+    this.textVal,
+    this.textArrayVal,
+    this.timeSeriesVal,
+  }) : super._();
 
   @override
   GDevValue rebuild(void Function(GDevValueBuilder) updates) =>
@@ -884,7 +1111,8 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
   _$GDevValue _build() {
     _$GDevValue _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GDevValue._(
             intVal: intVal,
             scalarVal: scalarVal,
@@ -908,7 +1136,10 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
         _timeSeriesVal?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GDevValue', _$failedField, e.toString());
+          r'GDevValue',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -947,42 +1178,57 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   @override
   final int? tclkEvent;
 
-  factory _$GPlotConfigurationSnapshotIn(
-          [void Function(GPlotConfigurationSnapshotInBuilder)? updates]) =>
-      (new GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
+  factory _$GPlotConfigurationSnapshotIn([
+    void Function(GPlotConfigurationSnapshotInBuilder)? updates,
+  ]) => (new GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
 
-  _$GPlotConfigurationSnapshotIn._(
-      {this.configurationId,
-      required this.configurationName,
-      required this.channels,
-      this.xMin,
-      this.xMax,
-      this.yMin,
-      this.yMax,
-      this.timeDelta,
-      required this.isScalar,
-      required this.isOneShot,
-      required this.isShowLabels,
-      this.updateDelay,
-      this.nAcquisitions,
-      this.tclkEvent})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(configurationName,
-        r'GPlotConfigurationSnapshotIn', 'configurationName');
+  _$GPlotConfigurationSnapshotIn._({
+    this.configurationId,
+    required this.configurationName,
+    required this.channels,
+    this.xMin,
+    this.xMax,
+    this.yMin,
+    this.yMax,
+    this.timeDelta,
+    required this.isScalar,
+    required this.isOneShot,
+    required this.isShowLabels,
+    this.updateDelay,
+    this.nAcquisitions,
+    this.tclkEvent,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        channels, r'GPlotConfigurationSnapshotIn', 'channels');
+      configurationName,
+      r'GPlotConfigurationSnapshotIn',
+      'configurationName',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isScalar, r'GPlotConfigurationSnapshotIn', 'isScalar');
+      channels,
+      r'GPlotConfigurationSnapshotIn',
+      'channels',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isOneShot, r'GPlotConfigurationSnapshotIn', 'isOneShot');
+      isScalar,
+      r'GPlotConfigurationSnapshotIn',
+      'isScalar',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isShowLabels, r'GPlotConfigurationSnapshotIn', 'isShowLabels');
+      isOneShot,
+      r'GPlotConfigurationSnapshotIn',
+      'isOneShot',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      isShowLabels,
+      r'GPlotConfigurationSnapshotIn',
+      'isShowLabels',
+    );
   }
 
   @override
   GPlotConfigurationSnapshotIn rebuild(
-          void Function(GPlotConfigurationSnapshotInBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GPlotConfigurationSnapshotInBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GPlotConfigurationSnapshotInBuilder toBuilder() =>
@@ -1052,8 +1298,10 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
 
 class GPlotConfigurationSnapshotInBuilder
     implements
-        Builder<GPlotConfigurationSnapshotIn,
-            GPlotConfigurationSnapshotInBuilder> {
+        Builder<
+          GPlotConfigurationSnapshotIn,
+          GPlotConfigurationSnapshotInBuilder
+        > {
   _$GPlotConfigurationSnapshotIn? _$v;
 
   int? _configurationId;
@@ -1158,13 +1406,15 @@ class GPlotConfigurationSnapshotInBuilder
   _$GPlotConfigurationSnapshotIn _build() {
     _$GPlotConfigurationSnapshotIn _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GPlotConfigurationSnapshotIn._(
             configurationId: configurationId,
             configurationName: BuiltValueNullFieldError.checkNotNull(
-                configurationName,
-                r'GPlotConfigurationSnapshotIn',
-                'configurationName'),
+              configurationName,
+              r'GPlotConfigurationSnapshotIn',
+              'configurationName',
+            ),
             channels: channels.build(),
             xMin: xMin,
             xMax: xMax,
@@ -1172,11 +1422,20 @@ class GPlotConfigurationSnapshotInBuilder
             yMax: yMax,
             timeDelta: timeDelta,
             isScalar: BuiltValueNullFieldError.checkNotNull(
-                isScalar, r'GPlotConfigurationSnapshotIn', 'isScalar'),
+              isScalar,
+              r'GPlotConfigurationSnapshotIn',
+              'isScalar',
+            ),
             isOneShot: BuiltValueNullFieldError.checkNotNull(
-                isOneShot, r'GPlotConfigurationSnapshotIn', 'isOneShot'),
+              isOneShot,
+              r'GPlotConfigurationSnapshotIn',
+              'isOneShot',
+            ),
             isShowLabels: BuiltValueNullFieldError.checkNotNull(
-                isShowLabels, r'GPlotConfigurationSnapshotIn', 'isShowLabels'),
+              isShowLabels,
+              r'GPlotConfigurationSnapshotIn',
+              'isShowLabels',
+            ),
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
@@ -1188,7 +1447,10 @@ class GPlotConfigurationSnapshotInBuilder
         channels.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GPlotConfigurationSnapshotIn', _$failedField, e.toString());
+          r'GPlotConfigurationSnapshotIn',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1203,22 +1465,28 @@ class _$GTimeSeriesEntryIn extends GTimeSeriesEntryIn {
   @override
   final double value;
 
-  factory _$GTimeSeriesEntryIn(
-          [void Function(GTimeSeriesEntryInBuilder)? updates]) =>
-      (new GTimeSeriesEntryInBuilder()..update(updates))._build();
+  factory _$GTimeSeriesEntryIn([
+    void Function(GTimeSeriesEntryInBuilder)? updates,
+  ]) => (new GTimeSeriesEntryInBuilder()..update(updates))._build();
 
   _$GTimeSeriesEntryIn._({required this.stamp, required this.value})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        stamp, r'GTimeSeriesEntryIn', 'stamp');
+      stamp,
+      r'GTimeSeriesEntryIn',
+      'stamp',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        value, r'GTimeSeriesEntryIn', 'value');
+      value,
+      r'GTimeSeriesEntryIn',
+      'value',
+    );
   }
 
   @override
   GTimeSeriesEntryIn rebuild(
-          void Function(GTimeSeriesEntryInBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GTimeSeriesEntryInBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GTimeSeriesEntryInBuilder toBuilder() =>
@@ -1289,12 +1557,19 @@ class GTimeSeriesEntryInBuilder
   GTimeSeriesEntryIn build() => _build();
 
   _$GTimeSeriesEntryIn _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GTimeSeriesEntryIn._(
           stamp: BuiltValueNullFieldError.checkNotNull(
-              stamp, r'GTimeSeriesEntryIn', 'stamp'),
+            stamp,
+            r'GTimeSeriesEntryIn',
+            'stamp',
+          ),
           value: BuiltValueNullFieldError.checkNotNull(
-              value, r'GTimeSeriesEntryIn', 'value'),
+            value,
+            r'GTimeSeriesEntryIn',
+            'value',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1387,7 +1662,8 @@ class GXformAvgExprBuilder
   _$GXformAvgExpr _build() {
     _$GXformAvgExpr _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GXformAvgExpr._(
             expr: expr.build(),
             n: BuiltValueNullFieldError.checkNotNull(n, r'GXformAvgExpr', 'n'),
@@ -1399,7 +1675,10 @@ class GXformAvgExprBuilder
         expr.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GXformAvgExpr', _$failedField, e.toString());
+          r'GXformAvgExpr',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1412,13 +1691,16 @@ class _$GXformDeviceExpr extends GXformDeviceExpr {
   @override
   final String device;
 
-  factory _$GXformDeviceExpr(
-          [void Function(GXformDeviceExprBuilder)? updates]) =>
-      (new GXformDeviceExprBuilder()..update(updates))._build();
+  factory _$GXformDeviceExpr([
+    void Function(GXformDeviceExprBuilder)? updates,
+  ]) => (new GXformDeviceExprBuilder()..update(updates))._build();
 
   _$GXformDeviceExpr._({required this.device}) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        device, r'GXformDeviceExpr', 'device');
+      device,
+      r'GXformDeviceExpr',
+      'device',
+    );
   }
 
   @override
@@ -1446,8 +1728,7 @@ class _$GXformDeviceExpr extends GXformDeviceExpr {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GXformDeviceExpr')
-          ..add('device', device))
-        .toString();
+      ..add('device', device)).toString();
   }
 }
 
@@ -1485,10 +1766,14 @@ class GXformDeviceExprBuilder
   GXformDeviceExpr build() => _build();
 
   _$GXformDeviceExpr _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GXformDeviceExpr._(
           device: BuiltValueNullFieldError.checkNotNull(
-              device, r'GXformDeviceExpr', 'device'),
+            device,
+            r'GXformDeviceExpr',
+            'device',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1579,11 +1864,9 @@ class GXformExprBuilder implements Builder<GXformExpr, GXformExprBuilder> {
   _$GXformExpr _build() {
     _$GXformExpr _$result;
     try {
-      _$result = _$v ??
-          new _$GXformExpr._(
-            devEx: _devEx?.build(),
-            avgEx: _avgEx?.build(),
-          );
+      _$result =
+          _$v ??
+          new _$GXformExpr._(devEx: _devEx?.build(), avgEx: _avgEx?.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -1593,7 +1876,10 @@ class GXformExprBuilder implements Builder<GXformExpr, GXformExprBuilder> {
         _avgEx?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GXformExpr', _$failedField, e.toString());
+          r'GXformExpr',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1688,10 +1974,14 @@ class GXformRequestBuilder
   _$GXformRequest _build() {
     _$GXformRequest _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GXformRequest._(
             event: BuiltValueNullFieldError.checkNotNull(
-                event, r'GXformRequest', 'event'),
+              event,
+              r'GXformRequest',
+              'event',
+            ),
             expr: expr.build(),
           );
     } catch (_) {
@@ -1701,7 +1991,10 @@ class GXformRequestBuilder
         expr.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GXformRequest', _$failedField, e.toString());
+          r'GXformRequest',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

@@ -23,14 +23,10 @@ abstract class GSetDeviceVars
   static Serializer<GSetDeviceVars> get serializer =>
       _$gSetDeviceVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GSetDeviceVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GSetDeviceVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GSetDeviceVars? fromJson(Map<String, dynamic> json) =>
-      _i2.serializers.deserializeWith(
-        GSetDeviceVars.serializer,
-        json,
-      );
+      _i2.serializers.deserializeWith(GSetDeviceVars.serializer, json);
 }

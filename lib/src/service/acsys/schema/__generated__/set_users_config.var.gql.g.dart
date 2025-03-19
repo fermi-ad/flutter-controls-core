@@ -14,19 +14,23 @@ class _$GSetUsersConfigVarsSerializer
   @override
   final Iterable<Type> types = const [
     GSetUsersConfigVars,
-    _$GSetUsersConfigVars
+    _$GSetUsersConfigVars,
   ];
   @override
   final String wireName = 'GSetUsersConfigVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GSetUsersConfigVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GSetUsersConfigVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'cfg',
-      serializers.serialize(object.cfg,
-          specifiedType: const FullType(_i1.GPlotConfigurationSnapshotIn)),
+      serializers.serialize(
+        object.cfg,
+        specifiedType: const FullType(_i1.GPlotConfigurationSnapshotIn),
+      ),
     ];
 
     return result;
@@ -34,8 +38,10 @@ class _$GSetUsersConfigVarsSerializer
 
   @override
   GSetUsersConfigVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GSetUsersConfigVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -45,10 +51,15 @@ class _$GSetUsersConfigVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'cfg':
-          result.cfg.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(_i1.GPlotConfigurationSnapshotIn))!
-              as _i1.GPlotConfigurationSnapshotIn);
+          result.cfg.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                    _i1.GPlotConfigurationSnapshotIn,
+                  ),
+                )!
+                as _i1.GPlotConfigurationSnapshotIn,
+          );
           break;
       }
     }
@@ -61,9 +72,9 @@ class _$GSetUsersConfigVars extends GSetUsersConfigVars {
   @override
   final _i1.GPlotConfigurationSnapshotIn cfg;
 
-  factory _$GSetUsersConfigVars(
-          [void Function(GSetUsersConfigVarsBuilder)? updates]) =>
-      (new GSetUsersConfigVarsBuilder()..update(updates))._build();
+  factory _$GSetUsersConfigVars([
+    void Function(GSetUsersConfigVarsBuilder)? updates,
+  ]) => (new GSetUsersConfigVarsBuilder()..update(updates))._build();
 
   _$GSetUsersConfigVars._({required this.cfg}) : super._() {
     BuiltValueNullFieldError.checkNotNull(cfg, r'GSetUsersConfigVars', 'cfg');
@@ -71,8 +82,8 @@ class _$GSetUsersConfigVars extends GSetUsersConfigVars {
 
   @override
   GSetUsersConfigVars rebuild(
-          void Function(GSetUsersConfigVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GSetUsersConfigVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GSetUsersConfigVarsBuilder toBuilder() =>
@@ -95,8 +106,7 @@ class _$GSetUsersConfigVars extends GSetUsersConfigVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GSetUsersConfigVars')
-          ..add('cfg', cfg))
-        .toString();
+      ..add('cfg', cfg)).toString();
   }
 }
 
@@ -137,10 +147,7 @@ class GSetUsersConfigVarsBuilder
   _$GSetUsersConfigVars _build() {
     _$GSetUsersConfigVars _$result;
     try {
-      _$result = _$v ??
-          new _$GSetUsersConfigVars._(
-            cfg: cfg.build(),
-          );
+      _$result = _$v ?? new _$GSetUsersConfigVars._(cfg: cfg.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -148,7 +155,10 @@ class GSetUsersConfigVarsBuilder
         cfg.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GSetUsersConfigVars', _$failedField, e.toString());
+          r'GSetUsersConfigVars',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

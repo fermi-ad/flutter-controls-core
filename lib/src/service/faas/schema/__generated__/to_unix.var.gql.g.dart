@@ -15,8 +15,11 @@ class _$GToUnixVarsSerializer implements StructuredSerializer<GToUnixVars> {
   final String wireName = 'GToUnixVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GToUnixVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GToUnixVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'clinks',
       serializers.serialize(object.clinks, specifiedType: const FullType(int)),
@@ -26,8 +29,11 @@ class _$GToUnixVarsSerializer implements StructuredSerializer<GToUnixVars> {
   }
 
   @override
-  GToUnixVars deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  GToUnixVars deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GToUnixVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -37,8 +43,12 @@ class _$GToUnixVarsSerializer implements StructuredSerializer<GToUnixVars> {
       final Object? value = iterator.current;
       switch (key) {
         case 'clinks':
-          result.clinks = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.clinks =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -81,8 +91,8 @@ class _$GToUnixVars extends GToUnixVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GToUnixVars')..add('clinks', clinks))
-        .toString();
+    return (newBuiltValueToStringHelper(r'GToUnixVars')
+      ..add('clinks', clinks)).toString();
   }
 }
 
@@ -119,10 +129,14 @@ class GToUnixVarsBuilder implements Builder<GToUnixVars, GToUnixVarsBuilder> {
   GToUnixVars build() => _build();
 
   _$GToUnixVars _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GToUnixVars._(
           clinks: BuiltValueNullFieldError.checkNotNull(
-              clinks, r'GToUnixVars', 'clinks'),
+            clinks,
+            r'GToUnixVars',
+            'clinks',
+          ),
         );
     replace(_$result);
     return _$result;

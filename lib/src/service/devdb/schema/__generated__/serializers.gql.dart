@@ -33,11 +33,12 @@ import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
 
 part 'serializers.gql.g.dart';
 
-final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
-  ..add(OperationSerializer())
-  ..add(DateSerializer())
-  ..add(GgetDeviceInfoData_deviceInfo_result.serializer)
-  ..addPlugin(StandardJsonPlugin());
+final SerializersBuilder _serializersBuilder =
+    _$serializers.toBuilder()
+      ..add(OperationSerializer())
+      ..add(DateSerializer())
+      ..add(GgetDeviceInfoData_deviceInfo_result.serializer)
+      ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GDevicePropertyFieldsData,
   GDevicePropertyFieldsReq,

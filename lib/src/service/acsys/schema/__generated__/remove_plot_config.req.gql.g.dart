@@ -14,70 +14,96 @@ class _$GDeletePlotConfigReqSerializer
   @override
   final Iterable<Type> types = const [
     GDeletePlotConfigReq,
-    _$GDeletePlotConfigReq
+    _$GDeletePlotConfigReq,
   ];
   @override
   final String wireName = 'GDeletePlotConfigReq';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GDeletePlotConfigReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GDeletePlotConfigReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GDeletePlotConfigVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GDeletePlotConfigVars),
+      ),
       'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
+      serializers.serialize(
+        object.operation,
+        specifiedType: const FullType(_i4.Operation),
+      ),
       'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.executeOnListen,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.requestId;
     if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.optimisticResponse;
     if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GDeletePlotConfigData)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GDeletePlotConfigData),
+          ),
+        );
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.updateCacheHandlerContext;
     if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Map, const [
+              const FullType(String),
+              const FullType(dynamic),
+            ]),
+          ),
+        );
     }
     value = object.fetchPolicy;
     if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i1.FetchPolicy),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GDeletePlotConfigReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GDeletePlotConfigReqBuilder();
 
     final iterator = serialized.iterator;
@@ -87,42 +113,73 @@ class _$GDeletePlotConfigReqSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GDeletePlotConfigVars))!
-              as _i3.GDeletePlotConfigVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GDeletePlotConfigVars),
+                )!
+                as _i3.GDeletePlotConfigVars,
+          );
           break;
         case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          result.operation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i4.Operation),
+                  )!
+                  as _i4.Operation;
           break;
         case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.requestId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GDeletePlotConfigData))!
-              as _i2.GDeletePlotConfigData);
+          result.optimisticResponse.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GDeletePlotConfigData),
+                )!
+                as _i2.GDeletePlotConfigData,
+          );
           break;
         case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.updateCacheHandlerKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
+          result.updateCacheHandlerContext =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )
+                  as Map<String, dynamic>?;
           break;
         case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
+          result.fetchPolicy =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i1.FetchPolicy),
+                  )
+                  as _i1.FetchPolicy?;
           break;
         case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.executeOnListen =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -140,7 +197,10 @@ class _$GDeletePlotConfigReq extends GDeletePlotConfigReq {
   final String? requestId;
   @override
   final _i2.GDeletePlotConfigData? Function(
-      _i2.GDeletePlotConfigData?, _i2.GDeletePlotConfigData?)? updateResult;
+    _i2.GDeletePlotConfigData?,
+    _i2.GDeletePlotConfigData?,
+  )?
+  updateResult;
   @override
   final _i2.GDeletePlotConfigData? optimisticResponse;
   @override
@@ -154,34 +214,43 @@ class _$GDeletePlotConfigReq extends GDeletePlotConfigReq {
   @override
   final _i4.Context? context;
 
-  factory _$GDeletePlotConfigReq(
-          [void Function(GDeletePlotConfigReqBuilder)? updates]) =>
-      (new GDeletePlotConfigReqBuilder()..update(updates))._build();
+  factory _$GDeletePlotConfigReq([
+    void Function(GDeletePlotConfigReqBuilder)? updates,
+  ]) => (new GDeletePlotConfigReqBuilder()..update(updates))._build();
 
-  _$GDeletePlotConfigReq._(
-      {required this.vars,
-      required this.operation,
-      this.requestId,
-      this.updateResult,
-      this.optimisticResponse,
-      this.updateCacheHandlerKey,
-      this.updateCacheHandlerContext,
-      this.fetchPolicy,
-      required this.executeOnListen,
-      this.context})
-      : super._() {
+  _$GDeletePlotConfigReq._({
+    required this.vars,
+    required this.operation,
+    this.requestId,
+    this.updateResult,
+    this.optimisticResponse,
+    this.updateCacheHandlerKey,
+    this.updateCacheHandlerContext,
+    this.fetchPolicy,
+    required this.executeOnListen,
+    this.context,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        vars, r'GDeletePlotConfigReq', 'vars');
+      vars,
+      r'GDeletePlotConfigReq',
+      'vars',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        operation, r'GDeletePlotConfigReq', 'operation');
+      operation,
+      r'GDeletePlotConfigReq',
+      'operation',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GDeletePlotConfigReq', 'executeOnListen');
+      executeOnListen,
+      r'GDeletePlotConfigReq',
+      'executeOnListen',
+    );
   }
 
   @override
   GDeletePlotConfigReq rebuild(
-          void Function(GDeletePlotConfigReqBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GDeletePlotConfigReqBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GDeletePlotConfigReqBuilder toBuilder() =>
@@ -256,22 +325,29 @@ class GDeletePlotConfigReqBuilder
   set requestId(String? requestId) => _$this._requestId = requestId;
 
   _i2.GDeletePlotConfigData? Function(
-      _i2.GDeletePlotConfigData?, _i2.GDeletePlotConfigData?)? _updateResult;
+    _i2.GDeletePlotConfigData?,
+    _i2.GDeletePlotConfigData?,
+  )?
+  _updateResult;
   _i2.GDeletePlotConfigData? Function(
-          _i2.GDeletePlotConfigData?, _i2.GDeletePlotConfigData?)?
-      get updateResult => _$this._updateResult;
+    _i2.GDeletePlotConfigData?,
+    _i2.GDeletePlotConfigData?,
+  )?
+  get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GDeletePlotConfigData? Function(
-                  _i2.GDeletePlotConfigData?, _i2.GDeletePlotConfigData?)?
-              updateResult) =>
-      _$this._updateResult = updateResult;
+    _i2.GDeletePlotConfigData? Function(
+      _i2.GDeletePlotConfigData?,
+      _i2.GDeletePlotConfigData?,
+    )?
+    updateResult,
+  ) => _$this._updateResult = updateResult;
 
   _i2.GDeletePlotConfigDataBuilder? _optimisticResponse;
   _i2.GDeletePlotConfigDataBuilder get optimisticResponse =>
       _$this._optimisticResponse ??= new _i2.GDeletePlotConfigDataBuilder();
   set optimisticResponse(
-          _i2.GDeletePlotConfigDataBuilder? optimisticResponse) =>
-      _$this._optimisticResponse = optimisticResponse;
+    _i2.GDeletePlotConfigDataBuilder? optimisticResponse,
+  ) => _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
   String? get updateCacheHandlerKey => _$this._updateCacheHandlerKey;
@@ -282,8 +358,8 @@ class GDeletePlotConfigReqBuilder
   Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic>? updateCacheHandlerContext) =>
-      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+    Map<String, dynamic>? updateCacheHandlerContext,
+  ) => _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
   _i1.FetchPolicy? _fetchPolicy;
   _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
@@ -338,11 +414,15 @@ class GDeletePlotConfigReqBuilder
   _$GDeletePlotConfigReq _build() {
     _$GDeletePlotConfigReq _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GDeletePlotConfigReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GDeletePlotConfigReq', 'operation'),
+              operation,
+              r'GDeletePlotConfigReq',
+              'operation',
+            ),
             requestId: requestId,
             updateResult: updateResult,
             optimisticResponse: _optimisticResponse?.build(),
@@ -350,7 +430,10 @@ class GDeletePlotConfigReqBuilder
             updateCacheHandlerContext: updateCacheHandlerContext,
             fetchPolicy: fetchPolicy,
             executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GDeletePlotConfigReq', 'executeOnListen'),
+              executeOnListen,
+              r'GDeletePlotConfigReq',
+              'executeOnListen',
+            ),
             context: context,
           );
     } catch (_) {
@@ -363,7 +446,10 @@ class GDeletePlotConfigReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GDeletePlotConfigReq', _$failedField, e.toString());
+          r'GDeletePlotConfigReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

@@ -15,23 +15,33 @@ class _$GToUnixDataSerializer implements StructuredSerializer<GToUnixData> {
   final String wireName = 'GToUnixData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GToUnixData object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GToUnixData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'clinksToUnix',
-      serializers.serialize(object.clinksToUnix,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.clinksToUnix,
+        specifiedType: const FullType(int),
+      ),
     ];
 
     return result;
   }
 
   @override
-  GToUnixData deserialize(Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+  GToUnixData deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GToUnixDataBuilder();
 
     final iterator = serialized.iterator;
@@ -41,12 +51,20 @@ class _$GToUnixDataSerializer implements StructuredSerializer<GToUnixData> {
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'clinksToUnix':
-          result.clinksToUnix = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.clinksToUnix =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -65,11 +83,17 @@ class _$GToUnixData extends GToUnixData {
       (new GToUnixDataBuilder()..update(updates))._build();
 
   _$GToUnixData._({required this.G__typename, required this.clinksToUnix})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GToUnixData', 'G__typename');
+      G__typename,
+      r'GToUnixData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        clinksToUnix, r'GToUnixData', 'clinksToUnix');
+      clinksToUnix,
+      r'GToUnixData',
+      'clinksToUnix',
+    );
   }
 
   @override
@@ -145,12 +169,19 @@ class GToUnixDataBuilder implements Builder<GToUnixData, GToUnixDataBuilder> {
   GToUnixData build() => _build();
 
   _$GToUnixData _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GToUnixData._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename, r'GToUnixData', 'G__typename'),
+            G__typename,
+            r'GToUnixData',
+            'G__typename',
+          ),
           clinksToUnix: BuiltValueNullFieldError.checkNotNull(
-              clinksToUnix, r'GToUnixData', 'clinksToUnix'),
+            clinksToUnix,
+            r'GToUnixData',
+            'clinksToUnix',
+          ),
         );
     replace(_$result);
     return _$result;

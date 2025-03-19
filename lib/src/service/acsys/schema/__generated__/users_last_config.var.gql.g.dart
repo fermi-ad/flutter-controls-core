@@ -14,37 +14,41 @@ class _$GUsersLastConfigVarsSerializer
   @override
   final Iterable<Type> types = const [
     GUsersLastConfigVars,
-    _$GUsersLastConfigVars
+    _$GUsersLastConfigVars,
   ];
   @override
   final String wireName = 'GUsersLastConfigVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GUsersLastConfigVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GUsersLastConfigVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     return <Object?>[];
   }
 
   @override
   GUsersLastConfigVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     return new GUsersLastConfigVarsBuilder().build();
   }
 }
 
 class _$GUsersLastConfigVars extends GUsersLastConfigVars {
-  factory _$GUsersLastConfigVars(
-          [void Function(GUsersLastConfigVarsBuilder)? updates]) =>
-      (new GUsersLastConfigVarsBuilder()..update(updates))._build();
+  factory _$GUsersLastConfigVars([
+    void Function(GUsersLastConfigVarsBuilder)? updates,
+  ]) => (new GUsersLastConfigVarsBuilder()..update(updates))._build();
 
   _$GUsersLastConfigVars._() : super._();
 
   @override
   GUsersLastConfigVars rebuild(
-          void Function(GUsersLastConfigVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GUsersLastConfigVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GUsersLastConfigVarsBuilder toBuilder() =>

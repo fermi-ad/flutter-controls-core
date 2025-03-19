@@ -9,7 +9,7 @@ part of 'remove_plot_config.data.gql.dart';
 Serializer<GDeletePlotConfigData> _$gDeletePlotConfigDataSerializer =
     new _$GDeletePlotConfigDataSerializer();
 Serializer<GDeletePlotConfigData_deletePlotConfiguration>
-    _$gDeletePlotConfigDataDeletePlotConfigurationSerializer =
+_$gDeletePlotConfigDataDeletePlotConfigurationSerializer =
     new _$GDeletePlotConfigData_deletePlotConfigurationSerializer();
 
 class _$GDeletePlotConfigDataSerializer
@@ -17,23 +17,30 @@ class _$GDeletePlotConfigDataSerializer
   @override
   final Iterable<Type> types = const [
     GDeletePlotConfigData,
-    _$GDeletePlotConfigData
+    _$GDeletePlotConfigData,
   ];
   @override
   final String wireName = 'GDeletePlotConfigData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GDeletePlotConfigData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GDeletePlotConfigData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'deletePlotConfiguration',
-      serializers.serialize(object.deletePlotConfiguration,
-          specifiedType:
-              const FullType(GDeletePlotConfigData_deletePlotConfiguration)),
+      serializers.serialize(
+        object.deletePlotConfiguration,
+        specifiedType: const FullType(
+          GDeletePlotConfigData_deletePlotConfiguration,
+        ),
+      ),
     ];
 
     return result;
@@ -41,8 +48,10 @@ class _$GDeletePlotConfigDataSerializer
 
   @override
   GDeletePlotConfigData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GDeletePlotConfigDataBuilder();
 
     final iterator = serialized.iterator;
@@ -52,14 +61,23 @@ class _$GDeletePlotConfigDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'deletePlotConfiguration':
-          result.deletePlotConfiguration.replace(serializers.deserialize(value,
+          result.deletePlotConfiguration.replace(
+            serializers.deserialize(
+                  value,
                   specifiedType: const FullType(
-                      GDeletePlotConfigData_deletePlotConfiguration))!
-              as GDeletePlotConfigData_deletePlotConfiguration);
+                    GDeletePlotConfigData_deletePlotConfiguration,
+                  ),
+                )!
+                as GDeletePlotConfigData_deletePlotConfiguration,
+          );
           break;
       }
     }
@@ -74,19 +92,23 @@ class _$GDeletePlotConfigData_deletePlotConfigurationSerializer
   @override
   final Iterable<Type> types = const [
     GDeletePlotConfigData_deletePlotConfiguration,
-    _$GDeletePlotConfigData_deletePlotConfiguration
+    _$GDeletePlotConfigData_deletePlotConfiguration,
   ];
   @override
   final String wireName = 'GDeletePlotConfigData_deletePlotConfiguration';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GDeletePlotConfigData_deletePlotConfiguration object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GDeletePlotConfigData_deletePlotConfiguration object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'status',
       serializers.serialize(object.status, specifiedType: const FullType(int)),
     ];
@@ -96,8 +118,10 @@ class _$GDeletePlotConfigData_deletePlotConfigurationSerializer
 
   @override
   GDeletePlotConfigData_deletePlotConfiguration deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GDeletePlotConfigData_deletePlotConfigurationBuilder();
 
     final iterator = serialized.iterator;
@@ -107,12 +131,20 @@ class _$GDeletePlotConfigData_deletePlotConfigurationSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'status':
-          result.status = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.status =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -127,23 +159,30 @@ class _$GDeletePlotConfigData extends GDeletePlotConfigData {
   @override
   final GDeletePlotConfigData_deletePlotConfiguration deletePlotConfiguration;
 
-  factory _$GDeletePlotConfigData(
-          [void Function(GDeletePlotConfigDataBuilder)? updates]) =>
-      (new GDeletePlotConfigDataBuilder()..update(updates))._build();
+  factory _$GDeletePlotConfigData([
+    void Function(GDeletePlotConfigDataBuilder)? updates,
+  ]) => (new GDeletePlotConfigDataBuilder()..update(updates))._build();
 
-  _$GDeletePlotConfigData._(
-      {required this.G__typename, required this.deletePlotConfiguration})
-      : super._() {
+  _$GDeletePlotConfigData._({
+    required this.G__typename,
+    required this.deletePlotConfiguration,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GDeletePlotConfigData', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(deletePlotConfiguration,
-        r'GDeletePlotConfigData', 'deletePlotConfiguration');
+      G__typename,
+      r'GDeletePlotConfigData',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      deletePlotConfiguration,
+      r'GDeletePlotConfigData',
+      'deletePlotConfiguration',
+    );
   }
 
   @override
   GDeletePlotConfigData rebuild(
-          void Function(GDeletePlotConfigDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GDeletePlotConfigDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GDeletePlotConfigDataBuilder toBuilder() =>
@@ -184,14 +223,15 @@ class GDeletePlotConfigDataBuilder
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
   GDeletePlotConfigData_deletePlotConfigurationBuilder?
-      _deletePlotConfiguration;
+  _deletePlotConfiguration;
   GDeletePlotConfigData_deletePlotConfigurationBuilder
-      get deletePlotConfiguration => _$this._deletePlotConfiguration ??=
+  get deletePlotConfiguration =>
+      _$this._deletePlotConfiguration ??=
           new GDeletePlotConfigData_deletePlotConfigurationBuilder();
   set deletePlotConfiguration(
-          GDeletePlotConfigData_deletePlotConfigurationBuilder?
-              deletePlotConfiguration) =>
-      _$this._deletePlotConfiguration = deletePlotConfiguration;
+    GDeletePlotConfigData_deletePlotConfigurationBuilder?
+    deletePlotConfiguration,
+  ) => _$this._deletePlotConfiguration = deletePlotConfiguration;
 
   GDeletePlotConfigDataBuilder() {
     GDeletePlotConfigData._initializeBuilder(this);
@@ -224,10 +264,14 @@ class GDeletePlotConfigDataBuilder
   _$GDeletePlotConfigData _build() {
     _$GDeletePlotConfigData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GDeletePlotConfigData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GDeletePlotConfigData', 'G__typename'),
+              G__typename,
+              r'GDeletePlotConfigData',
+              'G__typename',
+            ),
             deletePlotConfiguration: deletePlotConfiguration.build(),
           );
     } catch (_) {
@@ -237,7 +281,10 @@ class GDeletePlotConfigDataBuilder
         deletePlotConfiguration.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GDeletePlotConfigData', _$failedField, e.toString());
+          r'GDeletePlotConfigData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -253,27 +300,34 @@ class _$GDeletePlotConfigData_deletePlotConfiguration
   @override
   final int status;
 
-  factory _$GDeletePlotConfigData_deletePlotConfiguration(
-          [void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder)?
-              updates]) =>
+  factory _$GDeletePlotConfigData_deletePlotConfiguration([
+    void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder)?
+    updates,
+  ]) =>
       (new GDeletePlotConfigData_deletePlotConfigurationBuilder()
             ..update(updates))
           ._build();
 
-  _$GDeletePlotConfigData_deletePlotConfiguration._(
-      {required this.G__typename, required this.status})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GDeletePlotConfigData_deletePlotConfiguration', 'G__typename');
+  _$GDeletePlotConfigData_deletePlotConfiguration._({
+    required this.G__typename,
+    required this.status,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        status, r'GDeletePlotConfigData_deletePlotConfiguration', 'status');
+      G__typename,
+      r'GDeletePlotConfigData_deletePlotConfiguration',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      status,
+      r'GDeletePlotConfigData_deletePlotConfiguration',
+      'status',
+    );
   }
 
   @override
   GDeletePlotConfigData_deletePlotConfiguration rebuild(
-          void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GDeletePlotConfigData_deletePlotConfigurationBuilder toBuilder() =>
@@ -299,7 +353,8 @@ class _$GDeletePlotConfigData_deletePlotConfiguration
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GDeletePlotConfigData_deletePlotConfiguration')
+            r'GDeletePlotConfigData_deletePlotConfiguration',
+          )
           ..add('G__typename', G__typename)
           ..add('status', status))
         .toString();
@@ -308,8 +363,10 @@ class _$GDeletePlotConfigData_deletePlotConfiguration
 
 class GDeletePlotConfigData_deletePlotConfigurationBuilder
     implements
-        Builder<GDeletePlotConfigData_deletePlotConfiguration,
-            GDeletePlotConfigData_deletePlotConfigurationBuilder> {
+        Builder<
+          GDeletePlotConfigData_deletePlotConfiguration,
+          GDeletePlotConfigData_deletePlotConfigurationBuilder
+        > {
   _$GDeletePlotConfigData_deletePlotConfiguration? _$v;
 
   String? _G__typename;
@@ -342,8 +399,9 @@ class GDeletePlotConfigData_deletePlotConfigurationBuilder
 
   @override
   void update(
-      void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder)?
-          updates) {
+    void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder)?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -351,12 +409,19 @@ class GDeletePlotConfigData_deletePlotConfigurationBuilder
   GDeletePlotConfigData_deletePlotConfiguration build() => _build();
 
   _$GDeletePlotConfigData_deletePlotConfiguration _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GDeletePlotConfigData_deletePlotConfiguration._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GDeletePlotConfigData_deletePlotConfiguration', 'G__typename'),
-          status: BuiltValueNullFieldError.checkNotNull(status,
-              r'GDeletePlotConfigData_deletePlotConfiguration', 'status'),
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GDeletePlotConfigData_deletePlotConfiguration',
+            'G__typename',
+          ),
+          status: BuiltValueNullFieldError.checkNotNull(
+            status,
+            r'GDeletePlotConfigData_deletePlotConfiguration',
+            'status',
+          ),
         );
     replace(_$result);
     return _$result;

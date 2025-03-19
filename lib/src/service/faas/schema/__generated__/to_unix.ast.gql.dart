@@ -16,22 +16,24 @@ const ToUnix = _i1.OperationDefinitionNode(
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
-    )
+    ),
   ],
   directives: [],
-  selectionSet: _i1.SelectionSetNode(selections: [
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'clinksToUnix'),
-      alias: null,
-      arguments: [
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'clinks'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'clinks')),
-        )
-      ],
-      directives: [],
-      selectionSet: null,
-    )
-  ]),
+  selectionSet: _i1.SelectionSetNode(
+    selections: [
+      _i1.FieldNode(
+        name: _i1.NameNode(value: 'clinksToUnix'),
+        alias: null,
+        arguments: [
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'clinks'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'clinks')),
+          ),
+        ],
+        directives: [],
+        selectionSet: null,
+      ),
+    ],
+  ),
 );
 const document = _i1.DocumentNode(definitions: [ToUnix]);

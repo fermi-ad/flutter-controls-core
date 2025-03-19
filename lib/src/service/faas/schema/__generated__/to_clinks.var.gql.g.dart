@@ -16,8 +16,11 @@ class _$GToClinksVarsSerializer implements StructuredSerializer<GToClinksVars> {
   final String wireName = 'GToClinksVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GToClinksVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GToClinksVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'time',
       serializers.serialize(object.time, specifiedType: const FullType(int)),
@@ -28,8 +31,10 @@ class _$GToClinksVarsSerializer implements StructuredSerializer<GToClinksVars> {
 
   @override
   GToClinksVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GToClinksVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -39,8 +44,12 @@ class _$GToClinksVarsSerializer implements StructuredSerializer<GToClinksVars> {
       final Object? value = iterator.current;
       switch (key) {
         case 'time':
-          result.time = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.time =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -83,8 +92,8 @@ class _$GToClinksVars extends GToClinksVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GToClinksVars')..add('time', time))
-        .toString();
+    return (newBuiltValueToStringHelper(r'GToClinksVars')
+      ..add('time', time)).toString();
   }
 }
 
@@ -122,10 +131,14 @@ class GToClinksVarsBuilder
   GToClinksVars build() => _build();
 
   _$GToClinksVars _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GToClinksVars._(
           time: BuiltValueNullFieldError.checkNotNull(
-              time, r'GToClinksVars', 'time'),
+            time,
+            r'GToClinksVars',
+            'time',
+          ),
         );
     replace(_$result);
     return _$result;

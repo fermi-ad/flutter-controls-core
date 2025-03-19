@@ -16,63 +16,90 @@ class _$GToClinksReqSerializer implements StructuredSerializer<GToClinksReq> {
   final String wireName = 'GToClinksReq';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GToClinksReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GToClinksReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GToClinksVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GToClinksVars),
+      ),
       'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
+      serializers.serialize(
+        object.operation,
+        specifiedType: const FullType(_i4.Operation),
+      ),
       'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.executeOnListen,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.requestId;
     if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.optimisticResponse;
     if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GToClinksData)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GToClinksData),
+          ),
+        );
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.updateCacheHandlerContext;
     if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Map, const [
+              const FullType(String),
+              const FullType(dynamic),
+            ]),
+          ),
+        );
     }
     value = object.fetchPolicy;
     if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i1.FetchPolicy),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GToClinksReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GToClinksReqBuilder();
 
     final iterator = serialized.iterator;
@@ -82,42 +109,73 @@ class _$GToClinksReqSerializer implements StructuredSerializer<GToClinksReq> {
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GToClinksVars))!
-              as _i3.GToClinksVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GToClinksVars),
+                )!
+                as _i3.GToClinksVars,
+          );
           break;
         case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          result.operation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i4.Operation),
+                  )!
+                  as _i4.Operation;
           break;
         case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.requestId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GToClinksData))!
-              as _i2.GToClinksData);
+          result.optimisticResponse.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GToClinksData),
+                )!
+                as _i2.GToClinksData,
+          );
           break;
         case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.updateCacheHandlerKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
+          result.updateCacheHandlerContext =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )
+                  as Map<String, dynamic>?;
           break;
         case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
+          result.fetchPolicy =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i1.FetchPolicy),
+                  )
+                  as _i1.FetchPolicy?;
           break;
         case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.executeOnListen =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -135,7 +193,7 @@ class _$GToClinksReq extends GToClinksReq {
   final String? requestId;
   @override
   final _i2.GToClinksData? Function(_i2.GToClinksData?, _i2.GToClinksData?)?
-      updateResult;
+  updateResult;
   @override
   final _i2.GToClinksData? optimisticResponse;
   @override
@@ -152,23 +210,29 @@ class _$GToClinksReq extends GToClinksReq {
   factory _$GToClinksReq([void Function(GToClinksReqBuilder)? updates]) =>
       (new GToClinksReqBuilder()..update(updates))._build();
 
-  _$GToClinksReq._(
-      {required this.vars,
-      required this.operation,
-      this.requestId,
-      this.updateResult,
-      this.optimisticResponse,
-      this.updateCacheHandlerKey,
-      this.updateCacheHandlerContext,
-      this.fetchPolicy,
-      required this.executeOnListen,
-      this.context})
-      : super._() {
+  _$GToClinksReq._({
+    required this.vars,
+    required this.operation,
+    this.requestId,
+    this.updateResult,
+    this.optimisticResponse,
+    this.updateCacheHandlerKey,
+    this.updateCacheHandlerContext,
+    this.fetchPolicy,
+    required this.executeOnListen,
+    this.context,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(vars, r'GToClinksReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, r'GToClinksReq', 'operation');
+      operation,
+      r'GToClinksReq',
+      'operation',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GToClinksReq', 'executeOnListen');
+      executeOnListen,
+      r'GToClinksReq',
+      'executeOnListen',
+    );
   }
 
   @override
@@ -247,13 +311,13 @@ class GToClinksReqBuilder
   set requestId(String? requestId) => _$this._requestId = requestId;
 
   _i2.GToClinksData? Function(_i2.GToClinksData?, _i2.GToClinksData?)?
-      _updateResult;
+  _updateResult;
   _i2.GToClinksData? Function(_i2.GToClinksData?, _i2.GToClinksData?)?
-      get updateResult => _$this._updateResult;
+  get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GToClinksData? Function(_i2.GToClinksData?, _i2.GToClinksData?)?
-              updateResult) =>
-      _$this._updateResult = updateResult;
+    _i2.GToClinksData? Function(_i2.GToClinksData?, _i2.GToClinksData?)?
+    updateResult,
+  ) => _$this._updateResult = updateResult;
 
   _i2.GToClinksDataBuilder? _optimisticResponse;
   _i2.GToClinksDataBuilder get optimisticResponse =>
@@ -270,8 +334,8 @@ class GToClinksReqBuilder
   Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic>? updateCacheHandlerContext) =>
-      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+    Map<String, dynamic>? updateCacheHandlerContext,
+  ) => _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
   _i1.FetchPolicy? _fetchPolicy;
   _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
@@ -326,11 +390,15 @@ class GToClinksReqBuilder
   _$GToClinksReq _build() {
     _$GToClinksReq _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GToClinksReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GToClinksReq', 'operation'),
+              operation,
+              r'GToClinksReq',
+              'operation',
+            ),
             requestId: requestId,
             updateResult: updateResult,
             optimisticResponse: _optimisticResponse?.build(),
@@ -338,7 +406,10 @@ class GToClinksReqBuilder
             updateCacheHandlerContext: updateCacheHandlerContext,
             fetchPolicy: fetchPolicy,
             executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GToClinksReq', 'executeOnListen'),
+              executeOnListen,
+              r'GToClinksReq',
+              'executeOnListen',
+            ),
             context: context,
           );
     } catch (_) {
@@ -351,7 +422,10 @@ class GToClinksReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GToClinksReq', _$failedField, e.toString());
+          r'GToClinksReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

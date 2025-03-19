@@ -20,20 +20,23 @@ part 'update_plot_config.req.gql.g.dart';
 abstract class GUpdatePlotConfigReq
     implements
         Built<GUpdatePlotConfigReq, GUpdatePlotConfigReqBuilder>,
-        _i1.OperationRequest<_i2.GUpdatePlotConfigData,
-            _i3.GUpdatePlotConfigVars> {
+        _i1.OperationRequest<
+          _i2.GUpdatePlotConfigData,
+          _i3.GUpdatePlotConfigVars
+        > {
   GUpdatePlotConfigReq._();
 
-  factory GUpdatePlotConfigReq(
-          [void Function(GUpdatePlotConfigReqBuilder b) updates]) =
-      _$GUpdatePlotConfigReq;
+  factory GUpdatePlotConfigReq([
+    void Function(GUpdatePlotConfigReqBuilder b) updates,
+  ]) = _$GUpdatePlotConfigReq;
 
-  static void _initializeBuilder(GUpdatePlotConfigReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'UpdatePlotConfig',
-    )
-    ..executeOnListen = true;
+  static void _initializeBuilder(GUpdatePlotConfigReqBuilder b) =>
+      b
+        ..operation = _i4.Operation(
+          document: _i5.document,
+          operationName: 'UpdatePlotConfig',
+        )
+        ..executeOnListen = true;
 
   @override
   _i3.GUpdatePlotConfigVars get vars;
@@ -41,10 +44,10 @@ abstract class GUpdatePlotConfigReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-        context: context ?? const _i4.Context(),
-      );
+    operation: operation,
+    variables: vars.toJson(),
+    context: context ?? const _i4.Context(),
+  );
 
   @override
   String? get requestId;
@@ -53,7 +56,8 @@ abstract class GUpdatePlotConfigReq
   _i2.GUpdatePlotConfigData? Function(
     _i2.GUpdatePlotConfigData?,
     _i2.GUpdatePlotConfigData?,
-  )? get updateResult;
+  )?
+  get updateResult;
   @override
   _i2.GUpdatePlotConfigData? get optimisticResponse;
   @override
@@ -80,20 +84,16 @@ abstract class GUpdatePlotConfigReq
 
   @override
   _i1.OperationRequest<_i2.GUpdatePlotConfigData, _i3.GUpdatePlotConfigVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
+  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GUpdatePlotConfigReq> get serializer =>
       _$gUpdatePlotConfigReqSerializer;
 
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GUpdatePlotConfigReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GUpdatePlotConfigReq.serializer, this)
+          as Map<String, dynamic>);
 
   static GUpdatePlotConfigReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GUpdatePlotConfigReq.serializer,
-        json,
-      );
+      _i6.serializers.deserializeWith(GUpdatePlotConfigReq.serializer, json);
 }

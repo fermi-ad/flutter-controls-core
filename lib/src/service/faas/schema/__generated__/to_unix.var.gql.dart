@@ -18,14 +18,10 @@ abstract class GToUnixVars implements Built<GToUnixVars, GToUnixVarsBuilder> {
   int get clinks;
   static Serializer<GToUnixVars> get serializer => _$gToUnixVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GToUnixVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GToUnixVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GToUnixVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GToUnixVars.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GToUnixVars.serializer, json);
 }

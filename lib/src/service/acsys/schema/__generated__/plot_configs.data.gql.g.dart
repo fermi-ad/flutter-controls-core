@@ -9,10 +9,10 @@ part of 'plot_configs.data.gql.dart';
 Serializer<GPlotConfigsData> _$gPlotConfigsDataSerializer =
     new _$GPlotConfigsDataSerializer();
 Serializer<GPlotConfigsData_plotConfiguration>
-    _$gPlotConfigsDataPlotConfigurationSerializer =
+_$gPlotConfigsDataPlotConfigurationSerializer =
     new _$GPlotConfigsData_plotConfigurationSerializer();
 Serializer<GPlotConfigsData_plotConfiguration_channels>
-    _$gPlotConfigsDataPlotConfigurationChannelsSerializer =
+_$gPlotConfigsDataPlotConfigurationChannelsSerializer =
     new _$GPlotConfigsData_plotConfiguration_channelsSerializer();
 
 class _$GPlotConfigsDataSerializer
@@ -23,16 +23,24 @@ class _$GPlotConfigsDataSerializer
   final String wireName = 'GPlotConfigsData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GPlotConfigsData object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GPlotConfigsData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'plotConfiguration',
-      serializers.serialize(object.plotConfiguration,
-          specifiedType: const FullType(BuiltList,
-              const [const FullType(GPlotConfigsData_plotConfiguration)])),
+      serializers.serialize(
+        object.plotConfiguration,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GPlotConfigsData_plotConfiguration),
+        ]),
+      ),
     ];
 
     return result;
@@ -40,8 +48,10 @@ class _$GPlotConfigsDataSerializer
 
   @override
   GPlotConfigsData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GPlotConfigsDataBuilder();
 
     final iterator = serialized.iterator;
@@ -51,14 +61,23 @@ class _$GPlotConfigsDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'plotConfiguration':
-          result.plotConfiguration.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GPlotConfigsData_plotConfiguration)
-              ]))! as BuiltList<Object?>);
+          result.plotConfiguration.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GPlotConfigsData_plotConfiguration),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -72,75 +91,96 @@ class _$GPlotConfigsData_plotConfigurationSerializer
   @override
   final Iterable<Type> types = const [
     GPlotConfigsData_plotConfiguration,
-    _$GPlotConfigsData_plotConfiguration
+    _$GPlotConfigsData_plotConfiguration,
   ];
   @override
   final String wireName = 'GPlotConfigsData_plotConfiguration';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GPlotConfigsData_plotConfiguration object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GPlotConfigsData_plotConfiguration object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'configurationId',
-      serializers.serialize(object.configurationId,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.configurationId,
+        specifiedType: const FullType(int),
+      ),
       'configurationName',
-      serializers.serialize(object.configurationName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.configurationName,
+        specifiedType: const FullType(String),
+      ),
       'channels',
-      serializers.serialize(object.channels,
-          specifiedType: const FullType(BuiltList, const [
-            const FullType(GPlotConfigsData_plotConfiguration_channels)
-          ])),
+      serializers.serialize(
+        object.channels,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GPlotConfigsData_plotConfiguration_channels),
+        ]),
+      ),
       'isScalar',
-      serializers.serialize(object.isScalar,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isScalar,
+        specifiedType: const FullType(bool),
+      ),
       'isOneShot',
-      serializers.serialize(object.isOneShot,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isOneShot,
+        specifiedType: const FullType(bool),
+      ),
       'isShowLabels',
-      serializers.serialize(object.isShowLabels,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isShowLabels,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.xMin;
     if (value != null) {
       result
         ..add('xMin')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.xMax;
     if (value != null) {
       result
         ..add('xMax')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.yMin;
     if (value != null) {
       result
         ..add('yMin')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.yMax;
     if (value != null) {
       result
         ..add('yMax')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.timeDelta;
     if (value != null) {
       result
         ..add('timeDelta')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.updateDelay;
     if (value != null) {
@@ -165,8 +205,10 @@ class _$GPlotConfigsData_plotConfigurationSerializer
 
   @override
   GPlotConfigsData_plotConfiguration deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GPlotConfigsData_plotConfigurationBuilder();
 
     final iterator = serialized.iterator;
@@ -176,66 +218,118 @@ class _$GPlotConfigsData_plotConfigurationSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'configurationId':
-          result.configurationId = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.configurationId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'configurationName':
-          result.configurationName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.configurationName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'channels':
-          result.channels.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GPlotConfigsData_plotConfiguration_channels)
-              ]))! as BuiltList<Object?>);
+          result.channels.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GPlotConfigsData_plotConfiguration_channels),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'xMin':
-          result.xMin = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.xMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'xMax':
-          result.xMax = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.xMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'yMin':
-          result.yMin = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.yMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'yMax':
-          result.yMax = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.yMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'timeDelta':
-          result.timeDelta = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.timeDelta =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'isScalar':
-          result.isScalar = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isScalar =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isOneShot':
-          result.isOneShot = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isOneShot =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isShowLabels':
-          result.isShowLabels = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isShowLabels =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'updateDelay':
-          result.updateDelay = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.updateDelay =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'nAcquisitions':
-          result.nAcquisitions = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.nAcquisitions =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'tclkEvent':
-          result.tclkEvent = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.tclkEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -250,22 +344,28 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
   @override
   final Iterable<Type> types = const [
     GPlotConfigsData_plotConfiguration_channels,
-    _$GPlotConfigsData_plotConfiguration_channels
+    _$GPlotConfigsData_plotConfiguration_channels,
   ];
   @override
   final String wireName = 'GPlotConfigsData_plotConfiguration_channels';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GPlotConfigsData_plotConfiguration_channels object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GPlotConfigsData_plotConfiguration_channels object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'device',
-      serializers.serialize(object.device,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.device,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.lineColor;
@@ -285,8 +385,10 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
 
   @override
   GPlotConfigsData_plotConfiguration_channels deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GPlotConfigsData_plotConfiguration_channelsBuilder();
 
     final iterator = serialized.iterator;
@@ -296,20 +398,30 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'device':
-          result.device = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.device =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'lineColor':
-          result.lineColor = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.lineColor =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'markerIndex':
-          result.markerIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.markerIndex =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -324,17 +436,24 @@ class _$GPlotConfigsData extends GPlotConfigsData {
   @override
   final BuiltList<GPlotConfigsData_plotConfiguration> plotConfiguration;
 
-  factory _$GPlotConfigsData(
-          [void Function(GPlotConfigsDataBuilder)? updates]) =>
-      (new GPlotConfigsDataBuilder()..update(updates))._build();
+  factory _$GPlotConfigsData([
+    void Function(GPlotConfigsDataBuilder)? updates,
+  ]) => (new GPlotConfigsDataBuilder()..update(updates))._build();
 
-  _$GPlotConfigsData._(
-      {required this.G__typename, required this.plotConfiguration})
-      : super._() {
+  _$GPlotConfigsData._({
+    required this.G__typename,
+    required this.plotConfiguration,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GPlotConfigsData', 'G__typename');
+      G__typename,
+      r'GPlotConfigsData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        plotConfiguration, r'GPlotConfigsData', 'plotConfiguration');
+      plotConfiguration,
+      r'GPlotConfigsData',
+      'plotConfiguration',
+    );
   }
 
   @override
@@ -384,8 +503,8 @@ class GPlotConfigsDataBuilder
       _$this._plotConfiguration ??=
           new ListBuilder<GPlotConfigsData_plotConfiguration>();
   set plotConfiguration(
-          ListBuilder<GPlotConfigsData_plotConfiguration>? plotConfiguration) =>
-      _$this._plotConfiguration = plotConfiguration;
+    ListBuilder<GPlotConfigsData_plotConfiguration>? plotConfiguration,
+  ) => _$this._plotConfiguration = plotConfiguration;
 
   GPlotConfigsDataBuilder() {
     GPlotConfigsData._initializeBuilder(this);
@@ -418,10 +537,14 @@ class GPlotConfigsDataBuilder
   _$GPlotConfigsData _build() {
     _$GPlotConfigsData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GPlotConfigsData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GPlotConfigsData', 'G__typename'),
+              G__typename,
+              r'GPlotConfigsData',
+              'G__typename',
+            ),
             plotConfiguration: plotConfiguration.build(),
           );
     } catch (_) {
@@ -431,7 +554,10 @@ class GPlotConfigsDataBuilder
         plotConfiguration.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GPlotConfigsData', _$failedField, e.toString());
+          r'GPlotConfigsData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -473,49 +599,70 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final int? tclkEvent;
 
-  factory _$GPlotConfigsData_plotConfiguration(
-          [void Function(GPlotConfigsData_plotConfigurationBuilder)?
-              updates]) =>
+  factory _$GPlotConfigsData_plotConfiguration([
+    void Function(GPlotConfigsData_plotConfigurationBuilder)? updates,
+  ]) =>
       (new GPlotConfigsData_plotConfigurationBuilder()..update(updates))
           ._build();
 
-  _$GPlotConfigsData_plotConfiguration._(
-      {required this.G__typename,
-      required this.configurationId,
-      required this.configurationName,
-      required this.channels,
-      this.xMin,
-      this.xMax,
-      this.yMin,
-      this.yMax,
-      this.timeDelta,
-      required this.isScalar,
-      required this.isOneShot,
-      required this.isShowLabels,
-      this.updateDelay,
-      this.nAcquisitions,
-      this.tclkEvent})
-      : super._() {
+  _$GPlotConfigsData_plotConfiguration._({
+    required this.G__typename,
+    required this.configurationId,
+    required this.configurationName,
+    required this.channels,
+    this.xMin,
+    this.xMax,
+    this.yMin,
+    this.yMax,
+    this.timeDelta,
+    required this.isScalar,
+    required this.isOneShot,
+    required this.isShowLabels,
+    this.updateDelay,
+    this.nAcquisitions,
+    this.tclkEvent,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GPlotConfigsData_plotConfiguration', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(configurationId,
-        r'GPlotConfigsData_plotConfiguration', 'configurationId');
-    BuiltValueNullFieldError.checkNotNull(configurationName,
-        r'GPlotConfigsData_plotConfiguration', 'configurationName');
+      G__typename,
+      r'GPlotConfigsData_plotConfiguration',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        channels, r'GPlotConfigsData_plotConfiguration', 'channels');
+      configurationId,
+      r'GPlotConfigsData_plotConfiguration',
+      'configurationId',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isScalar, r'GPlotConfigsData_plotConfiguration', 'isScalar');
+      configurationName,
+      r'GPlotConfigsData_plotConfiguration',
+      'configurationName',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isOneShot, r'GPlotConfigsData_plotConfiguration', 'isOneShot');
+      channels,
+      r'GPlotConfigsData_plotConfiguration',
+      'channels',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isShowLabels, r'GPlotConfigsData_plotConfiguration', 'isShowLabels');
+      isScalar,
+      r'GPlotConfigsData_plotConfiguration',
+      'isScalar',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      isOneShot,
+      r'GPlotConfigsData_plotConfiguration',
+      'isOneShot',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      isShowLabels,
+      r'GPlotConfigsData_plotConfiguration',
+      'isShowLabels',
+    );
   }
 
   @override
   GPlotConfigsData_plotConfiguration rebuild(
-          void Function(GPlotConfigsData_plotConfigurationBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GPlotConfigsData_plotConfigurationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GPlotConfigsData_plotConfigurationBuilder toBuilder() =>
@@ -588,8 +735,10 @@ class _$GPlotConfigsData_plotConfiguration
 
 class GPlotConfigsData_plotConfigurationBuilder
     implements
-        Builder<GPlotConfigsData_plotConfiguration,
-            GPlotConfigsData_plotConfigurationBuilder> {
+        Builder<
+          GPlotConfigsData_plotConfiguration,
+          GPlotConfigsData_plotConfigurationBuilder
+        > {
   _$GPlotConfigsData_plotConfiguration? _$v;
 
   String? _G__typename;
@@ -611,8 +760,8 @@ class GPlotConfigsData_plotConfigurationBuilder
       _$this._channels ??=
           new ListBuilder<GPlotConfigsData_plotConfiguration_channels>();
   set channels(
-          ListBuilder<GPlotConfigsData_plotConfiguration_channels>? channels) =>
-      _$this._channels = channels;
+    ListBuilder<GPlotConfigsData_plotConfiguration_channels>? channels,
+  ) => _$this._channels = channels;
 
   double? _xMin;
   double? get xMin => _$this._xMin;
@@ -694,7 +843,8 @@ class GPlotConfigsData_plotConfigurationBuilder
 
   @override
   void update(
-      void Function(GPlotConfigsData_plotConfigurationBuilder)? updates) {
+    void Function(GPlotConfigsData_plotConfigurationBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -704,18 +854,24 @@ class GPlotConfigsData_plotConfigurationBuilder
   _$GPlotConfigsData_plotConfiguration _build() {
     _$GPlotConfigsData_plotConfiguration _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GPlotConfigsData_plotConfiguration._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-                r'GPlotConfigsData_plotConfiguration', 'G__typename'),
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GPlotConfigsData_plotConfiguration',
+              'G__typename',
+            ),
             configurationId: BuiltValueNullFieldError.checkNotNull(
-                configurationId,
-                r'GPlotConfigsData_plotConfiguration',
-                'configurationId'),
+              configurationId,
+              r'GPlotConfigsData_plotConfiguration',
+              'configurationId',
+            ),
             configurationName: BuiltValueNullFieldError.checkNotNull(
-                configurationName,
-                r'GPlotConfigsData_plotConfiguration',
-                'configurationName'),
+              configurationName,
+              r'GPlotConfigsData_plotConfiguration',
+              'configurationName',
+            ),
             channels: channels.build(),
             xMin: xMin,
             xMax: xMax,
@@ -723,11 +879,20 @@ class GPlotConfigsData_plotConfigurationBuilder
             yMax: yMax,
             timeDelta: timeDelta,
             isScalar: BuiltValueNullFieldError.checkNotNull(
-                isScalar, r'GPlotConfigsData_plotConfiguration', 'isScalar'),
+              isScalar,
+              r'GPlotConfigsData_plotConfiguration',
+              'isScalar',
+            ),
             isOneShot: BuiltValueNullFieldError.checkNotNull(
-                isOneShot, r'GPlotConfigsData_plotConfiguration', 'isOneShot'),
-            isShowLabels: BuiltValueNullFieldError.checkNotNull(isShowLabels,
-                r'GPlotConfigsData_plotConfiguration', 'isShowLabels'),
+              isOneShot,
+              r'GPlotConfigsData_plotConfiguration',
+              'isOneShot',
+            ),
+            isShowLabels: BuiltValueNullFieldError.checkNotNull(
+              isShowLabels,
+              r'GPlotConfigsData_plotConfiguration',
+              'isShowLabels',
+            ),
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
@@ -739,7 +904,10 @@ class GPlotConfigsData_plotConfigurationBuilder
         channels.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GPlotConfigsData_plotConfiguration', _$failedField, e.toString());
+          r'GPlotConfigsData_plotConfiguration',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -759,30 +927,35 @@ class _$GPlotConfigsData_plotConfiguration_channels
   @override
   final int? markerIndex;
 
-  factory _$GPlotConfigsData_plotConfiguration_channels(
-          [void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)?
-              updates]) =>
+  factory _$GPlotConfigsData_plotConfiguration_channels([
+    void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)? updates,
+  ]) =>
       (new GPlotConfigsData_plotConfiguration_channelsBuilder()
             ..update(updates))
           ._build();
 
-  _$GPlotConfigsData_plotConfiguration_channels._(
-      {required this.G__typename,
-      required this.device,
-      this.lineColor,
-      this.markerIndex})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GPlotConfigsData_plotConfiguration_channels', 'G__typename');
+  _$GPlotConfigsData_plotConfiguration_channels._({
+    required this.G__typename,
+    required this.device,
+    this.lineColor,
+    this.markerIndex,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        device, r'GPlotConfigsData_plotConfiguration_channels', 'device');
+      G__typename,
+      r'GPlotConfigsData_plotConfiguration_channels',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      device,
+      r'GPlotConfigsData_plotConfiguration_channels',
+      'device',
+    );
   }
 
   @override
   GPlotConfigsData_plotConfiguration_channels rebuild(
-          void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GPlotConfigsData_plotConfiguration_channelsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GPlotConfigsData_plotConfiguration_channelsBuilder toBuilder() =>
@@ -812,7 +985,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GPlotConfigsData_plotConfiguration_channels')
+            r'GPlotConfigsData_plotConfiguration_channels',
+          )
           ..add('G__typename', G__typename)
           ..add('device', device)
           ..add('lineColor', lineColor)
@@ -823,8 +997,10 @@ class _$GPlotConfigsData_plotConfiguration_channels
 
 class GPlotConfigsData_plotConfiguration_channelsBuilder
     implements
-        Builder<GPlotConfigsData_plotConfiguration_channels,
-            GPlotConfigsData_plotConfiguration_channelsBuilder> {
+        Builder<
+          GPlotConfigsData_plotConfiguration_channels,
+          GPlotConfigsData_plotConfiguration_channelsBuilder
+        > {
   _$GPlotConfigsData_plotConfiguration_channels? _$v;
 
   String? _G__typename;
@@ -867,8 +1043,8 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
 
   @override
   void update(
-      void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)?
-          updates) {
+    void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -876,12 +1052,19 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   GPlotConfigsData_plotConfiguration_channels build() => _build();
 
   _$GPlotConfigsData_plotConfiguration_channels _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GPlotConfigsData_plotConfiguration_channels._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GPlotConfigsData_plotConfiguration_channels', 'G__typename'),
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GPlotConfigsData_plotConfiguration_channels',
+            'G__typename',
+          ),
           device: BuiltValueNullFieldError.checkNotNull(
-              device, r'GPlotConfigsData_plotConfiguration_channels', 'device'),
+            device,
+            r'GPlotConfigsData_plotConfiguration_channels',
+            'device',
+          ),
           lineColor: lineColor,
           markerIndex: markerIndex,
         );

@@ -19,15 +19,22 @@ class _$GSetDeviceDataSerializer
   final String wireName = 'GSetDeviceData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GSetDeviceData object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GSetDeviceData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'setDevice',
-      serializers.serialize(object.setDevice,
-          specifiedType: const FullType(GSetDeviceData_setDevice)),
+      serializers.serialize(
+        object.setDevice,
+        specifiedType: const FullType(GSetDeviceData_setDevice),
+      ),
     ];
 
     return result;
@@ -35,8 +42,10 @@ class _$GSetDeviceDataSerializer
 
   @override
   GSetDeviceData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GSetDeviceDataBuilder();
 
     final iterator = serialized.iterator;
@@ -46,13 +55,21 @@ class _$GSetDeviceDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'setDevice':
-          result.setDevice.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GSetDeviceData_setDevice))!
-              as GSetDeviceData_setDevice);
+          result.setDevice.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GSetDeviceData_setDevice),
+                )!
+                as GSetDeviceData_setDevice,
+          );
           break;
       }
     }
@@ -66,19 +83,23 @@ class _$GSetDeviceData_setDeviceSerializer
   @override
   final Iterable<Type> types = const [
     GSetDeviceData_setDevice,
-    _$GSetDeviceData_setDevice
+    _$GSetDeviceData_setDevice,
   ];
   @override
   final String wireName = 'GSetDeviceData_setDevice';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GSetDeviceData_setDevice object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GSetDeviceData_setDevice object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'status',
       serializers.serialize(object.status, specifiedType: const FullType(int)),
     ];
@@ -88,8 +109,10 @@ class _$GSetDeviceData_setDeviceSerializer
 
   @override
   GSetDeviceData_setDevice deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GSetDeviceData_setDeviceBuilder();
 
     final iterator = serialized.iterator;
@@ -99,12 +122,20 @@ class _$GSetDeviceData_setDeviceSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'status':
-          result.status = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.status =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -123,11 +154,17 @@ class _$GSetDeviceData extends GSetDeviceData {
       (new GSetDeviceDataBuilder()..update(updates))._build();
 
   _$GSetDeviceData._({required this.G__typename, required this.setDevice})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GSetDeviceData', 'G__typename');
+      G__typename,
+      r'GSetDeviceData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        setDevice, r'GSetDeviceData', 'setDevice');
+      setDevice,
+      r'GSetDeviceData',
+      'setDevice',
+    );
   }
 
   @override
@@ -209,10 +246,14 @@ class GSetDeviceDataBuilder
   _$GSetDeviceData _build() {
     _$GSetDeviceData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GSetDeviceData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GSetDeviceData', 'G__typename'),
+              G__typename,
+              r'GSetDeviceData',
+              'G__typename',
+            ),
             setDevice: setDevice.build(),
           );
     } catch (_) {
@@ -222,7 +263,10 @@ class GSetDeviceDataBuilder
         setDevice.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GSetDeviceData', _$failedField, e.toString());
+          r'GSetDeviceData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -237,23 +281,30 @@ class _$GSetDeviceData_setDevice extends GSetDeviceData_setDevice {
   @override
   final int status;
 
-  factory _$GSetDeviceData_setDevice(
-          [void Function(GSetDeviceData_setDeviceBuilder)? updates]) =>
-      (new GSetDeviceData_setDeviceBuilder()..update(updates))._build();
+  factory _$GSetDeviceData_setDevice([
+    void Function(GSetDeviceData_setDeviceBuilder)? updates,
+  ]) => (new GSetDeviceData_setDeviceBuilder()..update(updates))._build();
 
-  _$GSetDeviceData_setDevice._(
-      {required this.G__typename, required this.status})
-      : super._() {
+  _$GSetDeviceData_setDevice._({
+    required this.G__typename,
+    required this.status,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GSetDeviceData_setDevice', 'G__typename');
+      G__typename,
+      r'GSetDeviceData_setDevice',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        status, r'GSetDeviceData_setDevice', 'status');
+      status,
+      r'GSetDeviceData_setDevice',
+      'status',
+    );
   }
 
   @override
   GSetDeviceData_setDevice rebuild(
-          void Function(GSetDeviceData_setDeviceBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GSetDeviceData_setDeviceBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GSetDeviceData_setDeviceBuilder toBuilder() =>
@@ -327,12 +378,19 @@ class GSetDeviceData_setDeviceBuilder
   GSetDeviceData_setDevice build() => _build();
 
   _$GSetDeviceData_setDevice _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GSetDeviceData_setDevice._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename, r'GSetDeviceData_setDevice', 'G__typename'),
+            G__typename,
+            r'GSetDeviceData_setDevice',
+            'G__typename',
+          ),
           status: BuiltValueNullFieldError.checkNotNull(
-              status, r'GSetDeviceData_setDevice', 'status'),
+            status,
+            r'GSetDeviceData_setDevice',
+            'status',
+          ),
         );
     replace(_$result);
     return _$result;

@@ -9,42 +9,44 @@ part of 'get_device_info.data.gql.dart';
 Serializer<GgetDeviceInfoData> _$ggetDeviceInfoDataSerializer =
     new _$GgetDeviceInfoDataSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo>
-    _$ggetDeviceInfoDataDeviceInfoSerializer =
+_$ggetDeviceInfoDataDeviceInfoSerializer =
     new _$GgetDeviceInfoData_deviceInfoSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__base>
-    _$ggetDeviceInfoDataDeviceInfoResultBaseSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultBaseSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__baseSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfoSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoReadingSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoReadingSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer();
 Serializer<
-        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlEntriesSerializer =
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+>
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlEntriesSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer();
 Serializer<
-        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusExtEntriesSerializer =
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+>
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusExtEntriesSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusEntriesSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusEntriesSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo>
-    _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingKnobInfoSerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingKnobInfoSerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asErrorReply>
-    _$ggetDeviceInfoDataDeviceInfoResultAsErrorReplySerializer =
+_$ggetDeviceInfoDataDeviceInfoResultAsErrorReplySerializer =
     new _$GgetDeviceInfoData_deviceInfo_result__asErrorReplySerializer();
 Serializer<GDevicePropertyFieldsData> _$gDevicePropertyFieldsDataSerializer =
     new _$GDevicePropertyFieldsDataSerializer();
@@ -58,15 +60,21 @@ class _$GgetDeviceInfoDataSerializer
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GgetDeviceInfoData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GgetDeviceInfoData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'deviceInfo',
-      serializers.serialize(object.deviceInfo,
-          specifiedType: const FullType(GgetDeviceInfoData_deviceInfo)),
+      serializers.serialize(
+        object.deviceInfo,
+        specifiedType: const FullType(GgetDeviceInfoData_deviceInfo),
+      ),
     ];
 
     return result;
@@ -74,8 +82,10 @@ class _$GgetDeviceInfoDataSerializer
 
   @override
   GgetDeviceInfoData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GgetDeviceInfoDataBuilder();
 
     final iterator = serialized.iterator;
@@ -85,13 +95,21 @@ class _$GgetDeviceInfoDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'deviceInfo':
-          result.deviceInfo.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GgetDeviceInfoData_deviceInfo))!
-              as GgetDeviceInfoData_deviceInfo);
+          result.deviceInfo.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GgetDeviceInfoData_deviceInfo),
+                )!
+                as GgetDeviceInfoData_deviceInfo,
+          );
           break;
       }
     }
@@ -105,23 +123,30 @@ class _$GgetDeviceInfoData_deviceInfoSerializer
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo,
-    _$GgetDeviceInfoData_deviceInfo
+    _$GgetDeviceInfoData_deviceInfo,
   ];
   @override
   final String wireName = 'GgetDeviceInfoData_deviceInfo';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GgetDeviceInfoData_deviceInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'result',
-      serializers.serialize(object.result,
-          specifiedType: const FullType(BuiltList,
-              const [const FullType(GgetDeviceInfoData_deviceInfo_result)])),
+      serializers.serialize(
+        object.result,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GgetDeviceInfoData_deviceInfo_result),
+        ]),
+      ),
     ];
 
     return result;
@@ -129,8 +154,10 @@ class _$GgetDeviceInfoData_deviceInfoSerializer
 
   @override
   GgetDeviceInfoData_deviceInfo deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GgetDeviceInfoData_deviceInfoBuilder();
 
     final iterator = serialized.iterator;
@@ -140,14 +167,23 @@ class _$GgetDeviceInfoData_deviceInfoSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'result':
-          result.result.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GgetDeviceInfoData_deviceInfo_result)
-              ]))! as BuiltList<Object?>);
+          result.result.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GgetDeviceInfoData_deviceInfo_result),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -162,19 +198,23 @@ class _$GgetDeviceInfoData_deviceInfo_result__baseSerializer
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__base,
-    _$GgetDeviceInfoData_deviceInfo_result__base
+    _$GgetDeviceInfoData_deviceInfo_result__base,
   ];
   @override
   final String wireName = 'GgetDeviceInfoData_deviceInfo_result__base';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__base object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__base object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -182,8 +222,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__baseSerializer
 
   @override
   GgetDeviceInfoData_deviceInfo_result__base deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GgetDeviceInfoData_deviceInfo_result__baseBuilder();
 
     final iterator = serialized.iterator;
@@ -193,8 +235,12 @@ class _$GgetDeviceInfoData_deviceInfo_result__baseSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -206,67 +252,96 @@ class _$GgetDeviceInfoData_deviceInfo_result__baseSerializer
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfoSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
   ];
   @override
   final String wireName = 'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'description',
-      serializers.serialize(object.description,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.description,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.reading;
     if (value != null) {
       result
         ..add('reading')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading)));
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
+            ),
+          ),
+        );
     }
     value = object.digControl;
     if (value != null) {
       result
         ..add('digControl')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl)));
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
+            ),
+          ),
+        );
     }
     value = object.digStatus;
     if (value != null) {
       result
         ..add('digStatus')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus)));
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+            ),
+          ),
+        );
     }
     value = object.setting;
     if (value != null) {
       result
         ..add('setting')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting)));
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
+            ),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder();
 
@@ -277,36 +352,64 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfoSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'description':
-          result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.description =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'reading':
-          result.reading.replace(serializers.deserialize(value,
+          result.reading.replace(
+            serializers.deserialize(
+                  value,
                   specifiedType: const FullType(
-                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading))!
-              as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading);
+                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
+                  ),
+                )!
+                as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
+          );
           break;
         case 'digControl':
-          result.digControl.replace(serializers.deserialize(value,
+          result.digControl.replace(
+            serializers.deserialize(
+                  value,
                   specifiedType: const FullType(
-                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl))!
-              as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl);
+                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
+                  ),
+                )!
+                as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
+          );
           break;
         case 'digStatus':
-          result.digStatus.replace(serializers.deserialize(value,
+          result.digStatus.replace(
+            serializers.deserialize(
+                  value,
                   specifiedType: const FullType(
-                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus))!
-              as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus);
+                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+                  ),
+                )!
+                as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+          );
           break;
         case 'setting':
-          result.setting.replace(serializers.deserialize(value,
+          result.setting.replace(
+            serializers.deserialize(
+                  value,
                   specifiedType: const FullType(
-                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting))!
-              as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting);
+                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
+                  ),
+                )!
+                as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
+          );
           break;
       }
     }
@@ -318,75 +421,103 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfoSerializer
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
   ];
   @override
   final String wireName =
       'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'minVal',
-      serializers.serialize(object.minVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.minVal,
+        specifiedType: const FullType(double),
+      ),
       'maxVal',
-      serializers.serialize(object.maxVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.maxVal,
+        specifiedType: const FullType(double),
+      ),
       'primaryIndex',
-      serializers.serialize(object.primaryIndex,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.primaryIndex,
+        specifiedType: const FullType(int),
+      ),
       'commonIndex',
-      serializers.serialize(object.commonIndex,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.commonIndex,
+        specifiedType: const FullType(int),
+      ),
       'coeff',
-      serializers.serialize(object.coeff,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(double)])),
+      serializers.serialize(
+        object.coeff,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(double),
+        ]),
+      ),
       'isContrSetting',
-      serializers.serialize(object.isContrSetting,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isContrSetting,
+        specifiedType: const FullType(bool),
+      ),
       'isDestructiveRead',
-      serializers.serialize(object.isDestructiveRead,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isDestructiveRead,
+        specifiedType: const FullType(bool),
+      ),
       'isFeScaling',
-      serializers.serialize(object.isFeScaling,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isFeScaling,
+        specifiedType: const FullType(bool),
+      ),
       'isStepMotor',
-      serializers.serialize(object.isStepMotor,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isStepMotor,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.primaryUnits;
     if (value != null) {
       result
         ..add('primaryUnits')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.commonUnits;
     if (value != null) {
       result
         ..add('commonUnits')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder();
 
@@ -397,54 +528,103 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'minVal':
-          result.minVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.minVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'maxVal':
-          result.maxVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.maxVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'primaryUnits':
-          result.primaryUnits = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.primaryUnits =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'primaryIndex':
-          result.primaryIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.primaryIndex =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'commonUnits':
-          result.commonUnits = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.commonUnits =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'commonIndex':
-          result.commonIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.commonIndex =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'coeff':
-          result.coeff.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(double)]))!
-              as BuiltList<Object?>);
+          result.coeff.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(double),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'isContrSetting':
-          result.isContrSetting = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isContrSetting =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isDestructiveRead':
-          result.isDestructiveRead = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isDestructiveRead =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isFeScaling':
-          result.isFeScaling = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isFeScaling =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isStepMotor':
-          result.isStepMotor = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isStepMotor =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -456,30 +636,38 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
   ];
   @override
   final String wireName =
       'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'entries',
-      serializers.serialize(object.entries,
-          specifiedType: const FullType(BuiltList, const [
-            const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries)
-          ])),
+      serializers.serialize(
+        object.entries,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
+          ),
+        ]),
+      ),
     ];
 
     return result;
@@ -487,8 +675,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder();
 
@@ -499,15 +689,25 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'entries':
-          result.entries.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(
-                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries)
-              ]))! as BuiltList<Object?>);
+          result.entries.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(
+                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
+                    ),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -519,11 +719,12 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
   ];
   @override
   final String wireName =
@@ -531,22 +732,29 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSer
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-          object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+    object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'value',
       serializers.serialize(object.value, specifiedType: const FullType(int)),
       'shortName',
-      serializers.serialize(object.shortName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.shortName,
+        specifiedType: const FullType(String),
+      ),
       'longName',
-      serializers.serialize(object.longName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.longName,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -554,8 +762,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSer
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-      deserialize(Serializers serializers, Iterable<Object?> serialized,
-          {FullType specifiedType = FullType.unspecified}) {
+  deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder();
 
@@ -566,20 +777,36 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'value':
-          result.value = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.value =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'shortName':
-          result.shortName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.shortName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'longName':
-          result.longName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.longName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -591,36 +818,47 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSer
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
   ];
   @override
   final String wireName =
       'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'extEntries',
-      serializers.serialize(object.extEntries,
-          specifiedType: const FullType(BuiltList, const [
-            const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
-          ])),
+      serializers.serialize(
+        object.extEntries,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+          ),
+        ]),
+      ),
       'entries',
-      serializers.serialize(object.entries,
-          specifiedType: const FullType(BuiltList, const [
-            const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries)
-          ])),
+      serializers.serialize(
+        object.entries,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+          ),
+        ]),
+      ),
     ];
 
     return result;
@@ -628,8 +866,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder();
 
@@ -640,22 +880,38 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'extEntries':
-          result.extEntries.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(
-                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries)
-              ]))! as BuiltList<Object?>);
+          result.extEntries.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(
+                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+                    ),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'entries':
-          result.entries.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(
-                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries)
-              ]))! as BuiltList<Object?>);
+          result.entries.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(
+                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+                    ),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -667,11 +923,12 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
   ];
   @override
   final String wireName =
@@ -679,29 +936,38 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesS
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-          object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+    object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'bitNo',
       serializers.serialize(object.bitNo, specifiedType: const FullType(int)),
       'color0',
       serializers.serialize(object.color0, specifiedType: const FullType(int)),
       'name0',
-      serializers.serialize(object.name0,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.name0,
+        specifiedType: const FullType(String),
+      ),
       'color1',
       serializers.serialize(object.color1, specifiedType: const FullType(int)),
       'name1',
-      serializers.serialize(object.name1,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.name1,
+        specifiedType: const FullType(String),
+      ),
       'description',
-      serializers.serialize(object.description,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.description,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -709,8 +975,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesS
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-      deserialize(Serializers serializers, Iterable<Object?> serialized,
-          {FullType specifiedType = FullType.unspecified}) {
+  deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder();
 
@@ -721,32 +990,60 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesS
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'bitNo':
-          result.bitNo = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.bitNo =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'color0':
-          result.color0 = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.color0 =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'name0':
-          result.name0 = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.name0 =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'color1':
-          result.color1 = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.color1 =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'name1':
-          result.name1 = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.name1 =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'description':
-          result.description = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.description =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -758,11 +1055,12 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesS
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
   ];
   @override
   final String wireName =
@@ -770,45 +1068,66 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSeri
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-          object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+    object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'maskVal',
       serializers.serialize(object.maskVal, specifiedType: const FullType(int)),
       'matchVal',
-      serializers.serialize(object.matchVal,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.matchVal,
+        specifiedType: const FullType(int),
+      ),
       'invert',
       serializers.serialize(object.invert, specifiedType: const FullType(bool)),
       'shortName',
-      serializers.serialize(object.shortName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.shortName,
+        specifiedType: const FullType(String),
+      ),
       'longName',
-      serializers.serialize(object.longName,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.longName,
+        specifiedType: const FullType(String),
+      ),
       'trueStr',
-      serializers.serialize(object.trueStr,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.trueStr,
+        specifiedType: const FullType(String),
+      ),
       'trueColor',
-      serializers.serialize(object.trueColor,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.trueColor,
+        specifiedType: const FullType(int),
+      ),
       'trueChar',
-      serializers.serialize(object.trueChar,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.trueChar,
+        specifiedType: const FullType(String),
+      ),
       'falseStr',
-      serializers.serialize(object.falseStr,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.falseStr,
+        specifiedType: const FullType(String),
+      ),
       'falseColor',
-      serializers.serialize(object.falseColor,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.falseColor,
+        specifiedType: const FullType(int),
+      ),
       'falseChar',
-      serializers.serialize(object.falseChar,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.falseChar,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -816,8 +1135,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSeri
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-      deserialize(Serializers serializers, Iterable<Object?> serialized,
-          {FullType specifiedType = FullType.unspecified}) {
+  deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder();
 
@@ -828,52 +1150,100 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSeri
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'maskVal':
-          result.maskVal = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.maskVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'matchVal':
-          result.matchVal = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.matchVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'invert':
-          result.invert = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.invert =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'shortName':
-          result.shortName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.shortName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'longName':
-          result.longName = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.longName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'trueStr':
-          result.trueStr = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.trueStr =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'trueColor':
-          result.trueColor = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.trueColor =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'trueChar':
-          result.trueChar = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.trueChar =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'falseStr':
-          result.falseStr = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.falseStr =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'falseColor':
-          result.falseColor = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.falseColor =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'falseChar':
-          result.falseChar = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.falseChar =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -885,83 +1255,116 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSeri
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
   ];
   @override
   final String wireName =
       'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'minVal',
-      serializers.serialize(object.minVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.minVal,
+        specifiedType: const FullType(double),
+      ),
       'maxVal',
-      serializers.serialize(object.maxVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.maxVal,
+        specifiedType: const FullType(double),
+      ),
       'primaryIndex',
-      serializers.serialize(object.primaryIndex,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.primaryIndex,
+        specifiedType: const FullType(int),
+      ),
       'commonIndex',
-      serializers.serialize(object.commonIndex,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.commonIndex,
+        specifiedType: const FullType(int),
+      ),
       'coeff',
-      serializers.serialize(object.coeff,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(double)])),
+      serializers.serialize(
+        object.coeff,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(double),
+        ]),
+      ),
       'isContrSetting',
-      serializers.serialize(object.isContrSetting,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isContrSetting,
+        specifiedType: const FullType(bool),
+      ),
       'isDestructiveRead',
-      serializers.serialize(object.isDestructiveRead,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isDestructiveRead,
+        specifiedType: const FullType(bool),
+      ),
       'isFeScaling',
-      serializers.serialize(object.isFeScaling,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isFeScaling,
+        specifiedType: const FullType(bool),
+      ),
       'isStepMotor',
-      serializers.serialize(object.isStepMotor,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isStepMotor,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.primaryUnits;
     if (value != null) {
       result
         ..add('primaryUnits')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.commonUnits;
     if (value != null) {
       result
         ..add('commonUnits')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.knobInfo;
     if (value != null) {
       result
         ..add('knobInfo')
-        ..add(serializers.serialize(value,
+        ..add(
+          serializers.serialize(
+            value,
             specifiedType: const FullType(
-                GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo)));
+              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
+            ),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder();
 
@@ -972,60 +1375,114 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'minVal':
-          result.minVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.minVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'maxVal':
-          result.maxVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.maxVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'primaryUnits':
-          result.primaryUnits = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.primaryUnits =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'primaryIndex':
-          result.primaryIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.primaryIndex =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'commonUnits':
-          result.commonUnits = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.commonUnits =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'commonIndex':
-          result.commonIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.commonIndex =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'coeff':
-          result.coeff.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(double)]))!
-              as BuiltList<Object?>);
+          result.coeff.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(double),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'isContrSetting':
-          result.isContrSetting = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isContrSetting =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isDestructiveRead':
-          result.isDestructiveRead = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isDestructiveRead =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isFeScaling':
-          result.isFeScaling = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isFeScaling =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isStepMotor':
-          result.isStepMotor = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isStepMotor =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'knobInfo':
-          result.knobInfo.replace(serializers.deserialize(value,
+          result.knobInfo.replace(
+            serializers.deserialize(
+                  value,
                   specifiedType: const FullType(
-                      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo))!
-              as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo);
+                    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
+                  ),
+                )!
+                as GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
+          );
           break;
       }
     }
@@ -1037,11 +1494,12 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
-    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
   ];
   @override
   final String wireName =
@@ -1049,20 +1507,27 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSeria
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-          object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
+    object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'minVal',
-      serializers.serialize(object.minVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.minVal,
+        specifiedType: const FullType(double),
+      ),
       'maxVal',
-      serializers.serialize(object.maxVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.maxVal,
+        specifiedType: const FullType(double),
+      ),
       'step',
       serializers.serialize(object.step, specifiedType: const FullType(double)),
     ];
@@ -1072,8 +1537,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSeria
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-      deserialize(Serializers serializers, Iterable<Object?> serialized,
-          {FullType specifiedType = FullType.unspecified}) {
+  deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder();
 
@@ -1084,20 +1552,36 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSeria
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'minVal':
-          result.minVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.minVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'maxVal':
-          result.maxVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.maxVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'step':
-          result.step = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.step =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
       }
     }
@@ -1109,26 +1593,33 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSeria
 class _$GgetDeviceInfoData_deviceInfo_result__asErrorReplySerializer
     implements
         StructuredSerializer<
-            GgetDeviceInfoData_deviceInfo_result__asErrorReply> {
+          GgetDeviceInfoData_deviceInfo_result__asErrorReply
+        > {
   @override
   final Iterable<Type> types = const [
     GgetDeviceInfoData_deviceInfo_result__asErrorReply,
-    _$GgetDeviceInfoData_deviceInfo_result__asErrorReply
+    _$GgetDeviceInfoData_deviceInfo_result__asErrorReply,
   ];
   @override
   final String wireName = 'GgetDeviceInfoData_deviceInfo_result__asErrorReply';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GgetDeviceInfoData_deviceInfo_result__asErrorReply object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoData_deviceInfo_result__asErrorReply object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'message',
-      serializers.serialize(object.message,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.message,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -1136,8 +1627,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReplySerializer
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asErrorReply deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder();
 
@@ -1148,12 +1641,20 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReplySerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'message':
-          result.message = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.message =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -1167,70 +1668,97 @@ class _$GDevicePropertyFieldsDataSerializer
   @override
   final Iterable<Type> types = const [
     GDevicePropertyFieldsData,
-    _$GDevicePropertyFieldsData
+    _$GDevicePropertyFieldsData,
   ];
   @override
   final String wireName = 'GDevicePropertyFieldsData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GDevicePropertyFieldsData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GDevicePropertyFieldsData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'minVal',
-      serializers.serialize(object.minVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.minVal,
+        specifiedType: const FullType(double),
+      ),
       'maxVal',
-      serializers.serialize(object.maxVal,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.maxVal,
+        specifiedType: const FullType(double),
+      ),
       'primaryIndex',
-      serializers.serialize(object.primaryIndex,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.primaryIndex,
+        specifiedType: const FullType(int),
+      ),
       'commonIndex',
-      serializers.serialize(object.commonIndex,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.commonIndex,
+        specifiedType: const FullType(int),
+      ),
       'coeff',
-      serializers.serialize(object.coeff,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(double)])),
+      serializers.serialize(
+        object.coeff,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(double),
+        ]),
+      ),
       'isContrSetting',
-      serializers.serialize(object.isContrSetting,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isContrSetting,
+        specifiedType: const FullType(bool),
+      ),
       'isDestructiveRead',
-      serializers.serialize(object.isDestructiveRead,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isDestructiveRead,
+        specifiedType: const FullType(bool),
+      ),
       'isFeScaling',
-      serializers.serialize(object.isFeScaling,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isFeScaling,
+        specifiedType: const FullType(bool),
+      ),
       'isStepMotor',
-      serializers.serialize(object.isStepMotor,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.isStepMotor,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.primaryUnits;
     if (value != null) {
       result
         ..add('primaryUnits')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.commonUnits;
     if (value != null) {
       result
         ..add('commonUnits')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GDevicePropertyFieldsData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GDevicePropertyFieldsDataBuilder();
 
     final iterator = serialized.iterator;
@@ -1240,54 +1768,103 @@ class _$GDevicePropertyFieldsDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'minVal':
-          result.minVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.minVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'maxVal':
-          result.maxVal = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.maxVal =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'primaryUnits':
-          result.primaryUnits = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.primaryUnits =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'primaryIndex':
-          result.primaryIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.primaryIndex =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'commonUnits':
-          result.commonUnits = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.commonUnits =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'commonIndex':
-          result.commonIndex = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.commonIndex =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'coeff':
-          result.coeff.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(double)]))!
-              as BuiltList<Object?>);
+          result.coeff.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(double),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'isContrSetting':
-          result.isContrSetting = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isContrSetting =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isDestructiveRead':
-          result.isDestructiveRead = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isDestructiveRead =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isFeScaling':
-          result.isFeScaling = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isFeScaling =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
         case 'isStepMotor':
-          result.isStepMotor = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.isStepMotor =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -1302,22 +1879,28 @@ class _$GgetDeviceInfoData extends GgetDeviceInfoData {
   @override
   final GgetDeviceInfoData_deviceInfo deviceInfo;
 
-  factory _$GgetDeviceInfoData(
-          [void Function(GgetDeviceInfoDataBuilder)? updates]) =>
-      (new GgetDeviceInfoDataBuilder()..update(updates))._build();
+  factory _$GgetDeviceInfoData([
+    void Function(GgetDeviceInfoDataBuilder)? updates,
+  ]) => (new GgetDeviceInfoDataBuilder()..update(updates))._build();
 
   _$GgetDeviceInfoData._({required this.G__typename, required this.deviceInfo})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GgetDeviceInfoData', 'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        deviceInfo, r'GgetDeviceInfoData', 'deviceInfo');
+      deviceInfo,
+      r'GgetDeviceInfoData',
+      'deviceInfo',
+    );
   }
 
   @override
   GgetDeviceInfoData rebuild(
-          void Function(GgetDeviceInfoDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GgetDeviceInfoDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoDataBuilder toBuilder() =>
@@ -1394,10 +1977,14 @@ class GgetDeviceInfoDataBuilder
   _$GgetDeviceInfoData _build() {
     _$GgetDeviceInfoData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GgetDeviceInfoData', 'G__typename'),
+              G__typename,
+              r'GgetDeviceInfoData',
+              'G__typename',
+            ),
             deviceInfo: deviceInfo.build(),
           );
     } catch (_) {
@@ -1407,7 +1994,10 @@ class GgetDeviceInfoDataBuilder
         deviceInfo.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoData', _$failedField, e.toString());
+          r'GgetDeviceInfoData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1422,23 +2012,30 @@ class _$GgetDeviceInfoData_deviceInfo extends GgetDeviceInfoData_deviceInfo {
   @override
   final BuiltList<GgetDeviceInfoData_deviceInfo_result> result;
 
-  factory _$GgetDeviceInfoData_deviceInfo(
-          [void Function(GgetDeviceInfoData_deviceInfoBuilder)? updates]) =>
-      (new GgetDeviceInfoData_deviceInfoBuilder()..update(updates))._build();
+  factory _$GgetDeviceInfoData_deviceInfo([
+    void Function(GgetDeviceInfoData_deviceInfoBuilder)? updates,
+  ]) => (new GgetDeviceInfoData_deviceInfoBuilder()..update(updates))._build();
 
-  _$GgetDeviceInfoData_deviceInfo._(
-      {required this.G__typename, required this.result})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo._({
+    required this.G__typename,
+    required this.result,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GgetDeviceInfoData_deviceInfo', 'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        result, r'GgetDeviceInfoData_deviceInfo', 'result');
+      result,
+      r'GgetDeviceInfoData_deviceInfo',
+      'result',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo rebuild(
-          void Function(GgetDeviceInfoData_deviceInfoBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GgetDeviceInfoData_deviceInfoBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfoBuilder toBuilder() =>
@@ -1472,8 +2069,10 @@ class _$GgetDeviceInfoData_deviceInfo extends GgetDeviceInfoData_deviceInfo {
 
 class GgetDeviceInfoData_deviceInfoBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo,
-            GgetDeviceInfoData_deviceInfoBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo,
+          GgetDeviceInfoData_deviceInfoBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo? _$v;
 
   String? _G__typename;
@@ -1518,10 +2117,14 @@ class GgetDeviceInfoData_deviceInfoBuilder
   _$GgetDeviceInfoData_deviceInfo _build() {
     _$GgetDeviceInfoData_deviceInfo _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoData_deviceInfo._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GgetDeviceInfoData_deviceInfo', 'G__typename'),
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo',
+              'G__typename',
+            ),
             result: result.build(),
           );
     } catch (_) {
@@ -1531,7 +2134,10 @@ class GgetDeviceInfoData_deviceInfoBuilder
         result.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoData_deviceInfo', _$failedField, e.toString());
+          r'GgetDeviceInfoData_deviceInfo',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1545,23 +2151,25 @@ class _$GgetDeviceInfoData_deviceInfo_result__base
   @override
   final String G__typename;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__base(
-          [void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__base([
+    void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder)? updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__baseBuilder()..update(updates))
           ._build();
 
   _$GgetDeviceInfoData_deviceInfo_result__base._({required this.G__typename})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__base', 'G__typename');
+    : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__base',
+      'G__typename',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__base rebuild(
-          void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__baseBuilder toBuilder() =>
@@ -1585,16 +2193,17 @@ class _$GgetDeviceInfoData_deviceInfo_result__base
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__base')
-          ..add('G__typename', G__typename))
-        .toString();
+      r'GgetDeviceInfoData_deviceInfo_result__base',
+    )..add('G__typename', G__typename)).toString();
   }
 }
 
 class GgetDeviceInfoData_deviceInfo_result__baseBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo_result__base,
-            GgetDeviceInfoData_deviceInfo_result__baseBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo_result__base,
+          GgetDeviceInfoData_deviceInfo_result__baseBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__base? _$v;
 
   String? _G__typename;
@@ -1622,8 +2231,8 @@ class GgetDeviceInfoData_deviceInfo_result__baseBuilder
 
   @override
   void update(
-      void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder)?
-          updates) {
+    void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1631,10 +2240,14 @@ class GgetDeviceInfoData_deviceInfo_result__baseBuilder
   GgetDeviceInfoData_deviceInfo_result__base build() => _build();
 
   _$GgetDeviceInfoData_deviceInfo_result__base _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GgetDeviceInfoData_deviceInfo_result__base._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GgetDeviceInfoData_deviceInfo_result__base', 'G__typename'),
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GgetDeviceInfoData_deviceInfo_result__base',
+            'G__typename',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1651,40 +2264,45 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
   final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading? reading;
   @override
   final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl?
-      digControl;
+  digControl;
   @override
   final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus? digStatus;
   @override
   final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? setting;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo([
+    void Function(GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._(
-      {required this.G__typename,
-      required this.description,
-      this.reading,
-      this.digControl,
-      this.digStatus,
-      this.setting})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(description,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo', 'description');
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._({
+    required this.G__typename,
+    required this.description,
+    this.reading,
+    this.digControl,
+    this.digStatus,
+    this.setting,
+  }) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      description,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+      'description',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder toBuilder() =>
@@ -1719,7 +2337,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+          )
           ..add('G__typename', G__typename)
           ..add('description', description)
           ..add('reading', reading)
@@ -1732,8 +2351,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
 
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo? _$v;
 
   String? _G__typename;
@@ -1746,41 +2367,43 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder? _reading;
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
-      get reading => _$this._reading ??=
+  get reading =>
+      _$this._reading ??=
           new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder();
   set reading(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder?
-              reading) =>
-      _$this._reading = reading;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder? reading,
+  ) => _$this._reading = reading;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder?
-      _digControl;
+  _digControl;
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
-      get digControl => _$this._digControl ??=
+  get digControl =>
+      _$this._digControl ??=
           new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder();
   set digControl(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder?
-              digControl) =>
-      _$this._digControl = digControl;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder?
+    digControl,
+  ) => _$this._digControl = digControl;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder?
-      _digStatus;
+  _digStatus;
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
-      get digStatus => _$this._digStatus ??=
+  get digStatus =>
+      _$this._digStatus ??=
           new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder();
   set digStatus(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder?
-              digStatus) =>
-      _$this._digStatus = digStatus;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder?
+    digStatus,
+  ) => _$this._digStatus = digStatus;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder? _setting;
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
-      get setting => _$this._setting ??=
+  get setting =>
+      _$this._setting ??=
           new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder();
   set setting(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder?
-              setting) =>
-      _$this._setting = setting;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder? setting,
+  ) => _$this._setting = setting;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder() {
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._initializeBuilder(this);
@@ -1808,8 +2431,9 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
 
   @override
   void update(
-      void Function(GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)?
-          updates) {
+    void Function(GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1819,16 +2443,19 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo _build() {
     _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
-                'G__typename'),
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+              'G__typename',
+            ),
             description: BuiltValueNullFieldError.checkNotNull(
-                description,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
-                'description'),
+              description,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+              'description',
+            ),
             reading: _reading?.build(),
             digControl: _digControl?.build(),
             digStatus: _digStatus?.build(),
@@ -1847,9 +2474,10 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
         _setting?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
-            _$failedField,
-            e.toString());
+          r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1885,80 +2513,95 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
   @override
   final bool isStepMotor;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._(
-      {required this.G__typename,
-      required this.minVal,
-      required this.maxVal,
-      this.primaryUnits,
-      required this.primaryIndex,
-      this.commonUnits,
-      required this.commonIndex,
-      required this.coeff,
-      required this.isContrSetting,
-      required this.isDestructiveRead,
-      required this.isFeScaling,
-      required this.isStepMotor})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._({
+    required this.G__typename,
+    required this.minVal,
+    required this.maxVal,
+    this.primaryUnits,
+    required this.primaryIndex,
+    this.commonUnits,
+    required this.commonIndex,
+    required this.coeff,
+    required this.isContrSetting,
+    required this.isDestructiveRead,
+    required this.isFeScaling,
+    required this.isStepMotor,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        minVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'minVal');
+      minVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'minVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        maxVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'maxVal');
+      maxVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'maxVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        primaryIndex,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'primaryIndex');
+      primaryIndex,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'primaryIndex',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        commonIndex,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'commonIndex');
-    BuiltValueNullFieldError.checkNotNull(coeff,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading', 'coeff');
+      commonIndex,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'commonIndex',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isContrSetting,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'isContrSetting');
+      coeff,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'coeff',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isDestructiveRead,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'isDestructiveRead');
+      isContrSetting,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'isContrSetting',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isFeScaling,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'isFeScaling');
+      isDestructiveRead,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'isDestructiveRead',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isStepMotor,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-        'isStepMotor');
+      isFeScaling,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'isFeScaling',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      isStepMotor,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+      'isStepMotor',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2001,7 +2644,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+          )
           ..add('G__typename', G__typename)
           ..add('minVal', minVal)
           ..add('maxVal', maxVal)
@@ -2020,8 +2664,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
 
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading? _$v;
 
   String? _G__typename;
@@ -2075,8 +2721,9 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
   set isStepMotor(bool? isStepMotor) => _$this._isStepMotor = isStepMotor;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder get _$this {
@@ -2101,16 +2748,19 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading;
   }
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -2121,47 +2771,57 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading _build() {
     _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'G__typename'),
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'G__typename',
+            ),
             minVal: BuiltValueNullFieldError.checkNotNull(
-                minVal,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'minVal'),
+              minVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'minVal',
+            ),
             maxVal: BuiltValueNullFieldError.checkNotNull(
-                maxVal,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'maxVal'),
+              maxVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'maxVal',
+            ),
             primaryUnits: primaryUnits,
             primaryIndex: BuiltValueNullFieldError.checkNotNull(
-                primaryIndex,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'primaryIndex'),
+              primaryIndex,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'primaryIndex',
+            ),
             commonUnits: commonUnits,
             commonIndex: BuiltValueNullFieldError.checkNotNull(
-                commonIndex,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'commonIndex'),
+              commonIndex,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'commonIndex',
+            ),
             coeff: coeff.build(),
             isContrSetting: BuiltValueNullFieldError.checkNotNull(
-                isContrSetting,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'isContrSetting'),
+              isContrSetting,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'isContrSetting',
+            ),
             isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
-                isDestructiveRead,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'isDestructiveRead'),
+              isDestructiveRead,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'isDestructiveRead',
+            ),
             isFeScaling: BuiltValueNullFieldError.checkNotNull(
-                isFeScaling,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'isFeScaling'),
+              isFeScaling,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'isFeScaling',
+            ),
             isStepMotor: BuiltValueNullFieldError.checkNotNull(
-                isStepMotor,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-                'isStepMotor'),
+              isStepMotor,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+              'isStepMotor',
+            ),
           );
     } catch (_) {
       late String _$failedField;
@@ -2170,9 +2830,10 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
         coeff.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-            _$failedField,
-            e.toString());
+          r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -2187,42 +2848,49 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
   final String G__typename;
   @override
   final BuiltList<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>
-      entries;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+  >
+  entries;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._(
-      {required this.G__typename, required this.entries})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._({
+    required this.G__typename,
+    required this.entries,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        entries,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
-        'entries');
+      entries,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
+      'entries',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2245,7 +2913,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
+          )
           ..add('G__typename', G__typename)
           ..add('entries', entries))
         .toString();
@@ -2254,8 +2923,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
 
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl? _$v;
 
   String? _G__typename;
@@ -2263,25 +2934,32 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
   ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>?
-      _entries;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+  >?
+  _entries;
   ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>
-      get entries => _$this._entries ??= new ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>();
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+  >
+  get entries =>
+      _$this._entries ??=
+          new ListBuilder<
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+          >();
   set entries(
-          ListBuilder<
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries>?
-              entries) =>
-      _$this._entries = entries;
+    ListBuilder<
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
+    >?
+    entries,
+  ) => _$this._entries = entries;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
-      get _$this {
+  get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -2293,17 +2971,21 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other
-        as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl;
+    _$v =
+        other
+            as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl;
   }
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -2314,12 +2996,14 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl _build() {
     _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
-                'G__typename'),
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
+              'G__typename',
+            ),
             entries: entries.build(),
           );
     } catch (_) {
@@ -2329,9 +3013,10 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
         entries.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
-            _$failedField,
-            e.toString());
+          r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -2341,7 +3026,8 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
 }
 
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-    extends GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries {
+    extends
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries {
   @override
   final String G__typename;
   @override
@@ -2351,50 +3037,57 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
   @override
   final String longName;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._(
-      {required this.G__typename,
-      required this.value,
-      required this.shortName,
-      required this.longName})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._({
+    required this.G__typename,
+    required this.value,
+    required this.shortName,
+    required this.longName,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        value,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-        'value');
+      value,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+      'value',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        shortName,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-        'shortName');
+      shortName,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+      'shortName',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        longName,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-        'longName');
+      longName,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+      'longName',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2421,7 +3114,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+          )
           ..add('G__typename', G__typename)
           ..add('value', value)
           ..add('shortName', shortName)
@@ -2433,8 +3127,9 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
     implements
         Builder<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries? _$v;
 
   String? _G__typename;
@@ -2454,12 +3149,13 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuild
   set longName(String? longName) => _$this._longName = longName;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
-      get _$this {
+  get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -2473,46 +3169,53 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuild
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-          other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other
-        as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries;
+    _$v =
+        other
+            as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries;
   }
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-      build() => _build();
+  build() => _build();
 
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-      _build() {
-    final _$result = _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
-            ._(
+  _build() {
+    final _$result =
+        _$v ??
+        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-              'G__typename'),
+            G__typename,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+            'G__typename',
+          ),
           value: BuiltValueNullFieldError.checkNotNull(
-              value,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-              'value'),
+            value,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+            'value',
+          ),
           shortName: BuiltValueNullFieldError.checkNotNull(
-              shortName,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-              'shortName'),
+            shortName,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+            'shortName',
+          ),
           longName: BuiltValueNullFieldError.checkNotNull(
-              longName,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-              'longName'),
+            longName,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
+            'longName',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -2525,52 +3228,60 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
   final String G__typename;
   @override
   final BuiltList<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
-      extEntries;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+  >
+  extEntries;
   @override
   final BuiltList<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
-      entries;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+  >
+  entries;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._(
-      {required this.G__typename,
-      required this.extEntries,
-      required this.entries})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._({
+    required this.G__typename,
+    required this.extEntries,
+    required this.entries,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        extEntries,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-        'extEntries');
+      extEntries,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+      'extEntries',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        entries,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-        'entries');
+      entries,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+      'entries',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2595,7 +3306,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+          )
           ..add('G__typename', G__typename)
           ..add('extEntries', extEntries)
           ..add('entries', entries))
@@ -2605,8 +3317,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
 
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus? _$v;
 
   String? _G__typename;
@@ -2614,38 +3328,51 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
   ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>?
-      _extEntries;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+  >?
+  _extEntries;
   ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>
-      get extEntries => _$this._extEntries ??= new ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>();
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+  >
+  get extEntries =>
+      _$this._extEntries ??=
+          new ListBuilder<
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+          >();
   set extEntries(
-          ListBuilder<
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries>?
-              extEntries) =>
-      _$this._extEntries = extEntries;
+    ListBuilder<
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+    >?
+    extEntries,
+  ) => _$this._extEntries = extEntries;
 
   ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>?
-      _entries;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+  >?
+  _entries;
   ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
-      get entries => _$this._entries ??= new ListBuilder<
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>();
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+  >
+  get entries =>
+      _$this._entries ??=
+          new ListBuilder<
+            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+          >();
   set entries(
-          ListBuilder<
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>?
-              entries) =>
-      _$this._entries = entries;
+    ListBuilder<
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
+    >?
+    entries,
+  ) => _$this._entries = entries;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
-      get _$this {
+  get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -2658,7 +3385,8 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
     _$v =
         other as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus;
@@ -2666,9 +3394,11 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -2679,12 +3409,14 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus _build() {
     _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-                'G__typename'),
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+              'G__typename',
+            ),
             extEntries: extEntries.build(),
             entries: entries.build(),
           );
@@ -2697,9 +3429,10 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
         entries.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-            _$failedField,
-            e.toString());
+          r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -2709,7 +3442,8 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
 }
 
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-    extends GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries {
+    extends
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries {
   @override
   final String G__typename;
   @override
@@ -2725,65 +3459,76 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
   @override
   final String description;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._(
-      {required this.G__typename,
-      required this.bitNo,
-      required this.color0,
-      required this.name0,
-      required this.color1,
-      required this.name1,
-      required this.description})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._({
+    required this.G__typename,
+    required this.bitNo,
+    required this.color0,
+    required this.name0,
+    required this.color1,
+    required this.name1,
+    required this.description,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        bitNo,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-        'bitNo');
+      bitNo,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+      'bitNo',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        color0,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-        'color0');
+      color0,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+      'color0',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        name0,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-        'name0');
+      name0,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+      'name0',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        color1,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-        'color1');
+      color1,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+      'color1',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        name1,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-        'name1');
+      name1,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+      'name1',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        description,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-        'description');
+      description,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+      'description',
+    );
   }
 
   @override
-  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+  rebuild(
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2816,7 +3561,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+          )
           ..add('G__typename', G__typename)
           ..add('bitNo', bitNo)
           ..add('color0', color0)
@@ -2831,10 +3577,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
     implements
         Builder<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries?
-      _$v;
+  _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -2865,12 +3612,13 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBui
   set description(String? description) => _$this._description = description;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
-      get _$this {
+  get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -2887,58 +3635,69 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBui
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-          other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
+    other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other
-        as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries;
+    _$v =
+        other
+            as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries;
   }
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-      build() => _build();
+  build() => _build();
 
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-      _build() {
-    final _$result = _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
-            ._(
+  _build() {
+    final _$result =
+        _$v ??
+        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-              'G__typename'),
+            G__typename,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+            'G__typename',
+          ),
           bitNo: BuiltValueNullFieldError.checkNotNull(
-              bitNo,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-              'bitNo'),
+            bitNo,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+            'bitNo',
+          ),
           color0: BuiltValueNullFieldError.checkNotNull(
-              color0,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-              'color0'),
+            color0,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+            'color0',
+          ),
           name0: BuiltValueNullFieldError.checkNotNull(
-              name0,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-              'name0'),
+            name0,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+            'name0',
+          ),
           color1: BuiltValueNullFieldError.checkNotNull(
-              color1,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-              'color1'),
+            color1,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+            'color1',
+          ),
           name1: BuiltValueNullFieldError.checkNotNull(
-              name1,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-              'name1'),
+            name1,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+            'name1',
+          ),
           description: BuiltValueNullFieldError.checkNotNull(
-              description,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-              'description'),
+            description,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
+            'description',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -2946,7 +3705,8 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBui
 }
 
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-    extends GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries {
+    extends
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries {
   @override
   final String G__typename;
   @override
@@ -2972,90 +3732,105 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
   @override
   final String falseChar;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._(
-      {required this.G__typename,
-      required this.maskVal,
-      required this.matchVal,
-      required this.invert,
-      required this.shortName,
-      required this.longName,
-      required this.trueStr,
-      required this.trueColor,
-      required this.trueChar,
-      required this.falseStr,
-      required this.falseColor,
-      required this.falseChar})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._({
+    required this.G__typename,
+    required this.maskVal,
+    required this.matchVal,
+    required this.invert,
+    required this.shortName,
+    required this.longName,
+    required this.trueStr,
+    required this.trueColor,
+    required this.trueChar,
+    required this.falseStr,
+    required this.falseColor,
+    required this.falseChar,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        maskVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'maskVal');
+      maskVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'maskVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        matchVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'matchVal');
+      matchVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'matchVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        invert,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'invert');
+      invert,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'invert',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        shortName,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'shortName');
+      shortName,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'shortName',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        longName,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'longName');
+      longName,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'longName',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        trueStr,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'trueStr');
+      trueStr,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'trueStr',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        trueColor,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'trueColor');
+      trueColor,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'trueColor',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        trueChar,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'trueChar');
+      trueChar,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'trueChar',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        falseStr,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'falseStr');
+      falseStr,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'falseStr',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        falseColor,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'falseColor');
+      falseColor,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'falseColor',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        falseChar,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-        'falseChar');
+      falseChar,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+      'falseChar',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -3098,7 +3873,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+          )
           ..add('G__typename', G__typename)
           ..add('maskVal', maskVal)
           ..add('matchVal', matchVal)
@@ -3118,8 +3894,9 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
     implements
         Builder<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries? _$v;
 
   String? _G__typename;
@@ -3171,12 +3948,13 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilde
   set falseChar(String? falseChar) => _$this._falseChar = falseChar;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
-      get _$this {
+  get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -3198,78 +3976,93 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilde
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-          other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other
-        as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries;
+    _$v =
+        other
+            as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries;
   }
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-      build() => _build();
+  build() => _build();
 
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-      _build() {
-    final _$result = _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
-            ._(
+  _build() {
+    final _$result =
+        _$v ??
+        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'G__typename'),
+            G__typename,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'G__typename',
+          ),
           maskVal: BuiltValueNullFieldError.checkNotNull(
-              maskVal,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'maskVal'),
+            maskVal,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'maskVal',
+          ),
           matchVal: BuiltValueNullFieldError.checkNotNull(
-              matchVal,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'matchVal'),
+            matchVal,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'matchVal',
+          ),
           invert: BuiltValueNullFieldError.checkNotNull(
-              invert,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'invert'),
+            invert,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'invert',
+          ),
           shortName: BuiltValueNullFieldError.checkNotNull(
-              shortName,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'shortName'),
+            shortName,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'shortName',
+          ),
           longName: BuiltValueNullFieldError.checkNotNull(
-              longName,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'longName'),
+            longName,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'longName',
+          ),
           trueStr: BuiltValueNullFieldError.checkNotNull(
-              trueStr,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'trueStr'),
+            trueStr,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'trueStr',
+          ),
           trueColor: BuiltValueNullFieldError.checkNotNull(
-              trueColor,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'trueColor'),
+            trueColor,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'trueColor',
+          ),
           trueChar: BuiltValueNullFieldError.checkNotNull(
-              trueChar,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'trueChar'),
+            trueChar,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'trueChar',
+          ),
           falseStr: BuiltValueNullFieldError.checkNotNull(
-              falseStr,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'falseStr'),
+            falseStr,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'falseStr',
+          ),
           falseColor: BuiltValueNullFieldError.checkNotNull(
-              falseColor,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'falseColor'),
+            falseColor,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'falseColor',
+          ),
           falseChar: BuiltValueNullFieldError.checkNotNull(
-              falseChar,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-              'falseChar'),
+            falseChar,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
+            'falseChar',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -3304,83 +4097,98 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
   final bool isStepMotor;
   @override
   final GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo?
-      knobInfo;
+  knobInfo;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._(
-      {required this.G__typename,
-      required this.minVal,
-      required this.maxVal,
-      this.primaryUnits,
-      required this.primaryIndex,
-      this.commonUnits,
-      required this.commonIndex,
-      required this.coeff,
-      required this.isContrSetting,
-      required this.isDestructiveRead,
-      required this.isFeScaling,
-      required this.isStepMotor,
-      this.knobInfo})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._({
+    required this.G__typename,
+    required this.minVal,
+    required this.maxVal,
+    this.primaryUnits,
+    required this.primaryIndex,
+    this.commonUnits,
+    required this.commonIndex,
+    required this.coeff,
+    required this.isContrSetting,
+    required this.isDestructiveRead,
+    required this.isFeScaling,
+    required this.isStepMotor,
+    this.knobInfo,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        minVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'minVal');
+      minVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'minVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        maxVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'maxVal');
+      maxVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'maxVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        primaryIndex,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'primaryIndex');
+      primaryIndex,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'primaryIndex',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        commonIndex,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'commonIndex');
-    BuiltValueNullFieldError.checkNotNull(coeff,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting', 'coeff');
+      commonIndex,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'commonIndex',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isContrSetting,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'isContrSetting');
+      coeff,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'coeff',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isDestructiveRead,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'isDestructiveRead');
+      isContrSetting,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'isContrSetting',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isFeScaling,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'isFeScaling');
+      isDestructiveRead,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'isDestructiveRead',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isStepMotor,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-        'isStepMotor');
+      isFeScaling,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'isFeScaling',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      isStepMotor,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+      'isStepMotor',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -3425,7 +4233,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+          )
           ..add('G__typename', G__typename)
           ..add('minVal', minVal)
           ..add('maxVal', maxVal)
@@ -3445,8 +4254,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
 
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting? _$v;
 
   String? _G__typename;
@@ -3500,18 +4311,20 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   set isStepMotor(bool? isStepMotor) => _$this._isStepMotor = isStepMotor;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder?
-      _knobInfo;
+  _knobInfo;
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
-      get knobInfo => _$this._knobInfo ??=
+  get knobInfo =>
+      _$this._knobInfo ??=
           new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder();
   set knobInfo(
-          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder?
-              knobInfo) =>
-      _$this._knobInfo = knobInfo;
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder?
+    knobInfo,
+  ) => _$this._knobInfo = knobInfo;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder get _$this {
@@ -3537,16 +4350,19 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting;
   }
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -3557,47 +4373,57 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting _build() {
     _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'G__typename'),
+              G__typename,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'G__typename',
+            ),
             minVal: BuiltValueNullFieldError.checkNotNull(
-                minVal,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'minVal'),
+              minVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'minVal',
+            ),
             maxVal: BuiltValueNullFieldError.checkNotNull(
-                maxVal,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'maxVal'),
+              maxVal,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'maxVal',
+            ),
             primaryUnits: primaryUnits,
             primaryIndex: BuiltValueNullFieldError.checkNotNull(
-                primaryIndex,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'primaryIndex'),
+              primaryIndex,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'primaryIndex',
+            ),
             commonUnits: commonUnits,
             commonIndex: BuiltValueNullFieldError.checkNotNull(
-                commonIndex,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'commonIndex'),
+              commonIndex,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'commonIndex',
+            ),
             coeff: coeff.build(),
             isContrSetting: BuiltValueNullFieldError.checkNotNull(
-                isContrSetting,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'isContrSetting'),
+              isContrSetting,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'isContrSetting',
+            ),
             isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
-                isDestructiveRead,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'isDestructiveRead'),
+              isDestructiveRead,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'isDestructiveRead',
+            ),
             isFeScaling: BuiltValueNullFieldError.checkNotNull(
-                isFeScaling,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'isFeScaling'),
+              isFeScaling,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'isFeScaling',
+            ),
             isStepMotor: BuiltValueNullFieldError.checkNotNull(
-                isStepMotor,
-                r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-                'isStepMotor'),
+              isStepMotor,
+              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+              'isStepMotor',
+            ),
             knobInfo: _knobInfo?.build(),
           );
     } catch (_) {
@@ -3610,9 +4436,10 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
         _knobInfo?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-            _$failedField,
-            e.toString());
+          r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -3622,7 +4449,8 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
 }
 
 class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-    extends GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo {
+    extends
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo {
   @override
   final String G__typename;
   @override
@@ -3632,50 +4460,57 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
   @override
   final double step;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo([
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder,
+    )?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._(
-      {required this.G__typename,
-      required this.minVal,
-      required this.maxVal,
-      required this.step})
-      : super._() {
+  _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._({
+    required this.G__typename,
+    required this.minVal,
+    required this.maxVal,
+    required this.step,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-        'G__typename');
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        minVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-        'minVal');
+      minVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+      'minVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        maxVal,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-        'maxVal');
+      maxVal,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+      'maxVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        step,
-        r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-        'step');
+      step,
+      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+      'step',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
-      toBuilder() =>
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -3702,7 +4537,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo')
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+          )
           ..add('G__typename', G__typename)
           ..add('minVal', minVal)
           ..add('maxVal', maxVal)
@@ -3714,8 +4550,9 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
 class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
     implements
         Builder<
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
-            GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder> {
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo,
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo? _$v;
 
   String? _G__typename;
@@ -3735,12 +4572,13 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
   set step(double? step) => _$this._step = step;
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder() {
-    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-        ._initializeBuilder(this);
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._initializeBuilder(
+      this,
+    );
   }
 
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
-      get _$this {
+  get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -3754,18 +4592,21 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
 
   @override
   void replace(
-      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-          other) {
+    GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
-    _$v = other
-        as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo;
+    _$v =
+        other
+            as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo;
   }
 
   @override
   void update(
-      void Function(
-              GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder)?
-          updates) {
+    void Function(
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -3774,26 +4615,30 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
       _build();
 
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-      _build() {
-    final _$result = _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
-            ._(
+  _build() {
+    final _$result =
+        _$v ??
+        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-              'G__typename'),
+            G__typename,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+            'G__typename',
+          ),
           minVal: BuiltValueNullFieldError.checkNotNull(
-              minVal,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-              'minVal'),
+            minVal,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+            'minVal',
+          ),
           maxVal: BuiltValueNullFieldError.checkNotNull(
-              maxVal,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-              'maxVal'),
+            maxVal,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+            'maxVal',
+          ),
           step: BuiltValueNullFieldError.checkNotNull(
-              step,
-              r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-              'step'),
+            step,
+            r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
+            'step',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -3807,29 +4652,35 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReply
   @override
   final String message;
 
-  factory _$GgetDeviceInfoData_deviceInfo_result__asErrorReply(
-          [void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)?
-              updates]) =>
+  factory _$GgetDeviceInfoData_deviceInfo_result__asErrorReply([
+    void Function(GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)?
+    updates,
+  ]) =>
       (new GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder()
             ..update(updates))
           ._build();
 
-  _$GgetDeviceInfoData_deviceInfo_result__asErrorReply._(
-      {required this.G__typename, required this.message})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GgetDeviceInfoData_deviceInfo_result__asErrorReply', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(message,
-        r'GgetDeviceInfoData_deviceInfo_result__asErrorReply', 'message');
+  _$GgetDeviceInfoData_deviceInfo_result__asErrorReply._({
+    required this.G__typename,
+    required this.message,
+  }) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      message,
+      r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
+      'message',
+    );
   }
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asErrorReply rebuild(
-          void Function(
-                  GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder toBuilder() =>
@@ -3856,7 +4707,8 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReply
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GgetDeviceInfoData_deviceInfo_result__asErrorReply')
+            r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
+          )
           ..add('G__typename', G__typename)
           ..add('message', message))
         .toString();
@@ -3865,8 +4717,10 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReply
 
 class GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder
     implements
-        Builder<GgetDeviceInfoData_deviceInfo_result__asErrorReply,
-            GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder> {
+        Builder<
+          GgetDeviceInfoData_deviceInfo_result__asErrorReply,
+          GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder
+        > {
   _$GgetDeviceInfoData_deviceInfo_result__asErrorReply? _$v;
 
   String? _G__typename;
@@ -3899,8 +4753,9 @@ class GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder
 
   @override
   void update(
-      void Function(GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)?
-          updates) {
+    void Function(GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -3908,14 +4763,19 @@ class GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder
   GgetDeviceInfoData_deviceInfo_result__asErrorReply build() => _build();
 
   _$GgetDeviceInfoData_deviceInfo_result__asErrorReply _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GgetDeviceInfoData_deviceInfo_result__asErrorReply._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
-              'G__typename'),
-          message: BuiltValueNullFieldError.checkNotNull(message,
-              r'GgetDeviceInfoData_deviceInfo_result__asErrorReply', 'message'),
+            G__typename,
+            r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
+            'G__typename',
+          ),
+          message: BuiltValueNullFieldError.checkNotNull(
+            message,
+            r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
+            'message',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -3948,50 +4808,80 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
   @override
   final bool isStepMotor;
 
-  factory _$GDevicePropertyFieldsData(
-          [void Function(GDevicePropertyFieldsDataBuilder)? updates]) =>
-      (new GDevicePropertyFieldsDataBuilder()..update(updates))._build();
+  factory _$GDevicePropertyFieldsData([
+    void Function(GDevicePropertyFieldsDataBuilder)? updates,
+  ]) => (new GDevicePropertyFieldsDataBuilder()..update(updates))._build();
 
-  _$GDevicePropertyFieldsData._(
-      {required this.G__typename,
-      required this.minVal,
-      required this.maxVal,
-      this.primaryUnits,
-      required this.primaryIndex,
-      this.commonUnits,
-      required this.commonIndex,
-      required this.coeff,
-      required this.isContrSetting,
-      required this.isDestructiveRead,
-      required this.isFeScaling,
-      required this.isStepMotor})
-      : super._() {
+  _$GDevicePropertyFieldsData._({
+    required this.G__typename,
+    required this.minVal,
+    required this.maxVal,
+    this.primaryUnits,
+    required this.primaryIndex,
+    this.commonUnits,
+    required this.commonIndex,
+    required this.coeff,
+    required this.isContrSetting,
+    required this.isDestructiveRead,
+    required this.isFeScaling,
+    required this.isStepMotor,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GDevicePropertyFieldsData', 'G__typename');
+      G__typename,
+      r'GDevicePropertyFieldsData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        minVal, r'GDevicePropertyFieldsData', 'minVal');
+      minVal,
+      r'GDevicePropertyFieldsData',
+      'minVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        maxVal, r'GDevicePropertyFieldsData', 'maxVal');
+      maxVal,
+      r'GDevicePropertyFieldsData',
+      'maxVal',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        primaryIndex, r'GDevicePropertyFieldsData', 'primaryIndex');
+      primaryIndex,
+      r'GDevicePropertyFieldsData',
+      'primaryIndex',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        commonIndex, r'GDevicePropertyFieldsData', 'commonIndex');
+      commonIndex,
+      r'GDevicePropertyFieldsData',
+      'commonIndex',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        coeff, r'GDevicePropertyFieldsData', 'coeff');
+      coeff,
+      r'GDevicePropertyFieldsData',
+      'coeff',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isContrSetting, r'GDevicePropertyFieldsData', 'isContrSetting');
+      isContrSetting,
+      r'GDevicePropertyFieldsData',
+      'isContrSetting',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isDestructiveRead, r'GDevicePropertyFieldsData', 'isDestructiveRead');
+      isDestructiveRead,
+      r'GDevicePropertyFieldsData',
+      'isDestructiveRead',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isFeScaling, r'GDevicePropertyFieldsData', 'isFeScaling');
+      isFeScaling,
+      r'GDevicePropertyFieldsData',
+      'isFeScaling',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        isStepMotor, r'GDevicePropertyFieldsData', 'isStepMotor');
+      isStepMotor,
+      r'GDevicePropertyFieldsData',
+      'isStepMotor',
+    );
   }
 
   @override
   GDevicePropertyFieldsData rebuild(
-          void Function(GDevicePropertyFieldsDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GDevicePropertyFieldsDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GDevicePropertyFieldsDataBuilder toBuilder() =>
@@ -4149,31 +5039,57 @@ class GDevicePropertyFieldsDataBuilder
   _$GDevicePropertyFieldsData _build() {
     _$GDevicePropertyFieldsData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GDevicePropertyFieldsData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GDevicePropertyFieldsData', 'G__typename'),
+              G__typename,
+              r'GDevicePropertyFieldsData',
+              'G__typename',
+            ),
             minVal: BuiltValueNullFieldError.checkNotNull(
-                minVal, r'GDevicePropertyFieldsData', 'minVal'),
+              minVal,
+              r'GDevicePropertyFieldsData',
+              'minVal',
+            ),
             maxVal: BuiltValueNullFieldError.checkNotNull(
-                maxVal, r'GDevicePropertyFieldsData', 'maxVal'),
+              maxVal,
+              r'GDevicePropertyFieldsData',
+              'maxVal',
+            ),
             primaryUnits: primaryUnits,
             primaryIndex: BuiltValueNullFieldError.checkNotNull(
-                primaryIndex, r'GDevicePropertyFieldsData', 'primaryIndex'),
+              primaryIndex,
+              r'GDevicePropertyFieldsData',
+              'primaryIndex',
+            ),
             commonUnits: commonUnits,
             commonIndex: BuiltValueNullFieldError.checkNotNull(
-                commonIndex, r'GDevicePropertyFieldsData', 'commonIndex'),
+              commonIndex,
+              r'GDevicePropertyFieldsData',
+              'commonIndex',
+            ),
             coeff: coeff.build(),
             isContrSetting: BuiltValueNullFieldError.checkNotNull(
-                isContrSetting, r'GDevicePropertyFieldsData', 'isContrSetting'),
+              isContrSetting,
+              r'GDevicePropertyFieldsData',
+              'isContrSetting',
+            ),
             isDestructiveRead: BuiltValueNullFieldError.checkNotNull(
-                isDestructiveRead,
-                r'GDevicePropertyFieldsData',
-                'isDestructiveRead'),
+              isDestructiveRead,
+              r'GDevicePropertyFieldsData',
+              'isDestructiveRead',
+            ),
             isFeScaling: BuiltValueNullFieldError.checkNotNull(
-                isFeScaling, r'GDevicePropertyFieldsData', 'isFeScaling'),
+              isFeScaling,
+              r'GDevicePropertyFieldsData',
+              'isFeScaling',
+            ),
             isStepMotor: BuiltValueNullFieldError.checkNotNull(
-                isStepMotor, r'GDevicePropertyFieldsData', 'isStepMotor'),
+              isStepMotor,
+              r'GDevicePropertyFieldsData',
+              'isStepMotor',
+            ),
           );
     } catch (_) {
       late String _$failedField;
@@ -4182,7 +5098,10 @@ class GDevicePropertyFieldsDataBuilder
         coeff.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GDevicePropertyFieldsData', _$failedField, e.toString());
+          r'GDevicePropertyFieldsData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
