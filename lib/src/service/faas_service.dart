@@ -14,7 +14,7 @@ abstract interface class FaasServiceAPI {
   Future<Int64> unixToClinks(Int64 time);
 }
 
-final class FaasService implements FaasServiceAPI {
+final class _FaasService implements FaasServiceAPI {
   final Client _q;
 
   static Map<String, String> _buildAuthHeader(String? jwt) =>
@@ -23,7 +23,7 @@ final class FaasService implements FaasServiceAPI {
   // Constructor. This creates the HTTP link needed to communicate with our
   // GraphQL endpoint.
 
-  FaasService({String? jwt})
+  _FaasService({String? jwt})
     : _q = Client(
         link: HttpLink(
           "https://acsys-proxy.fnal.gov:8001/faas",
@@ -103,7 +103,7 @@ final class FaasProvider extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => _FaasProviderIW(
-    service: service ?? FaasService(jwt: AuthService.getJwt(context)),
+    service: service ?? _FaasService(jwt: AuthService.getJwt(context)),
     child: child,
   );
 }
