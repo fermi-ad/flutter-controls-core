@@ -17,19 +17,24 @@ class AuthInfo {
   final String clientSecret;
   final List<String> scopes;
 
-  const AuthInfo(
-      {required this.realm,
-      required this.clientId,
-      required this.clientSecret,
-      this.scopes = const []});
+  const AuthInfo({
+    required this.realm,
+    required this.clientId,
+    required this.clientSecret,
+    this.scopes = const [],
+  });
 }
 
 Credential? _credentials;
 Future<Credential?> Function() _authenticate = () async => null;
 bool _authRequired = false;
 
-Future<void> initAuth(String realm, String clientId, String clientSecret,
-    List<String> scopes) async {
+Future<void> initAuth(
+  String realm,
+  String clientId,
+  String clientSecret,
+  List<String> scopes,
+) async {
   final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
   const Duration tmo = Duration(seconds: 2);
 
@@ -58,7 +63,7 @@ class _AuthCredentials extends InheritedWidget {
   final UserInfo? userInfo;
 
   _AuthCredentials({this.userInfo, required super.child})
-      : credentials = _credentials;
+    : credentials = _credentials;
 
   @override
   bool updateShouldNotify(covariant _AuthCredentials oldWidget) =>
@@ -83,15 +88,17 @@ class AuthService extends StatefulWidget {
 
   static bool get authRequired => _authRequired;
 
-  static Credential? getCreds(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
-      ?.credentials;
+  static Credential? getCreds(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
+          ?.credentials;
 
-  static String? getJwt(BuildContext context) => context
-      .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
-      ?.credentials
-      ?.idToken
-      .toCompactSerialization();
+  static String? getJwt(BuildContext context) =>
+      context
+          .dependOnInheritedWidgetOfExactType<_AuthCredentials>()
+          ?.credentials
+          ?.idToken
+          .toCompactSerialization();
 
   static UserInfo? getUserInfo(BuildContext context) =>
       context.dependOnInheritedWidgetOfExactType<_AuthCredentials>()?.userInfo;
@@ -156,9 +163,11 @@ class _AuthState extends State<AuthService> {
     if (authenticated) {
       final Credential tmp = _credentials!;
 
-      Future<void>.microtask(() async => await tmp
-          .revoke()
-          .onError((error, trace) => dev.log("revoke error: $error")));
+      Future<void>.microtask(
+        () async => await tmp.revoke().onError(
+          (error, trace) => dev.log("revoke error: $error"),
+        ),
+      );
       setState(() {
         _credentials = null;
         userInfo = null;

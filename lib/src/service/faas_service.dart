@@ -1,0 +1,125 @@
+library;
+
+import 'dart:ffi';
+import 'package:flutter/material.dart';
+import 'package:flutter_controls_core/flutter_controls_core.dart';
+import 'package:ferry/ferry.dart';
+import 'package:gql_http_link/gql_http_link.dart';
+
+import 'package:flutter_controls_core/src/service/faas/schema/__generated__/to_clinks.req.gql.dart';
+import 'package:flutter_controls_core/src/service/faas/schema/__generated__/to_unix.req.gql.dart';
+
+abstract interface class FaasServiceAPI {
+  Future<Int64?> clinksToUnix(Int64 clinks);
+  Future<Int64> unixToClinks(Int64 time);
+}
+
+final class FaasService implements FaasServiceAPI {
+  final Client _q;
+
+  static Map<String, String> _buildAuthHeader(String? jwt) =>
+      jwt != null ? {"Authorization": "Bearer $jwt"} : {};
+
+  // Constructor. This creates the HTTP link needed to communicate with our
+  // GraphQL endpoint.
+
+  FaasService({String? jwt})
+    : _q = Client(
+        link: HttpLink(
+          "https://acsys-proxy.fnal.gov:8001/faas",
+          defaultHeaders: _buildAuthHeader(jwt),
+        ),
+        cache: Cache(),
+      );
+
+  Future<Result> _rpc<TData, TVars, Result>(
+    OperationRequest<TData, TVars> req, {
+    Result Function(TData)? xlat,
+  }) => _q.request(req).where((response) => !response.loading).first.then((
+    value,
+  ) {
+    if (value.hasErrors) {
+      throw Exception(value.graphqlErrors);
+    } else {
+      final data = value.data;
+
+      if (data != null) {
+        return xlat != null ? xlat(data) : data as Result;
+      } else {
+        throw Exception("no data was returned from request");
+      }
+    }
+  });
+
+  @override
+  Future<Int64?> clinksToUnix(Int64 clinks) =>
+      _rpc(GToUnixReq((b) => b..vars.clinks));
+
+  @override
+  Future<Int64> unixToClinks(Int64 time) =>
+      _rpc(GToClinksReq((b) => b..vars.time));
+}
+
+/// A widget that provides access to the FaaS Service API. This doesn't
+/// exist in the widget, nor does it do anything but provide access to the
+/// API using the coolly named `Faas.api()` method.
+
+final class Faas {
+  /// Returns an object supporting the Faas API.
+  ///
+  /// Any widget that uses this to retrieve the FaaS service object will
+  /// get registered if the [FaasProvider] gets rebuilt.
+
+  static FaasServiceAPI api(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_FaasProviderIW>()!._service;
+}
+
+/// Provides the FaaS API to the application.
+///
+/// If an application wishes to use the FaaS API, it should place an instance
+/// of this widget near the top of its tree so it doesn't get rebuilt. With
+/// this in the tree, other widgets can use the API by calling [Faas.api()]
+/// to get an [FaasServiceAPI] object which implements the API.
+final class FaasProvider extends StatelessWidget {
+  final Widget child;
+  final FaasServiceAPI? service;
+
+  static Widget Function({required Widget child}) factory({
+    FaasServiceAPI? service,
+  }) =>
+      ({required Widget child}) => FaasProvider(service: service, child: child);
+
+  /// Creates the widget.
+  ///
+  /// - [child] is the widget subtree that gets added to the tree below this
+  ///   widget.
+  /// - [key] is an optional identifier for the widget.
+  /// - [service] is an optional obect which implements the [FaasServiceAPI]
+  ///   interface. If this option is omitted, the widget will use an
+  ///   implementation that communicates over the network to the offcial
+  ///   control system API. This option is mainly to mock-up a service to
+  ///   use in unit tests.
+  const FaasProvider({this.service, required this.child, super.key});
+
+  @override
+  Widget build(BuildContext context) => _FaasProviderIW(
+    service: service ?? FaasService(jwt: AuthService.getJwt(context)),
+    child: child,
+  );
+}
+
+// The inherited widget that provides the ACSys API to the application. This
+// is a private class which holds a spot in the widget tree where the service
+// object is stored. Inherited Widgets provide registration so that widgets
+// can be rapidly rebuilt when the service object changes.
+
+final class _FaasProviderIW extends InheritedWidget {
+  final FaasServiceAPI _service;
+
+  const _FaasProviderIW({required FaasServiceAPI service, required super.child})
+    : _service = service;
+
+  @override
+  bool updateShouldNotify(covariant _FaasProviderIW oldWidget) =>
+      _service != oldWidget._service;
+}

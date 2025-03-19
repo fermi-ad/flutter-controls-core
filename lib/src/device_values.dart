@@ -53,6 +53,8 @@ sealed class DeviceValue {
         return v == o;
       case ((DevTextArray(value: var v), DevTextArray(value: var o))):
         return listEquals(v, o);
+      case ((DevTimeSeries(values: var v), DevTimeSeries(values: var o))):
+        return listEquals(v, o);
       default:
         return false;
     }
@@ -60,12 +62,13 @@ sealed class DeviceValue {
 
   @override
   int get hashCode => switch (this) {
-        DevRaw(value: var v) => v.hashCode,
-        DevScalar(value: var v) => v.hashCode,
-        DevText(value: var v) => v.hashCode,
-        DevScalarArray(value: var v) => v.hashCode,
-        DevTextArray(value: var v) => v.hashCode,
-      };
+    DevRaw(value: var v) => v.hashCode,
+    DevScalar(value: var v) => v.hashCode,
+    DevText(value: var v) => v.hashCode,
+    DevScalarArray(value: var v) => v.hashCode,
+    DevTextArray(value: var v) => v.hashCode,
+    DevTimeSeries(values: var v) => v.hashCode,
+  };
 }
 
 /// Represents a raw, byte array.
@@ -119,6 +122,14 @@ final class DevTextArray extends DeviceValue {
   const DevTextArray(this.value);
 }
 
+/// Represents time-series data (i.e. a list of timestamp/value pairs.)
+
+final class DevTimeSeries extends DeviceValue {
+  final List<(double, double)> values;
+
+  const DevTimeSeries(this.values);
+}
+
 // The `ToDeviceValue` extension allows us to convert primitive types into a
 // `DeviceValue`.
 
@@ -146,30 +157,69 @@ extension TextArrayToDeviceValue on List<String> {
   DeviceValue toDevVal() => DevTextArray(this);
 }
 
+extension RawTimeSeriesToDeviceValue on List<(double, double)> {
+  DeviceValue toDevVal() => DevTimeSeries(this);
+}
+
+extension TimeSeriesToDeviceValue on List<(DateTime, double)> {
+  DeviceValue toDevVal() => DevTimeSeries([
+    ...map((e) => (e.$1.millisecondsSinceEpoch / 1000.0, e.$2)),
+  ]);
+}
+
 // The `FromDeviceValue` extension allows us to convert a `DeviceValue` into a
 // primitive type.
 
 extension FromDevValToDouble on DeviceValue {
-  double? toDouble() =>
-      switch (this) { DevScalar(value: var value) => value, _ => null };
+  double? toDouble() => switch (this) {
+    DevScalar(value: var value) => value,
+    _ => null,
+  };
 }
 
 extension FromDevValToText on DeviceValue {
-  String? toText() =>
-      switch (this) { DevText(value: var value) => value, _ => null };
+  String? toText() => switch (this) {
+    DevText(value: var value) => value,
+    _ => null,
+  };
 }
 
 extension FromDevValToRaw on DeviceValue {
-  List<int>? toRaw() =>
-      switch (this) { DevRaw(value: var value) => value, _ => null };
+  List<int>? toRaw() => switch (this) {
+    DevRaw(value: var value) => value,
+    _ => null,
+  };
 }
 
 extension FromDevValToDoubleArray on DeviceValue {
-  List<double>? toDoubleArray() =>
-      switch (this) { DevScalarArray(value: var value) => value, _ => null };
+  List<double>? toDoubleArray() => switch (this) {
+    DevScalarArray(value: var value) => value,
+    _ => null,
+  };
 }
 
 extension FromDevValToTextArray on DeviceValue {
-  List<String>? toTextArray() =>
-      switch (this) { DevTextArray(value: var value) => value, _ => null };
+  List<String>? toTextArray() => switch (this) {
+    DevTextArray(value: var value) => value,
+    _ => null,
+  };
+}
+
+extension FromDevValToTimeSeries on DeviceValue {
+  List<(double, double)>? toTimeSeries() => switch (this) {
+    DevTimeSeries(values: var values) => values,
+    _ => null,
+  };
+
+  List<(DateTime, double)>? toTimeSeriesWithDates() => switch (this) {
+    DevTimeSeries(values: var values) => [
+      ...values.map(
+        (e) => (
+          DateTime.fromMillisecondsSinceEpoch((e.$1 * 1000).toInt()),
+          e.$2,
+        ),
+      ),
+    ],
+    _ => null,
+  };
 }

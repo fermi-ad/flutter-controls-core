@@ -61,6 +61,7 @@ Serializers _$serializers = (new Serializers().toBuilder()
       ..add(GStreamDataData_acceleratorData_data_result__base.serializer)
       ..add(GStreamDataReq.serializer)
       ..add(GStreamDataVars.serializer)
+      ..add(GTimeSeriesEntryIn.serializer)
       ..add(GUpdatePlotConfigData.serializer)
       ..add(GUpdatePlotConfigReq.serializer)
       ..add(GUpdatePlotConfigVars.serializer)
@@ -134,7 +135,10 @@ Serializers _$serializers = (new Serializers().toBuilder()
           () => new ListBuilder<int>())
       ..addBuilderFactory(
           const FullType(BuiltList, const [const FullType(String)]),
-          () => new ListBuilder<String>()))
+          () => new ListBuilder<String>())
+      ..addBuilderFactory(
+          const FullType(BuiltList, const [const FullType(GTimeSeriesEntryIn)]),
+          () => new ListBuilder<GTimeSeriesEntryIn>()))
     .build();
 
 // ignore_for_file: deprecated_member_use_from_same_package,type=lint
