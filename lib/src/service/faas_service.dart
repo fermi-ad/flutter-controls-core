@@ -71,7 +71,7 @@ final class Faas {
   /// get registered if the [FaasProvider] gets rebuilt.
 
   static FaasServiceAPI api(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_FaasProviderIW>()!._service;
+      context.dependOnInheritedWidgetOfExactType<_FaasProviderIW>()!.service;
 }
 
 /// Provides the FaaS API to the application.
@@ -135,12 +135,11 @@ final class FaasProvider extends StatelessWidget {
 // can be rapidly rebuilt when the service object changes.
 
 final class _FaasProviderIW extends InheritedWidget {
-  final FaasServiceAPI _service;
+  final FaasServiceAPI service;
 
-  const _FaasProviderIW({required FaasServiceAPI service, required super.child})
-    : _service = service;
+  const _FaasProviderIW({required this.service, required super.child});
 
   @override
   bool updateShouldNotify(covariant _FaasProviderIW oldWidget) =>
-      _service != oldWidget._service;
+      service != oldWidget.service;
 }
