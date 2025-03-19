@@ -1306,7 +1306,7 @@ final class ACSys {
   /// get registered if the [ACSysProvider] gets rebuilt.
 
   static ACSysServiceAPI api(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_ACSysProviderIW>()!._service;
+      context.dependOnInheritedWidgetOfExactType<_ACSysProviderIW>()!.service;
 }
 
 /// Provides the ACSys API to the application.
@@ -1363,14 +1363,11 @@ final class ACSysProvider extends StatelessWidget {
 // can be rapidly rebuilt when the service object changes.
 
 final class _ACSysProviderIW extends InheritedWidget {
-  final ACSysServiceAPI _service;
+  final ACSysServiceAPI service;
 
-  const _ACSysProviderIW({
-    required ACSysServiceAPI service,
-    required super.child,
-  }) : _service = service;
+  const _ACSysProviderIW({required this.service, required super.child});
 
   @override
   bool updateShouldNotify(covariant _ACSysProviderIW oldWidget) =>
-      _service != oldWidget._service;
+      service != oldWidget.service;
 }
