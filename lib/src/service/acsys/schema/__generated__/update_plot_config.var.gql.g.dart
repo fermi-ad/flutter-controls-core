@@ -14,19 +14,23 @@ class _$GUpdatePlotConfigVarsSerializer
   @override
   final Iterable<Type> types = const [
     GUpdatePlotConfigVars,
-    _$GUpdatePlotConfigVars
+    _$GUpdatePlotConfigVars,
   ];
   @override
   final String wireName = 'GUpdatePlotConfigVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GUpdatePlotConfigVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GUpdatePlotConfigVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'cfg',
-      serializers.serialize(object.cfg,
-          specifiedType: const FullType(_i1.GPlotConfigurationSnapshotIn)),
+      serializers.serialize(
+        object.cfg,
+        specifiedType: const FullType(_i1.GPlotConfigurationSnapshotIn),
+      ),
     ];
 
     return result;
@@ -34,8 +38,10 @@ class _$GUpdatePlotConfigVarsSerializer
 
   @override
   GUpdatePlotConfigVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GUpdatePlotConfigVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -45,10 +51,15 @@ class _$GUpdatePlotConfigVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'cfg':
-          result.cfg.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(_i1.GPlotConfigurationSnapshotIn))!
-              as _i1.GPlotConfigurationSnapshotIn);
+          result.cfg.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                    _i1.GPlotConfigurationSnapshotIn,
+                  ),
+                )!
+                as _i1.GPlotConfigurationSnapshotIn,
+          );
           break;
       }
     }
@@ -61,9 +72,9 @@ class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
   @override
   final _i1.GPlotConfigurationSnapshotIn cfg;
 
-  factory _$GUpdatePlotConfigVars(
-          [void Function(GUpdatePlotConfigVarsBuilder)? updates]) =>
-      (new GUpdatePlotConfigVarsBuilder()..update(updates))._build();
+  factory _$GUpdatePlotConfigVars([
+    void Function(GUpdatePlotConfigVarsBuilder)? updates,
+  ]) => (new GUpdatePlotConfigVarsBuilder()..update(updates))._build();
 
   _$GUpdatePlotConfigVars._({required this.cfg}) : super._() {
     BuiltValueNullFieldError.checkNotNull(cfg, r'GUpdatePlotConfigVars', 'cfg');
@@ -71,8 +82,8 @@ class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
 
   @override
   GUpdatePlotConfigVars rebuild(
-          void Function(GUpdatePlotConfigVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GUpdatePlotConfigVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GUpdatePlotConfigVarsBuilder toBuilder() =>
@@ -95,8 +106,7 @@ class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GUpdatePlotConfigVars')
-          ..add('cfg', cfg))
-        .toString();
+      ..add('cfg', cfg)).toString();
   }
 }
 
@@ -137,10 +147,7 @@ class GUpdatePlotConfigVarsBuilder
   _$GUpdatePlotConfigVars _build() {
     _$GUpdatePlotConfigVars _$result;
     try {
-      _$result = _$v ??
-          new _$GUpdatePlotConfigVars._(
-            cfg: cfg.build(),
-          );
+      _$result = _$v ?? new _$GUpdatePlotConfigVars._(cfg: cfg.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -148,7 +155,10 @@ class GUpdatePlotConfigVarsBuilder
         cfg.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GUpdatePlotConfigVars', _$failedField, e.toString());
+          r'GUpdatePlotConfigVars',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

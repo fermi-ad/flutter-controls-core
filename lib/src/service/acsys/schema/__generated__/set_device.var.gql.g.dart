@@ -17,15 +17,22 @@ class _$GSetDeviceVarsSerializer
   final String wireName = 'GSetDeviceVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GSetDeviceVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GSetDeviceVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'device',
-      serializers.serialize(object.device,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.device,
+        specifiedType: const FullType(String),
+      ),
       'value',
-      serializers.serialize(object.value,
-          specifiedType: const FullType(_i1.GDevValue)),
+      serializers.serialize(
+        object.value,
+        specifiedType: const FullType(_i1.GDevValue),
+      ),
     ];
 
     return result;
@@ -33,8 +40,10 @@ class _$GSetDeviceVarsSerializer
 
   @override
   GSetDeviceVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GSetDeviceVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -44,12 +53,21 @@ class _$GSetDeviceVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'device':
-          result.device = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.device =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'value':
-          result.value.replace(serializers.deserialize(value,
-              specifiedType: const FullType(_i1.GDevValue))! as _i1.GDevValue);
+          result.value.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i1.GDevValue),
+                )!
+                as _i1.GDevValue,
+          );
           break;
       }
     }
@@ -148,10 +166,14 @@ class GSetDeviceVarsBuilder
   _$GSetDeviceVars _build() {
     _$GSetDeviceVars _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GSetDeviceVars._(
             device: BuiltValueNullFieldError.checkNotNull(
-                device, r'GSetDeviceVars', 'device'),
+              device,
+              r'GSetDeviceVars',
+              'device',
+            ),
             value: value.build(),
           );
     } catch (_) {
@@ -161,7 +183,10 @@ class GSetDeviceVarsBuilder
         value.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GSetDeviceVars', _$failedField, e.toString());
+          r'GSetDeviceVars',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

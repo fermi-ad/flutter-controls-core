@@ -27,14 +27,10 @@ abstract class GStartPlotVars
   static Serializer<GStartPlotVars> get serializer =>
       _$gStartPlotVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GStartPlotVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GStartPlotVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GStartPlotVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GStartPlotVars.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GStartPlotVars.serializer, json);
 }

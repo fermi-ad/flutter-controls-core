@@ -26,12 +26,13 @@ abstract class GToClinksReq
   factory GToClinksReq([void Function(GToClinksReqBuilder b) updates]) =
       _$GToClinksReq;
 
-  static void _initializeBuilder(GToClinksReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'ToClinks',
-    )
-    ..executeOnListen = true;
+  static void _initializeBuilder(GToClinksReqBuilder b) =>
+      b
+        ..operation = _i4.Operation(
+          document: _i5.document,
+          operationName: 'ToClinks',
+        )
+        ..executeOnListen = true;
 
   @override
   _i3.GToClinksVars get vars;
@@ -39,19 +40,17 @@ abstract class GToClinksReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-        context: context ?? const _i4.Context(),
-      );
+    operation: operation,
+    variables: vars.toJson(),
+    context: context ?? const _i4.Context(),
+  );
 
   @override
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GToClinksData? Function(
-    _i2.GToClinksData?,
-    _i2.GToClinksData?,
-  )? get updateResult;
+  _i2.GToClinksData? Function(_i2.GToClinksData?, _i2.GToClinksData?)?
+  get updateResult;
   @override
   _i2.GToClinksData? get optimisticResponse;
   @override
@@ -77,19 +76,15 @@ abstract class GToClinksReq
 
   @override
   _i1.OperationRequest<_i2.GToClinksData, _i3.GToClinksVars> transformOperation(
-          _i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+    _i4.Operation Function(_i4.Operation) transform,
+  ) => this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GToClinksReq> get serializer => _$gToClinksReqSerializer;
 
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GToClinksReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GToClinksReq.serializer, this)
+          as Map<String, dynamic>);
 
   static GToClinksReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GToClinksReq.serializer,
-        json,
-      );
+      _i6.serializers.deserializeWith(GToClinksReq.serializer, json);
 }

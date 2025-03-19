@@ -106,12 +106,13 @@ import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
 
 part 'serializers.gql.g.dart';
 
-final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
-  ..add(OperationSerializer())
-  ..add(DateSerializer())
-  ..add(GReadDevicesData_acceleratorData_data_result.serializer)
-  ..add(GStreamDataData_acceleratorData_data_result.serializer)
-  ..addPlugin(StandardJsonPlugin());
+final SerializersBuilder _serializersBuilder =
+    _$serializers.toBuilder()
+      ..add(OperationSerializer())
+      ..add(DateSerializer())
+      ..add(GReadDevicesData_acceleratorData_data_result.serializer)
+      ..add(GStreamDataData_acceleratorData_data_result.serializer)
+      ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GChannelSettingSnapshotIn,
   GDeletePlotConfigData,

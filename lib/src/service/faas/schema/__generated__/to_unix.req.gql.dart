@@ -26,12 +26,13 @@ abstract class GToUnixReq
   factory GToUnixReq([void Function(GToUnixReqBuilder b) updates]) =
       _$GToUnixReq;
 
-  static void _initializeBuilder(GToUnixReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'ToUnix',
-    )
-    ..executeOnListen = true;
+  static void _initializeBuilder(GToUnixReqBuilder b) =>
+      b
+        ..operation = _i4.Operation(
+          document: _i5.document,
+          operationName: 'ToUnix',
+        )
+        ..executeOnListen = true;
 
   @override
   _i3.GToUnixVars get vars;
@@ -39,19 +40,17 @@ abstract class GToUnixReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-        context: context ?? const _i4.Context(),
-      );
+    operation: operation,
+    variables: vars.toJson(),
+    context: context ?? const _i4.Context(),
+  );
 
   @override
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GToUnixData? Function(
-    _i2.GToUnixData?,
-    _i2.GToUnixData?,
-  )? get updateResult;
+  _i2.GToUnixData? Function(_i2.GToUnixData?, _i2.GToUnixData?)?
+  get updateResult;
   @override
   _i2.GToUnixData? get optimisticResponse;
   @override
@@ -77,19 +76,15 @@ abstract class GToUnixReq
 
   @override
   _i1.OperationRequest<_i2.GToUnixData, _i3.GToUnixVars> transformOperation(
-          _i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+    _i4.Operation Function(_i4.Operation) transform,
+  ) => this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GToUnixReq> get serializer => _$gToUnixReqSerializer;
 
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GToUnixReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GToUnixReq.serializer, this)
+          as Map<String, dynamic>);
 
   static GToUnixReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GToUnixReq.serializer,
-        json,
-      );
+      _i6.serializers.deserializeWith(GToUnixReq.serializer, json);
 }

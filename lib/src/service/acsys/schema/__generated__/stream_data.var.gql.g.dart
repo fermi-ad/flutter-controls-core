@@ -17,13 +17,19 @@ class _$GStreamDataVarsSerializer
   final String wireName = 'GStreamDataVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamDataVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'drfs',
-      serializers.serialize(object.drfs,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.drfs,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
     ];
 
     return result;
@@ -31,8 +37,10 @@ class _$GStreamDataVarsSerializer
 
   @override
   GStreamDataVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStreamDataVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -42,10 +50,15 @@ class _$GStreamDataVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'drfs':
-          result.drfs.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.drfs.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -89,8 +102,8 @@ class _$GStreamDataVars extends GStreamDataVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataVars')..add('drfs', drfs))
-        .toString();
+    return (newBuiltValueToStringHelper(r'GStreamDataVars')
+      ..add('drfs', drfs)).toString();
   }
 }
 
@@ -130,10 +143,7 @@ class GStreamDataVarsBuilder
   _$GStreamDataVars _build() {
     _$GStreamDataVars _$result;
     try {
-      _$result = _$v ??
-          new _$GStreamDataVars._(
-            drfs: drfs.build(),
-          );
+      _$result = _$v ?? new _$GStreamDataVars._(drfs: drfs.build());
     } catch (_) {
       late String _$failedField;
       try {
@@ -141,7 +151,10 @@ class GStreamDataVarsBuilder
         drfs.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataVars', _$failedField, e.toString());
+          r'GStreamDataVars',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

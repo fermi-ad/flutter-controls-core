@@ -14,19 +14,23 @@ class _$GUpdatePlotConfigDataSerializer
   @override
   final Iterable<Type> types = const [
     GUpdatePlotConfigData,
-    _$GUpdatePlotConfigData
+    _$GUpdatePlotConfigData,
   ];
   @override
   final String wireName = 'GUpdatePlotConfigData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GUpdatePlotConfigData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GUpdatePlotConfigData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.updatePlotConfiguration;
@@ -40,8 +44,10 @@ class _$GUpdatePlotConfigDataSerializer
 
   @override
   GUpdatePlotConfigData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GUpdatePlotConfigDataBuilder();
 
     final iterator = serialized.iterator;
@@ -51,12 +57,17 @@ class _$GUpdatePlotConfigDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'updatePlotConfiguration':
-          result.updatePlotConfiguration = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.updatePlotConfiguration =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -71,21 +82,25 @@ class _$GUpdatePlotConfigData extends GUpdatePlotConfigData {
   @override
   final int? updatePlotConfiguration;
 
-  factory _$GUpdatePlotConfigData(
-          [void Function(GUpdatePlotConfigDataBuilder)? updates]) =>
-      (new GUpdatePlotConfigDataBuilder()..update(updates))._build();
+  factory _$GUpdatePlotConfigData([
+    void Function(GUpdatePlotConfigDataBuilder)? updates,
+  ]) => (new GUpdatePlotConfigDataBuilder()..update(updates))._build();
 
-  _$GUpdatePlotConfigData._(
-      {required this.G__typename, this.updatePlotConfiguration})
-      : super._() {
+  _$GUpdatePlotConfigData._({
+    required this.G__typename,
+    this.updatePlotConfiguration,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GUpdatePlotConfigData', 'G__typename');
+      G__typename,
+      r'GUpdatePlotConfigData',
+      'G__typename',
+    );
   }
 
   @override
   GUpdatePlotConfigData rebuild(
-          void Function(GUpdatePlotConfigDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GUpdatePlotConfigDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GUpdatePlotConfigDataBuilder toBuilder() =>
@@ -159,10 +174,14 @@ class GUpdatePlotConfigDataBuilder
   GUpdatePlotConfigData build() => _build();
 
   _$GUpdatePlotConfigData _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GUpdatePlotConfigData._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename, r'GUpdatePlotConfigData', 'G__typename'),
+            G__typename,
+            r'GUpdatePlotConfigData',
+            'G__typename',
+          ),
           updatePlotConfiguration: updatePlotConfiguration,
         );
     replace(_$result);

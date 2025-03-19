@@ -23,14 +23,10 @@ abstract class GToUnixData implements Built<GToUnixData, GToUnixDataBuilder> {
   int get clinksToUnix;
   static Serializer<GToUnixData> get serializer => _$gToUnixDataSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GToUnixData.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GToUnixData.serializer, this)
+          as Map<String, dynamic>);
 
   static GToUnixData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GToUnixData.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GToUnixData.serializer, json);
 }

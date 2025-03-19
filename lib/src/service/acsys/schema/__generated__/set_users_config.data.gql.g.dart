@@ -9,7 +9,7 @@ part of 'set_users_config.data.gql.dart';
 Serializer<GSetUsersConfigData> _$gSetUsersConfigDataSerializer =
     new _$GSetUsersConfigDataSerializer();
 Serializer<GSetUsersConfigData_usersConfiguration>
-    _$gSetUsersConfigDataUsersConfigurationSerializer =
+_$gSetUsersConfigDataUsersConfigurationSerializer =
     new _$GSetUsersConfigData_usersConfigurationSerializer();
 
 class _$GSetUsersConfigDataSerializer
@@ -17,23 +17,28 @@ class _$GSetUsersConfigDataSerializer
   @override
   final Iterable<Type> types = const [
     GSetUsersConfigData,
-    _$GSetUsersConfigData
+    _$GSetUsersConfigData,
   ];
   @override
   final String wireName = 'GSetUsersConfigData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GSetUsersConfigData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GSetUsersConfigData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'usersConfiguration',
-      serializers.serialize(object.usersConfiguration,
-          specifiedType:
-              const FullType(GSetUsersConfigData_usersConfiguration)),
+      serializers.serialize(
+        object.usersConfiguration,
+        specifiedType: const FullType(GSetUsersConfigData_usersConfiguration),
+      ),
     ];
 
     return result;
@@ -41,8 +46,10 @@ class _$GSetUsersConfigDataSerializer
 
   @override
   GSetUsersConfigData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GSetUsersConfigDataBuilder();
 
     final iterator = serialized.iterator;
@@ -52,14 +59,23 @@ class _$GSetUsersConfigDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'usersConfiguration':
-          result.usersConfiguration.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GSetUsersConfigData_usersConfiguration))!
-              as GSetUsersConfigData_usersConfiguration);
+          result.usersConfiguration.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                    GSetUsersConfigData_usersConfiguration,
+                  ),
+                )!
+                as GSetUsersConfigData_usersConfiguration,
+          );
           break;
       }
     }
@@ -73,19 +89,23 @@ class _$GSetUsersConfigData_usersConfigurationSerializer
   @override
   final Iterable<Type> types = const [
     GSetUsersConfigData_usersConfiguration,
-    _$GSetUsersConfigData_usersConfiguration
+    _$GSetUsersConfigData_usersConfiguration,
   ];
   @override
   final String wireName = 'GSetUsersConfigData_usersConfiguration';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GSetUsersConfigData_usersConfiguration object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GSetUsersConfigData_usersConfiguration object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'status',
       serializers.serialize(object.status, specifiedType: const FullType(int)),
     ];
@@ -95,8 +115,10 @@ class _$GSetUsersConfigData_usersConfigurationSerializer
 
   @override
   GSetUsersConfigData_usersConfiguration deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GSetUsersConfigData_usersConfigurationBuilder();
 
     final iterator = serialized.iterator;
@@ -106,12 +128,20 @@ class _$GSetUsersConfigData_usersConfigurationSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'status':
-          result.status = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.status =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -126,23 +156,30 @@ class _$GSetUsersConfigData extends GSetUsersConfigData {
   @override
   final GSetUsersConfigData_usersConfiguration usersConfiguration;
 
-  factory _$GSetUsersConfigData(
-          [void Function(GSetUsersConfigDataBuilder)? updates]) =>
-      (new GSetUsersConfigDataBuilder()..update(updates))._build();
+  factory _$GSetUsersConfigData([
+    void Function(GSetUsersConfigDataBuilder)? updates,
+  ]) => (new GSetUsersConfigDataBuilder()..update(updates))._build();
 
-  _$GSetUsersConfigData._(
-      {required this.G__typename, required this.usersConfiguration})
-      : super._() {
+  _$GSetUsersConfigData._({
+    required this.G__typename,
+    required this.usersConfiguration,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GSetUsersConfigData', 'G__typename');
+      G__typename,
+      r'GSetUsersConfigData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        usersConfiguration, r'GSetUsersConfigData', 'usersConfiguration');
+      usersConfiguration,
+      r'GSetUsersConfigData',
+      'usersConfiguration',
+    );
   }
 
   @override
   GSetUsersConfigData rebuild(
-          void Function(GSetUsersConfigDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GSetUsersConfigDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GSetUsersConfigDataBuilder toBuilder() =>
@@ -187,8 +224,8 @@ class GSetUsersConfigDataBuilder
       _$this._usersConfiguration ??=
           new GSetUsersConfigData_usersConfigurationBuilder();
   set usersConfiguration(
-          GSetUsersConfigData_usersConfigurationBuilder? usersConfiguration) =>
-      _$this._usersConfiguration = usersConfiguration;
+    GSetUsersConfigData_usersConfigurationBuilder? usersConfiguration,
+  ) => _$this._usersConfiguration = usersConfiguration;
 
   GSetUsersConfigDataBuilder() {
     GSetUsersConfigData._initializeBuilder(this);
@@ -221,10 +258,14 @@ class GSetUsersConfigDataBuilder
   _$GSetUsersConfigData _build() {
     _$GSetUsersConfigData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GSetUsersConfigData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GSetUsersConfigData', 'G__typename'),
+              G__typename,
+              r'GSetUsersConfigData',
+              'G__typename',
+            ),
             usersConfiguration: usersConfiguration.build(),
           );
     } catch (_) {
@@ -234,7 +275,10 @@ class GSetUsersConfigDataBuilder
         usersConfiguration.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GSetUsersConfigData', _$failedField, e.toString());
+          r'GSetUsersConfigData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -250,26 +294,32 @@ class _$GSetUsersConfigData_usersConfiguration
   @override
   final int status;
 
-  factory _$GSetUsersConfigData_usersConfiguration(
-          [void Function(GSetUsersConfigData_usersConfigurationBuilder)?
-              updates]) =>
+  factory _$GSetUsersConfigData_usersConfiguration([
+    void Function(GSetUsersConfigData_usersConfigurationBuilder)? updates,
+  ]) =>
       (new GSetUsersConfigData_usersConfigurationBuilder()..update(updates))
           ._build();
 
-  _$GSetUsersConfigData_usersConfiguration._(
-      {required this.G__typename, required this.status})
-      : super._() {
+  _$GSetUsersConfigData_usersConfiguration._({
+    required this.G__typename,
+    required this.status,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GSetUsersConfigData_usersConfiguration', 'G__typename');
+      G__typename,
+      r'GSetUsersConfigData_usersConfiguration',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        status, r'GSetUsersConfigData_usersConfiguration', 'status');
+      status,
+      r'GSetUsersConfigData_usersConfiguration',
+      'status',
+    );
   }
 
   @override
   GSetUsersConfigData_usersConfiguration rebuild(
-          void Function(GSetUsersConfigData_usersConfigurationBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GSetUsersConfigData_usersConfigurationBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GSetUsersConfigData_usersConfigurationBuilder toBuilder() =>
@@ -295,7 +345,8 @@ class _$GSetUsersConfigData_usersConfiguration
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GSetUsersConfigData_usersConfiguration')
+            r'GSetUsersConfigData_usersConfiguration',
+          )
           ..add('G__typename', G__typename)
           ..add('status', status))
         .toString();
@@ -304,8 +355,10 @@ class _$GSetUsersConfigData_usersConfiguration
 
 class GSetUsersConfigData_usersConfigurationBuilder
     implements
-        Builder<GSetUsersConfigData_usersConfiguration,
-            GSetUsersConfigData_usersConfigurationBuilder> {
+        Builder<
+          GSetUsersConfigData_usersConfiguration,
+          GSetUsersConfigData_usersConfigurationBuilder
+        > {
   _$GSetUsersConfigData_usersConfiguration? _$v;
 
   String? _G__typename;
@@ -338,7 +391,8 @@ class GSetUsersConfigData_usersConfigurationBuilder
 
   @override
   void update(
-      void Function(GSetUsersConfigData_usersConfigurationBuilder)? updates) {
+    void Function(GSetUsersConfigData_usersConfigurationBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -346,12 +400,19 @@ class GSetUsersConfigData_usersConfigurationBuilder
   GSetUsersConfigData_usersConfiguration build() => _build();
 
   _$GSetUsersConfigData_usersConfiguration _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GSetUsersConfigData_usersConfiguration._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GSetUsersConfigData_usersConfiguration', 'G__typename'),
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GSetUsersConfigData_usersConfiguration',
+            'G__typename',
+          ),
           status: BuiltValueNullFieldError.checkNotNull(
-              status, r'GSetUsersConfigData_usersConfiguration', 'status'),
+            status,
+            r'GSetUsersConfigData_usersConfiguration',
+            'status',
+          ),
         );
     replace(_$result);
     return _$result;

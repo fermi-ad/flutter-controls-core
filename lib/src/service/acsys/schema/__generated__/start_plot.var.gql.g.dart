@@ -17,28 +17,36 @@ class _$GStartPlotVarsSerializer
   final String wireName = 'GStartPlotVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStartPlotVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStartPlotVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'drfList',
-      serializers.serialize(object.drfList,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.drfList,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
     ];
     Object? value;
     value = object.xMin;
     if (value != null) {
       result
         ..add('xMin')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.xMax;
     if (value != null) {
       result
         ..add('xMax')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(double)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
     }
     value = object.windowSize;
     if (value != null) {
@@ -69,8 +77,10 @@ class _$GStartPlotVarsSerializer
 
   @override
   GStartPlotVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStartPlotVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -80,34 +90,51 @@ class _$GStartPlotVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'drfList':
-          result.drfList.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.drfList.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
         case 'xMin':
-          result.xMin = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.xMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'xMax':
-          result.xMax = serializers.deserialize(value,
-              specifiedType: const FullType(double)) as double?;
+          result.xMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'windowSize':
-          result.windowSize = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.windowSize =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'updateDelay':
-          result.updateDelay = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.updateDelay =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'nAcquisitions':
-          result.nAcquisitions = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.nAcquisitions =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'triggerEvent':
-          result.triggerEvent = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.triggerEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -135,17 +162,20 @@ class _$GStartPlotVars extends GStartPlotVars {
   factory _$GStartPlotVars([void Function(GStartPlotVarsBuilder)? updates]) =>
       (new GStartPlotVarsBuilder()..update(updates))._build();
 
-  _$GStartPlotVars._(
-      {required this.drfList,
-      this.xMin,
-      this.xMax,
-      this.windowSize,
-      this.updateDelay,
-      this.nAcquisitions,
-      this.triggerEvent})
-      : super._() {
+  _$GStartPlotVars._({
+    required this.drfList,
+    this.xMin,
+    this.xMax,
+    this.windowSize,
+    this.updateDelay,
+    this.nAcquisitions,
+    this.triggerEvent,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        drfList, r'GStartPlotVars', 'drfList');
+      drfList,
+      r'GStartPlotVars',
+      'drfList',
+    );
   }
 
   @override
@@ -265,7 +295,8 @@ class GStartPlotVarsBuilder
   _$GStartPlotVars _build() {
     _$GStartPlotVars _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStartPlotVars._(
             drfList: drfList.build(),
             xMin: xMin,
@@ -282,7 +313,10 @@ class GStartPlotVarsBuilder
         drfList.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStartPlotVars', _$failedField, e.toString());
+          r'GStartPlotVars',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

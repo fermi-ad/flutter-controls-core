@@ -76,95 +76,103 @@ const StartPlot = _i1.OperationDefinitionNode(
     ),
   ],
   directives: [],
-  selectionSet: _i1.SelectionSetNode(selections: [
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'startPlot'),
-      alias: null,
-      arguments: [
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'drfList'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'drfList')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'xMin'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'xMin')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'xMax'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'xMax')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'windowSize'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'windowSize')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'updateDelay'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'updateDelay')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'nAcquisitions'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'nAcquisitions')),
-        ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'triggerEvent'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'triggerEvent')),
-        ),
-      ],
-      directives: [],
-      selectionSet: _i1.SelectionSetNode(selections: [
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'plotId'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        ),
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'data'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: _i1.SelectionSetNode(selections: [
+  selectionSet: _i1.SelectionSetNode(
+    selections: [
+      _i1.FieldNode(
+        name: _i1.NameNode(value: 'startPlot'),
+        alias: null,
+        arguments: [
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'drfList'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'drfList')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'xMin'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'xMin')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'xMax'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'xMax')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'windowSize'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'windowSize')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'updateDelay'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'updateDelay')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'nAcquisitions'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'nAcquisitions')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'triggerEvent'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'triggerEvent')),
+          ),
+        ],
+        directives: [],
+        selectionSet: _i1.SelectionSetNode(
+          selections: [
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'channelUnits'),
+              name: _i1.NameNode(value: 'plotId'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: null,
             ),
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'channelStatus'),
+              name: _i1.NameNode(value: 'data'),
               alias: null,
               arguments: [],
               directives: [],
-              selectionSet: null,
+              selectionSet: _i1.SelectionSetNode(
+                selections: [
+                  _i1.FieldNode(
+                    name: _i1.NameNode(value: 'channelUnits'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  _i1.FieldNode(
+                    name: _i1.NameNode(value: 'channelStatus'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  _i1.FieldNode(
+                    name: _i1.NameNode(value: 'channelData'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: _i1.SelectionSetNode(
+                      selections: [
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'x'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                        _i1.FieldNode(
+                          name: _i1.NameNode(value: 'y'),
+                          alias: null,
+                          arguments: [],
+                          directives: [],
+                          selectionSet: null,
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
-            _i1.FieldNode(
-              name: _i1.NameNode(value: 'channelData'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: _i1.SelectionSetNode(selections: [
-                _i1.FieldNode(
-                  name: _i1.NameNode(value: 'x'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-                _i1.FieldNode(
-                  name: _i1.NameNode(value: 'y'),
-                  alias: null,
-                  arguments: [],
-                  directives: [],
-                  selectionSet: null,
-                ),
-              ]),
-            ),
-          ]),
+          ],
         ),
-      ]),
-    )
-  ]),
+      ),
+    ],
+  ),
 );
 const document = _i1.DocumentNode(definitions: [StartPlot]);

@@ -20,20 +20,23 @@ part 'users_last_config.req.gql.g.dart';
 abstract class GUsersLastConfigReq
     implements
         Built<GUsersLastConfigReq, GUsersLastConfigReqBuilder>,
-        _i1
-        .OperationRequest<_i2.GUsersLastConfigData, _i3.GUsersLastConfigVars> {
+        _i1.OperationRequest<
+          _i2.GUsersLastConfigData,
+          _i3.GUsersLastConfigVars
+        > {
   GUsersLastConfigReq._();
 
-  factory GUsersLastConfigReq(
-          [void Function(GUsersLastConfigReqBuilder b) updates]) =
-      _$GUsersLastConfigReq;
+  factory GUsersLastConfigReq([
+    void Function(GUsersLastConfigReqBuilder b) updates,
+  ]) = _$GUsersLastConfigReq;
 
-  static void _initializeBuilder(GUsersLastConfigReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'UsersLastConfig',
-    )
-    ..executeOnListen = true;
+  static void _initializeBuilder(GUsersLastConfigReqBuilder b) =>
+      b
+        ..operation = _i4.Operation(
+          document: _i5.document,
+          operationName: 'UsersLastConfig',
+        )
+        ..executeOnListen = true;
 
   @override
   _i3.GUsersLastConfigVars get vars;
@@ -41,10 +44,10 @@ abstract class GUsersLastConfigReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-        context: context ?? const _i4.Context(),
-      );
+    operation: operation,
+    variables: vars.toJson(),
+    context: context ?? const _i4.Context(),
+  );
 
   @override
   String? get requestId;
@@ -53,7 +56,8 @@ abstract class GUsersLastConfigReq
   _i2.GUsersLastConfigData? Function(
     _i2.GUsersLastConfigData?,
     _i2.GUsersLastConfigData?,
-  )? get updateResult;
+  )?
+  get updateResult;
   @override
   _i2.GUsersLastConfigData? get optimisticResponse;
   @override
@@ -80,20 +84,16 @@ abstract class GUsersLastConfigReq
 
   @override
   _i1.OperationRequest<_i2.GUsersLastConfigData, _i3.GUsersLastConfigVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
+  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GUsersLastConfigReq> get serializer =>
       _$gUsersLastConfigReqSerializer;
 
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GUsersLastConfigReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GUsersLastConfigReq.serializer, this)
+          as Map<String, dynamic>);
 
   static GUsersLastConfigReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GUsersLastConfigReq.serializer,
-        json,
-      );
+      _i6.serializers.deserializeWith(GUsersLastConfigReq.serializer, json);
 }

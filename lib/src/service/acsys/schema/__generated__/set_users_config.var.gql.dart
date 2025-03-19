@@ -15,22 +15,18 @@ abstract class GSetUsersConfigVars
     implements Built<GSetUsersConfigVars, GSetUsersConfigVarsBuilder> {
   GSetUsersConfigVars._();
 
-  factory GSetUsersConfigVars(
-          [void Function(GSetUsersConfigVarsBuilder b) updates]) =
-      _$GSetUsersConfigVars;
+  factory GSetUsersConfigVars([
+    void Function(GSetUsersConfigVarsBuilder b) updates,
+  ]) = _$GSetUsersConfigVars;
 
   _i1.GPlotConfigurationSnapshotIn get cfg;
   static Serializer<GSetUsersConfigVars> get serializer =>
       _$gSetUsersConfigVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GSetUsersConfigVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GSetUsersConfigVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GSetUsersConfigVars? fromJson(Map<String, dynamic> json) =>
-      _i2.serializers.deserializeWith(
-        GSetUsersConfigVars.serializer,
-        json,
-      );
+      _i2.serializers.deserializeWith(GSetUsersConfigVars.serializer, json);
 }

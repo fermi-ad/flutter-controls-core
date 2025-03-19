@@ -14,9 +14,9 @@ abstract class GUsersLastConfigData
     implements Built<GUsersLastConfigData, GUsersLastConfigDataBuilder> {
   GUsersLastConfigData._();
 
-  factory GUsersLastConfigData(
-          [void Function(GUsersLastConfigDataBuilder b) updates]) =
-      _$GUsersLastConfigData;
+  factory GUsersLastConfigData([
+    void Function(GUsersLastConfigDataBuilder b) updates,
+  ]) = _$GUsersLastConfigData;
 
   static void _initializeBuilder(GUsersLastConfigDataBuilder b) =>
       b..G__typename = 'Query';
@@ -27,31 +27,29 @@ abstract class GUsersLastConfigData
   static Serializer<GUsersLastConfigData> get serializer =>
       _$gUsersLastConfigDataSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GUsersLastConfigData.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GUsersLastConfigData.serializer, this)
+          as Map<String, dynamic>);
 
   static GUsersLastConfigData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GUsersLastConfigData.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GUsersLastConfigData.serializer, json);
 }
 
 abstract class GUsersLastConfigData_usersLastConfiguration
     implements
-        Built<GUsersLastConfigData_usersLastConfiguration,
-            GUsersLastConfigData_usersLastConfigurationBuilder> {
+        Built<
+          GUsersLastConfigData_usersLastConfiguration,
+          GUsersLastConfigData_usersLastConfigurationBuilder
+        > {
   GUsersLastConfigData_usersLastConfiguration._();
 
-  factory GUsersLastConfigData_usersLastConfiguration(
-      [void Function(GUsersLastConfigData_usersLastConfigurationBuilder b)
-          updates]) = _$GUsersLastConfigData_usersLastConfiguration;
+  factory GUsersLastConfigData_usersLastConfiguration([
+    void Function(GUsersLastConfigData_usersLastConfigurationBuilder b) updates,
+  ]) = _$GUsersLastConfigData_usersLastConfiguration;
 
   static void _initializeBuilder(
-          GUsersLastConfigData_usersLastConfigurationBuilder b) =>
-      b..G__typename = 'PlotConfigurationSnapshot';
+    GUsersLastConfigData_usersLastConfigurationBuilder b,
+  ) => b..G__typename = 'PlotConfigurationSnapshot';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -70,35 +68,39 @@ abstract class GUsersLastConfigData_usersLastConfiguration
   int? get nAcquisitions;
   int? get tclkEvent;
   static Serializer<GUsersLastConfigData_usersLastConfiguration>
-      get serializer => _$gUsersLastConfigDataUsersLastConfigurationSerializer;
+  get serializer => _$gUsersLastConfigDataUsersLastConfigurationSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GUsersLastConfigData_usersLastConfiguration.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GUsersLastConfigData_usersLastConfiguration.serializer,
+            this,
+          )
+          as Map<String, dynamic>);
 
   static GUsersLastConfigData_usersLastConfiguration? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GUsersLastConfigData_usersLastConfiguration.serializer,
-        json,
-      );
+    Map<String, dynamic> json,
+  ) => _i1.serializers.deserializeWith(
+    GUsersLastConfigData_usersLastConfiguration.serializer,
+    json,
+  );
 }
 
 abstract class GUsersLastConfigData_usersLastConfiguration_channels
     implements
-        Built<GUsersLastConfigData_usersLastConfiguration_channels,
-            GUsersLastConfigData_usersLastConfiguration_channelsBuilder> {
+        Built<
+          GUsersLastConfigData_usersLastConfiguration_channels,
+          GUsersLastConfigData_usersLastConfiguration_channelsBuilder
+        > {
   GUsersLastConfigData_usersLastConfiguration_channels._();
 
-  factory GUsersLastConfigData_usersLastConfiguration_channels(
-      [void Function(
-              GUsersLastConfigData_usersLastConfiguration_channelsBuilder b)
-          updates]) = _$GUsersLastConfigData_usersLastConfiguration_channels;
+  factory GUsersLastConfigData_usersLastConfiguration_channels([
+    void Function(GUsersLastConfigData_usersLastConfiguration_channelsBuilder b)
+    updates,
+  ]) = _$GUsersLastConfigData_usersLastConfiguration_channels;
 
   static void _initializeBuilder(
-          GUsersLastConfigData_usersLastConfiguration_channelsBuilder b) =>
-      b..G__typename = 'ChannelSettingSnapshot';
+    GUsersLastConfigData_usersLastConfiguration_channelsBuilder b,
+  ) => b..G__typename = 'ChannelSettingSnapshot';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -106,18 +108,20 @@ abstract class GUsersLastConfigData_usersLastConfiguration_channels
   int? get lineColor;
   int? get markerIndex;
   static Serializer<GUsersLastConfigData_usersLastConfiguration_channels>
-      get serializer =>
-          _$gUsersLastConfigDataUsersLastConfigurationChannelsSerializer;
+  get serializer =>
+      _$gUsersLastConfigDataUsersLastConfigurationChannelsSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GUsersLastConfigData_usersLastConfiguration_channels.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GUsersLastConfigData_usersLastConfiguration_channels.serializer,
+            this,
+          )
+          as Map<String, dynamic>);
 
   static GUsersLastConfigData_usersLastConfiguration_channels? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GUsersLastConfigData_usersLastConfiguration_channels.serializer,
-        json,
-      );
+    Map<String, dynamic> json,
+  ) => _i1.serializers.deserializeWith(
+    GUsersLastConfigData_usersLastConfiguration_channels.serializer,
+    json,
+  );
 }

@@ -16,12 +16,17 @@ class _$GToClinksDataSerializer implements StructuredSerializer<GToClinksData> {
   final String wireName = 'GToClinksData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GToClinksData object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GToClinksData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
     Object? value;
     value = object.unixToClinks;
@@ -35,8 +40,10 @@ class _$GToClinksDataSerializer implements StructuredSerializer<GToClinksData> {
 
   @override
   GToClinksData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GToClinksDataBuilder();
 
     final iterator = serialized.iterator;
@@ -46,12 +53,17 @@ class _$GToClinksDataSerializer implements StructuredSerializer<GToClinksData> {
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'unixToClinks':
-          result.unixToClinks = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.unixToClinks =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -70,9 +82,12 @@ class _$GToClinksData extends GToClinksData {
       (new GToClinksDataBuilder()..update(updates))._build();
 
   _$GToClinksData._({required this.G__typename, this.unixToClinks})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GToClinksData', 'G__typename');
+      G__typename,
+      r'GToClinksData',
+      'G__typename',
+    );
   }
 
   @override
@@ -149,10 +164,14 @@ class GToClinksDataBuilder
   GToClinksData build() => _build();
 
   _$GToClinksData _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GToClinksData._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename, r'GToClinksData', 'G__typename'),
+            G__typename,
+            r'GToClinksData',
+            'G__typename',
+          ),
           unixToClinks: unixToClinks,
         );
     replace(_$result);

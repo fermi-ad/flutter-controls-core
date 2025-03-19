@@ -26,12 +26,13 @@ abstract class GStartPlotReq
   factory GStartPlotReq([void Function(GStartPlotReqBuilder b) updates]) =
       _$GStartPlotReq;
 
-  static void _initializeBuilder(GStartPlotReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'StartPlot',
-    )
-    ..executeOnListen = true;
+  static void _initializeBuilder(GStartPlotReqBuilder b) =>
+      b
+        ..operation = _i4.Operation(
+          document: _i5.document,
+          operationName: 'StartPlot',
+        )
+        ..executeOnListen = true;
 
   @override
   _i3.GStartPlotVars get vars;
@@ -39,19 +40,17 @@ abstract class GStartPlotReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-        context: context ?? const _i4.Context(),
-      );
+    operation: operation,
+    variables: vars.toJson(),
+    context: context ?? const _i4.Context(),
+  );
 
   @override
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GStartPlotData? Function(
-    _i2.GStartPlotData?,
-    _i2.GStartPlotData?,
-  )? get updateResult;
+  _i2.GStartPlotData? Function(_i2.GStartPlotData?, _i2.GStartPlotData?)?
+  get updateResult;
   @override
   _i2.GStartPlotData? get optimisticResponse;
   @override
@@ -77,19 +76,15 @@ abstract class GStartPlotReq
 
   @override
   _i1.OperationRequest<_i2.GStartPlotData, _i3.GStartPlotVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
+  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GStartPlotReq> get serializer => _$gStartPlotReqSerializer;
 
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GStartPlotReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GStartPlotReq.serializer, this)
+          as Map<String, dynamic>);
 
   static GStartPlotReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GStartPlotReq.serializer,
-        json,
-      );
+      _i6.serializers.deserializeWith(GStartPlotReq.serializer, json);
 }

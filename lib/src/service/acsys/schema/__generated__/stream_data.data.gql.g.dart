@@ -9,28 +9,28 @@ part of 'stream_data.data.gql.dart';
 Serializer<GStreamDataData> _$gStreamDataDataSerializer =
     new _$GStreamDataDataSerializer();
 Serializer<GStreamDataData_acceleratorData>
-    _$gStreamDataDataAcceleratorDataSerializer =
+_$gStreamDataDataAcceleratorDataSerializer =
     new _$GStreamDataData_acceleratorDataSerializer();
 Serializer<GStreamDataData_acceleratorData_data>
-    _$gStreamDataDataAcceleratorDataDataSerializer =
+_$gStreamDataDataAcceleratorDataDataSerializer =
     new _$GStreamDataData_acceleratorData_dataSerializer();
 Serializer<GStreamDataData_acceleratorData_data_result__base>
-    _$gStreamDataDataAcceleratorDataDataResultBaseSerializer =
+_$gStreamDataDataAcceleratorDataDataResultBaseSerializer =
     new _$GStreamDataData_acceleratorData_data_result__baseSerializer();
 Serializer<GStreamDataData_acceleratorData_data_result__asStatusReply>
-    _$gStreamDataDataAcceleratorDataDataResultAsStatusReplySerializer =
+_$gStreamDataDataAcceleratorDataDataResultAsStatusReplySerializer =
     new _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer();
 Serializer<GStreamDataData_acceleratorData_data_result__asScalar>
-    _$gStreamDataDataAcceleratorDataDataResultAsScalarSerializer =
+_$gStreamDataDataAcceleratorDataDataResultAsScalarSerializer =
     new _$GStreamDataData_acceleratorData_data_result__asScalarSerializer();
 Serializer<GStreamDataData_acceleratorData_data_result__asScalarArray>
-    _$gStreamDataDataAcceleratorDataDataResultAsScalarArraySerializer =
+_$gStreamDataDataAcceleratorDataDataResultAsScalarArraySerializer =
     new _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer();
 Serializer<GStreamDataData_acceleratorData_data_result__asText>
-    _$gStreamDataDataAcceleratorDataDataResultAsTextSerializer =
+_$gStreamDataDataAcceleratorDataDataResultAsTextSerializer =
     new _$GStreamDataData_acceleratorData_data_result__asTextSerializer();
 Serializer<GStreamDataData_acceleratorData_data_result__asTextArray>
-    _$gStreamDataDataAcceleratorDataDataResultAsTextArraySerializer =
+_$gStreamDataDataAcceleratorDataDataResultAsTextArraySerializer =
     new _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer();
 
 class _$GStreamDataDataSerializer
@@ -41,15 +41,22 @@ class _$GStreamDataDataSerializer
   final String wireName = 'GStreamDataData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamDataData object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'acceleratorData',
-      serializers.serialize(object.acceleratorData,
-          specifiedType: const FullType(GStreamDataData_acceleratorData)),
+      serializers.serialize(
+        object.acceleratorData,
+        specifiedType: const FullType(GStreamDataData_acceleratorData),
+      ),
     ];
 
     return result;
@@ -57,8 +64,10 @@ class _$GStreamDataDataSerializer
 
   @override
   GStreamDataData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStreamDataDataBuilder();
 
     final iterator = serialized.iterator;
@@ -68,14 +77,23 @@ class _$GStreamDataDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'acceleratorData':
-          result.acceleratorData.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GStreamDataData_acceleratorData))!
-              as GStreamDataData_acceleratorData);
+          result.acceleratorData.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                    GStreamDataData_acceleratorData,
+                  ),
+                )!
+                as GStreamDataData_acceleratorData,
+          );
           break;
       }
     }
@@ -89,26 +107,32 @@ class _$GStreamDataData_acceleratorDataSerializer
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData,
-    _$GStreamDataData_acceleratorData
+    _$GStreamDataData_acceleratorData,
   ];
   @override
   final String wireName = 'GStreamDataData_acceleratorData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GStreamDataData_acceleratorData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GStreamDataData_acceleratorData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'refId',
       serializers.serialize(object.refId, specifiedType: const FullType(int)),
       'cycle',
       serializers.serialize(object.cycle, specifiedType: const FullType(int)),
       'data',
-      serializers.serialize(object.data,
-          specifiedType: const FullType(GStreamDataData_acceleratorData_data)),
+      serializers.serialize(
+        object.data,
+        specifiedType: const FullType(GStreamDataData_acceleratorData_data),
+      ),
     ];
 
     return result;
@@ -116,8 +140,10 @@ class _$GStreamDataData_acceleratorDataSerializer
 
   @override
   GStreamDataData_acceleratorData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStreamDataData_acceleratorDataBuilder();
 
     final iterator = serialized.iterator;
@@ -127,22 +153,39 @@ class _$GStreamDataData_acceleratorDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'refId':
-          result.refId = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.refId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'cycle':
-          result.cycle = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.cycle =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'data':
-          result.data.replace(serializers.deserialize(value,
-                  specifiedType:
-                      const FullType(GStreamDataData_acceleratorData_data))!
-              as GStreamDataData_acceleratorData_data);
+          result.data.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(
+                    GStreamDataData_acceleratorData_data,
+                  ),
+                )!
+                as GStreamDataData_acceleratorData_data,
+          );
           break;
       }
     }
@@ -156,26 +199,35 @@ class _$GStreamDataData_acceleratorData_dataSerializer
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData_data,
-    _$GStreamDataData_acceleratorData_data
+    _$GStreamDataData_acceleratorData_data,
   ];
   @override
   final String wireName = 'GStreamDataData_acceleratorData_data';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GStreamDataData_acceleratorData_data object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GStreamDataData_acceleratorData_data object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'timestamp',
-      serializers.serialize(object.timestamp,
-          specifiedType: const FullType(DateTime)),
+      serializers.serialize(
+        object.timestamp,
+        specifiedType: const FullType(DateTime),
+      ),
       'result',
-      serializers.serialize(object.result,
-          specifiedType:
-              const FullType(GStreamDataData_acceleratorData_data_result)),
+      serializers.serialize(
+        object.result,
+        specifiedType: const FullType(
+          GStreamDataData_acceleratorData_data_result,
+        ),
+      ),
     ];
 
     return result;
@@ -183,8 +235,10 @@ class _$GStreamDataData_acceleratorData_dataSerializer
 
   @override
   GStreamDataData_acceleratorData_data deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStreamDataData_acceleratorData_dataBuilder();
 
     final iterator = serialized.iterator;
@@ -194,18 +248,30 @@ class _$GStreamDataData_acceleratorData_dataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'timestamp':
-          result.timestamp = serializers.deserialize(value,
-              specifiedType: const FullType(DateTime))! as DateTime;
+          result.timestamp =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(DateTime),
+                  )!
+                  as DateTime;
           break;
         case 'result':
-          result.result = serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      GStreamDataData_acceleratorData_data_result))!
-              as GStreamDataData_acceleratorData_data_result;
+          result.result =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(
+                      GStreamDataData_acceleratorData_data_result,
+                    ),
+                  )!
+                  as GStreamDataData_acceleratorData_data_result;
           break;
       }
     }
@@ -217,23 +283,28 @@ class _$GStreamDataData_acceleratorData_dataSerializer
 class _$GStreamDataData_acceleratorData_data_result__baseSerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__base> {
+          GStreamDataData_acceleratorData_data_result__base
+        > {
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData_data_result__base,
-    _$GStreamDataData_acceleratorData_data_result__base
+    _$GStreamDataData_acceleratorData_data_result__base,
   ];
   @override
   final String wireName = 'GStreamDataData_acceleratorData_data_result__base';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__base object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataData_acceleratorData_data_result__base object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -241,8 +312,10 @@ class _$GStreamDataData_acceleratorData_data_result__baseSerializer
 
   @override
   GStreamDataData_acceleratorData_data_result__base deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GStreamDataData_acceleratorData_data_result__baseBuilder();
 
@@ -253,8 +326,12 @@ class _$GStreamDataData_acceleratorData_data_result__baseSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -266,24 +343,29 @@ class _$GStreamDataData_acceleratorData_data_result__baseSerializer
 class _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asStatusReply> {
+          GStreamDataData_acceleratorData_data_result__asStatusReply
+        > {
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData_data_result__asStatusReply,
-    _$GStreamDataData_acceleratorData_data_result__asStatusReply
+    _$GStreamDataData_acceleratorData_data_result__asStatusReply,
   ];
   @override
   final String wireName =
       'GStreamDataData_acceleratorData_data_result__asStatusReply';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asStatusReply object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataData_acceleratorData_data_result__asStatusReply object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'status',
       serializers.serialize(object.status, specifiedType: const FullType(int)),
     ];
@@ -293,8 +375,10 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer
 
   @override
   GStreamDataData_acceleratorData_data_result__asStatusReply deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder();
 
@@ -305,12 +389,20 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'status':
-          result.status = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.status =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -322,27 +414,34 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReplySerializer
 class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asScalar> {
+          GStreamDataData_acceleratorData_data_result__asScalar
+        > {
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData_data_result__asScalar,
-    _$GStreamDataData_acceleratorData_data_result__asScalar
+    _$GStreamDataData_acceleratorData_data_result__asScalar,
   ];
   @override
   final String wireName =
       'GStreamDataData_acceleratorData_data_result__asScalar';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asScalar object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataData_acceleratorData_data_result__asScalar object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'scalarValue',
-      serializers.serialize(object.scalarValue,
-          specifiedType: const FullType(double)),
+      serializers.serialize(
+        object.scalarValue,
+        specifiedType: const FullType(double),
+      ),
     ];
 
     return result;
@@ -350,8 +449,10 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
 
   @override
   GStreamDataData_acceleratorData_data_result__asScalar deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GStreamDataData_acceleratorData_data_result__asScalarBuilder();
 
@@ -362,12 +463,20 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'scalarValue':
-          result.scalarValue = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.scalarValue =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
       }
     }
@@ -379,28 +488,36 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarSerializer
 class _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asScalarArray> {
+          GStreamDataData_acceleratorData_data_result__asScalarArray
+        > {
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData_data_result__asScalarArray,
-    _$GStreamDataData_acceleratorData_data_result__asScalarArray
+    _$GStreamDataData_acceleratorData_data_result__asScalarArray,
   ];
   @override
   final String wireName =
       'GStreamDataData_acceleratorData_data_result__asScalarArray';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asScalarArray object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataData_acceleratorData_data_result__asScalarArray object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'scalarArrayValue',
-      serializers.serialize(object.scalarArrayValue,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(double)])),
+      serializers.serialize(
+        object.scalarArrayValue,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(double),
+        ]),
+      ),
     ];
 
     return result;
@@ -408,8 +525,10 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer
 
   @override
   GStreamDataData_acceleratorData_data_result__asScalarArray deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder();
 
@@ -420,14 +539,23 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'scalarArrayValue':
-          result.scalarArrayValue.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(double)]))!
-              as BuiltList<Object?>);
+          result.scalarArrayValue.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(double),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -439,26 +567,33 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArraySerializer
 class _$GStreamDataData_acceleratorData_data_result__asTextSerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asText> {
+          GStreamDataData_acceleratorData_data_result__asText
+        > {
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData_data_result__asText,
-    _$GStreamDataData_acceleratorData_data_result__asText
+    _$GStreamDataData_acceleratorData_data_result__asText,
   ];
   @override
   final String wireName = 'GStreamDataData_acceleratorData_data_result__asText';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asText object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataData_acceleratorData_data_result__asText object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'textValue',
-      serializers.serialize(object.textValue,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.textValue,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -466,8 +601,10 @@ class _$GStreamDataData_acceleratorData_data_result__asTextSerializer
 
   @override
   GStreamDataData_acceleratorData_data_result__asText deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GStreamDataData_acceleratorData_data_result__asTextBuilder();
 
@@ -478,12 +615,20 @@ class _$GStreamDataData_acceleratorData_data_result__asTextSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'textValue':
-          result.textValue = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.textValue =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -495,28 +640,36 @@ class _$GStreamDataData_acceleratorData_data_result__asTextSerializer
 class _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer
     implements
         StructuredSerializer<
-            GStreamDataData_acceleratorData_data_result__asTextArray> {
+          GStreamDataData_acceleratorData_data_result__asTextArray
+        > {
   @override
   final Iterable<Type> types = const [
     GStreamDataData_acceleratorData_data_result__asTextArray,
-    _$GStreamDataData_acceleratorData_data_result__asTextArray
+    _$GStreamDataData_acceleratorData_data_result__asTextArray,
   ];
   @override
   final String wireName =
       'GStreamDataData_acceleratorData_data_result__asTextArray';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers,
-      GStreamDataData_acceleratorData_data_result__asTextArray object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamDataData_acceleratorData_data_result__asTextArray object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'textArrayValue',
-      serializers.serialize(object.textArrayValue,
-          specifiedType:
-              const FullType(BuiltList, const [const FullType(String)])),
+      serializers.serialize(
+        object.textArrayValue,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(String),
+        ]),
+      ),
     ];
 
     return result;
@@ -524,8 +677,10 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer
 
   @override
   GStreamDataData_acceleratorData_data_result__asTextArray deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result =
         new GStreamDataData_acceleratorData_data_result__asTextArrayBuilder();
 
@@ -536,14 +691,23 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArraySerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'textArrayValue':
-          result.textArrayValue.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(
-                      BuiltList, const [const FullType(String)]))!
-              as BuiltList<Object?>);
+          result.textArrayValue.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(String),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -561,13 +725,20 @@ class _$GStreamDataData extends GStreamDataData {
   factory _$GStreamDataData([void Function(GStreamDataDataBuilder)? updates]) =>
       (new GStreamDataDataBuilder()..update(updates))._build();
 
-  _$GStreamDataData._(
-      {required this.G__typename, required this.acceleratorData})
-      : super._() {
+  _$GStreamDataData._({
+    required this.G__typename,
+    required this.acceleratorData,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStreamDataData', 'G__typename');
+      G__typename,
+      r'GStreamDataData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        acceleratorData, r'GStreamDataData', 'acceleratorData');
+      acceleratorData,
+      r'GStreamDataData',
+      'acceleratorData',
+    );
   }
 
   @override
@@ -616,8 +787,8 @@ class GStreamDataDataBuilder
   GStreamDataData_acceleratorDataBuilder get acceleratorData =>
       _$this._acceleratorData ??= new GStreamDataData_acceleratorDataBuilder();
   set acceleratorData(
-          GStreamDataData_acceleratorDataBuilder? acceleratorData) =>
-      _$this._acceleratorData = acceleratorData;
+    GStreamDataData_acceleratorDataBuilder? acceleratorData,
+  ) => _$this._acceleratorData = acceleratorData;
 
   GStreamDataDataBuilder() {
     GStreamDataData._initializeBuilder(this);
@@ -650,10 +821,14 @@ class GStreamDataDataBuilder
   _$GStreamDataData _build() {
     _$GStreamDataData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStreamDataData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStreamDataData', 'G__typename'),
+              G__typename,
+              r'GStreamDataData',
+              'G__typename',
+            ),
             acceleratorData: acceleratorData.build(),
           );
     } catch (_) {
@@ -663,7 +838,10 @@ class GStreamDataDataBuilder
         acceleratorData.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData', _$failedField, e.toString());
+          r'GStreamDataData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -683,30 +861,43 @@ class _$GStreamDataData_acceleratorData
   @override
   final GStreamDataData_acceleratorData_data data;
 
-  factory _$GStreamDataData_acceleratorData(
-          [void Function(GStreamDataData_acceleratorDataBuilder)? updates]) =>
+  factory _$GStreamDataData_acceleratorData([
+    void Function(GStreamDataData_acceleratorDataBuilder)? updates,
+  ]) =>
       (new GStreamDataData_acceleratorDataBuilder()..update(updates))._build();
 
-  _$GStreamDataData_acceleratorData._(
-      {required this.G__typename,
-      required this.refId,
-      required this.cycle,
-      required this.data})
-      : super._() {
+  _$GStreamDataData_acceleratorData._({
+    required this.G__typename,
+    required this.refId,
+    required this.cycle,
+    required this.data,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStreamDataData_acceleratorData', 'G__typename');
+      G__typename,
+      r'GStreamDataData_acceleratorData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        refId, r'GStreamDataData_acceleratorData', 'refId');
+      refId,
+      r'GStreamDataData_acceleratorData',
+      'refId',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        cycle, r'GStreamDataData_acceleratorData', 'cycle');
+      cycle,
+      r'GStreamDataData_acceleratorData',
+      'cycle',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        data, r'GStreamDataData_acceleratorData', 'data');
+      data,
+      r'GStreamDataData_acceleratorData',
+      'data',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData rebuild(
-          void Function(GStreamDataData_acceleratorDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStreamDataData_acceleratorDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorDataBuilder toBuilder() =>
@@ -746,8 +937,10 @@ class _$GStreamDataData_acceleratorData
 
 class GStreamDataData_acceleratorDataBuilder
     implements
-        Builder<GStreamDataData_acceleratorData,
-            GStreamDataData_acceleratorDataBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData,
+          GStreamDataData_acceleratorDataBuilder
+        > {
   _$GStreamDataData_acceleratorData? _$v;
 
   String? _G__typename;
@@ -801,14 +994,24 @@ class GStreamDataData_acceleratorDataBuilder
   _$GStreamDataData_acceleratorData _build() {
     _$GStreamDataData_acceleratorData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStreamDataData_acceleratorData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStreamDataData_acceleratorData', 'G__typename'),
+              G__typename,
+              r'GStreamDataData_acceleratorData',
+              'G__typename',
+            ),
             refId: BuiltValueNullFieldError.checkNotNull(
-                refId, r'GStreamDataData_acceleratorData', 'refId'),
+              refId,
+              r'GStreamDataData_acceleratorData',
+              'refId',
+            ),
             cycle: BuiltValueNullFieldError.checkNotNull(
-                cycle, r'GStreamDataData_acceleratorData', 'cycle'),
+              cycle,
+              r'GStreamDataData_acceleratorData',
+              'cycle',
+            ),
             data: data.build(),
           );
     } catch (_) {
@@ -818,7 +1021,10 @@ class GStreamDataData_acceleratorDataBuilder
         data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData_acceleratorData', _$failedField, e.toString());
+          r'GStreamDataData_acceleratorData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -836,29 +1042,38 @@ class _$GStreamDataData_acceleratorData_data
   @override
   final GStreamDataData_acceleratorData_data_result result;
 
-  factory _$GStreamDataData_acceleratorData_data(
-          [void Function(GStreamDataData_acceleratorData_dataBuilder)?
-              updates]) =>
+  factory _$GStreamDataData_acceleratorData_data([
+    void Function(GStreamDataData_acceleratorData_dataBuilder)? updates,
+  ]) =>
       (new GStreamDataData_acceleratorData_dataBuilder()..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data._(
-      {required this.G__typename,
-      required this.timestamp,
-      required this.result})
-      : super._() {
+  _$GStreamDataData_acceleratorData_data._({
+    required this.G__typename,
+    required this.timestamp,
+    required this.result,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStreamDataData_acceleratorData_data', 'G__typename');
+      G__typename,
+      r'GStreamDataData_acceleratorData_data',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        timestamp, r'GStreamDataData_acceleratorData_data', 'timestamp');
+      timestamp,
+      r'GStreamDataData_acceleratorData_data',
+      'timestamp',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        result, r'GStreamDataData_acceleratorData_data', 'result');
+      result,
+      r'GStreamDataData_acceleratorData_data',
+      'result',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData_data rebuild(
-          void Function(GStreamDataData_acceleratorData_dataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStreamDataData_acceleratorData_dataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorData_dataBuilder toBuilder() =>
@@ -895,8 +1110,10 @@ class _$GStreamDataData_acceleratorData_data
 
 class GStreamDataData_acceleratorData_dataBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data,
-            GStreamDataData_acceleratorData_dataBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData_data,
+          GStreamDataData_acceleratorData_dataBuilder
+        > {
   _$GStreamDataData_acceleratorData_data? _$v;
 
   String? _G__typename;
@@ -935,7 +1152,8 @@ class GStreamDataData_acceleratorData_dataBuilder
 
   @override
   void update(
-      void Function(GStreamDataData_acceleratorData_dataBuilder)? updates) {
+    void Function(GStreamDataData_acceleratorData_dataBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -943,14 +1161,24 @@ class GStreamDataData_acceleratorData_dataBuilder
   GStreamDataData_acceleratorData_data build() => _build();
 
   _$GStreamDataData_acceleratorData_data _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GStreamDataData_acceleratorData_data._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GStreamDataData_acceleratorData_data', 'G__typename'),
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GStreamDataData_acceleratorData_data',
+            'G__typename',
+          ),
           timestamp: BuiltValueNullFieldError.checkNotNull(
-              timestamp, r'GStreamDataData_acceleratorData_data', 'timestamp'),
+            timestamp,
+            r'GStreamDataData_acceleratorData_data',
+            'timestamp',
+          ),
           result: BuiltValueNullFieldError.checkNotNull(
-              result, r'GStreamDataData_acceleratorData_data', 'result'),
+            result,
+            r'GStreamDataData_acceleratorData_data',
+            'result',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -962,27 +1190,29 @@ class _$GStreamDataData_acceleratorData_data_result__base
   @override
   final String G__typename;
 
-  factory _$GStreamDataData_acceleratorData_data_result__base(
-          [void Function(
-                  GStreamDataData_acceleratorData_data_result__baseBuilder)?
-              updates]) =>
+  factory _$GStreamDataData_acceleratorData_data_result__base([
+    void Function(GStreamDataData_acceleratorData_data_result__baseBuilder)?
+    updates,
+  ]) =>
       (new GStreamDataData_acceleratorData_data_result__baseBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__base._(
-      {required this.G__typename})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GStreamDataData_acceleratorData_data_result__base', 'G__typename');
+  _$GStreamDataData_acceleratorData_data_result__base._({
+    required this.G__typename,
+  }) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GStreamDataData_acceleratorData_data_result__base',
+      'G__typename',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData_data_result__base rebuild(
-          void Function(
-                  GStreamDataData_acceleratorData_data_result__baseBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStreamDataData_acceleratorData_data_result__baseBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorData_data_result__baseBuilder toBuilder() =>
@@ -1007,16 +1237,17 @@ class _$GStreamDataData_acceleratorData_data_result__base
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__base')
-          ..add('G__typename', G__typename))
-        .toString();
+      r'GStreamDataData_acceleratorData_data_result__base',
+    )..add('G__typename', G__typename)).toString();
   }
 }
 
 class GStreamDataData_acceleratorData_data_result__baseBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__base,
-            GStreamDataData_acceleratorData_data_result__baseBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData_data_result__base,
+          GStreamDataData_acceleratorData_data_result__baseBuilder
+        > {
   _$GStreamDataData_acceleratorData_data_result__base? _$v;
 
   String? _G__typename;
@@ -1044,8 +1275,9 @@ class GStreamDataData_acceleratorData_data_result__baseBuilder
 
   @override
   void update(
-      void Function(GStreamDataData_acceleratorData_data_result__baseBuilder)?
-          updates) {
+    void Function(GStreamDataData_acceleratorData_data_result__baseBuilder)?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1053,12 +1285,14 @@ class GStreamDataData_acceleratorData_data_result__baseBuilder
   GStreamDataData_acceleratorData_data_result__base build() => _build();
 
   _$GStreamDataData_acceleratorData_data_result__base _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GStreamDataData_acceleratorData_data_result__base._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GStreamDataData_acceleratorData_data_result__base',
-              'G__typename'),
+            G__typename,
+            r'GStreamDataData_acceleratorData_data_result__base',
+            'G__typename',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1072,39 +1306,45 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReply
   @override
   final int status;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asStatusReply(
-          [void Function(
-                  GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder)?
-              updates]) =>
+  factory _$GStreamDataData_acceleratorData_data_result__asStatusReply([
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder,
+    )?
+    updates,
+  ]) =>
       (new GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asStatusReply._(
-      {required this.G__typename, required this.status})
-      : super._() {
+  _$GStreamDataData_acceleratorData_data_result__asStatusReply._({
+    required this.G__typename,
+    required this.status,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asStatusReply',
-        'G__typename');
+      G__typename,
+      r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        status,
-        r'GStreamDataData_acceleratorData_data_result__asStatusReply',
-        'status');
+      status,
+      r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+      'status',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData_data_result__asStatusReply rebuild(
-          void Function(
-                  GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
-      toBuilder() =>
-          new GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1127,7 +1367,8 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReply
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asStatusReply')
+            r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+          )
           ..add('G__typename', G__typename)
           ..add('status', status))
         .toString();
@@ -1136,8 +1377,10 @@ class _$GStreamDataData_acceleratorData_data_result__asStatusReply
 
 class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asStatusReply,
-            GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData_data_result__asStatusReply,
+          GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
+        > {
   _$GStreamDataData_acceleratorData_data_result__asStatusReply? _$v;
 
   String? _G__typename;
@@ -1149,8 +1392,9 @@ class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
   set status(int? status) => _$this._status = status;
 
   GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder() {
-    GStreamDataData_acceleratorData_data_result__asStatusReply
-        ._initializeBuilder(this);
+    GStreamDataData_acceleratorData_data_result__asStatusReply._initializeBuilder(
+      this,
+    );
   }
 
   GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder get _$this {
@@ -1165,16 +1409,19 @@ class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
 
   @override
   void replace(
-      GStreamDataData_acceleratorData_data_result__asStatusReply other) {
+    GStreamDataData_acceleratorData_data_result__asStatusReply other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GStreamDataData_acceleratorData_data_result__asStatusReply;
   }
 
   @override
   void update(
-      void Function(
-              GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder)?
-          updates) {
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1183,16 +1430,19 @@ class GStreamDataData_acceleratorData_data_result__asStatusReplyBuilder
       _build();
 
   _$GStreamDataData_acceleratorData_data_result__asStatusReply _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GStreamDataData_acceleratorData_data_result__asStatusReply._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GStreamDataData_acceleratorData_data_result__asStatusReply',
-              'G__typename'),
+            G__typename,
+            r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+            'G__typename',
+          ),
           status: BuiltValueNullFieldError.checkNotNull(
-              status,
-              r'GStreamDataData_acceleratorData_data_result__asStatusReply',
-              'status'),
+            status,
+            r'GStreamDataData_acceleratorData_data_result__asStatusReply',
+            'status',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1206,33 +1456,35 @@ class _$GStreamDataData_acceleratorData_data_result__asScalar
   @override
   final double scalarValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asScalar(
-          [void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarBuilder)?
-              updates]) =>
+  factory _$GStreamDataData_acceleratorData_data_result__asScalar([
+    void Function(GStreamDataData_acceleratorData_data_result__asScalarBuilder)?
+    updates,
+  ]) =>
       (new GStreamDataData_acceleratorData_data_result__asScalarBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asScalar._(
-      {required this.G__typename, required this.scalarValue})
-      : super._() {
+  _$GStreamDataData_acceleratorData_data_result__asScalar._({
+    required this.G__typename,
+    required this.scalarValue,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asScalar',
-        'G__typename');
+      G__typename,
+      r'GStreamDataData_acceleratorData_data_result__asScalar',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        scalarValue,
-        r'GStreamDataData_acceleratorData_data_result__asScalar',
-        'scalarValue');
+      scalarValue,
+      r'GStreamDataData_acceleratorData_data_result__asScalar',
+      'scalarValue',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData_data_result__asScalar rebuild(
-          void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStreamDataData_acceleratorData_data_result__asScalarBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorData_data_result__asScalarBuilder toBuilder() =>
@@ -1259,7 +1511,8 @@ class _$GStreamDataData_acceleratorData_data_result__asScalar
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asScalar')
+            r'GStreamDataData_acceleratorData_data_result__asScalar',
+          )
           ..add('G__typename', G__typename)
           ..add('scalarValue', scalarValue))
         .toString();
@@ -1268,8 +1521,10 @@ class _$GStreamDataData_acceleratorData_data_result__asScalar
 
 class GStreamDataData_acceleratorData_data_result__asScalarBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asScalar,
-            GStreamDataData_acceleratorData_data_result__asScalarBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData_data_result__asScalar,
+          GStreamDataData_acceleratorData_data_result__asScalarBuilder
+        > {
   _$GStreamDataData_acceleratorData_data_result__asScalar? _$v;
 
   String? _G__typename;
@@ -1282,7 +1537,8 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
 
   GStreamDataData_acceleratorData_data_result__asScalarBuilder() {
     GStreamDataData_acceleratorData_data_result__asScalar._initializeBuilder(
-        this);
+      this,
+    );
   }
 
   GStreamDataData_acceleratorData_data_result__asScalarBuilder get _$this {
@@ -1303,9 +1559,9 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
 
   @override
   void update(
-      void Function(
-              GStreamDataData_acceleratorData_data_result__asScalarBuilder)?
-          updates) {
+    void Function(GStreamDataData_acceleratorData_data_result__asScalarBuilder)?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1313,16 +1569,19 @@ class GStreamDataData_acceleratorData_data_result__asScalarBuilder
   GStreamDataData_acceleratorData_data_result__asScalar build() => _build();
 
   _$GStreamDataData_acceleratorData_data_result__asScalar _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GStreamDataData_acceleratorData_data_result__asScalar._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GStreamDataData_acceleratorData_data_result__asScalar',
-              'G__typename'),
+            G__typename,
+            r'GStreamDataData_acceleratorData_data_result__asScalar',
+            'G__typename',
+          ),
           scalarValue: BuiltValueNullFieldError.checkNotNull(
-              scalarValue,
-              r'GStreamDataData_acceleratorData_data_result__asScalar',
-              'scalarValue'),
+            scalarValue,
+            r'GStreamDataData_acceleratorData_data_result__asScalar',
+            'scalarValue',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1336,39 +1595,45 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArray
   @override
   final BuiltList<double> scalarArrayValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asScalarArray(
-          [void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder)?
-              updates]) =>
+  factory _$GStreamDataData_acceleratorData_data_result__asScalarArray([
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder,
+    )?
+    updates,
+  ]) =>
       (new GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asScalarArray._(
-      {required this.G__typename, required this.scalarArrayValue})
-      : super._() {
+  _$GStreamDataData_acceleratorData_data_result__asScalarArray._({
+    required this.G__typename,
+    required this.scalarArrayValue,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asScalarArray',
-        'G__typename');
+      G__typename,
+      r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        scalarArrayValue,
-        r'GStreamDataData_acceleratorData_data_result__asScalarArray',
-        'scalarArrayValue');
+      scalarArrayValue,
+      r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+      'scalarArrayValue',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData_data_result__asScalarArray rebuild(
-          void Function(
-                  GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
-      toBuilder() =>
-          new GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder()
-            ..replace(this);
+  toBuilder() =>
+      new GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder()
+        ..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1391,7 +1656,8 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArray
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asScalarArray')
+            r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+          )
           ..add('G__typename', G__typename)
           ..add('scalarArrayValue', scalarArrayValue))
         .toString();
@@ -1400,8 +1666,10 @@ class _$GStreamDataData_acceleratorData_data_result__asScalarArray
 
 class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asScalarArray,
-            GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData_data_result__asScalarArray,
+          GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
+        > {
   _$GStreamDataData_acceleratorData_data_result__asScalarArray? _$v;
 
   String? _G__typename;
@@ -1415,8 +1683,9 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
       _$this._scalarArrayValue = scalarArrayValue;
 
   GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder() {
-    GStreamDataData_acceleratorData_data_result__asScalarArray
-        ._initializeBuilder(this);
+    GStreamDataData_acceleratorData_data_result__asScalarArray._initializeBuilder(
+      this,
+    );
   }
 
   GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder get _$this {
@@ -1431,16 +1700,19 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
 
   @override
   void replace(
-      GStreamDataData_acceleratorData_data_result__asScalarArray other) {
+    GStreamDataData_acceleratorData_data_result__asScalarArray other,
+  ) {
     ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GStreamDataData_acceleratorData_data_result__asScalarArray;
   }
 
   @override
   void update(
-      void Function(
-              GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder)?
-          updates) {
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1451,12 +1723,14 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
   _$GStreamDataData_acceleratorData_data_result__asScalarArray _build() {
     _$GStreamDataData_acceleratorData_data_result__asScalarArray _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStreamDataData_acceleratorData_data_result__asScalarArray._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GStreamDataData_acceleratorData_data_result__asScalarArray',
-                'G__typename'),
+              G__typename,
+              r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+              'G__typename',
+            ),
             scalarArrayValue: scalarArrayValue.build(),
           );
     } catch (_) {
@@ -1466,9 +1740,10 @@ class GStreamDataData_acceleratorData_data_result__asScalarArrayBuilder
         scalarArrayValue.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData_acceleratorData_data_result__asScalarArray',
-            _$failedField,
-            e.toString());
+          r'GStreamDataData_acceleratorData_data_result__asScalarArray',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -1484,29 +1759,35 @@ class _$GStreamDataData_acceleratorData_data_result__asText
   @override
   final String textValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asText(
-          [void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextBuilder)?
-              updates]) =>
+  factory _$GStreamDataData_acceleratorData_data_result__asText([
+    void Function(GStreamDataData_acceleratorData_data_result__asTextBuilder)?
+    updates,
+  ]) =>
       (new GStreamDataData_acceleratorData_data_result__asTextBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asText._(
-      {required this.G__typename, required this.textValue})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asText', 'G__typename');
-    BuiltValueNullFieldError.checkNotNull(textValue,
-        r'GStreamDataData_acceleratorData_data_result__asText', 'textValue');
+  _$GStreamDataData_acceleratorData_data_result__asText._({
+    required this.G__typename,
+    required this.textValue,
+  }) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GStreamDataData_acceleratorData_data_result__asText',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      textValue,
+      r'GStreamDataData_acceleratorData_data_result__asText',
+      'textValue',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData_data_result__asText rebuild(
-          void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStreamDataData_acceleratorData_data_result__asTextBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorData_data_result__asTextBuilder toBuilder() =>
@@ -1533,7 +1814,8 @@ class _$GStreamDataData_acceleratorData_data_result__asText
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asText')
+            r'GStreamDataData_acceleratorData_data_result__asText',
+          )
           ..add('G__typename', G__typename)
           ..add('textValue', textValue))
         .toString();
@@ -1542,8 +1824,10 @@ class _$GStreamDataData_acceleratorData_data_result__asText
 
 class GStreamDataData_acceleratorData_data_result__asTextBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asText,
-            GStreamDataData_acceleratorData_data_result__asTextBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData_data_result__asText,
+          GStreamDataData_acceleratorData_data_result__asTextBuilder
+        > {
   _$GStreamDataData_acceleratorData_data_result__asText? _$v;
 
   String? _G__typename;
@@ -1556,7 +1840,8 @@ class GStreamDataData_acceleratorData_data_result__asTextBuilder
 
   GStreamDataData_acceleratorData_data_result__asTextBuilder() {
     GStreamDataData_acceleratorData_data_result__asText._initializeBuilder(
-        this);
+      this,
+    );
   }
 
   GStreamDataData_acceleratorData_data_result__asTextBuilder get _$this {
@@ -1577,8 +1862,9 @@ class GStreamDataData_acceleratorData_data_result__asTextBuilder
 
   @override
   void update(
-      void Function(GStreamDataData_acceleratorData_data_result__asTextBuilder)?
-          updates) {
+    void Function(GStreamDataData_acceleratorData_data_result__asTextBuilder)?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1586,16 +1872,19 @@ class GStreamDataData_acceleratorData_data_result__asTextBuilder
   GStreamDataData_acceleratorData_data_result__asText build() => _build();
 
   _$GStreamDataData_acceleratorData_data_result__asText _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GStreamDataData_acceleratorData_data_result__asText._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
-              G__typename,
-              r'GStreamDataData_acceleratorData_data_result__asText',
-              'G__typename'),
+            G__typename,
+            r'GStreamDataData_acceleratorData_data_result__asText',
+            'G__typename',
+          ),
           textValue: BuiltValueNullFieldError.checkNotNull(
-              textValue,
-              r'GStreamDataData_acceleratorData_data_result__asText',
-              'textValue'),
+            textValue,
+            r'GStreamDataData_acceleratorData_data_result__asText',
+            'textValue',
+          ),
         );
     replace(_$result);
     return _$result;
@@ -1609,33 +1898,39 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArray
   @override
   final BuiltList<String> textArrayValue;
 
-  factory _$GStreamDataData_acceleratorData_data_result__asTextArray(
-          [void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextArrayBuilder)?
-              updates]) =>
+  factory _$GStreamDataData_acceleratorData_data_result__asTextArray([
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asTextArrayBuilder,
+    )?
+    updates,
+  ]) =>
       (new GStreamDataData_acceleratorData_data_result__asTextArrayBuilder()
             ..update(updates))
           ._build();
 
-  _$GStreamDataData_acceleratorData_data_result__asTextArray._(
-      {required this.G__typename, required this.textArrayValue})
-      : super._() {
+  _$GStreamDataData_acceleratorData_data_result__asTextArray._({
+    required this.G__typename,
+    required this.textArrayValue,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename,
-        r'GStreamDataData_acceleratorData_data_result__asTextArray',
-        'G__typename');
+      G__typename,
+      r'GStreamDataData_acceleratorData_data_result__asTextArray',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        textArrayValue,
-        r'GStreamDataData_acceleratorData_data_result__asTextArray',
-        'textArrayValue');
+      textArrayValue,
+      r'GStreamDataData_acceleratorData_data_result__asTextArray',
+      'textArrayValue',
+    );
   }
 
   @override
   GStreamDataData_acceleratorData_data_result__asTextArray rebuild(
-          void Function(
-                  GStreamDataData_acceleratorData_data_result__asTextArrayBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asTextArrayBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStreamDataData_acceleratorData_data_result__asTextArrayBuilder toBuilder() =>
@@ -1662,7 +1957,8 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArray
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStreamDataData_acceleratorData_data_result__asTextArray')
+            r'GStreamDataData_acceleratorData_data_result__asTextArray',
+          )
           ..add('G__typename', G__typename)
           ..add('textArrayValue', textArrayValue))
         .toString();
@@ -1671,8 +1967,10 @@ class _$GStreamDataData_acceleratorData_data_result__asTextArray
 
 class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
     implements
-        Builder<GStreamDataData_acceleratorData_data_result__asTextArray,
-            GStreamDataData_acceleratorData_data_result__asTextArrayBuilder> {
+        Builder<
+          GStreamDataData_acceleratorData_data_result__asTextArray,
+          GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
+        > {
   _$GStreamDataData_acceleratorData_data_result__asTextArray? _$v;
 
   String? _G__typename;
@@ -1687,7 +1985,8 @@ class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
 
   GStreamDataData_acceleratorData_data_result__asTextArrayBuilder() {
     GStreamDataData_acceleratorData_data_result__asTextArray._initializeBuilder(
-        this);
+      this,
+    );
   }
 
   GStreamDataData_acceleratorData_data_result__asTextArrayBuilder get _$this {
@@ -1708,9 +2007,11 @@ class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
 
   @override
   void update(
-      void Function(
-              GStreamDataData_acceleratorData_data_result__asTextArrayBuilder)?
-          updates) {
+    void Function(
+      GStreamDataData_acceleratorData_data_result__asTextArrayBuilder,
+    )?
+    updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -1720,12 +2021,14 @@ class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
   _$GStreamDataData_acceleratorData_data_result__asTextArray _build() {
     _$GStreamDataData_acceleratorData_data_result__asTextArray _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStreamDataData_acceleratorData_data_result__asTextArray._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename,
-                r'GStreamDataData_acceleratorData_data_result__asTextArray',
-                'G__typename'),
+              G__typename,
+              r'GStreamDataData_acceleratorData_data_result__asTextArray',
+              'G__typename',
+            ),
             textArrayValue: textArrayValue.build(),
           );
     } catch (_) {
@@ -1735,9 +2038,10 @@ class GStreamDataData_acceleratorData_data_result__asTextArrayBuilder
         textArrayValue.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamDataData_acceleratorData_data_result__asTextArray',
-            _$failedField,
-            e.toString());
+          r'GStreamDataData_acceleratorData_data_result__asTextArray',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

@@ -16,63 +16,90 @@ class _$GStartPlotReqSerializer implements StructuredSerializer<GStartPlotReq> {
   final String wireName = 'GStartPlotReq';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStartPlotReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStartPlotReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GStartPlotVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GStartPlotVars),
+      ),
       'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
+      serializers.serialize(
+        object.operation,
+        specifiedType: const FullType(_i4.Operation),
+      ),
       'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.executeOnListen,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.requestId;
     if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.optimisticResponse;
     if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GStartPlotData)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GStartPlotData),
+          ),
+        );
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.updateCacheHandlerContext;
     if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Map, const [
+              const FullType(String),
+              const FullType(dynamic),
+            ]),
+          ),
+        );
     }
     value = object.fetchPolicy;
     if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i1.FetchPolicy),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GStartPlotReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStartPlotReqBuilder();
 
     final iterator = serialized.iterator;
@@ -82,42 +109,73 @@ class _$GStartPlotReqSerializer implements StructuredSerializer<GStartPlotReq> {
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GStartPlotVars))!
-              as _i3.GStartPlotVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GStartPlotVars),
+                )!
+                as _i3.GStartPlotVars,
+          );
           break;
         case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          result.operation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i4.Operation),
+                  )!
+                  as _i4.Operation;
           break;
         case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.requestId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GStartPlotData))!
-              as _i2.GStartPlotData);
+          result.optimisticResponse.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GStartPlotData),
+                )!
+                as _i2.GStartPlotData,
+          );
           break;
         case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.updateCacheHandlerKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
+          result.updateCacheHandlerContext =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )
+                  as Map<String, dynamic>?;
           break;
         case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
+          result.fetchPolicy =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i1.FetchPolicy),
+                  )
+                  as _i1.FetchPolicy?;
           break;
         case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.executeOnListen =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -135,7 +193,7 @@ class _$GStartPlotReq extends GStartPlotReq {
   final String? requestId;
   @override
   final _i2.GStartPlotData? Function(_i2.GStartPlotData?, _i2.GStartPlotData?)?
-      updateResult;
+  updateResult;
   @override
   final _i2.GStartPlotData? optimisticResponse;
   @override
@@ -152,23 +210,29 @@ class _$GStartPlotReq extends GStartPlotReq {
   factory _$GStartPlotReq([void Function(GStartPlotReqBuilder)? updates]) =>
       (new GStartPlotReqBuilder()..update(updates))._build();
 
-  _$GStartPlotReq._(
-      {required this.vars,
-      required this.operation,
-      this.requestId,
-      this.updateResult,
-      this.optimisticResponse,
-      this.updateCacheHandlerKey,
-      this.updateCacheHandlerContext,
-      this.fetchPolicy,
-      required this.executeOnListen,
-      this.context})
-      : super._() {
+  _$GStartPlotReq._({
+    required this.vars,
+    required this.operation,
+    this.requestId,
+    this.updateResult,
+    this.optimisticResponse,
+    this.updateCacheHandlerKey,
+    this.updateCacheHandlerContext,
+    this.fetchPolicy,
+    required this.executeOnListen,
+    this.context,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(vars, r'GStartPlotReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, r'GStartPlotReq', 'operation');
+      operation,
+      r'GStartPlotReq',
+      'operation',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GStartPlotReq', 'executeOnListen');
+      executeOnListen,
+      r'GStartPlotReq',
+      'executeOnListen',
+    );
   }
 
   @override
@@ -247,14 +311,13 @@ class GStartPlotReqBuilder
   set requestId(String? requestId) => _$this._requestId = requestId;
 
   _i2.GStartPlotData? Function(_i2.GStartPlotData?, _i2.GStartPlotData?)?
-      _updateResult;
+  _updateResult;
   _i2.GStartPlotData? Function(_i2.GStartPlotData?, _i2.GStartPlotData?)?
-      get updateResult => _$this._updateResult;
+  get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GStartPlotData? Function(
-                  _i2.GStartPlotData?, _i2.GStartPlotData?)?
-              updateResult) =>
-      _$this._updateResult = updateResult;
+    _i2.GStartPlotData? Function(_i2.GStartPlotData?, _i2.GStartPlotData?)?
+    updateResult,
+  ) => _$this._updateResult = updateResult;
 
   _i2.GStartPlotDataBuilder? _optimisticResponse;
   _i2.GStartPlotDataBuilder get optimisticResponse =>
@@ -271,8 +334,8 @@ class GStartPlotReqBuilder
   Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic>? updateCacheHandlerContext) =>
-      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+    Map<String, dynamic>? updateCacheHandlerContext,
+  ) => _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
   _i1.FetchPolicy? _fetchPolicy;
   _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
@@ -327,11 +390,15 @@ class GStartPlotReqBuilder
   _$GStartPlotReq _build() {
     _$GStartPlotReq _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStartPlotReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GStartPlotReq', 'operation'),
+              operation,
+              r'GStartPlotReq',
+              'operation',
+            ),
             requestId: requestId,
             updateResult: updateResult,
             optimisticResponse: _optimisticResponse?.build(),
@@ -339,7 +406,10 @@ class GStartPlotReqBuilder
             updateCacheHandlerContext: updateCacheHandlerContext,
             fetchPolicy: fetchPolicy,
             executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GStartPlotReq', 'executeOnListen'),
+              executeOnListen,
+              r'GStartPlotReq',
+              'executeOnListen',
+            ),
             context: context,
           );
     } catch (_) {
@@ -352,7 +422,10 @@ class GStartPlotReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStartPlotReq', _$failedField, e.toString());
+          r'GStartPlotReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

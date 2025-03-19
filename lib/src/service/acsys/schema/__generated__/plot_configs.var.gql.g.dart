@@ -17,8 +17,11 @@ class _$GPlotConfigsVarsSerializer
   final String wireName = 'GPlotConfigsVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GPlotConfigsVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GPlotConfigsVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[];
     Object? value;
     value = object.id;
@@ -32,8 +35,10 @@ class _$GPlotConfigsVarsSerializer
 
   @override
   GPlotConfigsVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GPlotConfigsVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -43,8 +48,9 @@ class _$GPlotConfigsVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int)) as int?;
+          result.id =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -57,9 +63,9 @@ class _$GPlotConfigsVars extends GPlotConfigsVars {
   @override
   final int? id;
 
-  factory _$GPlotConfigsVars(
-          [void Function(GPlotConfigsVarsBuilder)? updates]) =>
-      (new GPlotConfigsVarsBuilder()..update(updates))._build();
+  factory _$GPlotConfigsVars([
+    void Function(GPlotConfigsVarsBuilder)? updates,
+  ]) => (new GPlotConfigsVarsBuilder()..update(updates))._build();
 
   _$GPlotConfigsVars._({this.id}) : super._();
 
@@ -87,8 +93,8 @@ class _$GPlotConfigsVars extends GPlotConfigsVars {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GPlotConfigsVars')..add('id', id))
-        .toString();
+    return (newBuiltValueToStringHelper(r'GPlotConfigsVars')
+      ..add('id', id)).toString();
   }
 }
 
@@ -126,10 +132,7 @@ class GPlotConfigsVarsBuilder
   GPlotConfigsVars build() => _build();
 
   _$GPlotConfigsVars _build() {
-    final _$result = _$v ??
-        new _$GPlotConfigsVars._(
-          id: id,
-        );
+    final _$result = _$v ?? new _$GPlotConfigsVars._(id: id);
     replace(_$result);
     return _$result;
   }

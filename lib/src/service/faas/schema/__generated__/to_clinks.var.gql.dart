@@ -19,14 +19,10 @@ abstract class GToClinksVars
   int get time;
   static Serializer<GToClinksVars> get serializer => _$gToClinksVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GToClinksVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GToClinksVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GToClinksVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GToClinksVars.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GToClinksVars.serializer, json);
 }

@@ -14,15 +14,17 @@ class _$GDeletePlotConfigVarsSerializer
   @override
   final Iterable<Type> types = const [
     GDeletePlotConfigVars,
-    _$GDeletePlotConfigVars
+    _$GDeletePlotConfigVars,
   ];
   @override
   final String wireName = 'GDeletePlotConfigVars';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GDeletePlotConfigVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GDeletePlotConfigVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'id',
       serializers.serialize(object.id, specifiedType: const FullType(int)),
@@ -33,8 +35,10 @@ class _$GDeletePlotConfigVarsSerializer
 
   @override
   GDeletePlotConfigVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GDeletePlotConfigVarsBuilder();
 
     final iterator = serialized.iterator;
@@ -44,8 +48,12 @@ class _$GDeletePlotConfigVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'id':
-          result.id = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.id =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -58,9 +66,9 @@ class _$GDeletePlotConfigVars extends GDeletePlotConfigVars {
   @override
   final int id;
 
-  factory _$GDeletePlotConfigVars(
-          [void Function(GDeletePlotConfigVarsBuilder)? updates]) =>
-      (new GDeletePlotConfigVarsBuilder()..update(updates))._build();
+  factory _$GDeletePlotConfigVars([
+    void Function(GDeletePlotConfigVarsBuilder)? updates,
+  ]) => (new GDeletePlotConfigVarsBuilder()..update(updates))._build();
 
   _$GDeletePlotConfigVars._({required this.id}) : super._() {
     BuiltValueNullFieldError.checkNotNull(id, r'GDeletePlotConfigVars', 'id');
@@ -68,8 +76,8 @@ class _$GDeletePlotConfigVars extends GDeletePlotConfigVars {
 
   @override
   GDeletePlotConfigVars rebuild(
-          void Function(GDeletePlotConfigVarsBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GDeletePlotConfigVarsBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GDeletePlotConfigVarsBuilder toBuilder() =>
@@ -92,8 +100,7 @@ class _$GDeletePlotConfigVars extends GDeletePlotConfigVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GDeletePlotConfigVars')
-          ..add('id', id))
-        .toString();
+      ..add('id', id)).toString();
   }
 }
 
@@ -131,10 +138,14 @@ class GDeletePlotConfigVarsBuilder
   GDeletePlotConfigVars build() => _build();
 
   _$GDeletePlotConfigVars _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GDeletePlotConfigVars._(
           id: BuiltValueNullFieldError.checkNotNull(
-              id, r'GDeletePlotConfigVars', 'id'),
+            id,
+            r'GDeletePlotConfigVars',
+            'id',
+          ),
         );
     replace(_$result);
     return _$result;
