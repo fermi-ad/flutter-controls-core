@@ -197,6 +197,10 @@ Contains plot data for a given plot request.
 """
 type PlotReplyData {
   """
+  If the plot uses a clock for the trigger, this is the timestamp of the event.
+  """
+  tstamp: Float
+  """
   A unique identifier for the plot request. This identifier will be cached for a limited time. Other clients can specify it to re-use the configuration.
   """
   plotId: String!
