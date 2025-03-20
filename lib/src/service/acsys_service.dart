@@ -371,14 +371,22 @@ final class PlotChannelData {
   final String name;
   final String units;
   final int status;
-  final DevTimeSeries data;
+  final List<PlotPoint> points;
 
   const PlotChannelData({
     required this.name,
     required this.units,
     this.status = 0,
-    this.data = const DevTimeSeries([]),
+    this.points = const [],
   });
+}
+
+final class PlotPoint {
+  final double? t;
+  final double x;
+  final double y;
+
+  const PlotPoint({required this.x, required this.y, this.t});
 }
 
 final class ChannelSettingSnapshot {
@@ -1044,7 +1052,7 @@ final class ACSysService implements ACSysServiceAPI {
         .request(req)
         .handleError((error) => dev.log("error: $error", name: "gql.startPlot"))
         .where((event) => !event.loading)
-        .map((e) => e.data!.startPlot.toPlotReply(req));
+        .map((e) => e.data!.startPlot.toPlotReply(req, null));
   }
 
   @override
@@ -1267,23 +1275,28 @@ extension on GReadDevicesData_acceleratorData_data_result {
 }
 
 extension on GStartPlotData_startPlot_data {
-  PlotChannelData toPlotChannelData(int idx, GStartPlotReq req) =>
+  PlotChannelData toPlotChannelData(int idx, double? ts, GStartPlotReq req) =>
       PlotChannelData(
         name: req.vars.drfList[idx],
         units: channelUnits,
         status: channelStatus,
-        data: DevTimeSeries([...channelData.map((e) => (e.x, e.y))]),
+        points: [
+          ...channelData.map(
+            (e) => PlotPoint(t: ts, x: e.x - (ts ?? 0.0), y: e.y),
+          ),
+        ],
       );
 }
 
 extension on GStartPlotData_startPlot {
-  PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
+  PlotReply toPlotReply(GStartPlotReq req, double? ts) => PlotReply(
     plotId: plotId,
     xAxisUnits: "Time",
     xAxisMin: req.vars.xMin?.toDouble(),
     xAxisMax: req.vars.xMax?.toDouble(),
     windowSize: req.vars.windowSize,
-    data: data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, req)).toList(),
+    data:
+        data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, ts, req)).toList(),
   );
 }
 
