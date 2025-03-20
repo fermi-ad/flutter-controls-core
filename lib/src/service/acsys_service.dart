@@ -541,7 +541,7 @@ abstract interface class ACSysServiceAPI {
 /// from the control system. But a better way is to use the [ACSysProvider]
 /// widget which manages an object of this class.
 
-final class _ACSysService implements ACSysServiceAPI {
+final class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
@@ -552,7 +552,7 @@ final class _ACSysService implements ACSysServiceAPI {
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  _ACSysService({String? jwt})
+  ACSysService({String? jwt})
     : _q = Client(
         link: HttpLink(
           "https://acsys-proxy.fnal.gov:8001/acsys",
@@ -1363,7 +1363,7 @@ final class ACSysProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _ACSysProviderIW(
-      service: service ?? _ACSysService(jwt: AuthService.getJwt(context)),
+      service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
       child: child,
     );
   }
