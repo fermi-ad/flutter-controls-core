@@ -1052,7 +1052,7 @@ final class ACSysService implements ACSysServiceAPI {
         .request(req)
         .handleError((error) => dev.log("error: $error", name: "gql.startPlot"))
         .where((event) => !event.loading)
-        .map((e) => e.data!.startPlot.toPlotReply(req, null));
+        .map((e) => e.data!.startPlot.toPlotReply(req));
   }
 
   @override
@@ -1289,14 +1289,16 @@ extension on GStartPlotData_startPlot_data {
 }
 
 extension on GStartPlotData_startPlot {
-  PlotReply toPlotReply(GStartPlotReq req, double? ts) => PlotReply(
+  PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
     plotId: plotId,
     xAxisUnits: "Time",
     xAxisMin: req.vars.xMin?.toDouble(),
     xAxisMax: req.vars.xMax?.toDouble(),
     windowSize: req.vars.windowSize,
     data:
-        data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, ts, req)).toList(),
+        data.indexed
+            .map((e) => e.$2.toPlotChannelData(e.$1, tstamp, req))
+            .toList(),
   );
 }
 
