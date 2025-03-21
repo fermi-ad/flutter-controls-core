@@ -119,7 +119,15 @@ class _$GStartPlotData_startPlotSerializer
         ]),
       ),
     ];
-
+    Object? value;
+    value = object.tstamp;
+    if (value != null) {
+      result
+        ..add('tstamp')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     return result;
   }
 
@@ -144,6 +152,14 @@ class _$GStartPlotData_startPlotSerializer
                     specifiedType: const FullType(String),
                   )!
                   as String;
+          break;
+        case 'tstamp':
+          result.tstamp =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'plotId':
           result.plotId =
@@ -482,6 +498,8 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   @override
   final String G__typename;
   @override
+  final double? tstamp;
+  @override
   final String plotId;
   @override
   final BuiltList<GStartPlotData_startPlot_data> data;
@@ -492,6 +510,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
 
   _$GStartPlotData_startPlot._({
     required this.G__typename,
+    this.tstamp,
     required this.plotId,
     required this.data,
   }) : super._() {
@@ -526,6 +545,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
     if (identical(other, this)) return true;
     return other is GStartPlotData_startPlot &&
         G__typename == other.G__typename &&
+        tstamp == other.tstamp &&
         plotId == other.plotId &&
         data == other.data;
   }
@@ -534,6 +554,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, tstamp.hashCode);
     _$hash = $jc(_$hash, plotId.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jf(_$hash);
@@ -544,6 +565,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   String toString() {
     return (newBuiltValueToStringHelper(r'GStartPlotData_startPlot')
           ..add('G__typename', G__typename)
+          ..add('tstamp', tstamp)
           ..add('plotId', plotId)
           ..add('data', data))
         .toString();
@@ -558,6 +580,10 @@ class GStartPlotData_startPlotBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  double? _tstamp;
+  double? get tstamp => _$this._tstamp;
+  set tstamp(double? tstamp) => _$this._tstamp = tstamp;
 
   String? _plotId;
   String? get plotId => _$this._plotId;
@@ -577,6 +603,7 @@ class GStartPlotData_startPlotBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _tstamp = $v.tstamp;
       _plotId = $v.plotId;
       _data = $v.data.toBuilder();
       _$v = null;
@@ -609,6 +636,7 @@ class GStartPlotData_startPlotBuilder
               r'GStartPlotData_startPlot',
               'G__typename',
             ),
+            tstamp: tstamp,
             plotId: BuiltValueNullFieldError.checkNotNull(
               plotId,
               r'GStartPlotData_startPlot',
