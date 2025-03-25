@@ -1275,16 +1275,12 @@ extension on GReadDevicesData_acceleratorData_data_result {
 }
 
 extension on GStartPlotData_startPlot_data {
-  PlotChannelData toPlotChannelData(int idx, double? ts, GStartPlotReq req) =>
+  PlotChannelData toPlotChannelData(int idx, GStartPlotReq req) =>
       PlotChannelData(
         name: req.vars.drfList[idx],
         units: channelUnits,
         status: channelStatus,
-        points: [
-          ...channelData.map(
-            (e) => PlotPoint(t: ts, x: e.x - (ts ?? 0.0), y: e.y),
-          ),
-        ],
+        points: [...channelData.map((e) => PlotPoint(t: e.t, x: e.x, y: e.y))],
       );
 }
 
@@ -1295,10 +1291,7 @@ extension on GStartPlotData_startPlot {
     xAxisMin: req.vars.xMin?.toDouble(),
     xAxisMax: req.vars.xMax?.toDouble(),
     windowSize: req.vars.windowSize,
-    data:
-        data.indexed
-            .map((e) => e.$2.toPlotChannelData(e.$1, tstamp, req))
-            .toList(),
+    data: data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, req)).toList(),
   );
 }
 

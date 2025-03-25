@@ -188,6 +188,7 @@ input PlotConfigurationSnapshotIn {
 }
 
 type PlotDataPoint {
+  t: Float
   x: Float!
   y: Float!
 }
