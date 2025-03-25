@@ -1,0 +1,3 @@
+query ToUnix ($clinks: Int!) {
+    clinksToUnix(clinks: $clinks)
+}

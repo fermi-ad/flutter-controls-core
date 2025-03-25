@@ -10,6 +10,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM
         GChannelSettingSnapshotIn,
         GDevValue,
         GPlotConfigurationSnapshotIn,
+        GTimeSeriesEntryIn,
         GXformAvgExpr,
         GXformDeviceExpr,
         GXformExpr,
@@ -105,12 +106,13 @@ import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
 
 part 'serializers.gql.g.dart';
 
-final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
-  ..add(OperationSerializer())
-  ..add(DateSerializer())
-  ..add(GReadDevicesData_acceleratorData_data_result.serializer)
-  ..add(GStreamDataData_acceleratorData_data_result.serializer)
-  ..addPlugin(StandardJsonPlugin());
+final SerializersBuilder _serializersBuilder =
+    _$serializers.toBuilder()
+      ..add(OperationSerializer())
+      ..add(DateSerializer())
+      ..add(GReadDevicesData_acceleratorData_data_result.serializer)
+      ..add(GStreamDataData_acceleratorData_data_result.serializer)
+      ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GChannelSettingSnapshotIn,
   GDeletePlotConfigData,
@@ -160,6 +162,7 @@ final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
   GStreamDataData_acceleratorData_data_result__base,
   GStreamDataReq,
   GStreamDataVars,
+  GTimeSeriesEntryIn,
   GUpdatePlotConfigData,
   GUpdatePlotConfigReq,
   GUpdatePlotConfigVars,

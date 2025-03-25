@@ -15,9 +15,9 @@ abstract class GChannelSettingSnapshotIn
         Built<GChannelSettingSnapshotIn, GChannelSettingSnapshotInBuilder> {
   GChannelSettingSnapshotIn._();
 
-  factory GChannelSettingSnapshotIn(
-          [void Function(GChannelSettingSnapshotInBuilder b) updates]) =
-      _$GChannelSettingSnapshotIn;
+  factory GChannelSettingSnapshotIn([
+    void Function(GChannelSettingSnapshotInBuilder b) updates,
+  ]) = _$GChannelSettingSnapshotIn;
 
   String get device;
   int? get lineColor;
@@ -25,16 +25,13 @@ abstract class GChannelSettingSnapshotIn
   static Serializer<GChannelSettingSnapshotIn> get serializer =>
       _$gChannelSettingSnapshotInSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GChannelSettingSnapshotIn.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GChannelSettingSnapshotIn.serializer, this)
+          as Map<String, dynamic>);
 
-  static GChannelSettingSnapshotIn? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GChannelSettingSnapshotIn.serializer,
-        json,
-      );
+  static GChannelSettingSnapshotIn? fromJson(Map<String, dynamic> json) => _i1
+      .serializers
+      .deserializeWith(GChannelSettingSnapshotIn.serializer, json);
 }
 
 abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
@@ -48,29 +45,28 @@ abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
   BuiltList<int>? get rawVal;
   String? get textVal;
   BuiltList<String>? get textArrayVal;
+  BuiltList<GTimeSeriesEntryIn>? get timeSeriesVal;
   static Serializer<GDevValue> get serializer => _$gDevValueSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GDevValue.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GDevValue.serializer, this)
+          as Map<String, dynamic>);
 
   static GDevValue? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GDevValue.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GDevValue.serializer, json);
 }
 
 abstract class GPlotConfigurationSnapshotIn
     implements
-        Built<GPlotConfigurationSnapshotIn,
-            GPlotConfigurationSnapshotInBuilder> {
+        Built<
+          GPlotConfigurationSnapshotIn,
+          GPlotConfigurationSnapshotInBuilder
+        > {
   GPlotConfigurationSnapshotIn._();
 
-  factory GPlotConfigurationSnapshotIn(
-          [void Function(GPlotConfigurationSnapshotInBuilder b) updates]) =
-      _$GPlotConfigurationSnapshotIn;
+  factory GPlotConfigurationSnapshotIn([
+    void Function(GPlotConfigurationSnapshotInBuilder b) updates,
+  ]) = _$GPlotConfigurationSnapshotIn;
 
   int? get configurationId;
   String get configurationName;
@@ -89,16 +85,39 @@ abstract class GPlotConfigurationSnapshotIn
   static Serializer<GPlotConfigurationSnapshotIn> get serializer =>
       _$gPlotConfigurationSnapshotInSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GPlotConfigurationSnapshotIn.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GPlotConfigurationSnapshotIn.serializer,
+            this,
+          )
+          as Map<String, dynamic>);
 
   static GPlotConfigurationSnapshotIn? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
         GPlotConfigurationSnapshotIn.serializer,
         json,
       );
+}
+
+abstract class GTimeSeriesEntryIn
+    implements Built<GTimeSeriesEntryIn, GTimeSeriesEntryInBuilder> {
+  GTimeSeriesEntryIn._();
+
+  factory GTimeSeriesEntryIn([
+    void Function(GTimeSeriesEntryInBuilder b) updates,
+  ]) = _$GTimeSeriesEntryIn;
+
+  double get stamp;
+  double get value;
+  static Serializer<GTimeSeriesEntryIn> get serializer =>
+      _$gTimeSeriesEntryInSerializer;
+
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GTimeSeriesEntryIn.serializer, this)
+          as Map<String, dynamic>);
+
+  static GTimeSeriesEntryIn? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(GTimeSeriesEntryIn.serializer, json);
 }
 
 abstract class GXformAvgExpr
@@ -112,16 +131,12 @@ abstract class GXformAvgExpr
   int get n;
   static Serializer<GXformAvgExpr> get serializer => _$gXformAvgExprSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GXformAvgExpr.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GXformAvgExpr.serializer, this)
+          as Map<String, dynamic>);
 
   static GXformAvgExpr? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GXformAvgExpr.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GXformAvgExpr.serializer, json);
 }
 
 abstract class GXformDeviceExpr
@@ -135,16 +150,12 @@ abstract class GXformDeviceExpr
   static Serializer<GXformDeviceExpr> get serializer =>
       _$gXformDeviceExprSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GXformDeviceExpr.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GXformDeviceExpr.serializer, this)
+          as Map<String, dynamic>);
 
   static GXformDeviceExpr? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GXformDeviceExpr.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GXformDeviceExpr.serializer, json);
 }
 
 abstract class GXformExpr implements Built<GXformExpr, GXformExprBuilder> {
@@ -157,16 +168,12 @@ abstract class GXformExpr implements Built<GXformExpr, GXformExprBuilder> {
   GXformAvgExpr? get avgEx;
   static Serializer<GXformExpr> get serializer => _$gXformExprSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GXformExpr.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GXformExpr.serializer, this)
+          as Map<String, dynamic>);
 
   static GXformExpr? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GXformExpr.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GXformExpr.serializer, json);
 }
 
 abstract class GXformRequest
@@ -180,16 +187,12 @@ abstract class GXformRequest
   GXformExpr get expr;
   static Serializer<GXformRequest> get serializer => _$gXformRequestSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GXformRequest.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GXformRequest.serializer, this)
+          as Map<String, dynamic>);
 
   static GXformRequest? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GXformRequest.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GXformRequest.serializer, json);
 }
 
 const Map<String, Set<String>> possibleTypesMap = {
@@ -200,6 +203,7 @@ const Map<String, Set<String>> possibleTypesMap = {
     'Raw',
     'Text',
     'TextArray',
+    'TimeSeries',
     'StructData',
-  }
+  },
 };

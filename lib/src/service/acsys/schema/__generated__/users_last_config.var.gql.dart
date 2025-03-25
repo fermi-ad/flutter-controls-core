@@ -13,21 +13,17 @@ abstract class GUsersLastConfigVars
     implements Built<GUsersLastConfigVars, GUsersLastConfigVarsBuilder> {
   GUsersLastConfigVars._();
 
-  factory GUsersLastConfigVars(
-          [void Function(GUsersLastConfigVarsBuilder b) updates]) =
-      _$GUsersLastConfigVars;
+  factory GUsersLastConfigVars([
+    void Function(GUsersLastConfigVarsBuilder b) updates,
+  ]) = _$GUsersLastConfigVars;
 
   static Serializer<GUsersLastConfigVars> get serializer =>
       _$gUsersLastConfigVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GUsersLastConfigVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GUsersLastConfigVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GUsersLastConfigVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GUsersLastConfigVars.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GUsersLastConfigVars.serializer, json);
 }

@@ -79,6 +79,7 @@ union DataType =
   | Raw
   | Text
   | TextArray
+  | TimeSeries
   | StructData
 
 input DevValue {
@@ -88,6 +89,7 @@ input DevValue {
   rawVal: [Int!]
   textVal: String
   textArrayVal: [String!]
+  timeSeriesVal: [TimeSeriesEntryIn!]
 }
 
 """
@@ -195,6 +197,10 @@ Contains plot data for a given plot request.
 """
 type PlotReplyData {
   """
+  If the plot uses a clock for the trigger, this is the timestamp of the event.
+  """
+  tstamp: Float
+  """
   A unique identifier for the plot request. This identifier will be cached for a limited time. Other clients can specify it to re-use the configuration.
   """
   plotId: String!
@@ -251,6 +257,20 @@ Contains an ACNET status code. The Data Pool Manager currently returns these sta
 """
 type StatusReply {
   status: Int!
+}
+
+type TimeSeriesEntry {
+  stamp: Float!
+  value: Float!
+}
+
+input TimeSeriesEntryIn {
+  stamp: Float!
+  value: Float!
+}
+
+type TimeSeries {
+  values: [TimeSeriesEntry!]!
 }
 
 """

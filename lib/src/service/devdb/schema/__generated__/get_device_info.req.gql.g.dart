@@ -19,63 +19,90 @@ class _$GgetDeviceInfoReqSerializer
   final String wireName = 'GgetDeviceInfoReq';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GgetDeviceInfoReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GgetDeviceInfoReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GgetDeviceInfoVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GgetDeviceInfoVars),
+      ),
       'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
+      serializers.serialize(
+        object.operation,
+        specifiedType: const FullType(_i4.Operation),
+      ),
       'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.executeOnListen,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.requestId;
     if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.optimisticResponse;
     if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GgetDeviceInfoData)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GgetDeviceInfoData),
+          ),
+        );
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.updateCacheHandlerContext;
     if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Map, const [
+              const FullType(String),
+              const FullType(dynamic),
+            ]),
+          ),
+        );
     }
     value = object.fetchPolicy;
     if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i1.FetchPolicy),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GgetDeviceInfoReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GgetDeviceInfoReqBuilder();
 
     final iterator = serialized.iterator;
@@ -85,42 +112,73 @@ class _$GgetDeviceInfoReqSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GgetDeviceInfoVars))!
-              as _i3.GgetDeviceInfoVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GgetDeviceInfoVars),
+                )!
+                as _i3.GgetDeviceInfoVars,
+          );
           break;
         case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          result.operation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i4.Operation),
+                  )!
+                  as _i4.Operation;
           break;
         case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.requestId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GgetDeviceInfoData))!
-              as _i2.GgetDeviceInfoData);
+          result.optimisticResponse.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GgetDeviceInfoData),
+                )!
+                as _i2.GgetDeviceInfoData,
+          );
           break;
         case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.updateCacheHandlerKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
+          result.updateCacheHandlerContext =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )
+                  as Map<String, dynamic>?;
           break;
         case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
+          result.fetchPolicy =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i1.FetchPolicy),
+                  )
+                  as _i1.FetchPolicy?;
           break;
         case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.executeOnListen =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -134,42 +192,55 @@ class _$GDevicePropertyFieldsReqSerializer
   @override
   final Iterable<Type> types = const [
     GDevicePropertyFieldsReq,
-    _$GDevicePropertyFieldsReq
+    _$GDevicePropertyFieldsReq,
   ];
   @override
   final String wireName = 'GDevicePropertyFieldsReq';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GDevicePropertyFieldsReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GDevicePropertyFieldsReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GDevicePropertyFieldsVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GDevicePropertyFieldsVars),
+      ),
       'document',
-      serializers.serialize(object.document,
-          specifiedType: const FullType(_i7.DocumentNode)),
+      serializers.serialize(
+        object.document,
+        specifiedType: const FullType(_i7.DocumentNode),
+      ),
       'idFields',
-      serializers.serialize(object.idFields,
-          specifiedType: const FullType(
-              Map, const [const FullType(String), const FullType(dynamic)])),
+      serializers.serialize(
+        object.idFields,
+        specifiedType: const FullType(Map, const [
+          const FullType(String),
+          const FullType(dynamic),
+        ]),
+      ),
     ];
     Object? value;
     value = object.fragmentName;
     if (value != null) {
       result
         ..add('fragmentName')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     return result;
   }
 
   @override
   GDevicePropertyFieldsReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GDevicePropertyFieldsReqBuilder();
 
     final iterator = serialized.iterator;
@@ -179,25 +250,40 @@ class _$GDevicePropertyFieldsReqSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GDevicePropertyFieldsVars))!
-              as _i3.GDevicePropertyFieldsVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GDevicePropertyFieldsVars),
+                )!
+                as _i3.GDevicePropertyFieldsVars,
+          );
           break;
         case 'document':
-          result.document = serializers.deserialize(value,
-                  specifiedType: const FullType(_i7.DocumentNode))!
-              as _i7.DocumentNode;
+          result.document =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i7.DocumentNode),
+                  )!
+                  as _i7.DocumentNode;
           break;
         case 'fragmentName':
-          result.fragmentName = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.fragmentName =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'idFields':
-          result.idFields = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ]))! as Map<String, dynamic>;
+          result.idFields =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )!
+                  as Map<String, dynamic>;
           break;
       }
     }
@@ -215,7 +301,10 @@ class _$GgetDeviceInfoReq extends GgetDeviceInfoReq {
   final String? requestId;
   @override
   final _i2.GgetDeviceInfoData? Function(
-      _i2.GgetDeviceInfoData?, _i2.GgetDeviceInfoData?)? updateResult;
+    _i2.GgetDeviceInfoData?,
+    _i2.GgetDeviceInfoData?,
+  )?
+  updateResult;
   @override
   final _i2.GgetDeviceInfoData? optimisticResponse;
   @override
@@ -229,27 +318,33 @@ class _$GgetDeviceInfoReq extends GgetDeviceInfoReq {
   @override
   final _i4.Context? context;
 
-  factory _$GgetDeviceInfoReq(
-          [void Function(GgetDeviceInfoReqBuilder)? updates]) =>
-      (new GgetDeviceInfoReqBuilder()..update(updates))._build();
+  factory _$GgetDeviceInfoReq([
+    void Function(GgetDeviceInfoReqBuilder)? updates,
+  ]) => (new GgetDeviceInfoReqBuilder()..update(updates))._build();
 
-  _$GgetDeviceInfoReq._(
-      {required this.vars,
-      required this.operation,
-      this.requestId,
-      this.updateResult,
-      this.optimisticResponse,
-      this.updateCacheHandlerKey,
-      this.updateCacheHandlerContext,
-      this.fetchPolicy,
-      required this.executeOnListen,
-      this.context})
-      : super._() {
+  _$GgetDeviceInfoReq._({
+    required this.vars,
+    required this.operation,
+    this.requestId,
+    this.updateResult,
+    this.optimisticResponse,
+    this.updateCacheHandlerKey,
+    this.updateCacheHandlerContext,
+    this.fetchPolicy,
+    required this.executeOnListen,
+    this.context,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(vars, r'GgetDeviceInfoReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, r'GgetDeviceInfoReq', 'operation');
+      operation,
+      r'GgetDeviceInfoReq',
+      'operation',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GgetDeviceInfoReq', 'executeOnListen');
+      executeOnListen,
+      r'GgetDeviceInfoReq',
+      'executeOnListen',
+    );
   }
 
   @override
@@ -329,15 +424,22 @@ class GgetDeviceInfoReqBuilder
   set requestId(String? requestId) => _$this._requestId = requestId;
 
   _i2.GgetDeviceInfoData? Function(
-      _i2.GgetDeviceInfoData?, _i2.GgetDeviceInfoData?)? _updateResult;
+    _i2.GgetDeviceInfoData?,
+    _i2.GgetDeviceInfoData?,
+  )?
+  _updateResult;
   _i2.GgetDeviceInfoData? Function(
-          _i2.GgetDeviceInfoData?, _i2.GgetDeviceInfoData?)?
-      get updateResult => _$this._updateResult;
+    _i2.GgetDeviceInfoData?,
+    _i2.GgetDeviceInfoData?,
+  )?
+  get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GgetDeviceInfoData? Function(
-                  _i2.GgetDeviceInfoData?, _i2.GgetDeviceInfoData?)?
-              updateResult) =>
-      _$this._updateResult = updateResult;
+    _i2.GgetDeviceInfoData? Function(
+      _i2.GgetDeviceInfoData?,
+      _i2.GgetDeviceInfoData?,
+    )?
+    updateResult,
+  ) => _$this._updateResult = updateResult;
 
   _i2.GgetDeviceInfoDataBuilder? _optimisticResponse;
   _i2.GgetDeviceInfoDataBuilder get optimisticResponse =>
@@ -354,8 +456,8 @@ class GgetDeviceInfoReqBuilder
   Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic>? updateCacheHandlerContext) =>
-      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+    Map<String, dynamic>? updateCacheHandlerContext,
+  ) => _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
   _i1.FetchPolicy? _fetchPolicy;
   _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
@@ -410,11 +512,15 @@ class GgetDeviceInfoReqBuilder
   _$GgetDeviceInfoReq _build() {
     _$GgetDeviceInfoReq _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GgetDeviceInfoReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
-                operation, r'GgetDeviceInfoReq', 'operation'),
+              operation,
+              r'GgetDeviceInfoReq',
+              'operation',
+            ),
             requestId: requestId,
             updateResult: updateResult,
             optimisticResponse: _optimisticResponse?.build(),
@@ -422,7 +528,10 @@ class GgetDeviceInfoReqBuilder
             updateCacheHandlerContext: updateCacheHandlerContext,
             fetchPolicy: fetchPolicy,
             executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                executeOnListen, r'GgetDeviceInfoReq', 'executeOnListen'),
+              executeOnListen,
+              r'GgetDeviceInfoReq',
+              'executeOnListen',
+            ),
             context: context,
           );
     } catch (_) {
@@ -435,7 +544,10 @@ class GgetDeviceInfoReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GgetDeviceInfoReq', _$failedField, e.toString());
+          r'GgetDeviceInfoReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -454,28 +566,37 @@ class _$GDevicePropertyFieldsReq extends GDevicePropertyFieldsReq {
   @override
   final Map<String, dynamic> idFields;
 
-  factory _$GDevicePropertyFieldsReq(
-          [void Function(GDevicePropertyFieldsReqBuilder)? updates]) =>
-      (new GDevicePropertyFieldsReqBuilder()..update(updates))._build();
+  factory _$GDevicePropertyFieldsReq([
+    void Function(GDevicePropertyFieldsReqBuilder)? updates,
+  ]) => (new GDevicePropertyFieldsReqBuilder()..update(updates))._build();
 
-  _$GDevicePropertyFieldsReq._(
-      {required this.vars,
-      required this.document,
-      this.fragmentName,
-      required this.idFields})
-      : super._() {
+  _$GDevicePropertyFieldsReq._({
+    required this.vars,
+    required this.document,
+    this.fragmentName,
+    required this.idFields,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        vars, r'GDevicePropertyFieldsReq', 'vars');
+      vars,
+      r'GDevicePropertyFieldsReq',
+      'vars',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        document, r'GDevicePropertyFieldsReq', 'document');
+      document,
+      r'GDevicePropertyFieldsReq',
+      'document',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        idFields, r'GDevicePropertyFieldsReq', 'idFields');
+      idFields,
+      r'GDevicePropertyFieldsReq',
+      'idFields',
+    );
   }
 
   @override
   GDevicePropertyFieldsReq rebuild(
-          void Function(GDevicePropertyFieldsReqBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GDevicePropertyFieldsReqBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GDevicePropertyFieldsReqBuilder toBuilder() =>
@@ -568,14 +689,21 @@ class GDevicePropertyFieldsReqBuilder
   _$GDevicePropertyFieldsReq _build() {
     _$GDevicePropertyFieldsReq _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GDevicePropertyFieldsReq._(
             vars: vars.build(),
             document: BuiltValueNullFieldError.checkNotNull(
-                document, r'GDevicePropertyFieldsReq', 'document'),
+              document,
+              r'GDevicePropertyFieldsReq',
+              'document',
+            ),
             fragmentName: fragmentName,
             idFields: BuiltValueNullFieldError.checkNotNull(
-                idFields, r'GDevicePropertyFieldsReq', 'idFields'),
+              idFields,
+              r'GDevicePropertyFieldsReq',
+              'idFields',
+            ),
           );
     } catch (_) {
       late String _$failedField;
@@ -584,7 +712,10 @@ class GDevicePropertyFieldsReqBuilder
         vars.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GDevicePropertyFieldsReq', _$failedField, e.toString());
+          r'GDevicePropertyFieldsReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }

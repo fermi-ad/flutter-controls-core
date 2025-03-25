@@ -166,24 +166,16 @@ const DataType = _i1.UnionTypeDefinitionNode(
       name: _i1.NameNode(value: 'StatusReply'),
       isNonNull: false,
     ),
-    _i1.NamedTypeNode(
-      name: _i1.NameNode(value: 'Scalar'),
-      isNonNull: false,
-    ),
+    _i1.NamedTypeNode(name: _i1.NameNode(value: 'Scalar'), isNonNull: false),
     _i1.NamedTypeNode(
       name: _i1.NameNode(value: 'ScalarArray'),
       isNonNull: false,
     ),
+    _i1.NamedTypeNode(name: _i1.NameNode(value: 'Raw'), isNonNull: false),
+    _i1.NamedTypeNode(name: _i1.NameNode(value: 'Text'), isNonNull: false),
+    _i1.NamedTypeNode(name: _i1.NameNode(value: 'TextArray'), isNonNull: false),
     _i1.NamedTypeNode(
-      name: _i1.NameNode(value: 'Raw'),
-      isNonNull: false,
-    ),
-    _i1.NamedTypeNode(
-      name: _i1.NameNode(value: 'Text'),
-      isNonNull: false,
-    ),
-    _i1.NamedTypeNode(
-      name: _i1.NameNode(value: 'TextArray'),
+      name: _i1.NameNode(value: 'TimeSeries'),
       isNonNull: false,
     ),
     _i1.NamedTypeNode(
@@ -253,6 +245,18 @@ const DevValue = _i1.InputObjectTypeDefinitionNode(
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
           name: _i1.NameNode(value: 'String'),
+          isNonNull: true,
+        ),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'timeSeriesVal'),
+      directives: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'TimeSeriesEntryIn'),
           isNonNull: true,
         ),
         isNonNull: false,
@@ -331,7 +335,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        )
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
@@ -350,7 +354,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        )
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'StatusReply'),
@@ -369,7 +373,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        )
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'StatusReply'),
@@ -717,6 +721,15 @@ const PlotReplyData = _i1.ObjectTypeDefinitionNode(
   interfaces: [],
   fields: [
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'tstamp'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'plotId'),
       directives: [],
       args: [],
@@ -790,7 +803,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
             isNonNull: false,
           ),
           defaultValue: null,
-        )
+        ),
       ],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
@@ -827,7 +840,7 @@ const Raw = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    )
+    ),
   ],
 );
 const Scalar = _i1.ObjectTypeDefinitionNode(
@@ -843,7 +856,7 @@ const Scalar = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'Float'),
         isNonNull: true,
       ),
-    )
+    ),
   ],
 );
 const ScalarArray = _i1.ObjectTypeDefinitionNode(
@@ -862,7 +875,7 @@ const ScalarArray = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    )
+    ),
   ],
 );
 const StatusReply = _i1.ObjectTypeDefinitionNode(
@@ -878,7 +891,75 @@ const StatusReply = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'Int'),
         isNonNull: true,
       ),
-    )
+    ),
+  ],
+);
+const TimeSeriesEntry = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TimeSeriesEntry'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'stamp'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'value'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
+const TimeSeriesEntryIn = _i1.InputObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TimeSeriesEntryIn'),
+  directives: [],
+  fields: [
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'stamp'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'value'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+  ],
+);
+const TimeSeries = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'TimeSeries'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'values'),
+      directives: [],
+      args: [],
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'TimeSeriesEntry'),
+          isNonNull: true,
+        ),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const StructData = _i1.ObjectTypeDefinitionNode(
@@ -1060,7 +1141,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        )
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'EventInfo'),
@@ -1079,7 +1160,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        )
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'XformResult'),
@@ -1101,7 +1182,7 @@ const Text = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'String'),
         isNonNull: true,
       ),
-    )
+    ),
   ],
 );
 const TextArray = _i1.ObjectTypeDefinitionNode(
@@ -1120,7 +1201,7 @@ const TextArray = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    )
+    ),
   ],
 );
 const XformAvgExpr = _i1.InputObjectTypeDefinitionNode(
@@ -1159,7 +1240,7 @@ const XformDeviceExpr = _i1.InputObjectTypeDefinitionNode(
         isNonNull: true,
       ),
       defaultValue: null,
-    )
+    ),
   ],
 );
 const XformExpr = _i1.InputObjectTypeDefinitionNode(
@@ -1235,34 +1316,39 @@ const XformResult = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const document = _i1.DocumentNode(definitions: [
-  oneOf,
-  Timestamp,
-  ChannelSettingSnapshot,
-  ChannelSettingSnapshotIn,
-  DataInfo,
-  DataReply,
-  DataType,
-  DevValue,
-  EventInfo,
-  Mutation,
-  PlotChannelData,
-  PlotConfigurationSnapshot,
-  PlotConfigurationSnapshotIn,
-  PlotDataPoint,
-  PlotReplyData,
-  Query,
-  Raw,
-  Scalar,
-  ScalarArray,
-  StatusReply,
-  StructData,
-  Subscription,
-  Text,
-  TextArray,
-  XformAvgExpr,
-  XformDeviceExpr,
-  XformExpr,
-  XformRequest,
-  XformResult,
-]);
+const document = _i1.DocumentNode(
+  definitions: [
+    oneOf,
+    Timestamp,
+    ChannelSettingSnapshot,
+    ChannelSettingSnapshotIn,
+    DataInfo,
+    DataReply,
+    DataType,
+    DevValue,
+    EventInfo,
+    Mutation,
+    PlotChannelData,
+    PlotConfigurationSnapshot,
+    PlotConfigurationSnapshotIn,
+    PlotDataPoint,
+    PlotReplyData,
+    Query,
+    Raw,
+    Scalar,
+    ScalarArray,
+    StatusReply,
+    TimeSeriesEntry,
+    TimeSeriesEntryIn,
+    TimeSeries,
+    StructData,
+    Subscription,
+    Text,
+    TextArray,
+    XformAvgExpr,
+    XformDeviceExpr,
+    XformExpr,
+    XformRequest,
+    XformResult,
+  ],
+);

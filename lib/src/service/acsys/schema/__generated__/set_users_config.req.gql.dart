@@ -23,16 +23,17 @@ abstract class GSetUsersConfigReq
         _i1.OperationRequest<_i2.GSetUsersConfigData, _i3.GSetUsersConfigVars> {
   GSetUsersConfigReq._();
 
-  factory GSetUsersConfigReq(
-          [void Function(GSetUsersConfigReqBuilder b) updates]) =
-      _$GSetUsersConfigReq;
+  factory GSetUsersConfigReq([
+    void Function(GSetUsersConfigReqBuilder b) updates,
+  ]) = _$GSetUsersConfigReq;
 
-  static void _initializeBuilder(GSetUsersConfigReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'SetUsersConfig',
-    )
-    ..executeOnListen = true;
+  static void _initializeBuilder(GSetUsersConfigReqBuilder b) =>
+      b
+        ..operation = _i4.Operation(
+          document: _i5.document,
+          operationName: 'SetUsersConfig',
+        )
+        ..executeOnListen = true;
 
   @override
   _i3.GSetUsersConfigVars get vars;
@@ -40,10 +41,10 @@ abstract class GSetUsersConfigReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-        context: context ?? const _i4.Context(),
-      );
+    operation: operation,
+    variables: vars.toJson(),
+    context: context ?? const _i4.Context(),
+  );
 
   @override
   String? get requestId;
@@ -52,7 +53,8 @@ abstract class GSetUsersConfigReq
   _i2.GSetUsersConfigData? Function(
     _i2.GSetUsersConfigData?,
     _i2.GSetUsersConfigData?,
-  )? get updateResult;
+  )?
+  get updateResult;
   @override
   _i2.GSetUsersConfigData? get optimisticResponse;
   @override
@@ -79,20 +81,16 @@ abstract class GSetUsersConfigReq
 
   @override
   _i1.OperationRequest<_i2.GSetUsersConfigData, _i3.GSetUsersConfigVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
+  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GSetUsersConfigReq> get serializer =>
       _$gSetUsersConfigReqSerializer;
 
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GSetUsersConfigReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GSetUsersConfigReq.serializer, this)
+          as Map<String, dynamic>);
 
   static GSetUsersConfigReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GSetUsersConfigReq.serializer,
-        json,
-      );
+      _i6.serializers.deserializeWith(GSetUsersConfigReq.serializer, json);
 }

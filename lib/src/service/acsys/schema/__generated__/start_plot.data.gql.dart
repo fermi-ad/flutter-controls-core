@@ -26,16 +26,12 @@ abstract class GStartPlotData
   static Serializer<GStartPlotData> get serializer =>
       _$gStartPlotDataSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GStartPlotData.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GStartPlotData.serializer, this)
+          as Map<String, dynamic>);
 
   static GStartPlotData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GStartPlotData.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GStartPlotData.serializer, json);
 }
 
 abstract class GStartPlotData_startPlot
@@ -43,41 +39,41 @@ abstract class GStartPlotData_startPlot
         Built<GStartPlotData_startPlot, GStartPlotData_startPlotBuilder> {
   GStartPlotData_startPlot._();
 
-  factory GStartPlotData_startPlot(
-          [void Function(GStartPlotData_startPlotBuilder b) updates]) =
-      _$GStartPlotData_startPlot;
+  factory GStartPlotData_startPlot([
+    void Function(GStartPlotData_startPlotBuilder b) updates,
+  ]) = _$GStartPlotData_startPlot;
 
   static void _initializeBuilder(GStartPlotData_startPlotBuilder b) =>
       b..G__typename = 'PlotReplyData';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  double? get tstamp;
   String get plotId;
   BuiltList<GStartPlotData_startPlot_data> get data;
   static Serializer<GStartPlotData_startPlot> get serializer =>
       _$gStartPlotDataStartPlotSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GStartPlotData_startPlot.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GStartPlotData_startPlot.serializer, this)
+          as Map<String, dynamic>);
 
-  static GStartPlotData_startPlot? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GStartPlotData_startPlot.serializer,
-        json,
-      );
+  static GStartPlotData_startPlot? fromJson(Map<String, dynamic> json) => _i1
+      .serializers
+      .deserializeWith(GStartPlotData_startPlot.serializer, json);
 }
 
 abstract class GStartPlotData_startPlot_data
     implements
-        Built<GStartPlotData_startPlot_data,
-            GStartPlotData_startPlot_dataBuilder> {
+        Built<
+          GStartPlotData_startPlot_data,
+          GStartPlotData_startPlot_dataBuilder
+        > {
   GStartPlotData_startPlot_data._();
 
-  factory GStartPlotData_startPlot_data(
-          [void Function(GStartPlotData_startPlot_dataBuilder b) updates]) =
-      _$GStartPlotData_startPlot_data;
+  factory GStartPlotData_startPlot_data([
+    void Function(GStartPlotData_startPlot_dataBuilder b) updates,
+  ]) = _$GStartPlotData_startPlot_data;
 
   static void _initializeBuilder(GStartPlotData_startPlot_dataBuilder b) =>
       b..G__typename = 'PlotChannelData';
@@ -90,10 +86,12 @@ abstract class GStartPlotData_startPlot_data
   static Serializer<GStartPlotData_startPlot_data> get serializer =>
       _$gStartPlotDataStartPlotDataSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GStartPlotData_startPlot_data.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GStartPlotData_startPlot_data.serializer,
+            this,
+          )
+          as Map<String, dynamic>);
 
   static GStartPlotData_startPlot_data? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -104,17 +102,19 @@ abstract class GStartPlotData_startPlot_data
 
 abstract class GStartPlotData_startPlot_data_channelData
     implements
-        Built<GStartPlotData_startPlot_data_channelData,
-            GStartPlotData_startPlot_data_channelDataBuilder> {
+        Built<
+          GStartPlotData_startPlot_data_channelData,
+          GStartPlotData_startPlot_data_channelDataBuilder
+        > {
   GStartPlotData_startPlot_data_channelData._();
 
-  factory GStartPlotData_startPlot_data_channelData(
-      [void Function(GStartPlotData_startPlot_data_channelDataBuilder b)
-          updates]) = _$GStartPlotData_startPlot_data_channelData;
+  factory GStartPlotData_startPlot_data_channelData([
+    void Function(GStartPlotData_startPlot_data_channelDataBuilder b) updates,
+  ]) = _$GStartPlotData_startPlot_data_channelData;
 
   static void _initializeBuilder(
-          GStartPlotData_startPlot_data_channelDataBuilder b) =>
-      b..G__typename = 'PlotDataPoint';
+    GStartPlotData_startPlot_data_channelDataBuilder b,
+  ) => b..G__typename = 'PlotDataPoint';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -123,15 +123,17 @@ abstract class GStartPlotData_startPlot_data_channelData
   static Serializer<GStartPlotData_startPlot_data_channelData> get serializer =>
       _$gStartPlotDataStartPlotDataChannelDataSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GStartPlotData_startPlot_data_channelData.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GStartPlotData_startPlot_data_channelData.serializer,
+            this,
+          )
+          as Map<String, dynamic>);
 
   static GStartPlotData_startPlot_data_channelData? fromJson(
-          Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GStartPlotData_startPlot_data_channelData.serializer,
-        json,
-      );
+    Map<String, dynamic> json,
+  ) => _i1.serializers.deserializeWith(
+    GStartPlotData_startPlot_data_channelData.serializer,
+    json,
+  );
 }

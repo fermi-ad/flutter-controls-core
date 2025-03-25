@@ -26,12 +26,13 @@ abstract class GPlotConfigsReq
   factory GPlotConfigsReq([void Function(GPlotConfigsReqBuilder b) updates]) =
       _$GPlotConfigsReq;
 
-  static void _initializeBuilder(GPlotConfigsReqBuilder b) => b
-    ..operation = _i4.Operation(
-      document: _i5.document,
-      operationName: 'PlotConfigs',
-    )
-    ..executeOnListen = true;
+  static void _initializeBuilder(GPlotConfigsReqBuilder b) =>
+      b
+        ..operation = _i4.Operation(
+          document: _i5.document,
+          operationName: 'PlotConfigs',
+        )
+        ..executeOnListen = true;
 
   @override
   _i3.GPlotConfigsVars get vars;
@@ -39,19 +40,17 @@ abstract class GPlotConfigsReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-        operation: operation,
-        variables: vars.toJson(),
-        context: context ?? const _i4.Context(),
-      );
+    operation: operation,
+    variables: vars.toJson(),
+    context: context ?? const _i4.Context(),
+  );
 
   @override
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GPlotConfigsData? Function(
-    _i2.GPlotConfigsData?,
-    _i2.GPlotConfigsData?,
-  )? get updateResult;
+  _i2.GPlotConfigsData? Function(_i2.GPlotConfigsData?, _i2.GPlotConfigsData?)?
+  get updateResult;
   @override
   _i2.GPlotConfigsData? get optimisticResponse;
   @override
@@ -77,20 +76,16 @@ abstract class GPlotConfigsReq
 
   @override
   _i1.OperationRequest<_i2.GPlotConfigsData, _i3.GPlotConfigsVars>
-      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-          this.rebuild((b) => b..operation = transform(operation));
+  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+      this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GPlotConfigsReq> get serializer =>
       _$gPlotConfigsReqSerializer;
 
-  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
-        GPlotConfigsReq.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i6.serializers.serializeWith(GPlotConfigsReq.serializer, this)
+          as Map<String, dynamic>);
 
   static GPlotConfigsReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(
-        GPlotConfigsReq.serializer,
-        json,
-      );
+      _i6.serializers.deserializeWith(GPlotConfigsReq.serializer, json);
 }

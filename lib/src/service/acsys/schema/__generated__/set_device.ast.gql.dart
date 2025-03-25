@@ -28,31 +28,35 @@ const SetDevice = _i1.OperationDefinitionNode(
     ),
   ],
   directives: [],
-  selectionSet: _i1.SelectionSetNode(selections: [
-    _i1.FieldNode(
-      name: _i1.NameNode(value: 'setDevice'),
-      alias: null,
-      arguments: [
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'device'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'device')),
+  selectionSet: _i1.SelectionSetNode(
+    selections: [
+      _i1.FieldNode(
+        name: _i1.NameNode(value: 'setDevice'),
+        alias: null,
+        arguments: [
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'device'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'device')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'value'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'value')),
+          ),
+        ],
+        directives: [],
+        selectionSet: _i1.SelectionSetNode(
+          selections: [
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'status'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+          ],
         ),
-        _i1.ArgumentNode(
-          name: _i1.NameNode(value: 'value'),
-          value: _i1.VariableNode(name: _i1.NameNode(value: 'value')),
-        ),
-      ],
-      directives: [],
-      selectionSet: _i1.SelectionSetNode(selections: [
-        _i1.FieldNode(
-          name: _i1.NameNode(value: 'status'),
-          alias: null,
-          arguments: [],
-          directives: [],
-          selectionSet: null,
-        )
-      ]),
-    )
-  ]),
+      ),
+    ],
+  ),
 );
 const document = _i1.DocumentNode(definitions: [SetDevice]);

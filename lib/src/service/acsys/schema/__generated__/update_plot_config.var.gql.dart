@@ -15,22 +15,18 @@ abstract class GUpdatePlotConfigVars
     implements Built<GUpdatePlotConfigVars, GUpdatePlotConfigVarsBuilder> {
   GUpdatePlotConfigVars._();
 
-  factory GUpdatePlotConfigVars(
-          [void Function(GUpdatePlotConfigVarsBuilder b) updates]) =
-      _$GUpdatePlotConfigVars;
+  factory GUpdatePlotConfigVars([
+    void Function(GUpdatePlotConfigVarsBuilder b) updates,
+  ]) = _$GUpdatePlotConfigVars;
 
   _i1.GPlotConfigurationSnapshotIn get cfg;
   static Serializer<GUpdatePlotConfigVars> get serializer =>
       _$gUpdatePlotConfigVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i2.serializers.serializeWith(
-        GUpdatePlotConfigVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i2.serializers.serializeWith(GUpdatePlotConfigVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GUpdatePlotConfigVars? fromJson(Map<String, dynamic> json) =>
-      _i2.serializers.deserializeWith(
-        GUpdatePlotConfigVars.serializer,
-        json,
-      );
+      _i2.serializers.deserializeWith(GUpdatePlotConfigVars.serializer, json);
 }

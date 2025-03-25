@@ -11,10 +11,10 @@ Serializer<GStartPlotData> _$gStartPlotDataSerializer =
 Serializer<GStartPlotData_startPlot> _$gStartPlotDataStartPlotSerializer =
     new _$GStartPlotData_startPlotSerializer();
 Serializer<GStartPlotData_startPlot_data>
-    _$gStartPlotDataStartPlotDataSerializer =
+_$gStartPlotDataStartPlotDataSerializer =
     new _$GStartPlotData_startPlot_dataSerializer();
 Serializer<GStartPlotData_startPlot_data_channelData>
-    _$gStartPlotDataStartPlotDataChannelDataSerializer =
+_$gStartPlotDataStartPlotDataChannelDataSerializer =
     new _$GStartPlotData_startPlot_data_channelDataSerializer();
 
 class _$GStartPlotDataSerializer
@@ -25,15 +25,22 @@ class _$GStartPlotDataSerializer
   final String wireName = 'GStartPlotData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStartPlotData object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStartPlotData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'startPlot',
-      serializers.serialize(object.startPlot,
-          specifiedType: const FullType(GStartPlotData_startPlot)),
+      serializers.serialize(
+        object.startPlot,
+        specifiedType: const FullType(GStartPlotData_startPlot),
+      ),
     ];
 
     return result;
@@ -41,8 +48,10 @@ class _$GStartPlotDataSerializer
 
   @override
   GStartPlotData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStartPlotDataBuilder();
 
     final iterator = serialized.iterator;
@@ -52,13 +61,21 @@ class _$GStartPlotDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'startPlot':
-          result.startPlot.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(GStartPlotData_startPlot))!
-              as GStartPlotData_startPlot);
+          result.startPlot.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(GStartPlotData_startPlot),
+                )!
+                as GStartPlotData_startPlot,
+          );
           break;
       }
     }
@@ -72,35 +89,54 @@ class _$GStartPlotData_startPlotSerializer
   @override
   final Iterable<Type> types = const [
     GStartPlotData_startPlot,
-    _$GStartPlotData_startPlot
+    _$GStartPlotData_startPlot,
   ];
   @override
   final String wireName = 'GStartPlotData_startPlot';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GStartPlotData_startPlot object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GStartPlotData_startPlot object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'plotId',
-      serializers.serialize(object.plotId,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.plotId,
+        specifiedType: const FullType(String),
+      ),
       'data',
-      serializers.serialize(object.data,
-          specifiedType: const FullType(BuiltList,
-              const [const FullType(GStartPlotData_startPlot_data)])),
+      serializers.serialize(
+        object.data,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GStartPlotData_startPlot_data),
+        ]),
+      ),
     ];
-
+    Object? value;
+    value = object.tstamp;
+    if (value != null) {
+      result
+        ..add('tstamp')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     return result;
   }
 
   @override
   GStartPlotData_startPlot deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStartPlotData_startPlotBuilder();
 
     final iterator = serialized.iterator;
@@ -110,18 +146,39 @@ class _$GStartPlotData_startPlotSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
+          break;
+        case 'tstamp':
+          result.tstamp =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'plotId':
-          result.plotId = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.plotId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'data':
-          result.data.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GStartPlotData_startPlot_data)
-              ]))! as BuiltList<Object?>);
+          result.data.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GStartPlotData_startPlot_data),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -135,30 +192,40 @@ class _$GStartPlotData_startPlot_dataSerializer
   @override
   final Iterable<Type> types = const [
     GStartPlotData_startPlot_data,
-    _$GStartPlotData_startPlot_data
+    _$GStartPlotData_startPlot_data,
   ];
   @override
   final String wireName = 'GStartPlotData_startPlot_data';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GStartPlotData_startPlot_data object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GStartPlotData_startPlot_data object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'channelUnits',
-      serializers.serialize(object.channelUnits,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.channelUnits,
+        specifiedType: const FullType(String),
+      ),
       'channelStatus',
-      serializers.serialize(object.channelStatus,
-          specifiedType: const FullType(int)),
+      serializers.serialize(
+        object.channelStatus,
+        specifiedType: const FullType(int),
+      ),
       'channelData',
-      serializers.serialize(object.channelData,
-          specifiedType: const FullType(BuiltList, const [
-            const FullType(GStartPlotData_startPlot_data_channelData)
-          ])),
+      serializers.serialize(
+        object.channelData,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GStartPlotData_startPlot_data_channelData),
+        ]),
+      ),
     ];
 
     return result;
@@ -166,8 +233,10 @@ class _$GStartPlotData_startPlot_dataSerializer
 
   @override
   GStartPlotData_startPlot_data deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStartPlotData_startPlot_dataBuilder();
 
     final iterator = serialized.iterator;
@@ -177,22 +246,39 @@ class _$GStartPlotData_startPlot_dataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'channelUnits':
-          result.channelUnits = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.channelUnits =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'channelStatus':
-          result.channelStatus = serializers.deserialize(value,
-              specifiedType: const FullType(int))! as int;
+          result.channelStatus =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
         case 'channelData':
-          result.channelData.replace(serializers.deserialize(value,
-              specifiedType: const FullType(BuiltList, const [
-                const FullType(GStartPlotData_startPlot_data_channelData)
-              ]))! as BuiltList<Object?>);
+          result.channelData.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GStartPlotData_startPlot_data_channelData),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -206,19 +292,23 @@ class _$GStartPlotData_startPlot_data_channelDataSerializer
   @override
   final Iterable<Type> types = const [
     GStartPlotData_startPlot_data_channelData,
-    _$GStartPlotData_startPlot_data_channelData
+    _$GStartPlotData_startPlot_data_channelData,
   ];
   @override
   final String wireName = 'GStartPlotData_startPlot_data_channelData';
 
   @override
   Iterable<Object?> serialize(
-      Serializers serializers, GStartPlotData_startPlot_data_channelData object,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    GStartPlotData_startPlot_data_channelData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'x',
       serializers.serialize(object.x, specifiedType: const FullType(double)),
       'y',
@@ -230,8 +320,10 @@ class _$GStartPlotData_startPlot_data_channelDataSerializer
 
   @override
   GStartPlotData_startPlot_data_channelData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStartPlotData_startPlot_data_channelDataBuilder();
 
     final iterator = serialized.iterator;
@@ -241,16 +333,28 @@ class _$GStartPlotData_startPlot_data_channelDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'x':
-          result.x = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.x =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
         case 'y':
-          result.y = serializers.deserialize(value,
-              specifiedType: const FullType(double))! as double;
+          result.y =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )!
+                  as double;
           break;
       }
     }
@@ -269,11 +373,17 @@ class _$GStartPlotData extends GStartPlotData {
       (new GStartPlotDataBuilder()..update(updates))._build();
 
   _$GStartPlotData._({required this.G__typename, required this.startPlot})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStartPlotData', 'G__typename');
+      G__typename,
+      r'GStartPlotData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        startPlot, r'GStartPlotData', 'startPlot');
+      startPlot,
+      r'GStartPlotData',
+      'startPlot',
+    );
   }
 
   @override
@@ -355,10 +465,14 @@ class GStartPlotDataBuilder
   _$GStartPlotData _build() {
     _$GStartPlotData _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStartPlotData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStartPlotData', 'G__typename'),
+              G__typename,
+              r'GStartPlotData',
+              'G__typename',
+            ),
             startPlot: startPlot.build(),
           );
     } catch (_) {
@@ -368,7 +482,10 @@ class GStartPlotDataBuilder
         startPlot.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStartPlotData', _$failedField, e.toString());
+          r'GStartPlotData',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -381,29 +498,43 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   @override
   final String G__typename;
   @override
+  final double? tstamp;
+  @override
   final String plotId;
   @override
   final BuiltList<GStartPlotData_startPlot_data> data;
 
-  factory _$GStartPlotData_startPlot(
-          [void Function(GStartPlotData_startPlotBuilder)? updates]) =>
-      (new GStartPlotData_startPlotBuilder()..update(updates))._build();
+  factory _$GStartPlotData_startPlot([
+    void Function(GStartPlotData_startPlotBuilder)? updates,
+  ]) => (new GStartPlotData_startPlotBuilder()..update(updates))._build();
 
-  _$GStartPlotData_startPlot._(
-      {required this.G__typename, required this.plotId, required this.data})
-      : super._() {
+  _$GStartPlotData_startPlot._({
+    required this.G__typename,
+    this.tstamp,
+    required this.plotId,
+    required this.data,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStartPlotData_startPlot', 'G__typename');
+      G__typename,
+      r'GStartPlotData_startPlot',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        plotId, r'GStartPlotData_startPlot', 'plotId');
+      plotId,
+      r'GStartPlotData_startPlot',
+      'plotId',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        data, r'GStartPlotData_startPlot', 'data');
+      data,
+      r'GStartPlotData_startPlot',
+      'data',
+    );
   }
 
   @override
   GStartPlotData_startPlot rebuild(
-          void Function(GStartPlotData_startPlotBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStartPlotData_startPlotBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStartPlotData_startPlotBuilder toBuilder() =>
@@ -414,6 +545,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
     if (identical(other, this)) return true;
     return other is GStartPlotData_startPlot &&
         G__typename == other.G__typename &&
+        tstamp == other.tstamp &&
         plotId == other.plotId &&
         data == other.data;
   }
@@ -422,6 +554,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, tstamp.hashCode);
     _$hash = $jc(_$hash, plotId.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jf(_$hash);
@@ -432,6 +565,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   String toString() {
     return (newBuiltValueToStringHelper(r'GStartPlotData_startPlot')
           ..add('G__typename', G__typename)
+          ..add('tstamp', tstamp)
           ..add('plotId', plotId)
           ..add('data', data))
         .toString();
@@ -446,6 +580,10 @@ class GStartPlotData_startPlotBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  double? _tstamp;
+  double? get tstamp => _$this._tstamp;
+  set tstamp(double? tstamp) => _$this._tstamp = tstamp;
 
   String? _plotId;
   String? get plotId => _$this._plotId;
@@ -465,6 +603,7 @@ class GStartPlotData_startPlotBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _tstamp = $v.tstamp;
       _plotId = $v.plotId;
       _data = $v.data.toBuilder();
       _$v = null;
@@ -489,12 +628,20 @@ class GStartPlotData_startPlotBuilder
   _$GStartPlotData_startPlot _build() {
     _$GStartPlotData_startPlot _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStartPlotData_startPlot._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStartPlotData_startPlot', 'G__typename'),
+              G__typename,
+              r'GStartPlotData_startPlot',
+              'G__typename',
+            ),
+            tstamp: tstamp,
             plotId: BuiltValueNullFieldError.checkNotNull(
-                plotId, r'GStartPlotData_startPlot', 'plotId'),
+              plotId,
+              r'GStartPlotData_startPlot',
+              'plotId',
+            ),
             data: data.build(),
           );
     } catch (_) {
@@ -504,7 +651,10 @@ class GStartPlotData_startPlotBuilder
         data.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStartPlotData_startPlot', _$failedField, e.toString());
+          r'GStartPlotData_startPlot',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -523,30 +673,42 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
   @override
   final BuiltList<GStartPlotData_startPlot_data_channelData> channelData;
 
-  factory _$GStartPlotData_startPlot_data(
-          [void Function(GStartPlotData_startPlot_dataBuilder)? updates]) =>
-      (new GStartPlotData_startPlot_dataBuilder()..update(updates))._build();
+  factory _$GStartPlotData_startPlot_data([
+    void Function(GStartPlotData_startPlot_dataBuilder)? updates,
+  ]) => (new GStartPlotData_startPlot_dataBuilder()..update(updates))._build();
 
-  _$GStartPlotData_startPlot_data._(
-      {required this.G__typename,
-      required this.channelUnits,
-      required this.channelStatus,
-      required this.channelData})
-      : super._() {
+  _$GStartPlotData_startPlot_data._({
+    required this.G__typename,
+    required this.channelUnits,
+    required this.channelStatus,
+    required this.channelData,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStartPlotData_startPlot_data', 'G__typename');
+      G__typename,
+      r'GStartPlotData_startPlot_data',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        channelUnits, r'GStartPlotData_startPlot_data', 'channelUnits');
+      channelUnits,
+      r'GStartPlotData_startPlot_data',
+      'channelUnits',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        channelStatus, r'GStartPlotData_startPlot_data', 'channelStatus');
+      channelStatus,
+      r'GStartPlotData_startPlot_data',
+      'channelStatus',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        channelData, r'GStartPlotData_startPlot_data', 'channelData');
+      channelData,
+      r'GStartPlotData_startPlot_data',
+      'channelData',
+    );
   }
 
   @override
   GStartPlotData_startPlot_data rebuild(
-          void Function(GStartPlotData_startPlot_dataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStartPlotData_startPlot_dataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStartPlotData_startPlot_dataBuilder toBuilder() =>
@@ -586,8 +748,10 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
 
 class GStartPlotData_startPlot_dataBuilder
     implements
-        Builder<GStartPlotData_startPlot_data,
-            GStartPlotData_startPlot_dataBuilder> {
+        Builder<
+          GStartPlotData_startPlot_data,
+          GStartPlotData_startPlot_dataBuilder
+        > {
   _$GStartPlotData_startPlot_data? _$v;
 
   String? _G__typename;
@@ -608,9 +772,8 @@ class GStartPlotData_startPlot_dataBuilder
       _$this._channelData ??=
           new ListBuilder<GStartPlotData_startPlot_data_channelData>();
   set channelData(
-          ListBuilder<GStartPlotData_startPlot_data_channelData>?
-              channelData) =>
-      _$this._channelData = channelData;
+    ListBuilder<GStartPlotData_startPlot_data_channelData>? channelData,
+  ) => _$this._channelData = channelData;
 
   GStartPlotData_startPlot_dataBuilder() {
     GStartPlotData_startPlot_data._initializeBuilder(this);
@@ -645,14 +808,24 @@ class GStartPlotData_startPlot_dataBuilder
   _$GStartPlotData_startPlot_data _build() {
     _$GStartPlotData_startPlot_data _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStartPlotData_startPlot_data._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStartPlotData_startPlot_data', 'G__typename'),
+              G__typename,
+              r'GStartPlotData_startPlot_data',
+              'G__typename',
+            ),
             channelUnits: BuiltValueNullFieldError.checkNotNull(
-                channelUnits, r'GStartPlotData_startPlot_data', 'channelUnits'),
-            channelStatus: BuiltValueNullFieldError.checkNotNull(channelStatus,
-                r'GStartPlotData_startPlot_data', 'channelStatus'),
+              channelUnits,
+              r'GStartPlotData_startPlot_data',
+              'channelUnits',
+            ),
+            channelStatus: BuiltValueNullFieldError.checkNotNull(
+              channelStatus,
+              r'GStartPlotData_startPlot_data',
+              'channelStatus',
+            ),
             channelData: channelData.build(),
           );
     } catch (_) {
@@ -662,7 +835,10 @@ class GStartPlotData_startPlot_dataBuilder
         channelData.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStartPlotData_startPlot_data', _$failedField, e.toString());
+          r'GStartPlotData_startPlot_data',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
@@ -680,28 +856,38 @@ class _$GStartPlotData_startPlot_data_channelData
   @override
   final double y;
 
-  factory _$GStartPlotData_startPlot_data_channelData(
-          [void Function(GStartPlotData_startPlot_data_channelDataBuilder)?
-              updates]) =>
+  factory _$GStartPlotData_startPlot_data_channelData([
+    void Function(GStartPlotData_startPlot_data_channelDataBuilder)? updates,
+  ]) =>
       (new GStartPlotData_startPlot_data_channelDataBuilder()..update(updates))
           ._build();
 
-  _$GStartPlotData_startPlot_data_channelData._(
-      {required this.G__typename, required this.x, required this.y})
-      : super._() {
-    BuiltValueNullFieldError.checkNotNull(G__typename,
-        r'GStartPlotData_startPlot_data_channelData', 'G__typename');
+  _$GStartPlotData_startPlot_data_channelData._({
+    required this.G__typename,
+    required this.x,
+    required this.y,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        x, r'GStartPlotData_startPlot_data_channelData', 'x');
+      G__typename,
+      r'GStartPlotData_startPlot_data_channelData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        y, r'GStartPlotData_startPlot_data_channelData', 'y');
+      x,
+      r'GStartPlotData_startPlot_data_channelData',
+      'x',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      y,
+      r'GStartPlotData_startPlot_data_channelData',
+      'y',
+    );
   }
 
   @override
   GStartPlotData_startPlot_data_channelData rebuild(
-          void Function(GStartPlotData_startPlot_data_channelDataBuilder)
-              updates) =>
-      (toBuilder()..update(updates)).build();
+    void Function(GStartPlotData_startPlot_data_channelDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
   GStartPlotData_startPlot_data_channelDataBuilder toBuilder() =>
@@ -729,7 +915,8 @@ class _$GStartPlotData_startPlot_data_channelData
   @override
   String toString() {
     return (newBuiltValueToStringHelper(
-            r'GStartPlotData_startPlot_data_channelData')
+            r'GStartPlotData_startPlot_data_channelData',
+          )
           ..add('G__typename', G__typename)
           ..add('x', x)
           ..add('y', y))
@@ -739,8 +926,10 @@ class _$GStartPlotData_startPlot_data_channelData
 
 class GStartPlotData_startPlot_data_channelDataBuilder
     implements
-        Builder<GStartPlotData_startPlot_data_channelData,
-            GStartPlotData_startPlot_data_channelDataBuilder> {
+        Builder<
+          GStartPlotData_startPlot_data_channelData,
+          GStartPlotData_startPlot_data_channelDataBuilder
+        > {
   _$GStartPlotData_startPlot_data_channelData? _$v;
 
   String? _G__typename;
@@ -778,8 +967,8 @@ class GStartPlotData_startPlot_data_channelDataBuilder
 
   @override
   void update(
-      void Function(GStartPlotData_startPlot_data_channelDataBuilder)?
-          updates) {
+    void Function(GStartPlotData_startPlot_data_channelDataBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
@@ -787,14 +976,24 @@ class GStartPlotData_startPlot_data_channelDataBuilder
   GStartPlotData_startPlot_data_channelData build() => _build();
 
   _$GStartPlotData_startPlot_data_channelData _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GStartPlotData_startPlot_data_channelData._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(G__typename,
-              r'GStartPlotData_startPlot_data_channelData', 'G__typename'),
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GStartPlotData_startPlot_data_channelData',
+            'G__typename',
+          ),
           x: BuiltValueNullFieldError.checkNotNull(
-              x, r'GStartPlotData_startPlot_data_channelData', 'x'),
+            x,
+            r'GStartPlotData_startPlot_data_channelData',
+            'x',
+          ),
           y: BuiltValueNullFieldError.checkNotNull(
-              y, r'GStartPlotData_startPlot_data_channelData', 'y'),
+            y,
+            r'GStartPlotData_startPlot_data_channelData',
+            'y',
+          ),
         );
     replace(_$result);
     return _$result;

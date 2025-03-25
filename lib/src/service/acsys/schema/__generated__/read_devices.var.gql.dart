@@ -21,14 +21,10 @@ abstract class GReadDevicesVars
   static Serializer<GReadDevicesVars> get serializer =>
       _$gReadDevicesVarsSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GReadDevicesVars.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GReadDevicesVars.serializer, this)
+          as Map<String, dynamic>);
 
   static GReadDevicesVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GReadDevicesVars.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GReadDevicesVars.serializer, json);
 }
