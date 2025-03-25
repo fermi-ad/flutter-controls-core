@@ -351,21 +351,20 @@ final class AnalogAlarmStatus {
 
 final class PlotReply {
   final String plotId;
+  final double requestTime;
   final String xAxisUnits;
   final double? xAxisMin;
   final double? xAxisMax;
-  // TODO make this required.
-  final double? requestTime;
   final int? windowSize;
   final List<PlotChannelData> data;
 
   const PlotReply({
     required this.plotId,
+    required this.requestTime,
     required this.xAxisUnits,
     this.xAxisMin,
     this.xAxisMax,
     this.windowSize,
-    this.requestTime,
     required this.data,
   });
 }
@@ -1290,6 +1289,7 @@ extension on GStartPlotData_startPlot_data {
 extension on GStartPlotData_startPlot {
   PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
     plotId: plotId,
+    requestTime: tstamp!,
     xAxisUnits: "Time",
     xAxisMin: req.vars.xMin?.toDouble(),
     xAxisMax: req.vars.xMax?.toDouble(),
