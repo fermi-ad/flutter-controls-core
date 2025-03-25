@@ -1349,7 +1349,7 @@ final class ACSysProvider extends StatelessWidget {
   ///   with the official GraphQL service.
   /// - [key] is an optional identifier for the widget.
 
-  static Widget Function({required Widget child}) factory({
+  static ACSysProvider Function({required Widget child}) factory({
     ACSysServiceAPI? service,
     Key? key,
   }) =>
