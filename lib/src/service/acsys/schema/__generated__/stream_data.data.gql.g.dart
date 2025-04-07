@@ -219,7 +219,7 @@ class _$GStreamDataData_acceleratorData_dataSerializer
       'timestamp',
       serializers.serialize(
         object.timestamp,
-        specifiedType: const FullType(DateTime),
+        specifiedType: const FullType(double),
       ),
       'result',
       serializers.serialize(
@@ -259,9 +259,9 @@ class _$GStreamDataData_acceleratorData_dataSerializer
           result.timestamp =
               serializers.deserialize(
                     value,
-                    specifiedType: const FullType(DateTime),
+                    specifiedType: const FullType(double),
                   )!
-                  as DateTime;
+                  as double;
           break;
         case 'result':
           result.result =
@@ -1038,7 +1038,7 @@ class _$GStreamDataData_acceleratorData_data
   @override
   final String G__typename;
   @override
-  final DateTime timestamp;
+  final double timestamp;
   @override
   final GStreamDataData_acceleratorData_data_result result;
 
@@ -1120,9 +1120,9 @@ class GStreamDataData_acceleratorData_dataBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  DateTime? _timestamp;
-  DateTime? get timestamp => _$this._timestamp;
-  set timestamp(DateTime? timestamp) => _$this._timestamp = timestamp;
+  double? _timestamp;
+  double? get timestamp => _$this._timestamp;
+  set timestamp(double? timestamp) => _$this._timestamp = timestamp;
 
   GStreamDataData_acceleratorData_data_result? _result;
   GStreamDataData_acceleratorData_data_result? get result => _$this._result;

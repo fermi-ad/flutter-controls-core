@@ -881,6 +881,9 @@ final class ACSysService implements ACSysServiceAPI {
         .map(_convertMonitor);
   }
 
+  static DateTime fromFloatTs(double ts) =>
+      DateTime.fromMicrosecondsSinceEpoch((ts * 1_000_000.0) as int);
+
   // Convert the incoming GraphQL messages into `Reading` objects.
 
   static Reading _convertMonitor(
@@ -897,7 +900,7 @@ final class ACSysService implements ACSysServiceAPI {
       return Reading(
         refId: data.refId,
         cycle: data.cycle,
-        timestamp: data.data.timestamp,
+        timestamp: fromFloatTs(data.data.timestamp),
         value: result.toDevValue(),
       );
     } else {
@@ -911,7 +914,7 @@ final class ACSysService implements ACSysServiceAPI {
             (v) => Reading(
               refId: v.refId,
               cycle: v.cycle,
-              timestamp: v.data.timestamp,
+              timestamp: fromFloatTs(v.data.timestamp),
               value: v.data.result.toDevValue(),
             ),
           )
@@ -1289,7 +1292,7 @@ extension on GStartPlotData_startPlot_data {
 extension on GStartPlotData_startPlot {
   PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
     plotId: plotId,
-    requestTime: tstamp!,
+    requestTime: timestamp,
     xAxisUnits: "Time",
     xAxisMin: req.vars.xMin?.toDouble(),
     xAxisMax: req.vars.xMax?.toDouble(),

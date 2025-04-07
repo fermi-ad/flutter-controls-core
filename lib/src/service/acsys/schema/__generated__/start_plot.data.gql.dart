@@ -49,7 +49,7 @@ abstract class GStartPlotData_startPlot
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   String get plotId;
-  double? get tstamp;
+  double get timestamp;
   BuiltList<GStartPlotData_startPlot_data> get data;
   static Serializer<GStartPlotData_startPlot> get serializer =>
       _$gStartPlotDataStartPlotSerializer;

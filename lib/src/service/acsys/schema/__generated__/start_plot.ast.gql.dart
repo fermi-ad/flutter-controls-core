@@ -122,7 +122,7 @@ const StartPlot = _i1.OperationDefinitionNode(
               selectionSet: null,
             ),
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'tstamp'),
+              name: _i1.NameNode(value: 'timestamp'),
               alias: null,
               arguments: [],
               directives: [],

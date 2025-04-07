@@ -31,7 +31,7 @@ type DataInfo {
   """
   Timestamp representing when the data was sampled. This value is provided as milliseconds since 1970, UTC.
   """
-  timestamp: Timestamp!
+  timestamp: Float!
 
   """
   The value of the device when sampled.
@@ -47,6 +47,8 @@ type DataInfo {
   The name of the device.
   """
   name: String!
+
+  isoTimestamp: Timestamp!
 }
 
 """
@@ -200,12 +202,13 @@ type PlotReplyData {
   """
   If the plot uses a clock for the trigger, this is the timestamp of the event.
   """
-  tstamp: Float
+  timestamp: Float!
   """
   A unique identifier for the plot request. This identifier will be cached for a limited time. Other clients can specify it to re-use the configuration.
   """
   plotId: String!
   data: [PlotChannelData!]!
+  isoTimestamp: Timestamp!
 }
 
 """

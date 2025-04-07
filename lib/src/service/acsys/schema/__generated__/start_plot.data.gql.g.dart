@@ -111,6 +111,11 @@ class _$GStartPlotData_startPlotSerializer
         object.plotId,
         specifiedType: const FullType(String),
       ),
+      'timestamp',
+      serializers.serialize(
+        object.timestamp,
+        specifiedType: const FullType(double),
+      ),
       'data',
       serializers.serialize(
         object.data,
@@ -119,15 +124,7 @@ class _$GStartPlotData_startPlotSerializer
         ]),
       ),
     ];
-    Object? value;
-    value = object.tstamp;
-    if (value != null) {
-      result
-        ..add('tstamp')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
+
     return result;
   }
 
@@ -161,13 +158,13 @@ class _$GStartPlotData_startPlotSerializer
                   )!
                   as String;
           break;
-        case 'tstamp':
-          result.tstamp =
+        case 'timestamp':
+          result.timestamp =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
-                  )
-                  as double?;
+                  )!
+                  as double;
           break;
         case 'data':
           result.data.replace(
@@ -516,7 +513,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   @override
   final String plotId;
   @override
-  final double? tstamp;
+  final double timestamp;
   @override
   final BuiltList<GStartPlotData_startPlot_data> data;
 
@@ -527,7 +524,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   _$GStartPlotData_startPlot._({
     required this.G__typename,
     required this.plotId,
-    this.tstamp,
+    required this.timestamp,
     required this.data,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -539,6 +536,11 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
       plotId,
       r'GStartPlotData_startPlot',
       'plotId',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      timestamp,
+      r'GStartPlotData_startPlot',
+      'timestamp',
     );
     BuiltValueNullFieldError.checkNotNull(
       data,
@@ -562,7 +564,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
     return other is GStartPlotData_startPlot &&
         G__typename == other.G__typename &&
         plotId == other.plotId &&
-        tstamp == other.tstamp &&
+        timestamp == other.timestamp &&
         data == other.data;
   }
 
@@ -571,7 +573,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, plotId.hashCode);
-    _$hash = $jc(_$hash, tstamp.hashCode);
+    _$hash = $jc(_$hash, timestamp.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -582,7 +584,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
     return (newBuiltValueToStringHelper(r'GStartPlotData_startPlot')
           ..add('G__typename', G__typename)
           ..add('plotId', plotId)
-          ..add('tstamp', tstamp)
+          ..add('timestamp', timestamp)
           ..add('data', data))
         .toString();
   }
@@ -601,9 +603,9 @@ class GStartPlotData_startPlotBuilder
   String? get plotId => _$this._plotId;
   set plotId(String? plotId) => _$this._plotId = plotId;
 
-  double? _tstamp;
-  double? get tstamp => _$this._tstamp;
-  set tstamp(double? tstamp) => _$this._tstamp = tstamp;
+  double? _timestamp;
+  double? get timestamp => _$this._timestamp;
+  set timestamp(double? timestamp) => _$this._timestamp = timestamp;
 
   ListBuilder<GStartPlotData_startPlot_data>? _data;
   ListBuilder<GStartPlotData_startPlot_data> get data =>
@@ -620,7 +622,7 @@ class GStartPlotData_startPlotBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _plotId = $v.plotId;
-      _tstamp = $v.tstamp;
+      _timestamp = $v.timestamp;
       _data = $v.data.toBuilder();
       _$v = null;
     }
@@ -657,7 +659,11 @@ class GStartPlotData_startPlotBuilder
               r'GStartPlotData_startPlot',
               'plotId',
             ),
-            tstamp: tstamp,
+            timestamp: BuiltValueNullFieldError.checkNotNull(
+              timestamp,
+              r'GStartPlotData_startPlot',
+              'timestamp',
+            ),
             data: data.build(),
           );
     } catch (_) {
