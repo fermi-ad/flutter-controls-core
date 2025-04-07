@@ -91,7 +91,7 @@ abstract class GStreamDataData_acceleratorData_data
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  DateTime get timestamp;
+  double get timestamp;
   GStreamDataData_acceleratorData_data_result get result;
   static Serializer<GStreamDataData_acceleratorData_data> get serializer =>
       _$gStreamDataDataAcceleratorDataDataSerializer;
