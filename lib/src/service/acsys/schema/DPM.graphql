@@ -159,6 +159,8 @@ type PlotConfigurationSnapshot {
   """
   nAcquisitions: Int
   tclkEvent: Int
+  isPersistent: Boolean!
+  dataLimit: Int!
 }
 
 input PlotConfigurationSnapshotIn {
@@ -187,6 +189,8 @@ input PlotConfigurationSnapshotIn {
   """
   nAcquisitions: Int
   tclkEvent: Int
+  isPersistent: Boolean!
+  dataLimit: Int!
 }
 
 type PlotDataPoint {

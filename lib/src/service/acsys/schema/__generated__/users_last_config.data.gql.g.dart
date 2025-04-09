@@ -150,6 +150,16 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
         object.isShowLabels,
         specifiedType: const FullType(bool),
       ),
+      'isPersistent',
+      serializers.serialize(
+        object.isPersistent,
+        specifiedType: const FullType(bool),
+      ),
+      'dataLimit',
+      serializers.serialize(
+        object.dataLimit,
+        specifiedType: const FullType(int),
+      ),
     ];
     Object? value;
     value = object.xMin;
@@ -342,6 +352,22 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
           result.tclkEvent =
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
+          break;
+        case 'isPersistent':
+          result.isPersistent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'dataLimit':
+          result.dataLimit =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -612,6 +638,10 @@ class _$GUsersLastConfigData_usersLastConfiguration
   final int? nAcquisitions;
   @override
   final int? tclkEvent;
+  @override
+  final bool isPersistent;
+  @override
+  final int dataLimit;
 
   factory _$GUsersLastConfigData_usersLastConfiguration([
     void Function(GUsersLastConfigData_usersLastConfigurationBuilder)? updates,
@@ -636,6 +666,8 @@ class _$GUsersLastConfigData_usersLastConfiguration
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    required this.isPersistent,
+    required this.dataLimit,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
       G__typename,
@@ -672,6 +704,16 @@ class _$GUsersLastConfigData_usersLastConfiguration
       r'GUsersLastConfigData_usersLastConfiguration',
       'isShowLabels',
     );
+    BuiltValueNullFieldError.checkNotNull(
+      isPersistent,
+      r'GUsersLastConfigData_usersLastConfiguration',
+      'isPersistent',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      dataLimit,
+      r'GUsersLastConfigData_usersLastConfiguration',
+      'dataLimit',
+    );
   }
 
   @override
@@ -701,7 +743,9 @@ class _$GUsersLastConfigData_usersLastConfiguration
         isShowLabels == other.isShowLabels &&
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
-        tclkEvent == other.tclkEvent;
+        tclkEvent == other.tclkEvent &&
+        isPersistent == other.isPersistent &&
+        dataLimit == other.dataLimit;
   }
 
   @override
@@ -722,6 +766,8 @@ class _$GUsersLastConfigData_usersLastConfiguration
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -745,7 +791,9 @@ class _$GUsersLastConfigData_usersLastConfiguration
           ..add('isShowLabels', isShowLabels)
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
-          ..add('tclkEvent', tclkEvent))
+          ..add('tclkEvent', tclkEvent)
+          ..add('isPersistent', isPersistent)
+          ..add('dataLimit', dataLimit))
         .toString();
   }
 }
@@ -828,6 +876,14 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
+  bool? _isPersistent;
+  bool? get isPersistent => _$this._isPersistent;
+  set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
+
+  int? _dataLimit;
+  int? get dataLimit => _$this._dataLimit;
+  set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
+
   GUsersLastConfigData_usersLastConfigurationBuilder() {
     GUsersLastConfigData_usersLastConfiguration._initializeBuilder(this);
   }
@@ -850,6 +906,8 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _isPersistent = $v.isPersistent;
+      _dataLimit = $v.dataLimit;
       _$v = null;
     }
     return this;
@@ -916,6 +974,16 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            isPersistent: BuiltValueNullFieldError.checkNotNull(
+              isPersistent,
+              r'GUsersLastConfigData_usersLastConfiguration',
+              'isPersistent',
+            ),
+            dataLimit: BuiltValueNullFieldError.checkNotNull(
+              dataLimit,
+              r'GUsersLastConfigData_usersLastConfiguration',
+              'dataLimit',
+            ),
           );
     } catch (_) {
       late String _$failedField;

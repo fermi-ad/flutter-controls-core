@@ -18,5 +18,7 @@ query UsersLastConfig {
         updateDelay
         nAcquisitions
         tclkEvent
+        isPersistent
+        dataLimit
     }
 }
