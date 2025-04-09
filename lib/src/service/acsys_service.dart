@@ -433,6 +433,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   bool isShowLabels;
   bool isScalar;
   bool isOneShot;
+  bool isPersistent;
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
@@ -449,6 +450,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     required this.isShowLabels,
     required this.isScalar,
     required this.isOneShot,
+    // TODO make this required
+    this.isPersistent = false,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
