@@ -437,6 +437,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
+  int dataLimit;
 
   PlotConfigurationSnapshot({
     super.configurationId,
@@ -450,11 +451,11 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     required this.isShowLabels,
     required this.isScalar,
     required this.isOneShot,
-    // TODO make this required
     this.isPersistent = false,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    required this.dataLimit,
   });
 }
 
@@ -1129,6 +1130,8 @@ final class ACSysService implements ACSysServiceAPI {
           updateDelay: e.updateDelay,
           nAcquisitions: e.nAcquisitions,
           tclkEvent: e.tclkEvent,
+          dataLimit: e.dataLimit,
+          isPersistent: e.isPersistent,
         );
       },
     );
@@ -1185,6 +1188,8 @@ final class ACSysService implements ACSysServiceAPI {
                       updateDelay: e.updateDelay,
                       nAcquisitions: e.nAcquisitions,
                       tclkEvent: e.tclkEvent,
+                      dataLimit: e.dataLimit,
+                      isPersistent: e.isPersistent,
                     ),
                   )
                   .toList(),

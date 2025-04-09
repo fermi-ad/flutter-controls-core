@@ -18,5 +18,7 @@ query PlotConfigs($id: Int) {
     updateDelay
     nAcquisitions
     tclkEvent
+    isPersistent
+    dataLimit
   }
 }

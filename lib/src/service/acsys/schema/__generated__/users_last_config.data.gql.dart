@@ -67,6 +67,8 @@ abstract class GUsersLastConfigData_usersLastConfiguration
   int? get updateDelay;
   int? get nAcquisitions;
   int? get tclkEvent;
+  bool get isPersistent;
+  int get dataLimit;
   static Serializer<GUsersLastConfigData_usersLastConfiguration>
   get serializer => _$gUsersLastConfigDataUsersLastConfigurationSerializer;
 

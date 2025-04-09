@@ -65,6 +65,8 @@ abstract class GPlotConfigsData_plotConfiguration
   int? get updateDelay;
   int? get nAcquisitions;
   int? get tclkEvent;
+  bool get isPersistent;
+  int get dataLimit;
   static Serializer<GPlotConfigsData_plotConfiguration> get serializer =>
       _$gPlotConfigsDataPlotConfigurationSerializer;
 

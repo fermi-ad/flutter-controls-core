@@ -82,6 +82,8 @@ abstract class GPlotConfigurationSnapshotIn
   int? get updateDelay;
   int? get nAcquisitions;
   int? get tclkEvent;
+  bool get isPersistent;
+  int get dataLimit;
   static Serializer<GPlotConfigurationSnapshotIn> get serializer =>
       _$gPlotConfigurationSnapshotInSerializer;
 

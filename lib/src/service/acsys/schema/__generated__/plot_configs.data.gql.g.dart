@@ -140,6 +140,16 @@ class _$GPlotConfigsData_plotConfigurationSerializer
         object.isShowLabels,
         specifiedType: const FullType(bool),
       ),
+      'isPersistent',
+      serializers.serialize(
+        object.isPersistent,
+        specifiedType: const FullType(bool),
+      ),
+      'dataLimit',
+      serializers.serialize(
+        object.dataLimit,
+        specifiedType: const FullType(int),
+      ),
     ];
     Object? value;
     value = object.xMin;
@@ -330,6 +340,22 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           result.tclkEvent =
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
+          break;
+        case 'isPersistent':
+          result.isPersistent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'dataLimit':
+          result.dataLimit =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(int),
+                  )!
+                  as int;
           break;
       }
     }
@@ -598,6 +624,10 @@ class _$GPlotConfigsData_plotConfiguration
   final int? nAcquisitions;
   @override
   final int? tclkEvent;
+  @override
+  final bool isPersistent;
+  @override
+  final int dataLimit;
 
   factory _$GPlotConfigsData_plotConfiguration([
     void Function(GPlotConfigsData_plotConfigurationBuilder)? updates,
@@ -621,6 +651,8 @@ class _$GPlotConfigsData_plotConfiguration
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    required this.isPersistent,
+    required this.dataLimit,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
       G__typename,
@@ -657,6 +689,16 @@ class _$GPlotConfigsData_plotConfiguration
       r'GPlotConfigsData_plotConfiguration',
       'isShowLabels',
     );
+    BuiltValueNullFieldError.checkNotNull(
+      isPersistent,
+      r'GPlotConfigsData_plotConfiguration',
+      'isPersistent',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      dataLimit,
+      r'GPlotConfigsData_plotConfiguration',
+      'dataLimit',
+    );
   }
 
   @override
@@ -686,7 +728,9 @@ class _$GPlotConfigsData_plotConfiguration
         isShowLabels == other.isShowLabels &&
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
-        tclkEvent == other.tclkEvent;
+        tclkEvent == other.tclkEvent &&
+        isPersistent == other.isPersistent &&
+        dataLimit == other.dataLimit;
   }
 
   @override
@@ -707,6 +751,8 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -728,7 +774,9 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('isShowLabels', isShowLabels)
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
-          ..add('tclkEvent', tclkEvent))
+          ..add('tclkEvent', tclkEvent)
+          ..add('isPersistent', isPersistent)
+          ..add('dataLimit', dataLimit))
         .toString();
   }
 }
@@ -808,6 +856,14 @@ class GPlotConfigsData_plotConfigurationBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
+  bool? _isPersistent;
+  bool? get isPersistent => _$this._isPersistent;
+  set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
+
+  int? _dataLimit;
+  int? get dataLimit => _$this._dataLimit;
+  set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
+
   GPlotConfigsData_plotConfigurationBuilder() {
     GPlotConfigsData_plotConfiguration._initializeBuilder(this);
   }
@@ -830,6 +886,8 @@ class GPlotConfigsData_plotConfigurationBuilder
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _isPersistent = $v.isPersistent;
+      _dataLimit = $v.dataLimit;
       _$v = null;
     }
     return this;
@@ -896,6 +954,16 @@ class GPlotConfigsData_plotConfigurationBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            isPersistent: BuiltValueNullFieldError.checkNotNull(
+              isPersistent,
+              r'GPlotConfigsData_plotConfiguration',
+              'isPersistent',
+            ),
+            dataLimit: BuiltValueNullFieldError.checkNotNull(
+              dataLimit,
+              r'GPlotConfigsData_plotConfiguration',
+              'dataLimit',
+            ),
           );
     } catch (_) {
       late String _$failedField;
