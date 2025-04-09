@@ -109,7 +109,7 @@ final class FaasProvider extends StatelessWidget {
   ///   with the official GraphQL service.
   /// - [key] is an optional identifier for the widget.
 
-  static Widget Function({required Widget child}) factory({
+  static FaasProvider Function({required Widget child}) factory({
     FaasServiceAPI? service,
     Key? key,
   }) =>

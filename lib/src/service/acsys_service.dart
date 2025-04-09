@@ -351,22 +351,22 @@ final class AnalogAlarmStatus {
 
 final class PlotReply {
   final String plotId;
+  final double requestTime;
   final String xAxisUnits;
   final double? xAxisMin;
-  final double? xAxisMax;
-  // TODO make this required.
-  final double? requestTime;
+  final double? xAxisMax;  
   final int? windowSize;
   final List<PlotChannelData> data;
 
-  const PlotReply(
-      {required this.plotId,
-      required this.xAxisUnits,
-      this.xAxisMin,
-      this.xAxisMax,
-      this.windowSize,
-      this.requestTime,
-      required this.data});
+  const PlotReply({
+    required this.plotId,
+    required this.requestTime,
+    required this.xAxisUnits,
+    this.xAxisMin,
+    this.xAxisMax,
+    this.windowSize,
+    required this.data,
+  });
 }
 
 final class PlotChannelData {
@@ -884,6 +884,9 @@ final class ACSysService implements ACSysServiceAPI {
         .map(_convertMonitor);
   }
 
+  static DateTime fromFloatTs(double ts) =>
+      DateTime.fromMicrosecondsSinceEpoch((ts * 1_000_000.0) as int);
+
   // Convert the incoming GraphQL messages into `Reading` objects.
 
   static Reading _convertMonitor(
@@ -900,7 +903,7 @@ final class ACSysService implements ACSysServiceAPI {
       return Reading(
         refId: data.refId,
         cycle: data.cycle,
-        timestamp: data.data.timestamp,
+        timestamp: fromFloatTs(data.data.timestamp),
         value: result.toDevValue(),
       );
     } else {
@@ -914,7 +917,7 @@ final class ACSysService implements ACSysServiceAPI {
             (v) => Reading(
               refId: v.refId,
               cycle: v.cycle,
-              timestamp: v.data.timestamp,
+              timestamp: fromFloatTs(v.data.timestamp),
               value: v.data.result.toDevValue(),
             ),
           )
@@ -1280,30 +1283,24 @@ extension on GReadDevicesData_acceleratorData_data_result {
 }
 
 extension on GStartPlotData_startPlot_data {
-  PlotChannelData toPlotChannelData(int idx, double? ts, GStartPlotReq req) =>
+  PlotChannelData toPlotChannelData(int idx, GStartPlotReq req) =>
       PlotChannelData(
         name: req.vars.drfList[idx],
         units: channelUnits,
         status: channelStatus,
-        points: [
-          ...channelData.map(
-            (e) => PlotPoint(t: ts, x: e.x - (ts ?? 0.0), y: e.y),
-          ),
-        ],
+        points: [...channelData.map((e) => PlotPoint(t: e.t, x: e.x, y: e.y))],
       );
 }
 
 extension on GStartPlotData_startPlot {
   PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
     plotId: plotId,
+    requestTime: timestamp,
     xAxisUnits: "Time",
     xAxisMin: req.vars.xMin?.toDouble(),
     xAxisMax: req.vars.xMax?.toDouble(),
     windowSize: req.vars.windowSize,
-    data:
-        data.indexed
-            .map((e) => e.$2.toPlotChannelData(e.$1, tstamp, req))
-            .toList(),
+    data: data.indexed.map((e) => e.$2.toPlotChannelData(e.$1, req)).toList(),
   );
 }
 
@@ -1361,7 +1358,7 @@ final class ACSysProvider extends StatelessWidget {
   ///   with the official GraphQL service.
   /// - [key] is an optional identifier for the widget.
 
-  static Widget Function({required Widget child}) factory({
+  static ACSysProvider Function({required Widget child}) factory({
     ACSysServiceAPI? service,
     Key? key,
   }) =>

@@ -92,7 +92,7 @@ abstract class GReadDevicesData_acceleratorData_data
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  DateTime get timestamp;
+  double get timestamp;
   GReadDevicesData_acceleratorData_data_result get result;
   static Serializer<GReadDevicesData_acceleratorData_data> get serializer =>
       _$gReadDevicesDataAcceleratorDataDataSerializer;
