@@ -354,7 +354,7 @@ final class PlotReply {
   final double requestTime;
   final String xAxisUnits;
   final double? xAxisMin;
-  final double? xAxisMax;  
+  final double? xAxisMax;
   final int? windowSize;
   final List<PlotChannelData> data;
 
