@@ -306,20 +306,14 @@ class _$GStartPlotData_startPlot_data_channelDataSerializer
         object.G__typename,
         specifiedType: const FullType(String),
       ),
+      't',
+      serializers.serialize(object.t, specifiedType: const FullType(double)),
       'x',
       serializers.serialize(object.x, specifiedType: const FullType(double)),
       'y',
       serializers.serialize(object.y, specifiedType: const FullType(double)),
     ];
-    Object? value;
-    value = object.t;
-    if (value != null) {
-      result
-        ..add('t')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
+
     return result;
   }
 
@@ -350,8 +344,8 @@ class _$GStartPlotData_startPlot_data_channelDataSerializer
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
-                  )
-                  as double?;
+                  )!
+                  as double;
           break;
         case 'x':
           result.x =
@@ -874,7 +868,7 @@ class _$GStartPlotData_startPlot_data_channelData
   @override
   final String G__typename;
   @override
-  final double? t;
+  final double t;
   @override
   final double x;
   @override
@@ -888,7 +882,7 @@ class _$GStartPlotData_startPlot_data_channelData
 
   _$GStartPlotData_startPlot_data_channelData._({
     required this.G__typename,
-    this.t,
+    required this.t,
     required this.x,
     required this.y,
   }) : super._() {
@@ -896,6 +890,11 @@ class _$GStartPlotData_startPlot_data_channelData
       G__typename,
       r'GStartPlotData_startPlot_data_channelData',
       'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      t,
+      r'GStartPlotData_startPlot_data_channelData',
+      't',
     );
     BuiltValueNullFieldError.checkNotNull(
       x,
@@ -1017,7 +1016,11 @@ class GStartPlotData_startPlot_data_channelDataBuilder
             r'GStartPlotData_startPlot_data_channelData',
             'G__typename',
           ),
-          t: t,
+          t: BuiltValueNullFieldError.checkNotNull(
+            t,
+            r'GStartPlotData_startPlot_data_channelData',
+            't',
+          ),
           x: BuiltValueNullFieldError.checkNotNull(
             x,
             r'GStartPlotData_startPlot_data_channelData',
