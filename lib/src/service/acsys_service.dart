@@ -1232,6 +1232,8 @@ final class ACSysService implements ACSysServiceAPI {
         ..isOneShot = cfg.isOneShot
         ..isScalar = cfg.isScalar
         ..isShowLabels = cfg.isShowLabels
+        ..isPersistent = cfg.isPersistent
+        ..dataLimit = cfg.dataLimit
         ..updateDelay = cfg.updateDelay
         ..nAcquisitions = cfg.nAcquisitions
         ..tclkEvent = cfg.tclkEvent;
