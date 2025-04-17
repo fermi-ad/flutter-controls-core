@@ -35,7 +35,7 @@ Future<void> initAuth(
   String clientSecret,
   List<String> scopes,
 ) async {
-  final uri = Uri.parse('https://adkube-auth.fnal.gov/realms/$realm/');
+  final uri = Uri.parse('https://ad-auth.fnal.gov/realms/$realm/');
   const Duration tmo = Duration(seconds: 2);
 
   _authRequired = true;
