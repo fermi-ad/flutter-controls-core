@@ -372,12 +372,14 @@ final class PlotReply {
 final class PlotChannelData {
   final String name;
   final String units;
+  final String rate;
   final int status;
   final List<PlotPoint> points;
 
   const PlotChannelData({
     required this.name,
     required this.units,
+    required this.rate,
     this.status = 0,
     this.points = const [],
   });
@@ -1294,6 +1296,7 @@ extension on GStartPlotData_startPlot_data {
       PlotChannelData(
         name: req.vars.drfList[idx],
         units: channelUnits,
+        rate: "Rate not supported by API yet.",
         status: channelStatus,
         points: [...channelData.map((e) => PlotPoint(t: e.t, x: e.x, y: e.y))],
       );
