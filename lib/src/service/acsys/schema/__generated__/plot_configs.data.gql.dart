@@ -51,7 +51,7 @@ abstract class GPlotConfigsData_plotConfiguration
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  int get configurationId;
+  int? get configurationId;
   String get configurationName;
   BuiltList<GPlotConfigsData_plotConfiguration_channels> get channels;
   double? get xMin;
