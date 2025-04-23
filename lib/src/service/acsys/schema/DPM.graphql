@@ -29,7 +29,7 @@ This structure holds information associated with a device's reading, A "reading"
 """
 type DataInfo {
   """
-  Timestamp representing when the data was sampled. This value is provided as milliseconds since 1970, UTC.
+  Timestamp representing when the data was sampled. This value is provided as seconds since 1970, UTC. The fractional portion of the value can represent nanoseconds, but we have few -- if any -- systems that provide that resolution.
   """
   timestamp: Float!
 
@@ -39,7 +39,7 @@ type DataInfo {
   result: DataType!
 
   """
-  The device's index (in the device database.)
+  The device's index (in the device database.) This field may get removed; its purpose is questionable in this API.
   """
   di: Int!
 
@@ -48,6 +48,9 @@ type DataInfo {
   """
   name: String!
 
+  """
+  The timestamp as an ISO formatted string. This value is fairly expensive to generate, so the `timestamp` field should be preferred to this one. This field is mainly used for debugging or when using a tool that returns human-readable results.
+  """
   isoTimestamp: Timestamp!
 }
 
@@ -124,12 +127,34 @@ type Mutation {
   ): StatusReply!
   updatePlotConfiguration(config: PlotConfigurationSnapshotIn!): Int
   deletePlotConfiguration(configurationId: Int!): StatusReply!
+
+  """
+  Sets the user's default configuration.
+
+  The content of the configuration are used to set the default configuration for the user. All fields, except the ID and name fields, are used. The user's account name is obtained from the authentication token that accompanies the request.
+  """
   usersConfiguration(config: PlotConfigurationSnapshotIn!): StatusReply!
 }
 
 type PlotChannelData {
+  """
+  The engineering units of the device.
+  """
   channelUnits: String!
+
+  """
+  The negotiated return rate for the data. If a device's readings are requested at a higher rate than the device can support, the front-end will negotiate down to an acheivable rate. This field represents the actual sample rate of the data.
+  """
+  channelRate: String!
+
+  """
+  The global status of the reading. This field will either be `0` (successful reads) or a negative status, indicating a fatal error occurred trying to get the device's data.
+  """
   channelStatus: Int!
+
+  """
+  A set of data points. If the return rate is slow (<= 1Hz), this list will only have one element.
+  """
   channelData: [PlotDataPoint!]!
 }
 
@@ -137,7 +162,7 @@ type PlotConfigurationSnapshot {
   """
   Unique identifier for the plot configuration
   """
-  configurationId: Int!
+  configurationId: Int
   configurationName: String!
   channels: [ChannelSettingSnapshot!]!
   xMin: Float
@@ -148,6 +173,8 @@ type PlotConfigurationSnapshot {
   isScalar: Boolean!
   isOneShot: Boolean!
   isShowLabels: Boolean!
+  isPersistent: Boolean!
+  dataLimit: Int!
 
   """
   If `triggerEvent` is null, this parameter specifies the delay, in milliseconds, between points in a waveform. If a trigger event is specified, then this specifies the delay after the event when the signal should be sampled. If this parameter is null, then there will be no delay after a trigger event or a 1 Hz sample rate will be used.
@@ -159,8 +186,6 @@ type PlotConfigurationSnapshot {
   """
   nAcquisitions: Int
   tclkEvent: Int
-  isPersistent: Boolean!
-  dataLimit: Int!
 }
 
 input PlotConfigurationSnapshotIn {
@@ -178,6 +203,8 @@ input PlotConfigurationSnapshotIn {
   isScalar: Boolean!
   isOneShot: Boolean!
   isShowLabels: Boolean!
+  isPersistent: Boolean!
+  dataLimit: Int!
 
   """
   If `triggerEvent` is null, this parameter specifies the delay, in milliseconds, between points in a waveform. If a trigger event is specified, then this specifies the delay after the event when the signal should be sampled. If this parameter is null, then there will be no delay after a trigger event or a 1 Hz sample rate will be used.
@@ -189,8 +216,6 @@ input PlotConfigurationSnapshotIn {
   """
   nAcquisitions: Int
   tclkEvent: Int
-  isPersistent: Boolean!
-  dataLimit: Int!
 }
 
 type PlotDataPoint {
@@ -203,9 +228,6 @@ type PlotDataPoint {
 Contains plot data for a given plot request.
 """
 type PlotReplyData {
-  """
-  If the plot uses a clock for the trigger, this is the timestamp of the event.
-  """
   timestamp: Float!
   """
   A unique identifier for the plot request. This identifier will be cached for a limited time. Other clients can specify it to re-use the configuration.
@@ -220,9 +242,9 @@ Fields in this section return data and won't cause side-effects in the control s
 """
 type Query {
   """
-  Retrieve the next data point for the specified devices. Depending upon the event in the DRF string, the data may come back immediately or after a delay.
+  Retrieve the next data point for the specified devices.
 
-  *NOTE: This query hasn't been implemented yet.*
+  Depending upon the event in the DRF string, the data may come back immediately or after a delay.
   """
   acceleratorData(
     """
@@ -235,8 +257,32 @@ type Query {
     """
     when: Timestamp
   ): [DataReply!]!
+
+  """
+  Retrieve plot configuration(s).
+
+  Returns a plot configuration associated with the specified ID. If the ID is `null`, all configurations are returned. Both style of requests return an array result -- it's just that specifying an ID will return an array with 0 or 1 element.
+  """
   plotConfiguration(configurationId: Int): [PlotConfigurationSnapshot!]!
-  usersLastConfiguration(): PlotConfigurationSnapshot
+
+  """
+  Obtain the user's last configuration.
+
+  If the application saved the user's last plot configuration, this query will return it. If there is no configuration for the user, `null` is returned. The user's account is retrieved from the authentication token that is included in the request.
+  """
+  usersLastConfiguration: PlotConfigurationSnapshot
+
+  """
+  Converts "clinks" to a Unix timestamp (seconds since Jan 1, 1970 UTC.)
+  """
+  clinksToUnix(clinks: Int!): Int!
+    @deprecated(reason: "This is a test API and will be removed.")
+
+  """
+  Converts a Unix timestamp (seconds since Jan 1, 1970 UTC) into "clinks". Since there is a range of Unix time that can't be represented in "clinks", `null` will be returned when the conversion fails.
+  """
+  unixToClinks(time: Int!): Int
+    @deprecated(reason: "This is a test API and will be removed.")
 }
 
 """
@@ -337,7 +383,7 @@ type Subscription {
     nAcquisitions: Int
 
     """
-    If `triggerEvent` is null, this parameter specifies the delay, in milliseconds, between points in a waveform. If a trigger event is specified, then this specifies the delay after the event when the signal should be sampled. If this parameter is null, then there will be no delay after a trigger event or a 1 Hz sample rate will be used.
+    If `triggerEvent` is null, this parameter specifies the delay, in microseconds, between points in a waveform. If a trigger event is specified, then this specifies the delay after the event when the signal should be sampled. If this parameter is null, then there will be no delay after a trigger event or a 1 Hz sample rate will be used.
     """
     updateDelay: Int
 
@@ -355,8 +401,6 @@ type Subscription {
     Maximum timestamp. All data after this timestamp will be filtered from the result set.
     """
     xMax: Float
-    nAcquisitions: Int
-    triggerEvent: Int
   ): PlotReplyData!
   reportEvents(events: [Int!]!): EventInfo!
   calcStream(config: XformRequest!): XformResult!

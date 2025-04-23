@@ -53,7 +53,7 @@ abstract class GUsersLastConfigData_usersLastConfiguration
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  int get configurationId;
+  int? get configurationId;
   String get configurationName;
   BuiltList<GUsersLastConfigData_usersLastConfiguration_channels> get channels;
   double? get xMin;
