@@ -118,11 +118,6 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
         object.G__typename,
         specifiedType: const FullType(String),
       ),
-      'configurationId',
-      serializers.serialize(
-        object.configurationId,
-        specifiedType: const FullType(int),
-      ),
       'configurationName',
       serializers.serialize(
         object.configurationName,
@@ -162,6 +157,12 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
       ),
     ];
     Object? value;
+    value = object.configurationId;
+    if (value != null) {
+      result
+        ..add('configurationId')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     value = object.xMin;
     if (value != null) {
       result
@@ -247,11 +248,8 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
           break;
         case 'configurationId':
           result.configurationId =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(int),
-                  )!
-                  as int;
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
         case 'configurationName':
           result.configurationName =
@@ -610,7 +608,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
   @override
   final String G__typename;
   @override
-  final int configurationId;
+  final int? configurationId;
   @override
   final String configurationName;
   @override
@@ -652,7 +650,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
 
   _$GUsersLastConfigData_usersLastConfiguration._({
     required this.G__typename,
-    required this.configurationId,
+    this.configurationId,
     required this.configurationName,
     required this.channels,
     this.xMin,
@@ -673,11 +671,6 @@ class _$GUsersLastConfigData_usersLastConfiguration
       G__typename,
       r'GUsersLastConfigData_usersLastConfiguration',
       'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      configurationId,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'configurationId',
     );
     BuiltValueNullFieldError.checkNotNull(
       configurationName,
@@ -940,11 +933,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
               r'GUsersLastConfigData_usersLastConfiguration',
               'G__typename',
             ),
-            configurationId: BuiltValueNullFieldError.checkNotNull(
-              configurationId,
-              r'GUsersLastConfigData_usersLastConfiguration',
-              'configurationId',
-            ),
+            configurationId: configurationId,
             configurationName: BuiltValueNullFieldError.checkNotNull(
               configurationName,
               r'GUsersLastConfigData_usersLastConfiguration',

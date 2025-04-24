@@ -3,6 +3,7 @@ subscription StartPlot($drfList: [String!]!, $xMin: Float, $xMax: Float, $window
     plotId
     timestamp
     data {
+      channelRate
       channelUnits
       channelStatus
       channelData {

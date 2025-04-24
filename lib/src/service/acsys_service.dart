@@ -372,12 +372,14 @@ final class PlotReply {
 final class PlotChannelData {
   final String name;
   final String units;
+  final String rate;
   final int status;
   final List<PlotPoint> points;
 
   const PlotChannelData({
     required this.name,
     required this.units,
+    required this.rate,
     this.status = 0,
     this.points = const [],
   });
@@ -1077,7 +1079,10 @@ final class ACSysService implements ACSysServiceAPI {
               data.plotConfiguration
                   .map(
                     (e) => PlotConfigurationListing(
-                      configurationId: PlotConfigId._fromInt(e.configurationId),
+                      configurationId:
+                          e.configurationId != null
+                              ? PlotConfigId._fromInt(e.configurationId!)
+                              : null,
                       configurationName: e.configurationName,
                     ),
                   )
@@ -1106,7 +1111,10 @@ final class ACSysService implements ACSysServiceAPI {
         final e = data.usersLastConfiguration!;
 
         return PlotConfigurationSnapshot(
-          configurationId: PlotConfigId._fromInt(e.configurationId),
+          configurationId:
+              e.configurationId != null
+                  ? PlotConfigId._fromInt(e.configurationId!)
+                  : null,
           configurationName: e.configurationName,
           channels: Map.fromEntries(
             e.channels.map(
@@ -1161,7 +1169,10 @@ final class ACSysService implements ACSysServiceAPI {
               data.plotConfiguration
                   .map(
                     (e) => PlotConfigurationSnapshot(
-                      configurationId: PlotConfigId._fromInt(e.configurationId),
+                      configurationId:
+                          e.configurationId != null
+                              ? PlotConfigId._fromInt(e.configurationId!)
+                              : null,
                       configurationName: e.configurationName,
                       channels: Map.fromEntries(
                         e.channels.map(
@@ -1232,6 +1243,8 @@ final class ACSysService implements ACSysServiceAPI {
         ..isOneShot = cfg.isOneShot
         ..isScalar = cfg.isScalar
         ..isShowLabels = cfg.isShowLabels
+        ..isPersistent = cfg.isPersistent
+        ..dataLimit = cfg.dataLimit
         ..updateDelay = cfg.updateDelay
         ..nAcquisitions = cfg.nAcquisitions
         ..tclkEvent = cfg.tclkEvent;
@@ -1292,6 +1305,7 @@ extension on GStartPlotData_startPlot_data {
       PlotChannelData(
         name: req.vars.drfList[idx],
         units: channelUnits,
+        rate: channelRate,
         status: channelStatus,
         points: [...channelData.map((e) => PlotPoint(t: e.t, x: e.x, y: e.y))],
       );

@@ -206,6 +206,11 @@ class _$GStartPlotData_startPlot_dataSerializer
         object.G__typename,
         specifiedType: const FullType(String),
       ),
+      'channelRate',
+      serializers.serialize(
+        object.channelRate,
+        specifiedType: const FullType(String),
+      ),
       'channelUnits',
       serializers.serialize(
         object.channelUnits,
@@ -244,6 +249,14 @@ class _$GStartPlotData_startPlot_dataSerializer
       switch (key) {
         case '__typename':
           result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
+          break;
+        case 'channelRate':
+          result.channelRate =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(String),
@@ -683,6 +696,8 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
   @override
   final String G__typename;
   @override
+  final String channelRate;
+  @override
   final String channelUnits;
   @override
   final int channelStatus;
@@ -695,6 +710,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
 
   _$GStartPlotData_startPlot_data._({
     required this.G__typename,
+    required this.channelRate,
     required this.channelUnits,
     required this.channelStatus,
     required this.channelData,
@@ -703,6 +719,11 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
       G__typename,
       r'GStartPlotData_startPlot_data',
       'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      channelRate,
+      r'GStartPlotData_startPlot_data',
+      'channelRate',
     );
     BuiltValueNullFieldError.checkNotNull(
       channelUnits,
@@ -735,6 +756,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
     if (identical(other, this)) return true;
     return other is GStartPlotData_startPlot_data &&
         G__typename == other.G__typename &&
+        channelRate == other.channelRate &&
         channelUnits == other.channelUnits &&
         channelStatus == other.channelStatus &&
         channelData == other.channelData;
@@ -744,6 +766,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, channelRate.hashCode);
     _$hash = $jc(_$hash, channelUnits.hashCode);
     _$hash = $jc(_$hash, channelStatus.hashCode);
     _$hash = $jc(_$hash, channelData.hashCode);
@@ -755,6 +778,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
   String toString() {
     return (newBuiltValueToStringHelper(r'GStartPlotData_startPlot_data')
           ..add('G__typename', G__typename)
+          ..add('channelRate', channelRate)
           ..add('channelUnits', channelUnits)
           ..add('channelStatus', channelStatus)
           ..add('channelData', channelData))
@@ -773,6 +797,10 @@ class GStartPlotData_startPlot_dataBuilder
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  String? _channelRate;
+  String? get channelRate => _$this._channelRate;
+  set channelRate(String? channelRate) => _$this._channelRate = channelRate;
 
   String? _channelUnits;
   String? get channelUnits => _$this._channelUnits;
@@ -799,6 +827,7 @@ class GStartPlotData_startPlot_dataBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
+      _channelRate = $v.channelRate;
       _channelUnits = $v.channelUnits;
       _channelStatus = $v.channelStatus;
       _channelData = $v.channelData.toBuilder();
@@ -831,6 +860,11 @@ class GStartPlotData_startPlot_dataBuilder
               G__typename,
               r'GStartPlotData_startPlot_data',
               'G__typename',
+            ),
+            channelRate: BuiltValueNullFieldError.checkNotNull(
+              channelRate,
+              r'GStartPlotData_startPlot_data',
+              'channelRate',
             ),
             channelUnits: BuiltValueNullFieldError.checkNotNull(
               channelUnits,

@@ -80,6 +80,7 @@ abstract class GStartPlotData_startPlot_data
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
+  String get channelRate;
   String get channelUnits;
   int get channelStatus;
   BuiltList<GStartPlotData_startPlot_data_channelData> get channelData;
