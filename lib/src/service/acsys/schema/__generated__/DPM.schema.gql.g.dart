@@ -502,21 +502,6 @@ class _$GPlotConfigurationSnapshotInSerializer
                   )!
                   as bool;
           break;
-        case 'updateDelay':
-          result.updateDelay =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int?;
-          break;
-        case 'nAcquisitions':
-          result.nAcquisitions =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int?;
-          break;
-        case 'tclkEvent':
-          result.tclkEvent =
-              serializers.deserialize(value, specifiedType: const FullType(int))
-                  as int?;
-          break;
         case 'isPersistent':
           result.isPersistent =
               serializers.deserialize(
@@ -532,6 +517,21 @@ class _$GPlotConfigurationSnapshotInSerializer
                     specifiedType: const FullType(int),
                   )!
                   as int;
+          break;
+        case 'updateDelay':
+          result.updateDelay =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'nAcquisitions':
+          result.nAcquisitions =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'tclkEvent':
+          result.tclkEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
           break;
       }
     }
@@ -1198,15 +1198,15 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   @override
   final bool isShowLabels;
   @override
+  final bool isPersistent;
+  @override
+  final int dataLimit;
+  @override
   final int? updateDelay;
   @override
   final int? nAcquisitions;
   @override
   final int? tclkEvent;
-  @override
-  final bool isPersistent;
-  @override
-  final int dataLimit;
 
   factory _$GPlotConfigurationSnapshotIn([
     void Function(GPlotConfigurationSnapshotInBuilder)? updates,
@@ -1224,11 +1224,11 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     required this.isScalar,
     required this.isOneShot,
     required this.isShowLabels,
+    required this.isPersistent,
+    required this.dataLimit,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
-    required this.isPersistent,
-    required this.dataLimit,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
       configurationName,
@@ -1291,11 +1291,11 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
         isScalar == other.isScalar &&
         isOneShot == other.isOneShot &&
         isShowLabels == other.isShowLabels &&
+        isPersistent == other.isPersistent &&
+        dataLimit == other.dataLimit &&
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
-        tclkEvent == other.tclkEvent &&
-        isPersistent == other.isPersistent &&
-        dataLimit == other.dataLimit;
+        tclkEvent == other.tclkEvent;
   }
 
   @override
@@ -1312,11 +1312,11 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     _$hash = $jc(_$hash, isScalar.hashCode);
     _$hash = $jc(_$hash, isOneShot.hashCode);
     _$hash = $jc(_$hash, isShowLabels.hashCode);
+    _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
-    _$hash = $jc(_$hash, isPersistent.hashCode);
-    _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -1335,11 +1335,11 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
           ..add('isScalar', isScalar)
           ..add('isOneShot', isOneShot)
           ..add('isShowLabels', isShowLabels)
+          ..add('isPersistent', isPersistent)
+          ..add('dataLimit', dataLimit)
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
-          ..add('tclkEvent', tclkEvent)
-          ..add('isPersistent', isPersistent)
-          ..add('dataLimit', dataLimit))
+          ..add('tclkEvent', tclkEvent))
         .toString();
   }
 }
@@ -1400,6 +1400,14 @@ class GPlotConfigurationSnapshotInBuilder
   bool? get isShowLabels => _$this._isShowLabels;
   set isShowLabels(bool? isShowLabels) => _$this._isShowLabels = isShowLabels;
 
+  bool? _isPersistent;
+  bool? get isPersistent => _$this._isPersistent;
+  set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
+
+  int? _dataLimit;
+  int? get dataLimit => _$this._dataLimit;
+  set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
+
   int? _updateDelay;
   int? get updateDelay => _$this._updateDelay;
   set updateDelay(int? updateDelay) => _$this._updateDelay = updateDelay;
@@ -1412,14 +1420,6 @@ class GPlotConfigurationSnapshotInBuilder
   int? _tclkEvent;
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
-
-  bool? _isPersistent;
-  bool? get isPersistent => _$this._isPersistent;
-  set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
-
-  int? _dataLimit;
-  int? get dataLimit => _$this._dataLimit;
-  set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
 
   GPlotConfigurationSnapshotInBuilder();
 
@@ -1437,11 +1437,11 @@ class GPlotConfigurationSnapshotInBuilder
       _isScalar = $v.isScalar;
       _isOneShot = $v.isOneShot;
       _isShowLabels = $v.isShowLabels;
+      _isPersistent = $v.isPersistent;
+      _dataLimit = $v.dataLimit;
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
-      _isPersistent = $v.isPersistent;
-      _dataLimit = $v.dataLimit;
       _$v = null;
     }
     return this;
@@ -1494,9 +1494,6 @@ class GPlotConfigurationSnapshotInBuilder
               r'GPlotConfigurationSnapshotIn',
               'isShowLabels',
             ),
-            updateDelay: updateDelay,
-            nAcquisitions: nAcquisitions,
-            tclkEvent: tclkEvent,
             isPersistent: BuiltValueNullFieldError.checkNotNull(
               isPersistent,
               r'GPlotConfigurationSnapshotIn',
@@ -1507,6 +1504,9 @@ class GPlotConfigurationSnapshotInBuilder
               r'GPlotConfigurationSnapshotIn',
               'dataLimit',
             ),
+            updateDelay: updateDelay,
+            nAcquisitions: nAcquisitions,
+            tclkEvent: tclkEvent,
           );
     } catch (_) {
       late String _$failedField;
