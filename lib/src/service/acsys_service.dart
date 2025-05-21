@@ -571,7 +571,7 @@ final class ACSysService implements ACSysServiceAPI {
   ACSysService({String? jwt})
     : _q = Client(
         link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8001/acsys",
+          "https://acsys-proxy.fnal.gov:8000/acsys",
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
@@ -584,7 +584,7 @@ final class ACSysService implements ACSysServiceAPI {
                 Uri(
                   scheme: "wss",
                   host: "acsys-proxy.fnal.gov",
-                  port: 8001,
+                  port: 8000,
                   path: "/acsys/s",
                 ),
                 protocols: ["graphql-ws"],
@@ -595,7 +595,7 @@ final class ACSysService implements ACSysServiceAPI {
       ),
       _qDevDb = Client(
         link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8001/devdb",
+          "https://acsys-proxy.fnal.gov:8000/devdb",
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
