@@ -17,6 +17,7 @@ abstract class GUsersLastConfigVars
     void Function(GUsersLastConfigVarsBuilder b) updates,
   ]) = _$GUsersLastConfigVars;
 
+  String? get user;
   static Serializer<GUsersLastConfigVars> get serializer =>
       _$gUsersLastConfigVarsSerializer;
 

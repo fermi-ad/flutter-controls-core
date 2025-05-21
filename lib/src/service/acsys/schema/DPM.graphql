@@ -270,7 +270,7 @@ type Query {
 
   If the application saved the user's last plot configuration, this query will return it. If there is no configuration for the user, `null` is returned. The user's account is retrieved from the authentication token that is included in the request.
   """
-  usersLastConfiguration: PlotConfigurationSnapshot
+  usersLastConfiguration(user: String): PlotConfigurationSnapshot
 
   """
   Converts "clinks" to a Unix timestamp (seconds since Jan 1, 1970 UTC.)
