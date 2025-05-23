@@ -32,7 +32,15 @@ class _$GSetUsersConfigVarsSerializer
         specifiedType: const FullType(_i1.GPlotConfigurationSnapshotIn),
       ),
     ];
-
+    Object? value;
+    value = object.user;
+    if (value != null) {
+      result
+        ..add('user')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
     return result;
   }
 
@@ -50,6 +58,14 @@ class _$GSetUsersConfigVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'user':
+          result.user =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
+          break;
         case 'cfg':
           result.cfg.replace(
             serializers.deserialize(
@@ -70,13 +86,15 @@ class _$GSetUsersConfigVarsSerializer
 
 class _$GSetUsersConfigVars extends GSetUsersConfigVars {
   @override
+  final String? user;
+  @override
   final _i1.GPlotConfigurationSnapshotIn cfg;
 
   factory _$GSetUsersConfigVars([
     void Function(GSetUsersConfigVarsBuilder)? updates,
   ]) => (new GSetUsersConfigVarsBuilder()..update(updates))._build();
 
-  _$GSetUsersConfigVars._({required this.cfg}) : super._() {
+  _$GSetUsersConfigVars._({this.user, required this.cfg}) : super._() {
     BuiltValueNullFieldError.checkNotNull(cfg, r'GSetUsersConfigVars', 'cfg');
   }
 
@@ -92,12 +110,15 @@ class _$GSetUsersConfigVars extends GSetUsersConfigVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GSetUsersConfigVars && cfg == other.cfg;
+    return other is GSetUsersConfigVars &&
+        user == other.user &&
+        cfg == other.cfg;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, user.hashCode);
     _$hash = $jc(_$hash, cfg.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -106,13 +127,19 @@ class _$GSetUsersConfigVars extends GSetUsersConfigVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GSetUsersConfigVars')
-      ..add('cfg', cfg)).toString();
+          ..add('user', user)
+          ..add('cfg', cfg))
+        .toString();
   }
 }
 
 class GSetUsersConfigVarsBuilder
     implements Builder<GSetUsersConfigVars, GSetUsersConfigVarsBuilder> {
   _$GSetUsersConfigVars? _$v;
+
+  String? _user;
+  String? get user => _$this._user;
+  set user(String? user) => _$this._user = user;
 
   _i1.GPlotConfigurationSnapshotInBuilder? _cfg;
   _i1.GPlotConfigurationSnapshotInBuilder get cfg =>
@@ -124,6 +151,7 @@ class GSetUsersConfigVarsBuilder
   GSetUsersConfigVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
+      _user = $v.user;
       _cfg = $v.cfg.toBuilder();
       _$v = null;
     }
@@ -147,7 +175,8 @@ class GSetUsersConfigVarsBuilder
   _$GSetUsersConfigVars _build() {
     _$GSetUsersConfigVars _$result;
     try {
-      _$result = _$v ?? new _$GSetUsersConfigVars._(cfg: cfg.build());
+      _$result =
+          _$v ?? new _$GSetUsersConfigVars._(user: user, cfg: cfg.build());
     } catch (_) {
       late String _$failedField;
       try {
