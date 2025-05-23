@@ -529,7 +529,7 @@ abstract interface class ACSysServiceAPI {
   Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
-  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration();
+  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration(String? user);
 
   /// Sets the provided plot configuration as the last one the user saved.
   Future<void> saveUserConfiguration({
@@ -571,7 +571,7 @@ final class ACSysService implements ACSysServiceAPI {
   ACSysService({String? jwt})
     : _q = Client(
         link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8001/acsys",
+          "https://acsys-proxy.fnal.gov:8000/acsys",
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
@@ -584,7 +584,7 @@ final class ACSysService implements ACSysServiceAPI {
                 Uri(
                   scheme: "wss",
                   host: "acsys-proxy.fnal.gov",
-                  port: 8001,
+                  port: 8000,
                   path: "/acsys/s",
                 ),
                 protocols: ["graphql-ws"],
@@ -595,7 +595,7 @@ final class ACSysService implements ACSysServiceAPI {
       ),
       _qDevDb = Client(
         link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8001/devdb",
+          "https://acsys-proxy.fnal.gov:8000/devdb",
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
@@ -1102,8 +1102,10 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration() {
-    final req = GUsersLastConfigReq((b) => b);
+  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration(
+    String? user,
+  ) {
+    final req = GUsersLastConfigReq((b) => b..vars.user = user);
 
     return _rpc(
       req,
