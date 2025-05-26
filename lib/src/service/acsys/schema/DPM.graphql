@@ -132,8 +132,13 @@ type Mutation {
   Sets the user's default configuration.
 
   The content of the configuration are used to set the default configuration for the user. All fields, except the ID and name fields, are used. The user's account name is obtained from the authentication token that accompanies the request.
+
+  TEMPORARY: The `user` parameter can be used to specify the user account with which to associate the configuration. The convention is to prepend an underscore to the account name. Once we use the new authentication method, we'll be able to look-up the username and this parameter will be removed.
   """
-  usersConfiguration(config: PlotConfigurationSnapshotIn!): StatusReply!
+  usersConfiguration(
+    user: String
+    config: PlotConfigurationSnapshotIn!
+  ): StatusReply!
 }
 
 type PlotChannelData {
@@ -228,11 +233,11 @@ type PlotDataPoint {
 Contains plot data for a given plot request.
 """
 type PlotReplyData {
-  timestamp: Float!
   """
   A unique identifier for the plot request. This identifier will be cached for a limited time. Other clients can specify it to re-use the configuration.
   """
   plotId: String!
+  timestamp: Float!
   data: [PlotChannelData!]!
   isoTimestamp: Timestamp!
 }
@@ -269,6 +274,8 @@ type Query {
   Obtain the user's last configuration.
 
   If the application saved the user's last plot configuration, this query will return it. If there is no configuration for the user, `null` is returned. The user's account is retrieved from the authentication token that is included in the request.
+
+  TEMPORARY: The `user` parameter can be used to retrieve a user's last configuration. The convention is to prepend an underscore to the account name. Once we use the new authentication method, we'll be able to look-up the username and this parameter will be removed.
   """
   usersLastConfiguration(user: String): PlotConfigurationSnapshot
 

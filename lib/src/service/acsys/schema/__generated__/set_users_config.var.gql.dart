@@ -19,6 +19,7 @@ abstract class GSetUsersConfigVars
     void Function(GSetUsersConfigVarsBuilder b) updates,
   ]) = _$GSetUsersConfigVars;
 
+  String? get user;
   _i1.GPlotConfigurationSnapshotIn get cfg;
   static Serializer<GSetUsersConfigVars> get serializer =>
       _$gSetUsersConfigVarsSerializer;
