@@ -3,6 +3,8 @@ library;
 
 import "package:flutter/material.dart";
 import "src/auth_widget.dart";
+import 'package:go_router/go_router.dart';
+import 'src/app_scaffold.dart';
 
 export 'src/status.dart';
 export 'src/device_values.dart';
@@ -29,6 +31,7 @@ export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 Future<void> runFermiApp({
   required Widget appWidget,
   AuthInfo? authInfo,
+  GoRouter? router,
 }) async {
   if (authInfo != null) {
     await initAuth(
@@ -38,6 +41,31 @@ Future<void> runFermiApp({
       authInfo.scopes,
     );
   }
+   //zyuan added this to avoid the error when using the fake services
+  if (router != null) {
+    runApp(
+      authInfo != null
+        ? AuthRouterApp(
+            title: 'Plotting App',
+            router: router,
+            realm: authInfo.realm,
+            clientId: authInfo.clientId,
+            clientSecret: authInfo.clientSecret,
+          )
+        : NonAuthRouterApp(
+            title: 'Plotting App',
+            router: router,
+          ),
+    );
+    return;
+  }
+
+
+
+
+
+
+
 
   return runApp(appWidget);
 }
