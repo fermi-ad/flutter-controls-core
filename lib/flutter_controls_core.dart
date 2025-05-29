@@ -46,7 +46,7 @@ Future<void> runFermiApp({
 Future<void> runFermiRouterApp({
   required GoRouter router,
   AuthInfo? authInfo,
-  String title = 'Plotting App',
+  required String title,
 }) async {
   if (authInfo != null) {
     await initAuth(
