@@ -31,7 +31,6 @@ export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 Future<void> runFermiApp({
   required Widget appWidget,
   AuthInfo? authInfo,
-  GoRouter? router,
 }) async {
   if (authInfo != null) {
     await initAuth(
@@ -41,23 +40,36 @@ Future<void> runFermiApp({
       authInfo.scopes,
     );
   }
-   //zyuan added this to avoid the error when using the fake services
-  if (router != null) {
-    runApp(
-      authInfo != null
-        ? AuthRouterApp(
-            title: 'Plotting App',
-            router: router,
-            realm: authInfo.realm,
-            clientId: authInfo.clientId,
-            clientSecret: authInfo.clientSecret,
-          )
-        : NonAuthRouterApp(
-            title: 'Plotting App',
-            router: router,
-          ),
-    );
-    return;
-  }
   return runApp(appWidget);
+}
+
+Future<void> runFermiRouterApp({
+  required GoRouter router,
+  AuthInfo? authInfo,
+  String title = 'Plotting App',
+}) async {
+  if (authInfo != null) {
+    await initAuth(
+      authInfo.realm,
+      authInfo.clientId,
+      authInfo.clientSecret,
+      authInfo.scopes,
+    );
+    runApp(
+      AuthRouterApp(
+        title: title,
+        router: router,
+        realm: authInfo.realm,
+        clientId: authInfo.clientId,
+        clientSecret: authInfo.clientSecret,
+      ),
+    );
+  } else {
+    runApp(
+      NonAuthRouterApp(
+        title: title,
+        router: router,
+      ),
+    );
+  }
 }
