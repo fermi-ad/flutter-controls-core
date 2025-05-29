@@ -59,13 +59,5 @@ Future<void> runFermiApp({
     );
     return;
   }
-
-
-
-
-
-
-
-
   return runApp(appWidget);
 }
