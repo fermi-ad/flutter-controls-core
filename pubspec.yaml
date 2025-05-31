@@ -76,3 +76,9 @@ flutter:
     #
     # For details regarding fonts in packages, see
     # https://flutter.dev/custom-fonts/#from-packages
+  fonts:
+    - family: RobotoLocal
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700

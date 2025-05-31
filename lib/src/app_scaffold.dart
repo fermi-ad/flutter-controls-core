@@ -16,10 +16,12 @@ final class _GlobalAppTheme {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: lightColorScheme,
+    fontFamily: 'RobotoLocal',
   );
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     colorScheme: darkColorScheme,
+    fontFamily: 'RobotoLocal',
   );
 }
 
