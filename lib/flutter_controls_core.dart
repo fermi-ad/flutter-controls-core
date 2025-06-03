@@ -3,6 +3,8 @@ library;
 
 import "package:flutter/material.dart";
 import "src/auth_widget.dart";
+import 'package:go_router/go_router.dart';
+import 'src/app_scaffold.dart';
 
 export 'src/status.dart';
 export 'src/device_values.dart';
@@ -38,6 +40,36 @@ Future<void> runFermiApp({
       authInfo.scopes,
     );
   }
-
   return runApp(appWidget);
+}
+
+Future<void> runFermiRouterApp({
+  required GoRouter router,
+  AuthInfo? authInfo,
+  required String title,
+}) async {
+  if (authInfo != null) {
+    await initAuth(
+      authInfo.realm,
+      authInfo.clientId,
+      authInfo.clientSecret,
+      authInfo.scopes,
+    );
+    runApp(
+      AuthRouterApp(
+        title: title,
+        router: router,
+        realm: authInfo.realm,
+        clientId: authInfo.clientId,
+        clientSecret: authInfo.clientSecret,
+      ),
+    );
+  } else {
+    runApp(
+      NonAuthRouterApp(
+        title: title,
+        router: router,
+      ),
+    );
+  }
 }
