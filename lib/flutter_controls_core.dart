@@ -5,7 +5,9 @@ import "package:flutter/material.dart";
 import "src/auth_widget.dart";
 import 'package:go_router/go_router.dart';
 import 'src/app_scaffold.dart';
+import 'src/otel_tracing.dart';
 
+export 'package:opentelemetry/api.dart' show Span;
 export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
@@ -14,12 +16,13 @@ export 'src/auth_widget.dart' show ScopeList, AuthInfo, AuthService;
 export 'src/service/acsys_service.dart';
 
 export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
+export 'src/otel_tracing.dart';
 
 /// Entry point for Fermilab applications
 ///
-/// This function intializes the environment for the application as well as
+/// This function initializes the environment for the application as well as
 /// creating a widget [Scaffold] that uses a standard color theme. It also
-/// handles authentication with KeyCloak.
+/// handles authentication with KeyCloak and sets up OpenTelemetry tracing.
 ///
 /// - [appWidget] is the main widget that holds the body of the application.
 /// - [authInfo] is an optional parameter which holds configuration information
@@ -27,11 +30,11 @@ export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 ///   parameter is `null`, no credentials will be used (and most, if not all,
 ///   services won't let your application make modifications to the control
 ///   system.)
-
 Future<void> runFermiApp({
   required Widget appWidget,
   AuthInfo? authInfo,
 }) async {
+  await initOpenTelemetry();
   if (authInfo != null) {
     await initAuth(
       authInfo.realm,
@@ -48,6 +51,7 @@ Future<void> runFermiRouterApp({
   AuthInfo? authInfo,
   required String title,
 }) async {
+  await initOpenTelemetry();
   if (authInfo != null) {
     await initAuth(
       authInfo.realm,
