@@ -5,6 +5,7 @@ import "package:flutter/material.dart";
 import "src/auth_widget.dart";
 import 'package:go_router/go_router.dart';
 import 'src/app_scaffold.dart';
+import 'src/otel_tracing.dart';
 
 export 'package:opentelemetry/api.dart' show Span;
 export 'src/status.dart';
@@ -33,6 +34,7 @@ Future<void> runFermiApp({
   required Widget appWidget,
   AuthInfo? authInfo,
 }) async {
+  await initOpenTelemetry();
   if (authInfo != null) {
     await initAuth(
       authInfo.realm,
@@ -49,6 +51,7 @@ Future<void> runFermiRouterApp({
   AuthInfo? authInfo,
   required String title,
 }) async {
+  await initOpenTelemetry();
   if (authInfo != null) {
     await initAuth(
       authInfo.realm,
@@ -66,6 +69,11 @@ Future<void> runFermiRouterApp({
       ),
     );
   } else {
-    runApp(NonAuthRouterApp(title: title, router: router));
+    runApp(
+      NonAuthRouterApp(
+        title: title,
+        router: router,
+      ),
+    );
   }
 }

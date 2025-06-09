@@ -7,7 +7,10 @@ import 'package:opentelemetry/api.dart'
 /// OpenTelemetry singleton tracer for manual instrumentation
 late final otel.Tracer otelTracer;
 bool _otelInitialized = false;
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
 
 /// More idiomatic Dart 3+ pattern matching for attribute conversion
 Attribute _toAttribute(String key, Object? value) => switch (value) {
@@ -28,13 +31,21 @@ Future<void> initOpenTelemetry({
   String serviceName = 'flutter_controls_core',
   SpanExporter? exporter,
 }) async {
+<<<<<<< HEAD
   if (_otelInitialized) return;
+=======
+  if (_otelInitialized) return; 
+>>>>>>> main
   final tracerProvider = TracerProviderBase(
     processors: [SimpleSpanProcessor(exporter ?? ConsoleExporter())],
   );
   registerGlobalTracerProvider(tracerProvider);
   otelTracer = globalTracerProvider.getTracer(serviceName);
+<<<<<<< HEAD
   _otelInitialized = true;  
+=======
+  _otelInitialized = true;
+>>>>>>> main
 }
 
 /// Start a manual span. Returns the span, which you must end.
