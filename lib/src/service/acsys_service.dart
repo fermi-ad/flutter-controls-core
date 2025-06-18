@@ -506,6 +506,8 @@ abstract interface class ACSysServiceAPI {
     List<String> drfs, {
     double? xMin,
     double? xMax,
+    double? startTime,
+    double? endTime, 
     int? windowSize,
     int? updateRate,
     int? nAcquisitions,
@@ -1042,6 +1044,8 @@ final class ACSysService implements ACSysServiceAPI {
     List<String> drfs, {
     double? xMin,
     double? xMax,
+    double? startTime,
+    double? endTime, 
     int? windowSize,
     int? updateRate,
     int? nAcquisitions,
