@@ -1,7 +1,6 @@
 query ReadDevices($devList: [String!]!) {
     acceleratorData(deviceList: $devList) {
         refId
-        cycle
         data {
             timestamp
             result {

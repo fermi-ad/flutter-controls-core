@@ -39,16 +39,6 @@ type DataInfo {
   result: DataType!
 
   """
-  The device's index (in the device database.) This field may get removed; its purpose is questionable in this API.
-  """
-  di: Int!
-
-  """
-  The name of the device.
-  """
-  name: String!
-
-  """
   The timestamp as an ISO formatted string. This value is fairly expensive to generate, so the `timestamp` field should be preferred to this one. This field is mainly used for debugging or when using a tool that returns human-readable results.
   """
   isoTimestamp: Timestamp!
@@ -64,14 +54,9 @@ type DataReply {
   refId: Int!
 
   """
-  The cycle number in which the device was sampled. This can be used to correlate readings from several devices.
-  """
-  cycle: Int!
-
-  """
   The returned data.
   """
-  data: DataInfo!
+  data: [DataInfo!]!
 }
 
 """

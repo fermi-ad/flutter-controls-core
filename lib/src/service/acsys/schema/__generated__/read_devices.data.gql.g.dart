@@ -128,12 +128,12 @@ class _$GReadDevicesData_acceleratorDataSerializer
       ),
       'refId',
       serializers.serialize(object.refId, specifiedType: const FullType(int)),
-      'cycle',
-      serializers.serialize(object.cycle, specifiedType: const FullType(int)),
       'data',
       serializers.serialize(
         object.data,
-        specifiedType: const FullType(GReadDevicesData_acceleratorData_data),
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GReadDevicesData_acceleratorData_data),
+        ]),
       ),
     ];
 
@@ -170,23 +170,15 @@ class _$GReadDevicesData_acceleratorDataSerializer
                   )!
                   as int;
           break;
-        case 'cycle':
-          result.cycle =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(int),
-                  )!
-                  as int;
-          break;
         case 'data':
           result.data.replace(
             serializers.deserialize(
                   value,
-                  specifiedType: const FullType(
-                    GReadDevicesData_acceleratorData_data,
-                  ),
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GReadDevicesData_acceleratorData_data),
+                  ]),
                 )!
-                as GReadDevicesData_acceleratorData_data,
+                as BuiltList<Object?>,
           );
           break;
       }
@@ -862,9 +854,7 @@ class _$GReadDevicesData_acceleratorData
   @override
   final int refId;
   @override
-  final int cycle;
-  @override
-  final GReadDevicesData_acceleratorData_data data;
+  final BuiltList<GReadDevicesData_acceleratorData_data> data;
 
   factory _$GReadDevicesData_acceleratorData([
     void Function(GReadDevicesData_acceleratorDataBuilder)? updates,
@@ -874,7 +864,6 @@ class _$GReadDevicesData_acceleratorData
   _$GReadDevicesData_acceleratorData._({
     required this.G__typename,
     required this.refId,
-    required this.cycle,
     required this.data,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -886,11 +875,6 @@ class _$GReadDevicesData_acceleratorData
       refId,
       r'GReadDevicesData_acceleratorData',
       'refId',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      cycle,
-      r'GReadDevicesData_acceleratorData',
-      'cycle',
     );
     BuiltValueNullFieldError.checkNotNull(
       data,
@@ -914,7 +898,6 @@ class _$GReadDevicesData_acceleratorData
     return other is GReadDevicesData_acceleratorData &&
         G__typename == other.G__typename &&
         refId == other.refId &&
-        cycle == other.cycle &&
         data == other.data;
   }
 
@@ -923,7 +906,6 @@ class _$GReadDevicesData_acceleratorData
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, refId.hashCode);
-    _$hash = $jc(_$hash, cycle.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -934,7 +916,6 @@ class _$GReadDevicesData_acceleratorData
     return (newBuiltValueToStringHelper(r'GReadDevicesData_acceleratorData')
           ..add('G__typename', G__typename)
           ..add('refId', refId)
-          ..add('cycle', cycle)
           ..add('data', data))
         .toString();
   }
@@ -956,14 +937,10 @@ class GReadDevicesData_acceleratorDataBuilder
   int? get refId => _$this._refId;
   set refId(int? refId) => _$this._refId = refId;
 
-  int? _cycle;
-  int? get cycle => _$this._cycle;
-  set cycle(int? cycle) => _$this._cycle = cycle;
-
-  GReadDevicesData_acceleratorData_dataBuilder? _data;
-  GReadDevicesData_acceleratorData_dataBuilder get data =>
-      _$this._data ??= new GReadDevicesData_acceleratorData_dataBuilder();
-  set data(GReadDevicesData_acceleratorData_dataBuilder? data) =>
+  ListBuilder<GReadDevicesData_acceleratorData_data>? _data;
+  ListBuilder<GReadDevicesData_acceleratorData_data> get data =>
+      _$this._data ??= new ListBuilder<GReadDevicesData_acceleratorData_data>();
+  set data(ListBuilder<GReadDevicesData_acceleratorData_data>? data) =>
       _$this._data = data;
 
   GReadDevicesData_acceleratorDataBuilder() {
@@ -975,7 +952,6 @@ class GReadDevicesData_acceleratorDataBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _refId = $v.refId;
-      _cycle = $v.cycle;
       _data = $v.data.toBuilder();
       _$v = null;
     }
@@ -1011,11 +987,6 @@ class GReadDevicesData_acceleratorDataBuilder
               refId,
               r'GReadDevicesData_acceleratorData',
               'refId',
-            ),
-            cycle: BuiltValueNullFieldError.checkNotNull(
-              cycle,
-              r'GReadDevicesData_acceleratorData',
-              'cycle',
             ),
             data: data.build(),
           );
