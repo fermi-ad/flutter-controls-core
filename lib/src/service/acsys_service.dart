@@ -432,10 +432,13 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   double? xMin;
   double? xMax;
   double? timeDelta;
+  double? startTime;
+  double? endTime;
   bool isShowLabels;
   bool isScalar;
   bool isOneShot;
   bool isPersistent;
+  bool isDataLogger;
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
@@ -449,11 +452,14 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.yMax,
     this.xMin,
     this.xMax,
+    this.startTime,
+    this.endTime,
     this.timeDelta,
     required this.isShowLabels,
     required this.isScalar,
     required this.isOneShot,
     this.isPersistent = false,
+    this.isDataLogger = false,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
@@ -507,7 +513,7 @@ abstract interface class ACSysServiceAPI {
     double? xMin,
     double? xMax,
     double? startTime,
-    double? endTime, 
+    double? endTime,
     int? windowSize,
     int? updateRate,
     int? nAcquisitions,
@@ -1045,7 +1051,7 @@ final class ACSysService implements ACSysServiceAPI {
     double? xMin,
     double? xMax,
     double? startTime,
-    double? endTime, 
+    double? endTime,
     int? windowSize,
     int? updateRate,
     int? nAcquisitions,
@@ -1147,6 +1153,7 @@ final class ACSysService implements ACSysServiceAPI {
           tclkEvent: e.tclkEvent,
           dataLimit: e.dataLimit,
           isPersistent: e.isPersistent,
+          // TODO add new fields to db for isDataLogger, startTime, EndTime
         );
       },
     );
@@ -1212,6 +1219,7 @@ final class ACSysService implements ACSysServiceAPI {
                       tclkEvent: e.tclkEvent,
                       dataLimit: e.dataLimit,
                       isPersistent: e.isPersistent,
+                      // TODO add new fields to db for isDataLogger, startTime, EndTime
                     ),
                   )
                   .toList(),
