@@ -29,6 +29,7 @@ dependencies:
 
     openid_client: ^0.4.8
     url_launcher: ^6.2.1
+    opentelemetry: ^0.18.10
 
 dev_dependencies:
     flutter_test:

@@ -54,3 +54,67 @@ code. The command to do this is:
 ```shell
 $ dart run build_runner build --delete-conflicting-outputs
 ```
+
+## Telemetry/Tracing (OpenTelemetry)
+
+OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints (`runFermiApp`, `runFermiRouterApp`).
+
+- Traces are exported to the console by default (see `ConsoleExporter`).
+  - In the future we will need a custom exporter for GraphQL. Good news is that otel is gRPC by default.
+- You can override the exporter by calling `initOpenTelemetry(exporter: ...)` before app startup.
+- Manual instrumentation is available for custom spans and events.
+
+### Manual Instrumentation Example
+
+```dart
+import 'package:flutter_controls_core/flutter_controls_core.dart';
+
+final span = startSpan('operation', attributes: {'key': 'value'});
+try {
+  // ... your code ...
+  addEvent(span, 'eventName', attributes: {'foo': 42});
+} finally {
+  endSpan(span);
+}
+```
+
+Or use the convenience wrappers for automatic span management:
+
+```dart
+runWithSpan('operation', (span) {
+  // ... your code ...
+});
+
+await runWithSpanAsync('asyncOp', (span) async {
+  // ... your async code ...
+});
+```
+
+### Dependency Injection and Testing
+
+Use the `AppTracer` interface and the `appTracer` instance for testable code:
+
+```dart
+class MyService {
+  final AppTracer tracer;
+  MyService(this.tracer);
+  void doWork() {
+    tracer.runWithSpan('work', (span) {
+      // ...
+    });
+  }
+}
+```
+
+In tests, inject a mock tracer if needed.
+
+### Opting Out
+
+To disable tracing, you can override `initOpenTelemetry` with a no-op exporter or skip calling it (not recommended for most apps).
+
+For more details, see the API documentation in `lib/src/otel_tracing.dart`.
+
+### TODO
+
+- Add metrics
+- Add logging
