@@ -243,14 +243,12 @@ final class DeviceInfo {
 final class Reading {
   final int refId;
   final Status status;
-  final int cycle;
   final DateTime timestamp;
   final DeviceValue? value;
 
   const Reading({
     required this.refId,
     this.status = Status.okay,
-    required this.cycle,
     required this.timestamp,
     this.value,
   });
@@ -303,7 +301,6 @@ final class ExtendedStatusAttribute {
 final class DigitalStatus {
   final int refId;
   final int status;
-  final int cycle;
   final DateTime timestamp;
   final BasicStatusAttribute? onOff;
   final BasicStatusAttribute? readyTripped;
@@ -314,7 +311,6 @@ final class DigitalStatus {
   const DigitalStatus({
     required this.refId,
     this.status = 0,
-    required this.cycle,
     required this.timestamp,
     this.onOff,
     this.readyTripped,
@@ -893,7 +889,7 @@ final class ACSysService implements ACSysServiceAPI {
           (error) => dev.log("error: $error", name: "gql.monitorDevices"),
         )
         .where((event) => !event.loading)
-        .map(_convertMonitor);
+        .expand(_convertMonitor);
   }
 
   static DateTime fromFloatTs(double ts) =>
@@ -901,39 +897,37 @@ final class ACSysService implements ACSysServiceAPI {
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
-  static Reading _convertMonitor(
+  static Iterable<Reading> _convertMonitor(
     OperationResponse<GStreamDataData, GStreamDataVars> e,
-  ) {
+  ) sync* {
     // If the packet doesn't have GraphQL errors, then we can process the
     // payload.
 
     if (!e.hasErrors) {
       final GStreamDataData_acceleratorData data = e.data!.acceleratorData;
-      final GStreamDataData_acceleratorData_data_result result =
-          data.data.result;
 
-      return Reading(
-        refId: data.refId,
-        cycle: data.cycle,
-        timestamp: fromFloatTs(data.data.timestamp),
-        value: result.toDevValue(),
-      );
+      for (final entry in data.data) {
+        yield Reading(
+          refId: data.refId,
+          timestamp: fromFloatTs(entry.timestamp),
+          value: entry.result.toDevValue(),
+        );
+      }
     } else {
       throw ACSysGraphQLException(e.graphqlErrors.toString());
     }
   }
 
   static List<Reading> _convertReading(GReadDevicesData e) =>
-      e.acceleratorData
-          .map(
-            (v) => Reading(
-              refId: v.refId,
-              cycle: v.cycle,
-              timestamp: fromFloatTs(v.data.timestamp),
-              value: v.data.result.toDevValue(),
-            ),
-          )
-          .toList();
+      e.acceleratorData.expand((v) sync* {
+        for (final data in v.data) {
+          yield Reading(
+            refId: v.refId,
+            timestamp: fromFloatTs(data.timestamp),
+            value: data.result.toDevValue(),
+          );
+        }
+      }).toList();
 
   @override
   Stream<DigitalStatus> monitorDigitalStatusDevices(
@@ -969,7 +963,6 @@ final class ACSysService implements ACSysServiceAPI {
       } else {
         yield DigitalStatus(
           refId: idx,
-          cycle: 0,
           timestamp: DateTime.now(),
           status: Status.noProperty.code,
         );
@@ -987,7 +980,6 @@ final class ACSysService implements ACSysServiceAPI {
       return DigitalStatus(
         status: rdg.status.code,
         refId: refId,
-        cycle: rdg.cycle,
         timestamp: rdg.timestamp,
         onOff: bs.onOffProperty?.getState(statusVal),
         readyTripped: bs.readyTrippedProperty?.getState(statusVal),

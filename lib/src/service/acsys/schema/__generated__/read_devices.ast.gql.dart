@@ -44,13 +44,6 @@ const ReadDevices = _i1.OperationDefinitionNode(
               selectionSet: null,
             ),
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'cycle'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null,
-            ),
-            _i1.FieldNode(
               name: _i1.NameNode(value: 'data'),
               alias: null,
               arguments: [],

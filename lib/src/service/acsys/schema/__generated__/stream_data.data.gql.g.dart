@@ -126,12 +126,12 @@ class _$GStreamDataData_acceleratorDataSerializer
       ),
       'refId',
       serializers.serialize(object.refId, specifiedType: const FullType(int)),
-      'cycle',
-      serializers.serialize(object.cycle, specifiedType: const FullType(int)),
       'data',
       serializers.serialize(
         object.data,
-        specifiedType: const FullType(GStreamDataData_acceleratorData_data),
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GStreamDataData_acceleratorData_data),
+        ]),
       ),
     ];
 
@@ -168,23 +168,15 @@ class _$GStreamDataData_acceleratorDataSerializer
                   )!
                   as int;
           break;
-        case 'cycle':
-          result.cycle =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(int),
-                  )!
-                  as int;
-          break;
         case 'data':
           result.data.replace(
             serializers.deserialize(
                   value,
-                  specifiedType: const FullType(
-                    GStreamDataData_acceleratorData_data,
-                  ),
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GStreamDataData_acceleratorData_data),
+                  ]),
                 )!
-                as GStreamDataData_acceleratorData_data,
+                as BuiltList<Object?>,
           );
           break;
       }
@@ -857,9 +849,7 @@ class _$GStreamDataData_acceleratorData
   @override
   final int refId;
   @override
-  final int cycle;
-  @override
-  final GStreamDataData_acceleratorData_data data;
+  final BuiltList<GStreamDataData_acceleratorData_data> data;
 
   factory _$GStreamDataData_acceleratorData([
     void Function(GStreamDataData_acceleratorDataBuilder)? updates,
@@ -869,7 +859,6 @@ class _$GStreamDataData_acceleratorData
   _$GStreamDataData_acceleratorData._({
     required this.G__typename,
     required this.refId,
-    required this.cycle,
     required this.data,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -881,11 +870,6 @@ class _$GStreamDataData_acceleratorData
       refId,
       r'GStreamDataData_acceleratorData',
       'refId',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      cycle,
-      r'GStreamDataData_acceleratorData',
-      'cycle',
     );
     BuiltValueNullFieldError.checkNotNull(
       data,
@@ -909,7 +893,6 @@ class _$GStreamDataData_acceleratorData
     return other is GStreamDataData_acceleratorData &&
         G__typename == other.G__typename &&
         refId == other.refId &&
-        cycle == other.cycle &&
         data == other.data;
   }
 
@@ -918,7 +901,6 @@ class _$GStreamDataData_acceleratorData
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, refId.hashCode);
-    _$hash = $jc(_$hash, cycle.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -929,7 +911,6 @@ class _$GStreamDataData_acceleratorData
     return (newBuiltValueToStringHelper(r'GStreamDataData_acceleratorData')
           ..add('G__typename', G__typename)
           ..add('refId', refId)
-          ..add('cycle', cycle)
           ..add('data', data))
         .toString();
   }
@@ -951,14 +932,10 @@ class GStreamDataData_acceleratorDataBuilder
   int? get refId => _$this._refId;
   set refId(int? refId) => _$this._refId = refId;
 
-  int? _cycle;
-  int? get cycle => _$this._cycle;
-  set cycle(int? cycle) => _$this._cycle = cycle;
-
-  GStreamDataData_acceleratorData_dataBuilder? _data;
-  GStreamDataData_acceleratorData_dataBuilder get data =>
-      _$this._data ??= new GStreamDataData_acceleratorData_dataBuilder();
-  set data(GStreamDataData_acceleratorData_dataBuilder? data) =>
+  ListBuilder<GStreamDataData_acceleratorData_data>? _data;
+  ListBuilder<GStreamDataData_acceleratorData_data> get data =>
+      _$this._data ??= new ListBuilder<GStreamDataData_acceleratorData_data>();
+  set data(ListBuilder<GStreamDataData_acceleratorData_data>? data) =>
       _$this._data = data;
 
   GStreamDataData_acceleratorDataBuilder() {
@@ -970,7 +947,6 @@ class GStreamDataData_acceleratorDataBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _refId = $v.refId;
-      _cycle = $v.cycle;
       _data = $v.data.toBuilder();
       _$v = null;
     }
@@ -1006,11 +982,6 @@ class GStreamDataData_acceleratorDataBuilder
               refId,
               r'GStreamDataData_acceleratorData',
               'refId',
-            ),
-            cycle: BuiltValueNullFieldError.checkNotNull(
-              cycle,
-              r'GStreamDataData_acceleratorData',
-              'cycle',
             ),
             data: data.build(),
           );

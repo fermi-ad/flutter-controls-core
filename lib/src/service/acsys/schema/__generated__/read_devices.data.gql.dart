@@ -54,8 +54,7 @@ abstract class GReadDevicesData_acceleratorData
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   int get refId;
-  int get cycle;
-  GReadDevicesData_acceleratorData_data get data;
+  BuiltList<GReadDevicesData_acceleratorData_data> get data;
   static Serializer<GReadDevicesData_acceleratorData> get serializer =>
       _$gReadDevicesDataAcceleratorDataSerializer;
 

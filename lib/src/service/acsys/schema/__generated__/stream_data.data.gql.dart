@@ -54,8 +54,7 @@ abstract class GStreamDataData_acceleratorData
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   int get refId;
-  int get cycle;
-  GStreamDataData_acceleratorData_data get data;
+  BuiltList<GStreamDataData_acceleratorData_data> get data;
   static Serializer<GStreamDataData_acceleratorData> get serializer =>
       _$gStreamDataDataAcceleratorDataSerializer;
 

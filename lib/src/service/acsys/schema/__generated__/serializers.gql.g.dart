@@ -118,6 +118,12 @@ Serializers _$serializers =
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
+              const FullType(GReadDevicesData_acceleratorData_data),
+            ]),
+            () => new ListBuilder<GReadDevicesData_acceleratorData_data>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
               const FullType(GStartPlotData_startPlot_data),
             ]),
             () => new ListBuilder<GStartPlotData_startPlot_data>(),
@@ -127,6 +133,12 @@ Serializers _$serializers =
               const FullType(GStartPlotData_startPlot_data_channelData),
             ]),
             () => new ListBuilder<GStartPlotData_startPlot_data_channelData>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(GStreamDataData_acceleratorData_data),
+            ]),
+            () => new ListBuilder<GStreamDataData_acceleratorData_data>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
