@@ -434,7 +434,6 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   bool isScalar;
   bool isOneShot;
   bool isPersistent;
-  bool isDataLogger;
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
@@ -455,7 +454,6 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     required this.isScalar,
     required this.isOneShot,
     this.isPersistent = false,
-    this.isDataLogger = false,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
@@ -1145,7 +1143,7 @@ final class ACSysService implements ACSysServiceAPI {
           tclkEvent: e.tclkEvent,
           dataLimit: e.dataLimit,
           isPersistent: e.isPersistent,
-          // TODO add new fields to db for isDataLogger, startTime, EndTime
+          // TODO add new fields to db for startTime, EndTime
         );
       },
     );
@@ -1211,7 +1209,7 @@ final class ACSysService implements ACSysServiceAPI {
                       tclkEvent: e.tclkEvent,
                       dataLimit: e.dataLimit,
                       isPersistent: e.isPersistent,
-                      // TODO add new fields to db for isDataLogger, startTime, EndTime
+                      // TODO add new fields to db for startTime, EndTime
                     ),
                   )
                   .toList(),
