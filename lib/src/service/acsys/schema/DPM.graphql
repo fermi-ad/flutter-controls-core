@@ -397,6 +397,8 @@ type Subscription {
     Maximum timestamp. All data after this timestamp will be filtered from the result set.
     """
     xMax: Float
+    startTime: Float
+    endTime: Float
   ): PlotReplyData!
   reportEvents(events: [Int!]!): EventInfo!
   calcStream(config: XformRequest!): XformResult!
