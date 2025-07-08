@@ -58,6 +58,8 @@ abstract class GPlotConfigsData_plotConfiguration
   double? get xMax;
   double? get yMin;
   double? get yMax;
+  double? get startTime;
+  double? get endTime;
   double? get timeDelta;
   bool get isScalar;
   bool get isOneShot;

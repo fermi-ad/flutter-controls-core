@@ -74,6 +74,24 @@ const StartPlot = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'startTime')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'endTime')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(
@@ -109,6 +127,14 @@ const StartPlot = _i1.OperationDefinitionNode(
           _i1.ArgumentNode(
             name: _i1.NameNode(value: 'triggerEvent'),
             value: _i1.VariableNode(name: _i1.NameNode(value: 'triggerEvent')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'startTime'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'startTime')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'endTime'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'endTime')),
           ),
         ],
         directives: [],
