@@ -159,6 +159,8 @@ type PlotConfigurationSnapshot {
   xMax: Float
   yMin: Float
   yMax: Float
+  startTime: Float
+  endTime: Float
   timeDelta: Float
   isScalar: Boolean!
   isOneShot: Boolean!
@@ -189,6 +191,8 @@ input PlotConfigurationSnapshotIn {
   xMax: Float
   yMin: Float
   yMax: Float
+  startTime: Float
+  endTime: Float
   timeDelta: Float
   isScalar: Boolean!
   isOneShot: Boolean!

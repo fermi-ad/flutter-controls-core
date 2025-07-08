@@ -11,6 +11,8 @@ query UsersLastConfig($user: String) {
         xMax
         yMin
         yMax
+        startTime
+        endTime
         timeDelta
         isScalar
         isOneShot

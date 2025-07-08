@@ -11,6 +11,8 @@ query PlotConfigs($id: Int) {
     xMax
     yMin
     yMax
+    startTime
+    endTime
     timeDelta
     isScalar
     isOneShot
