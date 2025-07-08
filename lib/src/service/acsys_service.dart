@@ -1134,6 +1134,8 @@ final class ACSysService implements ACSysServiceAPI {
           yMax: e.yMax,
           xMin: e.xMin,
           xMax: e.xMax,
+          startTime: e.startTime,
+          endTime: e.endTime,
           timeDelta: e.timeDelta,
           isOneShot: e.isOneShot,
           isScalar: e.isScalar,
@@ -1143,7 +1145,6 @@ final class ACSysService implements ACSysServiceAPI {
           tclkEvent: e.tclkEvent,
           dataLimit: e.dataLimit,
           isPersistent: e.isPersistent,
-          // TODO add new fields to db for startTime, EndTime
         );
       },
     );
@@ -1200,6 +1201,8 @@ final class ACSysService implements ACSysServiceAPI {
                       yMax: e.yMax,
                       xMin: e.xMin,
                       xMax: e.xMax,
+                      startTime: e.startTime,
+                      endTime: e.endTime,
                       timeDelta: e.timeDelta,
                       isOneShot: e.isOneShot,
                       isScalar: e.isScalar,
@@ -1209,7 +1212,6 @@ final class ACSysService implements ACSysServiceAPI {
                       tclkEvent: e.tclkEvent,
                       dataLimit: e.dataLimit,
                       isPersistent: e.isPersistent,
-                      // TODO add new fields to db for startTime, EndTime
                     ),
                   )
                   .toList(),
@@ -1248,6 +1250,8 @@ final class ACSysService implements ACSysServiceAPI {
         ..yMax = cfg.yMax
         ..xMin = cfg.xMin
         ..xMax = cfg.xMax
+        ..startTime = cfg.startTime
+        ..endTime = cfg.endTime
         ..timeDelta = cfg.timeDelta
         ..isOneShot = cfg.isOneShot
         ..isScalar = cfg.isScalar
