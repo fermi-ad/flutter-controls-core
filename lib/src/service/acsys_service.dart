@@ -1057,7 +1057,9 @@ final class ACSysService implements ACSysServiceAPI {
             ..vars.windowSize = windowSize
             ..vars.nAcquisitions = nAcquisitions
             ..vars.updateDelay = updateRate
-            ..vars.triggerEvent = triggerEvent,
+            ..vars.triggerEvent = triggerEvent
+            ..vars.startTime = startTime
+            ..vars.endTime = endTime,
     );
 
     return _s
