@@ -520,7 +520,7 @@ abstract interface class ACSysServiceAPI {
   });
 
   /// Queries the database for a plot configuration.
-  Future<PlotConfigurationSnapshot> retrievePlotConfiguration({
+  Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
     required PlotConfigId configurationId,
   });
 
@@ -531,7 +531,9 @@ abstract interface class ACSysServiceAPI {
   Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
-  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration(String? user);
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
+    String? user,
+  );
 
   /// Sets the provided plot configuration as the last one the user saved.
   Future<void> saveUserConfiguration({
@@ -1105,7 +1107,7 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration(
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
     String? user,
   ) {
     final req = GUsersLastConfigReq((b) => b..vars.user = user);
@@ -1113,41 +1115,44 @@ final class ACSysService implements ACSysServiceAPI {
     return _rpc(
       req,
       xlat: (GUsersLastConfigData data) {
-        final e = data.usersLastConfiguration!;
+        final e = data.usersLastConfiguration;
 
-        return PlotConfigurationSnapshot(
-          configurationId:
-              e.configurationId != null
-                  ? PlotConfigId._fromInt(e.configurationId!)
-                  : null,
-          configurationName: e.configurationName,
-          channels: Map.fromEntries(
-            e.channels.map(
-              (e) => MapEntry(
-                e.device,
-                ChannelSettingSnapshot(
-                  lineColor: e.lineColor != null ? Color(e.lineColor!) : null,
-                  markerIndex: e.markerIndex,
+        return e == null
+            ? null
+            : PlotConfigurationSnapshot(
+              configurationId:
+                  e.configurationId != null
+                      ? PlotConfigId._fromInt(e.configurationId!)
+                      : null,
+              configurationName: e.configurationName,
+              channels: Map.fromEntries(
+                e.channels.map(
+                  (e) => MapEntry(
+                    e.device,
+                    ChannelSettingSnapshot(
+                      lineColor:
+                          e.lineColor != null ? Color(e.lineColor!) : null,
+                      markerIndex: e.markerIndex,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          yMin: e.yMin,
-          yMax: e.yMax,
-          xMin: e.xMin,
-          xMax: e.xMax,
-          startTime: e.startTime,
-          endTime: e.endTime,
-          timeDelta: e.timeDelta,
-          isOneShot: e.isOneShot,
-          isScalar: e.isScalar,
-          isShowLabels: e.isShowLabels,
-          updateDelay: e.updateDelay,
-          nAcquisitions: e.nAcquisitions,
-          tclkEvent: e.tclkEvent,
-          dataLimit: e.dataLimit,
-          isPersistent: e.isPersistent,
-        );
+              yMin: e.yMin,
+              yMax: e.yMax,
+              xMin: e.xMin,
+              xMax: e.xMax,
+              startTime: e.startTime,
+              endTime: e.endTime,
+              timeDelta: e.timeDelta,
+              isOneShot: e.isOneShot,
+              isScalar: e.isScalar,
+              isShowLabels: e.isShowLabels,
+              updateDelay: e.updateDelay,
+              nAcquisitions: e.nAcquisitions,
+              tclkEvent: e.tclkEvent,
+              dataLimit: e.dataLimit,
+              isPersistent: e.isPersistent,
+            );
       },
     );
   }
@@ -1168,7 +1173,7 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot> retrievePlotConfiguration({
+  Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
     required PlotConfigId configurationId,
   }) {
     final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
@@ -1220,7 +1225,7 @@ final class ACSysService implements ACSysServiceAPI {
     ).then((value) {
       switch (value) {
         case []:
-          throw const ACSysConfigurationException("no configuration found");
+          return null;
         case [PlotConfigurationSnapshot e]:
           return e;
         default:
