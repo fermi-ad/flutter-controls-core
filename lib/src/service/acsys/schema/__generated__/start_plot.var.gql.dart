@@ -24,6 +24,8 @@ abstract class GStartPlotVars
   int? get updateDelay;
   int? get nAcquisitions;
   int? get triggerEvent;
+  double? get startTime;
+  double? get endTime;
   static Serializer<GStartPlotVars> get serializer =>
       _$gStartPlotVarsSerializer;
 

@@ -33,7 +33,7 @@ Future<void> initOpenTelemetry({
   );
   registerGlobalTracerProvider(tracerProvider);
   otelTracer = globalTracerProvider.getTracer(serviceName);
-  _otelInitialized = true;  
+  _otelInitialized = true;
 }
 
 /// Start a manual span. Returns the span, which you must end.

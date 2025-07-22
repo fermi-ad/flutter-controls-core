@@ -185,6 +185,22 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           serializers.serialize(value, specifiedType: const FullType(double)),
         );
     }
+    value = object.startTime;
+    if (value != null) {
+      result
+        ..add('startTime')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
+    value = object.endTime;
+    if (value != null) {
+      result
+        ..add('endTime')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     value = object.timeDelta;
     if (value != null) {
       result
@@ -286,6 +302,22 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           break;
         case 'yMax':
           result.yMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
+        case 'startTime':
+          result.startTime =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
+        case 'endTime':
+          result.endTime =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
@@ -609,6 +641,10 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final double? yMax;
   @override
+  final double? startTime;
+  @override
+  final double? endTime;
+  @override
   final double? timeDelta;
   @override
   final bool isScalar;
@@ -642,6 +678,8 @@ class _$GPlotConfigsData_plotConfiguration
     this.xMax,
     this.yMin,
     this.yMax,
+    this.startTime,
+    this.endTime,
     this.timeDelta,
     required this.isScalar,
     required this.isOneShot,
@@ -715,6 +753,8 @@ class _$GPlotConfigsData_plotConfiguration
         xMax == other.xMax &&
         yMin == other.yMin &&
         yMax == other.yMax &&
+        startTime == other.startTime &&
+        endTime == other.endTime &&
         timeDelta == other.timeDelta &&
         isScalar == other.isScalar &&
         isOneShot == other.isOneShot &&
@@ -737,6 +777,8 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, xMax.hashCode);
     _$hash = $jc(_$hash, yMin.hashCode);
     _$hash = $jc(_$hash, yMax.hashCode);
+    _$hash = $jc(_$hash, startTime.hashCode);
+    _$hash = $jc(_$hash, endTime.hashCode);
     _$hash = $jc(_$hash, timeDelta.hashCode);
     _$hash = $jc(_$hash, isScalar.hashCode);
     _$hash = $jc(_$hash, isOneShot.hashCode);
@@ -761,6 +803,8 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('xMax', xMax)
           ..add('yMin', yMin)
           ..add('yMax', yMax)
+          ..add('startTime', startTime)
+          ..add('endTime', endTime)
           ..add('timeDelta', timeDelta)
           ..add('isScalar', isScalar)
           ..add('isOneShot', isOneShot)
@@ -820,6 +864,14 @@ class GPlotConfigsData_plotConfigurationBuilder
   double? get yMax => _$this._yMax;
   set yMax(double? yMax) => _$this._yMax = yMax;
 
+  double? _startTime;
+  double? get startTime => _$this._startTime;
+  set startTime(double? startTime) => _$this._startTime = startTime;
+
+  double? _endTime;
+  double? get endTime => _$this._endTime;
+  set endTime(double? endTime) => _$this._endTime = endTime;
+
   double? _timeDelta;
   double? get timeDelta => _$this._timeDelta;
   set timeDelta(double? timeDelta) => _$this._timeDelta = timeDelta;
@@ -872,6 +924,8 @@ class GPlotConfigsData_plotConfigurationBuilder
       _xMax = $v.xMax;
       _yMin = $v.yMin;
       _yMax = $v.yMax;
+      _startTime = $v.startTime;
+      _endTime = $v.endTime;
       _timeDelta = $v.timeDelta;
       _isScalar = $v.isScalar;
       _isOneShot = $v.isOneShot;
@@ -924,6 +978,8 @@ class GPlotConfigsData_plotConfigurationBuilder
             xMax: xMax,
             yMin: yMin,
             yMax: yMax,
+            startTime: startTime,
+            endTime: endTime,
             timeDelta: timeDelta,
             isScalar: BuiltValueNullFieldError.checkNotNull(
               isScalar,

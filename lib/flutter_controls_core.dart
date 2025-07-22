@@ -69,11 +69,6 @@ Future<void> runFermiRouterApp({
       ),
     );
   } else {
-    runApp(
-      NonAuthRouterApp(
-        title: title,
-        router: router,
-      ),
-    );
+    runApp(NonAuthRouterApp(title: title, router: router));
   }
 }

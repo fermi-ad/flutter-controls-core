@@ -243,14 +243,12 @@ final class DeviceInfo {
 final class Reading {
   final int refId;
   final Status status;
-  final int cycle;
   final DateTime timestamp;
   final DeviceValue? value;
 
   const Reading({
     required this.refId,
     this.status = Status.okay,
-    required this.cycle,
     required this.timestamp,
     this.value,
   });
@@ -303,7 +301,6 @@ final class ExtendedStatusAttribute {
 final class DigitalStatus {
   final int refId;
   final int status;
-  final int cycle;
   final DateTime timestamp;
   final BasicStatusAttribute? onOff;
   final BasicStatusAttribute? readyTripped;
@@ -314,7 +311,6 @@ final class DigitalStatus {
   const DigitalStatus({
     required this.refId,
     this.status = 0,
-    required this.cycle,
     required this.timestamp,
     this.onOff,
     this.readyTripped,
@@ -432,6 +428,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   double? xMin;
   double? xMax;
   double? timeDelta;
+  double? startTime;
+  double? endTime;
   bool isShowLabels;
   bool isScalar;
   bool isOneShot;
@@ -449,6 +447,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.yMax,
     this.xMin,
     this.xMax,
+    this.startTime,
+    this.endTime,
     this.timeDelta,
     required this.isShowLabels,
     required this.isScalar,
@@ -506,6 +506,8 @@ abstract interface class ACSysServiceAPI {
     List<String> drfs, {
     double? xMin,
     double? xMax,
+    double? startTime,
+    double? endTime,
     int? windowSize,
     int? updateRate,
     int? nAcquisitions,
@@ -518,7 +520,7 @@ abstract interface class ACSysServiceAPI {
   });
 
   /// Queries the database for a plot configuration.
-  Future<PlotConfigurationSnapshot> retrievePlotConfiguration({
+  Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
     required PlotConfigId configurationId,
   });
 
@@ -529,7 +531,9 @@ abstract interface class ACSysServiceAPI {
   Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
-  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration(String? user);
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
+    String? user,
+  );
 
   /// Sets the provided plot configuration as the last one the user saved.
   Future<void> saveUserConfiguration({
@@ -885,7 +889,7 @@ final class ACSysService implements ACSysServiceAPI {
           (error) => dev.log("error: $error", name: "gql.monitorDevices"),
         )
         .where((event) => !event.loading)
-        .map(_convertMonitor);
+        .expand(_convertMonitor);
   }
 
   static DateTime fromFloatTs(double ts) =>
@@ -893,39 +897,37 @@ final class ACSysService implements ACSysServiceAPI {
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
-  static Reading _convertMonitor(
+  static Iterable<Reading> _convertMonitor(
     OperationResponse<GStreamDataData, GStreamDataVars> e,
-  ) {
+  ) sync* {
     // If the packet doesn't have GraphQL errors, then we can process the
     // payload.
 
     if (!e.hasErrors) {
       final GStreamDataData_acceleratorData data = e.data!.acceleratorData;
-      final GStreamDataData_acceleratorData_data_result result =
-          data.data.result;
 
-      return Reading(
-        refId: data.refId,
-        cycle: data.cycle,
-        timestamp: fromFloatTs(data.data.timestamp),
-        value: result.toDevValue(),
-      );
+      for (final entry in data.data) {
+        yield Reading(
+          refId: data.refId,
+          timestamp: fromFloatTs(entry.timestamp),
+          value: entry.result.toDevValue(),
+        );
+      }
     } else {
       throw ACSysGraphQLException(e.graphqlErrors.toString());
     }
   }
 
   static List<Reading> _convertReading(GReadDevicesData e) =>
-      e.acceleratorData
-          .map(
-            (v) => Reading(
-              refId: v.refId,
-              cycle: v.cycle,
-              timestamp: fromFloatTs(v.data.timestamp),
-              value: v.data.result.toDevValue(),
-            ),
-          )
-          .toList();
+      e.acceleratorData.expand((v) sync* {
+        for (final data in v.data) {
+          yield Reading(
+            refId: v.refId,
+            timestamp: fromFloatTs(data.timestamp),
+            value: data.result.toDevValue(),
+          );
+        }
+      }).toList();
 
   @override
   Stream<DigitalStatus> monitorDigitalStatusDevices(
@@ -961,7 +963,6 @@ final class ACSysService implements ACSysServiceAPI {
       } else {
         yield DigitalStatus(
           refId: idx,
-          cycle: 0,
           timestamp: DateTime.now(),
           status: Status.noProperty.code,
         );
@@ -979,7 +980,6 @@ final class ACSysService implements ACSysServiceAPI {
       return DigitalStatus(
         status: rdg.status.code,
         refId: refId,
-        cycle: rdg.cycle,
         timestamp: rdg.timestamp,
         onOff: bs.onOffProperty?.getState(statusVal),
         readyTripped: bs.readyTrippedProperty?.getState(statusVal),
@@ -1042,6 +1042,8 @@ final class ACSysService implements ACSysServiceAPI {
     List<String> drfs, {
     double? xMin,
     double? xMax,
+    double? startTime,
+    double? endTime,
     int? windowSize,
     int? updateRate,
     int? nAcquisitions,
@@ -1057,7 +1059,9 @@ final class ACSysService implements ACSysServiceAPI {
             ..vars.windowSize = windowSize
             ..vars.nAcquisitions = nAcquisitions
             ..vars.updateDelay = updateRate
-            ..vars.triggerEvent = triggerEvent,
+            ..vars.triggerEvent = triggerEvent
+            ..vars.startTime = startTime
+            ..vars.endTime = endTime,
     );
 
     return _s
@@ -1103,7 +1107,7 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot> retrieveLastUserConfiguration(
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
     String? user,
   ) {
     final req = GUsersLastConfigReq((b) => b..vars.user = user);
@@ -1111,39 +1115,44 @@ final class ACSysService implements ACSysServiceAPI {
     return _rpc(
       req,
       xlat: (GUsersLastConfigData data) {
-        final e = data.usersLastConfiguration!;
+        final e = data.usersLastConfiguration;
 
-        return PlotConfigurationSnapshot(
-          configurationId:
-              e.configurationId != null
-                  ? PlotConfigId._fromInt(e.configurationId!)
-                  : null,
-          configurationName: e.configurationName,
-          channels: Map.fromEntries(
-            e.channels.map(
-              (e) => MapEntry(
-                e.device,
-                ChannelSettingSnapshot(
-                  lineColor: e.lineColor != null ? Color(e.lineColor!) : null,
-                  markerIndex: e.markerIndex,
+        return e == null
+            ? null
+            : PlotConfigurationSnapshot(
+              configurationId:
+                  e.configurationId != null
+                      ? PlotConfigId._fromInt(e.configurationId!)
+                      : null,
+              configurationName: e.configurationName,
+              channels: Map.fromEntries(
+                e.channels.map(
+                  (e) => MapEntry(
+                    e.device,
+                    ChannelSettingSnapshot(
+                      lineColor:
+                          e.lineColor != null ? Color(e.lineColor!) : null,
+                      markerIndex: e.markerIndex,
+                    ),
+                  ),
                 ),
               ),
-            ),
-          ),
-          yMin: e.yMin,
-          yMax: e.yMax,
-          xMin: e.xMin,
-          xMax: e.xMax,
-          timeDelta: e.timeDelta,
-          isOneShot: e.isOneShot,
-          isScalar: e.isScalar,
-          isShowLabels: e.isShowLabels,
-          updateDelay: e.updateDelay,
-          nAcquisitions: e.nAcquisitions,
-          tclkEvent: e.tclkEvent,
-          dataLimit: e.dataLimit,
-          isPersistent: e.isPersistent,
-        );
+              yMin: e.yMin,
+              yMax: e.yMax,
+              xMin: e.xMin,
+              xMax: e.xMax,
+              startTime: e.startTime,
+              endTime: e.endTime,
+              timeDelta: e.timeDelta,
+              isOneShot: e.isOneShot,
+              isScalar: e.isScalar,
+              isShowLabels: e.isShowLabels,
+              updateDelay: e.updateDelay,
+              nAcquisitions: e.nAcquisitions,
+              tclkEvent: e.tclkEvent,
+              dataLimit: e.dataLimit,
+              isPersistent: e.isPersistent,
+            );
       },
     );
   }
@@ -1164,7 +1173,7 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot> retrievePlotConfiguration({
+  Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
     required PlotConfigId configurationId,
   }) {
     final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
@@ -1199,6 +1208,8 @@ final class ACSysService implements ACSysServiceAPI {
                       yMax: e.yMax,
                       xMin: e.xMin,
                       xMax: e.xMax,
+                      startTime: e.startTime,
+                      endTime: e.endTime,
                       timeDelta: e.timeDelta,
                       isOneShot: e.isOneShot,
                       isScalar: e.isScalar,
@@ -1214,7 +1225,7 @@ final class ACSysService implements ACSysServiceAPI {
     ).then((value) {
       switch (value) {
         case []:
-          throw const ACSysConfigurationException("no configuration found");
+          return null;
         case [PlotConfigurationSnapshot e]:
           return e;
         default:
@@ -1246,6 +1257,8 @@ final class ACSysService implements ACSysServiceAPI {
         ..yMax = cfg.yMax
         ..xMin = cfg.xMin
         ..xMax = cfg.xMax
+        ..startTime = cfg.startTime
+        ..endTime = cfg.endTime
         ..timeDelta = cfg.timeDelta
         ..isOneShot = cfg.isOneShot
         ..isScalar = cfg.isScalar
