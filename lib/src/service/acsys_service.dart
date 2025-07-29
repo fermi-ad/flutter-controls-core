@@ -383,10 +383,9 @@ final class PlotChannelData {
 
 final class PlotPoint {
   final double? t;
-  final double x;
-  final double y;
+  final DeviceValue value; 
 
-  const PlotPoint({required this.x, required this.y, this.t});
+  const PlotPoint({required this.value, this.t});
 }
 
 final class ChannelSettingSnapshot {
@@ -1327,7 +1326,9 @@ extension on GStartPlotData_startPlot_data {
         units: channelUnits,
         rate: channelRate,
         status: channelStatus,
-        points: [...channelData.map((e) => PlotPoint(t: e.t, x: e.x, y: e.y))],
+        // TODO populate with DeviceValue
+        points: [...channelData.map((e) => PlotPoint(t: e.t, value: DevRaw([])))],
+        // points: [...channelData.map((e) => PlotPoint(t: e.t, x: e.x, y: e.y))],
       );
 }
 
