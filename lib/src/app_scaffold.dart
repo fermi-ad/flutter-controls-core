@@ -13,13 +13,17 @@ import 'auth_widget.dart';
 final class _GlobalAppTheme {
   _GlobalAppTheme._();
 
+  static const String _fontFamily = 'Roboto';
+
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: lightColorScheme,
+    fontFamily: _fontFamily,
   );
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     colorScheme: darkColorScheme,
+    fontFamily: _fontFamily,
   );
 }
 
