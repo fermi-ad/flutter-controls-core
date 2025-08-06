@@ -55,6 +55,17 @@ Serializers _$serializers =
           ..add(GStartPlotData_startPlot.serializer)
           ..add(GStartPlotData_startPlot_data.serializer)
           ..add(GStartPlotData_startPlot_data_channelData.serializer)
+          ..add(
+            GStartPlotData_startPlot_data_channelData_result__asScalar
+                .serializer,
+          )
+          ..add(
+            GStartPlotData_startPlot_data_channelData_result__asScalarArray
+                .serializer,
+          )
+          ..add(
+            GStartPlotData_startPlot_data_channelData_result__base.serializer,
+          )
           ..add(GStartPlotReq.serializer)
           ..add(GStartPlotVars.serializer)
           ..add(GStreamDataData.serializer)
@@ -170,6 +181,10 @@ Serializers _$serializers =
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
             () => new ListBuilder<String>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [const FullType(double)]),
+            () => new ListBuilder<double>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
