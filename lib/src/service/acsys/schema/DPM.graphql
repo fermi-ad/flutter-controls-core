@@ -145,7 +145,7 @@ type PlotChannelData {
   """
   A set of data points. If the return rate is slow (<= 1Hz), this list will only have one element.
   """
-  channelData: [PlotDataPoint!]!
+  channelData: [DataInfo!]!
 }
 
 type PlotConfigurationSnapshot {
@@ -212,12 +212,6 @@ input PlotConfigurationSnapshotIn {
   tclkEvent: Int
 }
 
-type PlotDataPoint {
-  t: Float!
-  x: Float!
-  y: Float!
-}
-
 """
 Contains plot data for a given plot request.
 """
@@ -227,6 +221,7 @@ type PlotReplyData {
   """
   plotId: String!
   timestamp: Float!
+  triggerTimestamp: Float
   data: [PlotChannelData!]!
   isoTimestamp: Timestamp!
 }
