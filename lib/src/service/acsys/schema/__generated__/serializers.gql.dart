@@ -60,10 +60,14 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/set
     show GSetUsersConfigVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.data.gql.dart'
     show
+        GStartPlotData_startPlot_data_channelData_result,
         GStartPlotData,
         GStartPlotData_startPlot,
         GStartPlotData_startPlot_data,
-        GStartPlotData_startPlot_data_channelData;
+        GStartPlotData_startPlot_data_channelData,
+        GStartPlotData_startPlot_data_channelData_result__asScalar,
+        GStartPlotData_startPlot_data_channelData_result__asScalarArray,
+        GStartPlotData_startPlot_data_channelData_result__base;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.req.gql.dart'
     show GStartPlotReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.var.gql.dart'
@@ -111,6 +115,7 @@ final SerializersBuilder _serializersBuilder =
       ..add(OperationSerializer())
       ..add(DateSerializer())
       ..add(GReadDevicesData_acceleratorData_data_result.serializer)
+      ..add(GStartPlotData_startPlot_data_channelData_result.serializer)
       ..add(GStreamDataData_acceleratorData_data_result.serializer)
       ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
@@ -149,6 +154,9 @@ final SerializersBuilder _serializersBuilder =
   GStartPlotData_startPlot,
   GStartPlotData_startPlot_data,
   GStartPlotData_startPlot_data_channelData,
+  GStartPlotData_startPlot_data_channelData_result__asScalar,
+  GStartPlotData_startPlot_data_channelData_result__asScalarArray,
+  GStartPlotData_startPlot_data_channelData_result__base,
   GStartPlotReq,
   GStartPlotVars,
   GStreamDataData,

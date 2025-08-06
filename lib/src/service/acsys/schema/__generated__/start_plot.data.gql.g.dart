@@ -16,6 +16,15 @@ _$gStartPlotDataStartPlotDataSerializer =
 Serializer<GStartPlotData_startPlot_data_channelData>
 _$gStartPlotDataStartPlotDataChannelDataSerializer =
     new _$GStartPlotData_startPlot_data_channelDataSerializer();
+Serializer<GStartPlotData_startPlot_data_channelData_result__base>
+_$gStartPlotDataStartPlotDataChannelDataResultBaseSerializer =
+    new _$GStartPlotData_startPlot_data_channelData_result__baseSerializer();
+Serializer<GStartPlotData_startPlot_data_channelData_result__asScalar>
+_$gStartPlotDataStartPlotDataChannelDataResultAsScalarSerializer =
+    new _$GStartPlotData_startPlot_data_channelData_result__asScalarSerializer();
+Serializer<GStartPlotData_startPlot_data_channelData_result__asScalarArray>
+_$gStartPlotDataStartPlotDataChannelDataResultAsScalarArraySerializer =
+    new _$GStartPlotData_startPlot_data_channelData_result__asScalarArraySerializer();
 
 class _$GStartPlotDataSerializer
     implements StructuredSerializer<GStartPlotData> {
@@ -124,7 +133,15 @@ class _$GStartPlotData_startPlotSerializer
         ]),
       ),
     ];
-
+    Object? value;
+    value = object.triggerTimestamp;
+    if (value != null) {
+      result
+        ..add('triggerTimestamp')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     return result;
   }
 
@@ -165,6 +182,14 @@ class _$GStartPlotData_startPlotSerializer
                     specifiedType: const FullType(double),
                   )!
                   as double;
+          break;
+        case 'triggerTimestamp':
+          result.triggerTimestamp =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'data':
           result.data.replace(
@@ -319,12 +344,18 @@ class _$GStartPlotData_startPlot_data_channelDataSerializer
         object.G__typename,
         specifiedType: const FullType(String),
       ),
-      't',
-      serializers.serialize(object.t, specifiedType: const FullType(double)),
-      'x',
-      serializers.serialize(object.x, specifiedType: const FullType(double)),
-      'y',
-      serializers.serialize(object.y, specifiedType: const FullType(double)),
+      'timestamp',
+      serializers.serialize(
+        object.timestamp,
+        specifiedType: const FullType(double),
+      ),
+      'result',
+      serializers.serialize(
+        object.result,
+        specifiedType: const FullType(
+          GStartPlotData_startPlot_data_channelData_result,
+        ),
+      ),
     ];
 
     return result;
@@ -352,29 +383,237 @@ class _$GStartPlotData_startPlot_data_channelDataSerializer
                   )!
                   as String;
           break;
-        case 't':
-          result.t =
+        case 'timestamp':
+          result.timestamp =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
                   )!
                   as double;
           break;
-        case 'x':
-          result.x =
+        case 'result':
+          result.result =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(
+                      GStartPlotData_startPlot_data_channelData_result,
+                    ),
+                  )!
+                  as GStartPlotData_startPlot_data_channelData_result;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GStartPlotData_startPlot_data_channelData_result__baseSerializer
+    implements
+        StructuredSerializer<
+          GStartPlotData_startPlot_data_channelData_result__base
+        > {
+  @override
+  final Iterable<Type> types = const [
+    GStartPlotData_startPlot_data_channelData_result__base,
+    _$GStartPlotData_startPlot_data_channelData_result__base,
+  ];
+  @override
+  final String wireName =
+      'GStartPlotData_startPlot_data_channelData_result__base';
+
+  @override
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStartPlotData_startPlot_data_channelData_result__base object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
+    ];
+
+    return result;
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__base deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result =
+        new GStartPlotData_startPlot_data_channelData_result__baseBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
+          break;
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GStartPlotData_startPlot_data_channelData_result__asScalarSerializer
+    implements
+        StructuredSerializer<
+          GStartPlotData_startPlot_data_channelData_result__asScalar
+        > {
+  @override
+  final Iterable<Type> types = const [
+    GStartPlotData_startPlot_data_channelData_result__asScalar,
+    _$GStartPlotData_startPlot_data_channelData_result__asScalar,
+  ];
+  @override
+  final String wireName =
+      'GStartPlotData_startPlot_data_channelData_result__asScalar';
+
+  @override
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStartPlotData_startPlot_data_channelData_result__asScalar object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
+      'scalarValue',
+      serializers.serialize(
+        object.scalarValue,
+        specifiedType: const FullType(double),
+      ),
+    ];
+
+    return result;
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalar deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result =
+        new GStartPlotData_startPlot_data_channelData_result__asScalarBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
+          break;
+        case 'scalarValue':
+          result.scalarValue =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
                   )!
                   as double;
           break;
-        case 'y':
-          result.y =
+      }
+    }
+
+    return result.build();
+  }
+}
+
+class _$GStartPlotData_startPlot_data_channelData_result__asScalarArraySerializer
+    implements
+        StructuredSerializer<
+          GStartPlotData_startPlot_data_channelData_result__asScalarArray
+        > {
+  @override
+  final Iterable<Type> types = const [
+    GStartPlotData_startPlot_data_channelData_result__asScalarArray,
+    _$GStartPlotData_startPlot_data_channelData_result__asScalarArray,
+  ];
+  @override
+  final String wireName =
+      'GStartPlotData_startPlot_data_channelData_result__asScalarArray';
+
+  @override
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStartPlotData_startPlot_data_channelData_result__asScalarArray object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result = <Object?>[
+      '__typename',
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
+      'scalarArrayValue',
+      serializers.serialize(
+        object.scalarArrayValue,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(double),
+        ]),
+      ),
+    ];
+
+    return result;
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalarArray deserialize(
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
+    final result =
+        new GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder();
+
+    final iterator = serialized.iterator;
+    while (iterator.moveNext()) {
+      final key = iterator.current! as String;
+      iterator.moveNext();
+      final Object? value = iterator.current;
+      switch (key) {
+        case '__typename':
+          result.G__typename =
               serializers.deserialize(
                     value,
-                    specifiedType: const FullType(double),
+                    specifiedType: const FullType(String),
                   )!
-                  as double;
+                  as String;
+          break;
+        case 'scalarArrayValue':
+          result.scalarArrayValue.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(double),
+                  ]),
+                )!
+                as BuiltList<Object?>,
+          );
           break;
       }
     }
@@ -522,6 +761,8 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
   @override
   final double timestamp;
   @override
+  final double? triggerTimestamp;
+  @override
   final BuiltList<GStartPlotData_startPlot_data> data;
 
   factory _$GStartPlotData_startPlot([
@@ -532,6 +773,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
     required this.G__typename,
     required this.plotId,
     required this.timestamp,
+    this.triggerTimestamp,
     required this.data,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -572,6 +814,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
         G__typename == other.G__typename &&
         plotId == other.plotId &&
         timestamp == other.timestamp &&
+        triggerTimestamp == other.triggerTimestamp &&
         data == other.data;
   }
 
@@ -581,6 +824,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, plotId.hashCode);
     _$hash = $jc(_$hash, timestamp.hashCode);
+    _$hash = $jc(_$hash, triggerTimestamp.hashCode);
     _$hash = $jc(_$hash, data.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -592,6 +836,7 @@ class _$GStartPlotData_startPlot extends GStartPlotData_startPlot {
           ..add('G__typename', G__typename)
           ..add('plotId', plotId)
           ..add('timestamp', timestamp)
+          ..add('triggerTimestamp', triggerTimestamp)
           ..add('data', data))
         .toString();
   }
@@ -614,6 +859,11 @@ class GStartPlotData_startPlotBuilder
   double? get timestamp => _$this._timestamp;
   set timestamp(double? timestamp) => _$this._timestamp = timestamp;
 
+  double? _triggerTimestamp;
+  double? get triggerTimestamp => _$this._triggerTimestamp;
+  set triggerTimestamp(double? triggerTimestamp) =>
+      _$this._triggerTimestamp = triggerTimestamp;
+
   ListBuilder<GStartPlotData_startPlot_data>? _data;
   ListBuilder<GStartPlotData_startPlot_data> get data =>
       _$this._data ??= new ListBuilder<GStartPlotData_startPlot_data>();
@@ -630,6 +880,7 @@ class GStartPlotData_startPlotBuilder
       _G__typename = $v.G__typename;
       _plotId = $v.plotId;
       _timestamp = $v.timestamp;
+      _triggerTimestamp = $v.triggerTimestamp;
       _data = $v.data.toBuilder();
       _$v = null;
     }
@@ -671,6 +922,7 @@ class GStartPlotData_startPlotBuilder
               r'GStartPlotData_startPlot',
               'timestamp',
             ),
+            triggerTimestamp: triggerTimestamp,
             data: data.build(),
           );
     } catch (_) {
@@ -902,11 +1154,9 @@ class _$GStartPlotData_startPlot_data_channelData
   @override
   final String G__typename;
   @override
-  final double t;
+  final double timestamp;
   @override
-  final double x;
-  @override
-  final double y;
+  final GStartPlotData_startPlot_data_channelData_result result;
 
   factory _$GStartPlotData_startPlot_data_channelData([
     void Function(GStartPlotData_startPlot_data_channelDataBuilder)? updates,
@@ -916,9 +1166,8 @@ class _$GStartPlotData_startPlot_data_channelData
 
   _$GStartPlotData_startPlot_data_channelData._({
     required this.G__typename,
-    required this.t,
-    required this.x,
-    required this.y,
+    required this.timestamp,
+    required this.result,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
       G__typename,
@@ -926,19 +1175,14 @@ class _$GStartPlotData_startPlot_data_channelData
       'G__typename',
     );
     BuiltValueNullFieldError.checkNotNull(
-      t,
+      timestamp,
       r'GStartPlotData_startPlot_data_channelData',
-      't',
+      'timestamp',
     );
     BuiltValueNullFieldError.checkNotNull(
-      x,
+      result,
       r'GStartPlotData_startPlot_data_channelData',
-      'x',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      y,
-      r'GStartPlotData_startPlot_data_channelData',
-      'y',
+      'result',
     );
   }
 
@@ -956,18 +1200,16 @@ class _$GStartPlotData_startPlot_data_channelData
     if (identical(other, this)) return true;
     return other is GStartPlotData_startPlot_data_channelData &&
         G__typename == other.G__typename &&
-        t == other.t &&
-        x == other.x &&
-        y == other.y;
+        timestamp == other.timestamp &&
+        result == other.result;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, t.hashCode);
-    _$hash = $jc(_$hash, x.hashCode);
-    _$hash = $jc(_$hash, y.hashCode);
+    _$hash = $jc(_$hash, timestamp.hashCode);
+    _$hash = $jc(_$hash, result.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -978,9 +1220,8 @@ class _$GStartPlotData_startPlot_data_channelData
             r'GStartPlotData_startPlot_data_channelData',
           )
           ..add('G__typename', G__typename)
-          ..add('t', t)
-          ..add('x', x)
-          ..add('y', y))
+          ..add('timestamp', timestamp)
+          ..add('result', result))
         .toString();
   }
 }
@@ -997,17 +1238,15 @@ class GStartPlotData_startPlot_data_channelDataBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  double? _t;
-  double? get t => _$this._t;
-  set t(double? t) => _$this._t = t;
+  double? _timestamp;
+  double? get timestamp => _$this._timestamp;
+  set timestamp(double? timestamp) => _$this._timestamp = timestamp;
 
-  double? _x;
-  double? get x => _$this._x;
-  set x(double? x) => _$this._x = x;
-
-  double? _y;
-  double? get y => _$this._y;
-  set y(double? y) => _$this._y = y;
+  GStartPlotData_startPlot_data_channelData_result? _result;
+  GStartPlotData_startPlot_data_channelData_result? get result =>
+      _$this._result;
+  set result(GStartPlotData_startPlot_data_channelData_result? result) =>
+      _$this._result = result;
 
   GStartPlotData_startPlot_data_channelDataBuilder() {
     GStartPlotData_startPlot_data_channelData._initializeBuilder(this);
@@ -1017,9 +1256,8 @@ class GStartPlotData_startPlot_data_channelDataBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _t = $v.t;
-      _x = $v.x;
-      _y = $v.y;
+      _timestamp = $v.timestamp;
+      _result = $v.result;
       _$v = null;
     }
     return this;
@@ -1050,22 +1288,454 @@ class GStartPlotData_startPlot_data_channelDataBuilder
             r'GStartPlotData_startPlot_data_channelData',
             'G__typename',
           ),
-          t: BuiltValueNullFieldError.checkNotNull(
-            t,
+          timestamp: BuiltValueNullFieldError.checkNotNull(
+            timestamp,
             r'GStartPlotData_startPlot_data_channelData',
-            't',
+            'timestamp',
           ),
-          x: BuiltValueNullFieldError.checkNotNull(
-            x,
+          result: BuiltValueNullFieldError.checkNotNull(
+            result,
             r'GStartPlotData_startPlot_data_channelData',
-            'x',
-          ),
-          y: BuiltValueNullFieldError.checkNotNull(
-            y,
-            r'GStartPlotData_startPlot_data_channelData',
-            'y',
+            'result',
           ),
         );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GStartPlotData_startPlot_data_channelData_result__base
+    extends GStartPlotData_startPlot_data_channelData_result__base {
+  @override
+  final String G__typename;
+
+  factory _$GStartPlotData_startPlot_data_channelData_result__base([
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__baseBuilder,
+    )?
+    updates,
+  ]) =>
+      (new GStartPlotData_startPlot_data_channelData_result__baseBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GStartPlotData_startPlot_data_channelData_result__base._({
+    required this.G__typename,
+  }) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GStartPlotData_startPlot_data_channelData_result__base',
+      'G__typename',
+    );
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__base rebuild(
+    void Function(GStartPlotData_startPlot_data_channelData_result__baseBuilder)
+    updates,
+  ) => (toBuilder()..update(updates)).build();
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__baseBuilder toBuilder() =>
+      new GStartPlotData_startPlot_data_channelData_result__baseBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GStartPlotData_startPlot_data_channelData_result__base &&
+        G__typename == other.G__typename;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+      r'GStartPlotData_startPlot_data_channelData_result__base',
+    )..add('G__typename', G__typename)).toString();
+  }
+}
+
+class GStartPlotData_startPlot_data_channelData_result__baseBuilder
+    implements
+        Builder<
+          GStartPlotData_startPlot_data_channelData_result__base,
+          GStartPlotData_startPlot_data_channelData_result__baseBuilder
+        > {
+  _$GStartPlotData_startPlot_data_channelData_result__base? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  GStartPlotData_startPlot_data_channelData_result__baseBuilder() {
+    GStartPlotData_startPlot_data_channelData_result__base._initializeBuilder(
+      this,
+    );
+  }
+
+  GStartPlotData_startPlot_data_channelData_result__baseBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GStartPlotData_startPlot_data_channelData_result__base other) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GStartPlotData_startPlot_data_channelData_result__base;
+  }
+
+  @override
+  void update(
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__baseBuilder,
+    )?
+    updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__base build() => _build();
+
+  _$GStartPlotData_startPlot_data_channelData_result__base _build() {
+    final _$result =
+        _$v ??
+        new _$GStartPlotData_startPlot_data_channelData_result__base._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GStartPlotData_startPlot_data_channelData_result__base',
+            'G__typename',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GStartPlotData_startPlot_data_channelData_result__asScalar
+    extends GStartPlotData_startPlot_data_channelData_result__asScalar {
+  @override
+  final String G__typename;
+  @override
+  final double scalarValue;
+
+  factory _$GStartPlotData_startPlot_data_channelData_result__asScalar([
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarBuilder,
+    )?
+    updates,
+  ]) =>
+      (new GStartPlotData_startPlot_data_channelData_result__asScalarBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GStartPlotData_startPlot_data_channelData_result__asScalar._({
+    required this.G__typename,
+    required this.scalarValue,
+  }) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GStartPlotData_startPlot_data_channelData_result__asScalar',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      scalarValue,
+      r'GStartPlotData_startPlot_data_channelData_result__asScalar',
+      'scalarValue',
+    );
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalar rebuild(
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalarBuilder
+  toBuilder() =>
+      new GStartPlotData_startPlot_data_channelData_result__asScalarBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GStartPlotData_startPlot_data_channelData_result__asScalar &&
+        G__typename == other.G__typename &&
+        scalarValue == other.scalarValue;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, scalarValue.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GStartPlotData_startPlot_data_channelData_result__asScalar',
+          )
+          ..add('G__typename', G__typename)
+          ..add('scalarValue', scalarValue))
+        .toString();
+  }
+}
+
+class GStartPlotData_startPlot_data_channelData_result__asScalarBuilder
+    implements
+        Builder<
+          GStartPlotData_startPlot_data_channelData_result__asScalar,
+          GStartPlotData_startPlot_data_channelData_result__asScalarBuilder
+        > {
+  _$GStartPlotData_startPlot_data_channelData_result__asScalar? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  double? _scalarValue;
+  double? get scalarValue => _$this._scalarValue;
+  set scalarValue(double? scalarValue) => _$this._scalarValue = scalarValue;
+
+  GStartPlotData_startPlot_data_channelData_result__asScalarBuilder() {
+    GStartPlotData_startPlot_data_channelData_result__asScalar._initializeBuilder(
+      this,
+    );
+  }
+
+  GStartPlotData_startPlot_data_channelData_result__asScalarBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _scalarValue = $v.scalarValue;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+    GStartPlotData_startPlot_data_channelData_result__asScalar other,
+  ) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v = other as _$GStartPlotData_startPlot_data_channelData_result__asScalar;
+  }
+
+  @override
+  void update(
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarBuilder,
+    )?
+    updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalar build() =>
+      _build();
+
+  _$GStartPlotData_startPlot_data_channelData_result__asScalar _build() {
+    final _$result =
+        _$v ??
+        new _$GStartPlotData_startPlot_data_channelData_result__asScalar._(
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GStartPlotData_startPlot_data_channelData_result__asScalar',
+            'G__typename',
+          ),
+          scalarValue: BuiltValueNullFieldError.checkNotNull(
+            scalarValue,
+            r'GStartPlotData_startPlot_data_channelData_result__asScalar',
+            'scalarValue',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GStartPlotData_startPlot_data_channelData_result__asScalarArray
+    extends GStartPlotData_startPlot_data_channelData_result__asScalarArray {
+  @override
+  final String G__typename;
+  @override
+  final BuiltList<double> scalarArrayValue;
+
+  factory _$GStartPlotData_startPlot_data_channelData_result__asScalarArray([
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder,
+    )?
+    updates,
+  ]) =>
+      (new GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder()
+            ..update(updates))
+          ._build();
+
+  _$GStartPlotData_startPlot_data_channelData_result__asScalarArray._({
+    required this.G__typename,
+    required this.scalarArrayValue,
+  }) : super._() {
+    BuiltValueNullFieldError.checkNotNull(
+      G__typename,
+      r'GStartPlotData_startPlot_data_channelData_result__asScalarArray',
+      'G__typename',
+    );
+    BuiltValueNullFieldError.checkNotNull(
+      scalarArrayValue,
+      r'GStartPlotData_startPlot_data_channelData_result__asScalarArray',
+      'scalarArrayValue',
+    );
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalarArray rebuild(
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder,
+    )
+    updates,
+  ) => (toBuilder()..update(updates)).build();
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder
+  toBuilder() =>
+      new GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder()
+        ..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other
+            is GStartPlotData_startPlot_data_channelData_result__asScalarArray &&
+        G__typename == other.G__typename &&
+        scalarArrayValue == other.scalarArrayValue;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, G__typename.hashCode);
+    _$hash = $jc(_$hash, scalarArrayValue.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(
+            r'GStartPlotData_startPlot_data_channelData_result__asScalarArray',
+          )
+          ..add('G__typename', G__typename)
+          ..add('scalarArrayValue', scalarArrayValue))
+        .toString();
+  }
+}
+
+class GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder
+    implements
+        Builder<
+          GStartPlotData_startPlot_data_channelData_result__asScalarArray,
+          GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder
+        > {
+  _$GStartPlotData_startPlot_data_channelData_result__asScalarArray? _$v;
+
+  String? _G__typename;
+  String? get G__typename => _$this._G__typename;
+  set G__typename(String? G__typename) => _$this._G__typename = G__typename;
+
+  ListBuilder<double>? _scalarArrayValue;
+  ListBuilder<double> get scalarArrayValue =>
+      _$this._scalarArrayValue ??= new ListBuilder<double>();
+  set scalarArrayValue(ListBuilder<double>? scalarArrayValue) =>
+      _$this._scalarArrayValue = scalarArrayValue;
+
+  GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder() {
+    GStartPlotData_startPlot_data_channelData_result__asScalarArray._initializeBuilder(
+      this,
+    );
+  }
+
+  GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder
+  get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _G__typename = $v.G__typename;
+      _scalarArrayValue = $v.scalarArrayValue.toBuilder();
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(
+    GStartPlotData_startPlot_data_channelData_result__asScalarArray other,
+  ) {
+    ArgumentError.checkNotNull(other, 'other');
+    _$v =
+        other
+            as _$GStartPlotData_startPlot_data_channelData_result__asScalarArray;
+  }
+
+  @override
+  void update(
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder,
+    )?
+    updates,
+  ) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GStartPlotData_startPlot_data_channelData_result__asScalarArray build() =>
+      _build();
+
+  _$GStartPlotData_startPlot_data_channelData_result__asScalarArray _build() {
+    _$GStartPlotData_startPlot_data_channelData_result__asScalarArray _$result;
+    try {
+      _$result =
+          _$v ??
+          new _$GStartPlotData_startPlot_data_channelData_result__asScalarArray._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GStartPlotData_startPlot_data_channelData_result__asScalarArray',
+              'G__typename',
+            ),
+            scalarArrayValue: scalarArrayValue.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'scalarArrayValue';
+        scalarArrayValue.build();
+      } catch (e) {
+        throw new BuiltValueNestedFieldError(
+          r'GStartPlotData_startPlot_data_channelData_result__asScalarArray',
+          _$failedField,
+          e.toString(),
+        );
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }
