@@ -14,6 +14,7 @@ export 'src/app_scaffold.dart';
 export 'src/auth_widget.dart' show ScopeList, AuthInfo, AuthService;
 
 export 'src/service/acsys_service.dart';
+export 'src/service/faas_service.dart';
 
 export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 export 'src/otel_tracing.dart';
