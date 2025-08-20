@@ -393,8 +393,15 @@ final class PlotPoint {
 final class ChannelSettingSnapshot {
   final Color? lineColor;
   final int? markerIndex;
+  final double? min;
+  final double? max;
 
-  const ChannelSettingSnapshot({this.lineColor, this.markerIndex});
+  const ChannelSettingSnapshot({
+    this.lineColor,
+    this.markerIndex,
+    this.min,
+    this.max,
+  });
 }
 
 // Only used by the plot ID class to generate IDs for testing.
@@ -424,8 +431,6 @@ class PlotConfigurationListing {
 
 final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   Map<String, ChannelSettingSnapshot> channels;
-  double? yMin;
-  double? yMax;
   double? xMin;
   double? xMax;
   double? timeDelta;
@@ -444,8 +449,6 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     super.configurationId,
     required super.configurationName,
     required this.channels,
-    this.yMin,
-    this.yMax,
     this.xMin,
     this.xMax,
     this.startTime,
@@ -1138,8 +1141,6 @@ final class ACSysService implements ACSysServiceAPI {
                   ),
                 ),
               ),
-              yMin: e.yMin,
-              yMax: e.yMax,
               xMin: e.xMin,
               xMax: e.xMax,
               startTime: e.startTime,
@@ -1205,8 +1206,6 @@ final class ACSysService implements ACSysServiceAPI {
                           ),
                         ),
                       ),
-                      yMin: e.yMin,
-                      yMax: e.yMax,
                       xMin: e.xMin,
                       xMax: e.xMax,
                       startTime: e.startTime,
@@ -1254,8 +1253,6 @@ final class ACSysService implements ACSysServiceAPI {
             ),
           ),
         )
-        ..yMin = cfg.yMin
-        ..yMax = cfg.yMax
         ..xMin = cfg.xMin
         ..xMax = cfg.xMax
         ..startTime = cfg.startTime
