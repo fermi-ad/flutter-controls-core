@@ -1,6 +1,5 @@
 library;
 
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';
 import 'package:ferry/ferry.dart';

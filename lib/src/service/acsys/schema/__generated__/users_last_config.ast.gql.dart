@@ -62,6 +62,20 @@ const UsersLastConfig = _i1.OperationDefinitionNode(
                     selectionSet: null,
                   ),
                   _i1.FieldNode(
+                    name: _i1.NameNode(value: 'yMin'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  _i1.FieldNode(
+                    name: _i1.NameNode(value: 'yMax'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  _i1.FieldNode(
                     name: _i1.NameNode(value: 'lineColor'),
                     alias: null,
                     arguments: [],
@@ -87,20 +101,6 @@ const UsersLastConfig = _i1.OperationDefinitionNode(
             ),
             _i1.FieldNode(
               name: _i1.NameNode(value: 'xMax'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null,
-            ),
-            _i1.FieldNode(
-              name: _i1.NameNode(value: 'yMin'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null,
-            ),
-            _i1.FieldNode(
-              name: _i1.NameNode(value: 'yMax'),
               alias: null,
               arguments: [],
               directives: [],

@@ -393,8 +393,15 @@ final class PlotPoint {
 final class ChannelSettingSnapshot {
   final Color? lineColor;
   final int? markerIndex;
+  final double? yMin;
+  final double? yMax;
 
-  const ChannelSettingSnapshot({this.lineColor, this.markerIndex});
+  const ChannelSettingSnapshot({
+    this.lineColor,
+    this.markerIndex,
+    this.yMin,
+    this.yMax,
+  });
 }
 
 // Only used by the plot ID class to generate IDs for testing.
@@ -424,8 +431,6 @@ class PlotConfigurationListing {
 
 final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   Map<String, ChannelSettingSnapshot> channels;
-  double? yMin;
-  double? yMax;
   double? xMin;
   double? xMax;
   double? timeDelta;
@@ -444,8 +449,6 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     super.configurationId,
     required super.configurationName,
     required this.channels,
-    this.yMin,
-    this.yMax,
     this.xMin,
     this.xMax,
     this.startTime,
@@ -1134,12 +1137,12 @@ final class ACSysService implements ACSysServiceAPI {
                       lineColor:
                           e.lineColor != null ? Color(e.lineColor!) : null,
                       markerIndex: e.markerIndex,
+                      yMin: e.yMin,
+                      yMax: e.yMax,
                     ),
                   ),
                 ),
               ),
-              yMin: e.yMin,
-              yMax: e.yMax,
               xMin: e.xMin,
               xMax: e.xMax,
               startTime: e.startTime,
@@ -1201,12 +1204,12 @@ final class ACSysService implements ACSysServiceAPI {
                                       ? Color(e.lineColor!)
                                       : null,
                               markerIndex: e.markerIndex,
+                              yMin: e.yMin,
+                              yMax: e.yMax,
                             ),
                           ),
                         ),
                       ),
-                      yMin: e.yMin,
-                      yMax: e.yMax,
                       xMin: e.xMin,
                       xMax: e.xMax,
                       startTime: e.startTime,
@@ -1250,12 +1253,12 @@ final class ACSysService implements ACSysServiceAPI {
                   b
                     ..device = e.key
                     ..lineColor = e.value.lineColor?.value
-                    ..markerIndex = e.value.markerIndex,
+                    ..markerIndex = e.value.markerIndex
+                    ..yMin = e.value.yMin
+                    ..yMax = e.value.yMax,
             ),
           ),
         )
-        ..yMin = cfg.yMin
-        ..yMax = cfg.yMax
         ..xMin = cfg.xMin
         ..xMax = cfg.xMax
         ..startTime = cfg.startTime
