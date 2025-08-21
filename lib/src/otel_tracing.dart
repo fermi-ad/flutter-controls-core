@@ -1,6 +1,6 @@
 import 'package:opentelemetry/api.dart' as otel;
 import 'package:opentelemetry/sdk.dart'
-    show TracerProviderBase, SimpleSpanProcessor, ConsoleExporter, SpanExporter;
+    show TracerProviderBase, SimpleSpanProcessor, ConsoleExporter, SpanExporter, Resource;
 import 'package:opentelemetry/api.dart'
     show registerGlobalTracerProvider, globalTracerProvider, Attribute;
 
@@ -24,11 +24,20 @@ Attribute _toAttribute(String key, Object? value) => switch (value) {
 /// Initializes OpenTelemetry auto-instrumentation and tracer provider.
 /// Call this early in your app (e.g., in main or before runFermiApp).
 Future<void> initOpenTelemetry({
-  String serviceName = 'flutter_controls_core',
+  String serviceName = 'plotting-app',
   SpanExporter? exporter,
 }) async {
   if (_otelInitialized) return;
   final tracerProvider = TracerProviderBase(
+    resource: Resource([
+      Attribute.fromString('service.name', serviceName),
+      Attribute.fromString('service.version', '1.0.0'),
+      Attribute.fromString('telemetry.sdk.name', 'opentelemetry'),
+      Attribute.fromString('telemetry.sdk.language', 'dart'),
+      Attribute.fromString('flutter.version', '3.13.0'),
+
+
+    ]),
     processors: [SimpleSpanProcessor(exporter ?? ConsoleExporter())],
   );
   registerGlobalTracerProvider(tracerProvider);

@@ -2,12 +2,15 @@
 library;
 
 import "package:flutter/material.dart";
+import 'package:opentelemetry/sdk.dart';
 import "src/auth_widget.dart";
 import 'package:go_router/go_router.dart';
 import 'src/app_scaffold.dart';
 import 'src/otel_tracing.dart';
 
 export 'package:opentelemetry/api.dart' show Span;
+import 'package:opentelemetry/sdk.dart'
+    show SimpleSpanProcessor, ConsoleExporter, SpanExporter;
 export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
@@ -33,8 +36,9 @@ export 'src/otel_tracing.dart';
 Future<void> runFermiApp({
   required Widget appWidget,
   AuthInfo? authInfo,
+  SpanExporter? exporter,
 }) async {
-  await initOpenTelemetry();
+  await initOpenTelemetry(exporter: exporter);
   if (authInfo != null) {
     await initAuth(
       authInfo.realm,
@@ -50,8 +54,9 @@ Future<void> runFermiRouterApp({
   required GoRouter router,
   AuthInfo? authInfo,
   required String title,
+  SpanExporter? exporter,
 }) async {
-  await initOpenTelemetry();
+  await initOpenTelemetry(exporter: exporter);
   if (authInfo != null) {
     await initAuth(
       authInfo.realm,
