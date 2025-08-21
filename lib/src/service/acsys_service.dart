@@ -393,14 +393,14 @@ final class PlotPoint {
 final class ChannelSettingSnapshot {
   final Color? lineColor;
   final int? markerIndex;
-  final double? min;
-  final double? max;
+  final double? yMin;
+  final double? yMax;
 
   const ChannelSettingSnapshot({
     this.lineColor,
     this.markerIndex,
-    this.min,
-    this.max,
+    this.yMin,
+    this.yMax,
   });
 }
 
@@ -1137,8 +1137,8 @@ final class ACSysService implements ACSysServiceAPI {
                       lineColor:
                           e.lineColor != null ? Color(e.lineColor!) : null,
                       markerIndex: e.markerIndex,
-                      min: e.yMin,
-                      max: e.yMax,
+                      yMin: e.yMin,
+                      yMax: e.yMax,
                     ),
                   ),
                 ),
@@ -1204,8 +1204,8 @@ final class ACSysService implements ACSysServiceAPI {
                                       ? Color(e.lineColor!)
                                       : null,
                               markerIndex: e.markerIndex,
-                              min: e.yMin,
-                              max: e.yMax,
+                              yMin: e.yMin,
+                              yMax: e.yMax,
                             ),
                           ),
                         ),
@@ -1254,8 +1254,8 @@ final class ACSysService implements ACSysServiceAPI {
                     ..device = e.key
                     ..lineColor = e.value.lineColor?.value
                     ..markerIndex = e.value.markerIndex
-                    ..yMin = e.value.min
-                    ..yMax = e.value.max,
+                    ..yMin = e.value.yMin
+                    ..yMax = e.value.yMax,
             ),
           ),
         )
