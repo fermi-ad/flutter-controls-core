@@ -1137,6 +1137,8 @@ final class ACSysService implements ACSysServiceAPI {
                       lineColor:
                           e.lineColor != null ? Color(e.lineColor!) : null,
                       markerIndex: e.markerIndex,
+                      min: e.yMin,
+                      max: e.yMax,
                     ),
                   ),
                 ),
@@ -1202,6 +1204,8 @@ final class ACSysService implements ACSysServiceAPI {
                                       ? Color(e.lineColor!)
                                       : null,
                               markerIndex: e.markerIndex,
+                              min: e.yMin,
+                              max: e.yMax,
                             ),
                           ),
                         ),
@@ -1249,7 +1253,9 @@ final class ACSysService implements ACSysServiceAPI {
                   b
                     ..device = e.key
                     ..lineColor = e.value.lineColor?.value
-                    ..markerIndex = e.value.markerIndex,
+                    ..markerIndex = e.value.markerIndex
+                    ..yMin = e.value.min
+                    ..yMax = e.value.max,
             ),
           ),
         )

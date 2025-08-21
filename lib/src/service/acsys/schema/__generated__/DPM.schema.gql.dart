@@ -20,6 +20,8 @@ abstract class GChannelSettingSnapshotIn
   ]) = _$GChannelSettingSnapshotIn;
 
   String get device;
+  double? get yMin;
+  double? get yMax;
   int? get lineColor;
   int? get markerIndex;
   static Serializer<GChannelSettingSnapshotIn> get serializer =>
@@ -73,8 +75,6 @@ abstract class GPlotConfigurationSnapshotIn
   BuiltList<GChannelSettingSnapshotIn> get channels;
   double? get xMin;
   double? get xMax;
-  double? get yMin;
-  double? get yMax;
   double? get startTime;
   double? get endTime;
   double? get timeDelta;
