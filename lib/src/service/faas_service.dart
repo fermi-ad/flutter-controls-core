@@ -10,8 +10,8 @@ import 'package:flutter_controls_core/src/service/faas/schema/__generated__/to_c
 import 'package:flutter_controls_core/src/service/faas/schema/__generated__/to_unix.req.gql.dart';
 
 abstract interface class FaasServiceAPI {
-  Future<Int64?> clinksToUnix(Int64 clinks);
-  Future<Int64> unixToClinks(Int64 time);
+  Future<int?> clinksToUnix(int clinks);
+  Future<int> unixToClinks(int time);
 }
 
 final class FaasService implements FaasServiceAPI {
@@ -58,12 +58,11 @@ final class FaasService implements FaasServiceAPI {
   });
 
   @override
-  Future<Int64?> clinksToUnix(Int64 clinks) =>
+  Future<int?> clinksToUnix(int clinks) =>
       _rpc(GToUnixReq((b) => b..vars.clinks));
 
   @override
-  Future<Int64> unixToClinks(Int64 time) =>
-      _rpc(GToClinksReq((b) => b..vars.time));
+  Future<int> unixToClinks(int time) => _rpc(GToClinksReq((b) => b..vars.time));
 }
 
 /// A widget that provides access to the FaaS Service API. This doesn't
