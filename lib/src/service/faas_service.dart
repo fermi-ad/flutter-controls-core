@@ -58,10 +58,11 @@ final class FaasService implements FaasServiceAPI {
 
   @override
   Future<int?> clinksToUnix(int clinks) =>
-      _rpc(GToUnixReq((b) => b..vars.clinks));
+      _rpc(GToUnixReq((b) => b..vars.clinks = clinks));
 
   @override
-  Future<int> unixToClinks(int time) => _rpc(GToClinksReq((b) => b..vars.time));
+  Future<int> unixToClinks(int time) =>
+      _rpc(GToClinksReq((b) => b..vars.time = time));
 }
 
 /// A widget that provides access to the FaaS Service API. This doesn't
