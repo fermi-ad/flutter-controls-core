@@ -577,10 +577,10 @@ final class ACSysService implements ACSysServiceAPI {
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  ACSysService({String? jwt})
+  ACSysService({String? jwt, int? port})
     : _q = Client(
         link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8000/acsys",
+          "https://acsys-proxy.fnal.gov:${port ?? 8000}/acsys",
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
@@ -593,7 +593,7 @@ final class ACSysService implements ACSysServiceAPI {
                 Uri(
                   scheme: "wss",
                   host: "acsys-proxy.fnal.gov",
-                  port: 8000,
+                  port: port ?? 8000,
                   path: "/acsys/s",
                 ),
                 protocols: ["graphql-ws"],
