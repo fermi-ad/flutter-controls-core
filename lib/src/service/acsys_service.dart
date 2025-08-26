@@ -1368,19 +1368,17 @@ extension on GStartPlotData_startPlot {
 // interface, so we only make the extension visible in this module.
 
 extension on DeviceValue {
-  GDevValueBuilder _toGDevValue() {
-    return switch (this) {
-      DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
-      DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
-      DevScalarArray(value: var v) =>
-        GDevValueBuilder()..scalarArrayVal = ListBuilder(v),
-      DevText(value: var v) => GDevValueBuilder()..textVal = v,
-      DevTextArray(value: var v) =>
-        GDevValueBuilder()..textArrayVal = ListBuilder(v),
-      DevTimeSeries(values: var v) =>
-        GDevValueBuilder()..timeSeriesVal = ListBuilder(v),
-    };
-  }
+  GDevValueBuilder _toGDevValue() => switch (this) {
+    DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
+    DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
+    DevScalarArray(value: var v) =>
+      GDevValueBuilder()..scalarArrayVal = ListBuilder(v),
+    DevText(value: var v) => GDevValueBuilder()..textVal = v,
+    DevTextArray(value: var v) =>
+      GDevValueBuilder()..textArrayVal = ListBuilder(v),
+    DevTimeSeries(values: var v) =>
+      GDevValueBuilder()..timeSeriesVal = ListBuilder(v),
+  };
 }
 
 /// A widget that provides access to the ACSys Service API. This doesn't
