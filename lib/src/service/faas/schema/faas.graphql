@@ -1,4 +1,0 @@
-type Query {
-    clinksToUnix(clinks: Int!): Int!
-    unixToClinks(time: Int!): Int
-}

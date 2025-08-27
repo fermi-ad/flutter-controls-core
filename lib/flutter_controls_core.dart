@@ -15,7 +15,6 @@ export 'package:flutter_controls_auth/flutter_controls_auth.dart'
     show ScopeList, AuthInfo, AuthService, Credential, UserInfo;
 
 export 'src/service/acsys_service.dart';
-export 'src/service/faas_service.dart';
 export 'src/otel_tracing.dart';
 
 /// Entry point for Fermilab applications

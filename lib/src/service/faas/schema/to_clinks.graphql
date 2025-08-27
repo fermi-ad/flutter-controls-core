@@ -1,3 +1,0 @@
-query ToClinks ($time: Int!) {
-    unixToClinks(time: $time)
-}
