@@ -3,10 +3,9 @@
 library;
 
 import 'package:flutter/material.dart';
-import 'package:openid_client/openid_client.dart';
+import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'fermi_theme.dart';
-import 'auth_widget.dart';
 
 // Our Fermi theme generated with - https://m3.material.io/theme-builder#/custom
 

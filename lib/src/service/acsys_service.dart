@@ -1368,19 +1368,17 @@ extension on GStartPlotData_startPlot {
 // interface, so we only make the extension visible in this module.
 
 extension on DeviceValue {
-  GDevValueBuilder _toGDevValue() {
-    return switch (this) {
-      DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
-      DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
-      DevScalarArray(value: var v) =>
-        GDevValueBuilder()..scalarArrayVal = ListBuilder(v),
-      DevText(value: var v) => GDevValueBuilder()..textVal = v,
-      DevTextArray(value: var v) =>
-        GDevValueBuilder()..textArrayVal = ListBuilder(v),
-      DevTimeSeries(values: var v) =>
-        GDevValueBuilder()..timeSeriesVal = ListBuilder(v),
-    };
-  }
+  GDevValueBuilder _toGDevValue() => switch (this) {
+    DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
+    DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
+    DevScalarArray(value: var v) =>
+      GDevValueBuilder()..scalarArrayVal = ListBuilder(v),
+    DevText(value: var v) => GDevValueBuilder()..textVal = v,
+    DevTextArray(value: var v) =>
+      GDevValueBuilder()..textArrayVal = ListBuilder(v),
+    DevTimeSeries(values: var v) =>
+      GDevValueBuilder()..timeSeriesVal = ListBuilder(v),
+  };
 }
 
 /// A widget that provides access to the ACSys Service API. This doesn't
@@ -1406,6 +1404,7 @@ final class ACSys {
 final class ACSysProvider extends StatelessWidget {
   final Widget child;
   final ACSysServiceAPI? service;
+  final int? port;
 
   /// A factory function that creates a [ACSysProvider] widget.
   ///
@@ -1424,25 +1423,47 @@ final class ACSysProvider extends StatelessWidget {
       ({required Widget child}) =>
           ACSysProvider._(service: service, key: key, child: child);
 
+  /// A factory function that creates a [ACSysProvider] widget.
+  ///
+  /// This function returns a function that can be added to the list passed to
+  /// the `providers` parameter of the [StandardApp] widget.
+  ///
+  /// - [port] is the port number to use to communite with the GraphQL service.
+  /// - [key] is an optional identifier for the widget.
+
+  static ACSysProvider Function({required Widget child}) factoryUsingPort({
+    required int port,
+    Key? key,
+  }) =>
+      ({required Widget child}) =>
+          ACSysProvider._(port: port, key: key, child: child);
+
   // Creates the widget.
   //
   // - [child] is the widget subtree that gets added to the tree below this
   //   widget.
   // - [key] is an optional identifier for the widget.
+  // - [port] is an optional port number to use. If omitted, the official,
+  //   production service will be used. This parameter is only used if the
+  //   [service] parameter is omitted.
   // - [service] is an optional obect which implements the [ACSysServiceAPI]
   //   interface. If this option is omitted, the widget will use an
   //   implementation that communicates over the network to the offcial
   //   control system API. This option is mainly to mock-up a service to
   //   use in unit tests.
-  const ACSysProvider._({this.service, required this.child, super.key});
+  const ACSysProvider._({
+    this.service,
+    this.port,
+    required this.child,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return _ACSysProviderIW(
-      service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => _ACSysProviderIW(
+    service:
+        service ?? ACSysService(port: port, jwt: AuthService.getJwt(context)),
+    child: child,
+  );
 }
 
 // The inherited widget that provides the ACSys API to the application. This

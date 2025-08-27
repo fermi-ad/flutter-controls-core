@@ -1,6 +1,7 @@
 name: flutter_controls_core
 description: A Flutter package to write Fermilab applications.
 version: 0.3.1
+publish_to: none
 
 environment:
     sdk: ">=3.7.0 <4.0.0"
@@ -26,12 +27,14 @@ dependencies:
     go_router: ^12.1.0
 
     google_fonts: ^6.3.0
+    opentelemetry: ^0.18.10
 
     # Needed for KeyCloak authentication support.
 
-    openid_client: ^0.4.8
-    url_launcher: ^6.2.1
-    opentelemetry: ^0.18.10
+    flutter_controls_auth:
+      git:
+        url: https://github.com/fermi-ad/flutter-controls-auth.git
+        ref: main
 
 dev_dependencies:
     flutter_test:
