@@ -2,7 +2,7 @@
 library;
 
 import "package:flutter/material.dart";
-import "src/auth_widget.dart";
+import "package:flutter_controls_auth/flutter_controls_auth.dart";
 import 'package:go_router/go_router.dart';
 import 'src/app_scaffold.dart';
 import 'src/otel_tracing.dart';
@@ -11,12 +11,11 @@ export 'package:opentelemetry/api.dart' show Span;
 export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
-export 'src/auth_widget.dart' show ScopeList, AuthInfo, AuthService;
+export 'package:flutter_controls_auth/flutter_controls_auth.dart'
+    show ScopeList, AuthInfo, AuthService, Credential, UserInfo;
 
 export 'src/service/acsys_service.dart';
 export 'src/service/faas_service.dart';
-
-export 'package:openid_client/openid_client.dart' show Credential, UserInfo;
 export 'src/otel_tracing.dart';
 
 /// Entry point for Fermilab applications
@@ -37,12 +36,7 @@ Future<void> runFermiApp({
 }) async {
   await initOpenTelemetry();
   if (authInfo != null) {
-    await initAuth(
-      authInfo.realm,
-      authInfo.clientId,
-      authInfo.clientSecret,
-      authInfo.scopes,
-    );
+    await initAuth(authInfo);
   }
   return runApp(appWidget);
 }
@@ -54,12 +48,7 @@ Future<void> runFermiRouterApp({
 }) async {
   await initOpenTelemetry();
   if (authInfo != null) {
-    await initAuth(
-      authInfo.realm,
-      authInfo.clientId,
-      authInfo.clientSecret,
-      authInfo.scopes,
-    );
+    await initAuth(authInfo);
     runApp(
       AuthRouterApp(
         title: title,
