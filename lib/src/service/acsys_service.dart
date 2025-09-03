@@ -1251,7 +1251,7 @@ final class ACSysService implements ACSysServiceAPI {
               (b) =>
                   b
                     ..device = e.key
-                    ..lineColor = e.value.lineColor?.value
+                    ..lineColor = e.value.lineColor?.toARGB32()
                     ..markerIndex = e.value.markerIndex
                     ..yMin = e.value.yMin
                     ..yMax = e.value.yMax,
