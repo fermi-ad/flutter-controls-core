@@ -617,32 +617,31 @@ final class ACSysService implements ACSysServiceAPI {
   Future<Result> _rpc<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _q.request(req).where((response) => !response.loading).first.then((
-    value,
-  ) {
-    if (value.hasErrors) {
-      if (value.linkException != null) {
-        throw value.linkException!;
-      } else if (value.graphqlErrors != null) {
-        throw Exception(value.graphqlErrors);
-      } else {
-        throw Exception("unknown error");
-      }
-    } else {
-      final data = value.data;
+  }) =>
+      _q.request(req).firstWhere((response) => !response.loading).then((value) {
+        if (value.hasErrors) {
+          if (value.linkException != null) {
+            throw value.linkException!;
+          } else if (value.graphqlErrors != null) {
+            throw Exception(value.graphqlErrors);
+          } else {
+            throw Exception("unknown error");
+          }
+        } else {
+          final data = value.data;
 
-      if (data != null) {
-        return xlat != null ? xlat(data) : data as Result;
-      } else {
-        throw Exception("no data was returned from request");
-      }
-    }
-  });
+          if (data != null) {
+            return xlat != null ? xlat(data) : data as Result;
+          } else {
+            throw Exception("no data was returned from request");
+          }
+        }
+      });
 
   Future<Result> _rpcDevDb<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _qDevDb.request(req).where((response) => !response.loading).first.then((
+  }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
     value,
   ) {
     if (value.hasErrors) {
