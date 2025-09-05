@@ -10,7 +10,7 @@ import 'src/otel_tracing.dart';
 
 export 'package:opentelemetry/api.dart' show Span;
 import 'package:opentelemetry/sdk.dart'
-    show SimpleSpanProcessor, ConsoleExporter, SpanExporter;
+    show SpanExporter;
 export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
