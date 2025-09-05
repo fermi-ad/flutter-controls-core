@@ -80,7 +80,7 @@ flutter:
     #         weight: 700
     #
     fonts:
-      - family: Roboto
+      - family: Local Roboto
         fonts:
           - asset: assets/google_fonts/Roboto-Thin.ttf
             weight: 100

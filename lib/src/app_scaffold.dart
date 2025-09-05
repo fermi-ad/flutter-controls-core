@@ -12,18 +12,20 @@ import 'fermi_theme.dart';
 final class _GlobalAppTheme {
   _GlobalAppTheme._();
 
-  static const String _fontFamily = 'Roboto';
+  static const String _fontFamily = 'Local Roboto';
 
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true,
     colorScheme: lightColorScheme,
     fontFamily: _fontFamily,
+    package: 'flutter_controls_core',
   );
 
   static ThemeData darkTheme = ThemeData(
     useMaterial3: true,
     colorScheme: darkColorScheme,
     fontFamily: _fontFamily,
+    package: 'flutter_controls_core',
   );
 }
 
