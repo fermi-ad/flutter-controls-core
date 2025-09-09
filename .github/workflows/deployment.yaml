@@ -1,0 +1,13 @@
+name: CD for Flutter Apps
+
+on:
+  push:
+    branches:
+      - "main"
+
+jobs:
+  build-and-deploy:
+    uses: fermi-ad/.github/.github/workflows/flutter-deploy.yaml@632814634ab12be03c52ba2d4cd0b9fc308ffd9d
+    secrets: inherit
+    permissions:
+      contents: write
