@@ -1,5 +1,5 @@
-mutation SetUsersConfig($user: String, $cfg: PlotConfigurationSnapshotIn!) {
-  usersConfiguration(user: $user, config: $cfg) {
+mutation SetUsersConfig($cfg: PlotConfigurationSnapshotIn!) {
+  usersConfiguration(config: $cfg) {
     status
   }
 }

@@ -535,13 +535,10 @@ abstract interface class ACSysServiceAPI {
   Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
-    String? user,
-  );
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration();
 
   /// Sets the provided plot configuration as the last one the user saved.
   Future<void> saveUserConfiguration({
-    String? user,
     required PlotConfigurationSnapshot snapshot,
   });
 
@@ -1110,10 +1107,8 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
-    String? user,
-  ) {
-    final req = GUsersLastConfigReq((b) => b..vars.user = user);
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
+    final req = GUsersLastConfigReq();
 
     return _rpc(
       req,
@@ -1162,14 +1157,10 @@ final class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<void> saveUserConfiguration({
-    String? user,
     required PlotConfigurationSnapshot snapshot,
   }) {
     final req = GSetUsersConfigReq(
-      (b) =>
-          b
-            ..vars.cfg = _plotConfigurationSnapshotIn(snapshot)
-            ..vars.user = user,
+      (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
     );
 
     return _rpc(req, xlat: (GSetUsersConfigData data) => ());
