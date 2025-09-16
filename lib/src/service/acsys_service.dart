@@ -348,6 +348,7 @@ final class AnalogAlarmStatus {
 final class PlotReply {
   final String plotId;
   final double requestTime;
+  final double? triggerTimestamp;
   final String xAxisUnits;
   final double? xAxisMin;
   final double? xAxisMax;
@@ -357,6 +358,7 @@ final class PlotReply {
   const PlotReply({
     required this.plotId,
     required this.requestTime,
+    this.triggerTimestamp,
     required this.xAxisUnits,
     this.xAxisMin,
     this.xAxisMax,
@@ -382,11 +384,10 @@ final class PlotChannelData {
 }
 
 final class PlotPoint {
-  final double? t;
-  final double x;
-  final double y;
+  final double t;
+  final DeviceValue value;
 
-  const PlotPoint({required this.x, required this.y, this.t});
+  const PlotPoint({required this.t, required this.value});
 }
 
 final class ChannelSettingSnapshot {
@@ -1288,6 +1289,17 @@ final class ACSysService implements ACSysServiceAPI {
   }
 }
 
+extension on GStartPlotData_startPlot_data_channelData_result {
+  DeviceValue toDevValue() => switch (this) {
+    GStartPlotData_startPlot_data_channelData_result__asScalar val => DevScalar(
+      val.scalarValue,
+    ),
+    GStartPlotData_startPlot_data_channelData_result__asScalarArray val =>
+      DevScalarArray(val.scalarArrayValue.toList()),
+    _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
+  };
+}
+
 extension on GStreamDataData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
     GStreamDataData_acceleratorData_data_result__asScalar val => DevScalar(
@@ -1327,7 +1339,11 @@ extension on GStartPlotData_startPlot_data {
         units: channelUnits,
         rate: channelRate,
         status: channelStatus,
-        points: [...channelData.map((e) => PlotPoint(t: e.t, x: e.x, y: e.y))],
+        points: [
+          ...channelData.map(
+            (e) => PlotPoint(t: e.timestamp, value: e.result.toDevValue()),
+          ),
+        ],
       );
 }
 
@@ -1335,6 +1351,7 @@ extension on GStartPlotData_startPlot {
   PlotReply toPlotReply(GStartPlotReq req) => PlotReply(
     plotId: plotId,
     requestTime: timestamp,
+    triggerTimestamp: triggerTimestamp,
     xAxisUnits: "Time",
     xAxisMin: req.vars.xMin?.toDouble(),
     xAxisMax: req.vars.xMax?.toDouble(),

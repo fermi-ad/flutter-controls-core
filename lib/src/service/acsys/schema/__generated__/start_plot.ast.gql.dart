@@ -155,6 +155,13 @@ const StartPlot = _i1.OperationDefinitionNode(
               selectionSet: null,
             ),
             _i1.FieldNode(
+              name: _i1.NameNode(value: 'triggerTimestamp'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
               name: _i1.NameNode(value: 'data'),
               alias: null,
               arguments: [],
@@ -190,25 +197,63 @@ const StartPlot = _i1.OperationDefinitionNode(
                     selectionSet: _i1.SelectionSetNode(
                       selections: [
                         _i1.FieldNode(
-                          name: _i1.NameNode(value: 't'),
+                          name: _i1.NameNode(value: 'timestamp'),
                           alias: null,
                           arguments: [],
                           directives: [],
                           selectionSet: null,
                         ),
                         _i1.FieldNode(
-                          name: _i1.NameNode(value: 'x'),
+                          name: _i1.NameNode(value: 'result'),
                           alias: null,
                           arguments: [],
                           directives: [],
-                          selectionSet: null,
-                        ),
-                        _i1.FieldNode(
-                          name: _i1.NameNode(value: 'y'),
-                          alias: null,
-                          arguments: [],
-                          directives: [],
-                          selectionSet: null,
+                          selectionSet: _i1.SelectionSetNode(
+                            selections: [
+                              _i1.InlineFragmentNode(
+                                typeCondition: _i1.TypeConditionNode(
+                                  on: _i1.NamedTypeNode(
+                                    name: _i1.NameNode(value: 'Scalar'),
+                                    isNonNull: false,
+                                  ),
+                                ),
+                                directives: [],
+                                selectionSet: _i1.SelectionSetNode(
+                                  selections: [
+                                    _i1.FieldNode(
+                                      name: _i1.NameNode(value: 'scalarValue'),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              _i1.InlineFragmentNode(
+                                typeCondition: _i1.TypeConditionNode(
+                                  on: _i1.NamedTypeNode(
+                                    name: _i1.NameNode(value: 'ScalarArray'),
+                                    isNonNull: false,
+                                  ),
+                                ),
+                                directives: [],
+                                selectionSet: _i1.SelectionSetNode(
+                                  selections: [
+                                    _i1.FieldNode(
+                                      name: _i1.NameNode(
+                                        value: 'scalarArrayValue',
+                                      ),
+                                      alias: null,
+                                      arguments: [],
+                                      directives: [],
+                                      selectionSet: null,
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),

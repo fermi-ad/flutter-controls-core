@@ -2,14 +2,21 @@ subscription StartPlot($drfList: [String!]!, $xMin: Float, $xMax: Float, $window
   startPlot(drfList: $drfList, xMin: $xMin, xMax: $xMax, windowSize: $windowSize, updateDelay: $updateDelay, nAcquisitions: $nAcquisitions, triggerEvent: $triggerEvent, startTime: $startTime, endTime: $endTime) {
     plotId
     timestamp
+    triggerTimestamp
     data {
       channelRate
       channelUnits
       channelStatus
       channelData {
-        t
-        x
-        y
+        timestamp
+        result {
+          ... on Scalar {
+            scalarValue
+          }
+          ... on ScalarArray {
+            scalarArrayValue
+          }
+        }
       }
     }
   }

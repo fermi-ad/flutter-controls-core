@@ -7,6 +7,8 @@ import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i1;
+import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
+    as _i2;
 
 part 'start_plot.data.gql.g.dart';
 
@@ -50,6 +52,7 @@ abstract class GStartPlotData_startPlot
   String get G__typename;
   String get plotId;
   double get timestamp;
+  double? get triggerTimestamp;
   BuiltList<GStartPlotData_startPlot_data> get data;
   static Serializer<GStartPlotData_startPlot> get serializer =>
       _$gStartPlotDataStartPlotSerializer;
@@ -115,13 +118,12 @@ abstract class GStartPlotData_startPlot_data_channelData
 
   static void _initializeBuilder(
     GStartPlotData_startPlot_data_channelDataBuilder b,
-  ) => b..G__typename = 'PlotDataPoint';
+  ) => b..G__typename = 'DataInfo';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  double get t;
-  double get x;
-  double get y;
+  double get timestamp;
+  GStartPlotData_startPlot_data_channelData_result get result;
   static Serializer<GStartPlotData_startPlot_data_channelData> get serializer =>
       _$gStartPlotDataStartPlotDataChannelDataSerializer;
 
@@ -136,6 +138,171 @@ abstract class GStartPlotData_startPlot_data_channelData
     Map<String, dynamic> json,
   ) => _i1.serializers.deserializeWith(
     GStartPlotData_startPlot_data_channelData.serializer,
+    json,
+  );
+}
+
+abstract class GStartPlotData_startPlot_data_channelData_result {
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GStartPlotData_startPlot_data_channelData_result>
+  get serializer => _i2.InlineFragmentSerializer<
+    GStartPlotData_startPlot_data_channelData_result
+  >(
+    'GStartPlotData_startPlot_data_channelData_result',
+    GStartPlotData_startPlot_data_channelData_result__base,
+    {
+      'Scalar': GStartPlotData_startPlot_data_channelData_result__asScalar,
+      'ScalarArray':
+          GStartPlotData_startPlot_data_channelData_result__asScalarArray,
+    },
+  );
+
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GStartPlotData_startPlot_data_channelData_result.serializer,
+            this,
+          )
+          as Map<String, dynamic>);
+
+  static GStartPlotData_startPlot_data_channelData_result? fromJson(
+    Map<String, dynamic> json,
+  ) => _i1.serializers.deserializeWith(
+    GStartPlotData_startPlot_data_channelData_result.serializer,
+    json,
+  );
+}
+
+abstract class GStartPlotData_startPlot_data_channelData_result__base
+    implements
+        Built<
+          GStartPlotData_startPlot_data_channelData_result__base,
+          GStartPlotData_startPlot_data_channelData_result__baseBuilder
+        >,
+        GStartPlotData_startPlot_data_channelData_result {
+  GStartPlotData_startPlot_data_channelData_result__base._();
+
+  factory GStartPlotData_startPlot_data_channelData_result__base([
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__baseBuilder b,
+    )
+    updates,
+  ]) = _$GStartPlotData_startPlot_data_channelData_result__base;
+
+  static void _initializeBuilder(
+    GStartPlotData_startPlot_data_channelData_result__baseBuilder b,
+  ) => b..G__typename = 'DataType';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  static Serializer<GStartPlotData_startPlot_data_channelData_result__base>
+  get serializer =>
+      _$gStartPlotDataStartPlotDataChannelDataResultBaseSerializer;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GStartPlotData_startPlot_data_channelData_result__base.serializer,
+            this,
+          )
+          as Map<String, dynamic>);
+
+  static GStartPlotData_startPlot_data_channelData_result__base? fromJson(
+    Map<String, dynamic> json,
+  ) => _i1.serializers.deserializeWith(
+    GStartPlotData_startPlot_data_channelData_result__base.serializer,
+    json,
+  );
+}
+
+abstract class GStartPlotData_startPlot_data_channelData_result__asScalar
+    implements
+        Built<
+          GStartPlotData_startPlot_data_channelData_result__asScalar,
+          GStartPlotData_startPlot_data_channelData_result__asScalarBuilder
+        >,
+        GStartPlotData_startPlot_data_channelData_result {
+  GStartPlotData_startPlot_data_channelData_result__asScalar._();
+
+  factory GStartPlotData_startPlot_data_channelData_result__asScalar([
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarBuilder b,
+    )
+    updates,
+  ]) = _$GStartPlotData_startPlot_data_channelData_result__asScalar;
+
+  static void _initializeBuilder(
+    GStartPlotData_startPlot_data_channelData_result__asScalarBuilder b,
+  ) => b..G__typename = 'Scalar';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  double get scalarValue;
+  static Serializer<GStartPlotData_startPlot_data_channelData_result__asScalar>
+  get serializer =>
+      _$gStartPlotDataStartPlotDataChannelDataResultAsScalarSerializer;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GStartPlotData_startPlot_data_channelData_result__asScalar
+                .serializer,
+            this,
+          )
+          as Map<String, dynamic>);
+
+  static GStartPlotData_startPlot_data_channelData_result__asScalar? fromJson(
+    Map<String, dynamic> json,
+  ) => _i1.serializers.deserializeWith(
+    GStartPlotData_startPlot_data_channelData_result__asScalar.serializer,
+    json,
+  );
+}
+
+abstract class GStartPlotData_startPlot_data_channelData_result__asScalarArray
+    implements
+        Built<
+          GStartPlotData_startPlot_data_channelData_result__asScalarArray,
+          GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder
+        >,
+        GStartPlotData_startPlot_data_channelData_result {
+  GStartPlotData_startPlot_data_channelData_result__asScalarArray._();
+
+  factory GStartPlotData_startPlot_data_channelData_result__asScalarArray([
+    void Function(
+      GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder b,
+    )
+    updates,
+  ]) = _$GStartPlotData_startPlot_data_channelData_result__asScalarArray;
+
+  static void _initializeBuilder(
+    GStartPlotData_startPlot_data_channelData_result__asScalarArrayBuilder b,
+  ) => b..G__typename = 'ScalarArray';
+
+  @override
+  @BuiltValueField(wireName: '__typename')
+  String get G__typename;
+  BuiltList<double> get scalarArrayValue;
+  static Serializer<
+    GStartPlotData_startPlot_data_channelData_result__asScalarArray
+  >
+  get serializer =>
+      _$gStartPlotDataStartPlotDataChannelDataResultAsScalarArraySerializer;
+
+  @override
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(
+            GStartPlotData_startPlot_data_channelData_result__asScalarArray
+                .serializer,
+            this,
+          )
+          as Map<String, dynamic>);
+
+  static GStartPlotData_startPlot_data_channelData_result__asScalarArray?
+  fromJson(Map<String, dynamic> json) => _i1.serializers.deserializeWith(
+    GStartPlotData_startPlot_data_channelData_result__asScalarArray.serializer,
     json,
   );
 }

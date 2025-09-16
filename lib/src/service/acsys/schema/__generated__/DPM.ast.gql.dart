@@ -414,7 +414,7 @@ const PlotChannelData = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
-          name: _i1.NameNode(value: 'PlotDataPoint'),
+          name: _i1.NameNode(value: 'DataInfo'),
           isNonNull: true,
         ),
         isNonNull: true,
@@ -765,40 +765,6 @@ const PlotConfigurationSnapshotIn = _i1.InputObjectTypeDefinitionNode(
     ),
   ],
 );
-const PlotDataPoint = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'PlotDataPoint'),
-  directives: [],
-  interfaces: [],
-  fields: [
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 't'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Float'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'x'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Float'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'y'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Float'),
-        isNonNull: true,
-      ),
-    ),
-  ],
-);
 const PlotReplyData = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'PlotReplyData'),
   directives: [],
@@ -820,6 +786,15 @@ const PlotReplyData = _i1.ObjectTypeDefinitionNode(
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Float'),
         isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'triggerTimestamp'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
       ),
     ),
     _i1.FieldDefinitionNode(
@@ -1498,7 +1473,6 @@ const document = _i1.DocumentNode(
     PlotChannelData,
     PlotConfigurationSnapshot,
     PlotConfigurationSnapshotIn,
-    PlotDataPoint,
     PlotReplyData,
     Query,
     Raw,

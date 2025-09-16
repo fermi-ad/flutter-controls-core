@@ -25,6 +25,8 @@ dependencies:
 
     go_router: ^12.1.0
 
+    google_fonts: ^6.3.0
+
     # Needed for KeyCloak authentication support.
 
     openid_client: ^0.4.8
@@ -75,5 +77,39 @@ flutter:
     #       - asset: fonts/TrajanPro_Bold.ttf
     #         weight: 700
     #
+    assets:
+        - google_fonts/
+
+    fonts:
+      - family: Roboto
+        fonts:
+          - asset: google_fonts/Roboto-Thin.ttf
+            weight: 100
+          - asset: google_fonts/Roboto-ThinItalic.ttf
+            weight: 100
+            style: italic
+          - asset: google_fonts/Roboto-Light.ttf
+            weight: 300
+          - asset: google_fonts/Roboto-LightItalic.ttf
+            weight: 300
+            style: italic
+          - asset: google_fonts/Roboto-Regular.ttf
+          - asset: google_fonts/Roboto-Italic.ttf
+            style: italic
+          - asset: google_fonts/Roboto-Medium.ttf
+            weight: 500
+          - asset: google_fonts/Roboto-MediumItalic.ttf
+            weight: 500
+            style: italic
+          - asset: google_fonts/Roboto-Bold.ttf
+            weight: 700
+          - asset: google_fonts/Roboto-BoldItalic.ttf
+            weight: 700
+            style: italic
+          - asset: google_fonts/Roboto-Black.ttf
+            weight: 900
+          - asset: google_fonts/Roboto-BlackItalic.ttf
+            weight: 900
+            style: italic
     # For details regarding fonts in packages, see
     # https://flutter.dev/custom-fonts/#from-packages
