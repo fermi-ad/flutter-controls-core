@@ -516,6 +516,7 @@ abstract interface class ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    String? chXAxis
   });
 
   /// Saves the plot configuration to the database.
@@ -1052,6 +1053,7 @@ final class ACSysService implements ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    String? chXAxis
   }) {
     final req = GStartPlotReq(
       (b) =>
