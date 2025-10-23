@@ -516,6 +516,7 @@ abstract interface class ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    int? sampleOnEvent,
     String? chXAxis
   });
 
@@ -1053,6 +1054,7 @@ final class ACSysService implements ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    int? sampleOnEvent,
     String? chXAxis
   }) {
     final req = GStartPlotReq(
