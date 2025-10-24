@@ -25,17 +25,7 @@ class _$GUsersLastConfigVarsSerializer
     GUsersLastConfigVars object, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = <Object?>[];
-    Object? value;
-    value = object.user;
-    if (value != null) {
-      result
-        ..add('user')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(String)),
-        );
-    }
-    return result;
+    return <Object?>[];
   }
 
   @override
@@ -44,38 +34,16 @@ class _$GUsersLastConfigVarsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GUsersLastConfigVarsBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'user':
-          result.user =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String?;
-          break;
-      }
-    }
-
-    return result.build();
+    return new GUsersLastConfigVarsBuilder().build();
   }
 }
 
 class _$GUsersLastConfigVars extends GUsersLastConfigVars {
-  @override
-  final String? user;
-
   factory _$GUsersLastConfigVars([
     void Function(GUsersLastConfigVarsBuilder)? updates,
   ]) => (new GUsersLastConfigVarsBuilder()..update(updates))._build();
 
-  _$GUsersLastConfigVars._({this.user}) : super._();
+  _$GUsersLastConfigVars._() : super._();
 
   @override
   GUsersLastConfigVars rebuild(
@@ -89,21 +57,17 @@ class _$GUsersLastConfigVars extends GUsersLastConfigVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GUsersLastConfigVars && user == other.user;
+    return other is GUsersLastConfigVars;
   }
 
   @override
   int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, user.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
+    return 462711812;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GUsersLastConfigVars')
-      ..add('user', user)).toString();
+    return newBuiltValueToStringHelper(r'GUsersLastConfigVars').toString();
   }
 }
 
@@ -111,20 +75,7 @@ class GUsersLastConfigVarsBuilder
     implements Builder<GUsersLastConfigVars, GUsersLastConfigVarsBuilder> {
   _$GUsersLastConfigVars? _$v;
 
-  String? _user;
-  String? get user => _$this._user;
-  set user(String? user) => _$this._user = user;
-
   GUsersLastConfigVarsBuilder();
-
-  GUsersLastConfigVarsBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _user = $v.user;
-      _$v = null;
-    }
-    return this;
-  }
 
   @override
   void replace(GUsersLastConfigVars other) {
@@ -141,7 +92,7 @@ class GUsersLastConfigVarsBuilder
   GUsersLastConfigVars build() => _build();
 
   _$GUsersLastConfigVars _build() {
-    final _$result = _$v ?? new _$GUsersLastConfigVars._(user: user);
+    final _$result = _$v ?? new _$GUsersLastConfigVars._();
     replace(_$result);
     return _$result;
   }

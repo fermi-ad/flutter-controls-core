@@ -9,15 +9,6 @@ const SetUsersConfig = _i1.OperationDefinitionNode(
   name: _i1.NameNode(value: 'SetUsersConfig'),
   variableDefinitions: [
     _i1.VariableDefinitionNode(
-      variable: _i1.VariableNode(name: _i1.NameNode(value: 'user')),
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
-        isNonNull: false,
-      ),
-      defaultValue: _i1.DefaultValueNode(value: null),
-      directives: [],
-    ),
-    _i1.VariableDefinitionNode(
       variable: _i1.VariableNode(name: _i1.NameNode(value: 'cfg')),
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'PlotConfigurationSnapshotIn'),
@@ -34,10 +25,6 @@ const SetUsersConfig = _i1.OperationDefinitionNode(
         name: _i1.NameNode(value: 'usersConfiguration'),
         alias: null,
         arguments: [
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'user'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'user')),
-          ),
           _i1.ArgumentNode(
             name: _i1.NameNode(value: 'config'),
             value: _i1.VariableNode(name: _i1.NameNode(value: 'cfg')),

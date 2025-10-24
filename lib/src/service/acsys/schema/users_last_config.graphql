@@ -1,5 +1,5 @@
-query UsersLastConfig($user: String) {
-    usersLastConfiguration(user: $user) {
+query UsersLastConfig {
+    usersLastConfiguration {
         configurationId
         configurationName
         channels {
