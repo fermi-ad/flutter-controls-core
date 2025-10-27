@@ -443,6 +443,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
+  int? sampleOnEvent;
+  String? xAxis;
   int dataLimit;
 
   PlotConfigurationSnapshot({
@@ -461,6 +463,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.sampleOnEvent,
+    this.xAxis,
     required this.dataLimit,
   });
 }
