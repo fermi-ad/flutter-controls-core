@@ -443,6 +443,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
+  int? sampleOnEvent;
+  String? xAxis;
   int dataLimit;
 
   PlotConfigurationSnapshot({
@@ -461,6 +463,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.sampleOnEvent,
+    this.xAxis,
     required this.dataLimit,
   });
 }
@@ -516,6 +520,8 @@ abstract interface class ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    int? sampleOnEvent,
+    String? chXAxis
   });
 
   /// Saves the plot configuration to the database.
@@ -1048,6 +1054,8 @@ final class ACSysService implements ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    int? sampleOnEvent,
+    String? chXAxis
   }) {
     final req = GStartPlotReq(
       (b) =>
