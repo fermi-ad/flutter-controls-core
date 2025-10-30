@@ -1158,6 +1158,8 @@ final class ACSysService implements ACSysServiceAPI {
               tclkEvent: e.tclkEvent,
               dataLimit: e.dataLimit,
               isPersistent: e.isPersistent,
+              sampleOnEvent: e.sampleOnEvent,
+              xAxis: e.chXAxis,
             );
       },
     );
@@ -1221,6 +1223,8 @@ final class ACSysService implements ACSysServiceAPI {
                       tclkEvent: e.tclkEvent,
                       dataLimit: e.dataLimit,
                       isPersistent: e.isPersistent,
+                      sampleOnEvent: e.sampleOnEvent,
+                      xAxis: e.chXAxis,
                     ),
                   )
                   .toList(),
@@ -1269,7 +1273,9 @@ final class ACSysService implements ACSysServiceAPI {
         ..dataLimit = cfg.dataLimit
         ..updateDelay = cfg.updateDelay
         ..nAcquisitions = cfg.nAcquisitions
-        ..tclkEvent = cfg.tclkEvent;
+        ..tclkEvent = cfg.tclkEvent
+        ..sampleOnEvent = cfg.sampleOnEvent
+        ..chXAxis = cfg.xAxis;
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({
