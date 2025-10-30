@@ -429,6 +429,20 @@ class _$GPlotConfigurationSnapshotInSerializer
         ..add('tclkEvent')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.sampleOnEvent;
+    if (value != null) {
+      result
+        ..add('sampleOnEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.chXAxis;
+    if (value != null) {
+      result
+        ..add('chXAxis')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
     return result;
   }
 
@@ -564,6 +578,19 @@ class _$GPlotConfigurationSnapshotInSerializer
           result.tclkEvent =
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
+          break;
+        case 'sampleOnEvent':
+          result.sampleOnEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'chXAxis':
+          result.chXAxis =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -1263,6 +1290,10 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   final int? nAcquisitions;
   @override
   final int? tclkEvent;
+  @override
+  final int? sampleOnEvent;
+  @override
+  final String? chXAxis;
 
   factory _$GPlotConfigurationSnapshotIn([
     void Function(GPlotConfigurationSnapshotInBuilder)? updates,
@@ -1285,6 +1316,8 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.sampleOnEvent,
+    this.chXAxis,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
       configurationName,
@@ -1351,7 +1384,9 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
         dataLimit == other.dataLimit &&
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
-        tclkEvent == other.tclkEvent;
+        tclkEvent == other.tclkEvent &&
+        sampleOnEvent == other.sampleOnEvent &&
+        chXAxis == other.chXAxis;
   }
 
   @override
@@ -1373,6 +1408,8 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, sampleOnEvent.hashCode);
+    _$hash = $jc(_$hash, chXAxis.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -1395,7 +1432,9 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
           ..add('dataLimit', dataLimit)
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
-          ..add('tclkEvent', tclkEvent))
+          ..add('tclkEvent', tclkEvent)
+          ..add('sampleOnEvent', sampleOnEvent)
+          ..add('chXAxis', chXAxis))
         .toString();
   }
 }
@@ -1477,6 +1516,15 @@ class GPlotConfigurationSnapshotInBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
+  int? _sampleOnEvent;
+  int? get sampleOnEvent => _$this._sampleOnEvent;
+  set sampleOnEvent(int? sampleOnEvent) =>
+      _$this._sampleOnEvent = sampleOnEvent;
+
+  String? _chXAxis;
+  String? get chXAxis => _$this._chXAxis;
+  set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
+
   GPlotConfigurationSnapshotInBuilder();
 
   GPlotConfigurationSnapshotInBuilder get _$this {
@@ -1498,6 +1546,8 @@ class GPlotConfigurationSnapshotInBuilder
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _sampleOnEvent = $v.sampleOnEvent;
+      _chXAxis = $v.chXAxis;
       _$v = null;
     }
     return this;
@@ -1563,6 +1613,8 @@ class GPlotConfigurationSnapshotInBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            sampleOnEvent: sampleOnEvent,
+            chXAxis: chXAxis,
           );
     } catch (_) {
       late String _$failedField;

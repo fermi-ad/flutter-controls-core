@@ -86,6 +86,8 @@ abstract class GPlotConfigurationSnapshotIn
   int? get updateDelay;
   int? get nAcquisitions;
   int? get tclkEvent;
+  int? get sampleOnEvent;
+  String? get chXAxis;
   static Serializer<GPlotConfigurationSnapshotIn> get serializer =>
       _$gPlotConfigurationSnapshotInSerializer;
 

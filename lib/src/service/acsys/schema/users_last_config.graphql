@@ -22,5 +22,7 @@ query UsersLastConfig {
         tclkEvent
         isPersistent
         dataLimit
+        sampleOnEvent
+        chXAxis
     }
 }
