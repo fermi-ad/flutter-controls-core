@@ -541,13 +541,10 @@ abstract interface class ACSysServiceAPI {
   Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
-    String? user,
-  );
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration();
 
   /// Sets the provided plot configuration as the last one the user saved.
   Future<void> saveUserConfiguration({
-    String? user,
     required PlotConfigurationSnapshot snapshot,
   });
 
@@ -623,32 +620,31 @@ final class ACSysService implements ACSysServiceAPI {
   Future<Result> _rpc<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _q.request(req).where((response) => !response.loading).first.then((
-    value,
-  ) {
-    if (value.hasErrors) {
-      if (value.linkException != null) {
-        throw value.linkException!;
-      } else if (value.graphqlErrors != null) {
-        throw Exception(value.graphqlErrors);
-      } else {
-        throw Exception("unknown error");
-      }
-    } else {
-      final data = value.data;
+  }) =>
+      _q.request(req).firstWhere((response) => !response.loading).then((value) {
+        if (value.hasErrors) {
+          if (value.linkException != null) {
+            throw value.linkException!;
+          } else if (value.graphqlErrors != null) {
+            throw Exception(value.graphqlErrors);
+          } else {
+            throw Exception("unknown error");
+          }
+        } else {
+          final data = value.data;
 
-      if (data != null) {
-        return xlat != null ? xlat(data) : data as Result;
-      } else {
-        throw Exception("no data was returned from request");
-      }
-    }
-  });
+          if (data != null) {
+            return xlat != null ? xlat(data) : data as Result;
+          } else {
+            throw Exception("no data was returned from request");
+          }
+        }
+      });
 
   Future<Result> _rpcDevDb<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _qDevDb.request(req).where((response) => !response.loading).first.then((
+  }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
     value,
   ) {
     if (value.hasErrors) {
@@ -1119,10 +1115,8 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
-    String? user,
-  ) {
-    final req = GUsersLastConfigReq((b) => b..vars.user = user);
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
+    final req = GUsersLastConfigReq();
 
     return _rpc(
       req,
@@ -1171,14 +1165,10 @@ final class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<void> saveUserConfiguration({
-    String? user,
     required PlotConfigurationSnapshot snapshot,
   }) {
     final req = GSetUsersConfigReq(
-      (b) =>
-          b
-            ..vars.cfg = _plotConfigurationSnapshotIn(snapshot)
-            ..vars.user = user,
+      (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
     );
 
     return _rpc(req, xlat: (GSetUsersConfigData data) => ());
@@ -1260,7 +1250,7 @@ final class ACSysService implements ACSysServiceAPI {
               (b) =>
                   b
                     ..device = e.key
-                    ..lineColor = e.value.lineColor?.value
+                    ..lineColor = e.value.lineColor?.toARGB32()
                     ..markerIndex = e.value.markerIndex
                     ..yMin = e.value.yMin
                     ..yMax = e.value.yMax,

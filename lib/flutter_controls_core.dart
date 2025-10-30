@@ -7,7 +7,6 @@ import 'package:go_router/go_router.dart';
 import 'src/app_scaffold.dart';
 import 'src/otel_tracing.dart';
 
-export 'package:opentelemetry/api.dart' show Span;
 export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
@@ -15,7 +14,7 @@ export 'package:flutter_controls_auth/flutter_controls_auth.dart'
     show ScopeList, AuthInfo, AuthService, Credential, UserInfo;
 
 export 'src/service/acsys_service.dart';
-export 'src/otel_tracing.dart';
+export 'src/otel_tracing.dart' show AppTracer, appTracer, Span;
 
 /// Entry point for Fermilab applications
 ///
