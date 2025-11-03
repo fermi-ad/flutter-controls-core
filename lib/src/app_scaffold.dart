@@ -106,20 +106,28 @@ final class _Drawer extends StatelessWidget {
     final ThemeData td = Theme.of(context);
 
     return Drawer(
-      child: Column(
-        children: [
-          Expanded(child: ListView(children: [_DrawerHeader(), ...?content])),
-
-          // Change to "Fermi Forward Discovery Group, LLC" in 2025.
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            _DrawerHeader(),
+            Divider(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: content ?? Container(),
+                ),
+              ),
+            ),
+            Divider(),
+            Text(
               "© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
               textAlign: TextAlign.center,
               style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -135,7 +143,7 @@ final class _Drawer extends StatelessWidget {
 final class StandardApp extends StatelessWidget {
   final String title;
   final Widget? body;
-  final List<Widget>? drawerContents;
+  final Widget? drawerContent;
   final List<Widget Function({required Widget child})> providers;
   final Widget? floatingActionButton;
   final PreferredSizeWidget? appBar;
@@ -144,7 +152,7 @@ final class StandardApp extends StatelessWidget {
     required this.title,
     this.appBar,
     this.body,
-    this.drawerContents,
+    this.drawerContent,
     this.floatingActionButton,
     this.providers = const [],
     super.key,
@@ -156,7 +164,7 @@ final class StandardApp extends StatelessWidget {
       Scaffold(
         appBar: appBar,
         body: body,
-        drawer: _Drawer(drawerContents),
+        drawer: _Drawer(drawerContent),
         floatingActionButton: floatingActionButton,
       ),
       (w, p) => p(child: w),
