@@ -21,6 +21,7 @@ query UsersLastConfig {
         nAcquisitions
         tclkEvent
         isPersistent
+        isBlink
         dataLimit
     }
 }

@@ -358,6 +358,11 @@ class _$GPlotConfigurationSnapshotInSerializer
         object.isPersistent,
         specifiedType: const FullType(bool),
       ),
+      'isBlink',
+      serializers.serialize(
+        object.isBlink,
+        specifiedType: const FullType(bool),
+      ),
       'dataLimit',
       serializers.serialize(
         object.dataLimit,
@@ -536,6 +541,14 @@ class _$GPlotConfigurationSnapshotInSerializer
           break;
         case 'isPersistent':
           result.isPersistent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'isBlink':
+          result.isBlink =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(bool),
@@ -1256,6 +1269,8 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   @override
   final bool isPersistent;
   @override
+  final bool isBlink;
+  @override
   final int dataLimit;
   @override
   final int? updateDelay;
@@ -1281,6 +1296,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     required this.isOneShot,
     required this.isShowLabels,
     required this.isPersistent,
+    required this.isBlink,
     required this.dataLimit,
     this.updateDelay,
     this.nAcquisitions,
@@ -1317,6 +1333,11 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
       'isPersistent',
     );
     BuiltValueNullFieldError.checkNotNull(
+      isBlink,
+      r'GPlotConfigurationSnapshotIn',
+      'isBlink',
+    );
+    BuiltValueNullFieldError.checkNotNull(
       dataLimit,
       r'GPlotConfigurationSnapshotIn',
       'dataLimit',
@@ -1348,6 +1369,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
         isOneShot == other.isOneShot &&
         isShowLabels == other.isShowLabels &&
         isPersistent == other.isPersistent &&
+        isBlink == other.isBlink &&
         dataLimit == other.dataLimit &&
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
@@ -1369,6 +1391,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     _$hash = $jc(_$hash, isOneShot.hashCode);
     _$hash = $jc(_$hash, isShowLabels.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, isBlink.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
@@ -1392,6 +1415,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
           ..add('isOneShot', isOneShot)
           ..add('isShowLabels', isShowLabels)
           ..add('isPersistent', isPersistent)
+          ..add('isBlink', isBlink)
           ..add('dataLimit', dataLimit)
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
@@ -1460,6 +1484,10 @@ class GPlotConfigurationSnapshotInBuilder
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
 
+  bool? _isBlink;
+  bool? get isBlink => _$this._isBlink;
+  set isBlink(bool? isBlink) => _$this._isBlink = isBlink;
+
   int? _dataLimit;
   int? get dataLimit => _$this._dataLimit;
   set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
@@ -1494,6 +1522,7 @@ class GPlotConfigurationSnapshotInBuilder
       _isOneShot = $v.isOneShot;
       _isShowLabels = $v.isShowLabels;
       _isPersistent = $v.isPersistent;
+      _isBlink = $v.isBlink;
       _dataLimit = $v.dataLimit;
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
@@ -1554,6 +1583,11 @@ class GPlotConfigurationSnapshotInBuilder
               isPersistent,
               r'GPlotConfigurationSnapshotIn',
               'isPersistent',
+            ),
+            isBlink: BuiltValueNullFieldError.checkNotNull(
+              isBlink,
+              r'GPlotConfigurationSnapshotIn',
+              'isBlink',
             ),
             dataLimit: BuiltValueNullFieldError.checkNotNull(
               dataLimit,

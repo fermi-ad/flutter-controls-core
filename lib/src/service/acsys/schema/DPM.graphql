@@ -168,6 +168,7 @@ type PlotConfigurationSnapshot {
   isOneShot: Boolean!
   isShowLabels: Boolean!
   isPersistent: Boolean!
+  isBlink: Boolean!
   dataLimit: Int!
 
   """
@@ -198,6 +199,7 @@ input PlotConfigurationSnapshotIn {
   isOneShot: Boolean!
   isShowLabels: Boolean!
   isPersistent: Boolean!
+  isBlink: Boolean!
   dataLimit: Int!
 
   """

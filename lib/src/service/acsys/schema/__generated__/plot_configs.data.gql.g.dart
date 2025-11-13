@@ -140,6 +140,11 @@ class _$GPlotConfigsData_plotConfigurationSerializer
         object.isPersistent,
         specifiedType: const FullType(bool),
       ),
+      'isBlink',
+      serializers.serialize(
+        object.isBlink,
+        specifiedType: const FullType(bool),
+      ),
       'dataLimit',
       serializers.serialize(
         object.dataLimit,
@@ -341,6 +346,14 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           break;
         case 'isPersistent':
           result.isPersistent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'isBlink':
+          result.isBlink =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(bool),
@@ -657,6 +670,8 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final bool isPersistent;
   @override
+  final bool isBlink;
+  @override
   final int dataLimit;
 
   factory _$GPlotConfigsData_plotConfiguration([
@@ -682,6 +697,7 @@ class _$GPlotConfigsData_plotConfiguration
     this.nAcquisitions,
     this.tclkEvent,
     required this.isPersistent,
+    required this.isBlink,
     required this.dataLimit,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
@@ -720,6 +736,11 @@ class _$GPlotConfigsData_plotConfiguration
       'isPersistent',
     );
     BuiltValueNullFieldError.checkNotNull(
+      isBlink,
+      r'GPlotConfigsData_plotConfiguration',
+      'isBlink',
+    );
+    BuiltValueNullFieldError.checkNotNull(
       dataLimit,
       r'GPlotConfigsData_plotConfiguration',
       'dataLimit',
@@ -755,6 +776,7 @@ class _$GPlotConfigsData_plotConfiguration
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
         isPersistent == other.isPersistent &&
+        isBlink == other.isBlink &&
         dataLimit == other.dataLimit;
   }
 
@@ -777,6 +799,7 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, isBlink.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -801,6 +824,7 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
           ..add('isPersistent', isPersistent)
+          ..add('isBlink', isBlink)
           ..add('dataLimit', dataLimit))
         .toString();
   }
@@ -885,6 +909,10 @@ class GPlotConfigsData_plotConfigurationBuilder
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
 
+  bool? _isBlink;
+  bool? get isBlink => _$this._isBlink;
+  set isBlink(bool? isBlink) => _$this._isBlink = isBlink;
+
   int? _dataLimit;
   int? get dataLimit => _$this._dataLimit;
   set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
@@ -912,6 +940,7 @@ class GPlotConfigsData_plotConfigurationBuilder
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
       _isPersistent = $v.isPersistent;
+      _isBlink = $v.isBlink;
       _dataLimit = $v.dataLimit;
       _$v = null;
     }
@@ -979,6 +1008,11 @@ class GPlotConfigsData_plotConfigurationBuilder
               isPersistent,
               r'GPlotConfigsData_plotConfiguration',
               'isPersistent',
+            ),
+            isBlink: BuiltValueNullFieldError.checkNotNull(
+              isBlink,
+              r'GPlotConfigsData_plotConfiguration',
+              'isBlink',
             ),
             dataLimit: BuiltValueNullFieldError.checkNotNull(
               dataLimit,
