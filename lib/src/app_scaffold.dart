@@ -29,75 +29,74 @@ final class _GlobalAppTheme {
   );
 }
 
+Widget buildAuthHeader(
+  final IconData icon,
+  final String account,
+  final (String, void Function())? buttonInfo,
+) => Row(
+  mainAxisAlignment: MainAxisAlignment.start,
+  crossAxisAlignment: CrossAxisAlignment.center,
+  children: <Widget>[
+    Expanded(
+      child: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            Icon(icon, size: 40.0),
+            SizedBox(height: 4.0), // Spacer
+            Text(account),
+          ],
+        ),
+      ),
+    ),
+    if (buttonInfo != null)
+      Expanded(
+        child: Center(
+          child: ElevatedButton(
+            onPressed: buttonInfo.$2,
+            child: Text(buttonInfo.$1),
+          ),
+        ),
+      ),
+  ],
+);
+
 // Private widget used to display content in the side, drawer menu's header.
 
 final class _DrawerHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final ThemeData td = Theme.of(context);
     final UserInfo? userInfo = AuthService.getUserInfo(context);
 
     final content = switch ((userInfo, AuthService.authRequired)) {
       // For this case, the application didn't set up authentication parameters so
       // it plans to run with no privilieges. If the application tries to use a service
       // that needs authorization, the service will return an error.
-      (_, false) => [
-        Expanded(
-          child: Icon(
-            Icons.no_accounts_sharp,
-            size: 48.0,
-            semanticLabel: "No login required",
-            color: td.disabledColor,
-          ),
-        ),
-        const Text("No privileges required.", textAlign: TextAlign.center),
-      ],
-      (null, true) => [
-        Expanded(
-          child: Icon(
-            Icons.no_accounts_sharp,
-            size: 48.0,
-            semanticLabel: "Login required",
-            color: td.disabledColor,
-          ),
-        ),
-        const Text("Unauthorized"),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: ElevatedButton(
-            style: ButtonStyle(
-              backgroundColor: WidgetStatePropertyAll(td.disabledColor),
-            ),
-            onPressed: () => AuthService.requestLogin(context),
-            child: const Text("Login"),
-          ),
-        ),
-      ],
-      (UserInfo user, true) => [
-        Expanded(
-          child: Icon(
-            Icons.account_circle,
-            size: 48.0,
-            semanticLabel: "Logged in as ${user.name}",
-          ),
-        ),
-        Text(user.name ?? "** no name in system **"),
-        Padding(
-          padding: const EdgeInsets.only(top: 8.0),
-          child: ElevatedButton(
-            onPressed: () => AuthService.requestLogout(context),
-            child: const Text("Logout"),
-          ),
-        ),
-      ],
+      (_, false) => buildAuthHeader(
+        Icons.no_accounts_sharp,
+        "No login required",
+        null,
+      ),
+
+      (null, true) => buildAuthHeader(Icons.no_accounts_sharp, "Unauthorized", (
+        "Login",
+        () => AuthService.requestLogin(context),
+      )),
+
+      (UserInfo user, true) => buildAuthHeader(
+        Icons.account_circle,
+        user.name ?? "UNKNOWN",
+        ("Logout", () => AuthService.requestLogout(context)),
+      ),
     };
 
-    return DrawerHeader(child: Column(children: content));
+    return content;
   }
 }
 
 final class _Drawer extends StatelessWidget {
-  final List<Widget>? content;
+  final Widget? content;
 
   const _Drawer(this.content);
 
@@ -106,20 +105,28 @@ final class _Drawer extends StatelessWidget {
     final ThemeData td = Theme.of(context);
 
     return Drawer(
-      child: Column(
-        children: [
-          Expanded(child: ListView(children: [_DrawerHeader(), ...?content])),
-
-          // Change to "Fermi Forward Discovery Group, LLC" in 2025.
-          Padding(
-            padding: const EdgeInsets.only(bottom: 8.0),
-            child: Text(
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            _DrawerHeader(),
+            Divider(),
+            Expanded(
+              child: SingleChildScrollView(
+                child: SizedBox(
+                  width: double.infinity,
+                  child: content ?? Container(),
+                ),
+              ),
+            ),
+            Divider(),
+            Text(
               "© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
               textAlign: TextAlign.center,
               style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -135,7 +142,7 @@ final class _Drawer extends StatelessWidget {
 final class StandardApp extends StatelessWidget {
   final String title;
   final Widget? body;
-  final List<Widget>? drawerContents;
+  final Widget? drawerContent;
   final List<Widget Function({required Widget child})> providers;
   final Widget? floatingActionButton;
   final PreferredSizeWidget? appBar;
@@ -144,7 +151,7 @@ final class StandardApp extends StatelessWidget {
     required this.title,
     this.appBar,
     this.body,
-    this.drawerContents,
+    this.drawerContent,
     this.floatingActionButton,
     this.providers = const [],
     super.key,
@@ -156,7 +163,7 @@ final class StandardApp extends StatelessWidget {
       Scaffold(
         appBar: appBar,
         body: body,
-        drawer: _Drawer(drawerContents),
+        drawer: _Drawer(drawerContent),
         floatingActionButton: floatingActionButton,
       ),
       (w, p) => p(child: w),
