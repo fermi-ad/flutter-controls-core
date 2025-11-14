@@ -38,6 +38,7 @@ Widget buildAuthHeader(
   crossAxisAlignment: CrossAxisAlignment.center,
   children: <Widget>[
     Expanded(
+      flex: 3,
       child: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -52,6 +53,7 @@ Widget buildAuthHeader(
     ),
     if (buttonInfo != null)
       Expanded(
+        flex: 2,
         child: Center(
           child: ElevatedButton(
             onPressed: buttonInfo.$2,
