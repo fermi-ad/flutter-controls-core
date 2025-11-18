@@ -345,6 +345,14 @@ final class AnalogAlarmStatus {
   });
 }
 
+enum AcquisitionMode {
+  oneShot,
+  oneShotTriggeredOnEvent,
+  repetitivePeriodic,
+  repetitiveTriggeredOnEvent,
+  sampleOnEvent
+}
+
 final class PlotReply {
   final String plotId;
   final double requestTime;
@@ -444,6 +452,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? nAcquisitions;
   int? tclkEvent;
   int? sampleOnEvent;
+  AcquisitionMode? acquisitionMode;
   String? xAxis;
   int dataLimit;
 
@@ -464,6 +473,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.nAcquisitions,
     this.tclkEvent,
     this.sampleOnEvent,
+    this.acquisitionMode,
     this.xAxis,
     required this.dataLimit,
   });
