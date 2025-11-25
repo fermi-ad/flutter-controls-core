@@ -82,6 +82,7 @@ abstract class GPlotConfigurationSnapshotIn
   bool get isOneShot;
   bool get isShowLabels;
   bool get isPersistent;
+  bool get isBlink;
   int get dataLimit;
   int? get updateDelay;
   int? get nAcquisitions;
