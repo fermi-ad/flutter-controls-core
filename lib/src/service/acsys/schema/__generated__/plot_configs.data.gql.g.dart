@@ -211,6 +211,20 @@ class _$GPlotConfigsData_plotConfigurationSerializer
         ..add('tclkEvent')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.sampleOnEvent;
+    if (value != null) {
+      result
+        ..add('sampleOnEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.chXAxis;
+    if (value != null) {
+      result
+        ..add('chXAxis')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
     return result;
   }
 
@@ -354,6 +368,19 @@ class _$GPlotConfigsData_plotConfigurationSerializer
                     specifiedType: const FullType(int),
                   )!
                   as int;
+          break;
+        case 'sampleOnEvent':
+          result.sampleOnEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'chXAxis':
+          result.chXAxis =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -658,6 +685,10 @@ class _$GPlotConfigsData_plotConfiguration
   final bool isPersistent;
   @override
   final int dataLimit;
+  @override
+  final int? sampleOnEvent;
+  @override
+  final String? chXAxis;
 
   factory _$GPlotConfigsData_plotConfiguration([
     void Function(GPlotConfigsData_plotConfigurationBuilder)? updates,
@@ -683,6 +714,8 @@ class _$GPlotConfigsData_plotConfiguration
     this.tclkEvent,
     required this.isPersistent,
     required this.dataLimit,
+    this.sampleOnEvent,
+    this.chXAxis,
   }) : super._() {
     BuiltValueNullFieldError.checkNotNull(
       G__typename,
@@ -755,7 +788,9 @@ class _$GPlotConfigsData_plotConfiguration
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
         isPersistent == other.isPersistent &&
-        dataLimit == other.dataLimit;
+        dataLimit == other.dataLimit &&
+        sampleOnEvent == other.sampleOnEvent &&
+        chXAxis == other.chXAxis;
   }
 
   @override
@@ -778,6 +813,8 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, tclkEvent.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
+    _$hash = $jc(_$hash, sampleOnEvent.hashCode);
+    _$hash = $jc(_$hash, chXAxis.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -801,7 +838,9 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
           ..add('isPersistent', isPersistent)
-          ..add('dataLimit', dataLimit))
+          ..add('dataLimit', dataLimit)
+          ..add('sampleOnEvent', sampleOnEvent)
+          ..add('chXAxis', chXAxis))
         .toString();
   }
 }
@@ -889,6 +928,15 @@ class GPlotConfigsData_plotConfigurationBuilder
   int? get dataLimit => _$this._dataLimit;
   set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
 
+  int? _sampleOnEvent;
+  int? get sampleOnEvent => _$this._sampleOnEvent;
+  set sampleOnEvent(int? sampleOnEvent) =>
+      _$this._sampleOnEvent = sampleOnEvent;
+
+  String? _chXAxis;
+  String? get chXAxis => _$this._chXAxis;
+  set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
+
   GPlotConfigsData_plotConfigurationBuilder() {
     GPlotConfigsData_plotConfiguration._initializeBuilder(this);
   }
@@ -913,6 +961,8 @@ class GPlotConfigsData_plotConfigurationBuilder
       _tclkEvent = $v.tclkEvent;
       _isPersistent = $v.isPersistent;
       _dataLimit = $v.dataLimit;
+      _sampleOnEvent = $v.sampleOnEvent;
+      _chXAxis = $v.chXAxis;
       _$v = null;
     }
     return this;
@@ -985,6 +1035,8 @@ class GPlotConfigsData_plotConfigurationBuilder
               r'GPlotConfigsData_plotConfiguration',
               'dataLimit',
             ),
+            sampleOnEvent: sampleOnEvent,
+            chXAxis: chXAxis,
           );
     } catch (_) {
       late String _$failedField;

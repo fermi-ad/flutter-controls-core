@@ -406,7 +406,7 @@ final class ChannelSettingSnapshot {
 
 // Only used by the plot ID class to generate IDs for testing.
 
-int _genPlotId = 1_000_000;
+int _genPlotId = 1000000;
 
 /// Wrap an integer with the semantics of a plot configuration ID. An ID
 /// is only an identifer and can't be manipulated as an integer. It only
@@ -521,7 +521,7 @@ abstract interface class ACSysServiceAPI {
     int? nAcquisitions,
     int? triggerEvent,
     int? sampleOnEvent,
-    String? chXAxis
+    String? chXAxis,
   });
 
   /// Saves the plot configuration to the database.
@@ -899,7 +899,7 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   static DateTime fromFloatTs(double ts) =>
-      DateTime.fromMicrosecondsSinceEpoch((ts * 1_000_000.0) as int);
+      DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0) as int);
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
@@ -1055,7 +1055,7 @@ final class ACSysService implements ACSysServiceAPI {
     int? nAcquisitions,
     int? triggerEvent,
     int? sampleOnEvent,
-    String? chXAxis
+    String? chXAxis,
   }) {
     final req = GStartPlotReq(
       (b) =>
@@ -1158,6 +1158,8 @@ final class ACSysService implements ACSysServiceAPI {
               tclkEvent: e.tclkEvent,
               dataLimit: e.dataLimit,
               isPersistent: e.isPersistent,
+              sampleOnEvent: e.sampleOnEvent,
+              xAxis: e.chXAxis,
             );
       },
     );
@@ -1221,6 +1223,8 @@ final class ACSysService implements ACSysServiceAPI {
                       tclkEvent: e.tclkEvent,
                       dataLimit: e.dataLimit,
                       isPersistent: e.isPersistent,
+                      sampleOnEvent: e.sampleOnEvent,
+                      xAxis: e.chXAxis,
                     ),
                   )
                   .toList(),
@@ -1269,7 +1273,9 @@ final class ACSysService implements ACSysServiceAPI {
         ..dataLimit = cfg.dataLimit
         ..updateDelay = cfg.updateDelay
         ..nAcquisitions = cfg.nAcquisitions
-        ..tclkEvent = cfg.tclkEvent;
+        ..tclkEvent = cfg.tclkEvent
+        ..sampleOnEvent = cfg.sampleOnEvent
+        ..chXAxis = cfg.xAxis;
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({

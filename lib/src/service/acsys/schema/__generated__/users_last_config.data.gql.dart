@@ -69,6 +69,8 @@ abstract class GUsersLastConfigData_usersLastConfiguration
   int? get tclkEvent;
   bool get isPersistent;
   int get dataLimit;
+  int? get sampleOnEvent;
+  String? get chXAxis;
   static Serializer<GUsersLastConfigData_usersLastConfiguration>
   get serializer => _$gUsersLastConfigDataUsersLastConfigurationSerializer;
 

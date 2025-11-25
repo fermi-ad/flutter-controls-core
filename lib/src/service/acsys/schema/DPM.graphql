@@ -180,6 +180,8 @@ type PlotConfigurationSnapshot {
   """
   nAcquisitions: Int
   tclkEvent: Int
+  sampleOnEvent: Int
+  chXAxis: String
 }
 
 input PlotConfigurationSnapshotIn {
@@ -210,6 +212,8 @@ input PlotConfigurationSnapshotIn {
   """
   nAcquisitions: Int
   tclkEvent: Int
+  sampleOnEvent: Int
+  chXAxis: String
 }
 
 """
@@ -394,6 +398,8 @@ type Subscription {
     xMax: Float
     startTime: Float
     endTime: Float
+    sampleOnEvent: Int
+    chXAxis: String
   ): PlotReplyData!
   reportEvents(events: [Int!]!): EventInfo!
   calcStream(config: XformRequest!): XformResult!

@@ -67,6 +67,8 @@ abstract class GPlotConfigsData_plotConfiguration
   int? get tclkEvent;
   bool get isPersistent;
   int get dataLimit;
+  int? get sampleOnEvent;
+  String? get chXAxis;
   static Serializer<GPlotConfigsData_plotConfiguration> get serializer =>
       _$gPlotConfigsDataPlotConfigurationSerializer;
 
