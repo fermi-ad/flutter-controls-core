@@ -21,6 +21,7 @@ query PlotConfigs($id: Int) {
     nAcquisitions
     tclkEvent
     isPersistent
+    isBlink
     dataLimit
     sampleOnEvent
     chXAxis

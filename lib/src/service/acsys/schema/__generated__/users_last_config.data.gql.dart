@@ -68,6 +68,7 @@ abstract class GUsersLastConfigData_usersLastConfiguration
   int? get nAcquisitions;
   int? get tclkEvent;
   bool get isPersistent;
+  bool get isBlink;
   int get dataLimit;
   int? get sampleOnEvent;
   String? get chXAxis;

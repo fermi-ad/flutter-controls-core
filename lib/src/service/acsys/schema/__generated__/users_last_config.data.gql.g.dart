@@ -150,6 +150,11 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
         object.isPersistent,
         specifiedType: const FullType(bool),
       ),
+      'isBlink',
+      serializers.serialize(
+        object.isBlink,
+        specifiedType: const FullType(bool),
+      ),
       'dataLimit',
       serializers.serialize(
         object.dataLimit,
@@ -367,6 +372,14 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
           break;
         case 'isPersistent':
           result.isPersistent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'isBlink':
+          result.isBlink =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(bool),
@@ -698,6 +711,8 @@ class _$GUsersLastConfigData_usersLastConfiguration
   @override
   final bool isPersistent;
   @override
+  final bool isBlink;
+  @override
   final int dataLimit;
   @override
   final int? sampleOnEvent;
@@ -728,6 +743,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
     this.nAcquisitions,
     this.tclkEvent,
     required this.isPersistent,
+    required this.isBlink,
     required this.dataLimit,
     this.sampleOnEvent,
     this.chXAxis,
@@ -768,6 +784,11 @@ class _$GUsersLastConfigData_usersLastConfiguration
       'isPersistent',
     );
     BuiltValueNullFieldError.checkNotNull(
+      isBlink,
+      r'GUsersLastConfigData_usersLastConfiguration',
+      'isBlink',
+    );
+    BuiltValueNullFieldError.checkNotNull(
       dataLimit,
       r'GUsersLastConfigData_usersLastConfiguration',
       'dataLimit',
@@ -803,6 +824,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
         isPersistent == other.isPersistent &&
+        isBlink == other.isBlink &&
         dataLimit == other.dataLimit &&
         sampleOnEvent == other.sampleOnEvent &&
         chXAxis == other.chXAxis;
@@ -827,6 +849,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, isBlink.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jc(_$hash, sampleOnEvent.hashCode);
     _$hash = $jc(_$hash, chXAxis.hashCode);
@@ -855,6 +878,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
           ..add('isPersistent', isPersistent)
+          ..add('isBlink', isBlink)
           ..add('dataLimit', dataLimit)
           ..add('sampleOnEvent', sampleOnEvent)
           ..add('chXAxis', chXAxis))
@@ -944,6 +968,10 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
 
+  bool? _isBlink;
+  bool? get isBlink => _$this._isBlink;
+  set isBlink(bool? isBlink) => _$this._isBlink = isBlink;
+
   int? _dataLimit;
   int? get dataLimit => _$this._dataLimit;
   set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
@@ -980,6 +1008,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
       _isPersistent = $v.isPersistent;
+      _isBlink = $v.isBlink;
       _dataLimit = $v.dataLimit;
       _sampleOnEvent = $v.sampleOnEvent;
       _chXAxis = $v.chXAxis;
@@ -1049,6 +1078,11 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
               isPersistent,
               r'GUsersLastConfigData_usersLastConfiguration',
               'isPersistent',
+            ),
+            isBlink: BuiltValueNullFieldError.checkNotNull(
+              isBlink,
+              r'GUsersLastConfigData_usersLastConfiguration',
+              'isBlink',
             ),
             dataLimit: BuiltValueNullFieldError.checkNotNull(
               dataLimit,

@@ -440,6 +440,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   bool isScalar;
   bool isOneShot;
   bool isPersistent;
+  bool isBlink;
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
@@ -460,6 +461,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     required this.isScalar,
     required this.isOneShot,
     this.isPersistent = false,
+    this.isBlink = false,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
@@ -1160,6 +1162,7 @@ final class ACSysService implements ACSysServiceAPI {
               isPersistent: e.isPersistent,
               sampleOnEvent: e.sampleOnEvent,
               xAxis: e.chXAxis,
+              isBlink: e.isBlink,
             );
       },
     );
@@ -1225,6 +1228,7 @@ final class ACSysService implements ACSysServiceAPI {
                       isPersistent: e.isPersistent,
                       sampleOnEvent: e.sampleOnEvent,
                       xAxis: e.chXAxis,
+                      isBlink: e.isBlink,
                     ),
                   )
                   .toList(),
