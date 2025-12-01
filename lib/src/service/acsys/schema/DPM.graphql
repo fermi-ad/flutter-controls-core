@@ -11,6 +11,8 @@ Holds the configuration for a plot channel.
 """
 type ChannelSettingSnapshot {
   device: String!
+  yMin: Float
+  yMax: Float
   lineColor: Int
   markerIndex: Int
 }
@@ -20,6 +22,8 @@ Holds the configuration for a plot channel.
 """
 input ChannelSettingSnapshotIn {
   device: String!
+  yMin: Float
+  yMax: Float
   lineColor: Int
   markerIndex: Int
 }
@@ -157,8 +161,6 @@ type PlotConfigurationSnapshot {
   channels: [ChannelSettingSnapshot!]!
   xMin: Float
   xMax: Float
-  yMin: Float
-  yMax: Float
   startTime: Float
   endTime: Float
   timeDelta: Float
@@ -189,8 +191,6 @@ input PlotConfigurationSnapshotIn {
   channels: [ChannelSettingSnapshotIn!]!
   xMin: Float
   xMax: Float
-  yMin: Float
-  yMax: Float
   startTime: Float
   endTime: Float
   timeDelta: Float

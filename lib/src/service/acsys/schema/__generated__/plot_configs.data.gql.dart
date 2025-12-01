@@ -56,8 +56,6 @@ abstract class GPlotConfigsData_plotConfiguration
   BuiltList<GPlotConfigsData_plotConfiguration_channels> get channels;
   double? get xMin;
   double? get xMax;
-  double? get yMin;
-  double? get yMax;
   double? get startTime;
   double? get endTime;
   double? get timeDelta;
@@ -106,6 +104,8 @@ abstract class GPlotConfigsData_plotConfiguration_channels
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   String get device;
+  double? get yMin;
+  double? get yMax;
   int? get lineColor;
   int? get markerIndex;
   static Serializer<GPlotConfigsData_plotConfiguration_channels>

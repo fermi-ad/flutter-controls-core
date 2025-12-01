@@ -169,22 +169,6 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           serializers.serialize(value, specifiedType: const FullType(double)),
         );
     }
-    value = object.yMin;
-    if (value != null) {
-      result
-        ..add('yMin')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
-    value = object.yMax;
-    if (value != null) {
-      result
-        ..add('yMax')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
     value = object.startTime;
     if (value != null) {
       result
@@ -286,22 +270,6 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           break;
         case 'xMax':
           result.xMax =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double?;
-          break;
-        case 'yMin':
-          result.yMin =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double?;
-          break;
-        case 'yMax':
-          result.yMax =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
@@ -424,6 +392,22 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
       ),
     ];
     Object? value;
+    value = object.yMin;
+    if (value != null) {
+      result
+        ..add('yMin')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
+    value = object.yMax;
+    if (value != null) {
+      result
+        ..add('yMax')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     value = object.lineColor;
     if (value != null) {
       result
@@ -468,6 +452,22 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
                     specifiedType: const FullType(String),
                   )!
                   as String;
+          break;
+        case 'yMin':
+          result.yMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
+        case 'yMax':
+          result.yMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'lineColor':
           result.lineColor =
@@ -637,10 +637,6 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final double? xMax;
   @override
-  final double? yMin;
-  @override
-  final double? yMax;
-  @override
   final double? startTime;
   @override
   final double? endTime;
@@ -676,8 +672,6 @@ class _$GPlotConfigsData_plotConfiguration
     required this.channels,
     this.xMin,
     this.xMax,
-    this.yMin,
-    this.yMax,
     this.startTime,
     this.endTime,
     this.timeDelta,
@@ -751,8 +745,6 @@ class _$GPlotConfigsData_plotConfiguration
         channels == other.channels &&
         xMin == other.xMin &&
         xMax == other.xMax &&
-        yMin == other.yMin &&
-        yMax == other.yMax &&
         startTime == other.startTime &&
         endTime == other.endTime &&
         timeDelta == other.timeDelta &&
@@ -775,8 +767,6 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, channels.hashCode);
     _$hash = $jc(_$hash, xMin.hashCode);
     _$hash = $jc(_$hash, xMax.hashCode);
-    _$hash = $jc(_$hash, yMin.hashCode);
-    _$hash = $jc(_$hash, yMax.hashCode);
     _$hash = $jc(_$hash, startTime.hashCode);
     _$hash = $jc(_$hash, endTime.hashCode);
     _$hash = $jc(_$hash, timeDelta.hashCode);
@@ -801,8 +791,6 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('channels', channels)
           ..add('xMin', xMin)
           ..add('xMax', xMax)
-          ..add('yMin', yMin)
-          ..add('yMax', yMax)
           ..add('startTime', startTime)
           ..add('endTime', endTime)
           ..add('timeDelta', timeDelta)
@@ -855,14 +843,6 @@ class GPlotConfigsData_plotConfigurationBuilder
   double? _xMax;
   double? get xMax => _$this._xMax;
   set xMax(double? xMax) => _$this._xMax = xMax;
-
-  double? _yMin;
-  double? get yMin => _$this._yMin;
-  set yMin(double? yMin) => _$this._yMin = yMin;
-
-  double? _yMax;
-  double? get yMax => _$this._yMax;
-  set yMax(double? yMax) => _$this._yMax = yMax;
 
   double? _startTime;
   double? get startTime => _$this._startTime;
@@ -922,8 +902,6 @@ class GPlotConfigsData_plotConfigurationBuilder
       _channels = $v.channels.toBuilder();
       _xMin = $v.xMin;
       _xMax = $v.xMax;
-      _yMin = $v.yMin;
-      _yMax = $v.yMax;
       _startTime = $v.startTime;
       _endTime = $v.endTime;
       _timeDelta = $v.timeDelta;
@@ -976,8 +954,6 @@ class GPlotConfigsData_plotConfigurationBuilder
             channels: channels.build(),
             xMin: xMin,
             xMax: xMax,
-            yMin: yMin,
-            yMax: yMax,
             startTime: startTime,
             endTime: endTime,
             timeDelta: timeDelta,
@@ -1036,6 +1012,10 @@ class _$GPlotConfigsData_plotConfiguration_channels
   @override
   final String device;
   @override
+  final double? yMin;
+  @override
+  final double? yMax;
+  @override
   final int? lineColor;
   @override
   final int? markerIndex;
@@ -1050,6 +1030,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
   _$GPlotConfigsData_plotConfiguration_channels._({
     required this.G__typename,
     required this.device,
+    this.yMin,
+    this.yMax,
     this.lineColor,
     this.markerIndex,
   }) : super._() {
@@ -1080,6 +1062,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
     return other is GPlotConfigsData_plotConfiguration_channels &&
         G__typename == other.G__typename &&
         device == other.device &&
+        yMin == other.yMin &&
+        yMax == other.yMax &&
         lineColor == other.lineColor &&
         markerIndex == other.markerIndex;
   }
@@ -1089,6 +1073,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, device.hashCode);
+    _$hash = $jc(_$hash, yMin.hashCode);
+    _$hash = $jc(_$hash, yMax.hashCode);
     _$hash = $jc(_$hash, lineColor.hashCode);
     _$hash = $jc(_$hash, markerIndex.hashCode);
     _$hash = $jf(_$hash);
@@ -1102,6 +1088,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
           )
           ..add('G__typename', G__typename)
           ..add('device', device)
+          ..add('yMin', yMin)
+          ..add('yMax', yMax)
           ..add('lineColor', lineColor)
           ..add('markerIndex', markerIndex))
         .toString();
@@ -1124,6 +1112,14 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   String? get device => _$this._device;
   set device(String? device) => _$this._device = device;
 
+  double? _yMin;
+  double? get yMin => _$this._yMin;
+  set yMin(double? yMin) => _$this._yMin = yMin;
+
+  double? _yMax;
+  double? get yMax => _$this._yMax;
+  set yMax(double? yMax) => _$this._yMax = yMax;
+
   int? _lineColor;
   int? get lineColor => _$this._lineColor;
   set lineColor(int? lineColor) => _$this._lineColor = lineColor;
@@ -1141,6 +1137,8 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _device = $v.device;
+      _yMin = $v.yMin;
+      _yMax = $v.yMax;
       _lineColor = $v.lineColor;
       _markerIndex = $v.markerIndex;
       _$v = null;
@@ -1178,6 +1176,8 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
             r'GPlotConfigsData_plotConfiguration_channels',
             'device',
           ),
+          yMin: yMin,
+          yMax: yMax,
           lineColor: lineColor,
           markerIndex: markerIndex,
         );
