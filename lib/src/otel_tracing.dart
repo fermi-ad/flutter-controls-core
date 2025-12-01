@@ -81,16 +81,7 @@ void endSpan(otel.Span span) {
   span.end();
 }
 
-/// Starts a span, executes a function, and ends the span automatically.
-///
-/// This is recommended for reliability: the span will always be ended, even if an exception occurs.
-///
-/// Example usage:
-/// ```dart
-/// runWithSpan('myOperation', (span) {
-///   // Do work
-/// });
-/// ```
+
 R runWithSpan<R>(
   String name,
   R Function(otel.Span span) fn, {
@@ -104,14 +95,8 @@ R runWithSpan<R>(
   }
 }
 
-/// Starts a span, executes an async function, and ends the span automatically.
-///
-/// Example usage:
-/// ```dart
-/// await runWithSpanAsync('myAsyncOperation', (span) async {
-///   // Do async work
-/// });
-/// ```
+
+
 Future<R> runWithSpanAsync<R>(
   String name,
   Future<R> Function(otel.Span span) fn, {

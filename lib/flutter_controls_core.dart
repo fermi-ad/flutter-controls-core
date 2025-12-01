@@ -4,10 +4,14 @@ library;
 import "package:flutter/material.dart";
 import 'package:opentelemetry/sdk.dart';
 <<<<<<< HEAD
+<<<<<<< HEAD
 import "src/auth_widget.dart";
 =======
 import "package:flutter_controls_auth/flutter_controls_auth.dart";
 >>>>>>> main
+=======
+import "package:flutter_controls_auth/flutter_controls_auth.dart";
+>>>>>>> 7f6db76f35e2c4894d31d81935583b1d32debe7b
 import 'package:go_router/go_router.dart';
 import 'src/app_scaffold.dart';
 import 'src/otel_tracing.dart';
@@ -15,11 +19,15 @@ import 'src/telemetry_service.dart';
 
 export 'package:opentelemetry/api.dart' show Span;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import 'package:opentelemetry/sdk.dart'
     show SpanExporter;
 =======
 import 'package:opentelemetry/sdk.dart' show SpanExporter;
 >>>>>>> main
+=======
+import 'package:opentelemetry/sdk.dart' show SpanExporter;
+>>>>>>> 7f6db76f35e2c4894d31d81935583b1d32debe7b
 export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
