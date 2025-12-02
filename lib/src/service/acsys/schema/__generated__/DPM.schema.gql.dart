@@ -10,6 +10,32 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/ser
 
 part 'DPM.schema.gql.g.dart';
 
+class GAcquisitionMode extends EnumClass {
+  const GAcquisitionMode._(String name) : super(name);
+
+  static const GAcquisitionMode ONE_SHOT = _$gAcquisitionModeONE_SHOT;
+
+  static const GAcquisitionMode ONE_SHOT_TRIGGERED_ON_EVENT =
+      _$gAcquisitionModeONE_SHOT_TRIGGERED_ON_EVENT;
+
+  static const GAcquisitionMode REPETITIVE_PERIODIC =
+      _$gAcquisitionModeREPETITIVE_PERIODIC;
+
+  static const GAcquisitionMode REPETITIVE_TRIGGERED_ON_EVENT =
+      _$gAcquisitionModeREPETITIVE_TRIGGERED_ON_EVENT;
+
+  static const GAcquisitionMode SAMPLE_ON_EVENT =
+      _$gAcquisitionModeSAMPLE_ON_EVENT;
+
+  static Serializer<GAcquisitionMode> get serializer =>
+      _$gAcquisitionModeSerializer;
+
+  static BuiltSet<GAcquisitionMode> get values => _$gAcquisitionModeValues;
+
+  static GAcquisitionMode valueOf(String name) =>
+      _$gAcquisitionModeValueOf(name);
+}
+
 abstract class GChannelSettingSnapshotIn
     implements
         Built<GChannelSettingSnapshotIn, GChannelSettingSnapshotInBuilder> {
@@ -83,6 +109,7 @@ abstract class GPlotConfigurationSnapshotIn
   bool get isShowLabels;
   bool get isPersistent;
   bool get isBlink;
+  GAcquisitionMode? get acquisitionMode;
   int get dataLimit;
   int? get updateDelay;
   int? get nAcquisitions;
@@ -125,81 +152,6 @@ abstract class GTimeSeriesEntryIn
 
   static GTimeSeriesEntryIn? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(GTimeSeriesEntryIn.serializer, json);
-}
-
-abstract class GXformAvgExpr
-    implements Built<GXformAvgExpr, GXformAvgExprBuilder> {
-  GXformAvgExpr._();
-
-  factory GXformAvgExpr([void Function(GXformAvgExprBuilder b) updates]) =
-      _$GXformAvgExpr;
-
-  GXformExpr get expr;
-  int get n;
-  static Serializer<GXformAvgExpr> get serializer => _$gXformAvgExprSerializer;
-
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GXformAvgExpr.serializer, this)
-          as Map<String, dynamic>);
-
-  static GXformAvgExpr? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GXformAvgExpr.serializer, json);
-}
-
-abstract class GXformDeviceExpr
-    implements Built<GXformDeviceExpr, GXformDeviceExprBuilder> {
-  GXformDeviceExpr._();
-
-  factory GXformDeviceExpr([void Function(GXformDeviceExprBuilder b) updates]) =
-      _$GXformDeviceExpr;
-
-  String get device;
-  static Serializer<GXformDeviceExpr> get serializer =>
-      _$gXformDeviceExprSerializer;
-
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GXformDeviceExpr.serializer, this)
-          as Map<String, dynamic>);
-
-  static GXformDeviceExpr? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GXformDeviceExpr.serializer, json);
-}
-
-abstract class GXformExpr implements Built<GXformExpr, GXformExprBuilder> {
-  GXformExpr._();
-
-  factory GXformExpr([void Function(GXformExprBuilder b) updates]) =
-      _$GXformExpr;
-
-  GXformDeviceExpr? get devEx;
-  GXformAvgExpr? get avgEx;
-  static Serializer<GXformExpr> get serializer => _$gXformExprSerializer;
-
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GXformExpr.serializer, this)
-          as Map<String, dynamic>);
-
-  static GXformExpr? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GXformExpr.serializer, json);
-}
-
-abstract class GXformRequest
-    implements Built<GXformRequest, GXformRequestBuilder> {
-  GXformRequest._();
-
-  factory GXformRequest([void Function(GXformRequestBuilder b) updates]) =
-      _$GXformRequest;
-
-  String get event;
-  GXformExpr get expr;
-  static Serializer<GXformRequest> get serializer => _$gXformRequestSerializer;
-
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GXformRequest.serializer, this)
-          as Map<String, dynamic>);
-
-  static GXformRequest? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GXformRequest.serializer, json);
 }
 
 const Map<String, Set<String>> possibleTypesMap = {
