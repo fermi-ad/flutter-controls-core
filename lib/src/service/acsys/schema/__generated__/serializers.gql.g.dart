@@ -9,6 +9,7 @@ part of 'serializers.gql.dart';
 Serializers _$serializers =
     (new Serializers().toBuilder()
           ..add(FetchPolicy.serializer)
+          ..add(GAcquisitionMode.serializer)
           ..add(GChannelSettingSnapshotIn.serializer)
           ..add(GDeletePlotConfigData.serializer)
           ..add(GDeletePlotConfigData_deletePlotConfiguration.serializer)
@@ -98,10 +99,6 @@ Serializers _$serializers =
           ..add(GUsersLastConfigData_usersLastConfiguration_channels.serializer)
           ..add(GUsersLastConfigReq.serializer)
           ..add(GUsersLastConfigVars.serializer)
-          ..add(GXformAvgExpr.serializer)
-          ..add(GXformDeviceExpr.serializer)
-          ..add(GXformExpr.serializer)
-          ..add(GXformRequest.serializer)
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GChannelSettingSnapshotIn),

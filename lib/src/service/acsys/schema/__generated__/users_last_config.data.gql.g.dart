@@ -221,6 +221,17 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
         ..add('tclkEvent')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.acquisitionMode;
+    if (value != null) {
+      result
+        ..add('acquisitionMode')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GAcquisitionMode),
+          ),
+        );
+    }
     return result;
   }
 
@@ -350,6 +361,14 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
           result.tclkEvent =
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
+          break;
+        case 'acquisitionMode':
+          result.acquisitionMode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GAcquisitionMode),
+                  )
+                  as _i2.GAcquisitionMode?;
           break;
         case 'isPersistent':
           result.isPersistent =
@@ -669,6 +688,8 @@ class _$GUsersLastConfigData_usersLastConfiguration
   @override
   final int? tclkEvent;
   @override
+  final _i2.GAcquisitionMode? acquisitionMode;
+  @override
   final bool isPersistent;
   @override
   final int dataLimit;
@@ -696,6 +717,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.acquisitionMode,
     required this.isPersistent,
     required this.dataLimit,
   }) : super._() {
@@ -769,6 +791,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
+        acquisitionMode == other.acquisitionMode &&
         isPersistent == other.isPersistent &&
         dataLimit == other.dataLimit;
   }
@@ -791,6 +814,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, acquisitionMode.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jf(_$hash);
@@ -817,6 +841,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
+          ..add('acquisitionMode', acquisitionMode)
           ..add('isPersistent', isPersistent)
           ..add('dataLimit', dataLimit))
         .toString();
@@ -901,6 +926,11 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
+  _i2.GAcquisitionMode? _acquisitionMode;
+  _i2.GAcquisitionMode? get acquisitionMode => _$this._acquisitionMode;
+  set acquisitionMode(_i2.GAcquisitionMode? acquisitionMode) =>
+      _$this._acquisitionMode = acquisitionMode;
+
   bool? _isPersistent;
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
@@ -931,6 +961,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _acquisitionMode = $v.acquisitionMode;
       _isPersistent = $v.isPersistent;
       _dataLimit = $v.dataLimit;
       _$v = null;
@@ -995,6 +1026,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            acquisitionMode: acquisitionMode,
             isPersistent: BuiltValueNullFieldError.checkNotNull(
               isPersistent,
               r'GUsersLastConfigData_usersLastConfiguration',

@@ -211,6 +211,17 @@ class _$GPlotConfigsData_plotConfigurationSerializer
         ..add('tclkEvent')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.acquisitionMode;
+    if (value != null) {
+      result
+        ..add('acquisitionMode')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GAcquisitionMode),
+          ),
+        );
+    }
     return result;
   }
 
@@ -338,6 +349,14 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           result.tclkEvent =
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
+          break;
+        case 'acquisitionMode':
+          result.acquisitionMode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GAcquisitionMode),
+                  )
+                  as _i2.GAcquisitionMode?;
           break;
         case 'isPersistent':
           result.isPersistent =
@@ -655,6 +674,8 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final int? tclkEvent;
   @override
+  final _i2.GAcquisitionMode? acquisitionMode;
+  @override
   final bool isPersistent;
   @override
   final int dataLimit;
@@ -681,6 +702,7 @@ class _$GPlotConfigsData_plotConfiguration
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.acquisitionMode,
     required this.isPersistent,
     required this.dataLimit,
   }) : super._() {
@@ -754,6 +776,7 @@ class _$GPlotConfigsData_plotConfiguration
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
+        acquisitionMode == other.acquisitionMode &&
         isPersistent == other.isPersistent &&
         dataLimit == other.dataLimit;
   }
@@ -776,6 +799,7 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, acquisitionMode.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jf(_$hash);
@@ -800,6 +824,7 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
+          ..add('acquisitionMode', acquisitionMode)
           ..add('isPersistent', isPersistent)
           ..add('dataLimit', dataLimit))
         .toString();
@@ -881,6 +906,11 @@ class GPlotConfigsData_plotConfigurationBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
+  _i2.GAcquisitionMode? _acquisitionMode;
+  _i2.GAcquisitionMode? get acquisitionMode => _$this._acquisitionMode;
+  set acquisitionMode(_i2.GAcquisitionMode? acquisitionMode) =>
+      _$this._acquisitionMode = acquisitionMode;
+
   bool? _isPersistent;
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
@@ -911,6 +941,7 @@ class GPlotConfigsData_plotConfigurationBuilder
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _acquisitionMode = $v.acquisitionMode;
       _isPersistent = $v.isPersistent;
       _dataLimit = $v.dataLimit;
       _$v = null;
@@ -975,6 +1006,7 @@ class GPlotConfigsData_plotConfigurationBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            acquisitionMode: acquisitionMode,
             isPersistent: BuiltValueNullFieldError.checkNotNull(
               isPersistent,
               r'GPlotConfigsData_plotConfiguration',

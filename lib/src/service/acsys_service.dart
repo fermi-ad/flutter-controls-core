@@ -63,6 +63,30 @@ class ACSysGraphQLException extends ACSysException {
   const ACSysGraphQLException(String message) : super("GraphQL: $message");
 }
 
+extension on GAcquisitionMode {
+  AcquisitionMode toDart() => switch (this) {
+    GAcquisitionMode.ONE_SHOT => AcquisitionMode.oneShot,
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT =>
+      AcquisitionMode.oneShotTriggeredOnEvent,
+    GAcquisitionMode.REPETITIVE_PERIODIC => AcquisitionMode.repetitivePeriodic,
+    GAcquisitionMode.REPETITIVE_TRIGGERED_ON_EVENT =>
+      AcquisitionMode.repetitiveTriggeredOnEvent,
+    GAcquisitionMode.SAMPLE_ON_EVENT => AcquisitionMode.sampleOnEvent,
+    GAcquisitionMode() => throw UnimplementedError(),
+  };
+}
+
+GAcquisitionMode? fromDart(AcquisitionMode? mode) => switch (mode) {
+  AcquisitionMode.oneShot => GAcquisitionMode.ONE_SHOT,
+  AcquisitionMode.oneShotTriggeredOnEvent =>
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
+  AcquisitionMode.repetitivePeriodic => GAcquisitionMode.REPETITIVE_PERIODIC,
+  AcquisitionMode.repetitiveTriggeredOnEvent =>
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
+  AcquisitionMode.sampleOnEvent => GAcquisitionMode.SAMPLE_ON_EVENT,
+  null => null,
+};
+
 // The classes in this section are used to return results from the queries /
 // subscriptions. The generated classes have unusual names and have nested
 // structure. We'd rather present a simpler result type. This also protects us
@@ -350,7 +374,7 @@ enum AcquisitionMode {
   oneShotTriggeredOnEvent,
   repetitivePeriodic,
   repetitiveTriggeredOnEvent,
-  sampleOnEvent
+  sampleOnEvent,
 }
 
 final class PlotReply {
@@ -414,7 +438,7 @@ final class ChannelSettingSnapshot {
 
 // Only used by the plot ID class to generate IDs for testing.
 
-int _genPlotId = 1_000_000;
+int _genPlotId = 1000000;
 
 /// Wrap an integer with the semantics of a plot configuration ID. An ID
 /// is only an identifer and can't be manipulated as an integer. It only
@@ -531,7 +555,7 @@ abstract interface class ACSysServiceAPI {
     int? nAcquisitions,
     int? triggerEvent,
     int? sampleOnEvent,
-    String? chXAxis
+    String? chXAxis,
   });
 
   /// Saves the plot configuration to the database.
@@ -909,7 +933,7 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   static DateTime fromFloatTs(double ts) =>
-      DateTime.fromMicrosecondsSinceEpoch((ts * 1_000_000.0) as int);
+      DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0) as int);
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
@@ -1065,7 +1089,7 @@ final class ACSysService implements ACSysServiceAPI {
     int? nAcquisitions,
     int? triggerEvent,
     int? sampleOnEvent,
-    String? chXAxis
+    String? chXAxis,
   }) {
     final req = GStartPlotReq(
       (b) =>
@@ -1168,6 +1192,7 @@ final class ACSysService implements ACSysServiceAPI {
               tclkEvent: e.tclkEvent,
               dataLimit: e.dataLimit,
               isPersistent: e.isPersistent,
+              acquisitionMode: e.acquisitionMode?.toDart(),
             );
       },
     );
@@ -1231,6 +1256,7 @@ final class ACSysService implements ACSysServiceAPI {
                       tclkEvent: e.tclkEvent,
                       dataLimit: e.dataLimit,
                       isPersistent: e.isPersistent,
+                      acquisitionMode: e.acquisitionMode?.toDart(),
                     ),
                   )
                   .toList(),
@@ -1279,7 +1305,8 @@ final class ACSysService implements ACSysServiceAPI {
         ..dataLimit = cfg.dataLimit
         ..updateDelay = cfg.updateDelay
         ..nAcquisitions = cfg.nAcquisitions
-        ..tclkEvent = cfg.tclkEvent;
+        ..tclkEvent = cfg.tclkEvent
+        ..acquisitionMode = fromDart(cfg.acquisitionMode);
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({

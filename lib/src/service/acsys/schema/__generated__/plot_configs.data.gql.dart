@@ -5,6 +5,8 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
+    as _i2;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i1;
 
@@ -65,6 +67,7 @@ abstract class GPlotConfigsData_plotConfiguration
   int? get updateDelay;
   int? get nAcquisitions;
   int? get tclkEvent;
+  _i2.GAcquisitionMode? get acquisitionMode;
   bool get isPersistent;
   int get dataLimit;
   static Serializer<GPlotConfigsData_plotConfiguration> get serializer =>

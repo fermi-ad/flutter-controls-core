@@ -4,6 +4,32 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:gql/ast.dart' as _i1;
 
+const schema = _i1.SchemaDefinitionNode(
+  directives: [],
+  operationTypes: [
+    _i1.OperationTypeDefinitionNode(
+      operation: _i1.OperationType.query,
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Query'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.OperationTypeDefinitionNode(
+      operation: _i1.OperationType.mutation,
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Mutation'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.OperationTypeDefinitionNode(
+      operation: _i1.OperationType.subscription,
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Subscription'),
+        isNonNull: false,
+      ),
+    ),
+  ],
+);
 const oneOf = _i1.DirectiveDefinitionNode(
   name: _i1.NameNode(value: 'oneOf'),
   args: [],
@@ -13,6 +39,32 @@ const oneOf = _i1.DirectiveDefinitionNode(
 const Timestamp = _i1.ScalarTypeDefinitionNode(
   name: _i1.NameNode(value: 'Timestamp'),
   directives: [],
+);
+const AcquisitionMode = _i1.EnumTypeDefinitionNode(
+  name: _i1.NameNode(value: 'AcquisitionMode'),
+  directives: [],
+  values: [
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'ONE_SHOT'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'ONE_SHOT_TRIGGERED_ON_EVENT'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'REPETITIVE_PERIODIC'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'REPETITIVE_TRIGGERED_ON_EVENT'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'SAMPLE_ON_EVENT'),
+      directives: [],
+    ),
+  ],
 );
 const ChannelSettingSnapshot = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'ChannelSettingSnapshot'),
@@ -286,31 +338,6 @@ const DevValue = _i1.InputObjectTypeDefinitionNode(
     ),
   ],
 );
-const EventInfo = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'EventInfo'),
-  directives: [],
-  interfaces: [],
-  fields: [
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'timestamp'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Timestamp'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'event'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-    ),
-  ],
-);
 const Mutation = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'Mutation'),
   directives: [],
@@ -575,6 +602,24 @@ const PlotConfigurationSnapshot = _i1.ObjectTypeDefinitionNode(
       ),
     ),
     _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'isBlink'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'acquisitionMode'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'AcquisitionMode'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
       name: _i1.NameNode(value: 'dataLimit'),
       directives: [],
       args: [],
@@ -607,6 +652,24 @@ const PlotConfigurationSnapshot = _i1.ObjectTypeDefinitionNode(
       args: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'sampleOnEvent'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'xAxis'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
         isNonNull: false,
       ),
     ),
@@ -728,6 +791,24 @@ const PlotConfigurationSnapshotIn = _i1.InputObjectTypeDefinitionNode(
       defaultValue: null,
     ),
     _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'isBlink'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Boolean'),
+        isNonNull: true,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'acquisitionMode'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'AcquisitionMode'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
       name: _i1.NameNode(value: 'dataLimit'),
       directives: [],
       type: _i1.NamedTypeNode(
@@ -759,6 +840,24 @@ const PlotConfigurationSnapshotIn = _i1.InputObjectTypeDefinitionNode(
       directives: [],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'sampleOnEvent'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'xAxis'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
         isNonNull: false,
       ),
       defaultValue: null,
@@ -841,15 +940,6 @@ const Query = _i1.ObjectTypeDefinitionNode(
           ),
           defaultValue: null,
         ),
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'when'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Timestamp'),
-            isNonNull: false,
-          ),
-          defaultValue: null,
-        ),
       ],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
@@ -897,70 +987,6 @@ const Query = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'PlotConfigurationSnapshot'),
-        isNonNull: false,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'clinksToUnix'),
-      directives: [
-        _i1.DirectiveNode(
-          name: _i1.NameNode(value: 'deprecated'),
-          arguments: [
-            _i1.ArgumentNode(
-              name: _i1.NameNode(value: 'reason'),
-              value: _i1.StringValueNode(
-                value: 'This is a test API and will be removed.',
-                isBlock: false,
-              ),
-            ),
-          ],
-        ),
-      ],
-      args: [
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'clinks'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
-            isNonNull: true,
-          ),
-          defaultValue: null,
-        ),
-      ],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'unixToClinks'),
-      directives: [
-        _i1.DirectiveNode(
-          name: _i1.NameNode(value: 'deprecated'),
-          arguments: [
-            _i1.ArgumentNode(
-              name: _i1.NameNode(value: 'reason'),
-              value: _i1.StringValueNode(
-                value: 'This is a test API and will be removed.',
-                isBlock: false,
-              ),
-            ),
-          ],
-        ),
-      ],
-      args: [
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'time'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Int'),
-            isNonNull: true,
-          ),
-          defaultValue: null,
-        ),
-      ],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
         isNonNull: false,
       ),
     ),
@@ -1154,7 +1180,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'startTime'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Timestamp'),
+            name: _i1.NameNode(value: 'Float'),
             isNonNull: false,
           ),
           defaultValue: null,
@@ -1163,7 +1189,16 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
           name: _i1.NameNode(value: 'endTime'),
           directives: [],
           type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'Timestamp'),
+            name: _i1.NameNode(value: 'Float'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'validateTimestamp'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Boolean'),
             isNonNull: false,
           ),
           defaultValue: null,
@@ -1262,50 +1297,27 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
           ),
           defaultValue: null,
         ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'sampleOnEvent'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'chXAxis'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: false,
+          ),
+          defaultValue: null,
+        ),
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'PlotReplyData'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'reportEvents'),
-      directives: [],
-      args: [
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'events'),
-          directives: [],
-          type: _i1.ListTypeNode(
-            type: _i1.NamedTypeNode(
-              name: _i1.NameNode(value: 'Int'),
-              isNonNull: true,
-            ),
-            isNonNull: true,
-          ),
-          defaultValue: null,
-        ),
-      ],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'EventInfo'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'calcStream'),
-      directives: [],
-      args: [
-        _i1.InputValueDefinitionNode(
-          name: _i1.NameNode(value: 'config'),
-          directives: [],
-          type: _i1.NamedTypeNode(
-            name: _i1.NameNode(value: 'XformRequest'),
-            isNonNull: true,
-          ),
-          defaultValue: null,
-        ),
-      ],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'XformResult'),
         isNonNull: true,
       ),
     ),
@@ -1346,129 +1358,18 @@ const TextArray = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const XformAvgExpr = _i1.InputObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'XformAvgExpr'),
-  directives: [],
-  fields: [
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'expr'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'XformExpr'),
-        isNonNull: true,
-      ),
-      defaultValue: null,
-    ),
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'n'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Int'),
-        isNonNull: true,
-      ),
-      defaultValue: null,
-    ),
-  ],
-);
-const XformDeviceExpr = _i1.InputObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'XformDeviceExpr'),
-  directives: [],
-  fields: [
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'device'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
-        isNonNull: true,
-      ),
-      defaultValue: null,
-    ),
-  ],
-);
-const XformExpr = _i1.InputObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'XformExpr'),
-  directives: [],
-  fields: [
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'devEx'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'XformDeviceExpr'),
-        isNonNull: false,
-      ),
-      defaultValue: null,
-    ),
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'avgEx'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'XformAvgExpr'),
-        isNonNull: false,
-      ),
-      defaultValue: null,
-    ),
-  ],
-);
-const XformRequest = _i1.InputObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'XformRequest'),
-  directives: [],
-  fields: [
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'event'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
-        isNonNull: true,
-      ),
-      defaultValue: null,
-    ),
-    _i1.InputValueDefinitionNode(
-      name: _i1.NameNode(value: 'expr'),
-      directives: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'XformExpr'),
-        isNonNull: true,
-      ),
-      defaultValue: null,
-    ),
-  ],
-);
-const XformResult = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'XformResult'),
-  directives: [],
-  interfaces: [],
-  fields: [
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'timestamp'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Timestamp'),
-        isNonNull: true,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'result'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Scalar'),
-        isNonNull: true,
-      ),
-    ),
-  ],
-);
 const document = _i1.DocumentNode(
   definitions: [
+    schema,
     oneOf,
     Timestamp,
+    AcquisitionMode,
     ChannelSettingSnapshot,
     ChannelSettingSnapshotIn,
     DataInfo,
     DataReply,
     DataType,
     DevValue,
-    EventInfo,
     Mutation,
     PlotChannelData,
     PlotConfigurationSnapshot,
@@ -1486,10 +1387,5 @@ const document = _i1.DocumentNode(
     Subscription,
     Text,
     TextArray,
-    XformAvgExpr,
-    XformDeviceExpr,
-    XformExpr,
-    XformRequest,
-    XformResult,
   ],
 );
