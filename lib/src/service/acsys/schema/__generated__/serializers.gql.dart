@@ -7,14 +7,11 @@ import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
     show
+        GAcquisitionMode,
         GChannelSettingSnapshotIn,
         GDevValue,
         GPlotConfigurationSnapshotIn,
-        GTimeSeriesEntryIn,
-        GXformAvgExpr,
-        GXformDeviceExpr,
-        GXformExpr,
-        GXformRequest;
+        GTimeSeriesEntryIn;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart'
     show
         GPlotConfigsData,
@@ -119,6 +116,7 @@ final SerializersBuilder _serializersBuilder =
       ..add(GStreamDataData_acceleratorData_data_result.serializer)
       ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
+  GAcquisitionMode,
   GChannelSettingSnapshotIn,
   GDeletePlotConfigData,
   GDeletePlotConfigData_deletePlotConfiguration,
@@ -179,9 +177,5 @@ final SerializersBuilder _serializersBuilder =
   GUsersLastConfigData_usersLastConfiguration_channels,
   GUsersLastConfigReq,
   GUsersLastConfigVars,
-  GXformAvgExpr,
-  GXformDeviceExpr,
-  GXformExpr,
-  GXformRequest,
 ])
 final Serializers serializers = _serializersBuilder.build();

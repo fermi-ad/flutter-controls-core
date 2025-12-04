@@ -63,6 +63,30 @@ class ACSysGraphQLException extends ACSysException {
   const ACSysGraphQLException(String message) : super("GraphQL: $message");
 }
 
+extension on GAcquisitionMode {
+  AcquisitionMode toDart() => switch (this) {
+    GAcquisitionMode.ONE_SHOT => AcquisitionMode.oneShot,
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT =>
+      AcquisitionMode.oneShotTriggeredOnEvent,
+    GAcquisitionMode.REPETITIVE_PERIODIC => AcquisitionMode.repetitivePeriodic,
+    GAcquisitionMode.REPETITIVE_TRIGGERED_ON_EVENT =>
+      AcquisitionMode.repetitiveTriggeredOnEvent,
+    GAcquisitionMode.SAMPLE_ON_EVENT => AcquisitionMode.sampleOnEvent,
+    GAcquisitionMode() => throw UnimplementedError(),
+  };
+}
+
+GAcquisitionMode? fromDart(AcquisitionMode? mode) => switch (mode) {
+  AcquisitionMode.oneShot => GAcquisitionMode.ONE_SHOT,
+  AcquisitionMode.oneShotTriggeredOnEvent =>
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
+  AcquisitionMode.repetitivePeriodic => GAcquisitionMode.REPETITIVE_PERIODIC,
+  AcquisitionMode.repetitiveTriggeredOnEvent =>
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
+  AcquisitionMode.sampleOnEvent => GAcquisitionMode.SAMPLE_ON_EVENT,
+  null => null,
+};
+
 // The classes in this section are used to return results from the queries /
 // subscriptions. The generated classes have unusual names and have nested
 // structure. We'd rather present a simpler result type. This also protects us
@@ -345,6 +369,14 @@ final class AnalogAlarmStatus {
   });
 }
 
+enum AcquisitionMode {
+  oneShot,
+  oneShotTriggeredOnEvent,
+  repetitivePeriodic,
+  repetitiveTriggeredOnEvent,
+  sampleOnEvent,
+}
+
 final class PlotReply {
   final String plotId;
   final double requestTime;
@@ -445,6 +477,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? nAcquisitions;
   int? tclkEvent;
   int? sampleOnEvent;
+  AcquisitionMode? acquisitionMode;
   String? xAxis;
   int dataLimit;
 
@@ -466,6 +499,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.nAcquisitions,
     this.tclkEvent,
     this.sampleOnEvent,
+    this.acquisitionMode,
     this.xAxis,
     required this.dataLimit,
   });
@@ -1163,6 +1197,7 @@ final class ACSysService implements ACSysServiceAPI {
               sampleOnEvent: e.sampleOnEvent,
               xAxis: e.chXAxis,
               isBlink: e.isBlink,
+              acquisitionMode: e.acquisitionMode?.toDart(),
             );
       },
     );
@@ -1229,6 +1264,7 @@ final class ACSysService implements ACSysServiceAPI {
                       sampleOnEvent: e.sampleOnEvent,
                       xAxis: e.chXAxis,
                       isBlink: e.isBlink,
+                      acquisitionMode: e.acquisitionMode?.toDart(),
                     ),
                   )
                   .toList(),
@@ -1279,7 +1315,8 @@ final class ACSysService implements ACSysServiceAPI {
         ..nAcquisitions = cfg.nAcquisitions
         ..tclkEvent = cfg.tclkEvent
         ..sampleOnEvent = cfg.sampleOnEvent
-        ..chXAxis = cfg.xAxis;
+        ..chXAxis = cfg.xAxis
+        ..acquisitionMode = fromDart(cfg.acquisitionMode);
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({
