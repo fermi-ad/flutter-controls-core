@@ -1,15 +1,11 @@
 import 'package:opentelemetry/api.dart' as otel;
 import 'package:opentelemetry/sdk.dart'
-<<<<<<< HEAD
-    show TracerProviderBase, SimpleSpanProcessor, ConsoleExporter, SpanExporter, Resource;
-=======
     show
         TracerProviderBase,
         SimpleSpanProcessor,
         ConsoleExporter,
         SpanExporter,
         Resource;
->>>>>>> main
 import 'package:opentelemetry/api.dart'
     show registerGlobalTracerProvider, globalTracerProvider, Attribute;
 
@@ -44,11 +40,6 @@ Future<void> initOpenTelemetry({
       Attribute.fromString('telemetry.sdk.name', 'opentelemetry'),
       Attribute.fromString('telemetry.sdk.language', 'dart'),
       Attribute.fromString('flutter.version', '3.13.0'),
-<<<<<<< HEAD
-
-
-=======
->>>>>>> main
     ]),
     processors: [SimpleSpanProcessor(exporter ?? ConsoleExporter())],
   );
