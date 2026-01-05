@@ -121,7 +121,7 @@ final class _Drawer extends StatelessWidget {
             ),
             Divider(),
             Text(
-              "© 2025 Fermi Forward Discovery Group, LLC\nAll rights reserved.",
+              "© 2025, 2026 Fermi Forward Discovery\nGroup, LLC, All rights reserved.",
               textAlign: TextAlign.center,
               style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor),
             ),
