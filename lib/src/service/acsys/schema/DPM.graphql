@@ -407,6 +407,11 @@ type Subscription {
     sampleOnEvent: Int
     chXAxis: String
   ): PlotReplyData!
+
+  """
+  Stream alarm messages from ACSys.
+  """
+  alarms: String!
 }
 
 """
