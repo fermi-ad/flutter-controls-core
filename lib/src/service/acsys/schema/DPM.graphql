@@ -409,7 +409,9 @@ type Subscription {
   ): PlotReplyData!
 
   """
-  Stream alarm messages from ACSys.
+  Stream alarms messages from ACSys.
+
+  Takes no arguments and returns a String stream of raw alarms messages. Each string message contains information about all known alarms.
   """
   alarms: String!
 }

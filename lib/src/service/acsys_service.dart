@@ -41,7 +41,7 @@ import 'dart:developer' as dev;
 
 // Declare an exception type that's specific to the ACSys API.
 
-abstract class ACSysException implements Exception {
+class ACSysException implements Exception {
   final String message;
 
   const ACSysException(this.message);
@@ -60,6 +60,10 @@ class ACSysTypeException extends ACSysException {
 
 class ACSysConfigurationException extends ACSysException {
   const ACSysConfigurationException(String message) : super("Config: $message");
+}
+
+class ACSysLinkException extends ACSysException {
+  const ACSysLinkException(String message) : super("Link: $message");
 }
 
 class ACSysGraphQLException extends ACSysException {
@@ -965,6 +969,7 @@ final class ACSysService implements ACSysServiceAPI {
         .expand(_convertMonitor);
   }
 
+  // Returns a stream of alarm information for all known alarms.
   @override
   Stream<Alarms> monitorAlarms() {
     final req = GStreamAlarmsReq(
@@ -982,10 +987,15 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            final data = e.data!;
-            yield Alarms(info: data.alarms);
+            yield Alarms(info: e.data!.alarms);
           } else {
-            throw ACSysGraphQLException(e.graphqlErrors.toString());
+            if (e.linkException != null) {
+              throw e.linkException!;
+            } else if (e.graphqlErrors != null) {
+              throw ACSysGraphQLException(e.graphqlErrors.toString());
+            } else {
+              throw ACSysException("Unknown error");
+            }
           }
         });
   }
