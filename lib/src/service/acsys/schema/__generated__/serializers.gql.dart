@@ -69,6 +69,12 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/sta
     show GStartPlotReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.var.gql.dart'
     show GStartPlotVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart'
+    show GStreamAlarmsData;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.req.gql.dart'
+    show GStreamAlarmsReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart'
+    show GStreamAlarmsVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.data.gql.dart'
     show
         GStreamDataData_acceleratorData_data_result,
@@ -157,6 +163,9 @@ final SerializersBuilder _serializersBuilder =
   GStartPlotData_startPlot_data_channelData_result__base,
   GStartPlotReq,
   GStartPlotVars,
+  GStreamAlarmsData,
+  GStreamAlarmsReq,
+  GStreamAlarmsVars,
   GStreamDataData,
   GStreamDataData_acceleratorData,
   GStreamDataData_acceleratorData_data,

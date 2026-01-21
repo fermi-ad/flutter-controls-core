@@ -7,6 +7,9 @@ import 'package:flutter_controls_core/flutter_controls_core.dart';
 import 'package:built_collection/built_collection.dart';
 
 import 'package:ferry/ferry.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import "package:gql_websocket_link/gql_websocket_link.dart";
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -38,7 +41,7 @@ import 'dart:developer' as dev;
 
 // Declare an exception type that's specific to the ACSys API.
 
-abstract class ACSysException implements Exception {
+class ACSysException implements Exception {
   final String message;
 
   const ACSysException(this.message);
@@ -57,6 +60,10 @@ class ACSysTypeException extends ACSysException {
 
 class ACSysConfigurationException extends ACSysException {
   const ACSysConfigurationException(String message) : super("Config: $message");
+}
+
+class ACSysLinkException extends ACSysException {
+  const ACSysLinkException(String message) : super("Link: $message");
 }
 
 class ACSysGraphQLException extends ACSysException {
@@ -351,6 +358,12 @@ final class SettingStatus {
   const SettingStatus({required this.facilityCode, required this.errorCode});
 }
 
+final class Alarms {
+  final String info;
+
+  const Alarms({required this.info});
+}
+
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
 
 final class AnalogAlarmStatus {
@@ -540,6 +553,10 @@ abstract interface class ACSysServiceAPI {
   /// provides up-to-date `DigitalStatus` values of the devices.
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
+  /// Takes no parameters and returns a stream that provides the current
+  /// alarm info for all alarms.
+  Stream<Alarms> monitorAlarms();
+
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
@@ -609,6 +626,7 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
+  final Client _sAlarms;
 
   static Map<String, String> _buildAuthHeader(String? jwt) =>
       jwt != null ? {"Authorization": "Bearer $jwt"} : {};
@@ -645,6 +663,23 @@ final class ACSysService implements ACSysServiceAPI {
         link: HttpLink(
           "https://acsys-proxy.fnal.gov:8000/devdb",
           defaultHeaders: _buildAuthHeader(jwt),
+        ),
+        cache: Cache(),
+      ),
+      _sAlarms = Client(
+        link: WebSocketLink(
+          null,
+          channelGenerator:
+              () => WebSocketChannel.connect(
+                Uri(
+                  scheme: "wss",
+                  host: "acsys-proxy.fnal.gov",
+                  port: port ?? 8000,
+                  path: "/alarms/s",
+                ),
+                protocols: ["graphql-ws"],
+              ),
+          reconnectInterval: const Duration(seconds: 1),
         ),
         cache: Cache(),
       );
@@ -932,6 +967,37 @@ final class ACSysService implements ACSysServiceAPI {
         )
         .where((event) => !event.loading)
         .expand(_convertMonitor);
+  }
+
+  // Returns a stream of alarm information for all known alarms.
+  @override
+  Stream<Alarms> monitorAlarms() {
+    final req = GStreamAlarmsReq(
+      (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
+    );
+
+    return _sAlarms
+        .request(req)
+        .handleError(
+          (error) => dev.log("error: $error", name: "gql.monitorAlarms"),
+        )
+        // Even if an error occurs, the event could still report a loading state
+        .where((event) => !event.loading || event.hasErrors)
+        .expand((
+          OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
+        ) sync* {
+          if (!e.hasErrors) {
+            yield Alarms(info: e.data!.alarms);
+          } else {
+            if (e.linkException != null) {
+              throw e.linkException!;
+            } else if (e.graphqlErrors != null) {
+              throw ACSysGraphQLException(e.graphqlErrors.toString());
+            } else {
+              throw ACSysException("Unknown error");
+            }
+          }
+        });
   }
 
   static DateTime fromFloatTs(double ts) =>
