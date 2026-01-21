@@ -17,23 +17,28 @@ class _$GStreamAlarmsVarsSerializer
   final String wireName = 'GStreamAlarmsVars';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamAlarmsVars object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamAlarmsVars object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     return <Object?>[];
   }
 
   @override
   GStreamAlarmsVars deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     return new GStreamAlarmsVarsBuilder().build();
   }
 }
 
 class _$GStreamAlarmsVars extends GStreamAlarmsVars {
-  factory _$GStreamAlarmsVars(
-          [void Function(GStreamAlarmsVarsBuilder)? updates]) =>
-      (new GStreamAlarmsVarsBuilder()..update(updates))._build();
+  factory _$GStreamAlarmsVars([
+    void Function(GStreamAlarmsVarsBuilder)? updates,
+  ]) => (new GStreamAlarmsVarsBuilder()..update(updates))._build();
 
   _$GStreamAlarmsVars._() : super._();
 

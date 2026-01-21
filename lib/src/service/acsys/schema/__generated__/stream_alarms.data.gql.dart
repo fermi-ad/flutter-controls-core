@@ -13,9 +13,9 @@ abstract class GStreamAlarmsData
     implements Built<GStreamAlarmsData, GStreamAlarmsDataBuilder> {
   GStreamAlarmsData._();
 
-  factory GStreamAlarmsData(
-          [void Function(GStreamAlarmsDataBuilder b) updates]) =
-      _$GStreamAlarmsData;
+  factory GStreamAlarmsData([
+    void Function(GStreamAlarmsDataBuilder b) updates,
+  ]) = _$GStreamAlarmsData;
 
   static void _initializeBuilder(GStreamAlarmsDataBuilder b) =>
       b..G__typename = 'Subscription';
@@ -26,14 +26,10 @@ abstract class GStreamAlarmsData
   static Serializer<GStreamAlarmsData> get serializer =>
       _$gStreamAlarmsDataSerializer;
 
-  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
-        GStreamAlarmsData.serializer,
-        this,
-      ) as Map<String, dynamic>);
+  Map<String, dynamic> toJson() =>
+      (_i1.serializers.serializeWith(GStreamAlarmsData.serializer, this)
+          as Map<String, dynamic>);
 
   static GStreamAlarmsData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(
-        GStreamAlarmsData.serializer,
-        json,
-      );
+      _i1.serializers.deserializeWith(GStreamAlarmsData.serializer, json);
 }

@@ -17,15 +17,22 @@ class _$GStreamAlarmsDataSerializer
   final String wireName = 'GStreamAlarmsData';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamAlarmsData object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamAlarmsData object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       '__typename',
-      serializers.serialize(object.G__typename,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.G__typename,
+        specifiedType: const FullType(String),
+      ),
       'alarms',
-      serializers.serialize(object.alarms,
-          specifiedType: const FullType(String)),
+      serializers.serialize(
+        object.alarms,
+        specifiedType: const FullType(String),
+      ),
     ];
 
     return result;
@@ -33,8 +40,10 @@ class _$GStreamAlarmsDataSerializer
 
   @override
   GStreamAlarmsData deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStreamAlarmsDataBuilder();
 
     final iterator = serialized.iterator;
@@ -44,12 +53,20 @@ class _$GStreamAlarmsDataSerializer
       final Object? value = iterator.current;
       switch (key) {
         case '__typename':
-          result.G__typename = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.G__typename =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
         case 'alarms':
-          result.alarms = serializers.deserialize(value,
-              specifiedType: const FullType(String))! as String;
+          result.alarms =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -64,16 +81,22 @@ class _$GStreamAlarmsData extends GStreamAlarmsData {
   @override
   final String alarms;
 
-  factory _$GStreamAlarmsData(
-          [void Function(GStreamAlarmsDataBuilder)? updates]) =>
-      (new GStreamAlarmsDataBuilder()..update(updates))._build();
+  factory _$GStreamAlarmsData([
+    void Function(GStreamAlarmsDataBuilder)? updates,
+  ]) => (new GStreamAlarmsDataBuilder()..update(updates))._build();
 
   _$GStreamAlarmsData._({required this.G__typename, required this.alarms})
-      : super._() {
+    : super._() {
     BuiltValueNullFieldError.checkNotNull(
-        G__typename, r'GStreamAlarmsData', 'G__typename');
+      G__typename,
+      r'GStreamAlarmsData',
+      'G__typename',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        alarms, r'GStreamAlarmsData', 'alarms');
+      alarms,
+      r'GStreamAlarmsData',
+      'alarms',
+    );
   }
 
   @override
@@ -151,12 +174,20 @@ class GStreamAlarmsDataBuilder
   GStreamAlarmsData build() => _build();
 
   _$GStreamAlarmsData _build() {
-    final _$result = _$v ??
+    final _$result =
+        _$v ??
         new _$GStreamAlarmsData._(
-            G__typename: BuiltValueNullFieldError.checkNotNull(
-                G__typename, r'GStreamAlarmsData', 'G__typename'),
-            alarms: BuiltValueNullFieldError.checkNotNull(
-                alarms, r'GStreamAlarmsData', 'alarms'));
+          G__typename: BuiltValueNullFieldError.checkNotNull(
+            G__typename,
+            r'GStreamAlarmsData',
+            'G__typename',
+          ),
+          alarms: BuiltValueNullFieldError.checkNotNull(
+            alarms,
+            r'GStreamAlarmsData',
+            'alarms',
+          ),
+        );
     replace(_$result);
     return _$result;
   }

@@ -17,63 +17,90 @@ class _$GStreamAlarmsReqSerializer
   final String wireName = 'GStreamAlarmsReq';
 
   @override
-  Iterable<Object?> serialize(Serializers serializers, GStreamAlarmsReq object,
-      {FullType specifiedType = FullType.unspecified}) {
+  Iterable<Object?> serialize(
+    Serializers serializers,
+    GStreamAlarmsReq object, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = <Object?>[
       'vars',
-      serializers.serialize(object.vars,
-          specifiedType: const FullType(_i3.GStreamAlarmsVars)),
+      serializers.serialize(
+        object.vars,
+        specifiedType: const FullType(_i3.GStreamAlarmsVars),
+      ),
       'operation',
-      serializers.serialize(object.operation,
-          specifiedType: const FullType(_i4.Operation)),
+      serializers.serialize(
+        object.operation,
+        specifiedType: const FullType(_i4.Operation),
+      ),
       'executeOnListen',
-      serializers.serialize(object.executeOnListen,
-          specifiedType: const FullType(bool)),
+      serializers.serialize(
+        object.executeOnListen,
+        specifiedType: const FullType(bool),
+      ),
     ];
     Object? value;
     value = object.requestId;
     if (value != null) {
       result
         ..add('requestId')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.optimisticResponse;
     if (value != null) {
       result
         ..add('optimisticResponse')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i2.GStreamAlarmsData)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GStreamAlarmsData),
+          ),
+        );
     }
     value = object.updateCacheHandlerKey;
     if (value != null) {
       result
         ..add('updateCacheHandlerKey')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(String)));
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
     }
     value = object.updateCacheHandlerContext;
     if (value != null) {
       result
         ..add('updateCacheHandlerContext')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(
-                Map, const [const FullType(String), const FullType(dynamic)])));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(Map, const [
+              const FullType(String),
+              const FullType(dynamic),
+            ]),
+          ),
+        );
     }
     value = object.fetchPolicy;
     if (value != null) {
       result
         ..add('fetchPolicy')
-        ..add(serializers.serialize(value,
-            specifiedType: const FullType(_i1.FetchPolicy)));
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i1.FetchPolicy),
+          ),
+        );
     }
     return result;
   }
 
   @override
   GStreamAlarmsReq deserialize(
-      Serializers serializers, Iterable<Object?> serialized,
-      {FullType specifiedType = FullType.unspecified}) {
+    Serializers serializers,
+    Iterable<Object?> serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) {
     final result = new GStreamAlarmsReqBuilder();
 
     final iterator = serialized.iterator;
@@ -83,42 +110,73 @@ class _$GStreamAlarmsReqSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'vars':
-          result.vars.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i3.GStreamAlarmsVars))!
-              as _i3.GStreamAlarmsVars);
+          result.vars.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i3.GStreamAlarmsVars),
+                )!
+                as _i3.GStreamAlarmsVars,
+          );
           break;
         case 'operation':
-          result.operation = serializers.deserialize(value,
-              specifiedType: const FullType(_i4.Operation))! as _i4.Operation;
+          result.operation =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i4.Operation),
+                  )!
+                  as _i4.Operation;
           break;
         case 'requestId':
-          result.requestId = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.requestId =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'optimisticResponse':
-          result.optimisticResponse.replace(serializers.deserialize(value,
-                  specifiedType: const FullType(_i2.GStreamAlarmsData))!
-              as _i2.GStreamAlarmsData);
+          result.optimisticResponse.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GStreamAlarmsData),
+                )!
+                as _i2.GStreamAlarmsData,
+          );
           break;
         case 'updateCacheHandlerKey':
-          result.updateCacheHandlerKey = serializers.deserialize(value,
-              specifiedType: const FullType(String)) as String?;
+          result.updateCacheHandlerKey =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'updateCacheHandlerContext':
-          result.updateCacheHandlerContext = serializers.deserialize(value,
-              specifiedType: const FullType(Map, const [
-                const FullType(String),
-                const FullType(dynamic)
-              ])) as Map<String, dynamic>?;
+          result.updateCacheHandlerContext =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(Map, const [
+                      const FullType(String),
+                      const FullType(dynamic),
+                    ]),
+                  )
+                  as Map<String, dynamic>?;
           break;
         case 'fetchPolicy':
-          result.fetchPolicy = serializers.deserialize(value,
-                  specifiedType: const FullType(_i1.FetchPolicy))
-              as _i1.FetchPolicy?;
+          result.fetchPolicy =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i1.FetchPolicy),
+                  )
+                  as _i1.FetchPolicy?;
           break;
         case 'executeOnListen':
-          result.executeOnListen = serializers.deserialize(value,
-              specifiedType: const FullType(bool))! as bool;
+          result.executeOnListen =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
           break;
       }
     }
@@ -136,7 +194,10 @@ class _$GStreamAlarmsReq extends GStreamAlarmsReq {
   final String? requestId;
   @override
   final _i2.GStreamAlarmsData? Function(
-      _i2.GStreamAlarmsData?, _i2.GStreamAlarmsData?)? updateResult;
+    _i2.GStreamAlarmsData?,
+    _i2.GStreamAlarmsData?,
+  )?
+  updateResult;
   @override
   final _i2.GStreamAlarmsData? optimisticResponse;
   @override
@@ -150,27 +211,33 @@ class _$GStreamAlarmsReq extends GStreamAlarmsReq {
   @override
   final _i4.Context? context;
 
-  factory _$GStreamAlarmsReq(
-          [void Function(GStreamAlarmsReqBuilder)? updates]) =>
-      (new GStreamAlarmsReqBuilder()..update(updates))._build();
+  factory _$GStreamAlarmsReq([
+    void Function(GStreamAlarmsReqBuilder)? updates,
+  ]) => (new GStreamAlarmsReqBuilder()..update(updates))._build();
 
-  _$GStreamAlarmsReq._(
-      {required this.vars,
-      required this.operation,
-      this.requestId,
-      this.updateResult,
-      this.optimisticResponse,
-      this.updateCacheHandlerKey,
-      this.updateCacheHandlerContext,
-      this.fetchPolicy,
-      required this.executeOnListen,
-      this.context})
-      : super._() {
+  _$GStreamAlarmsReq._({
+    required this.vars,
+    required this.operation,
+    this.requestId,
+    this.updateResult,
+    this.optimisticResponse,
+    this.updateCacheHandlerKey,
+    this.updateCacheHandlerContext,
+    this.fetchPolicy,
+    required this.executeOnListen,
+    this.context,
+  }) : super._() {
     BuiltValueNullFieldError.checkNotNull(vars, r'GStreamAlarmsReq', 'vars');
     BuiltValueNullFieldError.checkNotNull(
-        operation, r'GStreamAlarmsReq', 'operation');
+      operation,
+      r'GStreamAlarmsReq',
+      'operation',
+    );
     BuiltValueNullFieldError.checkNotNull(
-        executeOnListen, r'GStreamAlarmsReq', 'executeOnListen');
+      executeOnListen,
+      r'GStreamAlarmsReq',
+      'executeOnListen',
+    );
   }
 
   @override
@@ -250,15 +317,22 @@ class GStreamAlarmsReqBuilder
   set requestId(String? requestId) => _$this._requestId = requestId;
 
   _i2.GStreamAlarmsData? Function(
-      _i2.GStreamAlarmsData?, _i2.GStreamAlarmsData?)? _updateResult;
+    _i2.GStreamAlarmsData?,
+    _i2.GStreamAlarmsData?,
+  )?
+  _updateResult;
   _i2.GStreamAlarmsData? Function(
-          _i2.GStreamAlarmsData?, _i2.GStreamAlarmsData?)?
-      get updateResult => _$this._updateResult;
+    _i2.GStreamAlarmsData?,
+    _i2.GStreamAlarmsData?,
+  )?
+  get updateResult => _$this._updateResult;
   set updateResult(
-          _i2.GStreamAlarmsData? Function(
-                  _i2.GStreamAlarmsData?, _i2.GStreamAlarmsData?)?
-              updateResult) =>
-      _$this._updateResult = updateResult;
+    _i2.GStreamAlarmsData? Function(
+      _i2.GStreamAlarmsData?,
+      _i2.GStreamAlarmsData?,
+    )?
+    updateResult,
+  ) => _$this._updateResult = updateResult;
 
   _i2.GStreamAlarmsDataBuilder? _optimisticResponse;
   _i2.GStreamAlarmsDataBuilder get optimisticResponse =>
@@ -275,8 +349,8 @@ class GStreamAlarmsReqBuilder
   Map<String, dynamic>? get updateCacheHandlerContext =>
       _$this._updateCacheHandlerContext;
   set updateCacheHandlerContext(
-          Map<String, dynamic>? updateCacheHandlerContext) =>
-      _$this._updateCacheHandlerContext = updateCacheHandlerContext;
+    Map<String, dynamic>? updateCacheHandlerContext,
+  ) => _$this._updateCacheHandlerContext = updateCacheHandlerContext;
 
   _i1.FetchPolicy? _fetchPolicy;
   _i1.FetchPolicy? get fetchPolicy => _$this._fetchPolicy;
@@ -331,20 +405,28 @@ class GStreamAlarmsReqBuilder
   _$GStreamAlarmsReq _build() {
     _$GStreamAlarmsReq _$result;
     try {
-      _$result = _$v ??
+      _$result =
+          _$v ??
           new _$GStreamAlarmsReq._(
-              vars: vars.build(),
-              operation: BuiltValueNullFieldError.checkNotNull(
-                  operation, r'GStreamAlarmsReq', 'operation'),
-              requestId: requestId,
-              updateResult: updateResult,
-              optimisticResponse: _optimisticResponse?.build(),
-              updateCacheHandlerKey: updateCacheHandlerKey,
-              updateCacheHandlerContext: updateCacheHandlerContext,
-              fetchPolicy: fetchPolicy,
-              executeOnListen: BuiltValueNullFieldError.checkNotNull(
-                  executeOnListen, r'GStreamAlarmsReq', 'executeOnListen'),
-              context: context);
+            vars: vars.build(),
+            operation: BuiltValueNullFieldError.checkNotNull(
+              operation,
+              r'GStreamAlarmsReq',
+              'operation',
+            ),
+            requestId: requestId,
+            updateResult: updateResult,
+            optimisticResponse: _optimisticResponse?.build(),
+            updateCacheHandlerKey: updateCacheHandlerKey,
+            updateCacheHandlerContext: updateCacheHandlerContext,
+            fetchPolicy: fetchPolicy,
+            executeOnListen: BuiltValueNullFieldError.checkNotNull(
+              executeOnListen,
+              r'GStreamAlarmsReq',
+              'executeOnListen',
+            ),
+            context: context,
+          );
     } catch (_) {
       late String _$failedField;
       try {
@@ -355,7 +437,10 @@ class GStreamAlarmsReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw new BuiltValueNestedFieldError(
-            r'GStreamAlarmsReq', _$failedField, e.toString());
+          r'GStreamAlarmsReq',
+          _$failedField,
+          e.toString(),
+        );
       }
       rethrow;
     }
