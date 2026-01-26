@@ -21,6 +21,12 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plo
     show GPlotConfigsReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.var.gql.dart'
     show GPlotConfigsVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.data.gql.dart'
+    show GAlarmsSnapshotData, GAlarmsSnapshotData_alarmsSnapshot;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.req.gql.dart'
+    show GAlarmsSnapshotReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.var.gql.dart'
+    show GAlarmsSnapshotVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_devices.data.gql.dart'
     show
         GReadDevicesData_acceleratorData_data_result,
@@ -70,7 +76,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/sta
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.var.gql.dart'
     show GStartPlotVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart'
-    show GStreamAlarmsData;
+    show GStreamAlarmsData, GStreamAlarmsData_alarms;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.req.gql.dart'
     show GStreamAlarmsReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart'
@@ -123,6 +129,10 @@ final SerializersBuilder _serializersBuilder =
       ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GAcquisitionMode,
+  GAlarmsSnapshotData,
+  GAlarmsSnapshotData_alarmsSnapshot,
+  GAlarmsSnapshotReq,
+  GAlarmsSnapshotVars,
   GChannelSettingSnapshotIn,
   GDeletePlotConfigData,
   GDeletePlotConfigData_deletePlotConfiguration,
@@ -164,6 +174,7 @@ final SerializersBuilder _serializersBuilder =
   GStartPlotReq,
   GStartPlotVars,
   GStreamAlarmsData,
+  GStreamAlarmsData_alarms,
   GStreamAlarmsReq,
   GStreamAlarmsVars,
   GStreamDataData,

@@ -285,6 +285,17 @@ final class Reading {
   });
 }
 
+class Message<T> {
+  final String? key;
+  final T value;
+
+  const Message({this.key, required this.value});
+}
+
+final class AlarmsMessage extends Message<String> {
+  const AlarmsMessage({super.key, required super.value});
+}
+
 /// Enumeration representing console colors.
 ///
 /// These colors are the set of 8 colors used in the legacy console environment.
@@ -359,9 +370,10 @@ final class SettingStatus {
 }
 
 final class Alarms {
+  final String? key;
   final String info;
 
-  const Alarms({required this.info});
+  const Alarms({this.key, required this.info});
 }
 
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
@@ -987,7 +999,7 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            yield Alarms(info: e.data!.alarms);
+            yield Alarms(key: e.data!.alarms.key, info: e.data!.alarms.value);
           } else {
             if (e.linkException != null) {
               throw e.linkException!;

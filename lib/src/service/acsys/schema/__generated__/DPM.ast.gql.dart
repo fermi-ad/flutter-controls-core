@@ -990,6 +990,15 @@ const Query = _i1.ObjectTypeDefinitionNode(
         isNonNull: false,
       ),
     ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'alarmsSnapshot'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Message'),
+        isNonNull: true,
+      ),
+    ),
   ],
 );
 const Raw = _i1.ObjectTypeDefinitionNode(
@@ -1326,7 +1335,7 @@ const Subscription = _i1.ObjectTypeDefinitionNode(
       directives: [],
       args: [],
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
+        name: _i1.NameNode(value: 'Message'),
         isNonNull: true,
       ),
     ),
@@ -1367,6 +1376,31 @@ const TextArray = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
+const Message = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'Message'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'key'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'value'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
 const document = _i1.DocumentNode(
   definitions: [
     schema,
@@ -1396,5 +1430,6 @@ const document = _i1.DocumentNode(
     Subscription,
     Text,
     TextArray,
+    Message,
   ],
 );
