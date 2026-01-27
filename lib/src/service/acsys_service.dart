@@ -416,6 +416,7 @@ final class PlotChannelData {
   final String name;
   final String units;
   final String rate;
+  final String? statusString;
   final int status;
   final List<PlotPoint> points;
 
@@ -423,6 +424,7 @@ final class PlotChannelData {
     required this.name,
     required this.units,
     required this.rate,
+    this.statusString,
     this.status = 0,
     this.points = const [],
   });
