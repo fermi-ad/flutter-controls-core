@@ -109,6 +109,12 @@ Serializers _$serializers =
           ..add(GUsersLastConfigVars.serializer)
           ..addBuilderFactory(
             const FullType(BuiltList, const [
+              const FullType(GAlarmsSnapshotData_alarmsSnapshot),
+            ]),
+            () => new ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
               const FullType(GChannelSettingSnapshotIn),
             ]),
             () => new ListBuilder<GChannelSettingSnapshotIn>(),

@@ -37,7 +37,9 @@ class _$GAlarmsSnapshotDataSerializer
       'alarmsSnapshot',
       serializers.serialize(
         object.alarmsSnapshot,
-        specifiedType: const FullType(GAlarmsSnapshotData_alarmsSnapshot),
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GAlarmsSnapshotData_alarmsSnapshot),
+        ]),
       ),
     ];
 
@@ -70,11 +72,11 @@ class _$GAlarmsSnapshotDataSerializer
           result.alarmsSnapshot.replace(
             serializers.deserialize(
                   value,
-                  specifiedType: const FullType(
-                    GAlarmsSnapshotData_alarmsSnapshot,
-                  ),
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GAlarmsSnapshotData_alarmsSnapshot),
+                  ]),
                 )!
-                as GAlarmsSnapshotData_alarmsSnapshot,
+                as BuiltList<Object?>,
           );
           break;
       }
@@ -173,7 +175,7 @@ class _$GAlarmsSnapshotData extends GAlarmsSnapshotData {
   @override
   final String G__typename;
   @override
-  final GAlarmsSnapshotData_alarmsSnapshot alarmsSnapshot;
+  final BuiltList<GAlarmsSnapshotData_alarmsSnapshot> alarmsSnapshot;
 
   factory _$GAlarmsSnapshotData([
     void Function(GAlarmsSnapshotDataBuilder)? updates,
@@ -238,12 +240,12 @@ class GAlarmsSnapshotDataBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GAlarmsSnapshotData_alarmsSnapshotBuilder? _alarmsSnapshot;
-  GAlarmsSnapshotData_alarmsSnapshotBuilder get alarmsSnapshot =>
+  ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>? _alarmsSnapshot;
+  ListBuilder<GAlarmsSnapshotData_alarmsSnapshot> get alarmsSnapshot =>
       _$this._alarmsSnapshot ??=
-          new GAlarmsSnapshotData_alarmsSnapshotBuilder();
+          new ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>();
   set alarmsSnapshot(
-    GAlarmsSnapshotData_alarmsSnapshotBuilder? alarmsSnapshot,
+    ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>? alarmsSnapshot,
   ) => _$this._alarmsSnapshot = alarmsSnapshot;
 
   GAlarmsSnapshotDataBuilder() {

@@ -1,0 +1,450 @@
+// Models for Phoebus Alarm message value formats (value-only parsing).
+//
+// Based on "Message Formats" section in:
+// https://github.com/ControlSystemStudio/phoebus/blob/master/app/alarm/Readme.md
+//
+// Notes:
+// - Config deletions use a "tombstone" message where the value is JSON null.
+// - Before a tombstone, a "config delete message" may be sent with
+//   {"user","host","delete"}.
+//
+// This file uses only dart:core and manual (de)serialization.
+
+import 'dart:convert';
+
+// Key parsing intentionally omitted; this file only handles value JSON.
+
+/// Common title/details entry used by guidance/displays/commands/actions.
+class AlarmDocRef {
+  final String title;
+  final String details;
+
+  const AlarmDocRef({required this.title, required this.details});
+
+  factory AlarmDocRef.fromJson(Map<String, dynamic> json) {
+    return AlarmDocRef(
+      title: json['title'] as String,
+      details: json['details'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'title': title, 'details': details};
+}
+
+/// Timestamp format used in state leaf messages.
+class AlarmTime {
+  final int seconds;
+  final int nano;
+
+  const AlarmTime({required this.seconds, required this.nano});
+
+  factory AlarmTime.fromJson(Map<String, dynamic> json) {
+    return AlarmTime(
+      seconds: (json['seconds'] as num).toInt(),
+      nano: (json['nano'] as num).toInt(),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {'seconds': seconds, 'nano': nano};
+}
+
+/// -------------------- VALUE-ONLY PARSING --------------------
+
+/// Uses heuristics to choose the most appropriate payload type.
+sealed class AlarmValueMessage {
+  const AlarmValueMessage();
+}
+
+/// Parsed config value (payload can be null for tombstone).
+final class AlarmConfigValue extends AlarmValueMessage {
+  final AlarmConfigPayload? payload;
+
+  const AlarmConfigValue({required this.payload});
+}
+
+/// Parsed state value.
+final class AlarmStateValue extends AlarmValueMessage {
+  final AlarmStatePayload payload;
+
+  const AlarmStateValue({required this.payload});
+}
+
+/// Parsed command value.
+final class AlarmCommandValue extends AlarmValueMessage {
+  final AlarmCommandPayload payload;
+
+  const AlarmCommandValue({required this.payload});
+}
+
+/// Parsed talk value.
+final class AlarmTalkValue extends AlarmValueMessage {
+  final AlarmTalkPayload payload;
+
+  const AlarmTalkValue({required this.payload});
+}
+
+/// Unknown or unrecognized value shape.
+final class AlarmUnknownValue extends AlarmValueMessage {
+  final Object? value;
+
+  const AlarmUnknownValue({required this.value});
+}
+
+/// Parse a raw JSON string into the most appropriate alarm value type.
+/// Parse alarm value from a decoded JSON map.
+AlarmValueMessage parseAlarmValueJson(Map<String, dynamic>? decoded) {
+  if (decoded == null) {
+    // Tombstone value is only defined for config messages, so return config.
+    return const AlarmConfigValue(payload: null);
+  }
+
+  // Command payload: user/host/command
+  if (decoded.containsKey('command') &&
+      decoded.containsKey('user') &&
+      decoded.containsKey('host')) {
+    return AlarmCommandValue(payload: AlarmCommandPayload.fromJson(decoded));
+  }
+
+  // Talk payload: standout + talk/message
+  if (decoded.containsKey('standout') &&
+      (decoded.containsKey('talk') || decoded.containsKey('message'))) {
+    return AlarmTalkValue(payload: AlarmTalkPayload.fromJson(decoded));
+  }
+
+  // State payload: severity is always present in state updates.
+  if (decoded.containsKey('severity')) {
+    return AlarmStateValue(payload: AlarmStatePayload.fromJson(decoded));
+  }
+
+  // Config payload: user/host required (node/leaf/delete)
+  if (decoded.containsKey('user') && decoded.containsKey('host')) {
+    return AlarmConfigValue(payload: AlarmConfigPayload.fromJson(decoded));
+  }
+
+  return AlarmUnknownValue(value: decoded);
+}
+
+/// Parse alarm value from a JSON string.
+AlarmValueMessage parseAlarmValueJsonString(String raw) {
+  final dynamic decoded = jsonDecode(raw);
+  return parseAlarmValueJson(decoded as Map<String, dynamic>?);
+}
+
+/// -------------------- CONFIG --------------------
+
+sealed class AlarmConfigPayload {
+  const AlarmConfigPayload();
+
+  Map<String, dynamic> toJson();
+
+  /// Best-effort decode:
+  /// - if {"delete": "..."} present => delete-info message
+  /// - else if "description" present => leaf config
+  /// - else => node config
+  factory AlarmConfigPayload.fromJson(Map<String, dynamic> json) {
+    if (json.containsKey('delete')) {
+      return AlarmConfigDeleteInfo.fromJson(json);
+    }
+    if (json.containsKey('description')) {
+      return AlarmLeafConfig.fromJson(json);
+    }
+    return AlarmNodeConfig.fromJson(json);
+  }
+}
+
+/// Config for an alarm tree leaf (PV).
+class AlarmLeafConfig extends AlarmConfigPayload {
+  final String user;
+  final String host;
+
+  final String description;
+
+  final int? delay;
+  final int? count;
+  final String? filter;
+
+  final List<AlarmDocRef>? guidance;
+  final List<AlarmDocRef>? displays;
+  final List<AlarmDocRef>? commands;
+  final List<AlarmDocRef>? actions;
+
+  const AlarmLeafConfig({
+    required this.user,
+    required this.host,
+    required this.description,
+    this.delay,
+    this.count,
+    this.filter,
+    this.guidance,
+    this.displays,
+    this.commands,
+    this.actions,
+  });
+
+  factory AlarmLeafConfig.fromJson(Map<String, dynamic> json) {
+    return AlarmLeafConfig(
+      user: json['user'] as String,
+      host: json['host'] as String,
+      description: json['description'] as String,
+      delay: (json['delay'] as num?)?.toInt(),
+      count: (json['count'] as num?)?.toInt(),
+      filter: json['filter'] as String?,
+      guidance: _docListOrNull(json['guidance']),
+      displays: _docListOrNull(json['displays']),
+      commands: _docListOrNull(json['commands']),
+      actions: _docListOrNull(json['actions']),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'user': user,
+    'host': host,
+    'description': description,
+    if (delay != null) 'delay': delay,
+    if (count != null) 'count': count,
+    if (filter != null) 'filter': filter,
+    if (guidance != null) 'guidance': guidance!.map((e) => e.toJson()).toList(),
+    if (displays != null) 'displays': displays!.map((e) => e.toJson()).toList(),
+    if (commands != null) 'commands': commands!.map((e) => e.toJson()).toList(),
+    if (actions != null) 'actions': actions!.map((e) => e.toJson()).toList(),
+  };
+}
+
+/// Config for an alarm tree node (folder/section).
+class AlarmNodeConfig extends AlarmConfigPayload {
+  final String user;
+  final String host;
+
+  final List<AlarmDocRef>? guidance;
+  final List<AlarmDocRef>? displays;
+  final List<AlarmDocRef>? commands;
+  final List<AlarmDocRef>? actions;
+
+  const AlarmNodeConfig({
+    required this.user,
+    required this.host,
+    this.guidance,
+    this.displays,
+    this.commands,
+    this.actions,
+  });
+
+  factory AlarmNodeConfig.fromJson(Map<String, dynamic> json) {
+    return AlarmNodeConfig(
+      user: json['user'] as String,
+      host: json['host'] as String,
+      guidance: _docListOrNull(json['guidance']),
+      displays: _docListOrNull(json['displays']),
+      commands: _docListOrNull(json['commands']),
+      actions: _docListOrNull(json['actions']),
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'user': user,
+    'host': host,
+    if (guidance != null) 'guidance': guidance!.map((e) => e.toJson()).toList(),
+    if (displays != null) 'displays': displays!.map((e) => e.toJson()).toList(),
+    if (commands != null) 'commands': commands!.map((e) => e.toJson()).toList(),
+    if (actions != null) 'actions': actions!.map((e) => e.toJson()).toList(),
+  };
+}
+
+/// Config delete info message sent before tombstone null.
+class AlarmConfigDeleteInfo extends AlarmConfigPayload {
+  final String user;
+  final String host;
+  final String delete;
+
+  const AlarmConfigDeleteInfo({
+    required this.user,
+    required this.host,
+    required this.delete,
+  });
+
+  factory AlarmConfigDeleteInfo.fromJson(Map<String, dynamic> json) {
+    return AlarmConfigDeleteInfo(
+      user: json['user'] as String,
+      host: json['host'] as String,
+      delete: json['delete'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'user': user,
+    'host': host,
+    'delete': delete,
+  };
+}
+
+/// -------------------- STATE --------------------
+
+sealed class AlarmStatePayload {
+  const AlarmStatePayload();
+
+  /// Best-effort decode:
+  /// - if contains typical leaf fields => leaf
+  /// - else => node
+  factory AlarmStatePayload.fromJson(Map<String, dynamic> json) {
+    // Leaf state in docs includes message/value/time/current_* etc.
+    final hasLeafHints =
+        json.containsKey('message') ||
+        json.containsKey('value') ||
+        json.containsKey('time') ||
+        json.containsKey('current_severity') ||
+        json.containsKey('current_message') ||
+        json.containsKey('latch');
+    return hasLeafHints
+        ? AlarmLeafState.fromJson(json)
+        : AlarmNodeState.fromJson(json);
+  }
+}
+
+/// State for an alarm tree leaf (PV).
+class AlarmLeafState extends AlarmStatePayload {
+  /// Always present in state updates.
+  final String severity;
+
+  final bool? latch;
+  final String? message;
+  final String? value;
+  final AlarmTime? time;
+
+  final String? currentSeverity; // "current_severity"
+  final String? currentMessage; // "current_message"
+
+  /// Optional mode, present as "maintenance" (otherwise omitted).
+  final String? mode;
+
+  const AlarmLeafState({
+    required this.severity,
+    this.latch,
+    this.message,
+    this.value,
+    this.time,
+    this.currentSeverity,
+    this.currentMessage,
+    this.mode,
+  });
+
+  factory AlarmLeafState.fromJson(Map<String, dynamic> json) {
+    return AlarmLeafState(
+      severity: json['severity'] as String,
+      latch: json['latch'] as bool?,
+      message: json['message'] as String?,
+      value: json['value'] as String?,
+      time:
+          (json['time'] is Map<String, dynamic>)
+              ? AlarmTime.fromJson(json['time'] as Map<String, dynamic>)
+              : null,
+      currentSeverity: json['current_severity'] as String?,
+      currentMessage: json['current_message'] as String?,
+      mode: json['mode'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'severity': severity,
+    if (latch != null) 'latch': latch,
+    if (message != null) 'message': message,
+    if (value != null) 'value': value,
+    if (time != null) 'time': time!.toJson(),
+    if (currentSeverity != null) 'current_severity': currentSeverity,
+    if (currentMessage != null) 'current_message': currentMessage,
+    if (mode != null) 'mode': mode,
+  };
+}
+
+/// State for an alarm tree node.
+class AlarmNodeState extends AlarmStatePayload {
+  final String severity;
+  final String? mode;
+
+  const AlarmNodeState({required this.severity, this.mode});
+
+  factory AlarmNodeState.fromJson(Map<String, dynamic> json) {
+    return AlarmNodeState(
+      severity: json['severity'] as String,
+      mode: json['mode'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'severity': severity,
+    if (mode != null) 'mode': mode,
+  };
+}
+
+/// -------------------- COMMAND --------------------
+
+class AlarmCommandPayload {
+  final String user;
+  final String host;
+  final String command;
+
+  const AlarmCommandPayload({
+    required this.user,
+    required this.host,
+    required this.command,
+  });
+
+  factory AlarmCommandPayload.fromJson(Map<String, dynamic> json) {
+    return AlarmCommandPayload(
+      user: json['user'] as String,
+      host: json['host'] as String,
+      command: json['command'] as String,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+    'user': user,
+    'host': host,
+    'command': command,
+  };
+}
+
+/// -------------------- TALK --------------------
+
+class AlarmTalkPayload {
+  final String severity;
+  final bool standout;
+
+  /// Doc says JSON uses "talk", example shows "message".
+  /// To be tolerant, we accept either on decode and emit "talk" by default.
+  final String talk;
+
+  const AlarmTalkPayload({
+    required this.severity,
+    required this.standout,
+    required this.talk,
+  });
+
+  factory AlarmTalkPayload.fromJson(Map<String, dynamic> json) {
+    final talk = (json['talk'] ?? json['message']) as String?;
+    if (talk == null) {
+      throw FormatException('Talk payload missing "talk" (or "message") field');
+    }
+    return AlarmTalkPayload(
+      severity: json['severity'] as String,
+      standout: json['standout'] as bool,
+      talk: talk,
+    );
+  }
+
+  Map<String, dynamic> toJson({bool useMessageField = false}) => {
+    'severity': severity,
+    'standout': standout,
+    (useMessageField ? 'message' : 'talk'): talk,
+  };
+}
+
+/// Helper: decode list-of-docrefs or null.
+List<AlarmDocRef>? _docListOrNull(Object? value) {
+  if (value == null) return null;
+  if (value is! List) throw FormatException('Expected a list for doc refs');
+  return value
+      .map((e) => AlarmDocRef.fromJson(e as Map<String, dynamic>))
+      .toList(growable: false);
+}
+
+// Key-based message wrappers are intentionally omitted.

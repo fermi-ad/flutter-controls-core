@@ -30,6 +30,10 @@ const schema = _i1.SchemaDefinitionNode(
     ),
   ],
 );
+const JSON = _i1.ScalarTypeDefinitionNode(
+  name: _i1.NameNode(value: 'JSON'),
+  directives: [],
+);
 const oneOf = _i1.DirectiveDefinitionNode(
   name: _i1.NameNode(value: 'oneOf'),
   args: [],
@@ -994,8 +998,11 @@ const Query = _i1.ObjectTypeDefinitionNode(
       name: _i1.NameNode(value: 'alarmsSnapshot'),
       directives: [],
       args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'Message'),
+      type: _i1.ListTypeNode(
+        type: _i1.NamedTypeNode(
+          name: _i1.NameNode(value: 'Message'),
+          isNonNull: true,
+        ),
         isNonNull: true,
       ),
     ),
@@ -1401,9 +1408,35 @@ const Message = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
+const JsonMessage = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'JsonMessage'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'key'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'value'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'JSON'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
 const document = _i1.DocumentNode(
   definitions: [
     schema,
+    JSON,
     oneOf,
     Timestamp,
     AcquisitionMode,
@@ -1431,5 +1464,6 @@ const document = _i1.DocumentNode(
     Text,
     TextArray,
     Message,
+    JsonMessage,
   ],
 );

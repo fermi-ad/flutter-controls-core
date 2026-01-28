@@ -5,6 +5,11 @@ schema {
 }
 
 """
+A JSON object (arbitrary structure)
+"""
+scalar JSON
+
+"""
 Indicates that an Input Object is a OneOf Input Object (and thus requires exactly one of its field be provided)
 """
 directive @oneOf on INPUT_OBJECT
@@ -283,7 +288,7 @@ type Query {
   """
   Retrieve a snapshot of the current alarms.
   """
-  alarmsSnapshot: Message!
+  alarmsSnapshot: [Message!]!
 }
 
 """
@@ -417,7 +422,7 @@ type Subscription {
   Stream alarms messages from ACSys.
 
   Takes no arguments and returns a stream of raw alarms messages. Each message
-  contains information about all known alarms in a JSON-formatted string.
+  contains information about all known alarms in a JSON-formatted object.
   """
   alarms: Message!
 }
@@ -442,4 +447,12 @@ Represents a generic message with an optional key and required value.
 type Message {
   key: String
   value: String!
+}
+
+"""
+Respresents a generic message with an optional key and required JSON value.
+"""
+type JsonMessage {
+  key: String
+  value: JSON!
 }

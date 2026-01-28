@@ -2,7 +2,10 @@
 // ignore_for_file: type=lint
 
 import 'package:built_collection/built_collection.dart';
+import 'package:built_value/json_object.dart';
 import 'package:built_value/serializer.dart';
+import 'package:built_value/src/json_object_serializer.dart'
+    show JsonObjectSerializer;
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/src/service/date_serializer.dart'
@@ -37,6 +40,7 @@ final SerializersBuilder _serializersBuilder =
     _$serializers.toBuilder()
       ..add(OperationSerializer())
       ..add(DateSerializer())
+      ..add(JsonObjectSerializer())
       ..add(GgetDeviceInfoData_deviceInfo_result.serializer)
       ..addPlugin(StandardJsonPlugin());
 @SerializersFor([

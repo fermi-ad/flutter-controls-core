@@ -3,10 +3,13 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';
+import 'package:flutter_controls_core/src/service/alarm_serializer.dart';
 
 import 'package:built_collection/built_collection.dart';
 
 import 'package:ferry/ferry.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
@@ -56,6 +59,10 @@ class ACSysInvArgException extends ACSysException {
 
 class ACSysTypeException extends ACSysException {
   const ACSysTypeException(String message) : super("Type: $message");
+}
+
+class ACSysValueException extends ACSysException {
+  const ACSysValueException(String message) : super("Value: $message");
 }
 
 class ACSysConfigurationException extends ACSysException {
@@ -369,11 +376,15 @@ final class SettingStatus {
   const SettingStatus({required this.facilityCode, required this.errorCode});
 }
 
-final class Alarms {
-  final String? key;
-  final String info;
+/// Base class for alarm messages from the alarms endpoint.
+/// This reuses the value-only message types defined in alarm_serializer.dart.
+typedef AlarmMessage = AlarmValueMessage;
 
-  const Alarms({this.key, required this.info});
+final class Alarm {
+  final String? key;
+  final AlarmMessage message;
+
+  const Alarm({this.key, required this.message});
 }
 
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
@@ -565,9 +576,12 @@ abstract interface class ACSysServiceAPI {
   /// provides up-to-date `DigitalStatus` values of the devices.
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
+  /// Gets a snapshot of the current alarms.
+  Future<List<Alarm>> getAlarmsSnapshot();
+
   /// Takes no parameters and returns a stream that provides the current
   /// alarm info for all alarms.
-  Stream<Alarms> monitorAlarms();
+  Stream<Alarm> monitorAlarms();
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
@@ -638,6 +652,7 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
+  final Client _qAlarms;
   final Client _sAlarms;
 
   static Map<String, String> _buildAuthHeader(String? jwt) =>
@@ -677,6 +692,13 @@ final class ACSysService implements ACSysServiceAPI {
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
+      ),
+      _qAlarms = Client(
+        link: HttpLink(
+          "https://acsys-proxy.fnal.gov:${port ?? 8000}/alarms",
+          defaultHeaders: _buildAuthHeader(jwt),
+        ),
+        // cache: Cache(),
       ),
       _sAlarms = Client(
         link: WebSocketLink(
@@ -728,6 +750,31 @@ final class ACSysService implements ACSysServiceAPI {
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
   }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
+    value,
+  ) {
+    if (value.hasErrors) {
+      if (value.linkException != null) {
+        throw value.linkException!;
+      } else if (value.graphqlErrors != null) {
+        throw Exception(value.graphqlErrors);
+      } else {
+        throw Exception("unknown error");
+      }
+    } else {
+      final data = value.data;
+
+      if (data != null) {
+        return xlat != null ? xlat(data) : data as Result;
+      } else {
+        throw Exception("no data was returned from request");
+      }
+    }
+  });
+
+  Future<Result> _rpcAlarms<TData, TVars, Result>(
+    OperationRequest<TData, TVars> req, {
+    Result Function(TData)? xlat,
+  }) => _qAlarms.request(req).firstWhere((response) => !response.loading).then((
     value,
   ) {
     if (value.hasErrors) {
@@ -981,9 +1028,27 @@ final class ACSysService implements ACSysServiceAPI {
         .expand(_convertMonitor);
   }
 
+  // Gets a snapshot of the current alarms.
+  @override
+  Future<List<Alarm>> getAlarmsSnapshot() {
+    final req = GAlarmsSnapshotReq();
+
+    return _rpcAlarms(
+      req,
+      xlat: (GAlarmsSnapshotData data) {
+        return data.alarmsSnapshot.map((snapshot) {
+          return Alarm(
+            key: snapshot.key,
+            message: parseAlarmValueJsonString(snapshot.value),
+          );
+        }).toList();
+      },
+    );
+  }
+
   // Returns a stream of alarm information for all known alarms.
   @override
-  Stream<Alarms> monitorAlarms() {
+  Stream<Alarm> monitorAlarms() {
     final req = GStreamAlarmsReq(
       (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
     );
@@ -999,7 +1064,10 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            yield Alarms(key: e.data!.alarms.key, info: e.data!.alarms.value);
+            yield Alarm(
+              key: e.data!.alarms.key,
+              message: parseAlarmValueJsonString(e.data!.alarms.value),
+            );
           } else {
             if (e.linkException != null) {
               throw e.linkException!;
