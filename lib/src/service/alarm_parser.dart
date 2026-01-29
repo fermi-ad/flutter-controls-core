@@ -7,8 +7,6 @@
 // - Config deletions use a "tombstone" message where the value is JSON null.
 // - Before a tombstone, a "config delete message" may be sent with
 //   {"user","host","delete"}.
-//
-// This file uses only dart:core and manual deserialization.
 
 import 'dart:convert';
 
@@ -34,8 +32,6 @@ class AlarmDocRef {
       details: json['details'] as String,
     );
   }
-
-  Map<String, dynamic> toJson() => {'title': title, 'details': details};
 }
 
 /// Timestamp format used in state leaf messages.
@@ -51,11 +47,7 @@ class AlarmTime {
       nano: (json['nano'] as num).toInt(),
     );
   }
-
-  Map<String, dynamic> toJson() => {'seconds': seconds, 'nano': nano};
 }
-
-/// -------------------- VALUE-ONLY PARSING --------------------
 
 /// Uses heuristics to choose the most appropriate payload type.
 sealed class AlarmMessageValue {
@@ -139,8 +131,6 @@ AlarmMessageValue parseAlarmValueJson(
 sealed class AlarmConfigPayload {
   const AlarmConfigPayload();
 
-  Map<String, dynamic> toJson();
-
   /// Best-effort decode:
   /// - if {"delete": "..."} present => delete-info message
   /// - else if "description" present => leaf config
@@ -199,19 +189,6 @@ class AlarmLeafConfig extends AlarmConfigPayload {
       actions: _docListOrNull(json['actions']),
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'user': user,
-    'host': host,
-    'description': description,
-    if (delay != null) 'delay': delay,
-    if (count != null) 'count': count,
-    if (filter != null) 'filter': filter,
-    if (guidance != null) 'guidance': guidance!.map((e) => e.toJson()).toList(),
-    if (displays != null) 'displays': displays!.map((e) => e.toJson()).toList(),
-    if (commands != null) 'commands': commands!.map((e) => e.toJson()).toList(),
-    if (actions != null) 'actions': actions!.map((e) => e.toJson()).toList(),
-  };
 }
 
 /// Config for an alarm tree node (folder/section).
@@ -243,15 +220,6 @@ class AlarmNodeConfig extends AlarmConfigPayload {
       actions: _docListOrNull(json['actions']),
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'user': user,
-    'host': host,
-    if (guidance != null) 'guidance': guidance!.map((e) => e.toJson()).toList(),
-    if (displays != null) 'displays': displays!.map((e) => e.toJson()).toList(),
-    if (commands != null) 'commands': commands!.map((e) => e.toJson()).toList(),
-    if (actions != null) 'actions': actions!.map((e) => e.toJson()).toList(),
-  };
 }
 
 /// Config delete info message sent before tombstone null.
@@ -273,12 +241,6 @@ class AlarmConfigDeleteInfo extends AlarmConfigPayload {
       delete: json['delete'] as String,
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'user': user,
-    'host': host,
-    'delete': delete,
-  };
 }
 
 /// -------------------- STATE --------------------
@@ -346,17 +308,6 @@ class AlarmLeafState extends AlarmStatePayload {
       mode: json['mode'] as String?,
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'severity': severity,
-    if (latch != null) 'latch': latch,
-    if (message != null) 'message': message,
-    if (value != null) 'value': value,
-    if (time != null) 'time': time!.toJson(),
-    if (currentSeverity != null) 'current_severity': currentSeverity,
-    if (currentMessage != null) 'current_message': currentMessage,
-    if (mode != null) 'mode': mode,
-  };
 }
 
 /// State for an alarm tree node.
@@ -372,11 +323,6 @@ class AlarmNodeState extends AlarmStatePayload {
       mode: json['mode'] as String?,
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'severity': severity,
-    if (mode != null) 'mode': mode,
-  };
 }
 
 /// -------------------- COMMAND --------------------
@@ -399,12 +345,6 @@ class AlarmCommandPayload {
       command: json['command'] as String,
     );
   }
-
-  Map<String, dynamic> toJson() => {
-    'user': user,
-    'host': host,
-    'command': command,
-  };
 }
 
 /// -------------------- TALK --------------------
@@ -434,12 +374,6 @@ class AlarmTalkPayload {
       talk: talk,
     );
   }
-
-  Map<String, dynamic> toJson({bool useMessageField = false}) => {
-    'severity': severity,
-    'standout': standout,
-    (useMessageField ? 'message' : 'talk'): talk,
-  };
 }
 
 /// Helper: decode list-of-docrefs or null.
