@@ -3,7 +3,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';
-import 'package:flutter_controls_core/src/service/alarm_serializer.dart';
+import 'package:flutter_controls_core/src/service/alarm_parser.dart';
 
 import 'package:built_collection/built_collection.dart';
 
