@@ -30,10 +30,6 @@ const schema = _i1.SchemaDefinitionNode(
     ),
   ],
 );
-const JSON = _i1.ScalarTypeDefinitionNode(
-  name: _i1.NameNode(value: 'JSON'),
-  directives: [],
-);
 const oneOf = _i1.DirectiveDefinitionNode(
   name: _i1.NameNode(value: 'oneOf'),
   args: [],
@@ -1411,7 +1407,6 @@ const Message = _i1.ObjectTypeDefinitionNode(
 const document = _i1.DocumentNode(
   definitions: [
     schema,
-    JSON,
     oneOf,
     Timestamp,
     AcquisitionMode,

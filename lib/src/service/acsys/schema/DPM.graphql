@@ -5,11 +5,6 @@ schema {
 }
 
 """
-A JSON object (arbitrary structure)
-"""
-scalar JSON
-
-"""
 Indicates that an Input Object is a OneOf Input Object (and thus requires exactly one of its field be provided)
 """
 directive @oneOf on INPUT_OBJECT
