@@ -448,11 +448,3 @@ type Message {
   key: String
   value: String!
 }
-
-"""
-Respresents a generic message with an optional key and required JSON value.
-"""
-type JsonMessage {
-  key: String
-  value: JSON!
-}

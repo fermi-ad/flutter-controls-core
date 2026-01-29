@@ -10,6 +10,8 @@
 
 import 'dart:convert';
 
+typedef AlarmFieldEntry = MapEntry<String, String>;
+
 /// Extract message type from key (format: "type:rest").
 /// Returns null if key is null or doesn't contain a colon.
 String? _extractMessageTypeFromKey(String? key) {
@@ -49,7 +51,6 @@ class AlarmTime {
   }
 }
 
-/// Uses heuristics to choose the most appropriate payload type.
 sealed class AlarmMessageValue {
   const AlarmMessageValue();
 }
@@ -89,7 +90,6 @@ final class AlarmUnknownValue extends AlarmMessageValue {
   const AlarmUnknownValue({required this.value});
 }
 
-/// Parse alarm value from a JSON string, using the key to determine message type.
 AlarmMessageValue parseAlarmValueJsonString(String raw, {String? key}) {
   final dynamic decoded = jsonDecode(raw);
   return parseAlarmValueJson(decoded as Map<String, dynamic>?, key: key);
@@ -130,6 +130,8 @@ AlarmMessageValue parseAlarmValueJson(
 
 sealed class AlarmConfigPayload {
   const AlarmConfigPayload();
+
+  List<AlarmFieldEntry> get fieldEntries;
 
   /// Best-effort decode:
   /// - if {"delete": "..."} present => delete-info message
@@ -189,6 +191,22 @@ class AlarmLeafConfig extends AlarmConfigPayload {
       actions: _docListOrNull(json['actions']),
     );
   }
+
+  @override
+  List<AlarmFieldEntry> get fieldEntries {
+    final fields = <AlarmFieldEntry>[];
+    _addEntryIfNotNull(fields, 'User', user);
+    _addEntryIfNotNull(fields, 'Host', host);
+    _addEntryIfNotNull(fields, 'Description', description);
+    _addEntryIfNotNull(fields, 'Delay', delay);
+    _addEntryIfNotNull(fields, 'Count', count);
+    _addEntryIfNotNull(fields, 'Filter', filter);
+    _addDocRefFields(fields, 'Guidance', guidance);
+    _addDocRefFields(fields, 'Displays', displays);
+    _addDocRefFields(fields, 'Commands', commands);
+    _addDocRefFields(fields, 'Actions', actions);
+    return fields;
+  }
 }
 
 /// Config for an alarm tree node (folder/section).
@@ -220,6 +238,18 @@ class AlarmNodeConfig extends AlarmConfigPayload {
       actions: _docListOrNull(json['actions']),
     );
   }
+
+  @override
+  List<AlarmFieldEntry> get fieldEntries {
+    final fields = <AlarmFieldEntry>[];
+    _addEntryIfNotNull(fields, 'User', user);
+    _addEntryIfNotNull(fields, 'Host', host);
+    _addDocRefFields(fields, 'Guidance', guidance);
+    _addDocRefFields(fields, 'Displays', displays);
+    _addDocRefFields(fields, 'Commands', commands);
+    _addDocRefFields(fields, 'Actions', actions);
+    return fields;
+  }
 }
 
 /// Config delete info message sent before tombstone null.
@@ -241,12 +271,23 @@ class AlarmConfigDeleteInfo extends AlarmConfigPayload {
       delete: json['delete'] as String,
     );
   }
+
+  @override
+  List<AlarmFieldEntry> get fieldEntries {
+    final fields = <AlarmFieldEntry>[];
+    _addEntryIfNotNull(fields, 'User', user);
+    _addEntryIfNotNull(fields, 'Host', host);
+    _addEntryIfNotNull(fields, 'Delete', delete);
+    return fields;
+  }
 }
 
 /// -------------------- STATE --------------------
 
 sealed class AlarmStatePayload {
   const AlarmStatePayload();
+
+  List<AlarmFieldEntry> get fieldEntries;
 
   /// Best-effort decode:
   /// - if contains typical leaf fields => leaf
@@ -308,6 +349,20 @@ class AlarmLeafState extends AlarmStatePayload {
       mode: json['mode'] as String?,
     );
   }
+
+  @override
+  List<AlarmFieldEntry> get fieldEntries {
+    final fields = <AlarmFieldEntry>[];
+    _addEntryIfNotNull(fields, 'Severity', severity);
+    _addEntryIfNotNull(fields, 'Message', message);
+    _addEntryIfNotNull(fields, 'Value', value);
+    _addEntryIfNotNull(fields, 'Latch', latch);
+    _addEntryIfNotNull(fields, 'Current Severity', currentSeverity);
+    _addEntryIfNotNull(fields, 'Current Message', currentMessage);
+    _addEntryIfNotNull(fields, 'Mode', mode);
+    _addTimeFields(fields, time);
+    return fields;
+  }
 }
 
 /// State for an alarm tree node.
@@ -322,6 +377,14 @@ class AlarmNodeState extends AlarmStatePayload {
       severity: json['severity'] as String,
       mode: json['mode'] as String?,
     );
+  }
+
+  @override
+  List<AlarmFieldEntry> get fieldEntries {
+    final fields = <AlarmFieldEntry>[];
+    _addEntryIfNotNull(fields, 'Severity', severity);
+    _addEntryIfNotNull(fields, 'Mode', mode);
+    return fields;
   }
 }
 
@@ -344,6 +407,14 @@ class AlarmCommandPayload {
       host: json['host'] as String,
       command: json['command'] as String,
     );
+  }
+
+  List<AlarmFieldEntry> get fieldEntries {
+    final fields = <AlarmFieldEntry>[];
+    _addEntryIfNotNull(fields, 'User', user);
+    _addEntryIfNotNull(fields, 'Host', host);
+    _addEntryIfNotNull(fields, 'Command', command);
+    return fields;
   }
 }
 
@@ -374,6 +445,14 @@ class AlarmTalkPayload {
       talk: talk,
     );
   }
+
+  List<AlarmFieldEntry> get fieldEntries {
+    final fields = <AlarmFieldEntry>[];
+    _addEntryIfNotNull(fields, 'Severity', severity);
+    _addEntryIfNotNull(fields, 'Standout', standout);
+    _addEntryIfNotNull(fields, 'Talk', talk);
+    return fields;
+  }
 }
 
 /// Helper: decode list-of-docrefs or null.
@@ -383,4 +462,87 @@ List<AlarmDocRef>? _docListOrNull(Object? value) {
   return value
       .map((e) => AlarmDocRef.fromJson(e as Map<String, dynamic>))
       .toList(growable: false);
+}
+
+extension AlarmMessageValueDisplay on AlarmMessageValue {
+  String get typeLabel {
+    if (this is AlarmStateValue) return 'State';
+    if (this is AlarmConfigValue) return 'Config';
+    if (this is AlarmCommandValue) return 'Command';
+    if (this is AlarmTalkValue) return 'Talk';
+    return 'Unknown';
+  }
+
+  List<AlarmFieldEntry> get fieldEntries {
+    final value = this;
+    if (value is AlarmStateValue) return value.payload.fieldEntries;
+    if (value is AlarmConfigValue) {
+      final payload = value.payload;
+      if (payload == null) {
+        return [const MapEntry('Status', 'Tombstone (deleted)')];
+      }
+      return payload.fieldEntries;
+    }
+    if (value is AlarmCommandValue) return value.payload.fieldEntries;
+    if (value is AlarmTalkValue) return value.payload.fieldEntries;
+    if (value is AlarmUnknownValue) return _unknownToFields(value.value);
+    return const [];
+  }
+}
+
+void _addEntryIfNotNull(
+  List<AlarmFieldEntry> fields,
+  String label,
+  Object? value,
+) {
+  if (value == null) return;
+  final stringValue = value.toString();
+  if (stringValue.isEmpty) return;
+  fields.add(MapEntry(label, stringValue));
+}
+
+void _addDocRefFields(
+  List<AlarmFieldEntry> fields,
+  String label,
+  List<AlarmDocRef>? refs,
+) {
+  if (refs == null || refs.isEmpty) return;
+  for (var i = 0; i < refs.length; i++) {
+    final ref = refs[i];
+    final index = i + 1;
+    _addEntryIfNotNull(fields, '$label $index Title', ref.title);
+    _addEntryIfNotNull(fields, '$label $index Details', ref.details);
+  }
+}
+
+void _addTimeFields(List<AlarmFieldEntry> fields, AlarmTime? time) {
+  if (time == null) return;
+  _addEntryIfNotNull(fields, 'Time Seconds', time.seconds);
+  _addEntryIfNotNull(fields, 'Time Nano', time.nano);
+}
+
+List<AlarmFieldEntry> _unknownToFields(Object? value) {
+  if (value == null) return const [];
+  if (value is Map) {
+    final fields = <AlarmFieldEntry>[];
+    for (final entry in value.entries) {
+      final key = entry.key.toString();
+      final entryValue = entry.value?.toString() ?? '';
+      if (entryValue.isNotEmpty) {
+        fields.add(MapEntry(key, entryValue));
+      }
+    }
+    return fields;
+  }
+  if (value is List) {
+    final fields = <AlarmFieldEntry>[];
+    for (var i = 0; i < value.length; i++) {
+      final entryValue = value[i]?.toString() ?? '';
+      if (entryValue.isNotEmpty) {
+        fields.add(MapEntry('Item ${i + 1}', entryValue));
+      }
+    }
+    return fields;
+  }
+  return [MapEntry('Value', value.toString())];
 }

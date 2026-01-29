@@ -299,8 +299,8 @@ class Message<T> {
   const Message({this.key, required this.value});
 }
 
-final class AlarmsMessage extends Message<String> {
-  const AlarmsMessage({super.key, required super.value});
+final class AlarmMessage extends Message<AlarmMessageValue> {
+  const AlarmMessage({super.key, required super.value});
 }
 
 /// Enumeration representing console colors.
@@ -374,14 +374,6 @@ final class SettingStatus {
   final int errorCode;
 
   const SettingStatus({required this.facilityCode, required this.errorCode});
-}
-
-/// Base class for alarm messages from the alarms endpoint.
-final class Alarm {
-  final String? key;
-  final AlarmMessageValue message;
-
-  const Alarm({this.key, required this.message});
 }
 
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
@@ -574,11 +566,11 @@ abstract interface class ACSysServiceAPI {
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
   /// Gets a snapshot of the current alarms.
-  Future<List<Alarm>> getAlarmsSnapshot();
+  Future<List<AlarmMessage>> getAlarmsSnapshot();
 
   /// Takes no parameters and returns a stream that provides the current
   /// alarm info for all alarms.
-  Stream<Alarm> monitorAlarms();
+  Stream<AlarmMessage> monitorAlarms();
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
@@ -1027,19 +1019,16 @@ final class ACSysService implements ACSysServiceAPI {
 
   // Gets a snapshot of the current alarms.
   @override
-  Future<List<Alarm>> getAlarmsSnapshot() {
+  Future<List<AlarmMessage>> getAlarmsSnapshot() {
     final req = GAlarmsSnapshotReq();
 
     return _rpcAlarms(
       req,
       xlat: (GAlarmsSnapshotData data) {
         return data.alarmsSnapshot.map((snapshot) {
-          return Alarm(
+          return AlarmMessage(
             key: snapshot.key,
-            message: parseAlarmValueJsonString(
-              snapshot.value,
-              key: snapshot.key,
-            ),
+            value: parseAlarmValueJsonString(snapshot.value, key: snapshot.key),
           );
         }).toList();
       },
@@ -1048,7 +1037,7 @@ final class ACSysService implements ACSysServiceAPI {
 
   // Returns a stream of alarm information for all known alarms.
   @override
-  Stream<Alarm> monitorAlarms() {
+  Stream<AlarmMessage> monitorAlarms() {
     final req = GStreamAlarmsReq(
       (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
     );
@@ -1064,9 +1053,9 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            yield Alarm(
+            yield AlarmMessage(
               key: e.data!.alarms.key,
-              message: parseAlarmValueJsonString(
+              value: parseAlarmValueJsonString(
                 e.data!.alarms.value,
                 key: e.data!.alarms.key,
               ),
