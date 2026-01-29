@@ -7,7 +7,7 @@ part of 'stream_alarms.var.gql.dart';
 // **************************************************************************
 
 Serializer<GStreamAlarmsVars> _$gStreamAlarmsVarsSerializer =
-    new _$GStreamAlarmsVarsSerializer();
+    _$GStreamAlarmsVarsSerializer();
 
 class _$GStreamAlarmsVarsSerializer
     implements StructuredSerializer<GStreamAlarmsVars> {
@@ -31,24 +31,23 @@ class _$GStreamAlarmsVarsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return new GStreamAlarmsVarsBuilder().build();
+    return GStreamAlarmsVarsBuilder().build();
   }
 }
 
 class _$GStreamAlarmsVars extends GStreamAlarmsVars {
   factory _$GStreamAlarmsVars([
     void Function(GStreamAlarmsVarsBuilder)? updates,
-  ]) => (new GStreamAlarmsVarsBuilder()..update(updates))._build();
+  ]) => (GStreamAlarmsVarsBuilder()..update(updates))._build();
 
   _$GStreamAlarmsVars._() : super._();
-
   @override
   GStreamAlarmsVars rebuild(void Function(GStreamAlarmsVarsBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GStreamAlarmsVarsBuilder toBuilder() =>
-      new GStreamAlarmsVarsBuilder()..replace(this);
+      GStreamAlarmsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -75,7 +74,6 @@ class GStreamAlarmsVarsBuilder
 
   @override
   void replace(GStreamAlarmsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GStreamAlarmsVars;
   }
 
@@ -88,7 +86,7 @@ class GStreamAlarmsVarsBuilder
   GStreamAlarmsVars build() => _build();
 
   _$GStreamAlarmsVars _build() {
-    final _$result = _$v ?? new _$GStreamAlarmsVars._();
+    final _$result = _$v ?? _$GStreamAlarmsVars._();
     replace(_$result);
     return _$result;
   }

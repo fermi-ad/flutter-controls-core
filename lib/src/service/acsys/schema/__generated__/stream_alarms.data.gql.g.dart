@@ -7,7 +7,7 @@ part of 'stream_alarms.data.gql.dart';
 // **************************************************************************
 
 Serializer<GStreamAlarmsData> _$gStreamAlarmsDataSerializer =
-    new _$GStreamAlarmsDataSerializer();
+    _$GStreamAlarmsDataSerializer();
 
 class _$GStreamAlarmsDataSerializer
     implements StructuredSerializer<GStreamAlarmsData> {
@@ -44,7 +44,7 @@ class _$GStreamAlarmsDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GStreamAlarmsDataBuilder();
+    final result = GStreamAlarmsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -83,29 +83,17 @@ class _$GStreamAlarmsData extends GStreamAlarmsData {
 
   factory _$GStreamAlarmsData([
     void Function(GStreamAlarmsDataBuilder)? updates,
-  ]) => (new GStreamAlarmsDataBuilder()..update(updates))._build();
+  ]) => (GStreamAlarmsDataBuilder()..update(updates))._build();
 
   _$GStreamAlarmsData._({required this.G__typename, required this.alarms})
-    : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GStreamAlarmsData',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      alarms,
-      r'GStreamAlarmsData',
-      'alarms',
-    );
-  }
-
+    : super._();
   @override
   GStreamAlarmsData rebuild(void Function(GStreamAlarmsDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GStreamAlarmsDataBuilder toBuilder() =>
-      new GStreamAlarmsDataBuilder()..replace(this);
+      GStreamAlarmsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -161,7 +149,6 @@ class GStreamAlarmsDataBuilder
 
   @override
   void replace(GStreamAlarmsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GStreamAlarmsData;
   }
 
@@ -176,7 +163,7 @@ class GStreamAlarmsDataBuilder
   _$GStreamAlarmsData _build() {
     final _$result =
         _$v ??
-        new _$GStreamAlarmsData._(
+        _$GStreamAlarmsData._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GStreamAlarmsData',
