@@ -1,4 +1,4 @@
-// Models for Phoebus Alarm message value formats (value-only parsing).
+// Models for Phoebus Alarm message value formats.
 //
 // Based on "Message Formats" section in:
 // https://github.com/ControlSystemStudio/phoebus/blob/master/app/alarm/Readme.md
@@ -8,11 +8,18 @@
 // - Before a tombstone, a "config delete message" may be sent with
 //   {"user","host","delete"}.
 //
-// This file uses only dart:core and manual (de)serialization.
+// This file uses only dart:core and manual deserialization.
 
 import 'dart:convert';
 
-// Key parsing intentionally omitted; this file only handles value JSON.
+/// Extract message type from key (format: "type:rest").
+/// Returns null if key is null or doesn't contain a colon.
+String? _extractMessageTypeFromKey(String? key) {
+  if (key == null) return null;
+  final colonIndex = key.indexOf(':');
+  if (colonIndex == -1) return null;
+  return key.substring(0, colonIndex);
+}
 
 /// Common title/details entry used by guidance/displays/commands/actions.
 class AlarmDocRef {
@@ -51,83 +58,80 @@ class AlarmTime {
 /// -------------------- VALUE-ONLY PARSING --------------------
 
 /// Uses heuristics to choose the most appropriate payload type.
-sealed class AlarmValueMessage {
-  const AlarmValueMessage();
+sealed class AlarmMessageValue {
+  const AlarmMessageValue();
 }
 
 /// Parsed config value (payload can be null for tombstone).
-final class AlarmConfigValue extends AlarmValueMessage {
+final class AlarmConfigValue extends AlarmMessageValue {
   final AlarmConfigPayload? payload;
 
   const AlarmConfigValue({required this.payload});
 }
 
 /// Parsed state value.
-final class AlarmStateValue extends AlarmValueMessage {
+final class AlarmStateValue extends AlarmMessageValue {
   final AlarmStatePayload payload;
 
   const AlarmStateValue({required this.payload});
 }
 
 /// Parsed command value.
-final class AlarmCommandValue extends AlarmValueMessage {
+final class AlarmCommandValue extends AlarmMessageValue {
   final AlarmCommandPayload payload;
 
   const AlarmCommandValue({required this.payload});
 }
 
 /// Parsed talk value.
-final class AlarmTalkValue extends AlarmValueMessage {
+final class AlarmTalkValue extends AlarmMessageValue {
   final AlarmTalkPayload payload;
 
   const AlarmTalkValue({required this.payload});
 }
 
 /// Unknown or unrecognized value shape.
-final class AlarmUnknownValue extends AlarmValueMessage {
+final class AlarmUnknownValue extends AlarmMessageValue {
   final Object? value;
 
   const AlarmUnknownValue({required this.value});
 }
 
-/// Parse a raw JSON string into the most appropriate alarm value type.
-/// Parse alarm value from a decoded JSON map.
-AlarmValueMessage parseAlarmValueJson(Map<String, dynamic>? decoded) {
+/// Parse alarm value from a JSON string, using the key to determine message type.
+AlarmMessageValue parseAlarmValueJsonString(String raw, {String? key}) {
+  final dynamic decoded = jsonDecode(raw);
+  return parseAlarmValueJson(decoded as Map<String, dynamic>?, key: key);
+}
+
+/// Parse alarm value from a decoded JSON map, using the key to determine message type.
+AlarmMessageValue parseAlarmValueJson(
+  Map<String, dynamic>? decoded, {
+  String? key,
+}) {
+  final messageType = _extractMessageTypeFromKey(key);
+
   if (decoded == null) {
     // Tombstone value is only defined for config messages, so return config.
     return const AlarmConfigValue(payload: null);
   }
 
-  // Command payload: user/host/command
-  if (decoded.containsKey('command') &&
-      decoded.containsKey('user') &&
-      decoded.containsKey('host')) {
-    return AlarmCommandValue(payload: AlarmCommandPayload.fromJson(decoded));
-  }
-
-  // Talk payload: standout + talk/message
-  if (decoded.containsKey('standout') &&
-      (decoded.containsKey('talk') || decoded.containsKey('message'))) {
-    return AlarmTalkValue(payload: AlarmTalkPayload.fromJson(decoded));
-  }
-
-  // State payload: severity is always present in state updates.
-  if (decoded.containsKey('severity')) {
-    return AlarmStateValue(payload: AlarmStatePayload.fromJson(decoded));
-  }
-
-  // Config payload: user/host required (node/leaf/delete)
-  if (decoded.containsKey('user') && decoded.containsKey('host')) {
-    return AlarmConfigValue(payload: AlarmConfigPayload.fromJson(decoded));
+  // Use key-based message type if available, otherwise label as unknown.
+  if (messageType != null) {
+    switch (messageType) {
+      case 'config':
+        return AlarmConfigValue(payload: AlarmConfigPayload.fromJson(decoded));
+      case 'state':
+        return AlarmStateValue(payload: AlarmStatePayload.fromJson(decoded));
+      case 'command':
+        return AlarmCommandValue(
+          payload: AlarmCommandPayload.fromJson(decoded),
+        );
+      case 'talk':
+        return AlarmTalkValue(payload: AlarmTalkPayload.fromJson(decoded));
+    }
   }
 
   return AlarmUnknownValue(value: decoded);
-}
-
-/// Parse alarm value from a JSON string.
-AlarmValueMessage parseAlarmValueJsonString(String raw) {
-  final dynamic decoded = jsonDecode(raw);
-  return parseAlarmValueJson(decoded as Map<String, dynamic>?);
 }
 
 /// -------------------- CONFIG --------------------
@@ -446,5 +450,3 @@ List<AlarmDocRef>? _docListOrNull(Object? value) {
       .map((e) => AlarmDocRef.fromJson(e as Map<String, dynamic>))
       .toList(growable: false);
 }
-
-// Key-based message wrappers are intentionally omitted.

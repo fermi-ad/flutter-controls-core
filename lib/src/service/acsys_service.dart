@@ -377,12 +377,9 @@ final class SettingStatus {
 }
 
 /// Base class for alarm messages from the alarms endpoint.
-/// This reuses the value-only message types defined in alarm_serializer.dart.
-typedef AlarmMessage = AlarmValueMessage;
-
 final class Alarm {
   final String? key;
-  final AlarmMessage message;
+  final AlarmMessageValue message;
 
   const Alarm({this.key, required this.message});
 }
@@ -1039,7 +1036,10 @@ final class ACSysService implements ACSysServiceAPI {
         return data.alarmsSnapshot.map((snapshot) {
           return Alarm(
             key: snapshot.key,
-            message: parseAlarmValueJsonString(snapshot.value),
+            message: parseAlarmValueJsonString(
+              snapshot.value,
+              key: snapshot.key,
+            ),
           );
         }).toList();
       },
@@ -1066,7 +1066,10 @@ final class ACSysService implements ACSysServiceAPI {
           if (!e.hasErrors) {
             yield Alarm(
               key: e.data!.alarms.key,
-              message: parseAlarmValueJsonString(e.data!.alarms.value),
+              message: parseAlarmValueJsonString(
+                e.data!.alarms.value,
+                key: e.data!.alarms.key,
+              ),
             );
           } else {
             if (e.linkException != null) {
