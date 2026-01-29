@@ -466,8 +466,19 @@ List<AlarmDocRef>? _docListOrNull(Object? value) {
 
 extension AlarmMessageValueDisplay on AlarmMessageValue {
   String get typeLabel {
-    if (this is AlarmStateValue) return 'State';
-    if (this is AlarmConfigValue) return 'Config';
+    if (this is AlarmStateValue) {
+      final payload = (this as AlarmStateValue).payload;
+      if (payload is AlarmLeafState) return 'State (Leaf)';
+      if (payload is AlarmNodeState) return 'State (Node)';
+      return 'State';
+    }
+    if (this is AlarmConfigValue) {
+      final payload = (this as AlarmConfigValue).payload;
+      if (payload is AlarmLeafConfig) return 'Config (Leaf)';
+      if (payload is AlarmNodeConfig) return 'Config (Node)';
+      if (payload is AlarmConfigDeleteInfo) return 'Config (Delete)';
+      return 'Config';
+    }
     if (this is AlarmCommandValue) return 'Command';
     if (this is AlarmTalkValue) return 'Talk';
     return 'Unknown';
