@@ -14,6 +14,18 @@ export 'package:flutter_controls_auth/flutter_controls_auth.dart'
     show ScopeList, AuthInfo, AuthService, Credential, UserInfo;
 
 export 'src/service/acsys_service.dart';
+export 'src/service/alarm_parser.dart'
+    show
+        AlarmMessageValue,
+        AlarmConfigValue,
+        AlarmStateValue,
+        AlarmTalkValue,
+        AlarmCommandValue,
+        AlarmLeafState,
+        AlarmNodeState,
+        AlarmUnknownValue,
+        AlarmFieldEntry,
+        AlarmMessageValueDisplay;
 export 'src/otel_tracing.dart' show AppTracer, appTracer, Span;
 
 /// Entry point for Fermilab applications
