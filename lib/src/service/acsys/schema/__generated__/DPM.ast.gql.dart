@@ -1408,31 +1408,6 @@ const Message = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const JsonMessage = _i1.ObjectTypeDefinitionNode(
-  name: _i1.NameNode(value: 'JsonMessage'),
-  directives: [],
-  interfaces: [],
-  fields: [
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'key'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'String'),
-        isNonNull: false,
-      ),
-    ),
-    _i1.FieldDefinitionNode(
-      name: _i1.NameNode(value: 'value'),
-      directives: [],
-      args: [],
-      type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'JSON'),
-        isNonNull: true,
-      ),
-    ),
-  ],
-);
 const document = _i1.DocumentNode(
   definitions: [
     schema,
@@ -1464,6 +1439,5 @@ const document = _i1.DocumentNode(
     Text,
     TextArray,
     Message,
-    JsonMessage,
   ],
 );
