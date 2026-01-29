@@ -10,21 +10,12 @@ targets:
                     type_overrides:
                         Timestamp:
                             name: DateTime
-                        JSON:
-                            name: JsonObject
-                            import: "package:built_value/json_object.dart"
             ferry_generator|serializer_builder:
                 enabled: true
                 options:
                     schemas:
                         - flutter_controls_core|lib/src/service/acsys/schema/DPM.graphql
                         - flutter_controls_core|lib/src/service/devdb/schema/DEVDB.graphql
-                    type_overrides:
-                        JSON:
-                            name: JsonObject
-                            import: "package:built_value/json_object.dart"
                     custom_serializers:
                         - import: "package:flutter_controls_core/src/service/date_serializer.dart"
                           name: DateSerializer
-                        - import: "package:built_value/src/json_object_serializer.dart"
-                          name: JsonObjectSerializer
