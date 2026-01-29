@@ -1,4 +1,4 @@
-// Models for Phoebus Alarm message value formats.
+// Models and parsers for Alarm message value formats.
 //
 // Based on "Message Formats" section in:
 // https://github.com/ControlSystemStudio/phoebus/blob/master/app/alarm/Readme.md
