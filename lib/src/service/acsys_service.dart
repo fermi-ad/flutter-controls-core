@@ -707,11 +707,11 @@ final class ACSysService implements ACSysServiceAPI {
         cache: Cache(),
       );
 
-  // Common code needed to do RPCs. The caller sends in a protobuf request and,
-  // optionally, a function to translate the protobuf reply into some other data
-  // type.
+  // Common code to execute GraphQL operations against the ACSys endpoint.
+  // The caller sends in a GraphQL request and, optionally, a function to
+  // translate the GraphQL response data into some other data type.
 
-  Future<Result> _rpc<TData, TVars, Result>(
+  Future<Result> _queryAcsys<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
   }) =>
@@ -735,7 +735,7 @@ final class ACSysService implements ACSysServiceAPI {
         }
       });
 
-  Future<Result> _rpcDevDb<TData, TVars, Result>(
+  Future<Result> _queryDevDb<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
   }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
@@ -760,7 +760,7 @@ final class ACSysService implements ACSysServiceAPI {
     }
   });
 
-  Future<Result> _rpcAlarms<TData, TVars, Result>(
+  Future<Result> _queryAlarms<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
   }) => _qAlarms.request(req).firstWhere((response) => !response.loading).then((
@@ -797,7 +797,7 @@ final class ACSysService implements ACSysServiceAPI {
         (b) => b..vars.devices = ListBuilder(devices),
       );
 
-      return _rpcDevDb(
+      return _queryDevDb(
         req,
         xlat:
             (GgetDeviceInfoData data) =>
@@ -817,7 +817,7 @@ final class ACSysService implements ACSysServiceAPI {
             ..fetchPolicy = FetchPolicy.NetworkOnly,
     );
 
-    return _rpc(req, xlat: _convertReading);
+    return _queryAcsys(req, xlat: _convertReading);
   }
 
   static (DeviceInfoProperty, KnobbingInfo?)? processSetting(
@@ -1022,7 +1022,7 @@ final class ACSysService implements ACSysServiceAPI {
   Future<List<AlarmMessage>> getAlarmsSnapshot() {
     final req = GAlarmsSnapshotReq();
 
-    return _rpcAlarms(
+    return _queryAlarms(
       req,
       xlat: (GAlarmsSnapshotData data) {
         return data.alarmsSnapshot.map((snapshot) {
@@ -1204,7 +1204,7 @@ final class ACSysService implements ACSysServiceAPI {
             ..vars.value = newSetting._toGDevValue(),
     );
 
-    return _rpc(req, xlat: xlat);
+    return _queryAcsys(req, xlat: xlat);
   }
 
   @override
@@ -1259,7 +1259,7 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
     );
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat:
           (GPlotConfigsData data) =>
@@ -1285,14 +1285,14 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..vars.id = configurationId._value,
     );
 
-    return _rpc(req, xlat: (GDeletePlotConfigData data) => ());
+    return _queryAcsys(req, xlat: (GDeletePlotConfigData data) => ());
   }
 
   @override
   Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
     final req = GUsersLastConfigReq();
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat: (GUsersLastConfigData data) {
         final e = data.usersLastConfiguration;
@@ -1349,7 +1349,7 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
     );
 
-    return _rpc(req, xlat: (GSetUsersConfigData data) => ());
+    return _queryAcsys(req, xlat: (GSetUsersConfigData data) => ());
   }
 
   @override
@@ -1358,7 +1358,7 @@ final class ACSysService implements ACSysServiceAPI {
   }) {
     final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat:
           (GPlotConfigsData data) =>
@@ -1464,7 +1464,7 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
     );
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration,
     ).then(
