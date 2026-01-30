@@ -1,7 +1,7 @@
 // Models and parsers for Alarm message value formats.
 //
-// Based on "Message Formats" section in:
-// https://github.com/ControlSystemStudio/phoebus/blob/master/app/alarm/Readme.md
+// Based on
+// https://github.com/ControlSystemStudio/phoebus/tree/master/app/alarm#message-formats
 //
 // Notes:
 // - Config deletions use a "tombstone" message where the value is JSON null.
@@ -9,6 +9,8 @@
 //   {"user","host","delete"}.
 
 import 'dart:convert';
+
+import 'package:intl/intl.dart';
 
 typedef AlarmFieldEntry = MapEntry<String, String>;
 
@@ -528,8 +530,15 @@ void _addDocRefFields(
 
 void _addTimeFields(List<AlarmFieldEntry> fields, AlarmTime? time) {
   if (time == null) return;
-  _addEntryIfNotNull(fields, 'Time Seconds', time.seconds);
-  _addEntryIfNotNull(fields, 'Time Nano', time.nano);
+  final millis = (time.seconds * 1000) + (time.nano / 1000000).round();
+  final dateTime =
+      DateTime.fromMillisecondsSinceEpoch(millis, isUtc: true).toLocal();
+  final formatted = _formatAlarmDateTime(dateTime);
+  _addEntryIfNotNull(fields, 'Time', formatted);
+}
+
+String _formatAlarmDateTime(DateTime dateTime) {
+  return DateFormat('MMM d, yyyy h:mm:ss.SSS a').format(dateTime);
 }
 
 List<AlarmFieldEntry> _unknownToFields(Object? value) {
