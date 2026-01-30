@@ -8,9 +8,9 @@
 // - Before a tombstone, a "config delete message" may be sent with
 //   {"user","host","delete"}.
 
-import 'dart:convert';
+import 'dart:convert' show jsonDecode;
 
-import 'package:intl/intl.dart';
+import 'package:intl/intl.dart' show DateFormat;
 
 typedef AlarmFieldEntry = MapEntry<String, String>;
 
@@ -530,15 +530,16 @@ void _addDocRefFields(
 
 void _addTimeFields(List<AlarmFieldEntry> fields, AlarmTime? time) {
   if (time == null) return;
-  final millis = (time.seconds * 1000) + (time.nano / 1000000).round();
-  final dateTime =
-      DateTime.fromMillisecondsSinceEpoch(millis, isUtc: true).toLocal();
-  final formatted = _formatAlarmDateTime(dateTime);
+  final millis = (time.seconds * 1000) + (time.nano ~/ 1000000);
+  final dateTime = DateTime.fromMillisecondsSinceEpoch(millis, isUtc: true);
+  final formatted = _formatAlarmDateTime(dateTime, time.nano);
   _addEntryIfNotNull(fields, 'Time', formatted);
 }
 
-String _formatAlarmDateTime(DateTime dateTime) {
-  return DateFormat('MMM d, yyyy h:mm:ss.SSS a').format(dateTime);
+String _formatAlarmDateTime(DateTime dateTime, int nano) {
+  final base = DateFormat('yyyy-MM-dd HH:mm:ss').format(dateTime);
+  final nanoText = nano.toString().padLeft(9, '0');
+  return '$base.$nanoText';
 }
 
 List<AlarmFieldEntry> _unknownToFields(Object? value) {
