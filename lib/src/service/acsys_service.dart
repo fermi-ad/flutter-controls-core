@@ -720,9 +720,9 @@ final class ACSysService implements ACSysServiceAPI {
           if (value.linkException != null) {
             throw value.linkException!;
           } else if (value.graphqlErrors != null) {
-            throw Exception(value.graphqlErrors);
+            throw ACSysGraphQLException(value.graphqlErrors.toString());
           } else {
-            throw Exception("unknown error");
+            throw ACSysGraphQLException("unknown error");
           }
         } else {
           final data = value.data;
@@ -730,7 +730,7 @@ final class ACSysService implements ACSysServiceAPI {
           if (data != null) {
             return xlat != null ? xlat(data) : data as Result;
           } else {
-            throw Exception("no data was returned from request");
+            throw ACSysGraphQLException("no data was returned from request");
           }
         }
       });
@@ -745,9 +745,9 @@ final class ACSysService implements ACSysServiceAPI {
       if (value.linkException != null) {
         throw value.linkException!;
       } else if (value.graphqlErrors != null) {
-        throw Exception(value.graphqlErrors);
+        throw ACSysGraphQLException(value.graphqlErrors.toString());
       } else {
-        throw Exception("unknown error");
+        throw ACSysGraphQLException("unknown error");
       }
     } else {
       final data = value.data;
@@ -755,7 +755,7 @@ final class ACSysService implements ACSysServiceAPI {
       if (data != null) {
         return xlat != null ? xlat(data) : data as Result;
       } else {
-        throw Exception("no data was returned from request");
+        throw ACSysGraphQLException("no data was returned from request");
       }
     }
   });
@@ -770,9 +770,9 @@ final class ACSysService implements ACSysServiceAPI {
       if (value.linkException != null) {
         throw value.linkException!;
       } else if (value.graphqlErrors != null) {
-        throw Exception(value.graphqlErrors);
+        throw ACSysGraphQLException(value.graphqlErrors.toString());
       } else {
-        throw Exception("unknown error");
+        throw ACSysGraphQLException("unknown error");
       }
     } else {
       final data = value.data;
@@ -780,7 +780,7 @@ final class ACSysService implements ACSysServiceAPI {
       if (data != null) {
         return xlat != null ? xlat(data) : data as Result;
       } else {
-        throw Exception("no data was returned from request");
+        throw ACSysGraphQLException("no data was returned from request");
       }
     }
   });
