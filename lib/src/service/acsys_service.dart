@@ -3,8 +3,6 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';
-import 'package:flutter_controls_core/src/service/alarm_parser.dart';
-
 import 'package:built_collection/built_collection.dart';
 
 import 'package:ferry/ferry.dart';
@@ -299,7 +297,7 @@ class Message<T> {
   const Message({this.key, required this.value});
 }
 
-final class AlarmMessage extends Message<AlarmMessageValue> {
+final class AlarmMessage extends Message<String> {
   const AlarmMessage({super.key, required super.value});
 }
 
@@ -1025,10 +1023,7 @@ final class ACSysService implements ACSysServiceAPI {
       req,
       xlat: (GAlarmsSnapshotData data) {
         return data.alarmsSnapshot.map((snapshot) {
-          return AlarmMessage(
-            key: snapshot.key,
-            value: parseAlarmValueJsonString(snapshot.value, key: snapshot.key),
-          );
+          return AlarmMessage(key: snapshot.key, value: snapshot.value);
         }).toList();
       },
     );
@@ -1054,10 +1049,7 @@ final class ACSysService implements ACSysServiceAPI {
           if (!e.hasErrors) {
             yield AlarmMessage(
               key: e.data!.alarms.key,
-              value: parseAlarmValueJsonString(
-                e.data!.alarms.value,
-                key: e.data!.alarms.key,
-              ),
+              value: e.data!.alarms.value,
             );
           } else {
             if (e.linkException != null) {
