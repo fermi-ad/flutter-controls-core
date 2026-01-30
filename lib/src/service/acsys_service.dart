@@ -1017,7 +1017,6 @@ final class ACSysService implements ACSysServiceAPI {
         .expand(_convertMonitor);
   }
 
-  // Gets a snapshot of the current alarms.
   @override
   Future<List<AlarmMessage>> getAlarmsSnapshot() {
     final req = GAlarmsSnapshotReq();
