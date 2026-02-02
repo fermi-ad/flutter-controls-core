@@ -7,13 +7,13 @@ part of 'plot_configs.data.gql.dart';
 // **************************************************************************
 
 Serializer<GPlotConfigsData> _$gPlotConfigsDataSerializer =
-    new _$GPlotConfigsDataSerializer();
+    _$GPlotConfigsDataSerializer();
 Serializer<GPlotConfigsData_plotConfiguration>
 _$gPlotConfigsDataPlotConfigurationSerializer =
-    new _$GPlotConfigsData_plotConfigurationSerializer();
+    _$GPlotConfigsData_plotConfigurationSerializer();
 Serializer<GPlotConfigsData_plotConfiguration_channels>
 _$gPlotConfigsDataPlotConfigurationChannelsSerializer =
-    new _$GPlotConfigsData_plotConfiguration_channelsSerializer();
+    _$GPlotConfigsData_plotConfiguration_channelsSerializer();
 
 class _$GPlotConfigsDataSerializer
     implements StructuredSerializer<GPlotConfigsData> {
@@ -52,7 +52,7 @@ class _$GPlotConfigsDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigsDataBuilder();
+    final result = GPlotConfigsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -250,7 +250,7 @@ class _$GPlotConfigsData_plotConfigurationSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigsData_plotConfigurationBuilder();
+    final result = GPlotConfigsData_plotConfigurationBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -488,7 +488,7 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigsData_plotConfiguration_channelsBuilder();
+    final result = GPlotConfigsData_plotConfiguration_channelsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -553,31 +553,19 @@ class _$GPlotConfigsData extends GPlotConfigsData {
 
   factory _$GPlotConfigsData([
     void Function(GPlotConfigsDataBuilder)? updates,
-  ]) => (new GPlotConfigsDataBuilder()..update(updates))._build();
+  ]) => (GPlotConfigsDataBuilder()..update(updates))._build();
 
   _$GPlotConfigsData._({
     required this.G__typename,
     required this.plotConfiguration,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GPlotConfigsData',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      plotConfiguration,
-      r'GPlotConfigsData',
-      'plotConfiguration',
-    );
-  }
-
+  }) : super._();
   @override
   GPlotConfigsData rebuild(void Function(GPlotConfigsDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GPlotConfigsDataBuilder toBuilder() =>
-      new GPlotConfigsDataBuilder()..replace(this);
+      GPlotConfigsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -616,7 +604,7 @@ class GPlotConfigsDataBuilder
   ListBuilder<GPlotConfigsData_plotConfiguration>? _plotConfiguration;
   ListBuilder<GPlotConfigsData_plotConfiguration> get plotConfiguration =>
       _$this._plotConfiguration ??=
-          new ListBuilder<GPlotConfigsData_plotConfiguration>();
+          ListBuilder<GPlotConfigsData_plotConfiguration>();
   set plotConfiguration(
     ListBuilder<GPlotConfigsData_plotConfiguration>? plotConfiguration,
   ) => _$this._plotConfiguration = plotConfiguration;
@@ -637,7 +625,6 @@ class GPlotConfigsDataBuilder
 
   @override
   void replace(GPlotConfigsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigsData;
   }
 
@@ -654,7 +641,7 @@ class GPlotConfigsDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GPlotConfigsData._(
+          _$GPlotConfigsData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GPlotConfigsData',
@@ -668,7 +655,7 @@ class GPlotConfigsDataBuilder
         _$failedField = 'plotConfiguration';
         plotConfiguration.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GPlotConfigsData',
           _$failedField,
           e.toString(),
@@ -728,9 +715,7 @@ class _$GPlotConfigsData_plotConfiguration
 
   factory _$GPlotConfigsData_plotConfiguration([
     void Function(GPlotConfigsData_plotConfigurationBuilder)? updates,
-  ]) =>
-      (new GPlotConfigsData_plotConfigurationBuilder()..update(updates))
-          ._build();
+  ]) => (GPlotConfigsData_plotConfigurationBuilder()..update(updates))._build();
 
   _$GPlotConfigsData_plotConfiguration._({
     required this.G__typename,
@@ -754,54 +739,7 @@ class _$GPlotConfigsData_plotConfiguration
     required this.dataLimit,
     this.sampleOnEvent,
     this.chXAxis,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GPlotConfigsData_plotConfiguration',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      configurationName,
-      r'GPlotConfigsData_plotConfiguration',
-      'configurationName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      channels,
-      r'GPlotConfigsData_plotConfiguration',
-      'channels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isScalar,
-      r'GPlotConfigsData_plotConfiguration',
-      'isScalar',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isOneShot,
-      r'GPlotConfigsData_plotConfiguration',
-      'isOneShot',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isShowLabels,
-      r'GPlotConfigsData_plotConfiguration',
-      'isShowLabels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isPersistent,
-      r'GPlotConfigsData_plotConfiguration',
-      'isPersistent',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isBlink,
-      r'GPlotConfigsData_plotConfiguration',
-      'isBlink',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      dataLimit,
-      r'GPlotConfigsData_plotConfiguration',
-      'dataLimit',
-    );
-  }
-
+  }) : super._();
   @override
   GPlotConfigsData_plotConfiguration rebuild(
     void Function(GPlotConfigsData_plotConfigurationBuilder) updates,
@@ -809,7 +747,7 @@ class _$GPlotConfigsData_plotConfiguration
 
   @override
   GPlotConfigsData_plotConfigurationBuilder toBuilder() =>
-      new GPlotConfigsData_plotConfigurationBuilder()..replace(this);
+      GPlotConfigsData_plotConfigurationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -919,7 +857,7 @@ class GPlotConfigsData_plotConfigurationBuilder
   ListBuilder<GPlotConfigsData_plotConfiguration_channels>? _channels;
   ListBuilder<GPlotConfigsData_plotConfiguration_channels> get channels =>
       _$this._channels ??=
-          new ListBuilder<GPlotConfigsData_plotConfiguration_channels>();
+          ListBuilder<GPlotConfigsData_plotConfiguration_channels>();
   set channels(
     ListBuilder<GPlotConfigsData_plotConfiguration_channels>? channels,
   ) => _$this._channels = channels;
@@ -1030,7 +968,6 @@ class GPlotConfigsData_plotConfigurationBuilder
 
   @override
   void replace(GPlotConfigsData_plotConfiguration other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigsData_plotConfiguration;
   }
 
@@ -1049,7 +986,7 @@ class GPlotConfigsData_plotConfigurationBuilder
     try {
       _$result =
           _$v ??
-          new _$GPlotConfigsData_plotConfiguration._(
+          _$GPlotConfigsData_plotConfiguration._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GPlotConfigsData_plotConfiguration',
@@ -1110,7 +1047,7 @@ class GPlotConfigsData_plotConfigurationBuilder
         _$failedField = 'channels';
         channels.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GPlotConfigsData_plotConfiguration',
           _$failedField,
           e.toString(),
@@ -1141,8 +1078,7 @@ class _$GPlotConfigsData_plotConfiguration_channels
   factory _$GPlotConfigsData_plotConfiguration_channels([
     void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)? updates,
   ]) =>
-      (new GPlotConfigsData_plotConfiguration_channelsBuilder()
-            ..update(updates))
+      (GPlotConfigsData_plotConfiguration_channelsBuilder()..update(updates))
           ._build();
 
   _$GPlotConfigsData_plotConfiguration_channels._({
@@ -1152,19 +1088,7 @@ class _$GPlotConfigsData_plotConfiguration_channels
     this.yMax,
     this.lineColor,
     this.markerIndex,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GPlotConfigsData_plotConfiguration_channels',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      device,
-      r'GPlotConfigsData_plotConfiguration_channels',
-      'device',
-    );
-  }
-
+  }) : super._();
   @override
   GPlotConfigsData_plotConfiguration_channels rebuild(
     void Function(GPlotConfigsData_plotConfiguration_channelsBuilder) updates,
@@ -1172,7 +1096,7 @@ class _$GPlotConfigsData_plotConfiguration_channels
 
   @override
   GPlotConfigsData_plotConfiguration_channelsBuilder toBuilder() =>
-      new GPlotConfigsData_plotConfiguration_channelsBuilder()..replace(this);
+      GPlotConfigsData_plotConfiguration_channelsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1266,7 +1190,6 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
 
   @override
   void replace(GPlotConfigsData_plotConfiguration_channels other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigsData_plotConfiguration_channels;
   }
 
@@ -1283,7 +1206,7 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   _$GPlotConfigsData_plotConfiguration_channels _build() {
     final _$result =
         _$v ??
-        new _$GPlotConfigsData_plotConfiguration_channels._(
+        _$GPlotConfigsData_plotConfiguration_channels._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GPlotConfigsData_plotConfiguration_channels',

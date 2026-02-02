@@ -7,7 +7,7 @@ part of 'serializers.gql.dart';
 // **************************************************************************
 
 Serializers _$serializers =
-    (new Serializers().toBuilder()
+    (Serializers().toBuilder()
           ..add(FetchPolicy.serializer)
           ..add(GDevicePropertyFieldsData.serializer)
           ..add(GDevicePropertyFieldsReq.serializer)
@@ -55,7 +55,7 @@ Serializers _$serializers =
             const FullType(BuiltList, const [
               const FullType(GgetDeviceInfoData_deviceInfo_result),
             ]),
-            () => new ListBuilder<GgetDeviceInfoData_deviceInfo_result>(),
+            () => ListBuilder<GgetDeviceInfoData_deviceInfo_result>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
@@ -64,7 +64,7 @@ Serializers _$serializers =
               ),
             ]),
             () =>
-                new ListBuilder<
+                ListBuilder<
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
                 >(),
           )
@@ -75,7 +75,7 @@ Serializers _$serializers =
               ),
             ]),
             () =>
-                new ListBuilder<
+                ListBuilder<
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
                 >(),
           )
@@ -86,25 +86,25 @@ Serializers _$serializers =
               ),
             ]),
             () =>
-                new ListBuilder<
+                ListBuilder<
                   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
                 >(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
-            () => new ListBuilder<double>(),
+            () => ListBuilder<double>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
-            () => new ListBuilder<double>(),
+            () => ListBuilder<double>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
-            () => new ListBuilder<double>(),
+            () => ListBuilder<double>(),
           ))
         .build();
 
