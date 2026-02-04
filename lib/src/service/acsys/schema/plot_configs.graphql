@@ -20,7 +20,11 @@ query PlotConfigs($id: Int) {
     updateDelay
     nAcquisitions
     tclkEvent
+    acquisitionMode
     isPersistent
+    isBlink
     dataLimit
+    sampleOnEvent
+    chXAxis
   }
 }

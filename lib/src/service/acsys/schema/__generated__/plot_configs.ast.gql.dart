@@ -170,6 +170,13 @@ const PlotConfigs = _i1.OperationDefinitionNode(
               selectionSet: null,
             ),
             _i1.FieldNode(
+              name: _i1.NameNode(value: 'acquisitionMode'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
               name: _i1.NameNode(value: 'isPersistent'),
               alias: null,
               arguments: [],
@@ -177,7 +184,28 @@ const PlotConfigs = _i1.OperationDefinitionNode(
               selectionSet: null,
             ),
             _i1.FieldNode(
+              name: _i1.NameNode(value: 'isBlink'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
               name: _i1.NameNode(value: 'dataLimit'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'sampleOnEvent'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'chXAxis'),
               alias: null,
               arguments: [],
               directives: [],

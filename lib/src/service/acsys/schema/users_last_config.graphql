@@ -1,5 +1,5 @@
-query UsersLastConfig($user: String) {
-    usersLastConfiguration(user: $user) {
+query UsersLastConfig {
+    usersLastConfiguration {
         configurationId
         configurationName
         channels {
@@ -20,7 +20,11 @@ query UsersLastConfig($user: String) {
         updateDelay
         nAcquisitions
         tclkEvent
+        acquisitionMode
         isPersistent
+        isBlink
         dataLimit
+        sampleOnEvent
+        chXAxis
     }
 }

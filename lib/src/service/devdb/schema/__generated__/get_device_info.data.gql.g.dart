@@ -7,49 +7,49 @@ part of 'get_device_info.data.gql.dart';
 // **************************************************************************
 
 Serializer<GgetDeviceInfoData> _$ggetDeviceInfoDataSerializer =
-    new _$GgetDeviceInfoDataSerializer();
+    _$GgetDeviceInfoDataSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo>
 _$ggetDeviceInfoDataDeviceInfoSerializer =
-    new _$GgetDeviceInfoData_deviceInfoSerializer();
+    _$GgetDeviceInfoData_deviceInfoSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__base>
 _$ggetDeviceInfoDataDeviceInfoResultBaseSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__baseSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__baseSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo>
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfoSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfoSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading>
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoReadingSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl>
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer();
 Serializer<
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
 >
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigControlEntriesSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus>
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer();
 Serializer<
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
 >
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusExtEntriesSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries>
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoDigStatusEntriesSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting>
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo>
 _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingKnobInfoSerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSerializer();
 Serializer<GgetDeviceInfoData_deviceInfo_result__asErrorReply>
 _$ggetDeviceInfoDataDeviceInfoResultAsErrorReplySerializer =
-    new _$GgetDeviceInfoData_deviceInfo_result__asErrorReplySerializer();
+    _$GgetDeviceInfoData_deviceInfo_result__asErrorReplySerializer();
 Serializer<GDevicePropertyFieldsData> _$gDevicePropertyFieldsDataSerializer =
-    new _$GDevicePropertyFieldsDataSerializer();
+    _$GDevicePropertyFieldsDataSerializer();
 
 class _$GgetDeviceInfoDataSerializer
     implements StructuredSerializer<GgetDeviceInfoData> {
@@ -86,7 +86,7 @@ class _$GgetDeviceInfoDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GgetDeviceInfoDataBuilder();
+    final result = GgetDeviceInfoDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -158,7 +158,7 @@ class _$GgetDeviceInfoData_deviceInfoSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GgetDeviceInfoData_deviceInfoBuilder();
+    final result = GgetDeviceInfoData_deviceInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -226,7 +226,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__baseSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GgetDeviceInfoData_deviceInfo_result__baseBuilder();
+    final result = GgetDeviceInfoData_deviceInfo_result__baseBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -342,8 +342,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfoSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder();
+    final result = GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -519,7 +518,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingSerializer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -680,7 +679,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlSerializer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -768,7 +767,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesSer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -871,7 +870,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusSerializer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -981,7 +980,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesS
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1141,7 +1140,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesSeri
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1366,7 +1365,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingSerializer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1543,7 +1542,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoSeria
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder();
+        GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1631,8 +1630,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReplySerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result =
-        new GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder();
+    final result = GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1759,7 +1757,7 @@ class _$GDevicePropertyFieldsDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GDevicePropertyFieldsDataBuilder();
+    final result = GDevicePropertyFieldsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -1881,22 +1879,10 @@ class _$GgetDeviceInfoData extends GgetDeviceInfoData {
 
   factory _$GgetDeviceInfoData([
     void Function(GgetDeviceInfoDataBuilder)? updates,
-  ]) => (new GgetDeviceInfoDataBuilder()..update(updates))._build();
+  ]) => (GgetDeviceInfoDataBuilder()..update(updates))._build();
 
   _$GgetDeviceInfoData._({required this.G__typename, required this.deviceInfo})
-    : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      deviceInfo,
-      r'GgetDeviceInfoData',
-      'deviceInfo',
-    );
-  }
-
+    : super._();
   @override
   GgetDeviceInfoData rebuild(
     void Function(GgetDeviceInfoDataBuilder) updates,
@@ -1904,7 +1890,7 @@ class _$GgetDeviceInfoData extends GgetDeviceInfoData {
 
   @override
   GgetDeviceInfoDataBuilder toBuilder() =>
-      new GgetDeviceInfoDataBuilder()..replace(this);
+      GgetDeviceInfoDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1942,7 +1928,7 @@ class GgetDeviceInfoDataBuilder
 
   GgetDeviceInfoData_deviceInfoBuilder? _deviceInfo;
   GgetDeviceInfoData_deviceInfoBuilder get deviceInfo =>
-      _$this._deviceInfo ??= new GgetDeviceInfoData_deviceInfoBuilder();
+      _$this._deviceInfo ??= GgetDeviceInfoData_deviceInfoBuilder();
   set deviceInfo(GgetDeviceInfoData_deviceInfoBuilder? deviceInfo) =>
       _$this._deviceInfo = deviceInfo;
 
@@ -1962,7 +1948,6 @@ class GgetDeviceInfoDataBuilder
 
   @override
   void replace(GgetDeviceInfoData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData;
   }
 
@@ -1979,7 +1964,7 @@ class GgetDeviceInfoDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoData._(
+          _$GgetDeviceInfoData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GgetDeviceInfoData',
@@ -1993,7 +1978,7 @@ class GgetDeviceInfoDataBuilder
         _$failedField = 'deviceInfo';
         deviceInfo.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoData',
           _$failedField,
           e.toString(),
@@ -2014,24 +1999,12 @@ class _$GgetDeviceInfoData_deviceInfo extends GgetDeviceInfoData_deviceInfo {
 
   factory _$GgetDeviceInfoData_deviceInfo([
     void Function(GgetDeviceInfoData_deviceInfoBuilder)? updates,
-  ]) => (new GgetDeviceInfoData_deviceInfoBuilder()..update(updates))._build();
+  ]) => (GgetDeviceInfoData_deviceInfoBuilder()..update(updates))._build();
 
   _$GgetDeviceInfoData_deviceInfo._({
     required this.G__typename,
     required this.result,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      result,
-      r'GgetDeviceInfoData_deviceInfo',
-      'result',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo rebuild(
     void Function(GgetDeviceInfoData_deviceInfoBuilder) updates,
@@ -2039,7 +2012,7 @@ class _$GgetDeviceInfoData_deviceInfo extends GgetDeviceInfoData_deviceInfo {
 
   @override
   GgetDeviceInfoData_deviceInfoBuilder toBuilder() =>
-      new GgetDeviceInfoData_deviceInfoBuilder()..replace(this);
+      GgetDeviceInfoData_deviceInfoBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2081,8 +2054,7 @@ class GgetDeviceInfoData_deviceInfoBuilder
 
   ListBuilder<GgetDeviceInfoData_deviceInfo_result>? _result;
   ListBuilder<GgetDeviceInfoData_deviceInfo_result> get result =>
-      _$this._result ??=
-          new ListBuilder<GgetDeviceInfoData_deviceInfo_result>();
+      _$this._result ??= ListBuilder<GgetDeviceInfoData_deviceInfo_result>();
   set result(ListBuilder<GgetDeviceInfoData_deviceInfo_result>? result) =>
       _$this._result = result;
 
@@ -2102,7 +2074,6 @@ class GgetDeviceInfoData_deviceInfoBuilder
 
   @override
   void replace(GgetDeviceInfoData_deviceInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo;
   }
 
@@ -2119,7 +2090,7 @@ class GgetDeviceInfoData_deviceInfoBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoData_deviceInfo._(
+          _$GgetDeviceInfoData_deviceInfo._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GgetDeviceInfoData_deviceInfo',
@@ -2133,7 +2104,7 @@ class GgetDeviceInfoData_deviceInfoBuilder
         _$failedField = 'result';
         result.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoData_deviceInfo',
           _$failedField,
           e.toString(),
@@ -2154,18 +2125,11 @@ class _$GgetDeviceInfoData_deviceInfo_result__base
   factory _$GgetDeviceInfoData_deviceInfo_result__base([
     void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder)? updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__baseBuilder()..update(updates))
+      (GgetDeviceInfoData_deviceInfo_result__baseBuilder()..update(updates))
           ._build();
 
   _$GgetDeviceInfoData_deviceInfo_result__base._({required this.G__typename})
-    : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__base',
-      'G__typename',
-    );
-  }
-
+    : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__base rebuild(
     void Function(GgetDeviceInfoData_deviceInfo_result__baseBuilder) updates,
@@ -2173,7 +2137,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__base
 
   @override
   GgetDeviceInfoData_deviceInfo_result__baseBuilder toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__baseBuilder()..replace(this);
+      GgetDeviceInfoData_deviceInfo_result__baseBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -2225,7 +2189,6 @@ class GgetDeviceInfoData_deviceInfo_result__baseBuilder
 
   @override
   void replace(GgetDeviceInfoData_deviceInfo_result__base other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo_result__base;
   }
 
@@ -2242,7 +2205,7 @@ class GgetDeviceInfoData_deviceInfo_result__baseBuilder
   _$GgetDeviceInfoData_deviceInfo_result__base _build() {
     final _$result =
         _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__base._(
+        _$GgetDeviceInfoData_deviceInfo_result__base._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GgetDeviceInfoData_deviceInfo_result__base',
@@ -2274,7 +2237,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
     void Function(GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder()
             ..update(updates))
           ._build();
 
@@ -2285,19 +2248,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
     this.digControl,
     this.digStatus,
     this.setting,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      description,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
-      'description',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo rebuild(
     void Function(GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder)
@@ -2306,7 +2257,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder()
         ..replace(this);
 
   @override
@@ -2369,7 +2320,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
   get reading =>
       _$this._reading ??=
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder();
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder();
   set reading(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder? reading,
   ) => _$this._reading = reading;
@@ -2379,7 +2330,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
   get digControl =>
       _$this._digControl ??=
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder();
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder();
   set digControl(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder?
     digControl,
@@ -2390,7 +2341,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   get digStatus =>
       _$this._digStatus ??=
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder();
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder();
   set digStatus(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder?
     digStatus,
@@ -2400,7 +2351,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   get setting =>
       _$this._setting ??=
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder();
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder();
   set setting(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder? setting,
   ) => _$this._setting = setting;
@@ -2425,7 +2376,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
 
   @override
   void replace(GgetDeviceInfoData_deviceInfo_result__asDeviceInfo other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo;
   }
 
@@ -2445,7 +2395,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._(
+          _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
@@ -2473,7 +2423,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfoBuilder
         _$failedField = 'setting';
         _setting?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo',
           _$failedField,
           e.toString(),
@@ -2519,7 +2469,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder()
             ..update(updates))
           ._build();
 
@@ -2536,59 +2486,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
     required this.isDestructiveRead,
     required this.isFeScaling,
     required this.isStepMotor,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      minVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'minVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      maxVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'maxVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      primaryIndex,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'primaryIndex',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      commonIndex,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'commonIndex',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      coeff,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'coeff',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isContrSetting,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'isContrSetting',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isDestructiveRead,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'isDestructiveRead',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isFeScaling,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'isFeScaling',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isStepMotor,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
-      'isStepMotor',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading rebuild(
     void Function(
@@ -2600,7 +2498,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder()
         ..replace(this);
 
   @override
@@ -2699,7 +2597,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
   set commonIndex(int? commonIndex) => _$this._commonIndex = commonIndex;
 
   ListBuilder<double>? _coeff;
-  ListBuilder<double> get coeff => _$this._coeff ??= new ListBuilder<double>();
+  ListBuilder<double> get coeff => _$this._coeff ??= ListBuilder<double>();
   set coeff(ListBuilder<double>? coeff) => _$this._coeff = coeff;
 
   bool? _isContrSetting;
@@ -2750,7 +2648,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
   void replace(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading;
   }
 
@@ -2773,7 +2670,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._(
+          _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
@@ -2829,7 +2726,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_readingBuilder
         _$failedField = 'coeff';
         coeff.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading',
           _$failedField,
           e.toString(),
@@ -2858,26 +2755,14 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder()
             ..update(updates))
           ._build();
 
   _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._({
     required this.G__typename,
     required this.entries,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      entries,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
-      'entries',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl rebuild(
     void Function(
@@ -2889,7 +2774,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder()
         ..replace(this);
 
   @override
@@ -2942,7 +2827,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
   >
   get entries =>
       _$this._entries ??=
-          new ListBuilder<
+          ListBuilder<
             GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
           >();
   set entries(
@@ -2973,7 +2858,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
   void replace(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v =
         other
             as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl;
@@ -2998,7 +2882,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._(
+          _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
@@ -3012,7 +2896,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControlBuilder
         _$failedField = 'entries';
         entries.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl',
           _$failedField,
           e.toString(),
@@ -3043,7 +2927,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder()
             ..update(updates))
           ._build();
 
@@ -3052,29 +2936,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
     required this.value,
     required this.shortName,
     required this.longName,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      value,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-      'value',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      shortName,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-      'shortName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      longName,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
-      'longName',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries rebuild(
     void Function(
@@ -3086,7 +2948,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuilder()
         ..replace(this);
 
   @override
@@ -3171,7 +3033,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuild
   void replace(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v =
         other
             as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries;
@@ -3195,7 +3056,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entriesBuild
   _build() {
     final _$result =
         _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._(
+        _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digControl_entries',
@@ -3243,7 +3104,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder()
             ..update(updates))
           ._build();
 
@@ -3251,24 +3112,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
     required this.G__typename,
     required this.extEntries,
     required this.entries,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      extEntries,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-      'extEntries',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      entries,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
-      'entries',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus rebuild(
     void Function(
@@ -3280,7 +3124,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder()
         ..replace(this);
 
   @override
@@ -3336,7 +3180,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   >
   get extEntries =>
       _$this._extEntries ??=
-          new ListBuilder<
+          ListBuilder<
             GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
           >();
   set extEntries(
@@ -3355,7 +3199,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   >
   get entries =>
       _$this._entries ??=
-          new ListBuilder<
+          ListBuilder<
             GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
           >();
   set entries(
@@ -3387,7 +3231,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
   void replace(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v =
         other as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus;
   }
@@ -3411,7 +3254,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._(
+          _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
@@ -3428,7 +3271,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatusBuilder
         _$failedField = 'entries';
         entries.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus',
           _$failedField,
           e.toString(),
@@ -3465,7 +3308,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
             ..update(updates))
           ._build();
 
@@ -3477,44 +3320,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
     required this.color1,
     required this.name1,
     required this.description,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      bitNo,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-      'bitNo',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      color0,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-      'color0',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      name0,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-      'name0',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      color1,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-      'color1',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      name1,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-      'name1',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      description,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
-      'description',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
   rebuild(
@@ -3527,7 +3333,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBuilder()
         ..replace(this);
 
   @override
@@ -3638,7 +3444,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBui
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries
     other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v =
         other
             as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries;
@@ -3662,7 +3467,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntriesBui
   _build() {
     final _$result =
         _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._(
+        _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_extEntries',
@@ -3738,7 +3543,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder()
             ..update(updates))
           ._build();
 
@@ -3755,69 +3560,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
     required this.falseStr,
     required this.falseColor,
     required this.falseChar,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      maskVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'maskVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      matchVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'matchVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      invert,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'invert',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      shortName,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'shortName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      longName,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'longName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      trueStr,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'trueStr',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      trueColor,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'trueColor',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      trueChar,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'trueChar',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      falseStr,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'falseStr',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      falseColor,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'falseColor',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      falseChar,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
-      'falseChar',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries rebuild(
     void Function(
@@ -3829,7 +3572,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilder()
         ..replace(this);
 
   @override
@@ -3978,7 +3721,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilde
   void replace(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v =
         other
             as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries;
@@ -4002,7 +3744,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entriesBuilde
   _build() {
     final _$result =
         _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._(
+        _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_digStatus_entries',
@@ -4105,7 +3847,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder()
             ..update(updates))
           ._build();
 
@@ -4123,59 +3865,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
     required this.isFeScaling,
     required this.isStepMotor,
     this.knobInfo,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      minVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'minVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      maxVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'maxVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      primaryIndex,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'primaryIndex',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      commonIndex,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'commonIndex',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      coeff,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'coeff',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isContrSetting,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'isContrSetting',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isDestructiveRead,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'isDestructiveRead',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isFeScaling,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'isFeScaling',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isStepMotor,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
-      'isStepMotor',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting rebuild(
     void Function(
@@ -4187,7 +3877,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder()
         ..replace(this);
 
   @override
@@ -4289,7 +3979,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   set commonIndex(int? commonIndex) => _$this._commonIndex = commonIndex;
 
   ListBuilder<double>? _coeff;
-  ListBuilder<double> get coeff => _$this._coeff ??= new ListBuilder<double>();
+  ListBuilder<double> get coeff => _$this._coeff ??= ListBuilder<double>();
   set coeff(ListBuilder<double>? coeff) => _$this._coeff = coeff;
 
   bool? _isContrSetting;
@@ -4315,7 +4005,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
   get knobInfo =>
       _$this._knobInfo ??=
-          new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder();
+          GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder();
   set knobInfo(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder?
     knobInfo,
@@ -4352,7 +4042,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
   void replace(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting;
   }
 
@@ -4375,7 +4064,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._(
+          _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
@@ -4435,7 +4124,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_settingBuilder
         _$failedField = 'knobInfo';
         _knobInfo?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting',
           _$failedField,
           e.toString(),
@@ -4466,7 +4155,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
     )?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder()
             ..update(updates))
           ._build();
 
@@ -4475,29 +4164,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
     required this.minVal,
     required this.maxVal,
     required this.step,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      minVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-      'minVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      maxVal,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-      'maxVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      step,
-      r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
-      'step',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo rebuild(
     void Function(
@@ -4509,7 +4176,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo
   @override
   GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
   toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder()
         ..replace(this);
 
   @override
@@ -4594,7 +4261,6 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
   void replace(
     GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo other,
   ) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v =
         other
             as _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo;
@@ -4618,7 +4284,7 @@ class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfoBuilder
   _build() {
     final _$result =
         _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._(
+        _$GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting_knobInfo',
@@ -4656,26 +4322,14 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReply
     void Function(GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)?
     updates,
   ]) =>
-      (new GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder()
+      (GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder()
             ..update(updates))
           ._build();
 
   _$GgetDeviceInfoData_deviceInfo_result__asErrorReply._({
     required this.G__typename,
     required this.message,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      message,
-      r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
-      'message',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoData_deviceInfo_result__asErrorReply rebuild(
     void Function(GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder)
@@ -4684,7 +4338,7 @@ class _$GgetDeviceInfoData_deviceInfo_result__asErrorReply
 
   @override
   GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder toBuilder() =>
-      new GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder()
+      GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder()
         ..replace(this);
 
   @override
@@ -4747,7 +4401,6 @@ class GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder
 
   @override
   void replace(GgetDeviceInfoData_deviceInfo_result__asErrorReply other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoData_deviceInfo_result__asErrorReply;
   }
 
@@ -4765,7 +4418,7 @@ class GgetDeviceInfoData_deviceInfo_result__asErrorReplyBuilder
   _$GgetDeviceInfoData_deviceInfo_result__asErrorReply _build() {
     final _$result =
         _$v ??
-        new _$GgetDeviceInfoData_deviceInfo_result__asErrorReply._(
+        _$GgetDeviceInfoData_deviceInfo_result__asErrorReply._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GgetDeviceInfoData_deviceInfo_result__asErrorReply',
@@ -4810,7 +4463,7 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
 
   factory _$GDevicePropertyFieldsData([
     void Function(GDevicePropertyFieldsDataBuilder)? updates,
-  ]) => (new GDevicePropertyFieldsDataBuilder()..update(updates))._build();
+  ]) => (GDevicePropertyFieldsDataBuilder()..update(updates))._build();
 
   _$GDevicePropertyFieldsData._({
     required this.G__typename,
@@ -4825,59 +4478,7 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
     required this.isDestructiveRead,
     required this.isFeScaling,
     required this.isStepMotor,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GDevicePropertyFieldsData',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      minVal,
-      r'GDevicePropertyFieldsData',
-      'minVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      maxVal,
-      r'GDevicePropertyFieldsData',
-      'maxVal',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      primaryIndex,
-      r'GDevicePropertyFieldsData',
-      'primaryIndex',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      commonIndex,
-      r'GDevicePropertyFieldsData',
-      'commonIndex',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      coeff,
-      r'GDevicePropertyFieldsData',
-      'coeff',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isContrSetting,
-      r'GDevicePropertyFieldsData',
-      'isContrSetting',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isDestructiveRead,
-      r'GDevicePropertyFieldsData',
-      'isDestructiveRead',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isFeScaling,
-      r'GDevicePropertyFieldsData',
-      'isFeScaling',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isStepMotor,
-      r'GDevicePropertyFieldsData',
-      'isStepMotor',
-    );
-  }
-
+  }) : super._();
   @override
   GDevicePropertyFieldsData rebuild(
     void Function(GDevicePropertyFieldsDataBuilder) updates,
@@ -4885,7 +4486,7 @@ class _$GDevicePropertyFieldsData extends GDevicePropertyFieldsData {
 
   @override
   GDevicePropertyFieldsDataBuilder toBuilder() =>
-      new GDevicePropertyFieldsDataBuilder()..replace(this);
+      GDevicePropertyFieldsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -4977,7 +4578,7 @@ class GDevicePropertyFieldsDataBuilder
   set commonIndex(int? commonIndex) => _$this._commonIndex = commonIndex;
 
   ListBuilder<double>? _coeff;
-  ListBuilder<double> get coeff => _$this._coeff ??= new ListBuilder<double>();
+  ListBuilder<double> get coeff => _$this._coeff ??= ListBuilder<double>();
   set coeff(ListBuilder<double>? coeff) => _$this._coeff = coeff;
 
   bool? _isContrSetting;
@@ -5024,7 +4625,6 @@ class GDevicePropertyFieldsDataBuilder
 
   @override
   void replace(GDevicePropertyFieldsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GDevicePropertyFieldsData;
   }
 
@@ -5041,7 +4641,7 @@ class GDevicePropertyFieldsDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GDevicePropertyFieldsData._(
+          _$GDevicePropertyFieldsData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GDevicePropertyFieldsData',
@@ -5097,7 +4697,7 @@ class GDevicePropertyFieldsDataBuilder
         _$failedField = 'coeff';
         coeff.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GDevicePropertyFieldsData',
           _$failedField,
           e.toString(),

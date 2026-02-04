@@ -6,21 +6,76 @@ part of 'DPM.schema.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const GAcquisitionMode _$gAcquisitionModeONE_SHOT = const GAcquisitionMode._(
+  'ONE_SHOT',
+);
+const GAcquisitionMode _$gAcquisitionModeONE_SHOT_TRIGGERED_ON_EVENT =
+    const GAcquisitionMode._('ONE_SHOT_TRIGGERED_ON_EVENT');
+const GAcquisitionMode _$gAcquisitionModeREPETITIVE_PERIODIC =
+    const GAcquisitionMode._('REPETITIVE_PERIODIC');
+const GAcquisitionMode _$gAcquisitionModeREPETITIVE_TRIGGERED_ON_EVENT =
+    const GAcquisitionMode._('REPETITIVE_TRIGGERED_ON_EVENT');
+const GAcquisitionMode _$gAcquisitionModeSAMPLE_ON_EVENT =
+    const GAcquisitionMode._('SAMPLE_ON_EVENT');
+
+GAcquisitionMode _$gAcquisitionModeValueOf(String name) {
+  switch (name) {
+    case 'ONE_SHOT':
+      return _$gAcquisitionModeONE_SHOT;
+    case 'ONE_SHOT_TRIGGERED_ON_EVENT':
+      return _$gAcquisitionModeONE_SHOT_TRIGGERED_ON_EVENT;
+    case 'REPETITIVE_PERIODIC':
+      return _$gAcquisitionModeREPETITIVE_PERIODIC;
+    case 'REPETITIVE_TRIGGERED_ON_EVENT':
+      return _$gAcquisitionModeREPETITIVE_TRIGGERED_ON_EVENT;
+    case 'SAMPLE_ON_EVENT':
+      return _$gAcquisitionModeSAMPLE_ON_EVENT;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<GAcquisitionMode> _$gAcquisitionModeValues =
+    BuiltSet<GAcquisitionMode>(const <GAcquisitionMode>[
+      _$gAcquisitionModeONE_SHOT,
+      _$gAcquisitionModeONE_SHOT_TRIGGERED_ON_EVENT,
+      _$gAcquisitionModeREPETITIVE_PERIODIC,
+      _$gAcquisitionModeREPETITIVE_TRIGGERED_ON_EVENT,
+      _$gAcquisitionModeSAMPLE_ON_EVENT,
+    ]);
+
+Serializer<GAcquisitionMode> _$gAcquisitionModeSerializer =
+    _$GAcquisitionModeSerializer();
 Serializer<GChannelSettingSnapshotIn> _$gChannelSettingSnapshotInSerializer =
-    new _$GChannelSettingSnapshotInSerializer();
-Serializer<GDevValue> _$gDevValueSerializer = new _$GDevValueSerializer();
+    _$GChannelSettingSnapshotInSerializer();
+Serializer<GDevValue> _$gDevValueSerializer = _$GDevValueSerializer();
 Serializer<GPlotConfigurationSnapshotIn>
 _$gPlotConfigurationSnapshotInSerializer =
-    new _$GPlotConfigurationSnapshotInSerializer();
+    _$GPlotConfigurationSnapshotInSerializer();
 Serializer<GTimeSeriesEntryIn> _$gTimeSeriesEntryInSerializer =
-    new _$GTimeSeriesEntryInSerializer();
-Serializer<GXformAvgExpr> _$gXformAvgExprSerializer =
-    new _$GXformAvgExprSerializer();
-Serializer<GXformDeviceExpr> _$gXformDeviceExprSerializer =
-    new _$GXformDeviceExprSerializer();
-Serializer<GXformExpr> _$gXformExprSerializer = new _$GXformExprSerializer();
-Serializer<GXformRequest> _$gXformRequestSerializer =
-    new _$GXformRequestSerializer();
+    _$GTimeSeriesEntryInSerializer();
+
+class _$GAcquisitionModeSerializer
+    implements PrimitiveSerializer<GAcquisitionMode> {
+  @override
+  final Iterable<Type> types = const <Type>[GAcquisitionMode];
+  @override
+  final String wireName = 'GAcquisitionMode';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    GAcquisitionMode object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => object.name;
+
+  @override
+  GAcquisitionMode deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => GAcquisitionMode.valueOf(serialized as String);
+}
 
 class _$GChannelSettingSnapshotInSerializer
     implements StructuredSerializer<GChannelSettingSnapshotIn> {
@@ -83,7 +138,7 @@ class _$GChannelSettingSnapshotInSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GChannelSettingSnapshotInBuilder();
+    final result = GChannelSettingSnapshotInBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -229,7 +284,7 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GDevValueBuilder();
+    final result = GDevValueBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -358,6 +413,11 @@ class _$GPlotConfigurationSnapshotInSerializer
         object.isPersistent,
         specifiedType: const FullType(bool),
       ),
+      'isBlink',
+      serializers.serialize(
+        object.isBlink,
+        specifiedType: const FullType(bool),
+      ),
       'dataLimit',
       serializers.serialize(
         object.dataLimit,
@@ -411,6 +471,17 @@ class _$GPlotConfigurationSnapshotInSerializer
           serializers.serialize(value, specifiedType: const FullType(double)),
         );
     }
+    value = object.acquisitionMode;
+    if (value != null) {
+      result
+        ..add('acquisitionMode')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(GAcquisitionMode),
+          ),
+        );
+    }
     value = object.updateDelay;
     if (value != null) {
       result
@@ -429,6 +500,20 @@ class _$GPlotConfigurationSnapshotInSerializer
         ..add('tclkEvent')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.sampleOnEvent;
+    if (value != null) {
+      result
+        ..add('sampleOnEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.chXAxis;
+    if (value != null) {
+      result
+        ..add('chXAxis')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
     return result;
   }
 
@@ -438,7 +523,7 @@ class _$GPlotConfigurationSnapshotInSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigurationSnapshotInBuilder();
+    final result = GPlotConfigurationSnapshotInBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -542,6 +627,22 @@ class _$GPlotConfigurationSnapshotInSerializer
                   )!
                   as bool;
           break;
+        case 'isBlink':
+          result.isBlink =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'acquisitionMode':
+          result.acquisitionMode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(GAcquisitionMode),
+                  )
+                  as GAcquisitionMode?;
+          break;
         case 'dataLimit':
           result.dataLimit =
               serializers.deserialize(
@@ -564,6 +665,19 @@ class _$GPlotConfigurationSnapshotInSerializer
           result.tclkEvent =
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
+          break;
+        case 'sampleOnEvent':
+          result.sampleOnEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'chXAxis':
+          result.chXAxis =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -607,7 +721,7 @@ class _$GTimeSeriesEntryInSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GTimeSeriesEntryInBuilder();
+    final result = GTimeSeriesEntryInBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -638,266 +752,6 @@ class _$GTimeSeriesEntryInSerializer
   }
 }
 
-class _$GXformAvgExprSerializer implements StructuredSerializer<GXformAvgExpr> {
-  @override
-  final Iterable<Type> types = const [GXformAvgExpr, _$GXformAvgExpr];
-  @override
-  final String wireName = 'GXformAvgExpr';
-
-  @override
-  Iterable<Object?> serialize(
-    Serializers serializers,
-    GXformAvgExpr object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = <Object?>[
-      'expr',
-      serializers.serialize(
-        object.expr,
-        specifiedType: const FullType(GXformExpr),
-      ),
-      'n',
-      serializers.serialize(object.n, specifiedType: const FullType(int)),
-    ];
-
-    return result;
-  }
-
-  @override
-  GXformAvgExpr deserialize(
-    Serializers serializers,
-    Iterable<Object?> serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = new GXformAvgExprBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'expr':
-          result.expr.replace(
-            serializers.deserialize(
-                  value,
-                  specifiedType: const FullType(GXformExpr),
-                )!
-                as GXformExpr,
-          );
-          break;
-        case 'n':
-          result.n =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(int),
-                  )!
-                  as int;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GXformDeviceExprSerializer
-    implements StructuredSerializer<GXformDeviceExpr> {
-  @override
-  final Iterable<Type> types = const [GXformDeviceExpr, _$GXformDeviceExpr];
-  @override
-  final String wireName = 'GXformDeviceExpr';
-
-  @override
-  Iterable<Object?> serialize(
-    Serializers serializers,
-    GXformDeviceExpr object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = <Object?>[
-      'device',
-      serializers.serialize(
-        object.device,
-        specifiedType: const FullType(String),
-      ),
-    ];
-
-    return result;
-  }
-
-  @override
-  GXformDeviceExpr deserialize(
-    Serializers serializers,
-    Iterable<Object?> serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = new GXformDeviceExprBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'device':
-          result.device =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )!
-                  as String;
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GXformExprSerializer implements StructuredSerializer<GXformExpr> {
-  @override
-  final Iterable<Type> types = const [GXformExpr, _$GXformExpr];
-  @override
-  final String wireName = 'GXformExpr';
-
-  @override
-  Iterable<Object?> serialize(
-    Serializers serializers,
-    GXformExpr object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = <Object?>[];
-    Object? value;
-    value = object.devEx;
-    if (value != null) {
-      result
-        ..add('devEx')
-        ..add(
-          serializers.serialize(
-            value,
-            specifiedType: const FullType(GXformDeviceExpr),
-          ),
-        );
-    }
-    value = object.avgEx;
-    if (value != null) {
-      result
-        ..add('avgEx')
-        ..add(
-          serializers.serialize(
-            value,
-            specifiedType: const FullType(GXformAvgExpr),
-          ),
-        );
-    }
-    return result;
-  }
-
-  @override
-  GXformExpr deserialize(
-    Serializers serializers,
-    Iterable<Object?> serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = new GXformExprBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'devEx':
-          result.devEx.replace(
-            serializers.deserialize(
-                  value,
-                  specifiedType: const FullType(GXformDeviceExpr),
-                )!
-                as GXformDeviceExpr,
-          );
-          break;
-        case 'avgEx':
-          result.avgEx.replace(
-            serializers.deserialize(
-                  value,
-                  specifiedType: const FullType(GXformAvgExpr),
-                )!
-                as GXformAvgExpr,
-          );
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
-class _$GXformRequestSerializer implements StructuredSerializer<GXformRequest> {
-  @override
-  final Iterable<Type> types = const [GXformRequest, _$GXformRequest];
-  @override
-  final String wireName = 'GXformRequest';
-
-  @override
-  Iterable<Object?> serialize(
-    Serializers serializers,
-    GXformRequest object, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = <Object?>[
-      'event',
-      serializers.serialize(
-        object.event,
-        specifiedType: const FullType(String),
-      ),
-      'expr',
-      serializers.serialize(
-        object.expr,
-        specifiedType: const FullType(GXformExpr),
-      ),
-    ];
-
-    return result;
-  }
-
-  @override
-  GXformRequest deserialize(
-    Serializers serializers,
-    Iterable<Object?> serialized, {
-    FullType specifiedType = FullType.unspecified,
-  }) {
-    final result = new GXformRequestBuilder();
-
-    final iterator = serialized.iterator;
-    while (iterator.moveNext()) {
-      final key = iterator.current! as String;
-      iterator.moveNext();
-      final Object? value = iterator.current;
-      switch (key) {
-        case 'event':
-          result.event =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )!
-                  as String;
-          break;
-        case 'expr':
-          result.expr.replace(
-            serializers.deserialize(
-                  value,
-                  specifiedType: const FullType(GXformExpr),
-                )!
-                as GXformExpr,
-          );
-          break;
-      }
-    }
-
-    return result.build();
-  }
-}
-
 class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
   @override
   final String device;
@@ -912,7 +766,7 @@ class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
 
   factory _$GChannelSettingSnapshotIn([
     void Function(GChannelSettingSnapshotInBuilder)? updates,
-  ]) => (new GChannelSettingSnapshotInBuilder()..update(updates))._build();
+  ]) => (GChannelSettingSnapshotInBuilder()..update(updates))._build();
 
   _$GChannelSettingSnapshotIn._({
     required this.device,
@@ -920,14 +774,7 @@ class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
     this.yMax,
     this.lineColor,
     this.markerIndex,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      device,
-      r'GChannelSettingSnapshotIn',
-      'device',
-    );
-  }
-
+  }) : super._();
   @override
   GChannelSettingSnapshotIn rebuild(
     void Function(GChannelSettingSnapshotInBuilder) updates,
@@ -935,7 +782,7 @@ class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
 
   @override
   GChannelSettingSnapshotInBuilder toBuilder() =>
-      new GChannelSettingSnapshotInBuilder()..replace(this);
+      GChannelSettingSnapshotInBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1014,7 +861,6 @@ class GChannelSettingSnapshotInBuilder
 
   @override
   void replace(GChannelSettingSnapshotIn other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GChannelSettingSnapshotIn;
   }
 
@@ -1029,7 +875,7 @@ class GChannelSettingSnapshotInBuilder
   _$GChannelSettingSnapshotIn _build() {
     final _$result =
         _$v ??
-        new _$GChannelSettingSnapshotIn._(
+        _$GChannelSettingSnapshotIn._(
           device: BuiltValueNullFieldError.checkNotNull(
             device,
             r'GChannelSettingSnapshotIn',
@@ -1062,7 +908,7 @@ class _$GDevValue extends GDevValue {
   final BuiltList<GTimeSeriesEntryIn>? timeSeriesVal;
 
   factory _$GDevValue([void Function(GDevValueBuilder)? updates]) =>
-      (new GDevValueBuilder()..update(updates))._build();
+      (GDevValueBuilder()..update(updates))._build();
 
   _$GDevValue._({
     this.intVal,
@@ -1073,13 +919,12 @@ class _$GDevValue extends GDevValue {
     this.textArrayVal,
     this.timeSeriesVal,
   }) : super._();
-
   @override
   GDevValue rebuild(void Function(GDevValueBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GDevValueBuilder toBuilder() => new GDevValueBuilder()..replace(this);
+  GDevValueBuilder toBuilder() => GDevValueBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1135,12 +980,12 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
   ListBuilder<double>? _scalarArrayVal;
   ListBuilder<double> get scalarArrayVal =>
-      _$this._scalarArrayVal ??= new ListBuilder<double>();
+      _$this._scalarArrayVal ??= ListBuilder<double>();
   set scalarArrayVal(ListBuilder<double>? scalarArrayVal) =>
       _$this._scalarArrayVal = scalarArrayVal;
 
   ListBuilder<int>? _rawVal;
-  ListBuilder<int> get rawVal => _$this._rawVal ??= new ListBuilder<int>();
+  ListBuilder<int> get rawVal => _$this._rawVal ??= ListBuilder<int>();
   set rawVal(ListBuilder<int>? rawVal) => _$this._rawVal = rawVal;
 
   String? _textVal;
@@ -1149,13 +994,13 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
   ListBuilder<String>? _textArrayVal;
   ListBuilder<String> get textArrayVal =>
-      _$this._textArrayVal ??= new ListBuilder<String>();
+      _$this._textArrayVal ??= ListBuilder<String>();
   set textArrayVal(ListBuilder<String>? textArrayVal) =>
       _$this._textArrayVal = textArrayVal;
 
   ListBuilder<GTimeSeriesEntryIn>? _timeSeriesVal;
   ListBuilder<GTimeSeriesEntryIn> get timeSeriesVal =>
-      _$this._timeSeriesVal ??= new ListBuilder<GTimeSeriesEntryIn>();
+      _$this._timeSeriesVal ??= ListBuilder<GTimeSeriesEntryIn>();
   set timeSeriesVal(ListBuilder<GTimeSeriesEntryIn>? timeSeriesVal) =>
       _$this._timeSeriesVal = timeSeriesVal;
 
@@ -1178,7 +1023,6 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
   @override
   void replace(GDevValue other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GDevValue;
   }
 
@@ -1195,7 +1039,7 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
     try {
       _$result =
           _$v ??
-          new _$GDevValue._(
+          _$GDevValue._(
             intVal: intVal,
             scalarVal: scalarVal,
             scalarArrayVal: _scalarArrayVal?.build(),
@@ -1217,7 +1061,7 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
         _$failedField = 'timeSeriesVal';
         _timeSeriesVal?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GDevValue',
           _$failedField,
           e.toString(),
@@ -1256,6 +1100,10 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   @override
   final bool isPersistent;
   @override
+  final bool isBlink;
+  @override
+  final GAcquisitionMode? acquisitionMode;
+  @override
   final int dataLimit;
   @override
   final int? updateDelay;
@@ -1263,10 +1111,14 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   final int? nAcquisitions;
   @override
   final int? tclkEvent;
+  @override
+  final int? sampleOnEvent;
+  @override
+  final String? chXAxis;
 
   factory _$GPlotConfigurationSnapshotIn([
     void Function(GPlotConfigurationSnapshotInBuilder)? updates,
-  ]) => (new GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
+  ]) => (GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
 
   _$GPlotConfigurationSnapshotIn._({
     this.configurationId,
@@ -1281,48 +1133,15 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     required this.isOneShot,
     required this.isShowLabels,
     required this.isPersistent,
+    required this.isBlink,
+    this.acquisitionMode,
     required this.dataLimit,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      configurationName,
-      r'GPlotConfigurationSnapshotIn',
-      'configurationName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      channels,
-      r'GPlotConfigurationSnapshotIn',
-      'channels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isScalar,
-      r'GPlotConfigurationSnapshotIn',
-      'isScalar',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isOneShot,
-      r'GPlotConfigurationSnapshotIn',
-      'isOneShot',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isShowLabels,
-      r'GPlotConfigurationSnapshotIn',
-      'isShowLabels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isPersistent,
-      r'GPlotConfigurationSnapshotIn',
-      'isPersistent',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      dataLimit,
-      r'GPlotConfigurationSnapshotIn',
-      'dataLimit',
-    );
-  }
-
+    this.sampleOnEvent,
+    this.chXAxis,
+  }) : super._();
   @override
   GPlotConfigurationSnapshotIn rebuild(
     void Function(GPlotConfigurationSnapshotInBuilder) updates,
@@ -1330,7 +1149,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
 
   @override
   GPlotConfigurationSnapshotInBuilder toBuilder() =>
-      new GPlotConfigurationSnapshotInBuilder()..replace(this);
+      GPlotConfigurationSnapshotInBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1348,10 +1167,14 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
         isOneShot == other.isOneShot &&
         isShowLabels == other.isShowLabels &&
         isPersistent == other.isPersistent &&
+        isBlink == other.isBlink &&
+        acquisitionMode == other.acquisitionMode &&
         dataLimit == other.dataLimit &&
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
-        tclkEvent == other.tclkEvent;
+        tclkEvent == other.tclkEvent &&
+        sampleOnEvent == other.sampleOnEvent &&
+        chXAxis == other.chXAxis;
   }
 
   @override
@@ -1369,10 +1192,14 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     _$hash = $jc(_$hash, isOneShot.hashCode);
     _$hash = $jc(_$hash, isShowLabels.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, isBlink.hashCode);
+    _$hash = $jc(_$hash, acquisitionMode.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, sampleOnEvent.hashCode);
+    _$hash = $jc(_$hash, chXAxis.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -1392,10 +1219,14 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
           ..add('isOneShot', isOneShot)
           ..add('isShowLabels', isShowLabels)
           ..add('isPersistent', isPersistent)
+          ..add('isBlink', isBlink)
+          ..add('acquisitionMode', acquisitionMode)
           ..add('dataLimit', dataLimit)
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
-          ..add('tclkEvent', tclkEvent))
+          ..add('tclkEvent', tclkEvent)
+          ..add('sampleOnEvent', sampleOnEvent)
+          ..add('chXAxis', chXAxis))
         .toString();
   }
 }
@@ -1420,7 +1251,7 @@ class GPlotConfigurationSnapshotInBuilder
 
   ListBuilder<GChannelSettingSnapshotIn>? _channels;
   ListBuilder<GChannelSettingSnapshotIn> get channels =>
-      _$this._channels ??= new ListBuilder<GChannelSettingSnapshotIn>();
+      _$this._channels ??= ListBuilder<GChannelSettingSnapshotIn>();
   set channels(ListBuilder<GChannelSettingSnapshotIn>? channels) =>
       _$this._channels = channels;
 
@@ -1460,6 +1291,15 @@ class GPlotConfigurationSnapshotInBuilder
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
 
+  bool? _isBlink;
+  bool? get isBlink => _$this._isBlink;
+  set isBlink(bool? isBlink) => _$this._isBlink = isBlink;
+
+  GAcquisitionMode? _acquisitionMode;
+  GAcquisitionMode? get acquisitionMode => _$this._acquisitionMode;
+  set acquisitionMode(GAcquisitionMode? acquisitionMode) =>
+      _$this._acquisitionMode = acquisitionMode;
+
   int? _dataLimit;
   int? get dataLimit => _$this._dataLimit;
   set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
@@ -1476,6 +1316,15 @@ class GPlotConfigurationSnapshotInBuilder
   int? _tclkEvent;
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
+
+  int? _sampleOnEvent;
+  int? get sampleOnEvent => _$this._sampleOnEvent;
+  set sampleOnEvent(int? sampleOnEvent) =>
+      _$this._sampleOnEvent = sampleOnEvent;
+
+  String? _chXAxis;
+  String? get chXAxis => _$this._chXAxis;
+  set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
 
   GPlotConfigurationSnapshotInBuilder();
 
@@ -1494,10 +1343,14 @@ class GPlotConfigurationSnapshotInBuilder
       _isOneShot = $v.isOneShot;
       _isShowLabels = $v.isShowLabels;
       _isPersistent = $v.isPersistent;
+      _isBlink = $v.isBlink;
+      _acquisitionMode = $v.acquisitionMode;
       _dataLimit = $v.dataLimit;
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _sampleOnEvent = $v.sampleOnEvent;
+      _chXAxis = $v.chXAxis;
       _$v = null;
     }
     return this;
@@ -1505,7 +1358,6 @@ class GPlotConfigurationSnapshotInBuilder
 
   @override
   void replace(GPlotConfigurationSnapshotIn other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigurationSnapshotIn;
   }
 
@@ -1522,7 +1374,7 @@ class GPlotConfigurationSnapshotInBuilder
     try {
       _$result =
           _$v ??
-          new _$GPlotConfigurationSnapshotIn._(
+          _$GPlotConfigurationSnapshotIn._(
             configurationId: configurationId,
             configurationName: BuiltValueNullFieldError.checkNotNull(
               configurationName,
@@ -1555,6 +1407,12 @@ class GPlotConfigurationSnapshotInBuilder
               r'GPlotConfigurationSnapshotIn',
               'isPersistent',
             ),
+            isBlink: BuiltValueNullFieldError.checkNotNull(
+              isBlink,
+              r'GPlotConfigurationSnapshotIn',
+              'isBlink',
+            ),
+            acquisitionMode: acquisitionMode,
             dataLimit: BuiltValueNullFieldError.checkNotNull(
               dataLimit,
               r'GPlotConfigurationSnapshotIn',
@@ -1563,6 +1421,8 @@ class GPlotConfigurationSnapshotInBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            sampleOnEvent: sampleOnEvent,
+            chXAxis: chXAxis,
           );
     } catch (_) {
       late String _$failedField;
@@ -1570,7 +1430,7 @@ class GPlotConfigurationSnapshotInBuilder
         _$failedField = 'channels';
         channels.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GPlotConfigurationSnapshotIn',
           _$failedField,
           e.toString(),
@@ -1591,22 +1451,10 @@ class _$GTimeSeriesEntryIn extends GTimeSeriesEntryIn {
 
   factory _$GTimeSeriesEntryIn([
     void Function(GTimeSeriesEntryInBuilder)? updates,
-  ]) => (new GTimeSeriesEntryInBuilder()..update(updates))._build();
+  ]) => (GTimeSeriesEntryInBuilder()..update(updates))._build();
 
   _$GTimeSeriesEntryIn._({required this.stamp, required this.value})
-    : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      stamp,
-      r'GTimeSeriesEntryIn',
-      'stamp',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      value,
-      r'GTimeSeriesEntryIn',
-      'value',
-    );
-  }
-
+    : super._();
   @override
   GTimeSeriesEntryIn rebuild(
     void Function(GTimeSeriesEntryInBuilder) updates,
@@ -1614,7 +1462,7 @@ class _$GTimeSeriesEntryIn extends GTimeSeriesEntryIn {
 
   @override
   GTimeSeriesEntryInBuilder toBuilder() =>
-      new GTimeSeriesEntryInBuilder()..replace(this);
+      GTimeSeriesEntryInBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1668,7 +1516,6 @@ class GTimeSeriesEntryInBuilder
 
   @override
   void replace(GTimeSeriesEntryIn other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GTimeSeriesEntryIn;
   }
 
@@ -1683,7 +1530,7 @@ class GTimeSeriesEntryInBuilder
   _$GTimeSeriesEntryIn _build() {
     final _$result =
         _$v ??
-        new _$GTimeSeriesEntryIn._(
+        _$GTimeSeriesEntryIn._(
           stamp: BuiltValueNullFieldError.checkNotNull(
             stamp,
             r'GTimeSeriesEntryIn',
@@ -1695,433 +1542,6 @@ class GTimeSeriesEntryInBuilder
             'value',
           ),
         );
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GXformAvgExpr extends GXformAvgExpr {
-  @override
-  final GXformExpr expr;
-  @override
-  final int n;
-
-  factory _$GXformAvgExpr([void Function(GXformAvgExprBuilder)? updates]) =>
-      (new GXformAvgExprBuilder()..update(updates))._build();
-
-  _$GXformAvgExpr._({required this.expr, required this.n}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(expr, r'GXformAvgExpr', 'expr');
-    BuiltValueNullFieldError.checkNotNull(n, r'GXformAvgExpr', 'n');
-  }
-
-  @override
-  GXformAvgExpr rebuild(void Function(GXformAvgExprBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GXformAvgExprBuilder toBuilder() => new GXformAvgExprBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GXformAvgExpr && expr == other.expr && n == other.n;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, expr.hashCode);
-    _$hash = $jc(_$hash, n.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'GXformAvgExpr')
-          ..add('expr', expr)
-          ..add('n', n))
-        .toString();
-  }
-}
-
-class GXformAvgExprBuilder
-    implements Builder<GXformAvgExpr, GXformAvgExprBuilder> {
-  _$GXformAvgExpr? _$v;
-
-  GXformExprBuilder? _expr;
-  GXformExprBuilder get expr => _$this._expr ??= new GXformExprBuilder();
-  set expr(GXformExprBuilder? expr) => _$this._expr = expr;
-
-  int? _n;
-  int? get n => _$this._n;
-  set n(int? n) => _$this._n = n;
-
-  GXformAvgExprBuilder();
-
-  GXformAvgExprBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _expr = $v.expr.toBuilder();
-      _n = $v.n;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GXformAvgExpr other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GXformAvgExpr;
-  }
-
-  @override
-  void update(void Function(GXformAvgExprBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GXformAvgExpr build() => _build();
-
-  _$GXformAvgExpr _build() {
-    _$GXformAvgExpr _$result;
-    try {
-      _$result =
-          _$v ??
-          new _$GXformAvgExpr._(
-            expr: expr.build(),
-            n: BuiltValueNullFieldError.checkNotNull(n, r'GXformAvgExpr', 'n'),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'expr';
-        expr.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-          r'GXformAvgExpr',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GXformDeviceExpr extends GXformDeviceExpr {
-  @override
-  final String device;
-
-  factory _$GXformDeviceExpr([
-    void Function(GXformDeviceExprBuilder)? updates,
-  ]) => (new GXformDeviceExprBuilder()..update(updates))._build();
-
-  _$GXformDeviceExpr._({required this.device}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      device,
-      r'GXformDeviceExpr',
-      'device',
-    );
-  }
-
-  @override
-  GXformDeviceExpr rebuild(void Function(GXformDeviceExprBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GXformDeviceExprBuilder toBuilder() =>
-      new GXformDeviceExprBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GXformDeviceExpr && device == other.device;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, device.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'GXformDeviceExpr')
-      ..add('device', device)).toString();
-  }
-}
-
-class GXformDeviceExprBuilder
-    implements Builder<GXformDeviceExpr, GXformDeviceExprBuilder> {
-  _$GXformDeviceExpr? _$v;
-
-  String? _device;
-  String? get device => _$this._device;
-  set device(String? device) => _$this._device = device;
-
-  GXformDeviceExprBuilder();
-
-  GXformDeviceExprBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _device = $v.device;
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GXformDeviceExpr other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GXformDeviceExpr;
-  }
-
-  @override
-  void update(void Function(GXformDeviceExprBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GXformDeviceExpr build() => _build();
-
-  _$GXformDeviceExpr _build() {
-    final _$result =
-        _$v ??
-        new _$GXformDeviceExpr._(
-          device: BuiltValueNullFieldError.checkNotNull(
-            device,
-            r'GXformDeviceExpr',
-            'device',
-          ),
-        );
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GXformExpr extends GXformExpr {
-  @override
-  final GXformDeviceExpr? devEx;
-  @override
-  final GXformAvgExpr? avgEx;
-
-  factory _$GXformExpr([void Function(GXformExprBuilder)? updates]) =>
-      (new GXformExprBuilder()..update(updates))._build();
-
-  _$GXformExpr._({this.devEx, this.avgEx}) : super._();
-
-  @override
-  GXformExpr rebuild(void Function(GXformExprBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GXformExprBuilder toBuilder() => new GXformExprBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GXformExpr && devEx == other.devEx && avgEx == other.avgEx;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, devEx.hashCode);
-    _$hash = $jc(_$hash, avgEx.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'GXformExpr')
-          ..add('devEx', devEx)
-          ..add('avgEx', avgEx))
-        .toString();
-  }
-}
-
-class GXformExprBuilder implements Builder<GXformExpr, GXformExprBuilder> {
-  _$GXformExpr? _$v;
-
-  GXformDeviceExprBuilder? _devEx;
-  GXformDeviceExprBuilder get devEx =>
-      _$this._devEx ??= new GXformDeviceExprBuilder();
-  set devEx(GXformDeviceExprBuilder? devEx) => _$this._devEx = devEx;
-
-  GXformAvgExprBuilder? _avgEx;
-  GXformAvgExprBuilder get avgEx =>
-      _$this._avgEx ??= new GXformAvgExprBuilder();
-  set avgEx(GXformAvgExprBuilder? avgEx) => _$this._avgEx = avgEx;
-
-  GXformExprBuilder();
-
-  GXformExprBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _devEx = $v.devEx?.toBuilder();
-      _avgEx = $v.avgEx?.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GXformExpr other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GXformExpr;
-  }
-
-  @override
-  void update(void Function(GXformExprBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GXformExpr build() => _build();
-
-  _$GXformExpr _build() {
-    _$GXformExpr _$result;
-    try {
-      _$result =
-          _$v ??
-          new _$GXformExpr._(devEx: _devEx?.build(), avgEx: _avgEx?.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'devEx';
-        _devEx?.build();
-        _$failedField = 'avgEx';
-        _avgEx?.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-          r'GXformExpr',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
-    replace(_$result);
-    return _$result;
-  }
-}
-
-class _$GXformRequest extends GXformRequest {
-  @override
-  final String event;
-  @override
-  final GXformExpr expr;
-
-  factory _$GXformRequest([void Function(GXformRequestBuilder)? updates]) =>
-      (new GXformRequestBuilder()..update(updates))._build();
-
-  _$GXformRequest._({required this.event, required this.expr}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(event, r'GXformRequest', 'event');
-    BuiltValueNullFieldError.checkNotNull(expr, r'GXformRequest', 'expr');
-  }
-
-  @override
-  GXformRequest rebuild(void Function(GXformRequestBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
-
-  @override
-  GXformRequestBuilder toBuilder() => new GXformRequestBuilder()..replace(this);
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(other, this)) return true;
-    return other is GXformRequest && event == other.event && expr == other.expr;
-  }
-
-  @override
-  int get hashCode {
-    var _$hash = 0;
-    _$hash = $jc(_$hash, event.hashCode);
-    _$hash = $jc(_$hash, expr.hashCode);
-    _$hash = $jf(_$hash);
-    return _$hash;
-  }
-
-  @override
-  String toString() {
-    return (newBuiltValueToStringHelper(r'GXformRequest')
-          ..add('event', event)
-          ..add('expr', expr))
-        .toString();
-  }
-}
-
-class GXformRequestBuilder
-    implements Builder<GXformRequest, GXformRequestBuilder> {
-  _$GXformRequest? _$v;
-
-  String? _event;
-  String? get event => _$this._event;
-  set event(String? event) => _$this._event = event;
-
-  GXformExprBuilder? _expr;
-  GXformExprBuilder get expr => _$this._expr ??= new GXformExprBuilder();
-  set expr(GXformExprBuilder? expr) => _$this._expr = expr;
-
-  GXformRequestBuilder();
-
-  GXformRequestBuilder get _$this {
-    final $v = _$v;
-    if ($v != null) {
-      _event = $v.event;
-      _expr = $v.expr.toBuilder();
-      _$v = null;
-    }
-    return this;
-  }
-
-  @override
-  void replace(GXformRequest other) {
-    ArgumentError.checkNotNull(other, 'other');
-    _$v = other as _$GXformRequest;
-  }
-
-  @override
-  void update(void Function(GXformRequestBuilder)? updates) {
-    if (updates != null) updates(this);
-  }
-
-  @override
-  GXformRequest build() => _build();
-
-  _$GXformRequest _build() {
-    _$GXformRequest _$result;
-    try {
-      _$result =
-          _$v ??
-          new _$GXformRequest._(
-            event: BuiltValueNullFieldError.checkNotNull(
-              event,
-              r'GXformRequest',
-              'event',
-            ),
-            expr: expr.build(),
-          );
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'expr';
-        expr.build();
-      } catch (e) {
-        throw new BuiltValueNestedFieldError(
-          r'GXformRequest',
-          _$failedField,
-          e.toString(),
-        );
-      }
-      rethrow;
-    }
     replace(_$result);
     return _$result;
   }

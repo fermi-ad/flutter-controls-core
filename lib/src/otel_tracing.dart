@@ -1,14 +1,10 @@
 import 'package:opentelemetry/api.dart' as otel;
 import 'package:opentelemetry/sdk.dart'
-    show
-        TracerProviderBase,
-        SimpleSpanProcessor,
-        BatchSpanProcessor,
-        ConsoleExporter,
-        SpanExporter,
-        Resource;
+    show TracerProviderBase, SimpleSpanProcessor, ConsoleExporter, SpanExporter;
 import 'package:opentelemetry/api.dart'
     show registerGlobalTracerProvider, globalTracerProvider, Attribute;
+
+export 'package:opentelemetry/api.dart' show Span;
 
 /// OpenTelemetry singleton tracer for manual instrumentation
 late final otel.Tracer otelTracer;
@@ -30,31 +26,20 @@ Attribute _toAttribute(String key, Object? value) => switch (value) {
 /// Initializes OpenTelemetry auto-instrumentation and tracer provider.
 /// Call this early in your app (e.g., in main or before runFermiApp).
 Future<void> initOpenTelemetry({
-  String serviceName = 'plotting-app',
+  String serviceName = 'flutter_controls_core',
   SpanExporter? exporter,
 }) async {
   if (_otelInitialized) return;
   final tracerProvider = TracerProviderBase(
-    resource: Resource([
-      Attribute.fromString('service.name', serviceName),
-      Attribute.fromString('service.version', '1.0.0'),
-      Attribute.fromString('telemetry.sdk.name', 'opentelemetry'),
-      Attribute.fromString('telemetry.sdk.language', 'dart'),
-      Attribute.fromString('flutter.version', '3.13.0'),
-    ]),
-    processors: [BatchSpanProcessor(exporter ?? ConsoleExporter())],
+    processors: [SimpleSpanProcessor(exporter ?? ConsoleExporter())],
   );
-  // Only register if not already registered
-  if (!_otelInitialized) {
-    registerGlobalTracerProvider(tracerProvider);
-    otelTracer = globalTracerProvider.getTracer(serviceName);
-  }
+  registerGlobalTracerProvider(tracerProvider);
+  otelTracer = globalTracerProvider.getTracer(serviceName);
   _otelInitialized = true;
-  print("initopentelemetry processors ");
 }
 
 /// Start a manual span. Returns the span, which you must end.
-otel.Span startSpan(String name, {Map<String, Object?>? attributes}) {
+otel.Span _startSpan(String name, {Map<String, Object?>? attributes}) {
   final span = otelTracer.startSpan(name);
   if (attributes != null) {
     for (final entry in attributes.entries) {
@@ -65,7 +50,11 @@ otel.Span startSpan(String name, {Map<String, Object?>? attributes}) {
 }
 
 /// Add an event to a span (must be provided by the caller).
-void addEvent(otel.Span span, String name, {Map<String, Object?>? attributes}) {
+void _addEvent(
+  otel.Span span,
+  String name, {
+  Map<String, Object?>? attributes,
+}) {
   final attrList =
       attributes?.entries.map((e) => _toAttribute(e.key, e.value)).toList() ??
       const [];
@@ -73,33 +62,51 @@ void addEvent(otel.Span span, String name, {Map<String, Object?>? attributes}) {
 }
 
 /// End the provided span.
-void endSpan(otel.Span span) {
+void _endSpan(otel.Span span) {
   span.end();
 }
 
-R runWithSpan<R>(
+/// Starts a span, executes a function, and ends the span automatically.
+///
+/// This is recommended for reliability: the span will always be ended, even if an exception occurs.
+///
+/// Example usage:
+/// ```dart
+/// runWithSpan('myOperation', (span) {
+///   // Do work
+/// });
+/// ```
+R _runWithSpan<R>(
   String name,
   R Function(otel.Span span) fn, {
   Map<String, Object?>? attributes,
 }) {
-  final span = startSpan(name, attributes: attributes);
+  final span = _startSpan(name, attributes: attributes);
   try {
     return fn(span);
   } finally {
-    endSpan(span);
+    _endSpan(span);
   }
 }
 
-Future<R> runWithSpanAsync<R>(
+/// Starts a span, executes an async function, and ends the span automatically.
+///
+/// Example usage:
+/// ```dart
+/// await runWithSpanAsync('myAsyncOperation', (span) async {
+///   // Do async work
+/// });
+/// ```
+Future<R> _runWithSpanAsync<R>(
   String name,
   Future<R> Function(otel.Span span) fn, {
   Map<String, Object?>? attributes,
 }) async {
-  final span = startSpan(name, attributes: attributes);
+  final span = _startSpan(name, attributes: attributes);
   try {
     return await fn(span);
   } finally {
-    endSpan(span);
+    _endSpan(span);
   }
 }
 
@@ -125,35 +132,95 @@ abstract class AppTracer {
 }
 
 /// Default implementation using the global otelTracer.
-class GlobalAppTracer implements AppTracer {
+class _GlobalAppTracer implements AppTracer {
   @override
   otel.Span startSpan(String name, {Map<String, Object?>? attributes}) =>
-      startSpan(name, attributes: attributes);
+      _startSpan(name, attributes: attributes);
 
   @override
   void addEvent(
     otel.Span span,
     String name, {
     Map<String, Object?>? attributes,
-  }) => addEvent(span, name, attributes: attributes);
+  }) => _addEvent(span, name, attributes: attributes);
 
   @override
-  void endSpan(otel.Span span) => endSpan(span);
+  void endSpan(otel.Span span) => _endSpan(span);
 
   @override
   R runWithSpan<R>(
     String name,
     R Function(otel.Span span) fn, {
     Map<String, Object?>? attributes,
-  }) => runWithSpan(name, fn, attributes: attributes);
+  }) => _runWithSpan(name, fn, attributes: attributes);
 
   @override
   Future<R> runWithSpanAsync<R>(
     String name,
     Future<R> Function(otel.Span span) fn, {
     Map<String, Object?>? attributes,
-  }) => runWithSpanAsync(name, fn, attributes: attributes);
+  }) => _runWithSpanAsync(name, fn, attributes: attributes);
 }
 
 /// The default tracer instance for use in most apps (opt-out global).
-final AppTracer appTracer = GlobalAppTracer();
+AppTracer appTracer = _GlobalAppTracer();
+
+/// ---
+/// # OpenTelemetry Usage Guidance
+///
+/// ## Overview
+///
+/// OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints.
+///
+/// - Auto-instrumentation is initialized automatically in `runFermiApp` and `runFermiRouterApp`.
+/// - All spans are exported to the console by default (see `ConsoleExporter`).
+/// - You can override the exporter by calling `initOpenTelemetry(exporter: ...)` before app startup.
+///
+/// ## Manual Instrumentation
+///
+/// Use the helpers below for manual spans and events:
+///
+/// ```dart
+/// final span = startSpan('operation', attributes: {'key': 'value'});
+/// try {
+///   // ... your code ...
+///   addEvent(span, 'eventName', attributes: {'foo': 42});
+/// } finally {
+///   endSpan(span);
+/// }
+/// ```
+///
+/// Or use the convenience wrappers for automatic span management:
+///
+/// ```dart
+/// runWithSpan('operation', (span) {
+///   // ... your code ...
+/// });
+///
+/// await runWithSpanAsync('asyncOp', (span) async {
+///   // ... your async code ...
+/// });
+/// ```
+///
+/// ## Dependency Injection and Testing
+///
+/// Use the `AppTracer` interface and the `appTracer` instance for testable code:
+///
+/// ```dart
+/// class MyService {
+///   final AppTracer tracer;
+///   MyService(this.tracer);
+///   void doWork() {
+///     tracer.runWithSpan('work', (span) {
+///       // ...
+///     });
+///   }
+/// }
+/// ```
+///
+/// In tests, inject a mock tracer if needed.
+///
+/// ## Opting Out
+///
+/// To disable tracing, you can override `initOpenTelemetry` with a no-op exporter or skip calling it (not recommended for most apps).
+/// ---

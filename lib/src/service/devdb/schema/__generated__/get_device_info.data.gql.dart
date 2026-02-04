@@ -123,7 +123,6 @@ abstract class GgetDeviceInfoData_deviceInfo_result__base
   static Serializer<GgetDeviceInfoData_deviceInfo_result__base>
   get serializer => _$ggetDeviceInfoDataDeviceInfoResultBaseSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GgetDeviceInfoData_deviceInfo_result__base.serializer,
@@ -168,7 +167,6 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo
   static Serializer<GgetDeviceInfoData_deviceInfo_result__asDeviceInfo>
   get serializer => _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GgetDeviceInfoData_deviceInfo_result__asDeviceInfo.serializer,
@@ -233,7 +231,6 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
   get serializer =>
       _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoReadingSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_reading
@@ -554,7 +551,6 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
   get serializer =>
       _$ggetDeviceInfoDataDeviceInfoResultAsDeviceInfoSettingSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GgetDeviceInfoData_deviceInfo_result__asDeviceInfo_setting
@@ -644,7 +640,6 @@ abstract class GgetDeviceInfoData_deviceInfo_result__asErrorReply
   static Serializer<GgetDeviceInfoData_deviceInfo_result__asErrorReply>
   get serializer => _$ggetDeviceInfoDataDeviceInfoResultAsErrorReplySerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GgetDeviceInfoData_deviceInfo_result__asErrorReply.serializer,
@@ -673,7 +668,6 @@ abstract class GDevicePropertyFields {
   bool get isDestructiveRead;
   bool get isFeScaling;
   bool get isStepMotor;
-  Map<String, dynamic> toJson();
 }
 
 abstract class GDevicePropertyFieldsData
@@ -717,7 +711,6 @@ abstract class GDevicePropertyFieldsData
   static Serializer<GDevicePropertyFieldsData> get serializer =>
       _$gDevicePropertyFieldsDataSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(GDevicePropertyFieldsData.serializer, this)
           as Map<String, dynamic>);

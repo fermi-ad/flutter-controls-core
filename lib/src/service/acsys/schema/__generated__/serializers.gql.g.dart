@@ -7,8 +7,9 @@ part of 'serializers.gql.dart';
 // **************************************************************************
 
 Serializers _$serializers =
-    (new Serializers().toBuilder()
+    (Serializers().toBuilder()
           ..add(FetchPolicy.serializer)
+          ..add(GAcquisitionMode.serializer)
           ..add(GChannelSettingSnapshotIn.serializer)
           ..add(GDeletePlotConfigData.serializer)
           ..add(GDeletePlotConfigData_deletePlotConfiguration.serializer)
@@ -68,6 +69,9 @@ Serializers _$serializers =
           )
           ..add(GStartPlotReq.serializer)
           ..add(GStartPlotVars.serializer)
+          ..add(GStreamAlarmsData.serializer)
+          ..add(GStreamAlarmsReq.serializer)
+          ..add(GStreamAlarmsVars.serializer)
           ..add(GStreamDataData.serializer)
           ..add(GStreamDataData_acceleratorData.serializer)
           ..add(GStreamDataData_acceleratorData_data.serializer)
@@ -98,58 +102,53 @@ Serializers _$serializers =
           ..add(GUsersLastConfigData_usersLastConfiguration_channels.serializer)
           ..add(GUsersLastConfigReq.serializer)
           ..add(GUsersLastConfigVars.serializer)
-          ..add(GXformAvgExpr.serializer)
-          ..add(GXformDeviceExpr.serializer)
-          ..add(GXformExpr.serializer)
-          ..add(GXformRequest.serializer)
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GChannelSettingSnapshotIn),
             ]),
-            () => new ListBuilder<GChannelSettingSnapshotIn>(),
+            () => ListBuilder<GChannelSettingSnapshotIn>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GPlotConfigsData_plotConfiguration),
             ]),
-            () => new ListBuilder<GPlotConfigsData_plotConfiguration>(),
+            () => ListBuilder<GPlotConfigsData_plotConfiguration>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GPlotConfigsData_plotConfiguration_channels),
             ]),
-            () =>
-                new ListBuilder<GPlotConfigsData_plotConfiguration_channels>(),
+            () => ListBuilder<GPlotConfigsData_plotConfiguration_channels>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GReadDevicesData_acceleratorData),
             ]),
-            () => new ListBuilder<GReadDevicesData_acceleratorData>(),
+            () => ListBuilder<GReadDevicesData_acceleratorData>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GReadDevicesData_acceleratorData_data),
             ]),
-            () => new ListBuilder<GReadDevicesData_acceleratorData_data>(),
+            () => ListBuilder<GReadDevicesData_acceleratorData_data>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GStartPlotData_startPlot_data),
             ]),
-            () => new ListBuilder<GStartPlotData_startPlot_data>(),
+            () => ListBuilder<GStartPlotData_startPlot_data>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GStartPlotData_startPlot_data_channelData),
             ]),
-            () => new ListBuilder<GStartPlotData_startPlot_data_channelData>(),
+            () => ListBuilder<GStartPlotData_startPlot_data_channelData>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GStreamDataData_acceleratorData_data),
             ]),
-            () => new ListBuilder<GStreamDataData_acceleratorData_data>(),
+            () => ListBuilder<GStreamDataData_acceleratorData_data>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
@@ -158,59 +157,59 @@ Serializers _$serializers =
               ),
             ]),
             () =>
-                new ListBuilder<
+                ListBuilder<
                   GUsersLastConfigData_usersLastConfiguration_channels
                 >(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
-            () => new ListBuilder<double>(),
+            () => ListBuilder<double>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
-            () => new ListBuilder<double>(),
+            () => ListBuilder<double>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
-            () => new ListBuilder<double>(),
+            () => ListBuilder<double>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(double)]),
-            () => new ListBuilder<double>(),
+            () => ListBuilder<double>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(int)]),
-            () => new ListBuilder<int>(),
+            () => ListBuilder<int>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),
-            () => new ListBuilder<String>(),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GTimeSeriesEntryIn),
             ]),
-            () => new ListBuilder<GTimeSeriesEntryIn>(),
+            () => ListBuilder<GTimeSeriesEntryIn>(),
           ))
         .build();
 

@@ -7,7 +7,6 @@ targets:
                     schemas:
                         - flutter_controls_core|lib/src/service/acsys/schema/DPM.graphql
                         - flutter_controls_core|lib/src/service/devdb/schema/DEVDB.graphql
-                        - flutter_controls_core|lib/src/service/faas/schema/faas.graphql
                     type_overrides:
                         Timestamp:
                             name: DateTime
@@ -17,7 +16,6 @@ targets:
                     schemas:
                         - flutter_controls_core|lib/src/service/acsys/schema/DPM.graphql
                         - flutter_controls_core|lib/src/service/devdb/schema/DEVDB.graphql
-                        - flutter_controls_core|lib/src/service/faas/schema/faas.graphql
                     custom_serializers:
                         - import: "package:flutter_controls_core/src/service/date_serializer.dart"
                           name: DateSerializer
