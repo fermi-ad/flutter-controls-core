@@ -7,9 +7,9 @@ part of 'get_device_info.req.gql.dart';
 // **************************************************************************
 
 Serializer<GgetDeviceInfoReq> _$ggetDeviceInfoReqSerializer =
-    new _$GgetDeviceInfoReqSerializer();
+    _$GgetDeviceInfoReqSerializer();
 Serializer<GDevicePropertyFieldsReq> _$gDevicePropertyFieldsReqSerializer =
-    new _$GDevicePropertyFieldsReqSerializer();
+    _$GDevicePropertyFieldsReqSerializer();
 
 class _$GgetDeviceInfoReqSerializer
     implements StructuredSerializer<GgetDeviceInfoReq> {
@@ -103,7 +103,7 @@ class _$GgetDeviceInfoReqSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GgetDeviceInfoReqBuilder();
+    final result = GgetDeviceInfoReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -241,7 +241,7 @@ class _$GDevicePropertyFieldsReqSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GDevicePropertyFieldsReqBuilder();
+    final result = GDevicePropertyFieldsReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -320,7 +320,7 @@ class _$GgetDeviceInfoReq extends GgetDeviceInfoReq {
 
   factory _$GgetDeviceInfoReq([
     void Function(GgetDeviceInfoReqBuilder)? updates,
-  ]) => (new GgetDeviceInfoReqBuilder()..update(updates))._build();
+  ]) => (GgetDeviceInfoReqBuilder()..update(updates))._build();
 
   _$GgetDeviceInfoReq._({
     required this.vars,
@@ -333,27 +333,14 @@ class _$GgetDeviceInfoReq extends GgetDeviceInfoReq {
     this.fetchPolicy,
     required this.executeOnListen,
     this.context,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GgetDeviceInfoReq', 'vars');
-    BuiltValueNullFieldError.checkNotNull(
-      operation,
-      r'GgetDeviceInfoReq',
-      'operation',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      executeOnListen,
-      r'GgetDeviceInfoReq',
-      'executeOnListen',
-    );
-  }
-
+  }) : super._();
   @override
   GgetDeviceInfoReq rebuild(void Function(GgetDeviceInfoReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GgetDeviceInfoReqBuilder toBuilder() =>
-      new GgetDeviceInfoReqBuilder()..replace(this);
+      GgetDeviceInfoReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -412,7 +399,7 @@ class GgetDeviceInfoReqBuilder
 
   _i3.GgetDeviceInfoVarsBuilder? _vars;
   _i3.GgetDeviceInfoVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GgetDeviceInfoVarsBuilder();
+      _$this._vars ??= _i3.GgetDeviceInfoVarsBuilder();
   set vars(_i3.GgetDeviceInfoVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
@@ -443,7 +430,7 @@ class GgetDeviceInfoReqBuilder
 
   _i2.GgetDeviceInfoDataBuilder? _optimisticResponse;
   _i2.GgetDeviceInfoDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GgetDeviceInfoDataBuilder();
+      _$this._optimisticResponse ??= _i2.GgetDeviceInfoDataBuilder();
   set optimisticResponse(_i2.GgetDeviceInfoDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
@@ -497,7 +484,6 @@ class GgetDeviceInfoReqBuilder
 
   @override
   void replace(GgetDeviceInfoReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoReq;
   }
 
@@ -514,7 +500,7 @@ class GgetDeviceInfoReqBuilder
     try {
       _$result =
           _$v ??
-          new _$GgetDeviceInfoReq._(
+          _$GgetDeviceInfoReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
               operation,
@@ -543,7 +529,7 @@ class GgetDeviceInfoReqBuilder
         _$failedField = 'optimisticResponse';
         _optimisticResponse?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoReq',
           _$failedField,
           e.toString(),
@@ -568,31 +554,14 @@ class _$GDevicePropertyFieldsReq extends GDevicePropertyFieldsReq {
 
   factory _$GDevicePropertyFieldsReq([
     void Function(GDevicePropertyFieldsReqBuilder)? updates,
-  ]) => (new GDevicePropertyFieldsReqBuilder()..update(updates))._build();
+  ]) => (GDevicePropertyFieldsReqBuilder()..update(updates))._build();
 
   _$GDevicePropertyFieldsReq._({
     required this.vars,
     required this.document,
     this.fragmentName,
     required this.idFields,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      vars,
-      r'GDevicePropertyFieldsReq',
-      'vars',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      document,
-      r'GDevicePropertyFieldsReq',
-      'document',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      idFields,
-      r'GDevicePropertyFieldsReq',
-      'idFields',
-    );
-  }
-
+  }) : super._();
   @override
   GDevicePropertyFieldsReq rebuild(
     void Function(GDevicePropertyFieldsReqBuilder) updates,
@@ -600,7 +569,7 @@ class _$GDevicePropertyFieldsReq extends GDevicePropertyFieldsReq {
 
   @override
   GDevicePropertyFieldsReqBuilder toBuilder() =>
-      new GDevicePropertyFieldsReqBuilder()..replace(this);
+      GDevicePropertyFieldsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -641,7 +610,7 @@ class GDevicePropertyFieldsReqBuilder
 
   _i3.GDevicePropertyFieldsVarsBuilder? _vars;
   _i3.GDevicePropertyFieldsVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GDevicePropertyFieldsVarsBuilder();
+      _$this._vars ??= _i3.GDevicePropertyFieldsVarsBuilder();
   set vars(_i3.GDevicePropertyFieldsVarsBuilder? vars) => _$this._vars = vars;
 
   _i7.DocumentNode? _document;
@@ -674,7 +643,6 @@ class GDevicePropertyFieldsReqBuilder
 
   @override
   void replace(GDevicePropertyFieldsReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GDevicePropertyFieldsReq;
   }
 
@@ -691,7 +659,7 @@ class GDevicePropertyFieldsReqBuilder
     try {
       _$result =
           _$v ??
-          new _$GDevicePropertyFieldsReq._(
+          _$GDevicePropertyFieldsReq._(
             vars: vars.build(),
             document: BuiltValueNullFieldError.checkNotNull(
               document,
@@ -711,7 +679,7 @@ class GDevicePropertyFieldsReqBuilder
         _$failedField = 'vars';
         vars.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GDevicePropertyFieldsReq',
           _$failedField,
           e.toString(),
