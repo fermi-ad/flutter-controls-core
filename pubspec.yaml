@@ -20,6 +20,8 @@ dependencies:
     web_socket_channel: ^2.0.0
     built_collection: ^5.1.1
     built_value: ^8.4.4
+    http: ^1.2.1
+
 
     # One of our app types uses the GoRouter widget, so we need to include this
     # package.
