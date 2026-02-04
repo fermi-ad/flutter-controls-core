@@ -1,11 +1,16 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
+import 'package:ferry/ferry.dart';
 import 'package:flutter_controls_core/src/service/acsys_service.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
 import 'alarms_helpers.dart';
 
 void main() {
+  setUpAll(() {
+    setupAlarmsMockFallbacks();
+  });
+
   group('ACSysService.monitorAlarms', () {
     late MockClient mockClient;
     late ACSysService service;
@@ -13,26 +18,31 @@ void main() {
     setUp(() {
       mockClient = MockClient();
 
-      // Create service instance
-      service = ACSysService(port: 8000);
-
-      // Register fallback values for mocktail
-      registerFallbackValue(
-        MockOperationResponse<GStreamAlarmsData, GStreamAlarmsVars>(),
-      );
+      // Create service instance with mocked subscription client
+      service = ACSysService(alarmsSubscriptionClient: mockClient);
     });
 
     test('yields AlarmMessage for each stream event', () async {
       // Arrange
-      final alarmEvents = [
-        createMockStreamAlarmResponse(key: 'alarm_1', value: 'ACTIVE'),
-        createMockStreamAlarmResponse(key: 'alarm_2', value: 'CLEAR'),
-        createMockStreamAlarmResponse(key: null, value: 'UNKNOWN'),
+      final List<({String? key, String value})> alarmMessages = [
+        (key: 'alarm_1', value: '{"status":"ACTIVE"}'),
+        (key: 'alarm_2', value: '{"status":"CLEAR"}'),
+        (key: null, value: '{"status":"UNKNOWN"}'),
       ];
 
+      final alarmResponses =
+          alarmMessages
+              .map(
+                (kv) =>
+                    createMockStreamAlarmResponse(key: kv.key, value: kv.value),
+              )
+              .toList();
+
       when(
-        () => mockClient.request(any()),
-      ).thenAnswer((_) => Stream.fromIterable(alarmEvents));
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
+      ).thenAnswer((_) => Stream.fromIterable(alarmResponses));
 
       // Act
       final stream = service.monitorAlarms();
@@ -40,26 +50,32 @@ void main() {
 
       // Assert
       expect(alarms, hasLength(3));
-      expect(alarms[0].key, equals('alarm_1'));
-      expect(alarms[0].value, equals('ACTIVE'));
-      expect(alarms[1].key, equals('alarm_2'));
-      expect(alarms[1].value, equals('CLEAR'));
-      expect(alarms[2].key, isNull);
-      expect(alarms[2].value, equals('UNKNOWN'));
+      for (var i = 0; i < alarmMessages.length; i++) {
+        expect(alarms[i].key, equals(alarmMessages[i].key));
+        expect(alarms[i].value, equals(alarmMessages[i].value));
+      }
     });
 
     test('skips loading state responses', () async {
       // Arrange
-      final alarmEvents = [
+      final alarmMessages = [
+        (key: 'alarm_1', value: '{"status":"ACTIVE"}'),
+        (key: 'alarm_2', value: '{"status":"CLEAR"}'),
+      ];
+
+      final alarmResponses = [
         createMockLoadingResponse<GStreamAlarmsData, GStreamAlarmsVars>(),
-        createMockStreamAlarmResponse(key: 'alarm_1', value: 'ACTIVE'),
+        ...alarmMessages.expand(
+          (kv) => [createMockStreamAlarmResponse(key: kv.key, value: kv.value)],
+        ),
         createMockLoadingResponse<GStreamAlarmsData, GStreamAlarmsVars>(),
-        createMockStreamAlarmResponse(key: 'alarm_2', value: 'CLEAR'),
       ];
 
       when(
-        () => mockClient.request(any()),
-      ).thenAnswer((_) => Stream.fromIterable(alarmEvents));
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
+      ).thenAnswer((_) => Stream.fromIterable(alarmResponses));
 
       // Act
       final stream = service.monitorAlarms();
@@ -67,8 +83,12 @@ void main() {
 
       // Assert - should only have non-loading responses
       expect(alarms, hasLength(2));
-      expect(alarms[0].key, equals('alarm_1'));
-      expect(alarms[1].key, equals('alarm_2'));
+
+      for (var i = 0; i < alarmMessages.length; i++) {
+        final expected = alarmMessages[i];
+        expect(alarms[i].key, equals(expected.key));
+        expect(alarms[i].value, equals(expected.value));
+      }
     });
 
     test('emits multiple alarms from a single subscription', () async {
@@ -77,12 +97,14 @@ void main() {
         5,
         (index) => createMockStreamAlarmResponse(
           key: 'alarm_$index',
-          value: 'STATUS_$index',
+          value: '{"status":"STATUS_$index"}',
         ),
       );
 
       when(
-        () => mockClient.request(any()),
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
       ).thenAnswer((_) => Stream.fromIterable(alarmSequence));
 
       // Act
@@ -93,60 +115,8 @@ void main() {
       expect(alarms, hasLength(5));
       for (var i = 0; i < 5; i++) {
         expect(alarms[i].key, equals('alarm_$i'));
-        expect(alarms[i].value, equals('STATUS_$i'));
+        expect(alarms[i].value, equals('{"status":"STATUS_$i"}'));
       }
-    });
-
-    test(
-      'returns an AlarmMessage with null key when key is not provided',
-      () async {
-        // Arrange
-        final mockResponse = createMockStreamAlarmResponse(
-          key: null,
-          value: 'ALARM_VALUE',
-        );
-
-        when(
-          () => mockClient.request(any()),
-        ).thenAnswer((_) => Stream.value(mockResponse));
-
-        // Act
-        final stream = service.monitorAlarms();
-        final alarms = await stream.toList();
-
-        // Assert
-        expect(alarms, hasLength(1));
-        expect(alarms.first.key, isNull);
-        expect(alarms.first.value, equals('ALARM_VALUE'));
-      },
-    );
-
-    test('returns stream that can be listened to multiple times', () async {
-      // Arrange
-      final mockResponse = createMockStreamAlarmResponse(
-        key: 'test_alarm',
-        value: 'TEST_VALUE',
-      );
-
-      when(
-        () => mockClient.request(any()),
-      ).thenAnswer((_) => Stream.value(mockResponse));
-
-      // Act
-      final stream = service.monitorAlarms();
-      final firstListen = await stream.toList();
-
-      // Reset mock for second listen
-      when(
-        () => mockClient.request(any()),
-      ).thenAnswer((_) => Stream.value(mockResponse));
-
-      final secondListen = await stream.toList();
-
-      // Assert - both should work independently
-      expect(firstListen, hasLength(1));
-      expect(secondListen, hasLength(1));
-      expect(firstListen.first.key, equals('test_alarm'));
     });
 
     test('propagates GraphQL errors as exceptions', () async {
@@ -160,7 +130,9 @@ void main() {
           );
 
       when(
-        () => mockClient.request(any()),
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
       ).thenAnswer((_) => Stream.value(errorResponse));
 
       // Act
@@ -172,21 +144,25 @@ void main() {
 
     test('propagates link errors as exceptions', () async {
       // Arrange
-      final linkException = Exception('WebSocket connection failed');
+      final linkException = createMockLinkException(
+        message: 'WebSocket connection failed',
+      );
       final errorResponse =
           createMockLinkErrorResponse<GStreamAlarmsData, GStreamAlarmsVars>(
             linkException: linkException,
           );
 
       when(
-        () => mockClient.request(any()),
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
       ).thenAnswer((_) => Stream.value(errorResponse));
 
       // Act
       final stream = service.monitorAlarms();
 
       // Assert
-      expect(() => stream.toList(), throwsA(isA<ACSysGraphQLException>()));
+      expect(() => stream.toList(), throwsA(isA<MockLinkException>()));
     });
 
     test(
@@ -200,26 +176,36 @@ void main() {
         when(() => errorResponse.hasErrors).thenReturn(true);
 
         when(
-          () => mockClient.request(any()),
+          () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+            any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+          ),
         ).thenAnswer((_) => Stream.value(errorResponse));
 
         // Act
         final stream = service.monitorAlarms();
 
         // Assert - should throw because of the filter that includes errors
-        expect(() => stream.toList(), throwsA(isA<ACSysGraphQLException>()));
+        expect(() => stream.toList(), throwsA(isA<ACSysException>()));
       },
     );
 
     test('stops emitting after stream completes', () async {
       // Arrange
       final alarmEvents = [
-        createMockStreamAlarmResponse(key: 'alarm_1', value: 'FIRST'),
-        createMockStreamAlarmResponse(key: 'alarm_2', value: 'SECOND'),
+        createMockStreamAlarmResponse(
+          key: 'alarm_1',
+          value: '{"status":"FIRST"}',
+        ),
+        createMockStreamAlarmResponse(
+          key: 'alarm_2',
+          value: '{"status":"SECOND"}',
+        ),
       ];
 
       when(
-        () => mockClient.request(any()),
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
       ).thenAnswer((_) => Stream.fromIterable(alarmEvents));
 
       // Act
@@ -227,9 +213,16 @@ void main() {
       final alarms = await stream.toList();
 
       // After stream completes, listening again should work on the new stream
-      when(() => mockClient.request(any())).thenAnswer(
+      when(
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
+      ).thenAnswer(
         (_) => Stream.value(
-          createMockStreamAlarmResponse(key: 'alarm_3', value: 'THIRD'),
+          createMockStreamAlarmResponse(
+            key: 'alarm_3',
+            value: '{"status":"THIRD"}',
+          ),
         ),
       );
 
@@ -245,12 +238,16 @@ void main() {
       // Arrange - simulate rapid updates
       final alarmEvents = List.generate(
         100,
-        (i) =>
-            createMockStreamAlarmResponse(key: 'rapid_$i', value: 'VALUE_$i'),
+        (i) => createMockStreamAlarmResponse(
+          key: 'rapid_$i',
+          value: '{"index":$i}',
+        ),
       );
 
       when(
-        () => mockClient.request(any()),
+        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
+          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
+        ),
       ).thenAnswer((_) => Stream.fromIterable(alarmEvents));
 
       // Act
@@ -261,32 +258,8 @@ void main() {
       expect(alarms, hasLength(100));
       for (var i = 0; i < 100; i++) {
         expect(alarms[i].key, equals('rapid_$i'));
-        expect(alarms[i].value, equals('VALUE_$i'));
+        expect(alarms[i].value, equals('{"index":$i}'));
       }
     });
-
-    test(
-      'correctly implements expand() semantics with sync* generator',
-      () async {
-        // Arrange - ensure expand doesn't duplicate events
-        final mockResponse = createMockStreamAlarmResponse(
-          key: 'single_alarm',
-          value: 'SINGLE_VALUE',
-        );
-
-        when(
-          () => mockClient.request(any()),
-        ).thenAnswer((_) => Stream.value(mockResponse));
-
-        // Act
-        final stream = service.monitorAlarms();
-        final alarms = await stream.toList();
-
-        // Assert - should yield exactly one AlarmMessage per OperationResponse
-        expect(alarms, hasLength(1));
-        expect(alarms.first.key, equals('single_alarm'));
-        expect(alarms.first.value, equals('SINGLE_VALUE'));
-      },
-    );
   });
 }

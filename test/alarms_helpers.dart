@@ -2,22 +2,56 @@
 library;
 
 import 'package:ferry/ferry.dart';
+import 'package:gql_exec/gql_exec.dart';
 import 'package:mocktail/mocktail.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.var.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
-import 'package:flutter_controls_core/src/service/acsys_service.dart';
-import 'package:flutter_controls_core/src/device_values.dart';
 
 /// Mock [Client] for testing Ferry GraphQL operations.
 class MockClient extends Mock implements Client {}
+
+/// Helper function to set up a mock client to return a response stream.
+void setupMockClientResponse<TData, TVars>(
+  MockClient mockClient,
+  OperationResponse<TData, TVars> response,
+) {
+  when(
+    () =>
+        mockClient.request<TData, TVars>(any<OperationRequest<TData, TVars>>()),
+  ).thenAnswer((_) => Stream.value(response));
+}
 
 /// Mock [OperationResponse] for testing.
 class MockOperationResponse<TData, TVars> extends Mock
     implements OperationResponse<TData, TVars> {}
 
 /// Mock [GraphQLError] for testing.
-class MockGraphQLError extends Mock {}
+class MockGraphQLError extends Mock implements GraphQLError {}
+
+/// Mock [LinkException] for testing.
+class MockLinkException extends Mock implements LinkException {}
+
+/// Mock [OperationRequest] for testing.
+class MockOperationRequest extends Fake
+    implements OperationRequest<Object?, Object?> {}
+
+/// Initializes fallback values for mocktail matchers. Call this in setUpAll().
+void setupAlarmsMockFallbacks() {
+  registerFallbackValue(MockOperationRequest());
+  registerFallbackValue(MockAlarmsSnapshotRequest());
+  registerFallbackValue(MockStreamAlarmsRequest());
+}
+
+/// Typed Fake for `OperationRequest<GAlarmsSnapshotData, dynamic>` to
+/// avoid runtime generic-cast failures caused by Dart's invariant generics.
+class MockAlarmsSnapshotRequest extends Fake
+    implements OperationRequest<GAlarmsSnapshotData, GAlarmsSnapshotVars> {}
+
+/// Typed Fake for `OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>`.
+class MockStreamAlarmsRequest extends Fake
+    implements OperationRequest<GStreamAlarmsData, GStreamAlarmsVars> {}
 
 /// Helper to create a mock [GAlarmsSnapshotData] with given alarm data.
 GAlarmsSnapshotData createMockAlarmsSnapshot({
@@ -57,13 +91,14 @@ GStreamAlarmsData createMockStreamAlarmData({
 }
 
 /// Helper to create a mock [OperationResponse] for successful alarm snapshot queries.
-OperationResponse<GAlarmsSnapshotData, dynamic>
+OperationResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>
 createMockAlarmsSnapshotResponse({
   required List<(String? key, String value)> alarms,
   bool loading = false,
 }) {
   final data = createMockAlarmsSnapshot(alarms: alarms);
-  final response = MockOperationResponse<GAlarmsSnapshotData, dynamic>();
+  final response =
+      MockOperationResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>();
   when(() => response.data).thenReturn(data);
   when(() => response.loading).thenReturn(loading);
   when(() => response.graphqlErrors).thenReturn(null);
@@ -92,23 +127,27 @@ createMockStreamAlarmResponse({
 
 /// Helper to create a mock [OperationResponse] for GraphQL errors.
 OperationResponse<TData, TVars> createMockErrorResponse<TData, TVars>({
-  List<dynamic>? graphqlErrors,
+  List<GraphQLError>? graphqlErrors,
 }) {
   final response = MockOperationResponse<TData, TVars>();
   when(() => response.data).thenReturn(null);
   when(() => response.loading).thenReturn(false);
   when(() => response.hasErrors).thenReturn(true);
+  when(() => response.graphqlErrors).thenReturn(graphqlErrors);
+  when(() => response.linkException).thenReturn(null);
   return response;
 }
 
 /// Helper to create a mock [OperationResponse] for link (network) errors.
 OperationResponse<TData, TVars> createMockLinkErrorResponse<TData, TVars>({
-  required Exception linkException,
+  required LinkException linkException,
 }) {
   final response = MockOperationResponse<TData, TVars>();
   when(() => response.data).thenReturn(null);
   when(() => response.loading).thenReturn(false);
   when(() => response.hasErrors).thenReturn(true);
+  when(() => response.graphqlErrors).thenReturn(null);
+  when(() => response.linkException).thenReturn(linkException);
   return response;
 }
 
@@ -117,7 +156,14 @@ MockGraphQLError createMockGraphQLError({
   String message = 'Test GraphQL error',
 }) {
   final error = MockGraphQLError();
-  when(() => error.toString()).thenReturn(message);
+  return error;
+}
+
+/// Helper to create a mock [LinkException].
+MockLinkException createMockLinkException({
+  String message = 'Test link error',
+}) {
+  final error = MockLinkException();
   return error;
 }
 
@@ -129,252 +175,4 @@ OperationResponse<TData, TVars> createMockLoadingResponse<TData, TVars>() {
   when(() => response.graphqlErrors).thenReturn(null);
   when(() => response.linkException).thenReturn(null);
   return response;
-}
-
-// ============================================================================
-// Mock ACSysServiceAPI Implementation for Testing
-// ============================================================================
-
-/// Mock implementation of ACSysServiceAPI for testing alarm functionality.
-///
-/// This provides a simple way to test code that depends on ACSysServiceAPI
-/// without needing to mock GraphQL clients or network operations.
-class MockACSysService implements ACSysServiceAPI {
-  final List<AlarmMessage> _alarmsSnapshot;
-  final Stream<AlarmMessage> _alarmsStream;
-
-  MockACSysService({
-    List<AlarmMessage>? alarmsSnapshot,
-    Stream<AlarmMessage>? alarmsStream,
-  }) : _alarmsSnapshot = alarmsSnapshot ?? [],
-       _alarmsStream = alarmsStream ?? const Stream.empty();
-
-  @override
-  Future<List<AlarmMessage>> getAlarmsSnapshot() async {
-    return _alarmsSnapshot;
-  }
-
-  @override
-  Stream<AlarmMessage> monitorAlarms() {
-    return _alarmsStream;
-  }
-
-  @override
-  Future<List<DeviceInfo>> getDeviceInfo(List<String> devices) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Stream<Reading> monitorDevices(List<String> drfs) {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<List<Reading>> readDevices(List<String> devices) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Stream<Reading> monitorSettingProperty(List<String> drfs) {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices) {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Stream<PlotReply> startPlot(
-    List<String> drfs, {
-    double? xMin,
-    double? xMax,
-    double? startTime,
-    double? endTime,
-    int? windowSize,
-    int? updateRate,
-    int? nAcquisitions,
-    int? triggerEvent,
-    int? sampleOnEvent,
-    String? chXAxis,
-  }) {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<PlotConfigurationSnapshot> savePlotConfiguration({
-    required PlotConfigurationSnapshot snapshot,
-  }) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
-    required PlotConfigId configurationId,
-  }) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<List<PlotConfigurationListing>> listPlotConfigurations() async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<void> removePlotConfiguration({
-    required PlotConfigId configurationId,
-  }) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<void> saveUserConfiguration({
-    required PlotConfigurationSnapshot snapshot,
-  }) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<SettingStatus> submit({
-    required String forDRF,
-    required DeviceValue newSetting,
-  }) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-
-  @override
-  Future<SettingStatus> sendCommand({
-    required String toDRF,
-    required String value,
-  }) async {
-    throw UnimplementedError('Not needed for alarm tests');
-  }
-}
-
-/// Mock implementation that throws exceptions for testing error handling.
-class ThrowingACSysService implements ACSysServiceAPI {
-  final Exception exception;
-
-  ThrowingACSysService({required this.exception});
-
-  @override
-  Future<List<AlarmMessage>> getAlarmsSnapshot() async {
-    throw exception;
-  }
-
-  @override
-  Stream<AlarmMessage> monitorAlarms() {
-    return Stream.error(exception);
-  }
-
-  @override
-  Future<List<DeviceInfo>> getDeviceInfo(List<String> devices) async {
-    throw exception;
-  }
-
-  @override
-  Stream<Reading> monitorDevices(List<String> drfs) {
-    return Stream.error(exception);
-  }
-
-  @override
-  Future<List<Reading>> readDevices(List<String> devices) async {
-    throw exception;
-  }
-
-  @override
-  Stream<Reading> monitorSettingProperty(List<String> drfs) {
-    return Stream.error(exception);
-  }
-
-  @override
-  Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices) {
-    return Stream.error(exception);
-  }
-
-  @override
-  Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) {
-    return Stream.error(exception);
-  }
-
-  @override
-  Stream<PlotReply> startPlot(
-    List<String> drfs, {
-    double? xMin,
-    double? xMax,
-    double? startTime,
-    double? endTime,
-    int? windowSize,
-    int? updateRate,
-    int? nAcquisitions,
-    int? triggerEvent,
-    int? sampleOnEvent,
-    String? chXAxis,
-  }) {
-    return Stream.error(exception);
-  }
-
-  @override
-  Future<PlotConfigurationSnapshot> savePlotConfiguration({
-    required PlotConfigurationSnapshot snapshot,
-  }) async {
-    throw exception;
-  }
-
-  @override
-  Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
-    required PlotConfigId configurationId,
-  }) async {
-    throw exception;
-  }
-
-  @override
-  Future<List<PlotConfigurationListing>> listPlotConfigurations() async {
-    throw exception;
-  }
-
-  @override
-  Future<void> removePlotConfiguration({
-    required PlotConfigId configurationId,
-  }) async {
-    throw exception;
-  }
-
-  @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() async {
-    throw exception;
-  }
-
-  @override
-  Future<void> saveUserConfiguration({
-    required PlotConfigurationSnapshot snapshot,
-  }) async {
-    throw exception;
-  }
-
-  @override
-  Future<SettingStatus> submit({
-    required String forDRF,
-    required DeviceValue newSetting,
-  }) async {
-    throw exception;
-  }
-
-  @override
-  Future<SettingStatus> sendCommand({
-    required String toDRF,
-    required String value,
-  }) async {
-    throw exception;
-  }
 }

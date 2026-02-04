@@ -648,62 +648,79 @@ final class ACSysService implements ACSysServiceAPI {
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  ACSysService({String? jwt, int? port})
-    : _q = Client(
-        link: HttpLink(
-          "https://acsys-proxy.fnal.gov:${port ?? 8000}/acsys",
-          defaultHeaders: _buildAuthHeader(jwt),
-        ),
-        cache: Cache(),
-      ),
-      _s = Client(
-        link: WebSocketLink(
-          null,
-          channelGenerator:
-              () => WebSocketChannel.connect(
-                Uri(
-                  scheme: "wss",
-                  host: "acsys-proxy.fnal.gov",
-                  port: port ?? 8000,
-                  path: "/acsys/s",
-                ),
-                protocols: ["graphql-ws"],
-              ),
-          reconnectInterval: const Duration(seconds: 1),
-        ),
-        cache: Cache(),
-      ),
-      _qDevDb = Client(
-        link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8000/devdb",
-          defaultHeaders: _buildAuthHeader(jwt),
-        ),
-        cache: Cache(),
-      ),
-      _qAlarms = Client(
-        link: HttpLink(
-          "https://acsys-proxy.fnal.gov:${port ?? 8000}/alarms",
-          defaultHeaders: _buildAuthHeader(jwt),
-        ),
-        // cache: Cache(),
-      ),
-      _sAlarms = Client(
-        link: WebSocketLink(
-          null,
-          channelGenerator:
-              () => WebSocketChannel.connect(
-                Uri(
-                  scheme: "wss",
-                  host: "acsys-proxy.fnal.gov",
-                  port: port ?? 8000,
-                  path: "/alarms/s",
-                ),
-                protocols: ["graphql-ws"],
-              ),
-          reconnectInterval: const Duration(seconds: 1),
-        ),
-        cache: Cache(),
-      );
+  ACSysService({
+    String? jwt,
+    int? port,
+    Client? queryClient,
+    Client? subscriptionClient,
+    Client? devDbClient,
+    Client? alarmsQueryClient,
+    Client? alarmsSubscriptionClient,
+  }) : _q =
+           queryClient ??
+           Client(
+             link: HttpLink(
+               "https://acsys-proxy.fnal.gov:${port ?? 8000}/acsys",
+               defaultHeaders: _buildAuthHeader(jwt),
+             ),
+             cache: Cache(),
+           ),
+       _s =
+           subscriptionClient ??
+           Client(
+             link: WebSocketLink(
+               null,
+               channelGenerator:
+                   () => WebSocketChannel.connect(
+                     Uri(
+                       scheme: "wss",
+                       host: "acsys-proxy.fnal.gov",
+                       port: port ?? 8000,
+                       path: "/acsys/s",
+                     ),
+                     protocols: ["graphql-ws"],
+                   ),
+               reconnectInterval: const Duration(seconds: 1),
+             ),
+             cache: Cache(),
+           ),
+       _qDevDb =
+           devDbClient ??
+           Client(
+             link: HttpLink(
+               "https://acsys-proxy.fnal.gov:8000/devdb",
+               defaultHeaders: _buildAuthHeader(jwt),
+             ),
+             cache: Cache(),
+           ),
+       _qAlarms =
+           alarmsQueryClient ??
+           Client(
+             link: HttpLink(
+               "https://acsys-proxy.fnal.gov:${port ?? 8000}/alarms",
+               defaultHeaders: _buildAuthHeader(jwt),
+             ),
+             // cache: Cache(),
+           ),
+       _sAlarms =
+           alarmsSubscriptionClient ??
+           Client(
+             link: WebSocketLink(
+               null,
+               channelGenerator:
+                   () => WebSocketChannel.connect(
+                     Uri(
+                       scheme: "wss",
+                       host: "acsys-proxy.fnal.gov",
+                       port: port ?? 8000,
+                       path: "/alarms/s",
+                     ),
+                     protocols: ["graphql-ws"],
+                   ),
+               reconnectInterval: const Duration(seconds: 1),
+             ),
+             cache: Cache(),
+           );
 
   // Common code to execute GraphQL operations against the ACSys endpoint.
   // The caller sends in a GraphQL request and, optionally, a function to
