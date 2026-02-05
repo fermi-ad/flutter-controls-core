@@ -4,7 +4,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/rea
 import 'package:mocktail/mocktail.dart';
 import 'package:ferry/ferry.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.var.gql.dart';
-import 'alarms_helpers.dart';
+import 'helpers.dart';
 
 void main() {
   setUpAll(() {
