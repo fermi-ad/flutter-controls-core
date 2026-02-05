@@ -7,6 +7,8 @@ import 'package:flutter_controls_core/flutter_controls_core.dart';
 import 'package:built_collection/built_collection.dart';
 
 import 'package:ferry/ferry.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.req.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
@@ -285,6 +287,17 @@ final class Reading {
   });
 }
 
+class Message<T> {
+  final String? key;
+  final T value;
+
+  const Message({this.key, required this.value});
+}
+
+final class AlarmMessage extends Message<String> {
+  const AlarmMessage({super.key, required super.value});
+}
+
 /// Enumeration representing console colors.
 ///
 /// These colors are the set of 8 colors used in the legacy console environment.
@@ -356,12 +369,6 @@ final class SettingStatus {
   final int errorCode;
 
   const SettingStatus({required this.facilityCode, required this.errorCode});
-}
-
-final class Alarms {
-  final String info;
-
-  const Alarms({required this.info});
 }
 
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
@@ -553,9 +560,12 @@ abstract interface class ACSysServiceAPI {
   /// provides up-to-date `DigitalStatus` values of the devices.
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
+  /// Gets a snapshot of the current alarms.
+  Future<List<AlarmMessage>> getAlarmsSnapshot();
+
   /// Takes no parameters and returns a stream that provides the current
   /// alarm info for all alarms.
-  Stream<Alarms> monitorAlarms();
+  Stream<AlarmMessage> monitorAlarms();
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
@@ -626,6 +636,7 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
+  final Client _qAlarms;
   final Client _sAlarms;
 
   static Map<String, String> _buildAuthHeader(String? jwt) =>
@@ -634,61 +645,85 @@ final class ACSysService implements ACSysServiceAPI {
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  ACSysService({String? jwt, int? port})
-    : _q = Client(
-        link: HttpLink(
-          "https://acsys-proxy.fnal.gov:${port ?? 8000}/acsys",
-          defaultHeaders: _buildAuthHeader(jwt),
-        ),
-        cache: Cache(),
-      ),
-      _s = Client(
-        link: WebSocketLink(
-          null,
-          channelGenerator:
-              () => WebSocketChannel.connect(
-                Uri(
-                  scheme: "wss",
-                  host: "acsys-proxy.fnal.gov",
-                  port: port ?? 8000,
-                  path: "/acsys/s",
-                ),
-                protocols: ["graphql-ws"],
-              ),
-          reconnectInterval: const Duration(seconds: 1),
-        ),
-        cache: Cache(),
-      ),
-      _qDevDb = Client(
-        link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8000/devdb",
-          defaultHeaders: _buildAuthHeader(jwt),
-        ),
-        cache: Cache(),
-      ),
-      _sAlarms = Client(
-        link: WebSocketLink(
-          null,
-          channelGenerator:
-              () => WebSocketChannel.connect(
-                Uri(
-                  scheme: "wss",
-                  host: "acsys-proxy.fnal.gov",
-                  port: port ?? 8000,
-                  path: "/alarms/s",
-                ),
-                protocols: ["graphql-ws"],
-              ),
-          reconnectInterval: const Duration(seconds: 1),
-        ),
-        cache: Cache(),
-      );
+  ACSysService({
+    String? jwt,
+    int? port,
+    Client? queryClient,
+    Client? subscriptionClient,
+    Client? devDbClient,
+    Client? alarmsQueryClient,
+    Client? alarmsSubscriptionClient,
+  }) : _q =
+           queryClient ??
+           Client(
+             link: HttpLink(
+               "https://acsys-proxy.fnal.gov:${port ?? 8000}/acsys",
+               defaultHeaders: _buildAuthHeader(jwt),
+             ),
+             cache: Cache(),
+           ),
+       _s =
+           subscriptionClient ??
+           Client(
+             link: WebSocketLink(
+               null,
+               channelGenerator:
+                   () => WebSocketChannel.connect(
+                     Uri(
+                       scheme: "wss",
+                       host: "acsys-proxy.fnal.gov",
+                       port: port ?? 8000,
+                       path: "/acsys/s",
+                     ),
+                     protocols: ["graphql-ws"],
+                   ),
+               reconnectInterval: const Duration(seconds: 1),
+             ),
+             cache: Cache(),
+           ),
+       _qDevDb =
+           devDbClient ??
+           Client(
+             link: HttpLink(
+               "https://acsys-proxy.fnal.gov:8000/devdb",
+               defaultHeaders: _buildAuthHeader(jwt),
+             ),
+             cache: Cache(),
+           ),
+       _qAlarms =
+           alarmsQueryClient ??
+           Client(
+             link: HttpLink(
+               "https://acsys-proxy.fnal.gov:${port ?? 8000}/alarms",
+               defaultHeaders: _buildAuthHeader(jwt),
+             ),
+             // cache: Cache(),
+           ),
+       _sAlarms =
+           alarmsSubscriptionClient ??
+           Client(
+             link: WebSocketLink(
+               null,
+               channelGenerator:
+                   () => WebSocketChannel.connect(
+                     Uri(
+                       scheme: "wss",
+                       host: "acsys-proxy.fnal.gov",
+                       port: port ?? 8000,
+                       path: "/alarms/s",
+                     ),
+                     protocols: ["graphql-ws"],
+                   ),
+               reconnectInterval: const Duration(seconds: 1),
+             ),
+             cache: Cache(),
+           );
 
-  // Common code needed to do RPCs. The caller sends in a protobuf request and,
-  // optionally, a function to translate the protobuf reply into some other data
-  // type.
+  // Common code to execute GraphQL operations against the ACSys endpoint.
+  // The caller sends in a GraphQL request and, optionally, a function to
+  // translate the GraphQL response data into some other data type.
 
-  Future<Result> _rpc<TData, TVars, Result>(
+  Future<Result> _queryAcsys<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
   }) =>
@@ -697,9 +732,9 @@ final class ACSysService implements ACSysServiceAPI {
           if (value.linkException != null) {
             throw value.linkException!;
           } else if (value.graphqlErrors != null) {
-            throw Exception(value.graphqlErrors);
+            throw ACSysGraphQLException(value.graphqlErrors.toString());
           } else {
-            throw Exception("unknown error");
+            throw ACSysGraphQLException("unknown error");
           }
         } else {
           final data = value.data;
@@ -707,12 +742,12 @@ final class ACSysService implements ACSysServiceAPI {
           if (data != null) {
             return xlat != null ? xlat(data) : data as Result;
           } else {
-            throw Exception("no data was returned from request");
+            throw ACSysGraphQLException("no data was returned from request");
           }
         }
       });
 
-  Future<Result> _rpcDevDb<TData, TVars, Result>(
+  Future<Result> _queryDevDb<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
   }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
@@ -722,9 +757,9 @@ final class ACSysService implements ACSysServiceAPI {
       if (value.linkException != null) {
         throw value.linkException!;
       } else if (value.graphqlErrors != null) {
-        throw Exception(value.graphqlErrors);
+        throw ACSysGraphQLException(value.graphqlErrors.toString());
       } else {
-        throw Exception("unknown error");
+        throw ACSysGraphQLException("unknown error");
       }
     } else {
       final data = value.data;
@@ -732,7 +767,32 @@ final class ACSysService implements ACSysServiceAPI {
       if (data != null) {
         return xlat != null ? xlat(data) : data as Result;
       } else {
-        throw Exception("no data was returned from request");
+        throw ACSysGraphQLException("no data was returned from request");
+      }
+    }
+  });
+
+  Future<Result> _queryAlarms<TData, TVars, Result>(
+    OperationRequest<TData, TVars> req, {
+    Result Function(TData)? xlat,
+  }) => _qAlarms.request(req).firstWhere((response) => !response.loading).then((
+    value,
+  ) {
+    if (value.hasErrors) {
+      if (value.linkException != null) {
+        throw value.linkException!;
+      } else if (value.graphqlErrors != null) {
+        throw ACSysGraphQLException(value.graphqlErrors.toString());
+      } else {
+        throw ACSysGraphQLException("unknown error");
+      }
+    } else {
+      final data = value.data;
+
+      if (data != null) {
+        return xlat != null ? xlat(data) : data as Result;
+      } else {
+        throw ACSysGraphQLException("no data was returned from request");
       }
     }
   });
@@ -749,7 +809,7 @@ final class ACSysService implements ACSysServiceAPI {
         (b) => b..vars.devices = ListBuilder(devices),
       );
 
-      return _rpcDevDb(
+      return _queryDevDb(
         req,
         xlat:
             (GgetDeviceInfoData data) =>
@@ -769,7 +829,7 @@ final class ACSysService implements ACSysServiceAPI {
             ..fetchPolicy = FetchPolicy.NetworkOnly,
     );
 
-    return _rpc(req, xlat: _convertReading);
+    return _queryAcsys(req, xlat: _convertReading);
   }
 
   static (DeviceInfoProperty, KnobbingInfo?)? processSetting(
@@ -969,9 +1029,23 @@ final class ACSysService implements ACSysServiceAPI {
         .expand(_convertMonitor);
   }
 
+  @override
+  Future<List<AlarmMessage>> getAlarmsSnapshot() {
+    final req = GAlarmsSnapshotReq();
+
+    return _queryAlarms(
+      req,
+      xlat: (GAlarmsSnapshotData data) {
+        return data.alarmsSnapshot.map((snapshot) {
+          return AlarmMessage(key: snapshot.key, value: snapshot.value);
+        }).toList();
+      },
+    );
+  }
+
   // Returns a stream of alarm information for all known alarms.
   @override
-  Stream<Alarms> monitorAlarms() {
+  Stream<AlarmMessage> monitorAlarms() {
     final req = GStreamAlarmsReq(
       (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
     );
@@ -987,7 +1061,10 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            yield Alarms(info: e.data!.alarms);
+            yield AlarmMessage(
+              key: e.data!.alarms.key,
+              value: e.data!.alarms.value,
+            );
           } else {
             if (e.linkException != null) {
               throw e.linkException!;
@@ -1132,7 +1209,7 @@ final class ACSysService implements ACSysServiceAPI {
             ..vars.value = newSetting._toGDevValue(),
     );
 
-    return _rpc(req, xlat: xlat);
+    return _queryAcsys(req, xlat: xlat);
   }
 
   @override
@@ -1187,7 +1264,7 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
     );
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat:
           (GPlotConfigsData data) =>
@@ -1213,14 +1290,14 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..vars.id = configurationId._value,
     );
 
-    return _rpc(req, xlat: (GDeletePlotConfigData data) => ());
+    return _queryAcsys(req, xlat: (GDeletePlotConfigData data) => ());
   }
 
   @override
   Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
     final req = GUsersLastConfigReq();
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat: (GUsersLastConfigData data) {
         final e = data.usersLastConfiguration;
@@ -1277,7 +1354,7 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
     );
 
-    return _rpc(req, xlat: (GSetUsersConfigData data) => ());
+    return _queryAcsys(req, xlat: (GSetUsersConfigData data) => ());
   }
 
   @override
@@ -1286,7 +1363,7 @@ final class ACSysService implements ACSysServiceAPI {
   }) {
     final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat:
           (GPlotConfigsData data) =>
@@ -1392,7 +1469,7 @@ final class ACSysService implements ACSysServiceAPI {
       (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
     );
 
-    return _rpc(
+    return _queryAcsys(
       req,
       xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration,
     ).then(

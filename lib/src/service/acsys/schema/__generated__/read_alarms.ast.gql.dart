@@ -4,15 +4,15 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:gql/ast.dart' as _i1;
 
-const StreamAlarms = _i1.OperationDefinitionNode(
-  type: _i1.OperationType.subscription,
-  name: _i1.NameNode(value: 'StreamAlarms'),
+const AlarmsSnapshot = _i1.OperationDefinitionNode(
+  type: _i1.OperationType.query,
+  name: _i1.NameNode(value: 'AlarmsSnapshot'),
   variableDefinitions: [],
   directives: [],
   selectionSet: _i1.SelectionSetNode(
     selections: [
       _i1.FieldNode(
-        name: _i1.NameNode(value: 'alarms'),
+        name: _i1.NameNode(value: 'alarmsSnapshot'),
         alias: null,
         arguments: [],
         directives: [],
@@ -38,4 +38,4 @@ const StreamAlarms = _i1.OperationDefinitionNode(
     ],
   ),
 );
-const document = _i1.DocumentNode(definitions: [StreamAlarms]);
+const document = _i1.DocumentNode(definitions: [AlarmsSnapshot]);

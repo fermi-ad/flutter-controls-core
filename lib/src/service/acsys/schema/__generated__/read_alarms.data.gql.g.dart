@@ -1,27 +1,31 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'stream_alarms.data.gql.dart';
+part of 'read_alarms.data.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GStreamAlarmsData> _$gStreamAlarmsDataSerializer =
-    _$GStreamAlarmsDataSerializer();
-Serializer<GStreamAlarmsData_alarms> _$gStreamAlarmsDataAlarmsSerializer =
-    _$GStreamAlarmsData_alarmsSerializer();
+Serializer<GAlarmsSnapshotData> _$gAlarmsSnapshotDataSerializer =
+    _$GAlarmsSnapshotDataSerializer();
+Serializer<GAlarmsSnapshotData_alarmsSnapshot>
+_$gAlarmsSnapshotDataAlarmsSnapshotSerializer =
+    _$GAlarmsSnapshotData_alarmsSnapshotSerializer();
 
-class _$GStreamAlarmsDataSerializer
-    implements StructuredSerializer<GStreamAlarmsData> {
+class _$GAlarmsSnapshotDataSerializer
+    implements StructuredSerializer<GAlarmsSnapshotData> {
   @override
-  final Iterable<Type> types = const [GStreamAlarmsData, _$GStreamAlarmsData];
+  final Iterable<Type> types = const [
+    GAlarmsSnapshotData,
+    _$GAlarmsSnapshotData,
+  ];
   @override
-  final String wireName = 'GStreamAlarmsData';
+  final String wireName = 'GAlarmsSnapshotData';
 
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GStreamAlarmsData object, {
+    GAlarmsSnapshotData object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     final result = <Object?>[
@@ -30,10 +34,12 @@ class _$GStreamAlarmsDataSerializer
         object.G__typename,
         specifiedType: const FullType(String),
       ),
-      'alarms',
+      'alarmsSnapshot',
       serializers.serialize(
-        object.alarms,
-        specifiedType: const FullType(GStreamAlarmsData_alarms),
+        object.alarmsSnapshot,
+        specifiedType: const FullType(BuiltList, const [
+          const FullType(GAlarmsSnapshotData_alarmsSnapshot),
+        ]),
       ),
     ];
 
@@ -41,12 +47,12 @@ class _$GStreamAlarmsDataSerializer
   }
 
   @override
-  GStreamAlarmsData deserialize(
+  GAlarmsSnapshotData deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = GStreamAlarmsDataBuilder();
+    final result = GAlarmsSnapshotDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -62,13 +68,15 @@ class _$GStreamAlarmsDataSerializer
                   )!
                   as String;
           break;
-        case 'alarms':
-          result.alarms.replace(
+        case 'alarmsSnapshot':
+          result.alarmsSnapshot.replace(
             serializers.deserialize(
                   value,
-                  specifiedType: const FullType(GStreamAlarmsData_alarms),
+                  specifiedType: const FullType(BuiltList, const [
+                    const FullType(GAlarmsSnapshotData_alarmsSnapshot),
+                  ]),
                 )!
-                as GStreamAlarmsData_alarms,
+                as BuiltList<Object?>,
           );
           break;
       }
@@ -78,20 +86,20 @@ class _$GStreamAlarmsDataSerializer
   }
 }
 
-class _$GStreamAlarmsData_alarmsSerializer
-    implements StructuredSerializer<GStreamAlarmsData_alarms> {
+class _$GAlarmsSnapshotData_alarmsSnapshotSerializer
+    implements StructuredSerializer<GAlarmsSnapshotData_alarmsSnapshot> {
   @override
   final Iterable<Type> types = const [
-    GStreamAlarmsData_alarms,
-    _$GStreamAlarmsData_alarms,
+    GAlarmsSnapshotData_alarmsSnapshot,
+    _$GAlarmsSnapshotData_alarmsSnapshot,
   ];
   @override
-  final String wireName = 'GStreamAlarmsData_alarms';
+  final String wireName = 'GAlarmsSnapshotData_alarmsSnapshot';
 
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GStreamAlarmsData_alarms object, {
+    GAlarmsSnapshotData_alarmsSnapshot object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     final result = <Object?>[
@@ -119,12 +127,12 @@ class _$GStreamAlarmsData_alarmsSerializer
   }
 
   @override
-  GStreamAlarmsData_alarms deserialize(
+  GAlarmsSnapshotData_alarmsSnapshot deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = GStreamAlarmsData_alarmsBuilder();
+    final result = GAlarmsSnapshotData_alarmsSnapshotBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -163,114 +171,119 @@ class _$GStreamAlarmsData_alarmsSerializer
   }
 }
 
-class _$GStreamAlarmsData extends GStreamAlarmsData {
+class _$GAlarmsSnapshotData extends GAlarmsSnapshotData {
   @override
   final String G__typename;
   @override
-  final GStreamAlarmsData_alarms alarms;
+  final BuiltList<GAlarmsSnapshotData_alarmsSnapshot> alarmsSnapshot;
 
-  factory _$GStreamAlarmsData([
-    void Function(GStreamAlarmsDataBuilder)? updates,
-  ]) => (GStreamAlarmsDataBuilder()..update(updates))._build();
+  factory _$GAlarmsSnapshotData([
+    void Function(GAlarmsSnapshotDataBuilder)? updates,
+  ]) => (GAlarmsSnapshotDataBuilder()..update(updates))._build();
 
-  _$GStreamAlarmsData._({required this.G__typename, required this.alarms})
-    : super._();
+  _$GAlarmsSnapshotData._({
+    required this.G__typename,
+    required this.alarmsSnapshot,
+  }) : super._();
   @override
-  GStreamAlarmsData rebuild(void Function(GStreamAlarmsDataBuilder) updates) =>
-      (toBuilder()..update(updates)).build();
+  GAlarmsSnapshotData rebuild(
+    void Function(GAlarmsSnapshotDataBuilder) updates,
+  ) => (toBuilder()..update(updates)).build();
 
   @override
-  GStreamAlarmsDataBuilder toBuilder() =>
-      GStreamAlarmsDataBuilder()..replace(this);
+  GAlarmsSnapshotDataBuilder toBuilder() =>
+      GAlarmsSnapshotDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamAlarmsData &&
+    return other is GAlarmsSnapshotData &&
         G__typename == other.G__typename &&
-        alarms == other.alarms;
+        alarmsSnapshot == other.alarmsSnapshot;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, alarms.hashCode);
+    _$hash = $jc(_$hash, alarmsSnapshot.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamAlarmsData')
+    return (newBuiltValueToStringHelper(r'GAlarmsSnapshotData')
           ..add('G__typename', G__typename)
-          ..add('alarms', alarms))
+          ..add('alarmsSnapshot', alarmsSnapshot))
         .toString();
   }
 }
 
-class GStreamAlarmsDataBuilder
-    implements Builder<GStreamAlarmsData, GStreamAlarmsDataBuilder> {
-  _$GStreamAlarmsData? _$v;
+class GAlarmsSnapshotDataBuilder
+    implements Builder<GAlarmsSnapshotData, GAlarmsSnapshotDataBuilder> {
+  _$GAlarmsSnapshotData? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  GStreamAlarmsData_alarmsBuilder? _alarms;
-  GStreamAlarmsData_alarmsBuilder get alarms =>
-      _$this._alarms ??= GStreamAlarmsData_alarmsBuilder();
-  set alarms(GStreamAlarmsData_alarmsBuilder? alarms) =>
-      _$this._alarms = alarms;
+  ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>? _alarmsSnapshot;
+  ListBuilder<GAlarmsSnapshotData_alarmsSnapshot> get alarmsSnapshot =>
+      _$this._alarmsSnapshot ??=
+          ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>();
+  set alarmsSnapshot(
+    ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>? alarmsSnapshot,
+  ) => _$this._alarmsSnapshot = alarmsSnapshot;
 
-  GStreamAlarmsDataBuilder() {
-    GStreamAlarmsData._initializeBuilder(this);
+  GAlarmsSnapshotDataBuilder() {
+    GAlarmsSnapshotData._initializeBuilder(this);
   }
 
-  GStreamAlarmsDataBuilder get _$this {
+  GAlarmsSnapshotDataBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _alarms = $v.alarms.toBuilder();
+      _alarmsSnapshot = $v.alarmsSnapshot.toBuilder();
       _$v = null;
     }
     return this;
   }
 
   @override
-  void replace(GStreamAlarmsData other) {
-    _$v = other as _$GStreamAlarmsData;
+  void replace(GAlarmsSnapshotData other) {
+    _$v = other as _$GAlarmsSnapshotData;
   }
 
   @override
-  void update(void Function(GStreamAlarmsDataBuilder)? updates) {
+  void update(void Function(GAlarmsSnapshotDataBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamAlarmsData build() => _build();
+  GAlarmsSnapshotData build() => _build();
 
-  _$GStreamAlarmsData _build() {
-    _$GStreamAlarmsData _$result;
+  _$GAlarmsSnapshotData _build() {
+    _$GAlarmsSnapshotData _$result;
     try {
       _$result =
           _$v ??
-          _$GStreamAlarmsData._(
+          _$GAlarmsSnapshotData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
-              r'GStreamAlarmsData',
+              r'GAlarmsSnapshotData',
               'G__typename',
             ),
-            alarms: alarms.build(),
+            alarmsSnapshot: alarmsSnapshot.build(),
           );
     } catch (_) {
       late String _$failedField;
       try {
-        _$failedField = 'alarms';
-        alarms.build();
+        _$failedField = 'alarmsSnapshot';
+        alarmsSnapshot.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-          r'GStreamAlarmsData',
+          r'GAlarmsSnapshotData',
           _$failedField,
           e.toString(),
         );
@@ -282,7 +295,8 @@ class GStreamAlarmsDataBuilder
   }
 }
 
-class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
+class _$GAlarmsSnapshotData_alarmsSnapshot
+    extends GAlarmsSnapshotData_alarmsSnapshot {
   @override
   final String G__typename;
   @override
@@ -290,28 +304,28 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
   @override
   final String value;
 
-  factory _$GStreamAlarmsData_alarms([
-    void Function(GStreamAlarmsData_alarmsBuilder)? updates,
-  ]) => (GStreamAlarmsData_alarmsBuilder()..update(updates))._build();
+  factory _$GAlarmsSnapshotData_alarmsSnapshot([
+    void Function(GAlarmsSnapshotData_alarmsSnapshotBuilder)? updates,
+  ]) => (GAlarmsSnapshotData_alarmsSnapshotBuilder()..update(updates))._build();
 
-  _$GStreamAlarmsData_alarms._({
+  _$GAlarmsSnapshotData_alarmsSnapshot._({
     required this.G__typename,
     this.key,
     required this.value,
   }) : super._();
   @override
-  GStreamAlarmsData_alarms rebuild(
-    void Function(GStreamAlarmsData_alarmsBuilder) updates,
+  GAlarmsSnapshotData_alarmsSnapshot rebuild(
+    void Function(GAlarmsSnapshotData_alarmsSnapshotBuilder) updates,
   ) => (toBuilder()..update(updates)).build();
 
   @override
-  GStreamAlarmsData_alarmsBuilder toBuilder() =>
-      GStreamAlarmsData_alarmsBuilder()..replace(this);
+  GAlarmsSnapshotData_alarmsSnapshotBuilder toBuilder() =>
+      GAlarmsSnapshotData_alarmsSnapshotBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GStreamAlarmsData_alarms &&
+    return other is GAlarmsSnapshotData_alarmsSnapshot &&
         G__typename == other.G__typename &&
         key == other.key &&
         value == other.value;
@@ -329,7 +343,7 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamAlarmsData_alarms')
+    return (newBuiltValueToStringHelper(r'GAlarmsSnapshotData_alarmsSnapshot')
           ..add('G__typename', G__typename)
           ..add('key', key)
           ..add('value', value))
@@ -337,10 +351,13 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
   }
 }
 
-class GStreamAlarmsData_alarmsBuilder
+class GAlarmsSnapshotData_alarmsSnapshotBuilder
     implements
-        Builder<GStreamAlarmsData_alarms, GStreamAlarmsData_alarmsBuilder> {
-  _$GStreamAlarmsData_alarms? _$v;
+        Builder<
+          GAlarmsSnapshotData_alarmsSnapshot,
+          GAlarmsSnapshotData_alarmsSnapshotBuilder
+        > {
+  _$GAlarmsSnapshotData_alarmsSnapshot? _$v;
 
   String? _G__typename;
   String? get G__typename => _$this._G__typename;
@@ -354,11 +371,11 @@ class GStreamAlarmsData_alarmsBuilder
   String? get value => _$this._value;
   set value(String? value) => _$this._value = value;
 
-  GStreamAlarmsData_alarmsBuilder() {
-    GStreamAlarmsData_alarms._initializeBuilder(this);
+  GAlarmsSnapshotData_alarmsSnapshotBuilder() {
+    GAlarmsSnapshotData_alarmsSnapshot._initializeBuilder(this);
   }
 
-  GStreamAlarmsData_alarmsBuilder get _$this {
+  GAlarmsSnapshotData_alarmsSnapshotBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
@@ -370,31 +387,33 @@ class GStreamAlarmsData_alarmsBuilder
   }
 
   @override
-  void replace(GStreamAlarmsData_alarms other) {
-    _$v = other as _$GStreamAlarmsData_alarms;
+  void replace(GAlarmsSnapshotData_alarmsSnapshot other) {
+    _$v = other as _$GAlarmsSnapshotData_alarmsSnapshot;
   }
 
   @override
-  void update(void Function(GStreamAlarmsData_alarmsBuilder)? updates) {
+  void update(
+    void Function(GAlarmsSnapshotData_alarmsSnapshotBuilder)? updates,
+  ) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamAlarmsData_alarms build() => _build();
+  GAlarmsSnapshotData_alarmsSnapshot build() => _build();
 
-  _$GStreamAlarmsData_alarms _build() {
+  _$GAlarmsSnapshotData_alarmsSnapshot _build() {
     final _$result =
         _$v ??
-        _$GStreamAlarmsData_alarms._(
+        _$GAlarmsSnapshotData_alarmsSnapshot._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
-            r'GStreamAlarmsData_alarms',
+            r'GAlarmsSnapshotData_alarmsSnapshot',
             'G__typename',
           ),
           key: key,
           value: BuiltValueNullFieldError.checkNotNull(
             value,
-            r'GStreamAlarmsData_alarms',
+            r'GAlarmsSnapshotData_alarmsSnapshot',
             'value',
           ),
         );
