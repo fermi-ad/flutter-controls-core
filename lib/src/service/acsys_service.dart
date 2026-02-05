@@ -3,6 +3,7 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';
+
 import 'package:built_collection/built_collection.dart';
 
 import 'package:ferry/ferry.dart';
@@ -57,10 +58,6 @@ class ACSysInvArgException extends ACSysException {
 
 class ACSysTypeException extends ACSysException {
   const ACSysTypeException(String message) : super("Type: $message");
-}
-
-class ACSysValueException extends ACSysException {
-  const ACSysValueException(String message) : super("Value: $message");
 }
 
 class ACSysConfigurationException extends ACSysException {
