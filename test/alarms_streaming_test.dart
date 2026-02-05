@@ -121,9 +121,7 @@ void main() {
 
     test('propagates GraphQL errors as exceptions', () async {
       // Arrange
-      final graphQLError = createMockGraphQLError(
-        message: 'Subscription failed',
-      );
+      final graphQLError = MockGraphQLError();
       final errorResponse =
           createMockErrorResponse<GStreamAlarmsData, GStreamAlarmsVars>(
             graphqlErrors: [graphQLError],
@@ -144,9 +142,7 @@ void main() {
 
     test('propagates link errors as exceptions', () async {
       // Arrange
-      final linkException = createMockLinkException(
-        message: 'WebSocket connection failed',
-      );
+      final linkException = MockLinkException();
       final errorResponse =
           createMockLinkErrorResponse<GStreamAlarmsData, GStreamAlarmsVars>(
             linkException: linkException,

@@ -23,17 +23,13 @@ void setupMockClientResponse<TData, TVars>(
   ).thenAnswer((_) => Stream.value(response));
 }
 
-/// Mock [OperationResponse] for testing.
 class MockOperationResponse<TData, TVars> extends Mock
     implements OperationResponse<TData, TVars> {}
 
-/// Mock [GraphQLError] for testing.
 class MockGraphQLError extends Mock implements GraphQLError {}
 
-/// Mock [LinkException] for testing.
 class MockLinkException extends Mock implements LinkException {}
 
-/// Mock [OperationRequest] for testing.
 class MockOperationRequest extends Fake
     implements OperationRequest<Object?, Object?> {}
 
@@ -149,22 +145,6 @@ OperationResponse<TData, TVars> createMockLinkErrorResponse<TData, TVars>({
   when(() => response.graphqlErrors).thenReturn(null);
   when(() => response.linkException).thenReturn(linkException);
   return response;
-}
-
-/// Helper to create a mock [GraphQLError].
-MockGraphQLError createMockGraphQLError({
-  String message = 'Test GraphQL error',
-}) {
-  final error = MockGraphQLError();
-  return error;
-}
-
-/// Helper to create a mock [LinkException].
-MockLinkException createMockLinkException({
-  String message = 'Test link error',
-}) {
-  final error = MockLinkException();
-  return error;
 }
 
 /// Helper to create a loading response (used for filtering).

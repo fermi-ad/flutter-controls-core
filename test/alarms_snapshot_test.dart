@@ -74,7 +74,7 @@ void main() {
       final mockClient = MockClient();
       final mockResponse =
           createMockErrorResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
-            graphqlErrors: [createMockGraphQLError(message: 'Invalid query')],
+            graphqlErrors: [MockGraphQLError()],
           );
 
       when(
@@ -95,7 +95,7 @@ void main() {
     test('throws LinkException on link errors', () async {
       // Arrange
       final mockClient = MockClient();
-      final linkException = createMockLinkException(message: 'Network error');
+      final linkException = MockLinkException();
       final mockResponse =
           createMockLinkErrorResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
             linkException: linkException,
