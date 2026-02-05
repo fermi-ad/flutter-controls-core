@@ -7,14 +7,11 @@ import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
     show
+        GAcquisitionMode,
         GChannelSettingSnapshotIn,
         GDevValue,
         GPlotConfigurationSnapshotIn,
-        GTimeSeriesEntryIn,
-        GXformAvgExpr,
-        GXformDeviceExpr,
-        GXformExpr,
-        GXformRequest;
+        GTimeSeriesEntryIn;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart'
     show
         GPlotConfigsData,
@@ -72,6 +69,12 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/sta
     show GStartPlotReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/start_plot.var.gql.dart'
     show GStartPlotVars;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart'
+    show GStreamAlarmsData;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.req.gql.dart'
+    show GStreamAlarmsReq;
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart'
+    show GStreamAlarmsVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_data.data.gql.dart'
     show
         GStreamDataData_acceleratorData_data_result,
@@ -119,6 +122,7 @@ final SerializersBuilder _serializersBuilder =
       ..add(GStreamDataData_acceleratorData_data_result.serializer)
       ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
+  GAcquisitionMode,
   GChannelSettingSnapshotIn,
   GDeletePlotConfigData,
   GDeletePlotConfigData_deletePlotConfiguration,
@@ -159,6 +163,9 @@ final SerializersBuilder _serializersBuilder =
   GStartPlotData_startPlot_data_channelData_result__base,
   GStartPlotReq,
   GStartPlotVars,
+  GStreamAlarmsData,
+  GStreamAlarmsReq,
+  GStreamAlarmsVars,
   GStreamDataData,
   GStreamDataData_acceleratorData,
   GStreamDataData_acceleratorData_data,
@@ -179,9 +186,5 @@ final SerializersBuilder _serializersBuilder =
   GUsersLastConfigData_usersLastConfiguration_channels,
   GUsersLastConfigReq,
   GUsersLastConfigVars,
-  GXformAvgExpr,
-  GXformDeviceExpr,
-  GXformExpr,
-  GXformRequest,
 ])
 final Serializers serializers = _serializersBuilder.build();

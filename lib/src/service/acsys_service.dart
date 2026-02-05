@@ -7,6 +7,9 @@ import 'package:flutter_controls_core/flutter_controls_core.dart';
 import 'package:built_collection/built_collection.dart';
 
 import 'package:ferry/ferry.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.req.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
 import 'package:gql_http_link/gql_http_link.dart';
 import "package:gql_websocket_link/gql_websocket_link.dart";
 import 'package:web_socket_channel/web_socket_channel.dart';
@@ -38,7 +41,7 @@ import 'dart:developer' as dev;
 
 // Declare an exception type that's specific to the ACSys API.
 
-abstract class ACSysException implements Exception {
+class ACSysException implements Exception {
   final String message;
 
   const ACSysException(this.message);
@@ -59,9 +62,37 @@ class ACSysConfigurationException extends ACSysException {
   const ACSysConfigurationException(String message) : super("Config: $message");
 }
 
+class ACSysLinkException extends ACSysException {
+  const ACSysLinkException(String message) : super("Link: $message");
+}
+
 class ACSysGraphQLException extends ACSysException {
   const ACSysGraphQLException(String message) : super("GraphQL: $message");
 }
+
+extension on GAcquisitionMode {
+  AcquisitionMode toDart() => switch (this) {
+    GAcquisitionMode.ONE_SHOT => AcquisitionMode.oneShot,
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT =>
+      AcquisitionMode.oneShotTriggeredOnEvent,
+    GAcquisitionMode.REPETITIVE_PERIODIC => AcquisitionMode.repetitivePeriodic,
+    GAcquisitionMode.REPETITIVE_TRIGGERED_ON_EVENT =>
+      AcquisitionMode.repetitiveTriggeredOnEvent,
+    GAcquisitionMode.SAMPLE_ON_EVENT => AcquisitionMode.sampleOnEvent,
+    GAcquisitionMode() => throw UnimplementedError(),
+  };
+}
+
+GAcquisitionMode? fromDart(AcquisitionMode? mode) => switch (mode) {
+  AcquisitionMode.oneShot => GAcquisitionMode.ONE_SHOT,
+  AcquisitionMode.oneShotTriggeredOnEvent =>
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
+  AcquisitionMode.repetitivePeriodic => GAcquisitionMode.REPETITIVE_PERIODIC,
+  AcquisitionMode.repetitiveTriggeredOnEvent =>
+    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
+  AcquisitionMode.sampleOnEvent => GAcquisitionMode.SAMPLE_ON_EVENT,
+  null => null,
+};
 
 // The classes in this section are used to return results from the queries /
 // subscriptions. The generated classes have unusual names and have nested
@@ -327,6 +358,12 @@ final class SettingStatus {
   const SettingStatus({required this.facilityCode, required this.errorCode});
 }
 
+final class Alarms {
+  final String info;
+
+  const Alarms({required this.info});
+}
+
 enum AnalogAlarmState { notAlarming, alarming, bypassed }
 
 final class AnalogAlarmStatus {
@@ -343,6 +380,14 @@ final class AnalogAlarmStatus {
     required this.timestamp,
     required this.state,
   });
+}
+
+enum AcquisitionMode {
+  oneShot,
+  oneShotTriggeredOnEvent,
+  repetitivePeriodic,
+  repetitiveTriggeredOnEvent,
+  sampleOnEvent,
 }
 
 final class PlotReply {
@@ -393,13 +438,20 @@ final class PlotPoint {
 final class ChannelSettingSnapshot {
   final Color? lineColor;
   final int? markerIndex;
+  final double? yMin;
+  final double? yMax;
 
-  const ChannelSettingSnapshot({this.lineColor, this.markerIndex});
+  const ChannelSettingSnapshot({
+    this.lineColor,
+    this.markerIndex,
+    this.yMin,
+    this.yMax,
+  });
 }
 
 // Only used by the plot ID class to generate IDs for testing.
 
-int _genPlotId = 1_000_000;
+int _genPlotId = 1000000;
 
 /// Wrap an integer with the semantics of a plot configuration ID. An ID
 /// is only an identifer and can't be manipulated as an integer. It only
@@ -424,8 +476,6 @@ class PlotConfigurationListing {
 
 final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   Map<String, ChannelSettingSnapshot> channels;
-  double? yMin;
-  double? yMax;
   double? xMin;
   double? xMax;
   double? timeDelta;
@@ -435,17 +485,19 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   bool isScalar;
   bool isOneShot;
   bool isPersistent;
+  bool isBlink;
   int? updateDelay;
   int? nAcquisitions;
   int? tclkEvent;
+  int? sampleOnEvent;
+  AcquisitionMode? acquisitionMode;
+  String? xAxis;
   int dataLimit;
 
   PlotConfigurationSnapshot({
     super.configurationId,
     required super.configurationName,
     required this.channels,
-    this.yMin,
-    this.yMax,
     this.xMin,
     this.xMax,
     this.startTime,
@@ -455,9 +507,13 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     required this.isScalar,
     required this.isOneShot,
     this.isPersistent = false,
+    this.isBlink = false,
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.sampleOnEvent,
+    this.acquisitionMode,
+    this.xAxis,
     required this.dataLimit,
   });
 }
@@ -497,6 +553,10 @@ abstract interface class ACSysServiceAPI {
   /// provides up-to-date `DigitalStatus` values of the devices.
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
+  /// Takes no parameters and returns a stream that provides the current
+  /// alarm info for all alarms.
+  Stream<Alarms> monitorAlarms();
+
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs);
@@ -513,6 +573,8 @@ abstract interface class ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    int? sampleOnEvent,
+    String? chXAxis,
   });
 
   /// Saves the plot configuration to the database.
@@ -532,13 +594,10 @@ abstract interface class ACSysServiceAPI {
   Future<void> removePlotConfiguration({required PlotConfigId configurationId});
 
   /// Returns the last plot configuration that the user saved.
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
-    String? user,
-  );
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration();
 
   /// Sets the provided plot configuration as the last one the user saved.
   Future<void> saveUserConfiguration({
-    String? user,
     required PlotConfigurationSnapshot snapshot,
   });
 
@@ -567,6 +626,7 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _q;
   final Client _s;
   final Client _qDevDb;
+  final Client _sAlarms;
 
   static Map<String, String> _buildAuthHeader(String? jwt) =>
       jwt != null ? {"Authorization": "Bearer $jwt"} : {};
@@ -574,10 +634,10 @@ final class ACSysService implements ACSysServiceAPI {
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
 
-  ACSysService({String? jwt})
+  ACSysService({String? jwt, int? port})
     : _q = Client(
         link: HttpLink(
-          "https://acsys-proxy.fnal.gov:8000/acsys",
+          "https://acsys-proxy.fnal.gov:${port ?? 8000}/acsys",
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
@@ -590,7 +650,7 @@ final class ACSysService implements ACSysServiceAPI {
                 Uri(
                   scheme: "wss",
                   host: "acsys-proxy.fnal.gov",
-                  port: 8000,
+                  port: port ?? 8000,
                   path: "/acsys/s",
                 ),
                 protocols: ["graphql-ws"],
@@ -605,6 +665,23 @@ final class ACSysService implements ACSysServiceAPI {
           defaultHeaders: _buildAuthHeader(jwt),
         ),
         cache: Cache(),
+      ),
+      _sAlarms = Client(
+        link: WebSocketLink(
+          null,
+          channelGenerator:
+              () => WebSocketChannel.connect(
+                Uri(
+                  scheme: "wss",
+                  host: "acsys-proxy.fnal.gov",
+                  port: port ?? 8000,
+                  path: "/alarms/s",
+                ),
+                protocols: ["graphql-ws"],
+              ),
+          reconnectInterval: const Duration(seconds: 1),
+        ),
+        cache: Cache(),
       );
 
   // Common code needed to do RPCs. The caller sends in a protobuf request and,
@@ -614,32 +691,31 @@ final class ACSysService implements ACSysServiceAPI {
   Future<Result> _rpc<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _q.request(req).where((response) => !response.loading).first.then((
-    value,
-  ) {
-    if (value.hasErrors) {
-      if (value.linkException != null) {
-        throw value.linkException!;
-      } else if (value.graphqlErrors != null) {
-        throw Exception(value.graphqlErrors);
-      } else {
-        throw Exception("unknown error");
-      }
-    } else {
-      final data = value.data;
+  }) =>
+      _q.request(req).firstWhere((response) => !response.loading).then((value) {
+        if (value.hasErrors) {
+          if (value.linkException != null) {
+            throw value.linkException!;
+          } else if (value.graphqlErrors != null) {
+            throw Exception(value.graphqlErrors);
+          } else {
+            throw Exception("unknown error");
+          }
+        } else {
+          final data = value.data;
 
-      if (data != null) {
-        return xlat != null ? xlat(data) : data as Result;
-      } else {
-        throw Exception("no data was returned from request");
-      }
-    }
-  });
+          if (data != null) {
+            return xlat != null ? xlat(data) : data as Result;
+          } else {
+            throw Exception("no data was returned from request");
+          }
+        }
+      });
 
   Future<Result> _rpcDevDb<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _qDevDb.request(req).where((response) => !response.loading).first.then((
+  }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
     value,
   ) {
     if (value.hasErrors) {
@@ -893,8 +969,39 @@ final class ACSysService implements ACSysServiceAPI {
         .expand(_convertMonitor);
   }
 
+  // Returns a stream of alarm information for all known alarms.
+  @override
+  Stream<Alarms> monitorAlarms() {
+    final req = GStreamAlarmsReq(
+      (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
+    );
+
+    return _sAlarms
+        .request(req)
+        .handleError(
+          (error) => dev.log("error: $error", name: "gql.monitorAlarms"),
+        )
+        // Even if an error occurs, the event could still report a loading state
+        .where((event) => !event.loading || event.hasErrors)
+        .expand((
+          OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
+        ) sync* {
+          if (!e.hasErrors) {
+            yield Alarms(info: e.data!.alarms);
+          } else {
+            if (e.linkException != null) {
+              throw e.linkException!;
+            } else if (e.graphqlErrors != null) {
+              throw ACSysGraphQLException(e.graphqlErrors.toString());
+            } else {
+              throw ACSysException("Unknown error");
+            }
+          }
+        });
+  }
+
   static DateTime fromFloatTs(double ts) =>
-      DateTime.fromMicrosecondsSinceEpoch((ts * 1_000_000.0) as int);
+      DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0) as int);
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
@@ -1049,6 +1156,8 @@ final class ACSysService implements ACSysServiceAPI {
     int? updateRate,
     int? nAcquisitions,
     int? triggerEvent,
+    int? sampleOnEvent,
+    String? chXAxis,
   }) {
     final req = GStartPlotReq(
       (b) =>
@@ -1108,10 +1217,8 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration(
-    String? user,
-  ) {
-    final req = GUsersLastConfigReq((b) => b..vars.user = user);
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
+    final req = GUsersLastConfigReq();
 
     return _rpc(
       req,
@@ -1134,12 +1241,12 @@ final class ACSysService implements ACSysServiceAPI {
                       lineColor:
                           e.lineColor != null ? Color(e.lineColor!) : null,
                       markerIndex: e.markerIndex,
+                      yMin: e.yMin,
+                      yMax: e.yMax,
                     ),
                   ),
                 ),
               ),
-              yMin: e.yMin,
-              yMax: e.yMax,
               xMin: e.xMin,
               xMax: e.xMax,
               startTime: e.startTime,
@@ -1153,6 +1260,10 @@ final class ACSysService implements ACSysServiceAPI {
               tclkEvent: e.tclkEvent,
               dataLimit: e.dataLimit,
               isPersistent: e.isPersistent,
+              sampleOnEvent: e.sampleOnEvent,
+              xAxis: e.chXAxis,
+              isBlink: e.isBlink,
+              acquisitionMode: e.acquisitionMode?.toDart(),
             );
       },
     );
@@ -1160,14 +1271,10 @@ final class ACSysService implements ACSysServiceAPI {
 
   @override
   Future<void> saveUserConfiguration({
-    String? user,
     required PlotConfigurationSnapshot snapshot,
   }) {
     final req = GSetUsersConfigReq(
-      (b) =>
-          b
-            ..vars.cfg = _plotConfigurationSnapshotIn(snapshot)
-            ..vars.user = user,
+      (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
     );
 
     return _rpc(req, xlat: (GSetUsersConfigData data) => ());
@@ -1201,12 +1308,12 @@ final class ACSysService implements ACSysServiceAPI {
                                       ? Color(e.lineColor!)
                                       : null,
                               markerIndex: e.markerIndex,
+                              yMin: e.yMin,
+                              yMax: e.yMax,
                             ),
                           ),
                         ),
                       ),
-                      yMin: e.yMin,
-                      yMax: e.yMax,
                       xMin: e.xMin,
                       xMax: e.xMax,
                       startTime: e.startTime,
@@ -1220,6 +1327,10 @@ final class ACSysService implements ACSysServiceAPI {
                       tclkEvent: e.tclkEvent,
                       dataLimit: e.dataLimit,
                       isPersistent: e.isPersistent,
+                      sampleOnEvent: e.sampleOnEvent,
+                      xAxis: e.chXAxis,
+                      isBlink: e.isBlink,
+                      acquisitionMode: e.acquisitionMode?.toDart(),
                     ),
                   )
                   .toList(),
@@ -1249,13 +1360,13 @@ final class ACSysService implements ACSysServiceAPI {
               (b) =>
                   b
                     ..device = e.key
-                    ..lineColor = e.value.lineColor?.value
-                    ..markerIndex = e.value.markerIndex,
+                    ..lineColor = e.value.lineColor?.toARGB32()
+                    ..markerIndex = e.value.markerIndex
+                    ..yMin = e.value.yMin
+                    ..yMax = e.value.yMax,
             ),
           ),
         )
-        ..yMin = cfg.yMin
-        ..yMax = cfg.yMax
         ..xMin = cfg.xMin
         ..xMax = cfg.xMax
         ..startTime = cfg.startTime
@@ -1268,7 +1379,10 @@ final class ACSysService implements ACSysServiceAPI {
         ..dataLimit = cfg.dataLimit
         ..updateDelay = cfg.updateDelay
         ..nAcquisitions = cfg.nAcquisitions
-        ..tclkEvent = cfg.tclkEvent;
+        ..tclkEvent = cfg.tclkEvent
+        ..sampleOnEvent = cfg.sampleOnEvent
+        ..chXAxis = cfg.xAxis
+        ..acquisitionMode = fromDart(cfg.acquisitionMode);
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({
@@ -1365,19 +1479,17 @@ extension on GStartPlotData_startPlot {
 // interface, so we only make the extension visible in this module.
 
 extension on DeviceValue {
-  GDevValueBuilder _toGDevValue() {
-    return switch (this) {
-      DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
-      DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
-      DevScalarArray(value: var v) =>
-        GDevValueBuilder()..scalarArrayVal = ListBuilder(v),
-      DevText(value: var v) => GDevValueBuilder()..textVal = v,
-      DevTextArray(value: var v) =>
-        GDevValueBuilder()..textArrayVal = ListBuilder(v),
-      DevTimeSeries(values: var v) =>
-        GDevValueBuilder()..timeSeriesVal = ListBuilder(v),
-    };
-  }
+  GDevValueBuilder _toGDevValue() => switch (this) {
+    DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
+    DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
+    DevScalarArray(value: var v) =>
+      GDevValueBuilder()..scalarArrayVal = ListBuilder(v),
+    DevText(value: var v) => GDevValueBuilder()..textVal = v,
+    DevTextArray(value: var v) =>
+      GDevValueBuilder()..textArrayVal = ListBuilder(v),
+    DevTimeSeries(values: var v) =>
+      GDevValueBuilder()..timeSeriesVal = ListBuilder(v),
+  };
 }
 
 /// A widget that provides access to the ACSys Service API. This doesn't
@@ -1403,6 +1515,7 @@ final class ACSys {
 final class ACSysProvider extends StatelessWidget {
   final Widget child;
   final ACSysServiceAPI? service;
+  final int? port;
 
   /// A factory function that creates a [ACSysProvider] widget.
   ///
@@ -1421,25 +1534,47 @@ final class ACSysProvider extends StatelessWidget {
       ({required Widget child}) =>
           ACSysProvider._(service: service, key: key, child: child);
 
+  /// A factory function that creates a [ACSysProvider] widget.
+  ///
+  /// This function returns a function that can be added to the list passed to
+  /// the `providers` parameter of the [StandardApp] widget.
+  ///
+  /// - [port] is the port number to use to communite with the GraphQL service.
+  /// - [key] is an optional identifier for the widget.
+
+  static ACSysProvider Function({required Widget child}) factoryUsingPort({
+    required int port,
+    Key? key,
+  }) =>
+      ({required Widget child}) =>
+          ACSysProvider._(port: port, key: key, child: child);
+
   // Creates the widget.
   //
   // - [child] is the widget subtree that gets added to the tree below this
   //   widget.
   // - [key] is an optional identifier for the widget.
+  // - [port] is an optional port number to use. If omitted, the official,
+  //   production service will be used. This parameter is only used if the
+  //   [service] parameter is omitted.
   // - [service] is an optional obect which implements the [ACSysServiceAPI]
   //   interface. If this option is omitted, the widget will use an
   //   implementation that communicates over the network to the offcial
   //   control system API. This option is mainly to mock-up a service to
   //   use in unit tests.
-  const ACSysProvider._({this.service, required this.child, super.key});
+  const ACSysProvider._({
+    this.service,
+    this.port,
+    required this.child,
+    super.key,
+  });
 
   @override
-  Widget build(BuildContext context) {
-    return _ACSysProviderIW(
-      service: service ?? ACSysService(jwt: AuthService.getJwt(context)),
-      child: child,
-    );
-  }
+  Widget build(BuildContext context) => _ACSysProviderIW(
+    service:
+        service ?? ACSysService(port: port, jwt: AuthService.getJwt(context)),
+    child: child,
+  );
 }
 
 // The inherited widget that provides the ACSys API to the application. This

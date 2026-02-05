@@ -5,6 +5,8 @@
 import 'package:built_collection/built_collection.dart';
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
+    as _i2;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i1;
 
@@ -58,8 +60,6 @@ abstract class GUsersLastConfigData_usersLastConfiguration
   BuiltList<GUsersLastConfigData_usersLastConfiguration_channels> get channels;
   double? get xMin;
   double? get xMax;
-  double? get yMin;
-  double? get yMax;
   double? get startTime;
   double? get endTime;
   double? get timeDelta;
@@ -69,8 +69,12 @@ abstract class GUsersLastConfigData_usersLastConfiguration
   int? get updateDelay;
   int? get nAcquisitions;
   int? get tclkEvent;
+  _i2.GAcquisitionMode? get acquisitionMode;
   bool get isPersistent;
+  bool get isBlink;
   int get dataLimit;
+  int? get sampleOnEvent;
+  String? get chXAxis;
   static Serializer<GUsersLastConfigData_usersLastConfiguration>
   get serializer => _$gUsersLastConfigDataUsersLastConfigurationSerializer;
 
@@ -109,6 +113,8 @@ abstract class GUsersLastConfigData_usersLastConfiguration_channels
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   String get device;
+  double? get yMin;
+  double? get yMax;
   int? get lineColor;
   int? get markerIndex;
   static Serializer<GUsersLastConfigData_usersLastConfiguration_channels>

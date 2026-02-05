@@ -4,6 +4,8 @@ import 'package:opentelemetry/sdk.dart'
 import 'package:opentelemetry/api.dart'
     show registerGlobalTracerProvider, globalTracerProvider, Attribute;
 
+export 'package:opentelemetry/api.dart' show Span;
+
 /// OpenTelemetry singleton tracer for manual instrumentation
 late final otel.Tracer otelTracer;
 bool _otelInitialized = false;
@@ -46,7 +48,7 @@ Future<void> initOpenTelemetry({
 }
 
 /// Start a manual span. Returns the span, which you must end.
-otel.Span startSpan(String name, {Map<String, Object?>? attributes}) {
+otel.Span _startSpan(String name, {Map<String, Object?>? attributes}) {
   final span = otelTracer.startSpan(name);
   if (attributes != null) {
     for (final entry in attributes.entries) {
@@ -57,7 +59,11 @@ otel.Span startSpan(String name, {Map<String, Object?>? attributes}) {
 }
 
 /// Add an event to a span (must be provided by the caller).
-void addEvent(otel.Span span, String name, {Map<String, Object?>? attributes}) {
+void _addEvent(
+  otel.Span span,
+  String name, {
+  Map<String, Object?>? attributes,
+}) {
   final attrList =
       attributes?.entries.map((e) => _toAttribute(e.key, e.value)).toList() ??
       const [];
@@ -65,7 +71,7 @@ void addEvent(otel.Span span, String name, {Map<String, Object?>? attributes}) {
 }
 
 /// End the provided span.
-void endSpan(otel.Span span) {
+void _endSpan(otel.Span span) {
   span.end();
 }
 
@@ -79,16 +85,16 @@ void endSpan(otel.Span span) {
 ///   // Do work
 /// });
 /// ```
-R runWithSpan<R>(
+R _runWithSpan<R>(
   String name,
   R Function(otel.Span span) fn, {
   Map<String, Object?>? attributes,
 }) {
-  final span = startSpan(name, attributes: attributes);
+  final span = _startSpan(name, attributes: attributes);
   try {
     return fn(span);
   } finally {
-    endSpan(span);
+    _endSpan(span);
   }
 }
 
@@ -100,16 +106,16 @@ R runWithSpan<R>(
 ///   // Do async work
 /// });
 /// ```
-Future<R> runWithSpanAsync<R>(
+Future<R> _runWithSpanAsync<R>(
   String name,
   Future<R> Function(otel.Span span) fn, {
   Map<String, Object?>? attributes,
 }) async {
-  final span = startSpan(name, attributes: attributes);
+  final span = _startSpan(name, attributes: attributes);
   try {
     return await fn(span);
   } finally {
-    endSpan(span);
+    _endSpan(span);
   }
 }
 
@@ -135,38 +141,38 @@ abstract class AppTracer {
 }
 
 /// Default implementation using the global otelTracer.
-class GlobalAppTracer implements AppTracer {
+class _GlobalAppTracer implements AppTracer {
   @override
   otel.Span startSpan(String name, {Map<String, Object?>? attributes}) =>
-      startSpan(name, attributes: attributes);
+      _startSpan(name, attributes: attributes);
 
   @override
   void addEvent(
     otel.Span span,
     String name, {
     Map<String, Object?>? attributes,
-  }) => addEvent(span, name, attributes: attributes);
+  }) => _addEvent(span, name, attributes: attributes);
 
   @override
-  void endSpan(otel.Span span) => endSpan(span);
+  void endSpan(otel.Span span) => _endSpan(span);
 
   @override
   R runWithSpan<R>(
     String name,
     R Function(otel.Span span) fn, {
     Map<String, Object?>? attributes,
-  }) => runWithSpan(name, fn, attributes: attributes);
+  }) => _runWithSpan(name, fn, attributes: attributes);
 
   @override
   Future<R> runWithSpanAsync<R>(
     String name,
     Future<R> Function(otel.Span span) fn, {
     Map<String, Object?>? attributes,
-  }) => runWithSpanAsync(name, fn, attributes: attributes);
+  }) => _runWithSpanAsync(name, fn, attributes: attributes);
 }
 
 /// The default tracer instance for use in most apps (opt-out global).
-final AppTracer appTracer = GlobalAppTracer();
+AppTracer appTracer = _GlobalAppTracer();
 
 /// ---
 /// # OpenTelemetry Usage Guidance

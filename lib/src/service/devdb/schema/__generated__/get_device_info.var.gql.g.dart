@@ -7,9 +7,9 @@ part of 'get_device_info.var.gql.dart';
 // **************************************************************************
 
 Serializer<GgetDeviceInfoVars> _$ggetDeviceInfoVarsSerializer =
-    new _$GgetDeviceInfoVarsSerializer();
+    _$GgetDeviceInfoVarsSerializer();
 Serializer<GDevicePropertyFieldsVars> _$gDevicePropertyFieldsVarsSerializer =
-    new _$GDevicePropertyFieldsVarsSerializer();
+    _$GDevicePropertyFieldsVarsSerializer();
 
 class _$GgetDeviceInfoVarsSerializer
     implements StructuredSerializer<GgetDeviceInfoVars> {
@@ -43,7 +43,7 @@ class _$GgetDeviceInfoVarsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GgetDeviceInfoVarsBuilder();
+    final result = GgetDeviceInfoVarsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -94,7 +94,7 @@ class _$GDevicePropertyFieldsVarsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return new GDevicePropertyFieldsVarsBuilder().build();
+    return GDevicePropertyFieldsVarsBuilder().build();
   }
 }
 
@@ -104,16 +104,9 @@ class _$GgetDeviceInfoVars extends GgetDeviceInfoVars {
 
   factory _$GgetDeviceInfoVars([
     void Function(GgetDeviceInfoVarsBuilder)? updates,
-  ]) => (new GgetDeviceInfoVarsBuilder()..update(updates))._build();
+  ]) => (GgetDeviceInfoVarsBuilder()..update(updates))._build();
 
-  _$GgetDeviceInfoVars._({required this.devices}) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      devices,
-      r'GgetDeviceInfoVars',
-      'devices',
-    );
-  }
-
+  _$GgetDeviceInfoVars._({required this.devices}) : super._();
   @override
   GgetDeviceInfoVars rebuild(
     void Function(GgetDeviceInfoVarsBuilder) updates,
@@ -121,7 +114,7 @@ class _$GgetDeviceInfoVars extends GgetDeviceInfoVars {
 
   @override
   GgetDeviceInfoVarsBuilder toBuilder() =>
-      new GgetDeviceInfoVarsBuilder()..replace(this);
+      GgetDeviceInfoVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -149,8 +142,7 @@ class GgetDeviceInfoVarsBuilder
   _$GgetDeviceInfoVars? _$v;
 
   ListBuilder<String>? _devices;
-  ListBuilder<String> get devices =>
-      _$this._devices ??= new ListBuilder<String>();
+  ListBuilder<String> get devices => _$this._devices ??= ListBuilder<String>();
   set devices(ListBuilder<String>? devices) => _$this._devices = devices;
 
   GgetDeviceInfoVarsBuilder();
@@ -166,7 +158,6 @@ class GgetDeviceInfoVarsBuilder
 
   @override
   void replace(GgetDeviceInfoVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GgetDeviceInfoVars;
   }
 
@@ -181,14 +172,14 @@ class GgetDeviceInfoVarsBuilder
   _$GgetDeviceInfoVars _build() {
     _$GgetDeviceInfoVars _$result;
     try {
-      _$result = _$v ?? new _$GgetDeviceInfoVars._(devices: devices.build());
+      _$result = _$v ?? _$GgetDeviceInfoVars._(devices: devices.build());
     } catch (_) {
       late String _$failedField;
       try {
         _$failedField = 'devices';
         devices.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GgetDeviceInfoVars',
           _$failedField,
           e.toString(),
@@ -204,10 +195,9 @@ class GgetDeviceInfoVarsBuilder
 class _$GDevicePropertyFieldsVars extends GDevicePropertyFieldsVars {
   factory _$GDevicePropertyFieldsVars([
     void Function(GDevicePropertyFieldsVarsBuilder)? updates,
-  ]) => (new GDevicePropertyFieldsVarsBuilder()..update(updates))._build();
+  ]) => (GDevicePropertyFieldsVarsBuilder()..update(updates))._build();
 
   _$GDevicePropertyFieldsVars._() : super._();
-
   @override
   GDevicePropertyFieldsVars rebuild(
     void Function(GDevicePropertyFieldsVarsBuilder) updates,
@@ -215,7 +205,7 @@ class _$GDevicePropertyFieldsVars extends GDevicePropertyFieldsVars {
 
   @override
   GDevicePropertyFieldsVarsBuilder toBuilder() =>
-      new GDevicePropertyFieldsVarsBuilder()..replace(this);
+      GDevicePropertyFieldsVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -243,7 +233,6 @@ class GDevicePropertyFieldsVarsBuilder
 
   @override
   void replace(GDevicePropertyFieldsVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GDevicePropertyFieldsVars;
   }
 
@@ -256,7 +245,7 @@ class GDevicePropertyFieldsVarsBuilder
   GDevicePropertyFieldsVars build() => _build();
 
   _$GDevicePropertyFieldsVars _build() {
-    final _$result = _$v ?? new _$GDevicePropertyFieldsVars._();
+    final _$result = _$v ?? _$GDevicePropertyFieldsVars._();
     replace(_$result);
     return _$result;
   }

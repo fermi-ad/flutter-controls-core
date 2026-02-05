@@ -7,13 +7,13 @@ part of 'plot_configs.data.gql.dart';
 // **************************************************************************
 
 Serializer<GPlotConfigsData> _$gPlotConfigsDataSerializer =
-    new _$GPlotConfigsDataSerializer();
+    _$GPlotConfigsDataSerializer();
 Serializer<GPlotConfigsData_plotConfiguration>
 _$gPlotConfigsDataPlotConfigurationSerializer =
-    new _$GPlotConfigsData_plotConfigurationSerializer();
+    _$GPlotConfigsData_plotConfigurationSerializer();
 Serializer<GPlotConfigsData_plotConfiguration_channels>
 _$gPlotConfigsDataPlotConfigurationChannelsSerializer =
-    new _$GPlotConfigsData_plotConfiguration_channelsSerializer();
+    _$GPlotConfigsData_plotConfiguration_channelsSerializer();
 
 class _$GPlotConfigsDataSerializer
     implements StructuredSerializer<GPlotConfigsData> {
@@ -52,7 +52,7 @@ class _$GPlotConfigsDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigsDataBuilder();
+    final result = GPlotConfigsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -140,6 +140,11 @@ class _$GPlotConfigsData_plotConfigurationSerializer
         object.isPersistent,
         specifiedType: const FullType(bool),
       ),
+      'isBlink',
+      serializers.serialize(
+        object.isBlink,
+        specifiedType: const FullType(bool),
+      ),
       'dataLimit',
       serializers.serialize(
         object.dataLimit,
@@ -165,22 +170,6 @@ class _$GPlotConfigsData_plotConfigurationSerializer
     if (value != null) {
       result
         ..add('xMax')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
-    value = object.yMin;
-    if (value != null) {
-      result
-        ..add('yMin')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
-    value = object.yMax;
-    if (value != null) {
-      result
-        ..add('yMax')
         ..add(
           serializers.serialize(value, specifiedType: const FullType(double)),
         );
@@ -227,6 +216,31 @@ class _$GPlotConfigsData_plotConfigurationSerializer
         ..add('tclkEvent')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.acquisitionMode;
+    if (value != null) {
+      result
+        ..add('acquisitionMode')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GAcquisitionMode),
+          ),
+        );
+    }
+    value = object.sampleOnEvent;
+    if (value != null) {
+      result
+        ..add('sampleOnEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.chXAxis;
+    if (value != null) {
+      result
+        ..add('chXAxis')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
     return result;
   }
 
@@ -236,7 +250,7 @@ class _$GPlotConfigsData_plotConfigurationSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigsData_plotConfigurationBuilder();
+    final result = GPlotConfigsData_plotConfigurationBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -286,22 +300,6 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           break;
         case 'xMax':
           result.xMax =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double?;
-          break;
-        case 'yMin':
-          result.yMin =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double?;
-          break;
-        case 'yMax':
-          result.yMax =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
@@ -371,8 +369,24 @@ class _$GPlotConfigsData_plotConfigurationSerializer
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
           break;
+        case 'acquisitionMode':
+          result.acquisitionMode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GAcquisitionMode),
+                  )
+                  as _i2.GAcquisitionMode?;
+          break;
         case 'isPersistent':
           result.isPersistent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'isBlink':
+          result.isBlink =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(bool),
@@ -386,6 +400,19 @@ class _$GPlotConfigsData_plotConfigurationSerializer
                     specifiedType: const FullType(int),
                   )!
                   as int;
+          break;
+        case 'sampleOnEvent':
+          result.sampleOnEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'chXAxis':
+          result.chXAxis =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -424,6 +451,22 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
       ),
     ];
     Object? value;
+    value = object.yMin;
+    if (value != null) {
+      result
+        ..add('yMin')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
+    value = object.yMax;
+    if (value != null) {
+      result
+        ..add('yMax')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     value = object.lineColor;
     if (value != null) {
       result
@@ -445,7 +488,7 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigsData_plotConfiguration_channelsBuilder();
+    final result = GPlotConfigsData_plotConfiguration_channelsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -468,6 +511,22 @@ class _$GPlotConfigsData_plotConfiguration_channelsSerializer
                     specifiedType: const FullType(String),
                   )!
                   as String;
+          break;
+        case 'yMin':
+          result.yMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
+        case 'yMax':
+          result.yMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'lineColor':
           result.lineColor =
@@ -494,31 +553,19 @@ class _$GPlotConfigsData extends GPlotConfigsData {
 
   factory _$GPlotConfigsData([
     void Function(GPlotConfigsDataBuilder)? updates,
-  ]) => (new GPlotConfigsDataBuilder()..update(updates))._build();
+  ]) => (GPlotConfigsDataBuilder()..update(updates))._build();
 
   _$GPlotConfigsData._({
     required this.G__typename,
     required this.plotConfiguration,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GPlotConfigsData',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      plotConfiguration,
-      r'GPlotConfigsData',
-      'plotConfiguration',
-    );
-  }
-
+  }) : super._();
   @override
   GPlotConfigsData rebuild(void Function(GPlotConfigsDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GPlotConfigsDataBuilder toBuilder() =>
-      new GPlotConfigsDataBuilder()..replace(this);
+      GPlotConfigsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -557,7 +604,7 @@ class GPlotConfigsDataBuilder
   ListBuilder<GPlotConfigsData_plotConfiguration>? _plotConfiguration;
   ListBuilder<GPlotConfigsData_plotConfiguration> get plotConfiguration =>
       _$this._plotConfiguration ??=
-          new ListBuilder<GPlotConfigsData_plotConfiguration>();
+          ListBuilder<GPlotConfigsData_plotConfiguration>();
   set plotConfiguration(
     ListBuilder<GPlotConfigsData_plotConfiguration>? plotConfiguration,
   ) => _$this._plotConfiguration = plotConfiguration;
@@ -578,7 +625,6 @@ class GPlotConfigsDataBuilder
 
   @override
   void replace(GPlotConfigsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigsData;
   }
 
@@ -595,7 +641,7 @@ class GPlotConfigsDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GPlotConfigsData._(
+          _$GPlotConfigsData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GPlotConfigsData',
@@ -609,7 +655,7 @@ class GPlotConfigsDataBuilder
         _$failedField = 'plotConfiguration';
         plotConfiguration.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GPlotConfigsData',
           _$failedField,
           e.toString(),
@@ -637,10 +683,6 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final double? xMax;
   @override
-  final double? yMin;
-  @override
-  final double? yMax;
-  @override
   final double? startTime;
   @override
   final double? endTime;
@@ -659,15 +701,21 @@ class _$GPlotConfigsData_plotConfiguration
   @override
   final int? tclkEvent;
   @override
+  final _i2.GAcquisitionMode? acquisitionMode;
+  @override
   final bool isPersistent;
   @override
+  final bool isBlink;
+  @override
   final int dataLimit;
+  @override
+  final int? sampleOnEvent;
+  @override
+  final String? chXAxis;
 
   factory _$GPlotConfigsData_plotConfiguration([
     void Function(GPlotConfigsData_plotConfigurationBuilder)? updates,
-  ]) =>
-      (new GPlotConfigsData_plotConfigurationBuilder()..update(updates))
-          ._build();
+  ]) => (GPlotConfigsData_plotConfigurationBuilder()..update(updates))._build();
 
   _$GPlotConfigsData_plotConfiguration._({
     required this.G__typename,
@@ -676,8 +724,6 @@ class _$GPlotConfigsData_plotConfiguration
     required this.channels,
     this.xMin,
     this.xMax,
-    this.yMin,
-    this.yMax,
     this.startTime,
     this.endTime,
     this.timeDelta,
@@ -687,51 +733,13 @@ class _$GPlotConfigsData_plotConfiguration
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.acquisitionMode,
     required this.isPersistent,
+    required this.isBlink,
     required this.dataLimit,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GPlotConfigsData_plotConfiguration',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      configurationName,
-      r'GPlotConfigsData_plotConfiguration',
-      'configurationName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      channels,
-      r'GPlotConfigsData_plotConfiguration',
-      'channels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isScalar,
-      r'GPlotConfigsData_plotConfiguration',
-      'isScalar',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isOneShot,
-      r'GPlotConfigsData_plotConfiguration',
-      'isOneShot',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isShowLabels,
-      r'GPlotConfigsData_plotConfiguration',
-      'isShowLabels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isPersistent,
-      r'GPlotConfigsData_plotConfiguration',
-      'isPersistent',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      dataLimit,
-      r'GPlotConfigsData_plotConfiguration',
-      'dataLimit',
-    );
-  }
-
+    this.sampleOnEvent,
+    this.chXAxis,
+  }) : super._();
   @override
   GPlotConfigsData_plotConfiguration rebuild(
     void Function(GPlotConfigsData_plotConfigurationBuilder) updates,
@@ -739,7 +747,7 @@ class _$GPlotConfigsData_plotConfiguration
 
   @override
   GPlotConfigsData_plotConfigurationBuilder toBuilder() =>
-      new GPlotConfigsData_plotConfigurationBuilder()..replace(this);
+      GPlotConfigsData_plotConfigurationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -751,8 +759,6 @@ class _$GPlotConfigsData_plotConfiguration
         channels == other.channels &&
         xMin == other.xMin &&
         xMax == other.xMax &&
-        yMin == other.yMin &&
-        yMax == other.yMax &&
         startTime == other.startTime &&
         endTime == other.endTime &&
         timeDelta == other.timeDelta &&
@@ -762,8 +768,12 @@ class _$GPlotConfigsData_plotConfiguration
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
+        acquisitionMode == other.acquisitionMode &&
         isPersistent == other.isPersistent &&
-        dataLimit == other.dataLimit;
+        isBlink == other.isBlink &&
+        dataLimit == other.dataLimit &&
+        sampleOnEvent == other.sampleOnEvent &&
+        chXAxis == other.chXAxis;
   }
 
   @override
@@ -775,8 +785,6 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, channels.hashCode);
     _$hash = $jc(_$hash, xMin.hashCode);
     _$hash = $jc(_$hash, xMax.hashCode);
-    _$hash = $jc(_$hash, yMin.hashCode);
-    _$hash = $jc(_$hash, yMax.hashCode);
     _$hash = $jc(_$hash, startTime.hashCode);
     _$hash = $jc(_$hash, endTime.hashCode);
     _$hash = $jc(_$hash, timeDelta.hashCode);
@@ -786,8 +794,12 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, acquisitionMode.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, isBlink.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
+    _$hash = $jc(_$hash, sampleOnEvent.hashCode);
+    _$hash = $jc(_$hash, chXAxis.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -801,8 +813,6 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('channels', channels)
           ..add('xMin', xMin)
           ..add('xMax', xMax)
-          ..add('yMin', yMin)
-          ..add('yMax', yMax)
           ..add('startTime', startTime)
           ..add('endTime', endTime)
           ..add('timeDelta', timeDelta)
@@ -812,8 +822,12 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
+          ..add('acquisitionMode', acquisitionMode)
           ..add('isPersistent', isPersistent)
-          ..add('dataLimit', dataLimit))
+          ..add('isBlink', isBlink)
+          ..add('dataLimit', dataLimit)
+          ..add('sampleOnEvent', sampleOnEvent)
+          ..add('chXAxis', chXAxis))
         .toString();
   }
 }
@@ -843,7 +857,7 @@ class GPlotConfigsData_plotConfigurationBuilder
   ListBuilder<GPlotConfigsData_plotConfiguration_channels>? _channels;
   ListBuilder<GPlotConfigsData_plotConfiguration_channels> get channels =>
       _$this._channels ??=
-          new ListBuilder<GPlotConfigsData_plotConfiguration_channels>();
+          ListBuilder<GPlotConfigsData_plotConfiguration_channels>();
   set channels(
     ListBuilder<GPlotConfigsData_plotConfiguration_channels>? channels,
   ) => _$this._channels = channels;
@@ -855,14 +869,6 @@ class GPlotConfigsData_plotConfigurationBuilder
   double? _xMax;
   double? get xMax => _$this._xMax;
   set xMax(double? xMax) => _$this._xMax = xMax;
-
-  double? _yMin;
-  double? get yMin => _$this._yMin;
-  set yMin(double? yMin) => _$this._yMin = yMin;
-
-  double? _yMax;
-  double? get yMax => _$this._yMax;
-  set yMax(double? yMax) => _$this._yMax = yMax;
 
   double? _startTime;
   double? get startTime => _$this._startTime;
@@ -901,13 +907,31 @@ class GPlotConfigsData_plotConfigurationBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
+  _i2.GAcquisitionMode? _acquisitionMode;
+  _i2.GAcquisitionMode? get acquisitionMode => _$this._acquisitionMode;
+  set acquisitionMode(_i2.GAcquisitionMode? acquisitionMode) =>
+      _$this._acquisitionMode = acquisitionMode;
+
   bool? _isPersistent;
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
 
+  bool? _isBlink;
+  bool? get isBlink => _$this._isBlink;
+  set isBlink(bool? isBlink) => _$this._isBlink = isBlink;
+
   int? _dataLimit;
   int? get dataLimit => _$this._dataLimit;
   set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
+
+  int? _sampleOnEvent;
+  int? get sampleOnEvent => _$this._sampleOnEvent;
+  set sampleOnEvent(int? sampleOnEvent) =>
+      _$this._sampleOnEvent = sampleOnEvent;
+
+  String? _chXAxis;
+  String? get chXAxis => _$this._chXAxis;
+  set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
 
   GPlotConfigsData_plotConfigurationBuilder() {
     GPlotConfigsData_plotConfiguration._initializeBuilder(this);
@@ -922,8 +946,6 @@ class GPlotConfigsData_plotConfigurationBuilder
       _channels = $v.channels.toBuilder();
       _xMin = $v.xMin;
       _xMax = $v.xMax;
-      _yMin = $v.yMin;
-      _yMax = $v.yMax;
       _startTime = $v.startTime;
       _endTime = $v.endTime;
       _timeDelta = $v.timeDelta;
@@ -933,8 +955,12 @@ class GPlotConfigsData_plotConfigurationBuilder
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _acquisitionMode = $v.acquisitionMode;
       _isPersistent = $v.isPersistent;
+      _isBlink = $v.isBlink;
       _dataLimit = $v.dataLimit;
+      _sampleOnEvent = $v.sampleOnEvent;
+      _chXAxis = $v.chXAxis;
       _$v = null;
     }
     return this;
@@ -942,7 +968,6 @@ class GPlotConfigsData_plotConfigurationBuilder
 
   @override
   void replace(GPlotConfigsData_plotConfiguration other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigsData_plotConfiguration;
   }
 
@@ -961,7 +986,7 @@ class GPlotConfigsData_plotConfigurationBuilder
     try {
       _$result =
           _$v ??
-          new _$GPlotConfigsData_plotConfiguration._(
+          _$GPlotConfigsData_plotConfiguration._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GPlotConfigsData_plotConfiguration',
@@ -976,8 +1001,6 @@ class GPlotConfigsData_plotConfigurationBuilder
             channels: channels.build(),
             xMin: xMin,
             xMax: xMax,
-            yMin: yMin,
-            yMax: yMax,
             startTime: startTime,
             endTime: endTime,
             timeDelta: timeDelta,
@@ -999,16 +1022,24 @@ class GPlotConfigsData_plotConfigurationBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            acquisitionMode: acquisitionMode,
             isPersistent: BuiltValueNullFieldError.checkNotNull(
               isPersistent,
               r'GPlotConfigsData_plotConfiguration',
               'isPersistent',
+            ),
+            isBlink: BuiltValueNullFieldError.checkNotNull(
+              isBlink,
+              r'GPlotConfigsData_plotConfiguration',
+              'isBlink',
             ),
             dataLimit: BuiltValueNullFieldError.checkNotNull(
               dataLimit,
               r'GPlotConfigsData_plotConfiguration',
               'dataLimit',
             ),
+            sampleOnEvent: sampleOnEvent,
+            chXAxis: chXAxis,
           );
     } catch (_) {
       late String _$failedField;
@@ -1016,7 +1047,7 @@ class GPlotConfigsData_plotConfigurationBuilder
         _$failedField = 'channels';
         channels.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GPlotConfigsData_plotConfiguration',
           _$failedField,
           e.toString(),
@@ -1036,6 +1067,10 @@ class _$GPlotConfigsData_plotConfiguration_channels
   @override
   final String device;
   @override
+  final double? yMin;
+  @override
+  final double? yMax;
+  @override
   final int? lineColor;
   @override
   final int? markerIndex;
@@ -1043,28 +1078,17 @@ class _$GPlotConfigsData_plotConfiguration_channels
   factory _$GPlotConfigsData_plotConfiguration_channels([
     void Function(GPlotConfigsData_plotConfiguration_channelsBuilder)? updates,
   ]) =>
-      (new GPlotConfigsData_plotConfiguration_channelsBuilder()
-            ..update(updates))
+      (GPlotConfigsData_plotConfiguration_channelsBuilder()..update(updates))
           ._build();
 
   _$GPlotConfigsData_plotConfiguration_channels._({
     required this.G__typename,
     required this.device,
+    this.yMin,
+    this.yMax,
     this.lineColor,
     this.markerIndex,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GPlotConfigsData_plotConfiguration_channels',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      device,
-      r'GPlotConfigsData_plotConfiguration_channels',
-      'device',
-    );
-  }
-
+  }) : super._();
   @override
   GPlotConfigsData_plotConfiguration_channels rebuild(
     void Function(GPlotConfigsData_plotConfiguration_channelsBuilder) updates,
@@ -1072,7 +1096,7 @@ class _$GPlotConfigsData_plotConfiguration_channels
 
   @override
   GPlotConfigsData_plotConfiguration_channelsBuilder toBuilder() =>
-      new GPlotConfigsData_plotConfiguration_channelsBuilder()..replace(this);
+      GPlotConfigsData_plotConfiguration_channelsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1080,6 +1104,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
     return other is GPlotConfigsData_plotConfiguration_channels &&
         G__typename == other.G__typename &&
         device == other.device &&
+        yMin == other.yMin &&
+        yMax == other.yMax &&
         lineColor == other.lineColor &&
         markerIndex == other.markerIndex;
   }
@@ -1089,6 +1115,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, device.hashCode);
+    _$hash = $jc(_$hash, yMin.hashCode);
+    _$hash = $jc(_$hash, yMax.hashCode);
     _$hash = $jc(_$hash, lineColor.hashCode);
     _$hash = $jc(_$hash, markerIndex.hashCode);
     _$hash = $jf(_$hash);
@@ -1102,6 +1130,8 @@ class _$GPlotConfigsData_plotConfiguration_channels
           )
           ..add('G__typename', G__typename)
           ..add('device', device)
+          ..add('yMin', yMin)
+          ..add('yMax', yMax)
           ..add('lineColor', lineColor)
           ..add('markerIndex', markerIndex))
         .toString();
@@ -1124,6 +1154,14 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   String? get device => _$this._device;
   set device(String? device) => _$this._device = device;
 
+  double? _yMin;
+  double? get yMin => _$this._yMin;
+  set yMin(double? yMin) => _$this._yMin = yMin;
+
+  double? _yMax;
+  double? get yMax => _$this._yMax;
+  set yMax(double? yMax) => _$this._yMax = yMax;
+
   int? _lineColor;
   int? get lineColor => _$this._lineColor;
   set lineColor(int? lineColor) => _$this._lineColor = lineColor;
@@ -1141,6 +1179,8 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _device = $v.device;
+      _yMin = $v.yMin;
+      _yMax = $v.yMax;
       _lineColor = $v.lineColor;
       _markerIndex = $v.markerIndex;
       _$v = null;
@@ -1150,7 +1190,6 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
 
   @override
   void replace(GPlotConfigsData_plotConfiguration_channels other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigsData_plotConfiguration_channels;
   }
 
@@ -1167,7 +1206,7 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
   _$GPlotConfigsData_plotConfiguration_channels _build() {
     final _$result =
         _$v ??
-        new _$GPlotConfigsData_plotConfiguration_channels._(
+        _$GPlotConfigsData_plotConfiguration_channels._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GPlotConfigsData_plotConfiguration_channels',
@@ -1178,6 +1217,8 @@ class GPlotConfigsData_plotConfiguration_channelsBuilder
             r'GPlotConfigsData_plotConfiguration_channels',
             'device',
           ),
+          yMin: yMin,
+          yMax: yMax,
           lineColor: lineColor,
           markerIndex: markerIndex,
         );

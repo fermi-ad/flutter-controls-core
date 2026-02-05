@@ -1,32 +1,32 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'stream_data.req.gql.dart';
+part of 'stream_alarms.req.gql.dart';
 
 // **************************************************************************
 // BuiltValueGenerator
 // **************************************************************************
 
-Serializer<GStreamDataReq> _$gStreamDataReqSerializer =
-    _$GStreamDataReqSerializer();
+Serializer<GStreamAlarmsReq> _$gStreamAlarmsReqSerializer =
+    _$GStreamAlarmsReqSerializer();
 
-class _$GStreamDataReqSerializer
-    implements StructuredSerializer<GStreamDataReq> {
+class _$GStreamAlarmsReqSerializer
+    implements StructuredSerializer<GStreamAlarmsReq> {
   @override
-  final Iterable<Type> types = const [GStreamDataReq, _$GStreamDataReq];
+  final Iterable<Type> types = const [GStreamAlarmsReq, _$GStreamAlarmsReq];
   @override
-  final String wireName = 'GStreamDataReq';
+  final String wireName = 'GStreamAlarmsReq';
 
   @override
   Iterable<Object?> serialize(
     Serializers serializers,
-    GStreamDataReq object, {
+    GStreamAlarmsReq object, {
     FullType specifiedType = FullType.unspecified,
   }) {
     final result = <Object?>[
       'vars',
       serializers.serialize(
         object.vars,
-        specifiedType: const FullType(_i3.GStreamDataVars),
+        specifiedType: const FullType(_i3.GStreamAlarmsVars),
       ),
       'operation',
       serializers.serialize(
@@ -55,7 +55,7 @@ class _$GStreamDataReqSerializer
         ..add(
           serializers.serialize(
             value,
-            specifiedType: const FullType(_i2.GStreamDataData),
+            specifiedType: const FullType(_i2.GStreamAlarmsData),
           ),
         );
     }
@@ -96,12 +96,12 @@ class _$GStreamDataReqSerializer
   }
 
   @override
-  GStreamDataReq deserialize(
+  GStreamAlarmsReq deserialize(
     Serializers serializers,
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = GStreamDataReqBuilder();
+    final result = GStreamAlarmsReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -113,9 +113,9 @@ class _$GStreamDataReqSerializer
           result.vars.replace(
             serializers.deserialize(
                   value,
-                  specifiedType: const FullType(_i3.GStreamDataVars),
+                  specifiedType: const FullType(_i3.GStreamAlarmsVars),
                 )!
-                as _i3.GStreamDataVars,
+                as _i3.GStreamAlarmsVars,
           );
           break;
         case 'operation':
@@ -138,9 +138,9 @@ class _$GStreamDataReqSerializer
           result.optimisticResponse.replace(
             serializers.deserialize(
                   value,
-                  specifiedType: const FullType(_i2.GStreamDataData),
+                  specifiedType: const FullType(_i2.GStreamAlarmsData),
                 )!
-                as _i2.GStreamDataData,
+                as _i2.GStreamAlarmsData,
           );
           break;
         case 'updateCacheHandlerKey':
@@ -185,21 +185,21 @@ class _$GStreamDataReqSerializer
   }
 }
 
-class _$GStreamDataReq extends GStreamDataReq {
+class _$GStreamAlarmsReq extends GStreamAlarmsReq {
   @override
-  final _i3.GStreamDataVars vars;
+  final _i3.GStreamAlarmsVars vars;
   @override
   final _i4.Operation operation;
   @override
   final String? requestId;
   @override
-  final _i2.GStreamDataData? Function(
-    _i2.GStreamDataData?,
-    _i2.GStreamDataData?,
+  final _i2.GStreamAlarmsData? Function(
+    _i2.GStreamAlarmsData?,
+    _i2.GStreamAlarmsData?,
   )?
   updateResult;
   @override
-  final _i2.GStreamDataData? optimisticResponse;
+  final _i2.GStreamAlarmsData? optimisticResponse;
   @override
   final String? updateCacheHandlerKey;
   @override
@@ -211,10 +211,11 @@ class _$GStreamDataReq extends GStreamDataReq {
   @override
   final _i4.Context? context;
 
-  factory _$GStreamDataReq([void Function(GStreamDataReqBuilder)? updates]) =>
-      (GStreamDataReqBuilder()..update(updates))._build();
+  factory _$GStreamAlarmsReq([
+    void Function(GStreamAlarmsReqBuilder)? updates,
+  ]) => (GStreamAlarmsReqBuilder()..update(updates))._build();
 
-  _$GStreamDataReq._({
+  _$GStreamAlarmsReq._({
     required this.vars,
     required this.operation,
     this.requestId,
@@ -227,17 +228,18 @@ class _$GStreamDataReq extends GStreamDataReq {
     this.context,
   }) : super._();
   @override
-  GStreamDataReq rebuild(void Function(GStreamDataReqBuilder) updates) =>
+  GStreamAlarmsReq rebuild(void Function(GStreamAlarmsReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GStreamDataReqBuilder toBuilder() => GStreamDataReqBuilder()..replace(this);
+  GStreamAlarmsReqBuilder toBuilder() =>
+      GStreamAlarmsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
     final dynamic _$dynamicOther = other;
-    return other is GStreamDataReq &&
+    return other is GStreamAlarmsReq &&
         vars == other.vars &&
         operation == other.operation &&
         requestId == other.requestId &&
@@ -269,7 +271,7 @@ class _$GStreamDataReq extends GStreamDataReq {
 
   @override
   String toString() {
-    return (newBuiltValueToStringHelper(r'GStreamDataReq')
+    return (newBuiltValueToStringHelper(r'GStreamAlarmsReq')
           ..add('vars', vars)
           ..add('operation', operation)
           ..add('requestId', requestId)
@@ -284,14 +286,14 @@ class _$GStreamDataReq extends GStreamDataReq {
   }
 }
 
-class GStreamDataReqBuilder
-    implements Builder<GStreamDataReq, GStreamDataReqBuilder> {
-  _$GStreamDataReq? _$v;
+class GStreamAlarmsReqBuilder
+    implements Builder<GStreamAlarmsReq, GStreamAlarmsReqBuilder> {
+  _$GStreamAlarmsReq? _$v;
 
-  _i3.GStreamDataVarsBuilder? _vars;
-  _i3.GStreamDataVarsBuilder get vars =>
-      _$this._vars ??= _i3.GStreamDataVarsBuilder();
-  set vars(_i3.GStreamDataVarsBuilder? vars) => _$this._vars = vars;
+  _i3.GStreamAlarmsVarsBuilder? _vars;
+  _i3.GStreamAlarmsVarsBuilder get vars =>
+      _$this._vars ??= _i3.GStreamAlarmsVarsBuilder();
+  set vars(_i3.GStreamAlarmsVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
   _i4.Operation? get operation => _$this._operation;
@@ -301,19 +303,28 @@ class GStreamDataReqBuilder
   String? get requestId => _$this._requestId;
   set requestId(String? requestId) => _$this._requestId = requestId;
 
-  _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
+  _i2.GStreamAlarmsData? Function(
+    _i2.GStreamAlarmsData?,
+    _i2.GStreamAlarmsData?,
+  )?
   _updateResult;
-  _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
+  _i2.GStreamAlarmsData? Function(
+    _i2.GStreamAlarmsData?,
+    _i2.GStreamAlarmsData?,
+  )?
   get updateResult => _$this._updateResult;
   set updateResult(
-    _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
+    _i2.GStreamAlarmsData? Function(
+      _i2.GStreamAlarmsData?,
+      _i2.GStreamAlarmsData?,
+    )?
     updateResult,
   ) => _$this._updateResult = updateResult;
 
-  _i2.GStreamDataDataBuilder? _optimisticResponse;
-  _i2.GStreamDataDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= _i2.GStreamDataDataBuilder();
-  set optimisticResponse(_i2.GStreamDataDataBuilder? optimisticResponse) =>
+  _i2.GStreamAlarmsDataBuilder? _optimisticResponse;
+  _i2.GStreamAlarmsDataBuilder get optimisticResponse =>
+      _$this._optimisticResponse ??= _i2.GStreamAlarmsDataBuilder();
+  set optimisticResponse(_i2.GStreamAlarmsDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
   String? _updateCacheHandlerKey;
@@ -342,11 +353,11 @@ class GStreamDataReqBuilder
   _i4.Context? get context => _$this._context;
   set context(_i4.Context? context) => _$this._context = context;
 
-  GStreamDataReqBuilder() {
-    GStreamDataReq._initializeBuilder(this);
+  GStreamAlarmsReqBuilder() {
+    GStreamAlarmsReq._initializeBuilder(this);
   }
 
-  GStreamDataReqBuilder get _$this {
+  GStreamAlarmsReqBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
       _vars = $v.vars.toBuilder();
@@ -365,28 +376,28 @@ class GStreamDataReqBuilder
   }
 
   @override
-  void replace(GStreamDataReq other) {
-    _$v = other as _$GStreamDataReq;
+  void replace(GStreamAlarmsReq other) {
+    _$v = other as _$GStreamAlarmsReq;
   }
 
   @override
-  void update(void Function(GStreamDataReqBuilder)? updates) {
+  void update(void Function(GStreamAlarmsReqBuilder)? updates) {
     if (updates != null) updates(this);
   }
 
   @override
-  GStreamDataReq build() => _build();
+  GStreamAlarmsReq build() => _build();
 
-  _$GStreamDataReq _build() {
-    _$GStreamDataReq _$result;
+  _$GStreamAlarmsReq _build() {
+    _$GStreamAlarmsReq _$result;
     try {
       _$result =
           _$v ??
-          _$GStreamDataReq._(
+          _$GStreamAlarmsReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
               operation,
-              r'GStreamDataReq',
+              r'GStreamAlarmsReq',
               'operation',
             ),
             requestId: requestId,
@@ -397,7 +408,7 @@ class GStreamDataReqBuilder
             fetchPolicy: fetchPolicy,
             executeOnListen: BuiltValueNullFieldError.checkNotNull(
               executeOnListen,
-              r'GStreamDataReq',
+              r'GStreamAlarmsReq',
               'executeOnListen',
             ),
             context: context,
@@ -412,7 +423,7 @@ class GStreamDataReqBuilder
         _optimisticResponse?.build();
       } catch (e) {
         throw BuiltValueNestedFieldError(
-          r'GStreamDataReq',
+          r'GStreamAlarmsReq',
           _$failedField,
           e.toString(),
         );

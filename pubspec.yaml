@@ -1,6 +1,7 @@
 name: flutter_controls_core
 description: A Flutter package to write Fermilab applications.
 version: 0.3.1
+publish_to: none
 
 environment:
     sdk: ">=3.7.0 <4.0.0"
@@ -12,34 +13,37 @@ dependencies:
 
     # These packages provide our GraphQL access.
 
-    ferry: ^0.16.0
+    ferry: ^0.16.2-dev.4
     gql_http_link: ^1.1.0
-    gql_websocket_link: ^2.0.0
-    gql_code_builder: ^0.13.0
-    web_socket_channel: ^2.0.0
+    gql_websocket_link: ^2.1.0
+    gql_code_builder: ^0.15.1
+    web_socket_channel: ^3.0.0
     built_collection: ^5.1.1
     built_value: ^8.4.4
+    http: ^1.2.1
+
 
     # One of our app types uses the GoRouter widget, so we need to include this
     # package.
 
     go_router: ^12.1.0
 
-    google_fonts: ^6.3.0
+    opentelemetry: ^0.18.10
 
     # Needed for KeyCloak authentication support.
 
-    openid_client: ^0.4.8
-    url_launcher: ^6.2.1
-    opentelemetry: ^0.18.10
+    flutter_controls_auth:
+      git:
+        url: https://github.com/fermi-ad/flutter-controls-auth.git
+        ref: main
 
 dev_dependencies:
     flutter_test:
         sdk: flutter
-    flutter_lints: ^5.0.0
-    analyzer: ^6.0.0
+    flutter_lints: ^6.0.0
+    analyzer: ^7.7.1
 
-    ferry_generator: ^0.12.0
+    ferry_generator: ^0.14.0-dev.2
     build_runner: ^2.4.6
     test: ^1.24.3
 
@@ -77,38 +81,35 @@ flutter:
     #       - asset: fonts/TrajanPro_Bold.ttf
     #         weight: 700
     #
-    assets:
-        - google_fonts/
-
     fonts:
-      - family: Roboto
+      - family: Local Roboto
         fonts:
-          - asset: google_fonts/Roboto-Thin.ttf
+          - asset: assets/google_fonts/Roboto-Thin.ttf
             weight: 100
-          - asset: google_fonts/Roboto-ThinItalic.ttf
+          - asset: assets/google_fonts/Roboto-ThinItalic.ttf
             weight: 100
             style: italic
-          - asset: google_fonts/Roboto-Light.ttf
+          - asset: assets/google_fonts/Roboto-Light.ttf
             weight: 300
-          - asset: google_fonts/Roboto-LightItalic.ttf
+          - asset: assets/google_fonts/Roboto-LightItalic.ttf
             weight: 300
             style: italic
-          - asset: google_fonts/Roboto-Regular.ttf
-          - asset: google_fonts/Roboto-Italic.ttf
+          - asset: assets/google_fonts/Roboto-Regular.ttf
+          - asset: assets/google_fonts/Roboto-Italic.ttf
             style: italic
-          - asset: google_fonts/Roboto-Medium.ttf
+          - asset: assets/google_fonts/Roboto-Medium.ttf
             weight: 500
-          - asset: google_fonts/Roboto-MediumItalic.ttf
+          - asset: assets/google_fonts/Roboto-MediumItalic.ttf
             weight: 500
             style: italic
-          - asset: google_fonts/Roboto-Bold.ttf
+          - asset: assets/google_fonts/Roboto-Bold.ttf
             weight: 700
-          - asset: google_fonts/Roboto-BoldItalic.ttf
+          - asset: assets/google_fonts/Roboto-BoldItalic.ttf
             weight: 700
             style: italic
-          - asset: google_fonts/Roboto-Black.ttf
+          - asset: assets/google_fonts/Roboto-Black.ttf
             weight: 900
-          - asset: google_fonts/Roboto-BlackItalic.ttf
+          - asset: assets/google_fonts/Roboto-BlackItalic.ttf
             weight: 900
             style: italic
     # For details regarding fonts in packages, see

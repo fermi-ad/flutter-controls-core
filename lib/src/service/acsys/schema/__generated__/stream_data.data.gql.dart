@@ -168,7 +168,6 @@ abstract class GStreamDataData_acceleratorData_data_result__base
   static Serializer<GStreamDataData_acceleratorData_data_result__base>
   get serializer => _$gStreamDataDataAcceleratorDataDataResultBaseSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GStreamDataData_acceleratorData_data_result__base.serializer,
@@ -212,7 +211,6 @@ abstract class GStreamDataData_acceleratorData_data_result__asStatusReply
   get serializer =>
       _$gStreamDataDataAcceleratorDataDataResultAsStatusReplySerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GStreamDataData_acceleratorData_data_result__asStatusReply
@@ -257,7 +255,6 @@ abstract class GStreamDataData_acceleratorData_data_result__asScalar
   get serializer =>
       _$gStreamDataDataAcceleratorDataDataResultAsScalarSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GStreamDataData_acceleratorData_data_result__asScalar.serializer,
@@ -301,7 +298,6 @@ abstract class GStreamDataData_acceleratorData_data_result__asScalarArray
   get serializer =>
       _$gStreamDataDataAcceleratorDataDataResultAsScalarArraySerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GStreamDataData_acceleratorData_data_result__asScalarArray
@@ -343,7 +339,6 @@ abstract class GStreamDataData_acceleratorData_data_result__asText
   static Serializer<GStreamDataData_acceleratorData_data_result__asText>
   get serializer => _$gStreamDataDataAcceleratorDataDataResultAsTextSerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GStreamDataData_acceleratorData_data_result__asText.serializer,
@@ -387,7 +382,6 @@ abstract class GStreamDataData_acceleratorData_data_result__asTextArray
   get serializer =>
       _$gStreamDataDataAcceleratorDataDataResultAsTextArraySerializer;
 
-  @override
   Map<String, dynamic> toJson() =>
       (_i1.serializers.serializeWith(
             GStreamDataData_acceleratorData_data_result__asTextArray.serializer,

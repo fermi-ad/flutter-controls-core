@@ -1,16 +1,16 @@
-query UsersLastConfig($user: String) {
-    usersLastConfiguration(user: $user) {
+query UsersLastConfig {
+    usersLastConfiguration {
         configurationId
         configurationName
         channels {
             device
+            yMin
+            yMax
             lineColor
             markerIndex
         }
         xMin
         xMax
-        yMin
-        yMax
         startTime
         endTime
         timeDelta
@@ -20,7 +20,11 @@ query UsersLastConfig($user: String) {
         updateDelay
         nAcquisitions
         tclkEvent
+        acquisitionMode
         isPersistent
+        isBlink
         dataLimit
+        sampleOnEvent
+        chXAxis
     }
 }

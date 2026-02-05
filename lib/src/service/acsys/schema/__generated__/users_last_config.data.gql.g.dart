@@ -7,13 +7,13 @@ part of 'users_last_config.data.gql.dart';
 // **************************************************************************
 
 Serializer<GUsersLastConfigData> _$gUsersLastConfigDataSerializer =
-    new _$GUsersLastConfigDataSerializer();
+    _$GUsersLastConfigDataSerializer();
 Serializer<GUsersLastConfigData_usersLastConfiguration>
 _$gUsersLastConfigDataUsersLastConfigurationSerializer =
-    new _$GUsersLastConfigData_usersLastConfigurationSerializer();
+    _$GUsersLastConfigData_usersLastConfigurationSerializer();
 Serializer<GUsersLastConfigData_usersLastConfiguration_channels>
 _$gUsersLastConfigDataUsersLastConfigurationChannelsSerializer =
-    new _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer();
+    _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer();
 
 class _$GUsersLastConfigDataSerializer
     implements StructuredSerializer<GUsersLastConfigData> {
@@ -61,7 +61,7 @@ class _$GUsersLastConfigDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GUsersLastConfigDataBuilder();
+    final result = GUsersLastConfigDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -150,6 +150,11 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
         object.isPersistent,
         specifiedType: const FullType(bool),
       ),
+      'isBlink',
+      serializers.serialize(
+        object.isBlink,
+        specifiedType: const FullType(bool),
+      ),
       'dataLimit',
       serializers.serialize(
         object.dataLimit,
@@ -175,22 +180,6 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
     if (value != null) {
       result
         ..add('xMax')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
-    value = object.yMin;
-    if (value != null) {
-      result
-        ..add('yMin')
-        ..add(
-          serializers.serialize(value, specifiedType: const FullType(double)),
-        );
-    }
-    value = object.yMax;
-    if (value != null) {
-      result
-        ..add('yMax')
         ..add(
           serializers.serialize(value, specifiedType: const FullType(double)),
         );
@@ -237,6 +226,31 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
         ..add('tclkEvent')
         ..add(serializers.serialize(value, specifiedType: const FullType(int)));
     }
+    value = object.acquisitionMode;
+    if (value != null) {
+      result
+        ..add('acquisitionMode')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GAcquisitionMode),
+          ),
+        );
+    }
+    value = object.sampleOnEvent;
+    if (value != null) {
+      result
+        ..add('sampleOnEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.chXAxis;
+    if (value != null) {
+      result
+        ..add('chXAxis')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
     return result;
   }
 
@@ -246,7 +260,7 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GUsersLastConfigData_usersLastConfigurationBuilder();
+    final result = GUsersLastConfigData_usersLastConfigurationBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -298,22 +312,6 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
           break;
         case 'xMax':
           result.xMax =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double?;
-          break;
-        case 'yMin':
-          result.yMin =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(double),
-                  )
-                  as double?;
-          break;
-        case 'yMax':
-          result.yMax =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(double),
@@ -383,8 +381,24 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
               serializers.deserialize(value, specifiedType: const FullType(int))
                   as int?;
           break;
+        case 'acquisitionMode':
+          result.acquisitionMode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GAcquisitionMode),
+                  )
+                  as _i2.GAcquisitionMode?;
+          break;
         case 'isPersistent':
           result.isPersistent =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'isBlink':
+          result.isBlink =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(bool),
@@ -398,6 +412,19 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
                     specifiedType: const FullType(int),
                   )!
                   as int;
+          break;
+        case 'sampleOnEvent':
+          result.sampleOnEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'chXAxis':
+          result.chXAxis =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
       }
     }
@@ -439,6 +466,22 @@ class _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer
       ),
     ];
     Object? value;
+    value = object.yMin;
+    if (value != null) {
+      result
+        ..add('yMin')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
+    value = object.yMax;
+    if (value != null) {
+      result
+        ..add('yMax')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     value = object.lineColor;
     if (value != null) {
       result
@@ -461,7 +504,7 @@ class _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GUsersLastConfigData_usersLastConfiguration_channelsBuilder();
+        GUsersLastConfigData_usersLastConfiguration_channelsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -484,6 +527,22 @@ class _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer
                     specifiedType: const FullType(String),
                   )!
                   as String;
+          break;
+        case 'yMin':
+          result.yMin =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
+        case 'yMax':
+          result.yMax =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
           break;
         case 'lineColor':
           result.lineColor =
@@ -510,19 +569,12 @@ class _$GUsersLastConfigData extends GUsersLastConfigData {
 
   factory _$GUsersLastConfigData([
     void Function(GUsersLastConfigDataBuilder)? updates,
-  ]) => (new GUsersLastConfigDataBuilder()..update(updates))._build();
+  ]) => (GUsersLastConfigDataBuilder()..update(updates))._build();
 
   _$GUsersLastConfigData._({
     required this.G__typename,
     this.usersLastConfiguration,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GUsersLastConfigData',
-      'G__typename',
-    );
-  }
-
+  }) : super._();
   @override
   GUsersLastConfigData rebuild(
     void Function(GUsersLastConfigDataBuilder) updates,
@@ -530,7 +582,7 @@ class _$GUsersLastConfigData extends GUsersLastConfigData {
 
   @override
   GUsersLastConfigDataBuilder toBuilder() =>
-      new GUsersLastConfigDataBuilder()..replace(this);
+      GUsersLastConfigDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -570,7 +622,7 @@ class GUsersLastConfigDataBuilder
   GUsersLastConfigData_usersLastConfigurationBuilder
   get usersLastConfiguration =>
       _$this._usersLastConfiguration ??=
-          new GUsersLastConfigData_usersLastConfigurationBuilder();
+          GUsersLastConfigData_usersLastConfigurationBuilder();
   set usersLastConfiguration(
     GUsersLastConfigData_usersLastConfigurationBuilder? usersLastConfiguration,
   ) => _$this._usersLastConfiguration = usersLastConfiguration;
@@ -591,7 +643,6 @@ class GUsersLastConfigDataBuilder
 
   @override
   void replace(GUsersLastConfigData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUsersLastConfigData;
   }
 
@@ -608,7 +659,7 @@ class GUsersLastConfigDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GUsersLastConfigData._(
+          _$GUsersLastConfigData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GUsersLastConfigData',
@@ -622,7 +673,7 @@ class GUsersLastConfigDataBuilder
         _$failedField = 'usersLastConfiguration';
         _usersLastConfiguration?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GUsersLastConfigData',
           _$failedField,
           e.toString(),
@@ -651,10 +702,6 @@ class _$GUsersLastConfigData_usersLastConfiguration
   @override
   final double? xMax;
   @override
-  final double? yMin;
-  @override
-  final double? yMax;
-  @override
   final double? startTime;
   @override
   final double? endTime;
@@ -673,15 +720,22 @@ class _$GUsersLastConfigData_usersLastConfiguration
   @override
   final int? tclkEvent;
   @override
+  final _i2.GAcquisitionMode? acquisitionMode;
+  @override
   final bool isPersistent;
   @override
+  final bool isBlink;
+  @override
   final int dataLimit;
+  @override
+  final int? sampleOnEvent;
+  @override
+  final String? chXAxis;
 
   factory _$GUsersLastConfigData_usersLastConfiguration([
     void Function(GUsersLastConfigData_usersLastConfigurationBuilder)? updates,
   ]) =>
-      (new GUsersLastConfigData_usersLastConfigurationBuilder()
-            ..update(updates))
+      (GUsersLastConfigData_usersLastConfigurationBuilder()..update(updates))
           ._build();
 
   _$GUsersLastConfigData_usersLastConfiguration._({
@@ -691,8 +745,6 @@ class _$GUsersLastConfigData_usersLastConfiguration
     required this.channels,
     this.xMin,
     this.xMax,
-    this.yMin,
-    this.yMax,
     this.startTime,
     this.endTime,
     this.timeDelta,
@@ -702,51 +754,13 @@ class _$GUsersLastConfigData_usersLastConfiguration
     this.updateDelay,
     this.nAcquisitions,
     this.tclkEvent,
+    this.acquisitionMode,
     required this.isPersistent,
+    required this.isBlink,
     required this.dataLimit,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      configurationName,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'configurationName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      channels,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'channels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isScalar,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isScalar',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isOneShot,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isOneShot',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isShowLabels,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isShowLabels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isPersistent,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isPersistent',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      dataLimit,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'dataLimit',
-    );
-  }
-
+    this.sampleOnEvent,
+    this.chXAxis,
+  }) : super._();
   @override
   GUsersLastConfigData_usersLastConfiguration rebuild(
     void Function(GUsersLastConfigData_usersLastConfigurationBuilder) updates,
@@ -754,7 +768,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
 
   @override
   GUsersLastConfigData_usersLastConfigurationBuilder toBuilder() =>
-      new GUsersLastConfigData_usersLastConfigurationBuilder()..replace(this);
+      GUsersLastConfigData_usersLastConfigurationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -766,8 +780,6 @@ class _$GUsersLastConfigData_usersLastConfiguration
         channels == other.channels &&
         xMin == other.xMin &&
         xMax == other.xMax &&
-        yMin == other.yMin &&
-        yMax == other.yMax &&
         startTime == other.startTime &&
         endTime == other.endTime &&
         timeDelta == other.timeDelta &&
@@ -777,8 +789,12 @@ class _$GUsersLastConfigData_usersLastConfiguration
         updateDelay == other.updateDelay &&
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
+        acquisitionMode == other.acquisitionMode &&
         isPersistent == other.isPersistent &&
-        dataLimit == other.dataLimit;
+        isBlink == other.isBlink &&
+        dataLimit == other.dataLimit &&
+        sampleOnEvent == other.sampleOnEvent &&
+        chXAxis == other.chXAxis;
   }
 
   @override
@@ -790,8 +806,6 @@ class _$GUsersLastConfigData_usersLastConfiguration
     _$hash = $jc(_$hash, channels.hashCode);
     _$hash = $jc(_$hash, xMin.hashCode);
     _$hash = $jc(_$hash, xMax.hashCode);
-    _$hash = $jc(_$hash, yMin.hashCode);
-    _$hash = $jc(_$hash, yMax.hashCode);
     _$hash = $jc(_$hash, startTime.hashCode);
     _$hash = $jc(_$hash, endTime.hashCode);
     _$hash = $jc(_$hash, timeDelta.hashCode);
@@ -801,8 +815,12 @@ class _$GUsersLastConfigData_usersLastConfiguration
     _$hash = $jc(_$hash, updateDelay.hashCode);
     _$hash = $jc(_$hash, nAcquisitions.hashCode);
     _$hash = $jc(_$hash, tclkEvent.hashCode);
+    _$hash = $jc(_$hash, acquisitionMode.hashCode);
     _$hash = $jc(_$hash, isPersistent.hashCode);
+    _$hash = $jc(_$hash, isBlink.hashCode);
     _$hash = $jc(_$hash, dataLimit.hashCode);
+    _$hash = $jc(_$hash, sampleOnEvent.hashCode);
+    _$hash = $jc(_$hash, chXAxis.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -818,8 +836,6 @@ class _$GUsersLastConfigData_usersLastConfiguration
           ..add('channels', channels)
           ..add('xMin', xMin)
           ..add('xMax', xMax)
-          ..add('yMin', yMin)
-          ..add('yMax', yMax)
           ..add('startTime', startTime)
           ..add('endTime', endTime)
           ..add('timeDelta', timeDelta)
@@ -829,8 +845,12 @@ class _$GUsersLastConfigData_usersLastConfiguration
           ..add('updateDelay', updateDelay)
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
+          ..add('acquisitionMode', acquisitionMode)
           ..add('isPersistent', isPersistent)
-          ..add('dataLimit', dataLimit))
+          ..add('isBlink', isBlink)
+          ..add('dataLimit', dataLimit)
+          ..add('sampleOnEvent', sampleOnEvent)
+          ..add('chXAxis', chXAxis))
         .toString();
   }
 }
@@ -861,9 +881,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>
   get channels =>
       _$this._channels ??=
-          new ListBuilder<
-            GUsersLastConfigData_usersLastConfiguration_channels
-          >();
+          ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>();
   set channels(
     ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>? channels,
   ) => _$this._channels = channels;
@@ -875,14 +893,6 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   double? _xMax;
   double? get xMax => _$this._xMax;
   set xMax(double? xMax) => _$this._xMax = xMax;
-
-  double? _yMin;
-  double? get yMin => _$this._yMin;
-  set yMin(double? yMin) => _$this._yMin = yMin;
-
-  double? _yMax;
-  double? get yMax => _$this._yMax;
-  set yMax(double? yMax) => _$this._yMax = yMax;
 
   double? _startTime;
   double? get startTime => _$this._startTime;
@@ -921,13 +931,31 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   int? get tclkEvent => _$this._tclkEvent;
   set tclkEvent(int? tclkEvent) => _$this._tclkEvent = tclkEvent;
 
+  _i2.GAcquisitionMode? _acquisitionMode;
+  _i2.GAcquisitionMode? get acquisitionMode => _$this._acquisitionMode;
+  set acquisitionMode(_i2.GAcquisitionMode? acquisitionMode) =>
+      _$this._acquisitionMode = acquisitionMode;
+
   bool? _isPersistent;
   bool? get isPersistent => _$this._isPersistent;
   set isPersistent(bool? isPersistent) => _$this._isPersistent = isPersistent;
 
+  bool? _isBlink;
+  bool? get isBlink => _$this._isBlink;
+  set isBlink(bool? isBlink) => _$this._isBlink = isBlink;
+
   int? _dataLimit;
   int? get dataLimit => _$this._dataLimit;
   set dataLimit(int? dataLimit) => _$this._dataLimit = dataLimit;
+
+  int? _sampleOnEvent;
+  int? get sampleOnEvent => _$this._sampleOnEvent;
+  set sampleOnEvent(int? sampleOnEvent) =>
+      _$this._sampleOnEvent = sampleOnEvent;
+
+  String? _chXAxis;
+  String? get chXAxis => _$this._chXAxis;
+  set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
 
   GUsersLastConfigData_usersLastConfigurationBuilder() {
     GUsersLastConfigData_usersLastConfiguration._initializeBuilder(this);
@@ -942,8 +970,6 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
       _channels = $v.channels.toBuilder();
       _xMin = $v.xMin;
       _xMax = $v.xMax;
-      _yMin = $v.yMin;
-      _yMax = $v.yMax;
       _startTime = $v.startTime;
       _endTime = $v.endTime;
       _timeDelta = $v.timeDelta;
@@ -953,8 +979,12 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
       _updateDelay = $v.updateDelay;
       _nAcquisitions = $v.nAcquisitions;
       _tclkEvent = $v.tclkEvent;
+      _acquisitionMode = $v.acquisitionMode;
       _isPersistent = $v.isPersistent;
+      _isBlink = $v.isBlink;
       _dataLimit = $v.dataLimit;
+      _sampleOnEvent = $v.sampleOnEvent;
+      _chXAxis = $v.chXAxis;
       _$v = null;
     }
     return this;
@@ -962,7 +992,6 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
 
   @override
   void replace(GUsersLastConfigData_usersLastConfiguration other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUsersLastConfigData_usersLastConfiguration;
   }
 
@@ -981,7 +1010,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
     try {
       _$result =
           _$v ??
-          new _$GUsersLastConfigData_usersLastConfiguration._(
+          _$GUsersLastConfigData_usersLastConfiguration._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GUsersLastConfigData_usersLastConfiguration',
@@ -996,8 +1025,6 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
             channels: channels.build(),
             xMin: xMin,
             xMax: xMax,
-            yMin: yMin,
-            yMax: yMax,
             startTime: startTime,
             endTime: endTime,
             timeDelta: timeDelta,
@@ -1019,16 +1046,24 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
             updateDelay: updateDelay,
             nAcquisitions: nAcquisitions,
             tclkEvent: tclkEvent,
+            acquisitionMode: acquisitionMode,
             isPersistent: BuiltValueNullFieldError.checkNotNull(
               isPersistent,
               r'GUsersLastConfigData_usersLastConfiguration',
               'isPersistent',
+            ),
+            isBlink: BuiltValueNullFieldError.checkNotNull(
+              isBlink,
+              r'GUsersLastConfigData_usersLastConfiguration',
+              'isBlink',
             ),
             dataLimit: BuiltValueNullFieldError.checkNotNull(
               dataLimit,
               r'GUsersLastConfigData_usersLastConfiguration',
               'dataLimit',
             ),
+            sampleOnEvent: sampleOnEvent,
+            chXAxis: chXAxis,
           );
     } catch (_) {
       late String _$failedField;
@@ -1036,7 +1071,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
         _$failedField = 'channels';
         channels.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GUsersLastConfigData_usersLastConfiguration',
           _$failedField,
           e.toString(),
@@ -1056,6 +1091,10 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
   @override
   final String device;
   @override
+  final double? yMin;
+  @override
+  final double? yMax;
+  @override
   final int? lineColor;
   @override
   final int? markerIndex;
@@ -1064,28 +1103,18 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
     void Function(GUsersLastConfigData_usersLastConfiguration_channelsBuilder)?
     updates,
   ]) =>
-      (new GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
+      (GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
             ..update(updates))
           ._build();
 
   _$GUsersLastConfigData_usersLastConfiguration_channels._({
     required this.G__typename,
     required this.device,
+    this.yMin,
+    this.yMax,
     this.lineColor,
     this.markerIndex,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GUsersLastConfigData_usersLastConfiguration_channels',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      device,
-      r'GUsersLastConfigData_usersLastConfiguration_channels',
-      'device',
-    );
-  }
-
+  }) : super._();
   @override
   GUsersLastConfigData_usersLastConfiguration_channels rebuild(
     void Function(GUsersLastConfigData_usersLastConfiguration_channelsBuilder)
@@ -1094,7 +1123,7 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
 
   @override
   GUsersLastConfigData_usersLastConfiguration_channelsBuilder toBuilder() =>
-      new GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
+      GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
         ..replace(this);
 
   @override
@@ -1103,6 +1132,8 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
     return other is GUsersLastConfigData_usersLastConfiguration_channels &&
         G__typename == other.G__typename &&
         device == other.device &&
+        yMin == other.yMin &&
+        yMax == other.yMax &&
         lineColor == other.lineColor &&
         markerIndex == other.markerIndex;
   }
@@ -1112,6 +1143,8 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, device.hashCode);
+    _$hash = $jc(_$hash, yMin.hashCode);
+    _$hash = $jc(_$hash, yMax.hashCode);
     _$hash = $jc(_$hash, lineColor.hashCode);
     _$hash = $jc(_$hash, markerIndex.hashCode);
     _$hash = $jf(_$hash);
@@ -1125,6 +1158,8 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
           )
           ..add('G__typename', G__typename)
           ..add('device', device)
+          ..add('yMin', yMin)
+          ..add('yMax', yMax)
           ..add('lineColor', lineColor)
           ..add('markerIndex', markerIndex))
         .toString();
@@ -1147,6 +1182,14 @@ class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
   String? get device => _$this._device;
   set device(String? device) => _$this._device = device;
 
+  double? _yMin;
+  double? get yMin => _$this._yMin;
+  set yMin(double? yMin) => _$this._yMin = yMin;
+
+  double? _yMax;
+  double? get yMax => _$this._yMax;
+  set yMax(double? yMax) => _$this._yMax = yMax;
+
   int? _lineColor;
   int? get lineColor => _$this._lineColor;
   set lineColor(int? lineColor) => _$this._lineColor = lineColor;
@@ -1166,6 +1209,8 @@ class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
     if ($v != null) {
       _G__typename = $v.G__typename;
       _device = $v.device;
+      _yMin = $v.yMin;
+      _yMax = $v.yMax;
       _lineColor = $v.lineColor;
       _markerIndex = $v.markerIndex;
       _$v = null;
@@ -1175,7 +1220,6 @@ class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
 
   @override
   void replace(GUsersLastConfigData_usersLastConfiguration_channels other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUsersLastConfigData_usersLastConfiguration_channels;
   }
 
@@ -1193,7 +1237,7 @@ class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
   _$GUsersLastConfigData_usersLastConfiguration_channels _build() {
     final _$result =
         _$v ??
-        new _$GUsersLastConfigData_usersLastConfiguration_channels._(
+        _$GUsersLastConfigData_usersLastConfiguration_channels._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GUsersLastConfigData_usersLastConfiguration_channels',
@@ -1204,6 +1248,8 @@ class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
             r'GUsersLastConfigData_usersLastConfiguration_channels',
             'device',
           ),
+          yMin: yMin,
+          yMax: yMax,
           lineColor: lineColor,
           markerIndex: markerIndex,
         );

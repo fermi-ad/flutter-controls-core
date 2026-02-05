@@ -4,13 +4,13 @@ query PlotConfigs($id: Int) {
     configurationName
     channels {
       device
+      yMin
+      yMax
       lineColor
       markerIndex
     }
     xMin
     xMax
-    yMin
-    yMax
     startTime
     endTime
     timeDelta
@@ -20,7 +20,11 @@ query PlotConfigs($id: Int) {
     updateDelay
     nAcquisitions
     tclkEvent
+    acquisitionMode
     isPersistent
+    isBlink
     dataLimit
+    sampleOnEvent
+    chXAxis
   }
 }
