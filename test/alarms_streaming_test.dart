@@ -18,7 +18,15 @@ void main() {
       mockClient = MockClient();
 
       // Create service instance with mocked subscription client
-      service = ACSysService(alarmsSubscriptionClient: mockClient);
+      service = ACSysService(
+        // The client we're actually testing.
+        alarmsSubscriptionClient: mockClient,
+        // Throwaway clients to override the defaults.
+        queryClient: MockClient(),
+        subscriptionClient: MockClient(),
+        devDbClient: MockClient(),
+        alarmsQueryClient: MockClient(),
+      );
     });
 
     test('yields AlarmMessage for each stream event', () async {

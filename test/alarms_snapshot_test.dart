@@ -33,7 +33,15 @@ void main() {
         mockResponse,
       );
 
-      final service = ACSysService(alarmsQueryClient: mockClient);
+      final service = ACSysService(
+        // The client we're actually testing.
+        alarmsQueryClient: mockClient,
+        // Throwaway clients to override the defaults.
+        queryClient: MockClient(),
+        subscriptionClient: MockClient(),
+        devDbClient: MockClient(),
+        alarmsSubscriptionClient: MockClient(),
+      );
 
       // Act
       final alarms = await service.getAlarmsSnapshot();
