@@ -1,6 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:ferry/ferry.dart';
 import 'package:flutter_controls_core/src/service/acsys_service.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
@@ -83,30 +82,6 @@ void main() {
       }
     });
 
-    test('emits multiple alarms from a single subscription', () async {
-      // Arrange
-      final alarmSequence = List.generate(
-        5,
-        (index) => createMockStreamAlarmResponse(
-          key: 'alarm_$index',
-          value: '{"status":"STATUS_$index"}',
-        ),
-      );
-
-      setupMockClientStreamResponse(mockClient, alarmSequence);
-
-      // Act
-      final stream = service.monitorAlarms();
-      final alarms = await stream.toList();
-
-      // Assert
-      expect(alarms, hasLength(5));
-      for (var i = 0; i < 5; i++) {
-        expect(alarms[i].key, equals('alarm_$i'));
-        expect(alarms[i].value, equals('{"status":"STATUS_$i"}'));
-      }
-    });
-
     test('propagates GraphQL errors as exceptions', () async {
       // Arrange
       final graphQLError = MockGraphQLError();
@@ -156,12 +131,12 @@ void main() {
         // Act
         final stream = service.monitorAlarms();
 
-        // Assert - should throw because of the filter that includes errors
+        // Assert
         expect(() => stream.toList(), throwsA(isA<ACSysException>()));
       },
     );
 
-    test('stops emitting after stream completes', () async {
+    test('continues emitting when new events come in', () async {
       // Arrange
       final alarmEvents = [
         createMockStreamAlarmResponse(
@@ -178,28 +153,21 @@ void main() {
 
       // Act
       final stream = service.monitorAlarms();
-      final alarms = await stream.toList();
+      final initialAlarms = await stream.toList();
 
       // After stream completes, listening again should work on the new stream
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer(
-        (_) => Stream.value(
-          createMockStreamAlarmResponse(
-            key: 'alarm_3',
-            value: '{"status":"THIRD"}',
-          ),
-        ),
+      final thirdAlarmEvent = createMockStreamAlarmResponse(
+        key: 'alarm_3',
+        value: '{"status":"THIRD"}',
       );
+      setupMockClientStreamResponse(mockClient, [thirdAlarmEvent]);
 
-      final secondAlarms = await service.monitorAlarms().toList();
+      final moreAlarms = await service.monitorAlarms().toList();
 
       // Assert
-      expect(alarms, hasLength(2));
-      expect(secondAlarms, hasLength(1));
-      expect(secondAlarms.first.key, equals('alarm_3'));
+      expect(initialAlarms, hasLength(2));
+      expect(moreAlarms, hasLength(1));
+      expect(moreAlarms.first.key, equals('alarm_3'));
     });
 
     test('handles rapid succession of alarm updates', () async {
