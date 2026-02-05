@@ -12,7 +12,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/str
 /// Mock [Client] for testing Ferry GraphQL operations.
 class MockClient extends Mock implements Client {}
 
-/// Helper function to set up a mock client to return a response stream.
+/// Helper function to set up a mock client to return a response value.
 void setupMockClientResponse<TData, TVars>(
   MockClient mockClient,
   OperationResponse<TData, TVars> response,
@@ -21,6 +21,17 @@ void setupMockClientResponse<TData, TVars>(
     () =>
         mockClient.request<TData, TVars>(any<OperationRequest<TData, TVars>>()),
   ).thenAnswer((_) => Stream.value(response));
+}
+
+/// Helper function to set up a mock client to return a stream of responses.
+void setupMockClientStreamResponse<TData, TVars>(
+  MockClient mockClient,
+  List<OperationResponse<TData, TVars>> responses,
+) {
+  when(
+    () =>
+        mockClient.request<TData, TVars>(any<OperationRequest<TData, TVars>>()),
+  ).thenAnswer((_) => Stream.fromIterable(responses));
 }
 
 class MockOperationResponse<TData, TVars> extends Mock

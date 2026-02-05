@@ -38,11 +38,7 @@ void main() {
               )
               .toList();
 
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.fromIterable(alarmResponses));
+      setupMockClientStreamResponse(mockClient, alarmResponses);
 
       // Act
       final stream = service.monitorAlarms();
@@ -71,11 +67,7 @@ void main() {
         createMockLoadingResponse<GStreamAlarmsData, GStreamAlarmsVars>(),
       ];
 
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.fromIterable(alarmResponses));
+      setupMockClientStreamResponse(mockClient, alarmResponses);
 
       // Act
       final stream = service.monitorAlarms();
@@ -101,11 +93,7 @@ void main() {
         ),
       );
 
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.fromIterable(alarmSequence));
+      setupMockClientStreamResponse(mockClient, alarmSequence);
 
       // Act
       final stream = service.monitorAlarms();
@@ -127,11 +115,7 @@ void main() {
             graphqlErrors: [graphQLError],
           );
 
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.value(errorResponse));
+      setupMockClientStreamResponse(mockClient, [errorResponse]);
 
       // Act
       final stream = service.monitorAlarms();
@@ -148,11 +132,7 @@ void main() {
             linkException: linkException,
           );
 
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.value(errorResponse));
+      setupMockClientStreamResponse(mockClient, [errorResponse]);
 
       // Act
       final stream = service.monitorAlarms();
@@ -171,11 +151,7 @@ void main() {
         when(() => errorResponse.loading).thenReturn(true);
         when(() => errorResponse.hasErrors).thenReturn(true);
 
-        when(
-          () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-            any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-          ),
-        ).thenAnswer((_) => Stream.value(errorResponse));
+        setupMockClientStreamResponse(mockClient, [errorResponse]);
 
         // Act
         final stream = service.monitorAlarms();
@@ -198,11 +174,7 @@ void main() {
         ),
       ];
 
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.fromIterable(alarmEvents));
+      setupMockClientStreamResponse(mockClient, alarmEvents);
 
       // Act
       final stream = service.monitorAlarms();
@@ -240,11 +212,7 @@ void main() {
         ),
       );
 
-      when(
-        () => mockClient.request<GStreamAlarmsData, GStreamAlarmsVars>(
-          any<OperationRequest<GStreamAlarmsData, GStreamAlarmsVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.fromIterable(alarmEvents));
+      setupMockClientStreamResponse(mockClient, alarmEvents);
 
       // Act
       final stream = service.monitorAlarms();

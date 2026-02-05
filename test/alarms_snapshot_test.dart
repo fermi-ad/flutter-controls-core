@@ -54,11 +54,10 @@ void main() {
       final mockClient = MockClient();
       final mockResponse = createMockAlarmsSnapshotResponse(alarms: []);
 
-      when(
-        () => mockClient.request<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
-          any<OperationRequest<GAlarmsSnapshotData, GAlarmsSnapshotVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.value(mockResponse));
+      setupMockClientResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
+        mockClient,
+        mockResponse,
+      );
 
       final service = ACSysService(alarmsQueryClient: mockClient);
 
@@ -77,11 +76,10 @@ void main() {
             graphqlErrors: [MockGraphQLError()],
           );
 
-      when(
-        () => mockClient.request<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
-          any<OperationRequest<GAlarmsSnapshotData, GAlarmsSnapshotVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.value(mockResponse));
+      setupMockClientResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
+        mockClient,
+        mockResponse,
+      );
 
       final service = ACSysService(alarmsQueryClient: mockClient);
 
@@ -101,11 +99,10 @@ void main() {
             linkException: linkException,
           );
 
-      when(
-        () => mockClient.request<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
-          any<OperationRequest<GAlarmsSnapshotData, GAlarmsSnapshotVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.value(mockResponse));
+      setupMockClientResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
+        mockClient,
+        mockResponse,
+      );
 
       final service = ACSysService(alarmsQueryClient: mockClient);
 
@@ -119,11 +116,10 @@ void main() {
       final mockResponse =
           createMockErrorResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>();
 
-      when(
-        () => mockClient.request<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
-          any<OperationRequest<GAlarmsSnapshotData, GAlarmsSnapshotVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.value(mockResponse));
+      setupMockClientResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
+        mockClient,
+        mockResponse,
+      );
 
       final service = ACSysService(alarmsQueryClient: mockClient);
 
@@ -142,11 +138,10 @@ void main() {
         alarms: [('test_key', testValue)],
       );
 
-      when(
-        () => mockClient.request<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
-          any<OperationRequest<GAlarmsSnapshotData, GAlarmsSnapshotVars>>(),
-        ),
-      ).thenAnswer((_) => Stream.value(mockResponse));
+      setupMockClientResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>(
+        mockClient,
+        mockResponse,
+      );
 
       final service = ACSysService(alarmsQueryClient: mockClient);
 
