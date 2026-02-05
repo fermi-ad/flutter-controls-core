@@ -31,12 +31,12 @@ GAcquisitionMode _$gAcquisitionModeValueOf(String name) {
     case 'SAMPLE_ON_EVENT':
       return _$gAcquisitionModeSAMPLE_ON_EVENT;
     default:
-      throw new ArgumentError(name);
+      throw ArgumentError(name);
   }
 }
 
 final BuiltSet<GAcquisitionMode> _$gAcquisitionModeValues =
-    new BuiltSet<GAcquisitionMode>(const <GAcquisitionMode>[
+    BuiltSet<GAcquisitionMode>(const <GAcquisitionMode>[
       _$gAcquisitionModeONE_SHOT,
       _$gAcquisitionModeONE_SHOT_TRIGGERED_ON_EVENT,
       _$gAcquisitionModeREPETITIVE_PERIODIC,
@@ -45,15 +45,15 @@ final BuiltSet<GAcquisitionMode> _$gAcquisitionModeValues =
     ]);
 
 Serializer<GAcquisitionMode> _$gAcquisitionModeSerializer =
-    new _$GAcquisitionModeSerializer();
+    _$GAcquisitionModeSerializer();
 Serializer<GChannelSettingSnapshotIn> _$gChannelSettingSnapshotInSerializer =
-    new _$GChannelSettingSnapshotInSerializer();
-Serializer<GDevValue> _$gDevValueSerializer = new _$GDevValueSerializer();
+    _$GChannelSettingSnapshotInSerializer();
+Serializer<GDevValue> _$gDevValueSerializer = _$GDevValueSerializer();
 Serializer<GPlotConfigurationSnapshotIn>
 _$gPlotConfigurationSnapshotInSerializer =
-    new _$GPlotConfigurationSnapshotInSerializer();
+    _$GPlotConfigurationSnapshotInSerializer();
 Serializer<GTimeSeriesEntryIn> _$gTimeSeriesEntryInSerializer =
-    new _$GTimeSeriesEntryInSerializer();
+    _$GTimeSeriesEntryInSerializer();
 
 class _$GAcquisitionModeSerializer
     implements PrimitiveSerializer<GAcquisitionMode> {
@@ -138,7 +138,7 @@ class _$GChannelSettingSnapshotInSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GChannelSettingSnapshotInBuilder();
+    final result = GChannelSettingSnapshotInBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -284,7 +284,7 @@ class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GDevValueBuilder();
+    final result = GDevValueBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -523,7 +523,7 @@ class _$GPlotConfigurationSnapshotInSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GPlotConfigurationSnapshotInBuilder();
+    final result = GPlotConfigurationSnapshotInBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -721,7 +721,7 @@ class _$GTimeSeriesEntryInSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GTimeSeriesEntryInBuilder();
+    final result = GTimeSeriesEntryInBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -766,7 +766,7 @@ class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
 
   factory _$GChannelSettingSnapshotIn([
     void Function(GChannelSettingSnapshotInBuilder)? updates,
-  ]) => (new GChannelSettingSnapshotInBuilder()..update(updates))._build();
+  ]) => (GChannelSettingSnapshotInBuilder()..update(updates))._build();
 
   _$GChannelSettingSnapshotIn._({
     required this.device,
@@ -774,14 +774,7 @@ class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
     this.yMax,
     this.lineColor,
     this.markerIndex,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      device,
-      r'GChannelSettingSnapshotIn',
-      'device',
-    );
-  }
-
+  }) : super._();
   @override
   GChannelSettingSnapshotIn rebuild(
     void Function(GChannelSettingSnapshotInBuilder) updates,
@@ -789,7 +782,7 @@ class _$GChannelSettingSnapshotIn extends GChannelSettingSnapshotIn {
 
   @override
   GChannelSettingSnapshotInBuilder toBuilder() =>
-      new GChannelSettingSnapshotInBuilder()..replace(this);
+      GChannelSettingSnapshotInBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -868,7 +861,6 @@ class GChannelSettingSnapshotInBuilder
 
   @override
   void replace(GChannelSettingSnapshotIn other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GChannelSettingSnapshotIn;
   }
 
@@ -883,7 +875,7 @@ class GChannelSettingSnapshotInBuilder
   _$GChannelSettingSnapshotIn _build() {
     final _$result =
         _$v ??
-        new _$GChannelSettingSnapshotIn._(
+        _$GChannelSettingSnapshotIn._(
           device: BuiltValueNullFieldError.checkNotNull(
             device,
             r'GChannelSettingSnapshotIn',
@@ -916,7 +908,7 @@ class _$GDevValue extends GDevValue {
   final BuiltList<GTimeSeriesEntryIn>? timeSeriesVal;
 
   factory _$GDevValue([void Function(GDevValueBuilder)? updates]) =>
-      (new GDevValueBuilder()..update(updates))._build();
+      (GDevValueBuilder()..update(updates))._build();
 
   _$GDevValue._({
     this.intVal,
@@ -927,13 +919,12 @@ class _$GDevValue extends GDevValue {
     this.textArrayVal,
     this.timeSeriesVal,
   }) : super._();
-
   @override
   GDevValue rebuild(void Function(GDevValueBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
-  GDevValueBuilder toBuilder() => new GDevValueBuilder()..replace(this);
+  GDevValueBuilder toBuilder() => GDevValueBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -989,12 +980,12 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
   ListBuilder<double>? _scalarArrayVal;
   ListBuilder<double> get scalarArrayVal =>
-      _$this._scalarArrayVal ??= new ListBuilder<double>();
+      _$this._scalarArrayVal ??= ListBuilder<double>();
   set scalarArrayVal(ListBuilder<double>? scalarArrayVal) =>
       _$this._scalarArrayVal = scalarArrayVal;
 
   ListBuilder<int>? _rawVal;
-  ListBuilder<int> get rawVal => _$this._rawVal ??= new ListBuilder<int>();
+  ListBuilder<int> get rawVal => _$this._rawVal ??= ListBuilder<int>();
   set rawVal(ListBuilder<int>? rawVal) => _$this._rawVal = rawVal;
 
   String? _textVal;
@@ -1003,13 +994,13 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
   ListBuilder<String>? _textArrayVal;
   ListBuilder<String> get textArrayVal =>
-      _$this._textArrayVal ??= new ListBuilder<String>();
+      _$this._textArrayVal ??= ListBuilder<String>();
   set textArrayVal(ListBuilder<String>? textArrayVal) =>
       _$this._textArrayVal = textArrayVal;
 
   ListBuilder<GTimeSeriesEntryIn>? _timeSeriesVal;
   ListBuilder<GTimeSeriesEntryIn> get timeSeriesVal =>
-      _$this._timeSeriesVal ??= new ListBuilder<GTimeSeriesEntryIn>();
+      _$this._timeSeriesVal ??= ListBuilder<GTimeSeriesEntryIn>();
   set timeSeriesVal(ListBuilder<GTimeSeriesEntryIn>? timeSeriesVal) =>
       _$this._timeSeriesVal = timeSeriesVal;
 
@@ -1032,7 +1023,6 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
 
   @override
   void replace(GDevValue other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GDevValue;
   }
 
@@ -1049,7 +1039,7 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
     try {
       _$result =
           _$v ??
-          new _$GDevValue._(
+          _$GDevValue._(
             intVal: intVal,
             scalarVal: scalarVal,
             scalarArrayVal: _scalarArrayVal?.build(),
@@ -1071,7 +1061,7 @@ class GDevValueBuilder implements Builder<GDevValue, GDevValueBuilder> {
         _$failedField = 'timeSeriesVal';
         _timeSeriesVal?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GDevValue',
           _$failedField,
           e.toString(),
@@ -1128,7 +1118,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
 
   factory _$GPlotConfigurationSnapshotIn([
     void Function(GPlotConfigurationSnapshotInBuilder)? updates,
-  ]) => (new GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
+  ]) => (GPlotConfigurationSnapshotInBuilder()..update(updates))._build();
 
   _$GPlotConfigurationSnapshotIn._({
     this.configurationId,
@@ -1151,49 +1141,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     this.tclkEvent,
     this.sampleOnEvent,
     this.chXAxis,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      configurationName,
-      r'GPlotConfigurationSnapshotIn',
-      'configurationName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      channels,
-      r'GPlotConfigurationSnapshotIn',
-      'channels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isScalar,
-      r'GPlotConfigurationSnapshotIn',
-      'isScalar',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isOneShot,
-      r'GPlotConfigurationSnapshotIn',
-      'isOneShot',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isShowLabels,
-      r'GPlotConfigurationSnapshotIn',
-      'isShowLabels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isPersistent,
-      r'GPlotConfigurationSnapshotIn',
-      'isPersistent',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isBlink,
-      r'GPlotConfigurationSnapshotIn',
-      'isBlink',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      dataLimit,
-      r'GPlotConfigurationSnapshotIn',
-      'dataLimit',
-    );
-  }
-
+  }) : super._();
   @override
   GPlotConfigurationSnapshotIn rebuild(
     void Function(GPlotConfigurationSnapshotInBuilder) updates,
@@ -1201,7 +1149,7 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
 
   @override
   GPlotConfigurationSnapshotInBuilder toBuilder() =>
-      new GPlotConfigurationSnapshotInBuilder()..replace(this);
+      GPlotConfigurationSnapshotInBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1303,7 +1251,7 @@ class GPlotConfigurationSnapshotInBuilder
 
   ListBuilder<GChannelSettingSnapshotIn>? _channels;
   ListBuilder<GChannelSettingSnapshotIn> get channels =>
-      _$this._channels ??= new ListBuilder<GChannelSettingSnapshotIn>();
+      _$this._channels ??= ListBuilder<GChannelSettingSnapshotIn>();
   set channels(ListBuilder<GChannelSettingSnapshotIn>? channels) =>
       _$this._channels = channels;
 
@@ -1410,7 +1358,6 @@ class GPlotConfigurationSnapshotInBuilder
 
   @override
   void replace(GPlotConfigurationSnapshotIn other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GPlotConfigurationSnapshotIn;
   }
 
@@ -1427,7 +1374,7 @@ class GPlotConfigurationSnapshotInBuilder
     try {
       _$result =
           _$v ??
-          new _$GPlotConfigurationSnapshotIn._(
+          _$GPlotConfigurationSnapshotIn._(
             configurationId: configurationId,
             configurationName: BuiltValueNullFieldError.checkNotNull(
               configurationName,
@@ -1483,7 +1430,7 @@ class GPlotConfigurationSnapshotInBuilder
         _$failedField = 'channels';
         channels.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GPlotConfigurationSnapshotIn',
           _$failedField,
           e.toString(),
@@ -1504,22 +1451,10 @@ class _$GTimeSeriesEntryIn extends GTimeSeriesEntryIn {
 
   factory _$GTimeSeriesEntryIn([
     void Function(GTimeSeriesEntryInBuilder)? updates,
-  ]) => (new GTimeSeriesEntryInBuilder()..update(updates))._build();
+  ]) => (GTimeSeriesEntryInBuilder()..update(updates))._build();
 
   _$GTimeSeriesEntryIn._({required this.stamp, required this.value})
-    : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      stamp,
-      r'GTimeSeriesEntryIn',
-      'stamp',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      value,
-      r'GTimeSeriesEntryIn',
-      'value',
-    );
-  }
-
+    : super._();
   @override
   GTimeSeriesEntryIn rebuild(
     void Function(GTimeSeriesEntryInBuilder) updates,
@@ -1527,7 +1462,7 @@ class _$GTimeSeriesEntryIn extends GTimeSeriesEntryIn {
 
   @override
   GTimeSeriesEntryInBuilder toBuilder() =>
-      new GTimeSeriesEntryInBuilder()..replace(this);
+      GTimeSeriesEntryInBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -1581,7 +1516,6 @@ class GTimeSeriesEntryInBuilder
 
   @override
   void replace(GTimeSeriesEntryIn other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GTimeSeriesEntryIn;
   }
 
@@ -1596,7 +1530,7 @@ class GTimeSeriesEntryInBuilder
   _$GTimeSeriesEntryIn _build() {
     final _$result =
         _$v ??
-        new _$GTimeSeriesEntryIn._(
+        _$GTimeSeriesEntryIn._(
           stamp: BuiltValueNullFieldError.checkNotNull(
             stamp,
             r'GTimeSeriesEntryIn',

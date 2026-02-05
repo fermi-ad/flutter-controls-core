@@ -7,13 +7,13 @@ part of 'users_last_config.data.gql.dart';
 // **************************************************************************
 
 Serializer<GUsersLastConfigData> _$gUsersLastConfigDataSerializer =
-    new _$GUsersLastConfigDataSerializer();
+    _$GUsersLastConfigDataSerializer();
 Serializer<GUsersLastConfigData_usersLastConfiguration>
 _$gUsersLastConfigDataUsersLastConfigurationSerializer =
-    new _$GUsersLastConfigData_usersLastConfigurationSerializer();
+    _$GUsersLastConfigData_usersLastConfigurationSerializer();
 Serializer<GUsersLastConfigData_usersLastConfiguration_channels>
 _$gUsersLastConfigDataUsersLastConfigurationChannelsSerializer =
-    new _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer();
+    _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer();
 
 class _$GUsersLastConfigDataSerializer
     implements StructuredSerializer<GUsersLastConfigData> {
@@ -61,7 +61,7 @@ class _$GUsersLastConfigDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GUsersLastConfigDataBuilder();
+    final result = GUsersLastConfigDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -260,7 +260,7 @@ class _$GUsersLastConfigData_usersLastConfigurationSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GUsersLastConfigData_usersLastConfigurationBuilder();
+    final result = GUsersLastConfigData_usersLastConfigurationBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -504,7 +504,7 @@ class _$GUsersLastConfigData_usersLastConfiguration_channelsSerializer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result =
-        new GUsersLastConfigData_usersLastConfiguration_channelsBuilder();
+        GUsersLastConfigData_usersLastConfiguration_channelsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -569,19 +569,12 @@ class _$GUsersLastConfigData extends GUsersLastConfigData {
 
   factory _$GUsersLastConfigData([
     void Function(GUsersLastConfigDataBuilder)? updates,
-  ]) => (new GUsersLastConfigDataBuilder()..update(updates))._build();
+  ]) => (GUsersLastConfigDataBuilder()..update(updates))._build();
 
   _$GUsersLastConfigData._({
     required this.G__typename,
     this.usersLastConfiguration,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GUsersLastConfigData',
-      'G__typename',
-    );
-  }
-
+  }) : super._();
   @override
   GUsersLastConfigData rebuild(
     void Function(GUsersLastConfigDataBuilder) updates,
@@ -589,7 +582,7 @@ class _$GUsersLastConfigData extends GUsersLastConfigData {
 
   @override
   GUsersLastConfigDataBuilder toBuilder() =>
-      new GUsersLastConfigDataBuilder()..replace(this);
+      GUsersLastConfigDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -629,7 +622,7 @@ class GUsersLastConfigDataBuilder
   GUsersLastConfigData_usersLastConfigurationBuilder
   get usersLastConfiguration =>
       _$this._usersLastConfiguration ??=
-          new GUsersLastConfigData_usersLastConfigurationBuilder();
+          GUsersLastConfigData_usersLastConfigurationBuilder();
   set usersLastConfiguration(
     GUsersLastConfigData_usersLastConfigurationBuilder? usersLastConfiguration,
   ) => _$this._usersLastConfiguration = usersLastConfiguration;
@@ -650,7 +643,6 @@ class GUsersLastConfigDataBuilder
 
   @override
   void replace(GUsersLastConfigData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUsersLastConfigData;
   }
 
@@ -667,7 +659,7 @@ class GUsersLastConfigDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GUsersLastConfigData._(
+          _$GUsersLastConfigData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GUsersLastConfigData',
@@ -681,7 +673,7 @@ class GUsersLastConfigDataBuilder
         _$failedField = 'usersLastConfiguration';
         _usersLastConfiguration?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GUsersLastConfigData',
           _$failedField,
           e.toString(),
@@ -743,8 +735,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
   factory _$GUsersLastConfigData_usersLastConfiguration([
     void Function(GUsersLastConfigData_usersLastConfigurationBuilder)? updates,
   ]) =>
-      (new GUsersLastConfigData_usersLastConfigurationBuilder()
-            ..update(updates))
+      (GUsersLastConfigData_usersLastConfigurationBuilder()..update(updates))
           ._build();
 
   _$GUsersLastConfigData_usersLastConfiguration._({
@@ -769,54 +760,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
     required this.dataLimit,
     this.sampleOnEvent,
     this.chXAxis,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      configurationName,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'configurationName',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      channels,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'channels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isScalar,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isScalar',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isOneShot,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isOneShot',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isShowLabels,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isShowLabels',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isPersistent,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isPersistent',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      isBlink,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'isBlink',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      dataLimit,
-      r'GUsersLastConfigData_usersLastConfiguration',
-      'dataLimit',
-    );
-  }
-
+  }) : super._();
   @override
   GUsersLastConfigData_usersLastConfiguration rebuild(
     void Function(GUsersLastConfigData_usersLastConfigurationBuilder) updates,
@@ -824,7 +768,7 @@ class _$GUsersLastConfigData_usersLastConfiguration
 
   @override
   GUsersLastConfigData_usersLastConfigurationBuilder toBuilder() =>
-      new GUsersLastConfigData_usersLastConfigurationBuilder()..replace(this);
+      GUsersLastConfigData_usersLastConfigurationBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -937,9 +881,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
   ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>
   get channels =>
       _$this._channels ??=
-          new ListBuilder<
-            GUsersLastConfigData_usersLastConfiguration_channels
-          >();
+          ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>();
   set channels(
     ListBuilder<GUsersLastConfigData_usersLastConfiguration_channels>? channels,
   ) => _$this._channels = channels;
@@ -1050,7 +992,6 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
 
   @override
   void replace(GUsersLastConfigData_usersLastConfiguration other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUsersLastConfigData_usersLastConfiguration;
   }
 
@@ -1069,7 +1010,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
     try {
       _$result =
           _$v ??
-          new _$GUsersLastConfigData_usersLastConfiguration._(
+          _$GUsersLastConfigData_usersLastConfiguration._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GUsersLastConfigData_usersLastConfiguration',
@@ -1130,7 +1071,7 @@ class GUsersLastConfigData_usersLastConfigurationBuilder
         _$failedField = 'channels';
         channels.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GUsersLastConfigData_usersLastConfiguration',
           _$failedField,
           e.toString(),
@@ -1162,7 +1103,7 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
     void Function(GUsersLastConfigData_usersLastConfiguration_channelsBuilder)?
     updates,
   ]) =>
-      (new GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
+      (GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
             ..update(updates))
           ._build();
 
@@ -1173,19 +1114,7 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
     this.yMax,
     this.lineColor,
     this.markerIndex,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GUsersLastConfigData_usersLastConfiguration_channels',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      device,
-      r'GUsersLastConfigData_usersLastConfiguration_channels',
-      'device',
-    );
-  }
-
+  }) : super._();
   @override
   GUsersLastConfigData_usersLastConfiguration_channels rebuild(
     void Function(GUsersLastConfigData_usersLastConfiguration_channelsBuilder)
@@ -1194,7 +1123,7 @@ class _$GUsersLastConfigData_usersLastConfiguration_channels
 
   @override
   GUsersLastConfigData_usersLastConfiguration_channelsBuilder toBuilder() =>
-      new GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
+      GUsersLastConfigData_usersLastConfiguration_channelsBuilder()
         ..replace(this);
 
   @override
@@ -1291,7 +1220,6 @@ class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
 
   @override
   void replace(GUsersLastConfigData_usersLastConfiguration_channels other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GUsersLastConfigData_usersLastConfiguration_channels;
   }
 
@@ -1309,7 +1237,7 @@ class GUsersLastConfigData_usersLastConfiguration_channelsBuilder
   _$GUsersLastConfigData_usersLastConfiguration_channels _build() {
     final _$result =
         _$v ??
-        new _$GUsersLastConfigData_usersLastConfiguration_channels._(
+        _$GUsersLastConfigData_usersLastConfiguration_channels._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GUsersLastConfigData_usersLastConfiguration_channels',

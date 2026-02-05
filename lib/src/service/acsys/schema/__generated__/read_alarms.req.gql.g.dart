@@ -7,7 +7,7 @@ part of 'read_alarms.req.gql.dart';
 // **************************************************************************
 
 Serializer<GAlarmsSnapshotReq> _$gAlarmsSnapshotReqSerializer =
-    new _$GAlarmsSnapshotReqSerializer();
+    _$GAlarmsSnapshotReqSerializer();
 
 class _$GAlarmsSnapshotReqSerializer
     implements StructuredSerializer<GAlarmsSnapshotReq> {
@@ -101,7 +101,7 @@ class _$GAlarmsSnapshotReqSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GAlarmsSnapshotReqBuilder();
+    final result = GAlarmsSnapshotReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -213,7 +213,7 @@ class _$GAlarmsSnapshotReq extends GAlarmsSnapshotReq {
 
   factory _$GAlarmsSnapshotReq([
     void Function(GAlarmsSnapshotReqBuilder)? updates,
-  ]) => (new GAlarmsSnapshotReqBuilder()..update(updates))._build();
+  ]) => (GAlarmsSnapshotReqBuilder()..update(updates))._build();
 
   _$GAlarmsSnapshotReq._({
     required this.vars,
@@ -226,20 +226,7 @@ class _$GAlarmsSnapshotReq extends GAlarmsSnapshotReq {
     this.fetchPolicy,
     required this.executeOnListen,
     this.context,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GAlarmsSnapshotReq', 'vars');
-    BuiltValueNullFieldError.checkNotNull(
-      operation,
-      r'GAlarmsSnapshotReq',
-      'operation',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      executeOnListen,
-      r'GAlarmsSnapshotReq',
-      'executeOnListen',
-    );
-  }
-
+  }) : super._();
   @override
   GAlarmsSnapshotReq rebuild(
     void Function(GAlarmsSnapshotReqBuilder) updates,
@@ -247,7 +234,7 @@ class _$GAlarmsSnapshotReq extends GAlarmsSnapshotReq {
 
   @override
   GAlarmsSnapshotReqBuilder toBuilder() =>
-      new GAlarmsSnapshotReqBuilder()..replace(this);
+      GAlarmsSnapshotReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -306,7 +293,7 @@ class GAlarmsSnapshotReqBuilder
 
   _i3.GAlarmsSnapshotVarsBuilder? _vars;
   _i3.GAlarmsSnapshotVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GAlarmsSnapshotVarsBuilder();
+      _$this._vars ??= _i3.GAlarmsSnapshotVarsBuilder();
   set vars(_i3.GAlarmsSnapshotVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
@@ -337,7 +324,7 @@ class GAlarmsSnapshotReqBuilder
 
   _i2.GAlarmsSnapshotDataBuilder? _optimisticResponse;
   _i2.GAlarmsSnapshotDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GAlarmsSnapshotDataBuilder();
+      _$this._optimisticResponse ??= _i2.GAlarmsSnapshotDataBuilder();
   set optimisticResponse(_i2.GAlarmsSnapshotDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
@@ -391,7 +378,6 @@ class GAlarmsSnapshotReqBuilder
 
   @override
   void replace(GAlarmsSnapshotReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GAlarmsSnapshotReq;
   }
 
@@ -408,7 +394,7 @@ class GAlarmsSnapshotReqBuilder
     try {
       _$result =
           _$v ??
-          new _$GAlarmsSnapshotReq._(
+          _$GAlarmsSnapshotReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
               operation,
@@ -437,7 +423,7 @@ class GAlarmsSnapshotReqBuilder
         _$failedField = 'optimisticResponse';
         _optimisticResponse?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GAlarmsSnapshotReq',
           _$failedField,
           e.toString(),

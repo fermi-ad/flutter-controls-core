@@ -7,10 +7,10 @@ part of 'read_alarms.data.gql.dart';
 // **************************************************************************
 
 Serializer<GAlarmsSnapshotData> _$gAlarmsSnapshotDataSerializer =
-    new _$GAlarmsSnapshotDataSerializer();
+    _$GAlarmsSnapshotDataSerializer();
 Serializer<GAlarmsSnapshotData_alarmsSnapshot>
 _$gAlarmsSnapshotDataAlarmsSnapshotSerializer =
-    new _$GAlarmsSnapshotData_alarmsSnapshotSerializer();
+    _$GAlarmsSnapshotData_alarmsSnapshotSerializer();
 
 class _$GAlarmsSnapshotDataSerializer
     implements StructuredSerializer<GAlarmsSnapshotData> {
@@ -52,7 +52,7 @@ class _$GAlarmsSnapshotDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GAlarmsSnapshotDataBuilder();
+    final result = GAlarmsSnapshotDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -132,7 +132,7 @@ class _$GAlarmsSnapshotData_alarmsSnapshotSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GAlarmsSnapshotData_alarmsSnapshotBuilder();
+    final result = GAlarmsSnapshotData_alarmsSnapshotBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -179,24 +179,12 @@ class _$GAlarmsSnapshotData extends GAlarmsSnapshotData {
 
   factory _$GAlarmsSnapshotData([
     void Function(GAlarmsSnapshotDataBuilder)? updates,
-  ]) => (new GAlarmsSnapshotDataBuilder()..update(updates))._build();
+  ]) => (GAlarmsSnapshotDataBuilder()..update(updates))._build();
 
   _$GAlarmsSnapshotData._({
     required this.G__typename,
     required this.alarmsSnapshot,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GAlarmsSnapshotData',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      alarmsSnapshot,
-      r'GAlarmsSnapshotData',
-      'alarmsSnapshot',
-    );
-  }
-
+  }) : super._();
   @override
   GAlarmsSnapshotData rebuild(
     void Function(GAlarmsSnapshotDataBuilder) updates,
@@ -204,7 +192,7 @@ class _$GAlarmsSnapshotData extends GAlarmsSnapshotData {
 
   @override
   GAlarmsSnapshotDataBuilder toBuilder() =>
-      new GAlarmsSnapshotDataBuilder()..replace(this);
+      GAlarmsSnapshotDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -243,7 +231,7 @@ class GAlarmsSnapshotDataBuilder
   ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>? _alarmsSnapshot;
   ListBuilder<GAlarmsSnapshotData_alarmsSnapshot> get alarmsSnapshot =>
       _$this._alarmsSnapshot ??=
-          new ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>();
+          ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>();
   set alarmsSnapshot(
     ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>? alarmsSnapshot,
   ) => _$this._alarmsSnapshot = alarmsSnapshot;
@@ -264,7 +252,6 @@ class GAlarmsSnapshotDataBuilder
 
   @override
   void replace(GAlarmsSnapshotData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GAlarmsSnapshotData;
   }
 
@@ -281,7 +268,7 @@ class GAlarmsSnapshotDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GAlarmsSnapshotData._(
+          _$GAlarmsSnapshotData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GAlarmsSnapshotData',
@@ -295,7 +282,7 @@ class GAlarmsSnapshotDataBuilder
         _$failedField = 'alarmsSnapshot';
         alarmsSnapshot.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GAlarmsSnapshotData',
           _$failedField,
           e.toString(),
@@ -319,27 +306,13 @@ class _$GAlarmsSnapshotData_alarmsSnapshot
 
   factory _$GAlarmsSnapshotData_alarmsSnapshot([
     void Function(GAlarmsSnapshotData_alarmsSnapshotBuilder)? updates,
-  ]) =>
-      (new GAlarmsSnapshotData_alarmsSnapshotBuilder()..update(updates))
-          ._build();
+  ]) => (GAlarmsSnapshotData_alarmsSnapshotBuilder()..update(updates))._build();
 
   _$GAlarmsSnapshotData_alarmsSnapshot._({
     required this.G__typename,
     this.key,
     required this.value,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GAlarmsSnapshotData_alarmsSnapshot',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      value,
-      r'GAlarmsSnapshotData_alarmsSnapshot',
-      'value',
-    );
-  }
-
+  }) : super._();
   @override
   GAlarmsSnapshotData_alarmsSnapshot rebuild(
     void Function(GAlarmsSnapshotData_alarmsSnapshotBuilder) updates,
@@ -347,7 +320,7 @@ class _$GAlarmsSnapshotData_alarmsSnapshot
 
   @override
   GAlarmsSnapshotData_alarmsSnapshotBuilder toBuilder() =>
-      new GAlarmsSnapshotData_alarmsSnapshotBuilder()..replace(this);
+      GAlarmsSnapshotData_alarmsSnapshotBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -415,7 +388,6 @@ class GAlarmsSnapshotData_alarmsSnapshotBuilder
 
   @override
   void replace(GAlarmsSnapshotData_alarmsSnapshot other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GAlarmsSnapshotData_alarmsSnapshot;
   }
 
@@ -432,7 +404,7 @@ class GAlarmsSnapshotData_alarmsSnapshotBuilder
   _$GAlarmsSnapshotData_alarmsSnapshot _build() {
     final _$result =
         _$v ??
-        new _$GAlarmsSnapshotData_alarmsSnapshot._(
+        _$GAlarmsSnapshotData_alarmsSnapshot._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GAlarmsSnapshotData_alarmsSnapshot',

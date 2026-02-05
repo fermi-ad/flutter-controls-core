@@ -7,9 +7,9 @@ part of 'stream_alarms.data.gql.dart';
 // **************************************************************************
 
 Serializer<GStreamAlarmsData> _$gStreamAlarmsDataSerializer =
-    new _$GStreamAlarmsDataSerializer();
+    _$GStreamAlarmsDataSerializer();
 Serializer<GStreamAlarmsData_alarms> _$gStreamAlarmsDataAlarmsSerializer =
-    new _$GStreamAlarmsData_alarmsSerializer();
+    _$GStreamAlarmsData_alarmsSerializer();
 
 class _$GStreamAlarmsDataSerializer
     implements StructuredSerializer<GStreamAlarmsData> {
@@ -46,7 +46,7 @@ class _$GStreamAlarmsDataSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GStreamAlarmsDataBuilder();
+    final result = GStreamAlarmsDataBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -124,7 +124,7 @@ class _$GStreamAlarmsData_alarmsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GStreamAlarmsData_alarmsBuilder();
+    final result = GStreamAlarmsData_alarmsBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -171,29 +171,17 @@ class _$GStreamAlarmsData extends GStreamAlarmsData {
 
   factory _$GStreamAlarmsData([
     void Function(GStreamAlarmsDataBuilder)? updates,
-  ]) => (new GStreamAlarmsDataBuilder()..update(updates))._build();
+  ]) => (GStreamAlarmsDataBuilder()..update(updates))._build();
 
   _$GStreamAlarmsData._({required this.G__typename, required this.alarms})
-    : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GStreamAlarmsData',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      alarms,
-      r'GStreamAlarmsData',
-      'alarms',
-    );
-  }
-
+    : super._();
   @override
   GStreamAlarmsData rebuild(void Function(GStreamAlarmsDataBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GStreamAlarmsDataBuilder toBuilder() =>
-      new GStreamAlarmsDataBuilder()..replace(this);
+      GStreamAlarmsDataBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -231,7 +219,7 @@ class GStreamAlarmsDataBuilder
 
   GStreamAlarmsData_alarmsBuilder? _alarms;
   GStreamAlarmsData_alarmsBuilder get alarms =>
-      _$this._alarms ??= new GStreamAlarmsData_alarmsBuilder();
+      _$this._alarms ??= GStreamAlarmsData_alarmsBuilder();
   set alarms(GStreamAlarmsData_alarmsBuilder? alarms) =>
       _$this._alarms = alarms;
 
@@ -251,7 +239,6 @@ class GStreamAlarmsDataBuilder
 
   @override
   void replace(GStreamAlarmsData other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GStreamAlarmsData;
   }
 
@@ -268,7 +255,7 @@ class GStreamAlarmsDataBuilder
     try {
       _$result =
           _$v ??
-          new _$GStreamAlarmsData._(
+          _$GStreamAlarmsData._(
             G__typename: BuiltValueNullFieldError.checkNotNull(
               G__typename,
               r'GStreamAlarmsData',
@@ -282,7 +269,7 @@ class GStreamAlarmsDataBuilder
         _$failedField = 'alarms';
         alarms.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GStreamAlarmsData',
           _$failedField,
           e.toString(),
@@ -305,25 +292,13 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
 
   factory _$GStreamAlarmsData_alarms([
     void Function(GStreamAlarmsData_alarmsBuilder)? updates,
-  ]) => (new GStreamAlarmsData_alarmsBuilder()..update(updates))._build();
+  ]) => (GStreamAlarmsData_alarmsBuilder()..update(updates))._build();
 
   _$GStreamAlarmsData_alarms._({
     required this.G__typename,
     this.key,
     required this.value,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(
-      G__typename,
-      r'GStreamAlarmsData_alarms',
-      'G__typename',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      value,
-      r'GStreamAlarmsData_alarms',
-      'value',
-    );
-  }
-
+  }) : super._();
   @override
   GStreamAlarmsData_alarms rebuild(
     void Function(GStreamAlarmsData_alarmsBuilder) updates,
@@ -331,7 +306,7 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
 
   @override
   GStreamAlarmsData_alarmsBuilder toBuilder() =>
-      new GStreamAlarmsData_alarmsBuilder()..replace(this);
+      GStreamAlarmsData_alarmsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -396,7 +371,6 @@ class GStreamAlarmsData_alarmsBuilder
 
   @override
   void replace(GStreamAlarmsData_alarms other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GStreamAlarmsData_alarms;
   }
 
@@ -411,7 +385,7 @@ class GStreamAlarmsData_alarmsBuilder
   _$GStreamAlarmsData_alarms _build() {
     final _$result =
         _$v ??
-        new _$GStreamAlarmsData_alarms._(
+        _$GStreamAlarmsData_alarms._(
           G__typename: BuiltValueNullFieldError.checkNotNull(
             G__typename,
             r'GStreamAlarmsData_alarms',

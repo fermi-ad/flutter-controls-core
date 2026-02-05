@@ -7,7 +7,7 @@ part of 'read_alarms.var.gql.dart';
 // **************************************************************************
 
 Serializer<GAlarmsSnapshotVars> _$gAlarmsSnapshotVarsSerializer =
-    new _$GAlarmsSnapshotVarsSerializer();
+    _$GAlarmsSnapshotVarsSerializer();
 
 class _$GAlarmsSnapshotVarsSerializer
     implements StructuredSerializer<GAlarmsSnapshotVars> {
@@ -34,17 +34,16 @@ class _$GAlarmsSnapshotVarsSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    return new GAlarmsSnapshotVarsBuilder().build();
+    return GAlarmsSnapshotVarsBuilder().build();
   }
 }
 
 class _$GAlarmsSnapshotVars extends GAlarmsSnapshotVars {
   factory _$GAlarmsSnapshotVars([
     void Function(GAlarmsSnapshotVarsBuilder)? updates,
-  ]) => (new GAlarmsSnapshotVarsBuilder()..update(updates))._build();
+  ]) => (GAlarmsSnapshotVarsBuilder()..update(updates))._build();
 
   _$GAlarmsSnapshotVars._() : super._();
-
   @override
   GAlarmsSnapshotVars rebuild(
     void Function(GAlarmsSnapshotVarsBuilder) updates,
@@ -52,7 +51,7 @@ class _$GAlarmsSnapshotVars extends GAlarmsSnapshotVars {
 
   @override
   GAlarmsSnapshotVarsBuilder toBuilder() =>
-      new GAlarmsSnapshotVarsBuilder()..replace(this);
+      GAlarmsSnapshotVarsBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -79,7 +78,6 @@ class GAlarmsSnapshotVarsBuilder
 
   @override
   void replace(GAlarmsSnapshotVars other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GAlarmsSnapshotVars;
   }
 
@@ -92,7 +90,7 @@ class GAlarmsSnapshotVarsBuilder
   GAlarmsSnapshotVars build() => _build();
 
   _$GAlarmsSnapshotVars _build() {
-    final _$result = _$v ?? new _$GAlarmsSnapshotVars._();
+    final _$result = _$v ?? _$GAlarmsSnapshotVars._();
     replace(_$result);
     return _$result;
   }

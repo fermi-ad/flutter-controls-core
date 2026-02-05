@@ -7,7 +7,7 @@ part of 'stream_alarms.req.gql.dart';
 // **************************************************************************
 
 Serializer<GStreamAlarmsReq> _$gStreamAlarmsReqSerializer =
-    new _$GStreamAlarmsReqSerializer();
+    _$GStreamAlarmsReqSerializer();
 
 class _$GStreamAlarmsReqSerializer
     implements StructuredSerializer<GStreamAlarmsReq> {
@@ -101,7 +101,7 @@ class _$GStreamAlarmsReqSerializer
     Iterable<Object?> serialized, {
     FullType specifiedType = FullType.unspecified,
   }) {
-    final result = new GStreamAlarmsReqBuilder();
+    final result = GStreamAlarmsReqBuilder();
 
     final iterator = serialized.iterator;
     while (iterator.moveNext()) {
@@ -213,7 +213,7 @@ class _$GStreamAlarmsReq extends GStreamAlarmsReq {
 
   factory _$GStreamAlarmsReq([
     void Function(GStreamAlarmsReqBuilder)? updates,
-  ]) => (new GStreamAlarmsReqBuilder()..update(updates))._build();
+  ]) => (GStreamAlarmsReqBuilder()..update(updates))._build();
 
   _$GStreamAlarmsReq._({
     required this.vars,
@@ -226,27 +226,14 @@ class _$GStreamAlarmsReq extends GStreamAlarmsReq {
     this.fetchPolicy,
     required this.executeOnListen,
     this.context,
-  }) : super._() {
-    BuiltValueNullFieldError.checkNotNull(vars, r'GStreamAlarmsReq', 'vars');
-    BuiltValueNullFieldError.checkNotNull(
-      operation,
-      r'GStreamAlarmsReq',
-      'operation',
-    );
-    BuiltValueNullFieldError.checkNotNull(
-      executeOnListen,
-      r'GStreamAlarmsReq',
-      'executeOnListen',
-    );
-  }
-
+  }) : super._();
   @override
   GStreamAlarmsReq rebuild(void Function(GStreamAlarmsReqBuilder) updates) =>
       (toBuilder()..update(updates)).build();
 
   @override
   GStreamAlarmsReqBuilder toBuilder() =>
-      new GStreamAlarmsReqBuilder()..replace(this);
+      GStreamAlarmsReqBuilder()..replace(this);
 
   @override
   bool operator ==(Object other) {
@@ -305,7 +292,7 @@ class GStreamAlarmsReqBuilder
 
   _i3.GStreamAlarmsVarsBuilder? _vars;
   _i3.GStreamAlarmsVarsBuilder get vars =>
-      _$this._vars ??= new _i3.GStreamAlarmsVarsBuilder();
+      _$this._vars ??= _i3.GStreamAlarmsVarsBuilder();
   set vars(_i3.GStreamAlarmsVarsBuilder? vars) => _$this._vars = vars;
 
   _i4.Operation? _operation;
@@ -336,7 +323,7 @@ class GStreamAlarmsReqBuilder
 
   _i2.GStreamAlarmsDataBuilder? _optimisticResponse;
   _i2.GStreamAlarmsDataBuilder get optimisticResponse =>
-      _$this._optimisticResponse ??= new _i2.GStreamAlarmsDataBuilder();
+      _$this._optimisticResponse ??= _i2.GStreamAlarmsDataBuilder();
   set optimisticResponse(_i2.GStreamAlarmsDataBuilder? optimisticResponse) =>
       _$this._optimisticResponse = optimisticResponse;
 
@@ -390,7 +377,6 @@ class GStreamAlarmsReqBuilder
 
   @override
   void replace(GStreamAlarmsReq other) {
-    ArgumentError.checkNotNull(other, 'other');
     _$v = other as _$GStreamAlarmsReq;
   }
 
@@ -407,7 +393,7 @@ class GStreamAlarmsReqBuilder
     try {
       _$result =
           _$v ??
-          new _$GStreamAlarmsReq._(
+          _$GStreamAlarmsReq._(
             vars: vars.build(),
             operation: BuiltValueNullFieldError.checkNotNull(
               operation,
@@ -436,7 +422,7 @@ class GStreamAlarmsReqBuilder
         _$failedField = 'optimisticResponse';
         _optimisticResponse?.build();
       } catch (e) {
-        throw new BuiltValueNestedFieldError(
+        throw BuiltValueNestedFieldError(
           r'GStreamAlarmsReq',
           _$failedField,
           e.toString(),
