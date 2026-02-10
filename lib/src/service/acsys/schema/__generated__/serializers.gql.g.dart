@@ -9,23 +9,18 @@ part of 'serializers.gql.dart';
 Serializers _$serializers =
     (Serializers().toBuilder()
           ..add(FetchPolicy.serializer)
-          ..add(GAcquisitionMode.serializer)
           ..add(GAlarmsSnapshotData.serializer)
           ..add(GAlarmsSnapshotData_alarmsSnapshot.serializer)
           ..add(GAlarmsSnapshotReq.serializer)
           ..add(GAlarmsSnapshotVars.serializer)
-          ..add(GChannelSettingSnapshotIn.serializer)
           ..add(GDeletePlotConfigData.serializer)
           ..add(GDeletePlotConfigData_deletePlotConfiguration.serializer)
           ..add(GDeletePlotConfigReq.serializer)
           ..add(GDeletePlotConfigVars.serializer)
           ..add(GDevValue.serializer)
           ..add(GPlotConfigsData.serializer)
-          ..add(GPlotConfigsData_plotConfiguration.serializer)
-          ..add(GPlotConfigsData_plotConfiguration_channels.serializer)
           ..add(GPlotConfigsReq.serializer)
           ..add(GPlotConfigsVars.serializer)
-          ..add(GPlotConfigurationSnapshotIn.serializer)
           ..add(GReadDevicesData.serializer)
           ..add(GReadDevicesData_acceleratorData.serializer)
           ..add(GReadDevicesData_acceleratorData_data.serializer)
@@ -103,8 +98,6 @@ Serializers _$serializers =
           ..add(GUpdatePlotConfigReq.serializer)
           ..add(GUpdatePlotConfigVars.serializer)
           ..add(GUsersLastConfigData.serializer)
-          ..add(GUsersLastConfigData_usersLastConfiguration.serializer)
-          ..add(GUsersLastConfigData_usersLastConfiguration_channels.serializer)
           ..add(GUsersLastConfigReq.serializer)
           ..add(GUsersLastConfigVars.serializer)
           ..addBuilderFactory(
@@ -112,24 +105,6 @@ Serializers _$serializers =
               const FullType(GAlarmsSnapshotData_alarmsSnapshot),
             ]),
             () => ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, const [
-              const FullType(GChannelSettingSnapshotIn),
-            ]),
-            () => ListBuilder<GChannelSettingSnapshotIn>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, const [
-              const FullType(GPlotConfigsData_plotConfiguration),
-            ]),
-            () => ListBuilder<GPlotConfigsData_plotConfiguration>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, const [
-              const FullType(GPlotConfigsData_plotConfiguration_channels),
-            ]),
-            () => ListBuilder<GPlotConfigsData_plotConfiguration_channels>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
@@ -162,15 +137,8 @@ Serializers _$serializers =
             () => ListBuilder<GStreamDataData_acceleratorData_data>(),
           )
           ..addBuilderFactory(
-            const FullType(BuiltList, const [
-              const FullType(
-                GUsersLastConfigData_usersLastConfiguration_channels,
-              ),
-            ]),
-            () =>
-                ListBuilder<
-                  GUsersLastConfigData_usersLastConfiguration_channels
-                >(),
+            const FullType(BuiltList, const [const FullType(String)]),
+            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),

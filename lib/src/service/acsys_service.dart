@@ -1,6 +1,8 @@
 /// {@category Data Acquisition}
 library;
 
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart';
 
@@ -71,30 +73,6 @@ class ACSysLinkException extends ACSysException {
 class ACSysGraphQLException extends ACSysException {
   const ACSysGraphQLException(String message) : super("GraphQL: $message");
 }
-
-extension on GAcquisitionMode {
-  AcquisitionMode toDart() => switch (this) {
-    GAcquisitionMode.ONE_SHOT => AcquisitionMode.oneShot,
-    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT =>
-      AcquisitionMode.oneShotTriggeredOnEvent,
-    GAcquisitionMode.REPETITIVE_PERIODIC => AcquisitionMode.repetitivePeriodic,
-    GAcquisitionMode.REPETITIVE_TRIGGERED_ON_EVENT =>
-      AcquisitionMode.repetitiveTriggeredOnEvent,
-    GAcquisitionMode.SAMPLE_ON_EVENT => AcquisitionMode.sampleOnEvent,
-    GAcquisitionMode() => throw UnimplementedError(),
-  };
-}
-
-GAcquisitionMode? fromDart(AcquisitionMode? mode) => switch (mode) {
-  AcquisitionMode.oneShot => GAcquisitionMode.ONE_SHOT,
-  AcquisitionMode.oneShotTriggeredOnEvent =>
-    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
-  AcquisitionMode.repetitivePeriodic => GAcquisitionMode.REPETITIVE_PERIODIC,
-  AcquisitionMode.repetitiveTriggeredOnEvent =>
-    GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
-  AcquisitionMode.sampleOnEvent => GAcquisitionMode.SAMPLE_ON_EVENT,
-  null => null,
-};
 
 // The classes in this section are used to return results from the queries /
 // subscriptions. The generated classes have unusual names and have nested
@@ -397,6 +375,24 @@ enum AcquisitionMode {
   sampleOnEvent,
 }
 
+extension on AcquisitionMode {
+  String stringize() => switch (this) {
+    AcquisitionMode.oneShot => "os",
+    AcquisitionMode.oneShotTriggeredOnEvent => "os_on_event",
+    AcquisitionMode.repetitivePeriodic => "rep_periodic",
+    AcquisitionMode.repetitiveTriggeredOnEvent => "rep_on_event",
+    AcquisitionMode.sampleOnEvent => "smp_on_event",
+  };
+}
+
+AcquisitionMode _amFromString(String? val) => switch (val) {
+  "os_on_event" => AcquisitionMode.oneShotTriggeredOnEvent,
+  "rep_periodic" => AcquisitionMode.repetitivePeriodic,
+  "rep_on_event" => AcquisitionMode.repetitiveTriggeredOnEvent,
+  "smp_on_event" => AcquisitionMode.sampleOnEvent,
+  _ => AcquisitionMode.oneShot,
+};
+
 final class PlotReply {
   final String plotId;
   final double requestTime;
@@ -454,6 +450,31 @@ final class ChannelSettingSnapshot {
     this.yMin,
     this.yMax,
   });
+
+  factory ChannelSettingSnapshot.fromJson(Map<String, dynamic> json) {
+    if (json case {
+      "lineColor": int? lineColor,
+      "markerIndex": int? markerIndex,
+      "yMin": double? yMin,
+      "yMax": double? yMax,
+    }) {
+      return ChannelSettingSnapshot(
+        lineColor: lineColor != null ? Color(lineColor) : null,
+        markerIndex: markerIndex,
+        yMin: yMin,
+        yMax: yMax,
+      );
+    } else {
+      throw ACSysConfigurationException("channel setting had incorrect format");
+    }
+  }
+
+  Map<String, dynamic> toJson() => {
+    "lineColor": lineColor?.toARGB32(),
+    "markerIndex": markerIndex,
+    "yMin": yMin,
+    "yMax": yMax,
+  };
 }
 
 // Only used by the plot ID class to generate IDs for testing.
@@ -479,6 +500,17 @@ class PlotConfigurationListing {
     this.configurationId,
     required this.configurationName,
   });
+
+  factory PlotConfigurationListing.fromJson(Map<String, dynamic> json) {
+    if (json case {"id": int id, "name": String name}) {
+      return PlotConfigurationListing(
+        configurationId: PlotConfigId._fromInt(id),
+        configurationName: name,
+      );
+    } else {
+      throw ACSysConfigurationException("plot listing had incorrect format");
+    }
+  }
 }
 
 final class PlotConfigurationSnapshot extends PlotConfigurationListing {
@@ -523,6 +555,81 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.xAxis,
     required this.dataLimit,
   });
+
+  factory PlotConfigurationSnapshot.fromJson(Map<String, dynamic> json) {
+    if (json case {
+      "channels": Map<String, Map<String, dynamic>> channels,
+      "id": int id,
+      "name": String name,
+      "xMin": double? xMin,
+      "xMax": double? xMax,
+      "timeDelta": double? timeDelta,
+      "startTime": double? startTime,
+      "endTime": double? endTime,
+      "isShowLabels": bool isShowLabels,
+      "isScalar": bool isScalar,
+      "isOneShot": bool isOneShot,
+      "isPersistent": bool isPersistent,
+      "isBlink": bool isBlink,
+      "updateDelay": int? updateDelay,
+      "nAcquisitions": int? nAcquisitions,
+      "tclkEvent": int? tclkEvent,
+      "sampleOnEvent": int? sampleOnEvent,
+      "xAxis": String? xAxis,
+      "dataLimit": int dataLimit,
+      "acquisitionMode": String? acquisitionMode,
+    }) {
+      return PlotConfigurationSnapshot(
+        configurationId: PlotConfigId._fromInt(id),
+        configurationName: name,
+        xMin: xMin,
+        xMax: xMax,
+        timeDelta: timeDelta,
+        startTime: startTime,
+        endTime: endTime,
+        isShowLabels: isShowLabels,
+        isScalar: isScalar,
+        isOneShot: isOneShot,
+        isPersistent: isPersistent,
+        isBlink: isBlink,
+        updateDelay: updateDelay,
+        nAcquisitions: nAcquisitions,
+        tclkEvent: tclkEvent,
+        sampleOnEvent: sampleOnEvent,
+        xAxis: xAxis,
+        dataLimit: dataLimit,
+        acquisitionMode: _amFromString(acquisitionMode),
+        channels: channels.map(
+          (key, value) => MapEntry(key, ChannelSettingSnapshot.fromJson(value)),
+        ),
+      );
+    } else {
+      throw ACSysConfigurationException("plot listing had incorrect format");
+    }
+  }
+
+  Map<String, dynamic> toJson() => {
+    "channels": channels.map((key, value) => MapEntry(key, value.toJson())),
+    "id": configurationId,
+    "name": configurationName,
+    "xMin": xMin,
+    "xMax": xMax,
+    "timeDelta": timeDelta,
+    "startTime": startTime,
+    "endTime": endTime,
+    "isShowLabels": isShowLabels,
+    "isScalar": isScalar,
+    "isOneShot": isOneShot,
+    "isPersistent": isPersistent,
+    "isBlink": isBlink,
+    "updateDelay": updateDelay,
+    "nAcquisitions": nAcquisitions,
+    "tclkEvent": tclkEvent,
+    "sampleOnEvent": sampleOnEvent,
+    "xAxis": xAxis,
+    "dataLimit": dataLimit,
+    "acquisitionMode": acquisitionMode?.stringize(),
+  };
 }
 
 /// Defines the ACSys API.
@@ -1269,15 +1376,7 @@ final class ACSysService implements ACSysServiceAPI {
       xlat:
           (GPlotConfigsData data) =>
               data.plotConfiguration
-                  .map(
-                    (e) => PlotConfigurationListing(
-                      configurationId:
-                          e.configurationId != null
-                              ? PlotConfigId._fromInt(e.configurationId!)
-                              : null,
-                      configurationName: e.configurationName,
-                    ),
-                  )
+                  .map((e) => PlotConfigurationListing.fromJson(jsonDecode(e)))
                   .toList(),
     );
   }
@@ -1304,44 +1403,7 @@ final class ACSysService implements ACSysServiceAPI {
 
         return e == null
             ? null
-            : PlotConfigurationSnapshot(
-              configurationId:
-                  e.configurationId != null
-                      ? PlotConfigId._fromInt(e.configurationId!)
-                      : null,
-              configurationName: e.configurationName,
-              channels: Map.fromEntries(
-                e.channels.map(
-                  (e) => MapEntry(
-                    e.device,
-                    ChannelSettingSnapshot(
-                      lineColor:
-                          e.lineColor != null ? Color(e.lineColor!) : null,
-                      markerIndex: e.markerIndex,
-                      yMin: e.yMin,
-                      yMax: e.yMax,
-                    ),
-                  ),
-                ),
-              ),
-              xMin: e.xMin,
-              xMax: e.xMax,
-              startTime: e.startTime,
-              endTime: e.endTime,
-              timeDelta: e.timeDelta,
-              isOneShot: e.isOneShot,
-              isScalar: e.isScalar,
-              isShowLabels: e.isShowLabels,
-              updateDelay: e.updateDelay,
-              nAcquisitions: e.nAcquisitions,
-              tclkEvent: e.tclkEvent,
-              dataLimit: e.dataLimit,
-              isPersistent: e.isPersistent,
-              sampleOnEvent: e.sampleOnEvent,
-              xAxis: e.chXAxis,
-              isBlink: e.isBlink,
-              acquisitionMode: e.acquisitionMode?.toDart(),
-            );
+            : PlotConfigurationSnapshot.fromJson(jsonDecode(e));
       },
     );
   }
@@ -1351,7 +1413,7 @@ final class ACSysService implements ACSysServiceAPI {
     required PlotConfigurationSnapshot snapshot,
   }) {
     final req = GSetUsersConfigReq(
-      (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
+      (b) => b..vars.cfg = jsonEncode(snapshot.toJson()),
     );
 
     return _queryAcsys(req, xlat: (GSetUsersConfigData data) => ());
@@ -1366,51 +1428,9 @@ final class ACSysService implements ACSysServiceAPI {
     return _queryAcsys(
       req,
       xlat:
-          (GPlotConfigsData data) =>
-              data.plotConfiguration
-                  .map(
-                    (e) => PlotConfigurationSnapshot(
-                      configurationId:
-                          e.configurationId != null
-                              ? PlotConfigId._fromInt(e.configurationId!)
-                              : null,
-                      configurationName: e.configurationName,
-                      channels: Map.fromEntries(
-                        e.channels.map(
-                          (e) => MapEntry(
-                            e.device,
-                            ChannelSettingSnapshot(
-                              lineColor:
-                                  e.lineColor != null
-                                      ? Color(e.lineColor!)
-                                      : null,
-                              markerIndex: e.markerIndex,
-                              yMin: e.yMin,
-                              yMax: e.yMax,
-                            ),
-                          ),
-                        ),
-                      ),
-                      xMin: e.xMin,
-                      xMax: e.xMax,
-                      startTime: e.startTime,
-                      endTime: e.endTime,
-                      timeDelta: e.timeDelta,
-                      isOneShot: e.isOneShot,
-                      isScalar: e.isScalar,
-                      isShowLabels: e.isShowLabels,
-                      updateDelay: e.updateDelay,
-                      nAcquisitions: e.nAcquisitions,
-                      tclkEvent: e.tclkEvent,
-                      dataLimit: e.dataLimit,
-                      isPersistent: e.isPersistent,
-                      sampleOnEvent: e.sampleOnEvent,
-                      xAxis: e.chXAxis,
-                      isBlink: e.isBlink,
-                      acquisitionMode: e.acquisitionMode?.toDart(),
-                    ),
-                  )
-                  .toList(),
+          (GPlotConfigsData data) => data.plotConfiguration.map(
+            (e) => PlotConfigurationSnapshot.fromJson(jsonDecode(e)),
+          ),
     ).then((value) {
       switch (value) {
         case []:
@@ -1425,48 +1445,12 @@ final class ACSysService implements ACSysServiceAPI {
     });
   }
 
-  GPlotConfigurationSnapshotInBuilder _plotConfigurationSnapshotIn(
-    PlotConfigurationSnapshot cfg,
-  ) =>
-      GPlotConfigurationSnapshotInBuilder()
-        ..configurationId = cfg.configurationId?._value
-        ..configurationName = cfg.configurationName
-        ..channels = ListBuilder(
-          cfg.channels.entries.map(
-            (e) => GChannelSettingSnapshotIn(
-              (b) =>
-                  b
-                    ..device = e.key
-                    ..lineColor = e.value.lineColor?.toARGB32()
-                    ..markerIndex = e.value.markerIndex
-                    ..yMin = e.value.yMin
-                    ..yMax = e.value.yMax,
-            ),
-          ),
-        )
-        ..xMin = cfg.xMin
-        ..xMax = cfg.xMax
-        ..startTime = cfg.startTime
-        ..endTime = cfg.endTime
-        ..timeDelta = cfg.timeDelta
-        ..isOneShot = cfg.isOneShot
-        ..isScalar = cfg.isScalar
-        ..isShowLabels = cfg.isShowLabels
-        ..isPersistent = cfg.isPersistent
-        ..dataLimit = cfg.dataLimit
-        ..updateDelay = cfg.updateDelay
-        ..nAcquisitions = cfg.nAcquisitions
-        ..tclkEvent = cfg.tclkEvent
-        ..sampleOnEvent = cfg.sampleOnEvent
-        ..chXAxis = cfg.xAxis
-        ..acquisitionMode = fromDart(cfg.acquisitionMode);
-
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({
     required PlotConfigurationSnapshot snapshot,
   }) {
     final req = GUpdatePlotConfigReq(
-      (b) => b..vars.cfg = _plotConfigurationSnapshotIn(snapshot),
+      (b) => b..vars.cfg = jsonEncode(snapshot.toJson()),
     );
 
     return _queryAcsys(
