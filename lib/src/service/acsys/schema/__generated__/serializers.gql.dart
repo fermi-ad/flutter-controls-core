@@ -8,7 +8,7 @@ import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
     show GDevValue, GTimeSeriesEntryIn;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart'
-    show GPlotConfigsData;
+    show GPlotConfigsData, GPlotConfigsData_plotConfiguration;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.req.gql.dart'
     show GPlotConfigsReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.var.gql.dart'
@@ -127,6 +127,7 @@ final SerializersBuilder _serializersBuilder =
   GDeletePlotConfigVars,
   GDevValue,
   GPlotConfigsData,
+  GPlotConfigsData_plotConfiguration,
   GPlotConfigsReq,
   GPlotConfigsVars,
   GReadDevicesData,

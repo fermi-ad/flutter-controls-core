@@ -251,7 +251,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
           directives: [],
           type: _i1.NamedTypeNode(
             name: _i1.NameNode(value: 'Int'),
-            isNonNull: true,
+            isNonNull: false,
           ),
           defaultValue: null,
         ),
@@ -303,6 +303,24 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       directives: [],
       args: [
         _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'id'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'Int'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
+          name: _i1.NameNode(value: 'name'),
+          directives: [],
+          type: _i1.NamedTypeNode(
+            name: _i1.NameNode(value: 'String'),
+            isNonNull: true,
+          ),
+          defaultValue: null,
+        ),
+        _i1.InputValueDefinitionNode(
           name: _i1.NameNode(value: 'config'),
           directives: [],
           type: _i1.NamedTypeNode(
@@ -314,6 +332,40 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'StatusReply'),
+        isNonNull: true,
+      ),
+    ),
+  ],
+);
+const PlotConfig = _i1.ObjectTypeDefinitionNode(
+  name: _i1.NameNode(value: 'PlotConfig'),
+  directives: [],
+  interfaces: [],
+  fields: [
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'configId'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'int'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'configName'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'config'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
         isNonNull: true,
       ),
     ),
@@ -466,7 +518,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
       ],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
-          name: _i1.NameNode(value: 'String'),
+          name: _i1.NameNode(value: 'PlotConfig'),
           isNonNull: true,
         ),
         isNonNull: true,
@@ -905,6 +957,7 @@ const document = _i1.DocumentNode(
     DataType,
     DevValue,
     Mutation,
+    PlotConfig,
     PlotChannelData,
     PlotReplyData,
     Query,

@@ -556,11 +556,13 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     required this.dataLimit,
   });
 
-  factory PlotConfigurationSnapshot.fromJson(Map<String, dynamic> json) {
+  factory PlotConfigurationSnapshot.fromJson(
+    PlotConfigId id,
+    String name,
+    Map<String, dynamic> json,
+  ) {
     if (json case {
       "channels": Map<String, Map<String, dynamic>> channels,
-      "id": int id,
-      "name": String name,
       "xMin": double? xMin,
       "xMax": double? xMax,
       "timeDelta": double? timeDelta,
@@ -580,7 +582,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
       "acquisitionMode": String? acquisitionMode,
     }) {
       return PlotConfigurationSnapshot(
-        configurationId: PlotConfigId._fromInt(id),
+        configurationId: id,
         configurationName: name,
         xMin: xMin,
         xMax: xMax,
@@ -610,8 +612,6 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
 
   Map<String, dynamic> toJson() => {
     "channels": channels.map((key, value) => MapEntry(key, value.toJson())),
-    "id": configurationId,
-    "name": configurationName,
     "xMin": xMin,
     "xMax": xMax,
     "timeDelta": timeDelta,
@@ -1376,7 +1376,12 @@ final class ACSysService implements ACSysServiceAPI {
       xlat:
           (GPlotConfigsData data) =>
               data.plotConfiguration
-                  .map((e) => PlotConfigurationListing.fromJson(jsonDecode(e)))
+                  .map(
+                    (e) => PlotConfigurationListing(
+                      configurationId: PlotConfigId._fromInt(e.configId),
+                      configurationName: e.configName,
+                    ),
+                  )
                   .toList(),
     );
   }
@@ -1403,7 +1408,11 @@ final class ACSysService implements ACSysServiceAPI {
 
         return e == null
             ? null
-            : PlotConfigurationSnapshot.fromJson(jsonDecode(e));
+            : PlotConfigurationSnapshot.fromJson(
+              PlotConfigId._fromInt(0),
+              "n/a",
+              jsonDecode(e),
+            );
       },
     );
   }
@@ -1429,7 +1438,11 @@ final class ACSysService implements ACSysServiceAPI {
       req,
       xlat:
           (GPlotConfigsData data) => data.plotConfiguration.map(
-            (e) => PlotConfigurationSnapshot.fromJson(jsonDecode(e)),
+            (e) => PlotConfigurationSnapshot.fromJson(
+              PlotConfigId._fromInt(e.configId),
+              e.configName,
+              jsonDecode(e.config),
+            ),
           ),
     ).then((value) {
       switch (value) {
@@ -1450,7 +1463,11 @@ final class ACSysService implements ACSysServiceAPI {
     required PlotConfigurationSnapshot snapshot,
   }) {
     final req = GUpdatePlotConfigReq(
-      (b) => b..vars.cfg = jsonEncode(snapshot.toJson()),
+      (b) =>
+          b
+            ..vars.cfg = jsonEncode(snapshot.toJson())
+            ..vars.id = snapshot.configurationId?._value
+            ..vars.name = snapshot.configurationName,
     );
 
     return _queryAcsys(

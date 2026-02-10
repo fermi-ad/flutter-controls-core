@@ -1,3 +1,7 @@
 query PlotConfigs($id: Int) {
-  plotConfiguration(id: $id)
+  plotConfiguration(id: $id) {
+    configId
+    configName
+    config
+  }
 }

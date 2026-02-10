@@ -86,7 +86,7 @@ type Mutation {
     """
     value: DevValue!
   ): StatusReply!
-  updatePlotConfiguration(id: Int!, name: String!, config: String!): Int
+  updatePlotConfiguration(id: Int, name: String!, config: String!): Int
   deletePlotConfiguration(id: Int!): StatusReply!
 
   """
@@ -97,8 +97,16 @@ type Mutation {
   TEMPORARY: The `user` parameter can be used to specify the user account with which to associate the configuration. The convention is to prepend an underscore to the account name. Once we use the new authentication method, we'll be able to look-up the username and this parameter will be removed.
   """
   usersConfiguration(
+    id: Int!
+    name: String!
     config: String!
   ): StatusReply!
+}
+
+type PlotConfig {
+  configId: int!
+  configName: String!
+  config: String!
 }
 
 type PlotChannelData {
@@ -170,7 +178,7 @@ type Query {
 
   Returns a plot configuration associated with the specified ID. If the ID is `null`, all configuration names are returned. Both style of requests return an array result -- it's just that specifying an ID will return an array with 0 or 1 element.
   """
-  plotConfiguration(id: Int): [String!]!
+  plotConfiguration(id: Int): [PlotConfig!]!
 
   """
   Obtain the user's last configuration.

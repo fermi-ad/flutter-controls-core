@@ -19,6 +19,7 @@ Serializers _$serializers =
           ..add(GDeletePlotConfigVars.serializer)
           ..add(GDevValue.serializer)
           ..add(GPlotConfigsData.serializer)
+          ..add(GPlotConfigsData_plotConfiguration.serializer)
           ..add(GPlotConfigsReq.serializer)
           ..add(GPlotConfigsVars.serializer)
           ..add(GReadDevicesData.serializer)
@@ -108,6 +109,12 @@ Serializers _$serializers =
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
+              const FullType(GPlotConfigsData_plotConfiguration),
+            ]),
+            () => ListBuilder<GPlotConfigsData_plotConfiguration>(),
+          )
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
               const FullType(GReadDevicesData_acceleratorData),
             ]),
             () => ListBuilder<GReadDevicesData_acceleratorData>(),
@@ -135,10 +142,6 @@ Serializers _$serializers =
               const FullType(GStreamDataData_acceleratorData_data),
             ]),
             () => ListBuilder<GStreamDataData_acceleratorData_data>(),
-          )
-          ..addBuilderFactory(
-            const FullType(BuiltList, const [const FullType(String)]),
-            () => ListBuilder<String>(),
           )
           ..addBuilderFactory(
             const FullType(BuiltList, const [const FullType(String)]),

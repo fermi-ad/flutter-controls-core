@@ -17,6 +17,8 @@ abstract class GUpdatePlotConfigVars
     void Function(GUpdatePlotConfigVarsBuilder b) updates,
   ]) = _$GUpdatePlotConfigVars;
 
+  int? get id;
+  String get name;
   String get cfg;
   static Serializer<GUpdatePlotConfigVars> get serializer =>
       _$gUpdatePlotConfigVarsSerializer;
