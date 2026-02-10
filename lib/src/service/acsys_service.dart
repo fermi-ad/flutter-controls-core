@@ -1078,7 +1078,7 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   static DateTime fromFloatTs(double ts) =>
-      DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0) as int);
+      DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0).toInt());
 
   // Convert the incoming GraphQL messages into `Reading` objects.
 
