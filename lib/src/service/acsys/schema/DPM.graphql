@@ -279,6 +279,11 @@ type Query {
   TEMPORARY: The `user` parameter can be used to retrieve a user's last configuration. The convention is to prepend an underscore to the account name. Once we use the new authentication method, we'll be able to look-up the username and this parameter will be removed.
   """
   usersLastConfiguration(user: String): PlotConfigurationSnapshot
+
+  """
+  Retrieve a snapshot of the current alarms.
+  """
+  alarmsSnapshot: [Message!]!
 }
 
 """
@@ -411,9 +416,10 @@ type Subscription {
   """
   Stream alarms messages from ACSys.
 
-  Takes no arguments and returns a String stream of raw alarms messages. Each string message contains information about all known alarms.
+  Takes no arguments and returns a stream of raw alarms messages. Each message
+  contains information about all known alarms in a JSON-formatted object.
   """
-  alarms: String!
+  alarms: Message!
 }
 
 """
@@ -428,4 +434,12 @@ Represents an array of textual values.
 """
 type TextArray {
   textArrayValue: [String!]!
+}
+
+"""
+Represents a generic message with an optional key and required value.
+"""
+type Message {
+  key: String
+  value: String!
 }

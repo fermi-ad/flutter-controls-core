@@ -10,6 +10,10 @@ Serializers _$serializers =
     (Serializers().toBuilder()
           ..add(FetchPolicy.serializer)
           ..add(GAcquisitionMode.serializer)
+          ..add(GAlarmsSnapshotData.serializer)
+          ..add(GAlarmsSnapshotData_alarmsSnapshot.serializer)
+          ..add(GAlarmsSnapshotReq.serializer)
+          ..add(GAlarmsSnapshotVars.serializer)
           ..add(GChannelSettingSnapshotIn.serializer)
           ..add(GDeletePlotConfigData.serializer)
           ..add(GDeletePlotConfigData_deletePlotConfiguration.serializer)
@@ -70,6 +74,7 @@ Serializers _$serializers =
           ..add(GStartPlotReq.serializer)
           ..add(GStartPlotVars.serializer)
           ..add(GStreamAlarmsData.serializer)
+          ..add(GStreamAlarmsData_alarms.serializer)
           ..add(GStreamAlarmsReq.serializer)
           ..add(GStreamAlarmsVars.serializer)
           ..add(GStreamDataData.serializer)
@@ -102,6 +107,12 @@ Serializers _$serializers =
           ..add(GUsersLastConfigData_usersLastConfiguration_channels.serializer)
           ..add(GUsersLastConfigReq.serializer)
           ..add(GUsersLastConfigVars.serializer)
+          ..addBuilderFactory(
+            const FullType(BuiltList, const [
+              const FullType(GAlarmsSnapshotData_alarmsSnapshot),
+            ]),
+            () => ListBuilder<GAlarmsSnapshotData_alarmsSnapshot>(),
+          )
           ..addBuilderFactory(
             const FullType(BuiltList, const [
               const FullType(GChannelSettingSnapshotIn),
