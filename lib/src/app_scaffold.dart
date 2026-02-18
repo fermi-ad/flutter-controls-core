@@ -240,6 +240,15 @@ class _GlobalStateProvider<T extends ChangeNotifier> extends InheritedWidget {
 /// * Opt-in for any of our GraphQL services
 /// * Global state support (for sharing data between the drawer and main
 ///   body, for instance.)
+///
+/// If you want to share mutable state throughout your application, specify a
+/// type in the `StandardApp` generic type. The type must extend
+/// [ChangeNotifier] so that changes to the global state can be recognized by
+/// the widgets using the state. Anytime the global state is changed, it must
+/// call [notifyListeners]. A way to ensure this is to define set properties
+/// on the type. To gain access to the global state, a widget can call
+/// [StandardApp.getGlobalState] in its [build] method.
+///
 
 final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   final T? _model;
@@ -255,23 +264,24 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   ///
   /// [StandardApp] creates a drawer on the left side. It automatically
   /// creates a header and footer for the drawer. The main portion, however,
-  /// can be specied by the developer using this parameter.
+  /// can be specified by the developer using this parameter.
   final Widget? drawerContent;
 
   /// Creates [Widget]s that reside above the [Scaffold] widget.
   ///
-  /// This is a way to add [Widget]s that are located in the widget tree
-  /// higher than the [Scaffold] widget (i.e. the main, application
-  /// framework.) [providers] is a list of functions. Each function takes a
-  /// [Widget] as a parameter and returns a [Widget]. It is assumed that the
-  /// passed [Widget] will end up being a child of the [Widget] that was
-  /// returned.
-  ///
-  /// The main purpose of this parameter is to register widgets that provide
-  /// an API to our various GraphQL services.
+  /// [providers] is a list of functions. This is a way to add [Widget]s that
+  /// are located in the widget tree higher than the [Scaffold] widget (i.e.
+  /// the main, application framework.) Each function takes a [Widget] as a
+  /// parameter and returns a [Widget]. It is assumed that the passed [Widget]
+  /// will end up being a child of the [Widget] that was returned.
   ///
   /// Provider widgets should *not* require being redrawn. If they do, it'll
   /// make the entire application redraw, which is expensive and slow.
+  ///
+  /// The main purpose of this parameter is to register widgets that provide
+  /// an API to our various GraphQL services. For instance, if an application
+  /// wants to obtain device readings, it needs the ACSys GraphQL service. To
+  /// use it, this parameter would be set to `[ACSysProvider.factory()]`.
   final List<Widget Function({required Widget child})> providers;
 
   /// Creates a floating action button.
@@ -299,7 +309,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   ///
   /// This will return `null` if there is no global model being used. The
   /// model extends [ChangeNotifier] so the returned value should be used
-  /// with a [ListenableBuilder] so it knows when to rebuild it's dependent
+  /// with a [ListenableBuilder] so it knows when to rebuild its dependent
   /// widgets.
   static T? getGlobalState<T extends ChangeNotifier>(BuildContext context) =>
       context.getInheritedWidgetOfExactType<_GlobalStateProvider<T>>()?.model;
