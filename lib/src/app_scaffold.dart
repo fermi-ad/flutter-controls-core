@@ -7,7 +7,8 @@ import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'fermi_theme.dart';
 
-// Our Fermi theme generated with - https://m3.material.io/theme-builder#/custom
+// Our Fermi theme generated with -
+// https://m3.material.io/theme-builder#/custom
 
 final class _GlobalAppTheme {
   _GlobalAppTheme._();
@@ -228,17 +229,17 @@ class _GlobalStateProvider<T extends ChangeNotifier> extends InheritedWidget {
 ///
 /// [StandardApp] provides developers quite a bit of common, standardized
 /// features that we expect from our applications. By using [StandardApp],
-/// you can build an application that follows look-and-feel of our applications
-/// and supports expected features:
+/// you can build an application that follows look-and-feel of our
+/// applications and supports expected features:
 ///
-/// * Uses our official light and dark mode themes to standardize on colors and
-///   fonts
-/// * Layout of top-level widgets will be consistent ([AppBar],
-///   [NavigationBar], [Drawer])
+/// * Uses our official light and dark mode themes to standardize on colors
+///   and fonts
+/// * Layout of top-level widgets will be consistent ([NavigationBar],
+///   [AppBar], [Drawer])
 /// * Authentication via KeyCloak
 /// * Opt-in for any of our GraphQL services
-/// * Global state support (for sharing data between the drawer and main body,
-///   for instance.)
+/// * Global state support (for sharing data between the drawer and main
+///   body, for instance.)
 
 final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   final T? _model;
@@ -252,21 +253,22 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
 
   /// The main body of the drawer.
   ///
-  /// [StandardApp] creates a drawer on the left side. It automatically creates
-  /// a header and footer for the drawer. The main portion, however, can be
-  /// specied by the developer using this parameter.
+  /// [StandardApp] creates a drawer on the left side. It automatically
+  /// creates a header and footer for the drawer. The main portion, however,
+  /// can be specied by the developer using this parameter.
   final Widget? drawerContent;
 
   /// Creates [Widget]s that reside above the [Scaffold] widget.
   ///
-  /// This is a way to add [Widget]s that are located in the widget tree higher
-  /// than the [Scaffold] widget (i.e. the main, application framework.)
-  /// [providers] is a list of functions. Each function takes a [Widget] as a
-  /// parameter and returns a [Widget]. It is assumed that the passed [Widget]
-  /// will end up being a child of the [Widget] that was returned.
+  /// This is a way to add [Widget]s that are located in the widget tree
+  /// higher than the [Scaffold] widget (i.e. the main, application
+  /// framework.) [providers] is a list of functions. Each function takes a
+  /// [Widget] as a parameter and returns a [Widget]. It is assumed that the
+  /// passed [Widget] will end up being a child of the [Widget] that was
+  /// returned.
   ///
-  /// The main purpose of this parameter is to register widgets that provide an
-  /// API to our various GraphQL services.
+  /// The main purpose of this parameter is to register widgets that provide
+  /// an API to our various GraphQL services.
   ///
   /// Provider widgets should *not* require being redrawn. If they do, it'll
   /// make the entire application redraw, which is expensive and slow.
@@ -337,8 +339,8 @@ final class _RouterApp extends StatelessWidget {
 
   const _RouterApp({required this.title, required this.router});
 
-  // Return the MaterialApp widget which will define the look-and-feel for the
-  // application.
+  // Return the MaterialApp widget which will define the look-and-feel for
+  // the application.
   @override
   Widget build(BuildContext context) => MaterialApp.router(
     title: title,
