@@ -73,6 +73,15 @@ sealed class DeviceValue {
     DevTimeSeries(values: var v) => v.hashCode,
     DevStatusCode(status: var v) => v.hashCode,
   };
+
+  Status? toStatus() => null;
+  double? toDouble() => null;
+  String? toText() => null;
+  List<int>? toRaw() => null;
+  List<double>? toDoubleArray() => null;
+  List<String>? toTextArray() => null;
+  List<(double, double)>? toTimeSeries() => null;
+  List<(DateTime, double)>? toTimeSeriesWithDates() => null;
 }
 
 final class DevStatusCode extends DeviceValue {
@@ -82,6 +91,9 @@ final class DevStatusCode extends DeviceValue {
 
   @override
   String toString() => "[${status.facility} ${status.error}]";
+
+  @override
+  Status? toStatus() => status;
 }
 
 /// Represents a raw, byte array.
@@ -95,6 +107,9 @@ final class DevRaw extends DeviceValue {
   final Uint8List value;
 
   const DevRaw(this.value);
+
+  @override
+  List<int>? toRaw() => value;
 }
 
 /// Represents a single, floating point number.
@@ -106,6 +121,9 @@ final class DevScalar extends DeviceValue {
   final double value;
 
   const DevScalar(this.value);
+
+  @override
+  double? toDouble() => value;
 }
 
 /// Represents an array of floating point values.
@@ -117,6 +135,9 @@ final class DevScalarArray extends DeviceValue {
   final List<double> value;
 
   const DevScalarArray(this.value);
+
+  @override
+  List<double>? toDoubleArray() => value;
 }
 
 /// Represents a single string of characters.
@@ -125,6 +146,9 @@ final class DevText extends DeviceValue {
   final String value;
 
   const DevText(this.value);
+
+  @override
+  String? toText() => value;
 }
 
 /// Represents an array of strings.
@@ -133,6 +157,9 @@ final class DevTextArray extends DeviceValue {
   final List<String> value;
 
   const DevTextArray(this.value);
+
+  @override
+  List<String>? toTextArray() => value;
 }
 
 /// Represents time-series data (i.e. a list of timestamp/value pairs.)
@@ -141,6 +168,16 @@ final class DevTimeSeries extends DeviceValue {
   final List<(double, double)> values;
 
   const DevTimeSeries(this.values);
+
+  @override
+  List<(double, double)>? toTimeSeries() => values;
+
+  @override
+  List<(DateTime, double)>? toTimeSeriesWithDates() => [
+    ...values.map(
+      (e) => (DateTime.fromMillisecondsSinceEpoch((e.$1 * 1000).toInt()), e.$2),
+    ),
+  ];
 }
 
 // The `ToDeviceValue` extension allows us to convert primitive types into a
@@ -178,68 +215,4 @@ extension TimeSeriesToDeviceValue on List<(DateTime, double)> {
   DeviceValue toDevVal() => DevTimeSeries([
     ...map((e) => (e.$1.millisecondsSinceEpoch / 1000.0, e.$2)),
   ]);
-}
-
-// The `FromDeviceValue` extension allows us to convert a `DeviceValue` into a
-// primitive type.
-
-extension FromDevValToDouble on DeviceValue {
-  double? toDouble() => switch (this) {
-    DevScalar(value: var value) => value,
-    _ => null,
-  };
-}
-
-extension FromDevValToStatus on DeviceValue {
-  Status? toStatus() => switch (this) {
-    DevStatusCode(status: var value) => value,
-    _ => null,
-  };
-}
-
-extension FromDevValToText on DeviceValue {
-  String? toText() => switch (this) {
-    DevText(value: var value) => value,
-    _ => null,
-  };
-}
-
-extension FromDevValToRaw on DeviceValue {
-  Uint8List? toRaw() => switch (this) {
-    DevRaw(value: var value) => value,
-    _ => null,
-  };
-}
-
-extension FromDevValToDoubleArray on DeviceValue {
-  List<double>? toDoubleArray() => switch (this) {
-    DevScalarArray(value: var value) => value,
-    _ => null,
-  };
-}
-
-extension FromDevValToTextArray on DeviceValue {
-  List<String>? toTextArray() => switch (this) {
-    DevTextArray(value: var value) => value,
-    _ => null,
-  };
-}
-
-extension FromDevValToTimeSeries on DeviceValue {
-  List<(double, double)>? toTimeSeries() => switch (this) {
-    DevTimeSeries(values: var values) => values,
-    _ => null,
-  };
-
-  List<(DateTime, double)>? toTimeSeriesWithDates() => switch (this) {
-    DevTimeSeries(values: var values) => [
-      ...values.map(
-        (e) => (
-          DateTime.fromMillisecondsSinceEpoch((e.$1 * 1000).toInt()),
-          e.$2,
-        ),
-      ),
-    ],
-    _ => null,
-  };
 }

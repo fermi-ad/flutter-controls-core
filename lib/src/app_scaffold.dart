@@ -246,7 +246,7 @@ class _GlobalStateProvider<T extends ChangeNotifier> extends InheritedWidget {
 /// [ChangeNotifier] so that changes to the global state can be recognized by
 /// the widgets using the state. Anytime the global state is changed, it must
 /// call [notifyListeners]. A way to ensure this is to define set properties
-/// on the type. To gain access to the global state, a widget can call
+/// on the type. to gain access to the global state, a widget can call
 /// [StandardApp.getGlobalState] in its [build] method.
 ///
 
