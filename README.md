@@ -55,6 +55,12 @@ code. The command to do this is:
 $ dart run build_runner build --delete-conflicting-outputs
 ```
 
+Then run the formatter:
+
+```shell
+$ dart format lib
+```
+
 ## Telemetry/Tracing (OpenTelemetry)
 
 OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints (`runFermiApp`, `runFermiRouterApp`).
