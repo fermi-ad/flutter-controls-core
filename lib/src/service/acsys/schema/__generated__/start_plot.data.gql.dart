@@ -85,6 +85,7 @@ abstract class GStartPlotData_startPlot_data
   String get G__typename;
   String get channelRate;
   String get channelUnits;
+  String? get statusString;
   int get channelStatus;
   BuiltList<GStartPlotData_startPlot_data_channelData> get channelData;
   static Serializer<GStartPlotData_startPlot_data> get serializer =>

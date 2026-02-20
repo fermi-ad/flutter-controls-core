@@ -1531,6 +1531,7 @@ extension on GStartPlotData_startPlot_data {
         name: req.vars.drfList[idx],
         units: channelUnits,
         rate: channelRate,
+        statusString: statusString,
         status: channelStatus,
         points: [
           ...channelData.map(
