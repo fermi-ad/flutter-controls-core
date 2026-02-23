@@ -1198,8 +1198,8 @@ final class ACSysService implements ACSysServiceAPI {
     // SettingStatus.
 
     xlat(e) => SettingStatus(
-      facilityCode: e.setDevice.status ~/ 256,
-      errorCode: e.setDevice.status & 255,
+      facilityCode: e.setDevice.status & 255,
+      errorCode: e.setDevice.status ~/ 256,
     );
 
     // Build the request.
