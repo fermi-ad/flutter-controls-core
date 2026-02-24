@@ -423,6 +423,7 @@ final class PlotChannelData {
   final String name;
   final String units;
   final String rate;
+  final String? statusString;
   final int status;
   final List<PlotPoint> points;
 
@@ -430,6 +431,7 @@ final class PlotChannelData {
     required this.name,
     required this.units,
     required this.rate,
+    this.statusString,
     this.status = 0,
     this.points = const [],
   });
@@ -1196,8 +1198,8 @@ final class ACSysService implements ACSysServiceAPI {
     // SettingStatus.
 
     xlat(e) => SettingStatus(
-      facilityCode: e.setDevice.status ~/ 256,
-      errorCode: e.setDevice.status & 255,
+      facilityCode: e.setDevice.status & 255,
+      errorCode: e.setDevice.status ~/ 256,
     );
 
     // Build the request.
@@ -1529,6 +1531,7 @@ extension on GStartPlotData_startPlot_data {
         name: req.vars.drfList[idx],
         units: channelUnits,
         rate: channelRate,
+        statusString: statusString,
         status: channelStatus,
         points: [
           ...channelData.map(

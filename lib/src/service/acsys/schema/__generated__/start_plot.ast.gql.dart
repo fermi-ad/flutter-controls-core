@@ -183,6 +183,13 @@ const StartPlot = _i1.OperationDefinitionNode(
                     selectionSet: null,
                   ),
                   _i1.FieldNode(
+                    name: _i1.NameNode(value: 'statusString'),
+                    alias: null,
+                    arguments: [],
+                    directives: [],
+                    selectionSet: null,
+                  ),
+                  _i1.FieldNode(
                     name: _i1.NameNode(value: 'channelStatus'),
                     alias: null,
                     arguments: [],

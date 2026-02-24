@@ -254,7 +254,15 @@ class _$GStartPlotData_startPlot_dataSerializer
         ]),
       ),
     ];
-
+    Object? value;
+    value = object.statusString;
+    if (value != null) {
+      result
+        ..add('statusString')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
     return result;
   }
 
@@ -295,6 +303,14 @@ class _$GStartPlotData_startPlot_dataSerializer
                     specifiedType: const FullType(String),
                   )!
                   as String;
+          break;
+        case 'statusString':
+          result.statusString =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
           break;
         case 'channelStatus':
           result.channelStatus =
@@ -915,6 +931,8 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
   @override
   final String channelUnits;
   @override
+  final String? statusString;
+  @override
   final int channelStatus;
   @override
   final BuiltList<GStartPlotData_startPlot_data_channelData> channelData;
@@ -927,6 +945,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
     required this.G__typename,
     required this.channelRate,
     required this.channelUnits,
+    this.statusString,
     required this.channelStatus,
     required this.channelData,
   }) : super._();
@@ -946,6 +965,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
         G__typename == other.G__typename &&
         channelRate == other.channelRate &&
         channelUnits == other.channelUnits &&
+        statusString == other.statusString &&
         channelStatus == other.channelStatus &&
         channelData == other.channelData;
   }
@@ -956,6 +976,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
     _$hash = $jc(_$hash, G__typename.hashCode);
     _$hash = $jc(_$hash, channelRate.hashCode);
     _$hash = $jc(_$hash, channelUnits.hashCode);
+    _$hash = $jc(_$hash, statusString.hashCode);
     _$hash = $jc(_$hash, channelStatus.hashCode);
     _$hash = $jc(_$hash, channelData.hashCode);
     _$hash = $jf(_$hash);
@@ -968,6 +989,7 @@ class _$GStartPlotData_startPlot_data extends GStartPlotData_startPlot_data {
           ..add('G__typename', G__typename)
           ..add('channelRate', channelRate)
           ..add('channelUnits', channelUnits)
+          ..add('statusString', statusString)
           ..add('channelStatus', channelStatus)
           ..add('channelData', channelData))
         .toString();
@@ -994,6 +1016,10 @@ class GStartPlotData_startPlot_dataBuilder
   String? get channelUnits => _$this._channelUnits;
   set channelUnits(String? channelUnits) => _$this._channelUnits = channelUnits;
 
+  String? _statusString;
+  String? get statusString => _$this._statusString;
+  set statusString(String? statusString) => _$this._statusString = statusString;
+
   int? _channelStatus;
   int? get channelStatus => _$this._channelStatus;
   set channelStatus(int? channelStatus) =>
@@ -1017,6 +1043,7 @@ class GStartPlotData_startPlot_dataBuilder
       _G__typename = $v.G__typename;
       _channelRate = $v.channelRate;
       _channelUnits = $v.channelUnits;
+      _statusString = $v.statusString;
       _channelStatus = $v.channelStatus;
       _channelData = $v.channelData.toBuilder();
       _$v = null;
@@ -1058,6 +1085,7 @@ class GStartPlotData_startPlot_dataBuilder
               r'GStartPlotData_startPlot_data',
               'channelUnits',
             ),
+            statusString: statusString,
             channelStatus: BuiltValueNullFieldError.checkNotNull(
               channelStatus,
               r'GStartPlotData_startPlot_data',
