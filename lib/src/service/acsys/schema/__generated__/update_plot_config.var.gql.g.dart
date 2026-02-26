@@ -26,13 +26,18 @@ class _$GUpdatePlotConfigVarsSerializer
     FullType specifiedType = FullType.unspecified,
   }) {
     final result = <Object?>[
+      'name',
+      serializers.serialize(object.name, specifiedType: const FullType(String)),
       'cfg',
-      serializers.serialize(
-        object.cfg,
-        specifiedType: const FullType(_i1.GPlotConfigurationSnapshotIn),
-      ),
+      serializers.serialize(object.cfg, specifiedType: const FullType(String)),
     ];
-
+    Object? value;
+    value = object.id;
+    if (value != null) {
+      result
+        ..add('id')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
     return result;
   }
 
@@ -50,16 +55,26 @@ class _$GUpdatePlotConfigVarsSerializer
       iterator.moveNext();
       final Object? value = iterator.current;
       switch (key) {
+        case 'id':
+          result.id =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'name':
+          result.name =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
+          break;
         case 'cfg':
-          result.cfg.replace(
-            serializers.deserialize(
-                  value,
-                  specifiedType: const FullType(
-                    _i1.GPlotConfigurationSnapshotIn,
-                  ),
-                )!
-                as _i1.GPlotConfigurationSnapshotIn,
-          );
+          result.cfg =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -70,13 +85,18 @@ class _$GUpdatePlotConfigVarsSerializer
 
 class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
   @override
-  final _i1.GPlotConfigurationSnapshotIn cfg;
+  final int? id;
+  @override
+  final String name;
+  @override
+  final String cfg;
 
   factory _$GUpdatePlotConfigVars([
     void Function(GUpdatePlotConfigVarsBuilder)? updates,
   ]) => (GUpdatePlotConfigVarsBuilder()..update(updates))._build();
 
-  _$GUpdatePlotConfigVars._({required this.cfg}) : super._();
+  _$GUpdatePlotConfigVars._({this.id, required this.name, required this.cfg})
+    : super._();
   @override
   GUpdatePlotConfigVars rebuild(
     void Function(GUpdatePlotConfigVarsBuilder) updates,
@@ -89,12 +109,17 @@ class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
   @override
   bool operator ==(Object other) {
     if (identical(other, this)) return true;
-    return other is GUpdatePlotConfigVars && cfg == other.cfg;
+    return other is GUpdatePlotConfigVars &&
+        id == other.id &&
+        name == other.name &&
+        cfg == other.cfg;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
+    _$hash = $jc(_$hash, id.hashCode);
+    _$hash = $jc(_$hash, name.hashCode);
     _$hash = $jc(_$hash, cfg.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
@@ -103,7 +128,10 @@ class _$GUpdatePlotConfigVars extends GUpdatePlotConfigVars {
   @override
   String toString() {
     return (newBuiltValueToStringHelper(r'GUpdatePlotConfigVars')
-      ..add('cfg', cfg)).toString();
+          ..add('id', id)
+          ..add('name', name)
+          ..add('cfg', cfg))
+        .toString();
   }
 }
 
@@ -111,17 +139,26 @@ class GUpdatePlotConfigVarsBuilder
     implements Builder<GUpdatePlotConfigVars, GUpdatePlotConfigVarsBuilder> {
   _$GUpdatePlotConfigVars? _$v;
 
-  _i1.GPlotConfigurationSnapshotInBuilder? _cfg;
-  _i1.GPlotConfigurationSnapshotInBuilder get cfg =>
-      _$this._cfg ??= _i1.GPlotConfigurationSnapshotInBuilder();
-  set cfg(_i1.GPlotConfigurationSnapshotInBuilder? cfg) => _$this._cfg = cfg;
+  int? _id;
+  int? get id => _$this._id;
+  set id(int? id) => _$this._id = id;
+
+  String? _name;
+  String? get name => _$this._name;
+  set name(String? name) => _$this._name = name;
+
+  String? _cfg;
+  String? get cfg => _$this._cfg;
+  set cfg(String? cfg) => _$this._cfg = cfg;
 
   GUpdatePlotConfigVarsBuilder();
 
   GUpdatePlotConfigVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _cfg = $v.cfg.toBuilder();
+      _id = $v.id;
+      _name = $v.name;
+      _cfg = $v.cfg;
       _$v = null;
     }
     return this;
@@ -141,23 +178,21 @@ class GUpdatePlotConfigVarsBuilder
   GUpdatePlotConfigVars build() => _build();
 
   _$GUpdatePlotConfigVars _build() {
-    _$GUpdatePlotConfigVars _$result;
-    try {
-      _$result = _$v ?? _$GUpdatePlotConfigVars._(cfg: cfg.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'cfg';
-        cfg.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'GUpdatePlotConfigVars',
-          _$failedField,
-          e.toString(),
+    final _$result =
+        _$v ??
+        _$GUpdatePlotConfigVars._(
+          id: id,
+          name: BuiltValueNullFieldError.checkNotNull(
+            name,
+            r'GUpdatePlotConfigVars',
+            'name',
+          ),
+          cfg: BuiltValueNullFieldError.checkNotNull(
+            cfg,
+            r'GUpdatePlotConfigVars',
+            'cfg',
+          ),
         );
-      }
-      rethrow;
-    }
     replace(_$result);
     return _$result;
   }

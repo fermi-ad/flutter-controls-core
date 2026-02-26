@@ -1,30 +1,3 @@
 query UsersLastConfig {
-    usersLastConfiguration {
-        configurationId
-        configurationName
-        channels {
-            device
-            yMin
-            yMax
-            lineColor
-            markerIndex
-        }
-        xMin
-        xMax
-        startTime
-        endTime
-        timeDelta
-        isScalar
-        isOneShot
-        isShowLabels
-        updateDelay
-        nAcquisitions
-        tclkEvent
-        acquisitionMode
-        isPersistent
-        isBlink
-        dataLimit
-        sampleOnEvent
-        chXAxis
-    }
+    usersLastConfiguration
 }
