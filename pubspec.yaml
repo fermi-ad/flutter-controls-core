@@ -84,32 +84,47 @@ flutter:
     fonts:
       - family: Local Roboto
         fonts:
-          - asset: assets/google_fonts/Roboto-Thin.ttf
+          - asset: lib/assets/fonts/Roboto-Thin.ttf
             weight: 100
-          - asset: assets/google_fonts/Roboto-ThinItalic.ttf
+          - asset: lib/assets/fonts/Roboto-ThinItalic.ttf
             weight: 100
             style: italic
-          - asset: assets/google_fonts/Roboto-Light.ttf
+          - asset: lib/assets/fonts/Roboto-ExtraLight.ttf
+            weight: 200
+          - asset: lib/assets/fonts/Roboto-ExtraLightItalic.ttf
+            weight: 200
+            style: italic
+          - asset: lib/assets/fonts/Roboto-Light.ttf
             weight: 300
-          - asset: assets/google_fonts/Roboto-LightItalic.ttf
+          - asset: lib/assets/fonts/Roboto-LightItalic.ttf
             weight: 300
             style: italic
-          - asset: assets/google_fonts/Roboto-Regular.ttf
-          - asset: assets/google_fonts/Roboto-Italic.ttf
+          - asset: lib/assets/fonts/Roboto-Regular.ttf
+          - asset: lib/assets/fonts/Roboto-Italic.ttf
             style: italic
-          - asset: assets/google_fonts/Roboto-Medium.ttf
+          - asset: lib/assets/fonts/Roboto-Medium.ttf
             weight: 500
-          - asset: assets/google_fonts/Roboto-MediumItalic.ttf
+          - asset: lib/assets/fonts/Roboto-MediumItalic.ttf
             weight: 500
             style: italic
-          - asset: assets/google_fonts/Roboto-Bold.ttf
+          - asset: lib/assets/fonts/Roboto-SemiBold.ttf
+            weight: 600
+          - asset: lib/assets/fonts/Roboto-SemiBoldItalic.ttf
+            weight: 600
+            style: italic
+          - asset: lib/assets/fonts/Roboto-Bold.ttf
             weight: 700
-          - asset: assets/google_fonts/Roboto-BoldItalic.ttf
+          - asset: lib/assets/fonts/Roboto-BoldItalic.ttf
             weight: 700
             style: italic
-          - asset: assets/google_fonts/Roboto-Black.ttf
+          - asset: lib/assets/fonts/Roboto-ExtraBold.ttf
+            weight: 800
+          - asset: lib/assets/fonts/Roboto-ExtraBoldItalic.ttf
+            weight: 800
+            style: italic
+          - asset: lib/assets/fonts/Roboto-Black.ttf
             weight: 900
-          - asset: assets/google_fonts/Roboto-BlackItalic.ttf
+          - asset: lib/assets/fonts/Roboto-BlackItalic.ttf
             weight: 900
             style: italic
     # For details regarding fonts in packages, see
