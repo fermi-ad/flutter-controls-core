@@ -397,6 +397,8 @@ enum AcquisitionMode {
   sampleOnEvent,
 }
 
+enum ReadingMode { array, scalar, arrayAsTimeSeries }
+
 final class PlotReply {
   final String plotId;
   final double requestTime;
@@ -498,6 +500,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? tclkEvent;
   int? sampleOnEvent;
   AcquisitionMode? acquisitionMode;
+  ReadingMode? readingMode;
   String? xAxis;
   int dataLimit;
 
@@ -520,6 +523,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.tclkEvent,
     this.sampleOnEvent,
     this.acquisitionMode,
+    this.readingMode,
     this.xAxis,
     required this.dataLimit,
   });
