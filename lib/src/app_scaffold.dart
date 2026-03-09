@@ -132,30 +132,85 @@ final class _Drawer extends StatelessWidget {
   }
 }
 
+class _GlobalStateProvider<T extends ChangeNotifier> extends InheritedWidget {
+  final T model;
+
+  const _GlobalStateProvider({required this.model, required super.child});
+
+  @override
+  bool updateShouldNotify(covariant _GlobalStateProvider<T> oldWidget) => false;
+}
+
 /// Creates the foundation of a scaffold-based app.
 ///
-/// This creates a scaffold widget that uses Fermilab's theme. [title] will
-/// be used for the title of the web page (for web targets.) [appBar] will
-/// be displayed as the application's title bar. [body] is the body of the
-/// application.
+/// This creates a scaffold widget that uses Fermilab's theme and application conventions.
+///
+/// [StandardApp] provides developers quite a bit of common, standardized features that
+/// we expect from our applications. By using [StandardApp], you can build an application
+/// that follows look-and-feel of our applications and supports expected features:
+///
+/// * Uses our official light and dark mode themes to standardize on colors and fonts
+/// * Layout of top-level widgets will be consistent ([AppBar], [NavigationBar], [Drawer])
+/// * Authentication via KeyCloak
+/// * Opt-in for any of our GraphQL services
+/// * Global state support (for sharing data between the drawer and main body, for
+///   instance.)
 
-final class StandardApp extends StatelessWidget {
+final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
+  final T? _model;
+
+  /// Used for the title of the web page (for web targets.)
   final String title;
+
+  /// The body of the application. This will inhabit the main area of the application.
   final Widget? body;
+
+  /// The main body of the drawer.
+  ///
+  /// [StandardApp] creates a drawer on the left side. It automatically creates a header
+  /// and footer for the drawer. The main portion, however, can be specied by the developer
+  /// using this parameter.
   final Widget? drawerContent;
+
+  /// Creates [Widget]s that reside above the [Scaffold] widget.
+  ///
+  /// This is a way to add [Widget]s that are located in the widget tree higher than the
+  /// [Scaffold] widget (i.e. the main, application framework.) [providers] is a list of
+  /// functions. Each function takes a [Widget] as a parameter and returns a [Widget]. It
+  /// is assumed that the passed [Widget] will end up being a child of the [Widget] that
+  /// was returned.
+  ///
+  /// The main purpose of this parameter is to register widgets that provide an API to
+  /// our various GraphQL services.
+  ///
+  /// Provider widgets should *not* require being redrawn. If they do, it'll make the
+  /// entire application redraw, which is expensive and slow.
   final List<Widget Function({required Widget child})> providers;
+
+  /// Creates a floating action button.
   final Widget? floatingActionButton;
+
+  /// [appBar] will be displayed as the application's title bar.
   final PreferredSizeWidget? appBar;
 
   const StandardApp({
     required this.title,
+    T? model,
     this.appBar,
     this.body,
     this.drawerContent,
     this.floatingActionButton,
     this.providers = const [],
     super.key,
-  });
+  }) : _model = model;
+
+  /// Returns the model shared by the whole application.
+  ///
+  /// This will return `null` if there is no global model being used. The model extends
+  /// [ChangeNotifier] so the returned value should be used with a [ListenableBuilder]
+  /// so it knows when to rebuild it's dependent widgets.
+  static T? getGlobalState<T extends ChangeNotifier>(BuildContext context) =>
+      context.getInheritedWidgetOfExactType<_GlobalStateProvider<T>>()?.model;
 
   @override
   Widget build(BuildContext context) {
@@ -173,7 +228,15 @@ final class StandardApp extends StatelessWidget {
       title: title,
       theme: _GlobalAppTheme.lightTheme,
       darkTheme: _GlobalAppTheme.darkTheme,
-      home: AuthService(child: scaffold),
+      home: AuthService(
+        child:
+            null is T
+                ? scaffold
+                : _GlobalStateProvider(
+                  model: _model as ChangeNotifier,
+                  child: scaffold,
+                ),
+      ),
     );
   }
 }
