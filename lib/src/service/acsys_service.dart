@@ -505,6 +505,7 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   ReadingMode? readingMode;
   String? xAxis;
   int dataLimit;
+  double? waveformDuration;
 
   PlotConfigurationSnapshot({
     super.configurationId,
@@ -525,9 +526,10 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.tclkEvent,
     this.sampleOnEvent,
     this.acquisitionMode,
-    this.readingMode,
     this.xAxis,
     required this.dataLimit,
+    this.readingMode,
+    this.waveformDuration,
   });
 }
 
