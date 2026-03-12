@@ -48,6 +48,7 @@ Serializers _$serializers =
           ..add(GReadDevicesData_acceleratorData_data_result__base.serializer)
           ..add(GReadDevicesReq.serializer)
           ..add(GReadDevicesVars.serializer)
+          ..add(GReadingMode.serializer)
           ..add(GSetDeviceData.serializer)
           ..add(GSetDeviceData_setDevice.serializer)
           ..add(GSetDeviceReq.serializer)

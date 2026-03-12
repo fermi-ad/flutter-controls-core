@@ -13,9 +13,9 @@ abstract class GDeletePlotConfigData
     implements Built<GDeletePlotConfigData, GDeletePlotConfigDataBuilder> {
   GDeletePlotConfigData._();
 
-  factory GDeletePlotConfigData([
-    void Function(GDeletePlotConfigDataBuilder b) updates,
-  ]) = _$GDeletePlotConfigData;
+  factory GDeletePlotConfigData(
+          [void Function(GDeletePlotConfigDataBuilder b) updates]) =
+      _$GDeletePlotConfigData;
 
   static void _initializeBuilder(GDeletePlotConfigDataBuilder b) =>
       b..G__typename = 'Mutation';
@@ -26,48 +26,48 @@ abstract class GDeletePlotConfigData
   static Serializer<GDeletePlotConfigData> get serializer =>
       _$gDeletePlotConfigDataSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GDeletePlotConfigData.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDeletePlotConfigData.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GDeletePlotConfigData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GDeletePlotConfigData.serializer, json);
+      _i1.serializers.deserializeWith(
+        GDeletePlotConfigData.serializer,
+        json,
+      );
 }
 
 abstract class GDeletePlotConfigData_deletePlotConfiguration
     implements
-        Built<
-          GDeletePlotConfigData_deletePlotConfiguration,
-          GDeletePlotConfigData_deletePlotConfigurationBuilder
-        > {
+        Built<GDeletePlotConfigData_deletePlotConfiguration,
+            GDeletePlotConfigData_deletePlotConfigurationBuilder> {
   GDeletePlotConfigData_deletePlotConfiguration._();
 
-  factory GDeletePlotConfigData_deletePlotConfiguration([
-    void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder b)
-    updates,
-  ]) = _$GDeletePlotConfigData_deletePlotConfiguration;
+  factory GDeletePlotConfigData_deletePlotConfiguration(
+      [void Function(GDeletePlotConfigData_deletePlotConfigurationBuilder b)
+          updates]) = _$GDeletePlotConfigData_deletePlotConfiguration;
 
   static void _initializeBuilder(
-    GDeletePlotConfigData_deletePlotConfigurationBuilder b,
-  ) => b..G__typename = 'StatusReply';
+          GDeletePlotConfigData_deletePlotConfigurationBuilder b) =>
+      b..G__typename = 'StatusReply';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
   int get status;
   static Serializer<GDeletePlotConfigData_deletePlotConfiguration>
-  get serializer => _$gDeletePlotConfigDataDeletePlotConfigurationSerializer;
+      get serializer =>
+          _$gDeletePlotConfigDataDeletePlotConfigurationSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(
-            GDeletePlotConfigData_deletePlotConfiguration.serializer,
-            this,
-          )
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDeletePlotConfigData_deletePlotConfiguration.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GDeletePlotConfigData_deletePlotConfiguration? fromJson(
-    Map<String, dynamic> json,
-  ) => _i1.serializers.deserializeWith(
-    GDeletePlotConfigData_deletePlotConfiguration.serializer,
-    json,
-  );
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GDeletePlotConfigData_deletePlotConfiguration.serializer,
+        json,
+      );
 }

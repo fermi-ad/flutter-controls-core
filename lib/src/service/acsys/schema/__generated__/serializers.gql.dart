@@ -11,6 +11,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM
         GChannelSettingSnapshotIn,
         GDevValue,
         GPlotConfigurationSnapshotIn,
+        GReadingMode,
         GTimeSeriesEntryIn;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart'
     show
@@ -119,14 +120,13 @@ import 'package:gql_code_builder_serializers/gql_code_builder_serializers.dart'
 
 part 'serializers.gql.g.dart';
 
-final SerializersBuilder _serializersBuilder =
-    _$serializers.toBuilder()
-      ..add(OperationSerializer())
-      ..add(DateSerializer())
-      ..add(GReadDevicesData_acceleratorData_data_result.serializer)
-      ..add(GStartPlotData_startPlot_data_channelData_result.serializer)
-      ..add(GStreamDataData_acceleratorData_data_result.serializer)
-      ..addPlugin(StandardJsonPlugin());
+final SerializersBuilder _serializersBuilder = _$serializers.toBuilder()
+  ..add(OperationSerializer())
+  ..add(DateSerializer())
+  ..add(GReadDevicesData_acceleratorData_data_result.serializer)
+  ..add(GStartPlotData_startPlot_data_channelData_result.serializer)
+  ..add(GStreamDataData_acceleratorData_data_result.serializer)
+  ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
   GAcquisitionMode,
   GAlarmsSnapshotData,
@@ -156,6 +156,7 @@ final SerializersBuilder _serializersBuilder =
   GReadDevicesData_acceleratorData_data_result__base,
   GReadDevicesReq,
   GReadDevicesVars,
+  GReadingMode,
   GSetDeviceData,
   GSetDeviceData_setDevice,
   GSetDeviceReq,

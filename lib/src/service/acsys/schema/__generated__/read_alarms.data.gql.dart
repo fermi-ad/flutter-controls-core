@@ -14,9 +14,9 @@ abstract class GAlarmsSnapshotData
     implements Built<GAlarmsSnapshotData, GAlarmsSnapshotDataBuilder> {
   GAlarmsSnapshotData._();
 
-  factory GAlarmsSnapshotData([
-    void Function(GAlarmsSnapshotDataBuilder b) updates,
-  ]) = _$GAlarmsSnapshotData;
+  factory GAlarmsSnapshotData(
+          [void Function(GAlarmsSnapshotDataBuilder b) updates]) =
+      _$GAlarmsSnapshotData;
 
   static void _initializeBuilder(GAlarmsSnapshotDataBuilder b) =>
       b..G__typename = 'Query';
@@ -27,25 +27,27 @@ abstract class GAlarmsSnapshotData
   static Serializer<GAlarmsSnapshotData> get serializer =>
       _$gAlarmsSnapshotDataSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GAlarmsSnapshotData.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GAlarmsSnapshotData.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GAlarmsSnapshotData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GAlarmsSnapshotData.serializer, json);
+      _i1.serializers.deserializeWith(
+        GAlarmsSnapshotData.serializer,
+        json,
+      );
 }
 
 abstract class GAlarmsSnapshotData_alarmsSnapshot
     implements
-        Built<
-          GAlarmsSnapshotData_alarmsSnapshot,
-          GAlarmsSnapshotData_alarmsSnapshotBuilder
-        > {
+        Built<GAlarmsSnapshotData_alarmsSnapshot,
+            GAlarmsSnapshotData_alarmsSnapshotBuilder> {
   GAlarmsSnapshotData_alarmsSnapshot._();
 
-  factory GAlarmsSnapshotData_alarmsSnapshot([
-    void Function(GAlarmsSnapshotData_alarmsSnapshotBuilder b) updates,
-  ]) = _$GAlarmsSnapshotData_alarmsSnapshot;
+  factory GAlarmsSnapshotData_alarmsSnapshot(
+      [void Function(GAlarmsSnapshotData_alarmsSnapshotBuilder b)
+          updates]) = _$GAlarmsSnapshotData_alarmsSnapshot;
 
   static void _initializeBuilder(GAlarmsSnapshotData_alarmsSnapshotBuilder b) =>
       b..G__typename = 'Message';
@@ -57,17 +59,15 @@ abstract class GAlarmsSnapshotData_alarmsSnapshot
   static Serializer<GAlarmsSnapshotData_alarmsSnapshot> get serializer =>
       _$gAlarmsSnapshotDataAlarmsSnapshotSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(
-            GAlarmsSnapshotData_alarmsSnapshot.serializer,
-            this,
-          )
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GAlarmsSnapshotData_alarmsSnapshot.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GAlarmsSnapshotData_alarmsSnapshot? fromJson(
-    Map<String, dynamic> json,
-  ) => _i1.serializers.deserializeWith(
-    GAlarmsSnapshotData_alarmsSnapshot.serializer,
-    json,
-  );
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GAlarmsSnapshotData_alarmsSnapshot.serializer,
+        json,
+      );
 }

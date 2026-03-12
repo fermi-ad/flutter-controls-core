@@ -26,13 +26,20 @@ abstract class GStartPlotVars
   int? get triggerEvent;
   double? get startTime;
   double? get endTime;
+  int? get sampleOnEvent;
+  String? get chXAxis;
+  double? get waveformDuration;
   static Serializer<GStartPlotVars> get serializer =>
       _$gStartPlotVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GStartPlotVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStartPlotVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GStartPlotVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GStartPlotVars.serializer, json);
+      _i1.serializers.deserializeWith(
+        GStartPlotVars.serializer,
+        json,
+      );
 }

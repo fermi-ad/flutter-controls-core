@@ -36,14 +36,31 @@ class GAcquisitionMode extends EnumClass {
       _$gAcquisitionModeValueOf(name);
 }
 
+class GReadingMode extends EnumClass {
+  const GReadingMode._(String name) : super(name);
+
+  static const GReadingMode ARRAY = _$gReadingModeARRAY;
+
+  static const GReadingMode SCALAR = _$gReadingModeSCALAR;
+
+  static const GReadingMode ARRAY_AS_TIME_SERIES =
+      _$gReadingModeARRAY_AS_TIME_SERIES;
+
+  static Serializer<GReadingMode> get serializer => _$gReadingModeSerializer;
+
+  static BuiltSet<GReadingMode> get values => _$gReadingModeValues;
+
+  static GReadingMode valueOf(String name) => _$gReadingModeValueOf(name);
+}
+
 abstract class GChannelSettingSnapshotIn
     implements
         Built<GChannelSettingSnapshotIn, GChannelSettingSnapshotInBuilder> {
   GChannelSettingSnapshotIn._();
 
-  factory GChannelSettingSnapshotIn([
-    void Function(GChannelSettingSnapshotInBuilder b) updates,
-  ]) = _$GChannelSettingSnapshotIn;
+  factory GChannelSettingSnapshotIn(
+          [void Function(GChannelSettingSnapshotInBuilder b) updates]) =
+      _$GChannelSettingSnapshotIn;
 
   String get device;
   double? get yMin;
@@ -53,13 +70,16 @@ abstract class GChannelSettingSnapshotIn
   static Serializer<GChannelSettingSnapshotIn> get serializer =>
       _$gChannelSettingSnapshotInSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GChannelSettingSnapshotIn.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GChannelSettingSnapshotIn.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
-  static GChannelSettingSnapshotIn? fromJson(Map<String, dynamic> json) => _i1
-      .serializers
-      .deserializeWith(GChannelSettingSnapshotIn.serializer, json);
+  static GChannelSettingSnapshotIn? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GChannelSettingSnapshotIn.serializer,
+        json,
+      );
 }
 
 abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
@@ -76,25 +96,27 @@ abstract class GDevValue implements Built<GDevValue, GDevValueBuilder> {
   BuiltList<GTimeSeriesEntryIn>? get timeSeriesVal;
   static Serializer<GDevValue> get serializer => _$gDevValueSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GDevValue.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDevValue.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GDevValue? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GDevValue.serializer, json);
+      _i1.serializers.deserializeWith(
+        GDevValue.serializer,
+        json,
+      );
 }
 
 abstract class GPlotConfigurationSnapshotIn
     implements
-        Built<
-          GPlotConfigurationSnapshotIn,
-          GPlotConfigurationSnapshotInBuilder
-        > {
+        Built<GPlotConfigurationSnapshotIn,
+            GPlotConfigurationSnapshotInBuilder> {
   GPlotConfigurationSnapshotIn._();
 
-  factory GPlotConfigurationSnapshotIn([
-    void Function(GPlotConfigurationSnapshotInBuilder b) updates,
-  ]) = _$GPlotConfigurationSnapshotIn;
+  factory GPlotConfigurationSnapshotIn(
+          [void Function(GPlotConfigurationSnapshotInBuilder b) updates]) =
+      _$GPlotConfigurationSnapshotIn;
 
   int? get configurationId;
   String get configurationName;
@@ -116,15 +138,15 @@ abstract class GPlotConfigurationSnapshotIn
   int? get tclkEvent;
   int? get sampleOnEvent;
   String? get chXAxis;
+  double? get waveformDuration;
+  GReadingMode? get readingMode;
   static Serializer<GPlotConfigurationSnapshotIn> get serializer =>
       _$gPlotConfigurationSnapshotInSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(
-            GPlotConfigurationSnapshotIn.serializer,
-            this,
-          )
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GPlotConfigurationSnapshotIn.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GPlotConfigurationSnapshotIn? fromJson(Map<String, dynamic> json) =>
       _i1.serializers.deserializeWith(
@@ -137,21 +159,25 @@ abstract class GTimeSeriesEntryIn
     implements Built<GTimeSeriesEntryIn, GTimeSeriesEntryInBuilder> {
   GTimeSeriesEntryIn._();
 
-  factory GTimeSeriesEntryIn([
-    void Function(GTimeSeriesEntryInBuilder b) updates,
-  ]) = _$GTimeSeriesEntryIn;
+  factory GTimeSeriesEntryIn(
+          [void Function(GTimeSeriesEntryInBuilder b) updates]) =
+      _$GTimeSeriesEntryIn;
 
   double get stamp;
   double get value;
   static Serializer<GTimeSeriesEntryIn> get serializer =>
       _$gTimeSeriesEntryInSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GTimeSeriesEntryIn.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GTimeSeriesEntryIn.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GTimeSeriesEntryIn? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GTimeSeriesEntryIn.serializer, json);
+      _i1.serializers.deserializeWith(
+        GTimeSeriesEntryIn.serializer,
+        json,
+      );
 }
 
 const Map<String, Set<String>> possibleTypesMap = {
@@ -164,5 +190,5 @@ const Map<String, Set<String>> possibleTypesMap = {
     'TextArray',
     'TimeSeries',
     'StructData',
-  },
+  }
 };

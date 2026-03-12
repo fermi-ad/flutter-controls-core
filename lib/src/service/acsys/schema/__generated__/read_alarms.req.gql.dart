@@ -23,17 +23,16 @@ abstract class GAlarmsSnapshotReq
         _i1.OperationRequest<_i2.GAlarmsSnapshotData, _i3.GAlarmsSnapshotVars> {
   GAlarmsSnapshotReq._();
 
-  factory GAlarmsSnapshotReq([
-    void Function(GAlarmsSnapshotReqBuilder b) updates,
-  ]) = _$GAlarmsSnapshotReq;
+  factory GAlarmsSnapshotReq(
+          [void Function(GAlarmsSnapshotReqBuilder b) updates]) =
+      _$GAlarmsSnapshotReq;
 
-  static void _initializeBuilder(GAlarmsSnapshotReqBuilder b) =>
-      b
-        ..operation = _i4.Operation(
-          document: _i5.document,
-          operationName: 'AlarmsSnapshot',
-        )
-        ..executeOnListen = true;
+  static void _initializeBuilder(GAlarmsSnapshotReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'AlarmsSnapshot',
+    )
+    ..executeOnListen = true;
 
   @override
   _i3.GAlarmsSnapshotVars get vars;
@@ -41,10 +40,10 @@ abstract class GAlarmsSnapshotReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-    operation: operation,
-    variables: vars.toJson(),
-    context: context ?? const _i4.Context(),
-  );
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
 
   @override
   String? get requestId;
@@ -53,8 +52,7 @@ abstract class GAlarmsSnapshotReq
   _i2.GAlarmsSnapshotData? Function(
     _i2.GAlarmsSnapshotData?,
     _i2.GAlarmsSnapshotData?,
-  )?
-  get updateResult;
+  )? get updateResult;
   @override
   _i2.GAlarmsSnapshotData? get optimisticResponse;
   @override
@@ -81,16 +79,20 @@ abstract class GAlarmsSnapshotReq
 
   @override
   _i1.OperationRequest<_i2.GAlarmsSnapshotData, _i3.GAlarmsSnapshotVars>
-  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GAlarmsSnapshotReq> get serializer =>
       _$gAlarmsSnapshotReqSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GAlarmsSnapshotReq.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GAlarmsSnapshotReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GAlarmsSnapshotReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GAlarmsSnapshotReq.serializer, json);
+      _i6.serializers.deserializeWith(
+        GAlarmsSnapshotReq.serializer,
+        json,
+      );
 }

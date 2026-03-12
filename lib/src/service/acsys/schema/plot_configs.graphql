@@ -26,5 +26,7 @@ query PlotConfigs($id: Int) {
     dataLimit
     sampleOnEvent
     chXAxis
+    waveformDuration
+    readingMode
   }
 }

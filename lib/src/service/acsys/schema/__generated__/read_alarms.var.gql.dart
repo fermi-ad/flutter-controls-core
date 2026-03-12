@@ -13,17 +13,21 @@ abstract class GAlarmsSnapshotVars
     implements Built<GAlarmsSnapshotVars, GAlarmsSnapshotVarsBuilder> {
   GAlarmsSnapshotVars._();
 
-  factory GAlarmsSnapshotVars([
-    void Function(GAlarmsSnapshotVarsBuilder b) updates,
-  ]) = _$GAlarmsSnapshotVars;
+  factory GAlarmsSnapshotVars(
+          [void Function(GAlarmsSnapshotVarsBuilder b) updates]) =
+      _$GAlarmsSnapshotVars;
 
   static Serializer<GAlarmsSnapshotVars> get serializer =>
       _$gAlarmsSnapshotVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GAlarmsSnapshotVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GAlarmsSnapshotVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GAlarmsSnapshotVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GAlarmsSnapshotVars.serializer, json);
+      _i1.serializers.deserializeWith(
+        GAlarmsSnapshotVars.serializer,
+        json,
+      );
 }

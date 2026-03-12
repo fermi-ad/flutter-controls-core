@@ -44,8 +44,36 @@ final BuiltSet<GAcquisitionMode> _$gAcquisitionModeValues =
       _$gAcquisitionModeSAMPLE_ON_EVENT,
     ]);
 
+const GReadingMode _$gReadingModeARRAY = const GReadingMode._('ARRAY');
+const GReadingMode _$gReadingModeSCALAR = const GReadingMode._('SCALAR');
+const GReadingMode _$gReadingModeARRAY_AS_TIME_SERIES = const GReadingMode._(
+  'ARRAY_AS_TIME_SERIES',
+);
+
+GReadingMode _$gReadingModeValueOf(String name) {
+  switch (name) {
+    case 'ARRAY':
+      return _$gReadingModeARRAY;
+    case 'SCALAR':
+      return _$gReadingModeSCALAR;
+    case 'ARRAY_AS_TIME_SERIES':
+      return _$gReadingModeARRAY_AS_TIME_SERIES;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<GReadingMode> _$gReadingModeValues = BuiltSet<GReadingMode>(
+  const <GReadingMode>[
+    _$gReadingModeARRAY,
+    _$gReadingModeSCALAR,
+    _$gReadingModeARRAY_AS_TIME_SERIES,
+  ],
+);
+
 Serializer<GAcquisitionMode> _$gAcquisitionModeSerializer =
     _$GAcquisitionModeSerializer();
+Serializer<GReadingMode> _$gReadingModeSerializer = _$GReadingModeSerializer();
 Serializer<GChannelSettingSnapshotIn> _$gChannelSettingSnapshotInSerializer =
     _$GChannelSettingSnapshotInSerializer();
 Serializer<GDevValue> _$gDevValueSerializer = _$GDevValueSerializer();
@@ -75,6 +103,27 @@ class _$GAcquisitionModeSerializer
     Object serialized, {
     FullType specifiedType = FullType.unspecified,
   }) => GAcquisitionMode.valueOf(serialized as String);
+}
+
+class _$GReadingModeSerializer implements PrimitiveSerializer<GReadingMode> {
+  @override
+  final Iterable<Type> types = const <Type>[GReadingMode];
+  @override
+  final String wireName = 'GReadingMode';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    GReadingMode object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => object.name;
+
+  @override
+  GReadingMode deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => GReadingMode.valueOf(serialized as String);
 }
 
 class _$GChannelSettingSnapshotInSerializer
@@ -514,6 +563,25 @@ class _$GPlotConfigurationSnapshotInSerializer
           serializers.serialize(value, specifiedType: const FullType(String)),
         );
     }
+    value = object.waveformDuration;
+    if (value != null) {
+      result
+        ..add('waveformDuration')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
+    value = object.readingMode;
+    if (value != null) {
+      result
+        ..add('readingMode')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(GReadingMode),
+          ),
+        );
+    }
     return result;
   }
 
@@ -678,6 +746,22 @@ class _$GPlotConfigurationSnapshotInSerializer
                     specifiedType: const FullType(String),
                   )
                   as String?;
+          break;
+        case 'waveformDuration':
+          result.waveformDuration =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
+        case 'readingMode':
+          result.readingMode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(GReadingMode),
+                  )
+                  as GReadingMode?;
           break;
       }
     }
@@ -1115,6 +1199,10 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
   final int? sampleOnEvent;
   @override
   final String? chXAxis;
+  @override
+  final double? waveformDuration;
+  @override
+  final GReadingMode? readingMode;
 
   factory _$GPlotConfigurationSnapshotIn([
     void Function(GPlotConfigurationSnapshotInBuilder)? updates,
@@ -1141,6 +1229,8 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     this.tclkEvent,
     this.sampleOnEvent,
     this.chXAxis,
+    this.waveformDuration,
+    this.readingMode,
   }) : super._();
   @override
   GPlotConfigurationSnapshotIn rebuild(
@@ -1174,7 +1264,9 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
         nAcquisitions == other.nAcquisitions &&
         tclkEvent == other.tclkEvent &&
         sampleOnEvent == other.sampleOnEvent &&
-        chXAxis == other.chXAxis;
+        chXAxis == other.chXAxis &&
+        waveformDuration == other.waveformDuration &&
+        readingMode == other.readingMode;
   }
 
   @override
@@ -1200,6 +1292,8 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
     _$hash = $jc(_$hash, tclkEvent.hashCode);
     _$hash = $jc(_$hash, sampleOnEvent.hashCode);
     _$hash = $jc(_$hash, chXAxis.hashCode);
+    _$hash = $jc(_$hash, waveformDuration.hashCode);
+    _$hash = $jc(_$hash, readingMode.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -1226,7 +1320,9 @@ class _$GPlotConfigurationSnapshotIn extends GPlotConfigurationSnapshotIn {
           ..add('nAcquisitions', nAcquisitions)
           ..add('tclkEvent', tclkEvent)
           ..add('sampleOnEvent', sampleOnEvent)
-          ..add('chXAxis', chXAxis))
+          ..add('chXAxis', chXAxis)
+          ..add('waveformDuration', waveformDuration)
+          ..add('readingMode', readingMode))
         .toString();
   }
 }
@@ -1326,6 +1422,16 @@ class GPlotConfigurationSnapshotInBuilder
   String? get chXAxis => _$this._chXAxis;
   set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
 
+  double? _waveformDuration;
+  double? get waveformDuration => _$this._waveformDuration;
+  set waveformDuration(double? waveformDuration) =>
+      _$this._waveformDuration = waveformDuration;
+
+  GReadingMode? _readingMode;
+  GReadingMode? get readingMode => _$this._readingMode;
+  set readingMode(GReadingMode? readingMode) =>
+      _$this._readingMode = readingMode;
+
   GPlotConfigurationSnapshotInBuilder();
 
   GPlotConfigurationSnapshotInBuilder get _$this {
@@ -1351,6 +1457,8 @@ class GPlotConfigurationSnapshotInBuilder
       _tclkEvent = $v.tclkEvent;
       _sampleOnEvent = $v.sampleOnEvent;
       _chXAxis = $v.chXAxis;
+      _waveformDuration = $v.waveformDuration;
+      _readingMode = $v.readingMode;
       _$v = null;
     }
     return this;
@@ -1423,6 +1531,8 @@ class GPlotConfigurationSnapshotInBuilder
             tclkEvent: tclkEvent,
             sampleOnEvent: sampleOnEvent,
             chXAxis: chXAxis,
+            waveformDuration: waveformDuration,
+            readingMode: readingMode,
           );
     } catch (_) {
       late String _$failedField;

@@ -14,20 +14,24 @@ abstract class GgetDeviceInfoVars
     implements Built<GgetDeviceInfoVars, GgetDeviceInfoVarsBuilder> {
   GgetDeviceInfoVars._();
 
-  factory GgetDeviceInfoVars([
-    void Function(GgetDeviceInfoVarsBuilder b) updates,
-  ]) = _$GgetDeviceInfoVars;
+  factory GgetDeviceInfoVars(
+          [void Function(GgetDeviceInfoVarsBuilder b) updates]) =
+      _$GgetDeviceInfoVars;
 
   BuiltList<String> get devices;
   static Serializer<GgetDeviceInfoVars> get serializer =>
       _$ggetDeviceInfoVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GgetDeviceInfoVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GgetDeviceInfoVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GgetDeviceInfoVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GgetDeviceInfoVars.serializer, json);
+      _i1.serializers.deserializeWith(
+        GgetDeviceInfoVars.serializer,
+        json,
+      );
 }
 
 abstract class GDevicePropertyFieldsVars
@@ -35,18 +39,21 @@ abstract class GDevicePropertyFieldsVars
         Built<GDevicePropertyFieldsVars, GDevicePropertyFieldsVarsBuilder> {
   GDevicePropertyFieldsVars._();
 
-  factory GDevicePropertyFieldsVars([
-    void Function(GDevicePropertyFieldsVarsBuilder b) updates,
-  ]) = _$GDevicePropertyFieldsVars;
+  factory GDevicePropertyFieldsVars(
+          [void Function(GDevicePropertyFieldsVarsBuilder b) updates]) =
+      _$GDevicePropertyFieldsVars;
 
   static Serializer<GDevicePropertyFieldsVars> get serializer =>
       _$gDevicePropertyFieldsVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GDevicePropertyFieldsVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDevicePropertyFieldsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
-  static GDevicePropertyFieldsVars? fromJson(Map<String, dynamic> json) => _i1
-      .serializers
-      .deserializeWith(GDevicePropertyFieldsVars.serializer, json);
+  static GDevicePropertyFieldsVars? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GDevicePropertyFieldsVars.serializer,
+        json,
+      );
 }

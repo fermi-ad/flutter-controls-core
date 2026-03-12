@@ -25,12 +25,16 @@ abstract class GSetDeviceData
   static Serializer<GSetDeviceData> get serializer =>
       _$gSetDeviceDataSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GSetDeviceData.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSetDeviceData.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GSetDeviceData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GSetDeviceData.serializer, json);
+      _i1.serializers.deserializeWith(
+        GSetDeviceData.serializer,
+        json,
+      );
 }
 
 abstract class GSetDeviceData_setDevice
@@ -38,9 +42,9 @@ abstract class GSetDeviceData_setDevice
         Built<GSetDeviceData_setDevice, GSetDeviceData_setDeviceBuilder> {
   GSetDeviceData_setDevice._();
 
-  factory GSetDeviceData_setDevice([
-    void Function(GSetDeviceData_setDeviceBuilder b) updates,
-  ]) = _$GSetDeviceData_setDevice;
+  factory GSetDeviceData_setDevice(
+          [void Function(GSetDeviceData_setDeviceBuilder b) updates]) =
+      _$GSetDeviceData_setDevice;
 
   static void _initializeBuilder(GSetDeviceData_setDeviceBuilder b) =>
       b..G__typename = 'StatusReply';
@@ -51,11 +55,14 @@ abstract class GSetDeviceData_setDevice
   static Serializer<GSetDeviceData_setDevice> get serializer =>
       _$gSetDeviceDataSetDeviceSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GSetDeviceData_setDevice.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSetDeviceData_setDevice.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
-  static GSetDeviceData_setDevice? fromJson(Map<String, dynamic> json) => _i1
-      .serializers
-      .deserializeWith(GSetDeviceData_setDevice.serializer, json);
+  static GSetDeviceData_setDevice? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSetDeviceData_setDevice.serializer,
+        json,
+      );
 }

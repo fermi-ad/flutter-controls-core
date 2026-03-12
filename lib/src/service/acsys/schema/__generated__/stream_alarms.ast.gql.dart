@@ -9,33 +9,29 @@ const StreamAlarms = _i1.OperationDefinitionNode(
   name: _i1.NameNode(value: 'StreamAlarms'),
   variableDefinitions: [],
   directives: [],
-  selectionSet: _i1.SelectionSetNode(
-    selections: [
-      _i1.FieldNode(
-        name: _i1.NameNode(value: 'alarms'),
-        alias: null,
-        arguments: [],
-        directives: [],
-        selectionSet: _i1.SelectionSetNode(
-          selections: [
-            _i1.FieldNode(
-              name: _i1.NameNode(value: 'key'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null,
-            ),
-            _i1.FieldNode(
-              name: _i1.NameNode(value: 'value'),
-              alias: null,
-              arguments: [],
-              directives: [],
-              selectionSet: null,
-            ),
-          ],
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'alarms'),
+      alias: null,
+      arguments: [],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'key'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
         ),
-      ),
-    ],
-  ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'value'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+      ]),
+    )
+  ]),
 );
 const document = _i1.DocumentNode(definitions: [StreamAlarms]);

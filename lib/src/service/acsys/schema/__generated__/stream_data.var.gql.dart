@@ -21,10 +21,14 @@ abstract class GStreamDataVars
   static Serializer<GStreamDataVars> get serializer =>
       _$gStreamDataVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GStreamDataVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStreamDataVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GStreamDataVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GStreamDataVars.serializer, json);
+      _i1.serializers.deserializeWith(
+        GStreamDataVars.serializer,
+        json,
+      );
 }

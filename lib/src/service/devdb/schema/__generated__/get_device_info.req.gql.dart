@@ -24,17 +24,16 @@ abstract class GgetDeviceInfoReq
         _i1.OperationRequest<_i2.GgetDeviceInfoData, _i3.GgetDeviceInfoVars> {
   GgetDeviceInfoReq._();
 
-  factory GgetDeviceInfoReq([
-    void Function(GgetDeviceInfoReqBuilder b) updates,
-  ]) = _$GgetDeviceInfoReq;
+  factory GgetDeviceInfoReq(
+          [void Function(GgetDeviceInfoReqBuilder b) updates]) =
+      _$GgetDeviceInfoReq;
 
-  static void _initializeBuilder(GgetDeviceInfoReqBuilder b) =>
-      b
-        ..operation = _i4.Operation(
-          document: _i5.document,
-          operationName: 'getDeviceInfo',
-        )
-        ..executeOnListen = true;
+  static void _initializeBuilder(GgetDeviceInfoReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'getDeviceInfo',
+    )
+    ..executeOnListen = true;
 
   @override
   _i3.GgetDeviceInfoVars get vars;
@@ -42,10 +41,10 @@ abstract class GgetDeviceInfoReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-    operation: operation,
-    variables: vars.toJson(),
-    context: context ?? const _i4.Context(),
-  );
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
 
   @override
   String? get requestId;
@@ -54,8 +53,7 @@ abstract class GgetDeviceInfoReq
   _i2.GgetDeviceInfoData? Function(
     _i2.GgetDeviceInfoData?,
     _i2.GgetDeviceInfoData?,
-  )?
-  get updateResult;
+  )? get updateResult;
   @override
   _i2.GgetDeviceInfoData? get optimisticResponse;
   @override
@@ -81,37 +79,38 @@ abstract class GgetDeviceInfoReq
 
   @override
   _i1.OperationRequest<_i2.GgetDeviceInfoData, _i3.GgetDeviceInfoVars>
-  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GgetDeviceInfoReq> get serializer =>
       _$ggetDeviceInfoReqSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GgetDeviceInfoReq.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GgetDeviceInfoReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GgetDeviceInfoReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GgetDeviceInfoReq.serializer, json);
+      _i6.serializers.deserializeWith(
+        GgetDeviceInfoReq.serializer,
+        json,
+      );
 }
 
 abstract class GDevicePropertyFieldsReq
     implements
         Built<GDevicePropertyFieldsReq, GDevicePropertyFieldsReqBuilder>,
-        _i1.FragmentRequest<
-          _i2.GDevicePropertyFieldsData,
-          _i3.GDevicePropertyFieldsVars
-        > {
+        _i1.FragmentRequest<_i2.GDevicePropertyFieldsData,
+            _i3.GDevicePropertyFieldsVars> {
   GDevicePropertyFieldsReq._();
 
-  factory GDevicePropertyFieldsReq([
-    void Function(GDevicePropertyFieldsReqBuilder b) updates,
-  ]) = _$GDevicePropertyFieldsReq;
+  factory GDevicePropertyFieldsReq(
+          [void Function(GDevicePropertyFieldsReqBuilder b) updates]) =
+      _$GDevicePropertyFieldsReq;
 
-  static void _initializeBuilder(GDevicePropertyFieldsReqBuilder b) =>
-      b
-        ..document = _i5.document
-        ..fragmentName = 'DevicePropertyFields';
+  static void _initializeBuilder(GDevicePropertyFieldsReqBuilder b) => b
+    ..document = _i5.document
+    ..fragmentName = 'DevicePropertyFields';
 
   @override
   _i3.GDevicePropertyFieldsVars get vars;
@@ -135,11 +134,14 @@ abstract class GDevicePropertyFieldsReq
   static Serializer<GDevicePropertyFieldsReq> get serializer =>
       _$gDevicePropertyFieldsReqSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GDevicePropertyFieldsReq.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GDevicePropertyFieldsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
-  static GDevicePropertyFieldsReq? fromJson(Map<String, dynamic> json) => _i6
-      .serializers
-      .deserializeWith(GDevicePropertyFieldsReq.serializer, json);
+  static GDevicePropertyFieldsReq? fromJson(Map<String, dynamic> json) =>
+      _i6.serializers.deserializeWith(
+        GDevicePropertyFieldsReq.serializer,
+        json,
+      );
 }

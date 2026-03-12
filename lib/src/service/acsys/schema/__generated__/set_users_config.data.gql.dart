@@ -13,9 +13,9 @@ abstract class GSetUsersConfigData
     implements Built<GSetUsersConfigData, GSetUsersConfigDataBuilder> {
   GSetUsersConfigData._();
 
-  factory GSetUsersConfigData([
-    void Function(GSetUsersConfigDataBuilder b) updates,
-  ]) = _$GSetUsersConfigData;
+  factory GSetUsersConfigData(
+          [void Function(GSetUsersConfigDataBuilder b) updates]) =
+      _$GSetUsersConfigData;
 
   static void _initializeBuilder(GSetUsersConfigDataBuilder b) =>
       b..G__typename = 'Mutation';
@@ -26,29 +26,31 @@ abstract class GSetUsersConfigData
   static Serializer<GSetUsersConfigData> get serializer =>
       _$gSetUsersConfigDataSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GSetUsersConfigData.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSetUsersConfigData.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GSetUsersConfigData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GSetUsersConfigData.serializer, json);
+      _i1.serializers.deserializeWith(
+        GSetUsersConfigData.serializer,
+        json,
+      );
 }
 
 abstract class GSetUsersConfigData_usersConfiguration
     implements
-        Built<
-          GSetUsersConfigData_usersConfiguration,
-          GSetUsersConfigData_usersConfigurationBuilder
-        > {
+        Built<GSetUsersConfigData_usersConfiguration,
+            GSetUsersConfigData_usersConfigurationBuilder> {
   GSetUsersConfigData_usersConfiguration._();
 
-  factory GSetUsersConfigData_usersConfiguration([
-    void Function(GSetUsersConfigData_usersConfigurationBuilder b) updates,
-  ]) = _$GSetUsersConfigData_usersConfiguration;
+  factory GSetUsersConfigData_usersConfiguration(
+      [void Function(GSetUsersConfigData_usersConfigurationBuilder b)
+          updates]) = _$GSetUsersConfigData_usersConfiguration;
 
   static void _initializeBuilder(
-    GSetUsersConfigData_usersConfigurationBuilder b,
-  ) => b..G__typename = 'StatusReply';
+          GSetUsersConfigData_usersConfigurationBuilder b) =>
+      b..G__typename = 'StatusReply';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
@@ -56,17 +58,15 @@ abstract class GSetUsersConfigData_usersConfiguration
   static Serializer<GSetUsersConfigData_usersConfiguration> get serializer =>
       _$gSetUsersConfigDataUsersConfigurationSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(
-            GSetUsersConfigData_usersConfiguration.serializer,
-            this,
-          )
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GSetUsersConfigData_usersConfiguration.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GSetUsersConfigData_usersConfiguration? fromJson(
-    Map<String, dynamic> json,
-  ) => _i1.serializers.deserializeWith(
-    GSetUsersConfigData_usersConfiguration.serializer,
-    json,
-  );
+          Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GSetUsersConfigData_usersConfiguration.serializer,
+        json,
+      );
 }

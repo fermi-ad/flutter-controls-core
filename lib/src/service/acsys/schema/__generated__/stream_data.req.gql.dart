@@ -26,13 +26,12 @@ abstract class GStreamDataReq
   factory GStreamDataReq([void Function(GStreamDataReqBuilder b) updates]) =
       _$GStreamDataReq;
 
-  static void _initializeBuilder(GStreamDataReqBuilder b) =>
-      b
-        ..operation = _i4.Operation(
-          document: _i5.document,
-          operationName: 'StreamData',
-        )
-        ..executeOnListen = true;
+  static void _initializeBuilder(GStreamDataReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'StreamData',
+    )
+    ..executeOnListen = true;
 
   @override
   _i3.GStreamDataVars get vars;
@@ -40,17 +39,19 @@ abstract class GStreamDataReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-    operation: operation,
-    variables: vars.toJson(),
-    context: context ?? const _i4.Context(),
-  );
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
 
   @override
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GStreamDataData? Function(_i2.GStreamDataData?, _i2.GStreamDataData?)?
-  get updateResult;
+  _i2.GStreamDataData? Function(
+    _i2.GStreamDataData?,
+    _i2.GStreamDataData?,
+  )? get updateResult;
   @override
   _i2.GStreamDataData? get optimisticResponse;
   @override
@@ -76,16 +77,20 @@ abstract class GStreamDataReq
 
   @override
   _i1.OperationRequest<_i2.GStreamDataData, _i3.GStreamDataVars>
-  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GStreamDataReq> get serializer =>
       _$gStreamDataReqSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GStreamDataReq.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GStreamDataReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GStreamDataReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GStreamDataReq.serializer, json);
+      _i6.serializers.deserializeWith(
+        GStreamDataReq.serializer,
+        json,
+      );
 }

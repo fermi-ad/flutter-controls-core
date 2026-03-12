@@ -88,6 +88,28 @@ class _$GStartPlotVarsSerializer
           serializers.serialize(value, specifiedType: const FullType(double)),
         );
     }
+    value = object.sampleOnEvent;
+    if (value != null) {
+      result
+        ..add('sampleOnEvent')
+        ..add(serializers.serialize(value, specifiedType: const FullType(int)));
+    }
+    value = object.chXAxis;
+    if (value != null) {
+      result
+        ..add('chXAxis')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(String)),
+        );
+    }
+    value = object.waveformDuration;
+    if (value != null) {
+      result
+        ..add('waveformDuration')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
     return result;
   }
 
@@ -168,6 +190,27 @@ class _$GStartPlotVarsSerializer
                   )
                   as double?;
           break;
+        case 'sampleOnEvent':
+          result.sampleOnEvent =
+              serializers.deserialize(value, specifiedType: const FullType(int))
+                  as int?;
+          break;
+        case 'chXAxis':
+          result.chXAxis =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )
+                  as String?;
+          break;
+        case 'waveformDuration':
+          result.waveformDuration =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
       }
     }
 
@@ -194,6 +237,12 @@ class _$GStartPlotVars extends GStartPlotVars {
   final double? startTime;
   @override
   final double? endTime;
+  @override
+  final int? sampleOnEvent;
+  @override
+  final String? chXAxis;
+  @override
+  final double? waveformDuration;
 
   factory _$GStartPlotVars([void Function(GStartPlotVarsBuilder)? updates]) =>
       (GStartPlotVarsBuilder()..update(updates))._build();
@@ -208,6 +257,9 @@ class _$GStartPlotVars extends GStartPlotVars {
     this.triggerEvent,
     this.startTime,
     this.endTime,
+    this.sampleOnEvent,
+    this.chXAxis,
+    this.waveformDuration,
   }) : super._();
   @override
   GStartPlotVars rebuild(void Function(GStartPlotVarsBuilder) updates) =>
@@ -228,7 +280,10 @@ class _$GStartPlotVars extends GStartPlotVars {
         nAcquisitions == other.nAcquisitions &&
         triggerEvent == other.triggerEvent &&
         startTime == other.startTime &&
-        endTime == other.endTime;
+        endTime == other.endTime &&
+        sampleOnEvent == other.sampleOnEvent &&
+        chXAxis == other.chXAxis &&
+        waveformDuration == other.waveformDuration;
   }
 
   @override
@@ -243,6 +298,9 @@ class _$GStartPlotVars extends GStartPlotVars {
     _$hash = $jc(_$hash, triggerEvent.hashCode);
     _$hash = $jc(_$hash, startTime.hashCode);
     _$hash = $jc(_$hash, endTime.hashCode);
+    _$hash = $jc(_$hash, sampleOnEvent.hashCode);
+    _$hash = $jc(_$hash, chXAxis.hashCode);
+    _$hash = $jc(_$hash, waveformDuration.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -258,7 +316,10 @@ class _$GStartPlotVars extends GStartPlotVars {
           ..add('nAcquisitions', nAcquisitions)
           ..add('triggerEvent', triggerEvent)
           ..add('startTime', startTime)
-          ..add('endTime', endTime))
+          ..add('endTime', endTime)
+          ..add('sampleOnEvent', sampleOnEvent)
+          ..add('chXAxis', chXAxis)
+          ..add('waveformDuration', waveformDuration))
         .toString();
   }
 }
@@ -304,6 +365,20 @@ class GStartPlotVarsBuilder
   double? get endTime => _$this._endTime;
   set endTime(double? endTime) => _$this._endTime = endTime;
 
+  int? _sampleOnEvent;
+  int? get sampleOnEvent => _$this._sampleOnEvent;
+  set sampleOnEvent(int? sampleOnEvent) =>
+      _$this._sampleOnEvent = sampleOnEvent;
+
+  String? _chXAxis;
+  String? get chXAxis => _$this._chXAxis;
+  set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
+
+  double? _waveformDuration;
+  double? get waveformDuration => _$this._waveformDuration;
+  set waveformDuration(double? waveformDuration) =>
+      _$this._waveformDuration = waveformDuration;
+
   GStartPlotVarsBuilder();
 
   GStartPlotVarsBuilder get _$this {
@@ -318,6 +393,9 @@ class GStartPlotVarsBuilder
       _triggerEvent = $v.triggerEvent;
       _startTime = $v.startTime;
       _endTime = $v.endTime;
+      _sampleOnEvent = $v.sampleOnEvent;
+      _chXAxis = $v.chXAxis;
+      _waveformDuration = $v.waveformDuration;
       _$v = null;
     }
     return this;
@@ -351,6 +429,9 @@ class GStartPlotVarsBuilder
             triggerEvent: triggerEvent,
             startTime: startTime,
             endTime: endTime,
+            sampleOnEvent: sampleOnEvent,
+            chXAxis: chXAxis,
+            waveformDuration: waveformDuration,
           );
     } catch (_) {
       late String _$failedField;

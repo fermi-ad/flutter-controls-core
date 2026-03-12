@@ -26,5 +26,7 @@ query UsersLastConfig {
         dataLimit
         sampleOnEvent
         chXAxis
+        waveformDuration
+        readingMode
     }
 }

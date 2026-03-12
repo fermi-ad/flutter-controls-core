@@ -19,6 +19,12 @@ enum AcquisitionMode {
   SAMPLE_ON_EVENT
 }
 
+enum ReadingMode {
+  ARRAY
+  SCALAR
+  ARRAY_AS_TIME_SERIES
+}
+
 """
 Holds the configuration for a plot channel.
 """
@@ -187,6 +193,8 @@ type PlotConfigurationSnapshot {
   tclkEvent: Int
   sampleOnEvent: Int
   chXAxis: String
+  waveformDuration: Float
+  readingMode: ReadingMode
 }
 
 input PlotConfigurationSnapshotIn {
@@ -221,6 +229,8 @@ input PlotConfigurationSnapshotIn {
   tclkEvent: Int
   sampleOnEvent: Int
   chXAxis: String
+  waveformDuration: Float
+  readingMode: ReadingMode
 }
 
 """

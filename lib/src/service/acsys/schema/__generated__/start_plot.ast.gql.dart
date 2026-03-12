@@ -92,186 +92,208 @@ const StartPlot = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'sampleOnEvent')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'chXAxis')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'waveformDuration')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
-  selectionSet: _i1.SelectionSetNode(
-    selections: [
-      _i1.FieldNode(
-        name: _i1.NameNode(value: 'startPlot'),
-        alias: null,
-        arguments: [
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'drfList'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'drfList')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'xMin'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'xMin')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'xMax'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'xMax')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'windowSize'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'windowSize')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'updateDelay'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'updateDelay')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'nAcquisitions'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'nAcquisitions')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'triggerEvent'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'triggerEvent')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'startTime'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'startTime')),
-          ),
-          _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'endTime'),
-            value: _i1.VariableNode(name: _i1.NameNode(value: 'endTime')),
-          ),
-        ],
-        directives: [],
-        selectionSet: _i1.SelectionSetNode(
-          selections: [
+  selectionSet: _i1.SelectionSetNode(selections: [
+    _i1.FieldNode(
+      name: _i1.NameNode(value: 'startPlot'),
+      alias: null,
+      arguments: [
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'drfList'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'drfList')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'xMin'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'xMin')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'xMax'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'xMax')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'windowSize'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'windowSize')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'updateDelay'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'updateDelay')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'nAcquisitions'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'nAcquisitions')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'triggerEvent'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'triggerEvent')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'startTime'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'startTime')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'endTime'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'endTime')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'sampleOnEvent'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'sampleOnEvent')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'chXAxis'),
+          value: _i1.VariableNode(name: _i1.NameNode(value: 'chXAxis')),
+        ),
+        _i1.ArgumentNode(
+          name: _i1.NameNode(value: 'waveformDuration'),
+          value:
+              _i1.VariableNode(name: _i1.NameNode(value: 'waveformDuration')),
+        ),
+      ],
+      directives: [],
+      selectionSet: _i1.SelectionSetNode(selections: [
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'plotId'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'timestamp'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'triggerTimestamp'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: null,
+        ),
+        _i1.FieldNode(
+          name: _i1.NameNode(value: 'data'),
+          alias: null,
+          arguments: [],
+          directives: [],
+          selectionSet: _i1.SelectionSetNode(selections: [
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'plotId'),
+              name: _i1.NameNode(value: 'channelRate'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: null,
             ),
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'timestamp'),
+              name: _i1.NameNode(value: 'channelUnits'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: null,
             ),
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'triggerTimestamp'),
+              name: _i1.NameNode(value: 'statusString'),
               alias: null,
               arguments: [],
               directives: [],
               selectionSet: null,
             ),
             _i1.FieldNode(
-              name: _i1.NameNode(value: 'data'),
+              name: _i1.NameNode(value: 'channelStatus'),
               alias: null,
               arguments: [],
               directives: [],
-              selectionSet: _i1.SelectionSetNode(
-                selections: [
-                  _i1.FieldNode(
-                    name: _i1.NameNode(value: 'channelRate'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  _i1.FieldNode(
-                    name: _i1.NameNode(value: 'channelUnits'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  _i1.FieldNode(
-                    name: _i1.NameNode(value: 'statusString'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  _i1.FieldNode(
-                    name: _i1.NameNode(value: 'channelStatus'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: null,
-                  ),
-                  _i1.FieldNode(
-                    name: _i1.NameNode(value: 'channelData'),
-                    alias: null,
-                    arguments: [],
-                    directives: [],
-                    selectionSet: _i1.SelectionSetNode(
-                      selections: [
+              selectionSet: null,
+            ),
+            _i1.FieldNode(
+              name: _i1.NameNode(value: 'channelData'),
+              alias: null,
+              arguments: [],
+              directives: [],
+              selectionSet: _i1.SelectionSetNode(selections: [
+                _i1.FieldNode(
+                  name: _i1.NameNode(value: 'timestamp'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: null,
+                ),
+                _i1.FieldNode(
+                  name: _i1.NameNode(value: 'result'),
+                  alias: null,
+                  arguments: [],
+                  directives: [],
+                  selectionSet: _i1.SelectionSetNode(selections: [
+                    _i1.InlineFragmentNode(
+                      typeCondition: _i1.TypeConditionNode(
+                          on: _i1.NamedTypeNode(
+                        name: _i1.NameNode(value: 'Scalar'),
+                        isNonNull: false,
+                      )),
+                      directives: [],
+                      selectionSet: _i1.SelectionSetNode(selections: [
                         _i1.FieldNode(
-                          name: _i1.NameNode(value: 'timestamp'),
+                          name: _i1.NameNode(value: 'scalarValue'),
                           alias: null,
                           arguments: [],
                           directives: [],
                           selectionSet: null,
-                        ),
+                        )
+                      ]),
+                    ),
+                    _i1.InlineFragmentNode(
+                      typeCondition: _i1.TypeConditionNode(
+                          on: _i1.NamedTypeNode(
+                        name: _i1.NameNode(value: 'ScalarArray'),
+                        isNonNull: false,
+                      )),
+                      directives: [],
+                      selectionSet: _i1.SelectionSetNode(selections: [
                         _i1.FieldNode(
-                          name: _i1.NameNode(value: 'result'),
+                          name: _i1.NameNode(value: 'scalarArrayValue'),
                           alias: null,
                           arguments: [],
                           directives: [],
-                          selectionSet: _i1.SelectionSetNode(
-                            selections: [
-                              _i1.InlineFragmentNode(
-                                typeCondition: _i1.TypeConditionNode(
-                                  on: _i1.NamedTypeNode(
-                                    name: _i1.NameNode(value: 'Scalar'),
-                                    isNonNull: false,
-                                  ),
-                                ),
-                                directives: [],
-                                selectionSet: _i1.SelectionSetNode(
-                                  selections: [
-                                    _i1.FieldNode(
-                                      name: _i1.NameNode(value: 'scalarValue'),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                              _i1.InlineFragmentNode(
-                                typeCondition: _i1.TypeConditionNode(
-                                  on: _i1.NamedTypeNode(
-                                    name: _i1.NameNode(value: 'ScalarArray'),
-                                    isNonNull: false,
-                                  ),
-                                ),
-                                directives: [],
-                                selectionSet: _i1.SelectionSetNode(
-                                  selections: [
-                                    _i1.FieldNode(
-                                      name: _i1.NameNode(
-                                        value: 'scalarArrayValue',
-                                      ),
-                                      alias: null,
-                                      arguments: [],
-                                      directives: [],
-                                      selectionSet: null,
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ],
+                          selectionSet: null,
+                        )
+                      ]),
                     ),
-                  ),
-                ],
-              ),
+                  ]),
+                ),
+              ]),
             ),
-          ],
+          ]),
         ),
-      ),
-    ],
-  ),
+      ]),
+    )
+  ]),
 );
 const document = _i1.DocumentNode(definitions: [StartPlot]);

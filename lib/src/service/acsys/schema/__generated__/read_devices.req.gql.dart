@@ -26,13 +26,12 @@ abstract class GReadDevicesReq
   factory GReadDevicesReq([void Function(GReadDevicesReqBuilder b) updates]) =
       _$GReadDevicesReq;
 
-  static void _initializeBuilder(GReadDevicesReqBuilder b) =>
-      b
-        ..operation = _i4.Operation(
-          document: _i5.document,
-          operationName: 'ReadDevices',
-        )
-        ..executeOnListen = true;
+  static void _initializeBuilder(GReadDevicesReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'ReadDevices',
+    )
+    ..executeOnListen = true;
 
   @override
   _i3.GReadDevicesVars get vars;
@@ -40,17 +39,19 @@ abstract class GReadDevicesReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-    operation: operation,
-    variables: vars.toJson(),
-    context: context ?? const _i4.Context(),
-  );
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
 
   @override
   String? get requestId;
   @override
   @BuiltValueField(serialize: false)
-  _i2.GReadDevicesData? Function(_i2.GReadDevicesData?, _i2.GReadDevicesData?)?
-  get updateResult;
+  _i2.GReadDevicesData? Function(
+    _i2.GReadDevicesData?,
+    _i2.GReadDevicesData?,
+  )? get updateResult;
   @override
   _i2.GReadDevicesData? get optimisticResponse;
   @override
@@ -76,16 +77,20 @@ abstract class GReadDevicesReq
 
   @override
   _i1.OperationRequest<_i2.GReadDevicesData, _i3.GReadDevicesVars>
-  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GReadDevicesReq> get serializer =>
       _$gReadDevicesReqSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GReadDevicesReq.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GReadDevicesReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GReadDevicesReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GReadDevicesReq.serializer, json);
+      _i6.serializers.deserializeWith(
+        GReadDevicesReq.serializer,
+        json,
+      );
 }

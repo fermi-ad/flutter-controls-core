@@ -241,6 +241,25 @@ class _$GPlotConfigsData_plotConfigurationSerializer
           serializers.serialize(value, specifiedType: const FullType(String)),
         );
     }
+    value = object.waveformDuration;
+    if (value != null) {
+      result
+        ..add('waveformDuration')
+        ..add(
+          serializers.serialize(value, specifiedType: const FullType(double)),
+        );
+    }
+    value = object.readingMode;
+    if (value != null) {
+      result
+        ..add('readingMode')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GReadingMode),
+          ),
+        );
+    }
     return result;
   }
 
@@ -413,6 +432,22 @@ class _$GPlotConfigsData_plotConfigurationSerializer
                     specifiedType: const FullType(String),
                   )
                   as String?;
+          break;
+        case 'waveformDuration':
+          result.waveformDuration =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(double),
+                  )
+                  as double?;
+          break;
+        case 'readingMode':
+          result.readingMode =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GReadingMode),
+                  )
+                  as _i2.GReadingMode?;
           break;
       }
     }
@@ -712,6 +747,10 @@ class _$GPlotConfigsData_plotConfiguration
   final int? sampleOnEvent;
   @override
   final String? chXAxis;
+  @override
+  final double? waveformDuration;
+  @override
+  final _i2.GReadingMode? readingMode;
 
   factory _$GPlotConfigsData_plotConfiguration([
     void Function(GPlotConfigsData_plotConfigurationBuilder)? updates,
@@ -739,6 +778,8 @@ class _$GPlotConfigsData_plotConfiguration
     required this.dataLimit,
     this.sampleOnEvent,
     this.chXAxis,
+    this.waveformDuration,
+    this.readingMode,
   }) : super._();
   @override
   GPlotConfigsData_plotConfiguration rebuild(
@@ -773,7 +814,9 @@ class _$GPlotConfigsData_plotConfiguration
         isBlink == other.isBlink &&
         dataLimit == other.dataLimit &&
         sampleOnEvent == other.sampleOnEvent &&
-        chXAxis == other.chXAxis;
+        chXAxis == other.chXAxis &&
+        waveformDuration == other.waveformDuration &&
+        readingMode == other.readingMode;
   }
 
   @override
@@ -800,6 +843,8 @@ class _$GPlotConfigsData_plotConfiguration
     _$hash = $jc(_$hash, dataLimit.hashCode);
     _$hash = $jc(_$hash, sampleOnEvent.hashCode);
     _$hash = $jc(_$hash, chXAxis.hashCode);
+    _$hash = $jc(_$hash, waveformDuration.hashCode);
+    _$hash = $jc(_$hash, readingMode.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -827,7 +872,9 @@ class _$GPlotConfigsData_plotConfiguration
           ..add('isBlink', isBlink)
           ..add('dataLimit', dataLimit)
           ..add('sampleOnEvent', sampleOnEvent)
-          ..add('chXAxis', chXAxis))
+          ..add('chXAxis', chXAxis)
+          ..add('waveformDuration', waveformDuration)
+          ..add('readingMode', readingMode))
         .toString();
   }
 }
@@ -933,6 +980,16 @@ class GPlotConfigsData_plotConfigurationBuilder
   String? get chXAxis => _$this._chXAxis;
   set chXAxis(String? chXAxis) => _$this._chXAxis = chXAxis;
 
+  double? _waveformDuration;
+  double? get waveformDuration => _$this._waveformDuration;
+  set waveformDuration(double? waveformDuration) =>
+      _$this._waveformDuration = waveformDuration;
+
+  _i2.GReadingMode? _readingMode;
+  _i2.GReadingMode? get readingMode => _$this._readingMode;
+  set readingMode(_i2.GReadingMode? readingMode) =>
+      _$this._readingMode = readingMode;
+
   GPlotConfigsData_plotConfigurationBuilder() {
     GPlotConfigsData_plotConfiguration._initializeBuilder(this);
   }
@@ -961,6 +1018,8 @@ class GPlotConfigsData_plotConfigurationBuilder
       _dataLimit = $v.dataLimit;
       _sampleOnEvent = $v.sampleOnEvent;
       _chXAxis = $v.chXAxis;
+      _waveformDuration = $v.waveformDuration;
+      _readingMode = $v.readingMode;
       _$v = null;
     }
     return this;
@@ -1040,6 +1099,8 @@ class GPlotConfigsData_plotConfigurationBuilder
             ),
             sampleOnEvent: sampleOnEvent,
             chXAxis: chXAxis,
+            waveformDuration: waveformDuration,
+            readingMode: readingMode,
           );
     } catch (_) {
       late String _$failedField;

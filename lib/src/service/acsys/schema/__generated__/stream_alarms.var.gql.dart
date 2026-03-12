@@ -13,17 +13,21 @@ abstract class GStreamAlarmsVars
     implements Built<GStreamAlarmsVars, GStreamAlarmsVarsBuilder> {
   GStreamAlarmsVars._();
 
-  factory GStreamAlarmsVars([
-    void Function(GStreamAlarmsVarsBuilder b) updates,
-  ]) = _$GStreamAlarmsVars;
+  factory GStreamAlarmsVars(
+          [void Function(GStreamAlarmsVarsBuilder b) updates]) =
+      _$GStreamAlarmsVars;
 
   static Serializer<GStreamAlarmsVars> get serializer =>
       _$gStreamAlarmsVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GStreamAlarmsVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStreamAlarmsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GStreamAlarmsVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GStreamAlarmsVars.serializer, json);
+      _i1.serializers.deserializeWith(
+        GStreamAlarmsVars.serializer,
+        json,
+      );
 }

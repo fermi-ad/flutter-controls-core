@@ -73,7 +73,7 @@ class ACSysGraphQLException extends ACSysException {
 }
 
 extension on GAcquisitionMode {
-  AcquisitionMode toDart() => switch (this) {
+  AcquisitionMode toDartAcquisitionMode() => switch (this) {
     GAcquisitionMode.ONE_SHOT => AcquisitionMode.oneShot,
     GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT =>
       AcquisitionMode.oneShotTriggeredOnEvent,
@@ -85,7 +85,7 @@ extension on GAcquisitionMode {
   };
 }
 
-GAcquisitionMode? fromDart(AcquisitionMode? mode) => switch (mode) {
+GAcquisitionMode? fromDartAcquisitionMode(AcquisitionMode? mode) => switch (mode) {
   AcquisitionMode.oneShot => GAcquisitionMode.ONE_SHOT,
   AcquisitionMode.oneShotTriggeredOnEvent =>
     GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
@@ -93,6 +93,22 @@ GAcquisitionMode? fromDart(AcquisitionMode? mode) => switch (mode) {
   AcquisitionMode.repetitiveTriggeredOnEvent =>
     GAcquisitionMode.ONE_SHOT_TRIGGERED_ON_EVENT,
   AcquisitionMode.sampleOnEvent => GAcquisitionMode.SAMPLE_ON_EVENT,
+  null => null,
+};
+
+extension on GReadingMode {
+  ReadingMode toDartReadingMode() => switch (this) {
+    GReadingMode.ARRAY => ReadingMode.array,
+    GReadingMode.SCALAR => ReadingMode.scalar,
+    GReadingMode.ARRAY_AS_TIME_SERIES => ReadingMode.arrayAsTimeSeries,
+    GReadingMode() => throw UnimplementedError(),
+  };
+}
+
+GReadingMode? fromDartReadingMode(ReadingMode? mode) => switch (mode) {
+  ReadingMode.array => GReadingMode.ARRAY,
+  ReadingMode.scalar => GReadingMode.SCALAR,
+  ReadingMode.arrayAsTimeSeries => GReadingMode.ARRAY_AS_TIME_SERIES,
   null => null,
 };
 
@@ -593,6 +609,7 @@ abstract interface class ACSysServiceAPI {
     int? triggerEvent,
     int? sampleOnEvent,
     String? chXAxis,
+    double? waveformDuration
   });
 
   /// Saves the plot configuration to the database.
@@ -1242,6 +1259,7 @@ final class ACSysService implements ACSysServiceAPI {
     int? nAcquisitions,
     int? triggerEvent,
     int? sampleOnEvent,
+    double? waveformDuration,
     String? chXAxis,
   }) {
     final req = GStartPlotReq(
@@ -1254,6 +1272,7 @@ final class ACSysService implements ACSysServiceAPI {
             ..vars.windowSize = windowSize
             ..vars.nAcquisitions = nAcquisitions
             ..vars.updateDelay = updateRate
+            ..vars.waveformDuration = waveformDuration
             ..vars.triggerEvent = triggerEvent
             ..vars.startTime = startTime
             ..vars.endTime = endTime,
@@ -1348,7 +1367,9 @@ final class ACSysService implements ACSysServiceAPI {
               sampleOnEvent: e.sampleOnEvent,
               xAxis: e.chXAxis,
               isBlink: e.isBlink,
-              acquisitionMode: e.acquisitionMode?.toDart(),
+              acquisitionMode: e.acquisitionMode?.toDartAcquisitionMode(),
+              waveformDuration: e.waveformDuration,
+              readingMode: e.readingMode?.toDartReadingMode(),
             );
       },
     );
@@ -1415,7 +1436,9 @@ final class ACSysService implements ACSysServiceAPI {
                       sampleOnEvent: e.sampleOnEvent,
                       xAxis: e.chXAxis,
                       isBlink: e.isBlink,
-                      acquisitionMode: e.acquisitionMode?.toDart(),
+                      acquisitionMode: e.acquisitionMode?.toDartAcquisitionMode(),
+                      waveformDuration: e.waveformDuration,
+                      readingMode: e.readingMode?.toDartReadingMode(),
                     ),
                   )
                   .toList(),
@@ -1467,7 +1490,9 @@ final class ACSysService implements ACSysServiceAPI {
         ..tclkEvent = cfg.tclkEvent
         ..sampleOnEvent = cfg.sampleOnEvent
         ..chXAxis = cfg.xAxis
-        ..acquisitionMode = fromDart(cfg.acquisitionMode);
+        ..acquisitionMode = fromDartAcquisitionMode(cfg.acquisitionMode)
+        ..waveformDuration = cfg.waveformDuration
+        ..readingMode = fromDartReadingMode(cfg.readingMode);
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({

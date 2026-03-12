@@ -13,7 +13,7 @@ const schema = _i1.SchemaDefinitionNode(
         name: _i1.NameNode(value: 'DevDBQueries'),
         isNonNull: false,
       ),
-    ),
+    )
   ],
 );
 const oneOf = _i1.DirectiveDefinitionNode(
@@ -42,13 +42,13 @@ const DevDBQueries = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        ),
+        )
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'DeviceInfoReply'),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const DeviceInfo = _i1.ObjectTypeDefinitionNode(
@@ -119,7 +119,7 @@ const DeviceInfoReply = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const DeviceInfoResult = _i1.UnionTypeDefinitionNode(
@@ -261,7 +261,7 @@ const DigControl = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const DigControlEntry = _i1.ObjectTypeDefinitionNode(
@@ -509,7 +509,7 @@ const ErrorReply = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'String'),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const KnobInfo = _i1.ObjectTypeDefinitionNode(
@@ -553,7 +553,7 @@ const ReadingProp = _i1.ObjectTypeDefinitionNode(
     _i1.NamedTypeNode(
       name: _i1.NameNode(value: 'DeviceProperty'),
       isNonNull: false,
-    ),
+    )
   ],
   fields: [
     _i1.FieldDefinitionNode(
@@ -667,7 +667,7 @@ const SettingProp = _i1.ObjectTypeDefinitionNode(
     _i1.NamedTypeNode(
       name: _i1.NameNode(value: 'DeviceProperty'),
       isNonNull: false,
-    ),
+    )
   ],
   fields: [
     _i1.FieldDefinitionNode(
@@ -783,23 +783,21 @@ const SettingProp = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const document = _i1.DocumentNode(
-  definitions: [
-    schema,
-    oneOf,
-    DevDBQueries,
-    DeviceInfo,
-    DeviceInfoReply,
-    DeviceInfoResult,
-    DeviceProperty,
-    DigControl,
-    DigControlEntry,
-    DigExtStatusEntry,
-    DigStatus,
-    DigStatusEntry,
-    ErrorReply,
-    KnobInfo,
-    ReadingProp,
-    SettingProp,
-  ],
-);
+const document = _i1.DocumentNode(definitions: [
+  schema,
+  oneOf,
+  DevDBQueries,
+  DeviceInfo,
+  DeviceInfoReply,
+  DeviceInfoResult,
+  DeviceProperty,
+  DigControl,
+  DigControlEntry,
+  DigExtStatusEntry,
+  DigStatus,
+  DigStatusEntry,
+  ErrorReply,
+  KnobInfo,
+  ReadingProp,
+  SettingProp,
+]);

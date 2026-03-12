@@ -13,9 +13,9 @@ abstract class GUpdatePlotConfigData
     implements Built<GUpdatePlotConfigData, GUpdatePlotConfigDataBuilder> {
   GUpdatePlotConfigData._();
 
-  factory GUpdatePlotConfigData([
-    void Function(GUpdatePlotConfigDataBuilder b) updates,
-  ]) = _$GUpdatePlotConfigData;
+  factory GUpdatePlotConfigData(
+          [void Function(GUpdatePlotConfigDataBuilder b) updates]) =
+      _$GUpdatePlotConfigData;
 
   static void _initializeBuilder(GUpdatePlotConfigDataBuilder b) =>
       b..G__typename = 'Mutation';
@@ -26,10 +26,14 @@ abstract class GUpdatePlotConfigData
   static Serializer<GUpdatePlotConfigData> get serializer =>
       _$gUpdatePlotConfigDataSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GUpdatePlotConfigData.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GUpdatePlotConfigData.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GUpdatePlotConfigData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GUpdatePlotConfigData.serializer, json);
+      _i1.serializers.deserializeWith(
+        GUpdatePlotConfigData.serializer,
+        json,
+      );
 }

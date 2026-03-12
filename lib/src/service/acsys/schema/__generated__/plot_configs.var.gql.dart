@@ -20,10 +20,14 @@ abstract class GPlotConfigsVars
   static Serializer<GPlotConfigsVars> get serializer =>
       _$gPlotConfigsVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GPlotConfigsVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GPlotConfigsVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GPlotConfigsVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GPlotConfigsVars.serializer, json);
+      _i1.serializers.deserializeWith(
+        GPlotConfigsVars.serializer,
+        json,
+      );
 }

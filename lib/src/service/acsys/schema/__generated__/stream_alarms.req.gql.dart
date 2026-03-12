@@ -26,13 +26,12 @@ abstract class GStreamAlarmsReq
   factory GStreamAlarmsReq([void Function(GStreamAlarmsReqBuilder b) updates]) =
       _$GStreamAlarmsReq;
 
-  static void _initializeBuilder(GStreamAlarmsReqBuilder b) =>
-      b
-        ..operation = _i4.Operation(
-          document: _i5.document,
-          operationName: 'StreamAlarms',
-        )
-        ..executeOnListen = true;
+  static void _initializeBuilder(GStreamAlarmsReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'StreamAlarms',
+    )
+    ..executeOnListen = true;
 
   @override
   _i3.GStreamAlarmsVars get vars;
@@ -40,10 +39,10 @@ abstract class GStreamAlarmsReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-    operation: operation,
-    variables: vars.toJson(),
-    context: context ?? const _i4.Context(),
-  );
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
 
   @override
   String? get requestId;
@@ -52,8 +51,7 @@ abstract class GStreamAlarmsReq
   _i2.GStreamAlarmsData? Function(
     _i2.GStreamAlarmsData?,
     _i2.GStreamAlarmsData?,
-  )?
-  get updateResult;
+  )? get updateResult;
   @override
   _i2.GStreamAlarmsData? get optimisticResponse;
   @override
@@ -79,16 +77,20 @@ abstract class GStreamAlarmsReq
 
   @override
   _i1.OperationRequest<_i2.GStreamAlarmsData, _i3.GStreamAlarmsVars>
-  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GStreamAlarmsReq> get serializer =>
       _$gStreamAlarmsReqSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GStreamAlarmsReq.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GStreamAlarmsReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GStreamAlarmsReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GStreamAlarmsReq.serializer, json);
+      _i6.serializers.deserializeWith(
+        GStreamAlarmsReq.serializer,
+        json,
+      );
 }

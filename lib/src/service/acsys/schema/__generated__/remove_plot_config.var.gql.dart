@@ -13,18 +13,22 @@ abstract class GDeletePlotConfigVars
     implements Built<GDeletePlotConfigVars, GDeletePlotConfigVarsBuilder> {
   GDeletePlotConfigVars._();
 
-  factory GDeletePlotConfigVars([
-    void Function(GDeletePlotConfigVarsBuilder b) updates,
-  ]) = _$GDeletePlotConfigVars;
+  factory GDeletePlotConfigVars(
+          [void Function(GDeletePlotConfigVarsBuilder b) updates]) =
+      _$GDeletePlotConfigVars;
 
   int get id;
   static Serializer<GDeletePlotConfigVars> get serializer =>
       _$gDeletePlotConfigVarsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GDeletePlotConfigVars.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GDeletePlotConfigVars.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GDeletePlotConfigVars? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GDeletePlotConfigVars.serializer, json);
+      _i1.serializers.deserializeWith(
+        GDeletePlotConfigVars.serializer,
+        json,
+      );
 }

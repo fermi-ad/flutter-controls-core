@@ -13,9 +13,9 @@ abstract class GStreamAlarmsData
     implements Built<GStreamAlarmsData, GStreamAlarmsDataBuilder> {
   GStreamAlarmsData._();
 
-  factory GStreamAlarmsData([
-    void Function(GStreamAlarmsDataBuilder b) updates,
-  ]) = _$GStreamAlarmsData;
+  factory GStreamAlarmsData(
+          [void Function(GStreamAlarmsDataBuilder b) updates]) =
+      _$GStreamAlarmsData;
 
   static void _initializeBuilder(GStreamAlarmsDataBuilder b) =>
       b..G__typename = 'Subscription';
@@ -26,12 +26,16 @@ abstract class GStreamAlarmsData
   static Serializer<GStreamAlarmsData> get serializer =>
       _$gStreamAlarmsDataSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GStreamAlarmsData.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStreamAlarmsData.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GStreamAlarmsData? fromJson(Map<String, dynamic> json) =>
-      _i1.serializers.deserializeWith(GStreamAlarmsData.serializer, json);
+      _i1.serializers.deserializeWith(
+        GStreamAlarmsData.serializer,
+        json,
+      );
 }
 
 abstract class GStreamAlarmsData_alarms
@@ -39,9 +43,9 @@ abstract class GStreamAlarmsData_alarms
         Built<GStreamAlarmsData_alarms, GStreamAlarmsData_alarmsBuilder> {
   GStreamAlarmsData_alarms._();
 
-  factory GStreamAlarmsData_alarms([
-    void Function(GStreamAlarmsData_alarmsBuilder b) updates,
-  ]) = _$GStreamAlarmsData_alarms;
+  factory GStreamAlarmsData_alarms(
+          [void Function(GStreamAlarmsData_alarmsBuilder b) updates]) =
+      _$GStreamAlarmsData_alarms;
 
   static void _initializeBuilder(GStreamAlarmsData_alarmsBuilder b) =>
       b..G__typename = 'Message';
@@ -53,11 +57,14 @@ abstract class GStreamAlarmsData_alarms
   static Serializer<GStreamAlarmsData_alarms> get serializer =>
       _$gStreamAlarmsDataAlarmsSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i1.serializers.serializeWith(GStreamAlarmsData_alarms.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i1.serializers.serializeWith(
+        GStreamAlarmsData_alarms.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
-  static GStreamAlarmsData_alarms? fromJson(Map<String, dynamic> json) => _i1
-      .serializers
-      .deserializeWith(GStreamAlarmsData_alarms.serializer, json);
+  static GStreamAlarmsData_alarms? fromJson(Map<String, dynamic> json) =>
+      _i1.serializers.deserializeWith(
+        GStreamAlarmsData_alarms.serializer,
+        json,
+      );
 }

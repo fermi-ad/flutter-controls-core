@@ -20,23 +20,20 @@ part 'remove_plot_config.req.gql.g.dart';
 abstract class GDeletePlotConfigReq
     implements
         Built<GDeletePlotConfigReq, GDeletePlotConfigReqBuilder>,
-        _i1.OperationRequest<
-          _i2.GDeletePlotConfigData,
-          _i3.GDeletePlotConfigVars
-        > {
+        _i1.OperationRequest<_i2.GDeletePlotConfigData,
+            _i3.GDeletePlotConfigVars> {
   GDeletePlotConfigReq._();
 
-  factory GDeletePlotConfigReq([
-    void Function(GDeletePlotConfigReqBuilder b) updates,
-  ]) = _$GDeletePlotConfigReq;
+  factory GDeletePlotConfigReq(
+          [void Function(GDeletePlotConfigReqBuilder b) updates]) =
+      _$GDeletePlotConfigReq;
 
-  static void _initializeBuilder(GDeletePlotConfigReqBuilder b) =>
-      b
-        ..operation = _i4.Operation(
-          document: _i5.document,
-          operationName: 'DeletePlotConfig',
-        )
-        ..executeOnListen = true;
+  static void _initializeBuilder(GDeletePlotConfigReqBuilder b) => b
+    ..operation = _i4.Operation(
+      document: _i5.document,
+      operationName: 'DeletePlotConfig',
+    )
+    ..executeOnListen = true;
 
   @override
   _i3.GDeletePlotConfigVars get vars;
@@ -44,10 +41,10 @@ abstract class GDeletePlotConfigReq
   _i4.Operation get operation;
   @override
   _i4.Request get execRequest => _i4.Request(
-    operation: operation,
-    variables: vars.toJson(),
-    context: context ?? const _i4.Context(),
-  );
+        operation: operation,
+        variables: vars.toJson(),
+        context: context ?? const _i4.Context(),
+      );
 
   @override
   String? get requestId;
@@ -56,8 +53,7 @@ abstract class GDeletePlotConfigReq
   _i2.GDeletePlotConfigData? Function(
     _i2.GDeletePlotConfigData?,
     _i2.GDeletePlotConfigData?,
-  )?
-  get updateResult;
+  )? get updateResult;
   @override
   _i2.GDeletePlotConfigData? get optimisticResponse;
   @override
@@ -84,16 +80,20 @@ abstract class GDeletePlotConfigReq
 
   @override
   _i1.OperationRequest<_i2.GDeletePlotConfigData, _i3.GDeletePlotConfigVars>
-  transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
-      this.rebuild((b) => b..operation = transform(operation));
+      transformOperation(_i4.Operation Function(_i4.Operation) transform) =>
+          this.rebuild((b) => b..operation = transform(operation));
 
   static Serializer<GDeletePlotConfigReq> get serializer =>
       _$gDeletePlotConfigReqSerializer;
 
-  Map<String, dynamic> toJson() =>
-      (_i6.serializers.serializeWith(GDeletePlotConfigReq.serializer, this)
-          as Map<String, dynamic>);
+  Map<String, dynamic> toJson() => (_i6.serializers.serializeWith(
+        GDeletePlotConfigReq.serializer,
+        this,
+      ) as Map<String, dynamic>);
 
   static GDeletePlotConfigReq? fromJson(Map<String, dynamic> json) =>
-      _i6.serializers.deserializeWith(GDeletePlotConfigReq.serializer, json);
+      _i6.serializers.deserializeWith(
+        GDeletePlotConfigReq.serializer,
+        json,
+      );
 }

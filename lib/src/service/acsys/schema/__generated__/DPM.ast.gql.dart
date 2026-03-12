@@ -66,6 +66,24 @@ const AcquisitionMode = _i1.EnumTypeDefinitionNode(
     ),
   ],
 );
+const ReadingMode = _i1.EnumTypeDefinitionNode(
+  name: _i1.NameNode(value: 'ReadingMode'),
+  directives: [],
+  values: [
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'ARRAY'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'SCALAR'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'ARRAY_AS_TIME_SERIES'),
+      directives: [],
+    ),
+  ],
+);
 const ChannelSettingSnapshot = _i1.ObjectTypeDefinitionNode(
   name: _i1.NameNode(value: 'ChannelSettingSnapshot'),
   directives: [],
@@ -239,14 +257,26 @@ const DataType = _i1.UnionTypeDefinitionNode(
       name: _i1.NameNode(value: 'StatusReply'),
       isNonNull: false,
     ),
-    _i1.NamedTypeNode(name: _i1.NameNode(value: 'Scalar'), isNonNull: false),
+    _i1.NamedTypeNode(
+      name: _i1.NameNode(value: 'Scalar'),
+      isNonNull: false,
+    ),
     _i1.NamedTypeNode(
       name: _i1.NameNode(value: 'ScalarArray'),
       isNonNull: false,
     ),
-    _i1.NamedTypeNode(name: _i1.NameNode(value: 'Raw'), isNonNull: false),
-    _i1.NamedTypeNode(name: _i1.NameNode(value: 'Text'), isNonNull: false),
-    _i1.NamedTypeNode(name: _i1.NameNode(value: 'TextArray'), isNonNull: false),
+    _i1.NamedTypeNode(
+      name: _i1.NameNode(value: 'Raw'),
+      isNonNull: false,
+    ),
+    _i1.NamedTypeNode(
+      name: _i1.NameNode(value: 'Text'),
+      isNonNull: false,
+    ),
+    _i1.NamedTypeNode(
+      name: _i1.NameNode(value: 'TextArray'),
+      isNonNull: false,
+    ),
     _i1.NamedTypeNode(
       name: _i1.NameNode(value: 'TimeSeries'),
       isNonNull: false,
@@ -383,7 +413,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        ),
+        )
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'Int'),
@@ -402,7 +432,7 @@ const Mutation = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        ),
+        )
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'StatusReply'),
@@ -682,6 +712,24 @@ const PlotConfigurationSnapshot = _i1.ObjectTypeDefinitionNode(
         isNonNull: false,
       ),
     ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'waveformDuration'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+    ),
+    _i1.FieldDefinitionNode(
+      name: _i1.NameNode(value: 'readingMode'),
+      directives: [],
+      args: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'ReadingMode'),
+        isNonNull: false,
+      ),
+    ),
   ],
 );
 const PlotConfigurationSnapshotIn = _i1.InputObjectTypeDefinitionNode(
@@ -871,6 +919,24 @@ const PlotConfigurationSnapshotIn = _i1.InputObjectTypeDefinitionNode(
       ),
       defaultValue: null,
     ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'waveformDuration'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
+    _i1.InputValueDefinitionNode(
+      name: _i1.NameNode(value: 'readingMode'),
+      directives: [],
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'ReadingMode'),
+        isNonNull: false,
+      ),
+      defaultValue: null,
+    ),
   ],
 );
 const PlotReplyData = _i1.ObjectTypeDefinitionNode(
@@ -948,7 +1014,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
             isNonNull: true,
           ),
           defaultValue: null,
-        ),
+        )
       ],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
@@ -970,7 +1036,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
             isNonNull: false,
           ),
           defaultValue: null,
-        ),
+        )
       ],
       type: _i1.ListTypeNode(
         type: _i1.NamedTypeNode(
@@ -992,7 +1058,7 @@ const Query = _i1.ObjectTypeDefinitionNode(
             isNonNull: false,
           ),
           defaultValue: null,
-        ),
+        )
       ],
       type: _i1.NamedTypeNode(
         name: _i1.NameNode(value: 'PlotConfigurationSnapshot'),
@@ -1029,7 +1095,7 @@ const Raw = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const Scalar = _i1.ObjectTypeDefinitionNode(
@@ -1045,7 +1111,7 @@ const Scalar = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'Float'),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const ScalarArray = _i1.ObjectTypeDefinitionNode(
@@ -1064,7 +1130,7 @@ const ScalarArray = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const StatusReply = _i1.ObjectTypeDefinitionNode(
@@ -1080,7 +1146,7 @@ const StatusReply = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'Int'),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const TimeSeriesEntry = _i1.ObjectTypeDefinitionNode(
@@ -1148,7 +1214,7 @@ const TimeSeries = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const StructData = _i1.ObjectTypeDefinitionNode(
@@ -1366,7 +1432,7 @@ const Text = _i1.ObjectTypeDefinitionNode(
         name: _i1.NameNode(value: 'String'),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const TextArray = _i1.ObjectTypeDefinitionNode(
@@ -1385,7 +1451,7 @@ const TextArray = _i1.ObjectTypeDefinitionNode(
         ),
         isNonNull: true,
       ),
-    ),
+    )
   ],
 );
 const Message = _i1.ObjectTypeDefinitionNode(
@@ -1413,35 +1479,34 @@ const Message = _i1.ObjectTypeDefinitionNode(
     ),
   ],
 );
-const document = _i1.DocumentNode(
-  definitions: [
-    schema,
-    oneOf,
-    Timestamp,
-    AcquisitionMode,
-    ChannelSettingSnapshot,
-    ChannelSettingSnapshotIn,
-    DataInfo,
-    DataReply,
-    DataType,
-    DevValue,
-    Mutation,
-    PlotChannelData,
-    PlotConfigurationSnapshot,
-    PlotConfigurationSnapshotIn,
-    PlotReplyData,
-    Query,
-    Raw,
-    Scalar,
-    ScalarArray,
-    StatusReply,
-    TimeSeriesEntry,
-    TimeSeriesEntryIn,
-    TimeSeries,
-    StructData,
-    Subscription,
-    Text,
-    TextArray,
-    Message,
-  ],
-);
+const document = _i1.DocumentNode(definitions: [
+  schema,
+  oneOf,
+  Timestamp,
+  AcquisitionMode,
+  ReadingMode,
+  ChannelSettingSnapshot,
+  ChannelSettingSnapshotIn,
+  DataInfo,
+  DataReply,
+  DataType,
+  DevValue,
+  Mutation,
+  PlotChannelData,
+  PlotConfigurationSnapshot,
+  PlotConfigurationSnapshotIn,
+  PlotReplyData,
+  Query,
+  Raw,
+  Scalar,
+  ScalarArray,
+  StatusReply,
+  TimeSeriesEntry,
+  TimeSeriesEntryIn,
+  TimeSeries,
+  StructData,
+  Subscription,
+  Text,
+  TextArray,
+  Message,
+]);
