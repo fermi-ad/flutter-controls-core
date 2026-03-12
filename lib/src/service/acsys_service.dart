@@ -566,23 +566,23 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     // JSON will be ignored.
 
     final channelsRaw = json['channels'];
-    final channels = <String, ChannelSettingSnapshot>{};
-
-    if (channelsRaw is Map) {
-      for (final entry in channelsRaw.entries) {
-        if (entry.value is Map<String, dynamic>) {
-          try {
-            channels[entry.key] = ChannelSettingSnapshot.fromJson(entry.value);
-          } catch (e) {
-            dev.log(
-              "Couldn't parse plot channel setting for '${entry.key}'.",
-              name: "acsys_service",
-              error: e,
-            );
-          }
-        }
-      }
-    }
+    final channels =
+        channelsRaw is Map
+            ? Map<String, ChannelSettingSnapshot>.fromEntries(
+              channelsRaw.entries
+                  .where(
+                    (e) => e.key is String && e.value is Map<String, dynamic>,
+                  )
+                  .map(
+                    (e) => MapEntry(
+                      e.key as String,
+                      ChannelSettingSnapshot.fromJson(
+                        e.value as Map<String, dynamic>,
+                      ),
+                    ),
+                  ),
+            )
+            : <String, ChannelSettingSnapshot>{};
 
     // By reading the values from the map into local variables, we can leverage
     // Dart's type promotion for cleaner and safer type checking.
