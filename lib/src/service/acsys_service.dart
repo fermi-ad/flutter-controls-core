@@ -454,21 +454,19 @@ final class ChannelSettingSnapshot {
   });
 
   factory ChannelSettingSnapshot.fromJson(Map<String, dynamic> json) {
-    if (json case {
-      "lineColor": int? lineColor,
-      "markerIndex": int? markerIndex,
-      "yMin": double? yMin,
-      "yMax": double? yMax,
-    }) {
-      return ChannelSettingSnapshot(
-        lineColor: lineColor != null ? Color(lineColor) : null,
-        markerIndex: markerIndex,
-        yMin: yMin,
-        yMax: yMax,
-      );
-    } else {
-      throw ACSysConfigurationException("channel setting had incorrect format");
-    }
+    final lineColorVal = json['lineColor'];
+    final markerIndexVal = json['markerIndex'];
+    final yMinVal = json['yMin'];
+    final yMaxVal = json['yMax'];
+
+    // This is intentionally robust. If fields are missing or have the wrong
+    // type, they will be set to null. Extra fields are ignored.
+    return ChannelSettingSnapshot(
+      lineColor: lineColorVal is int ? Color(lineColorVal) : null,
+      markerIndex: markerIndexVal is int ? markerIndexVal : null,
+      yMin: yMinVal is num ? yMinVal.toDouble() : null,
+      yMax: yMaxVal is num ? yMaxVal.toDouble() : null,
+    );
   }
 
   Map<String, dynamic> toJson() => {
@@ -563,53 +561,72 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     String name,
     Map<String, dynamic> json,
   ) {
-    if (json case {
-      "channels": Map<String, Map<String, dynamic>> channels,
-      "xMin": double? xMin,
-      "xMax": double? xMax,
-      "timeDelta": double? timeDelta,
-      "startTime": double? startTime,
-      "endTime": double? endTime,
-      "isShowLabels": bool isShowLabels,
-      "isScalar": bool isScalar,
-      "isOneShot": bool isOneShot,
-      "isPersistent": bool isPersistent,
-      "isBlink": bool isBlink,
-      "updateDelay": int? updateDelay,
-      "nAcquisitions": int? nAcquisitions,
-      "tclkEvent": int? tclkEvent,
-      "sampleOnEvent": int? sampleOnEvent,
-      "xAxis": String? xAxis,
-      "dataLimit": int dataLimit,
-      "acquisitionMode": String? acquisitionMode,
-    }) {
-      return PlotConfigurationSnapshot(
-        configurationId: id,
-        configurationName: name,
-        xMin: xMin,
-        xMax: xMax,
-        timeDelta: timeDelta,
-        startTime: startTime,
-        endTime: endTime,
-        isShowLabels: isShowLabels,
-        isScalar: isScalar,
-        isOneShot: isOneShot,
-        isPersistent: isPersistent,
-        isBlink: isBlink,
-        updateDelay: updateDelay,
-        nAcquisitions: nAcquisitions,
-        tclkEvent: tclkEvent,
-        sampleOnEvent: sampleOnEvent,
-        xAxis: xAxis,
-        dataLimit: dataLimit,
-        acquisitionMode: _amFromString(acquisitionMode),
-        channels: channels.map(
-          (key, value) => MapEntry(key, ChannelSettingSnapshot.fromJson(value)),
-        ),
-      );
-    } else {
-      throw ACSysConfigurationException("plot listing had incorrect format");
+    // This is intentionally robust. If fields are missing or have the wrong
+    // type, they will be set to null or a default value. Extra fields in the
+    // JSON will be ignored.
+
+    final channelsRaw = json['channels'];
+    final channels = <String, ChannelSettingSnapshot>{};
+
+    if (channelsRaw is Map) {
+      for (final entry in channelsRaw.entries) {
+        if (entry.value is Map<String, dynamic>) {
+          try {
+            channels[entry.key] = ChannelSettingSnapshot.fromJson(entry.value);
+          } catch (e) {
+            dev.log(
+              "Couldn't parse plot channel setting for '${entry.key}'.",
+              name: "acsys_service",
+              error: e,
+            );
+          }
+        }
+      }
     }
+
+    // By reading the values from the map into local variables, we can leverage
+    // Dart's type promotion for cleaner and safer type checking.
+    final xMin = json['xMin'];
+    final xMax = json['xMax'];
+    final timeDelta = json['timeDelta'];
+    final startTime = json['startTime'];
+    final endTime = json['endTime'];
+    final isShowLabels = json['isShowLabels'];
+    final isScalar = json['isScalar'];
+    final isOneShot = json['isOneShot'];
+    final isPersistent = json['isPersistent'];
+    final isBlink = json['isBlink'];
+    final updateDelay = json['updateDelay'];
+    final nAcquisitions = json['nAcquisitions'];
+    final tclkEvent = json['tclkEvent'];
+    final sampleOnEvent = json['sampleOnEvent'];
+    final acquisitionMode = json['acquisitionMode'];
+    final xAxis = json['xAxis'];
+    final dataLimit = json['dataLimit'];
+
+    return PlotConfigurationSnapshot(
+      configurationId: id,
+      configurationName: name,
+      channels: channels,
+      xMin: xMin is num ? xMin.toDouble() : null,
+      xMax: xMax is num ? xMax.toDouble() : null,
+      timeDelta: timeDelta is num ? timeDelta.toDouble() : null,
+      startTime: startTime is num ? startTime.toDouble() : null,
+      endTime: endTime is num ? endTime.toDouble() : null,
+      isShowLabels: isShowLabels is bool ? isShowLabels : true,
+      isScalar: isScalar is bool ? isScalar : true,
+      isOneShot: isOneShot is bool ? isOneShot : false,
+      isPersistent: isPersistent is bool ? isPersistent : false,
+      isBlink: isBlink is bool ? isBlink : false,
+      updateDelay: updateDelay is int ? updateDelay : null,
+      nAcquisitions: nAcquisitions is int ? nAcquisitions : null,
+      tclkEvent: tclkEvent is int ? tclkEvent : null,
+      sampleOnEvent: sampleOnEvent is int ? sampleOnEvent : null,
+      acquisitionMode:
+          acquisitionMode is String ? _amFromString(acquisitionMode) : null,
+      xAxis: xAxis is String ? xAxis : null,
+      dataLimit: dataLimit is int ? dataLimit : 32768,
+    );
   }
 
   Map<String, dynamic> toJson() => {
