@@ -6,9 +6,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'fermi_theme.dart';
+import 'package:bison_design_system/bison_design_system.dart';
 
-// Our Fermi theme generated with -
-// https://m3.material.io/theme-builder#/custom
+// Our Fermi theme generated with - https://m3.material.io/theme-builder#/custom
 
 final class _GlobalAppTheme {
   _GlobalAppTheme._();
@@ -327,8 +327,8 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
 
     return MaterialApp(
       title: title,
-      theme: _GlobalAppTheme.lightTheme,
-      darkTheme: _GlobalAppTheme.darkTheme,
+      theme: BisonThemeData.light(),
+      darkTheme: BisonThemeData.dark(),
       themeMode: themeMode,
       home: AuthService(
         child: null is T
@@ -353,8 +353,8 @@ final class _RouterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) => MaterialApp.router(
     title: title,
-    theme: _GlobalAppTheme.lightTheme,
-    darkTheme: _GlobalAppTheme.darkTheme,
+    theme: BisonThemeData.light(),
+    darkTheme: BisonThemeData.dark(),
     routerConfig: router,
   );
 }
