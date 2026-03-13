@@ -17,6 +17,7 @@ export 'src/service/acsys_service.dart';
 export 'src/otel_tracing.dart' show AppTracer, appTracer, Span;
 export 'src/widgets/param_panel.dart' show ParameterPanel;
 export 'src/widgets/param_row.dart' show ParameterPanelRow;
+export 'package:bison_design_system/bison_design_system.dart';
 
 /// Entry point for Fermilab applications
 ///
