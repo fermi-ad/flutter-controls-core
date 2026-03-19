@@ -1464,7 +1464,7 @@ final class ACSysService implements ACSysServiceAPI {
             ),
           ),
     ).then((value) {
-      switch (value) {
+      switch (value.toList()) {
         case []:
           return null;
         case [PlotConfigurationSnapshot e]:
