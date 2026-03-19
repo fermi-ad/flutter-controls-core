@@ -395,6 +395,20 @@ AcquisitionMode _amFromString(String? val) => switch (val) {
 
 enum ReadingMode { array, scalar, arrayAsTimeSeries }
 
+extension on ReadingMode {
+  String stringize() => switch (this) {
+    ReadingMode.array => "array",
+    ReadingMode.scalar => "scalar",
+    ReadingMode.arrayAsTimeSeries => "array_as_time_series",
+  };
+}
+
+ReadingMode _rmFromString(String? val) => switch (val) {
+  "array_as_time_series" => ReadingMode.arrayAsTimeSeries,
+  "scalar" => ReadingMode.scalar,
+  _ => ReadingMode.array,
+};
+
 final class PlotReply {
   final String plotId;
   final double requestTime;
@@ -607,6 +621,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     final tclkEvent = json['tclkEvent'];
     final sampleOnEvent = json['sampleOnEvent'];
     final acquisitionMode = json['acquisitionMode'];
+    final readingMode = json['readingMode'];
+    final waveformDuration = json['waveformDuration'];
     final xAxis = json['xAxis'];
     final dataLimit = json['dataLimit'];
 
@@ -630,6 +646,9 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
       sampleOnEvent: sampleOnEvent is int ? sampleOnEvent : null,
       acquisitionMode:
           acquisitionMode is String ? _amFromString(acquisitionMode) : null,
+      readingMode: readingMode is String ? _rmFromString(readingMode) : null,
+      waveformDuration:
+          waveformDuration is num ? waveformDuration.toDouble() : null,
       xAxis: xAxis is String ? xAxis : null,
       dataLimit: dataLimit is int ? dataLimit : 32768,
     );
@@ -654,6 +673,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     "xAxis": xAxis,
     "dataLimit": dataLimit,
     "acquisitionMode": acquisitionMode?.stringize(),
+    "readingMode": readingMode?.stringize(),
+    "waveformDuration": waveformDuration,
   };
 }
 
