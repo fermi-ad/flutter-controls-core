@@ -26,6 +26,9 @@ abstract class GStartPlotVars
   int? get triggerEvent;
   double? get startTime;
   double? get endTime;
+  int? get sampleOnEvent;
+  String? get chXAxis;
+  double? get waveformDuration;
   static Serializer<GStartPlotVars> get serializer =>
       _$gStartPlotVarsSerializer;
 

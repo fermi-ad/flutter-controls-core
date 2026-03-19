@@ -393,6 +393,8 @@ AcquisitionMode _amFromString(String? val) => switch (val) {
   _ => AcquisitionMode.oneShot,
 };
 
+enum ReadingMode { array, scalar, arrayAsTimeSeries }
+
 final class PlotReply {
   final String plotId;
   final double requestTime;
@@ -530,8 +532,10 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
   int? tclkEvent;
   int? sampleOnEvent;
   AcquisitionMode? acquisitionMode;
+  ReadingMode? readingMode;
   String? xAxis;
   int dataLimit;
+  double? waveformDuration;
 
   PlotConfigurationSnapshot({
     super.configurationId,
@@ -554,6 +558,8 @@ final class PlotConfigurationSnapshot extends PlotConfigurationListing {
     this.acquisitionMode,
     this.xAxis,
     required this.dataLimit,
+    this.readingMode,
+    this.waveformDuration,
   });
 
   factory PlotConfigurationSnapshot.fromJson(
@@ -711,6 +717,7 @@ abstract interface class ACSysServiceAPI {
     int? triggerEvent,
     int? sampleOnEvent,
     String? chXAxis,
+    double? waveformDuration,
   });
 
   /// Saves the plot configuration to the database.
@@ -1360,6 +1367,7 @@ final class ACSysService implements ACSysServiceAPI {
     int? nAcquisitions,
     int? triggerEvent,
     int? sampleOnEvent,
+    double? waveformDuration,
     String? chXAxis,
   }) {
     final req = GStartPlotReq(
@@ -1372,6 +1380,7 @@ final class ACSysService implements ACSysServiceAPI {
             ..vars.windowSize = windowSize
             ..vars.nAcquisitions = nAcquisitions
             ..vars.updateDelay = updateRate
+            ..vars.waveformDuration = waveformDuration
             ..vars.triggerEvent = triggerEvent
             ..vars.startTime = startTime
             ..vars.endTime = endTime,
