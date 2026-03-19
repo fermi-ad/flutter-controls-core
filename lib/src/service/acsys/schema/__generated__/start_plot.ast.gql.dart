@@ -92,6 +92,33 @@ const StartPlot = _i1.OperationDefinitionNode(
       defaultValue: _i1.DefaultValueNode(value: null),
       directives: [],
     ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'sampleOnEvent')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'chXAxis')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'waveformDuration')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Float'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
   ],
   directives: [],
   selectionSet: _i1.SelectionSetNode(
@@ -135,6 +162,20 @@ const StartPlot = _i1.OperationDefinitionNode(
           _i1.ArgumentNode(
             name: _i1.NameNode(value: 'endTime'),
             value: _i1.VariableNode(name: _i1.NameNode(value: 'endTime')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'sampleOnEvent'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'sampleOnEvent')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'chXAxis'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'chXAxis')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'waveformDuration'),
+            value: _i1.VariableNode(
+              name: _i1.NameNode(value: 'waveformDuration'),
+            ),
           ),
         ],
         directives: [],

@@ -27,10 +27,7 @@ class _$GSetUsersConfigVarsSerializer
   }) {
     final result = <Object?>[
       'cfg',
-      serializers.serialize(
-        object.cfg,
-        specifiedType: const FullType(_i1.GPlotConfigurationSnapshotIn),
-      ),
+      serializers.serialize(object.cfg, specifiedType: const FullType(String)),
     ];
 
     return result;
@@ -51,15 +48,12 @@ class _$GSetUsersConfigVarsSerializer
       final Object? value = iterator.current;
       switch (key) {
         case 'cfg':
-          result.cfg.replace(
-            serializers.deserialize(
-                  value,
-                  specifiedType: const FullType(
-                    _i1.GPlotConfigurationSnapshotIn,
-                  ),
-                )!
-                as _i1.GPlotConfigurationSnapshotIn,
-          );
+          result.cfg =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
           break;
       }
     }
@@ -70,7 +64,7 @@ class _$GSetUsersConfigVarsSerializer
 
 class _$GSetUsersConfigVars extends GSetUsersConfigVars {
   @override
-  final _i1.GPlotConfigurationSnapshotIn cfg;
+  final String cfg;
 
   factory _$GSetUsersConfigVars([
     void Function(GSetUsersConfigVarsBuilder)? updates,
@@ -111,17 +105,16 @@ class GSetUsersConfigVarsBuilder
     implements Builder<GSetUsersConfigVars, GSetUsersConfigVarsBuilder> {
   _$GSetUsersConfigVars? _$v;
 
-  _i1.GPlotConfigurationSnapshotInBuilder? _cfg;
-  _i1.GPlotConfigurationSnapshotInBuilder get cfg =>
-      _$this._cfg ??= _i1.GPlotConfigurationSnapshotInBuilder();
-  set cfg(_i1.GPlotConfigurationSnapshotInBuilder? cfg) => _$this._cfg = cfg;
+  String? _cfg;
+  String? get cfg => _$this._cfg;
+  set cfg(String? cfg) => _$this._cfg = cfg;
 
   GSetUsersConfigVarsBuilder();
 
   GSetUsersConfigVarsBuilder get _$this {
     final $v = _$v;
     if ($v != null) {
-      _cfg = $v.cfg.toBuilder();
+      _cfg = $v.cfg;
       _$v = null;
     }
     return this;
@@ -141,23 +134,15 @@ class GSetUsersConfigVarsBuilder
   GSetUsersConfigVars build() => _build();
 
   _$GSetUsersConfigVars _build() {
-    _$GSetUsersConfigVars _$result;
-    try {
-      _$result = _$v ?? _$GSetUsersConfigVars._(cfg: cfg.build());
-    } catch (_) {
-      late String _$failedField;
-      try {
-        _$failedField = 'cfg';
-        cfg.build();
-      } catch (e) {
-        throw BuiltValueNestedFieldError(
-          r'GSetUsersConfigVars',
-          _$failedField,
-          e.toString(),
+    final _$result =
+        _$v ??
+        _$GSetUsersConfigVars._(
+          cfg: BuiltValueNullFieldError.checkNotNull(
+            cfg,
+            r'GSetUsersConfigVars',
+            'cfg',
+          ),
         );
-      }
-      rethrow;
-    }
     replace(_$result);
     return _$result;
   }

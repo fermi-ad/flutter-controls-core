@@ -26,7 +26,7 @@ const DeletePlotConfig = _i1.OperationDefinitionNode(
         alias: null,
         arguments: [
           _i1.ArgumentNode(
-            name: _i1.NameNode(value: 'configurationId'),
+            name: _i1.NameNode(value: 'id'),
             value: _i1.VariableNode(name: _i1.NameNode(value: 'id')),
           ),
         ],

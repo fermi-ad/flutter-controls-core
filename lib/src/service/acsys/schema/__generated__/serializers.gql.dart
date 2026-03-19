@@ -6,17 +6,9 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
-    show
-        GAcquisitionMode,
-        GChannelSettingSnapshotIn,
-        GDevValue,
-        GPlotConfigurationSnapshotIn,
-        GTimeSeriesEntryIn;
+    show GDevValue, GTimeSeriesEntryIn;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart'
-    show
-        GPlotConfigsData,
-        GPlotConfigsData_plotConfiguration,
-        GPlotConfigsData_plotConfiguration_channels;
+    show GPlotConfigsData, GPlotConfigsData_plotConfiguration;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.req.gql.dart'
     show GPlotConfigsReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.var.gql.dart'
@@ -104,10 +96,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/upd
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/update_plot_config.var.gql.dart'
     show GUpdatePlotConfigVars;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.data.gql.dart'
-    show
-        GUsersLastConfigData,
-        GUsersLastConfigData_usersLastConfiguration,
-        GUsersLastConfigData_usersLastConfiguration_channels;
+    show GUsersLastConfigData;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.req.gql.dart'
     show GUsersLastConfigReq;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/users_last_config.var.gql.dart'
@@ -128,12 +117,10 @@ final SerializersBuilder _serializersBuilder =
       ..add(GStreamDataData_acceleratorData_data_result.serializer)
       ..addPlugin(StandardJsonPlugin());
 @SerializersFor([
-  GAcquisitionMode,
   GAlarmsSnapshotData,
   GAlarmsSnapshotData_alarmsSnapshot,
   GAlarmsSnapshotReq,
   GAlarmsSnapshotVars,
-  GChannelSettingSnapshotIn,
   GDeletePlotConfigData,
   GDeletePlotConfigData_deletePlotConfiguration,
   GDeletePlotConfigReq,
@@ -141,10 +128,8 @@ final SerializersBuilder _serializersBuilder =
   GDevValue,
   GPlotConfigsData,
   GPlotConfigsData_plotConfiguration,
-  GPlotConfigsData_plotConfiguration_channels,
   GPlotConfigsReq,
   GPlotConfigsVars,
-  GPlotConfigurationSnapshotIn,
   GReadDevicesData,
   GReadDevicesData_acceleratorData,
   GReadDevicesData_acceleratorData_data,
@@ -193,8 +178,6 @@ final SerializersBuilder _serializersBuilder =
   GUpdatePlotConfigReq,
   GUpdatePlotConfigVars,
   GUsersLastConfigData,
-  GUsersLastConfigData_usersLastConfiguration,
-  GUsersLastConfigData_usersLastConfiguration_channels,
   GUsersLastConfigReq,
   GUsersLastConfigVars,
 ])

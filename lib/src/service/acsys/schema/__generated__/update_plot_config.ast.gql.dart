@@ -9,9 +9,27 @@ const UpdatePlotConfig = _i1.OperationDefinitionNode(
   name: _i1.NameNode(value: 'UpdatePlotConfig'),
   variableDefinitions: [
     _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'id')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'Int'),
+        isNonNull: false,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
+      variable: _i1.VariableNode(name: _i1.NameNode(value: 'name')),
+      type: _i1.NamedTypeNode(
+        name: _i1.NameNode(value: 'String'),
+        isNonNull: true,
+      ),
+      defaultValue: _i1.DefaultValueNode(value: null),
+      directives: [],
+    ),
+    _i1.VariableDefinitionNode(
       variable: _i1.VariableNode(name: _i1.NameNode(value: 'cfg')),
       type: _i1.NamedTypeNode(
-        name: _i1.NameNode(value: 'PlotConfigurationSnapshotIn'),
+        name: _i1.NameNode(value: 'String'),
         isNonNull: true,
       ),
       defaultValue: _i1.DefaultValueNode(value: null),
@@ -25,6 +43,14 @@ const UpdatePlotConfig = _i1.OperationDefinitionNode(
         name: _i1.NameNode(value: 'updatePlotConfiguration'),
         alias: null,
         arguments: [
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'id'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'id')),
+          ),
+          _i1.ArgumentNode(
+            name: _i1.NameNode(value: 'name'),
+            value: _i1.VariableNode(name: _i1.NameNode(value: 'name')),
+          ),
           _i1.ArgumentNode(
             name: _i1.NameNode(value: 'config'),
             value: _i1.VariableNode(name: _i1.NameNode(value: 'cfg')),
