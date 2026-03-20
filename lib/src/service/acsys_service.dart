@@ -1316,26 +1316,19 @@ final class ACSysService implements ACSysServiceAPI {
   Future<SettingStatus> submit({
     required String forDRF,
     required DeviceValue newSetting,
-  }) {
-    // Define a nested function which converts the GraphQL reply into a
-    // SettingStatus.
-
-    xlat(e) => SettingStatus(
-      facilityCode: e.setDevice.status & 255,
-      errorCode: e.setDevice.status ~/ 256,
-    );
-
-    // Build the request.
-
-    final req = GSetDeviceReq(
+  }) => _queryAcsys(
+    GSetDeviceReq(
       (b) =>
           b
             ..vars.device = forDRF
             ..vars.value = newSetting._toGDevValue(),
-    );
-
-    return _queryAcsys(req, xlat: xlat);
-  }
+    ),
+    xlat:
+        (e) => SettingStatus(
+          facilityCode: e.setDevice.status & 255,
+          errorCode: e.setDevice.status ~/ 256,
+        ),
+  );
 
   @override
   Future<SettingStatus> sendCommand({
@@ -1386,97 +1379,69 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<List<PlotConfigurationListing>> listPlotConfigurations() {
-    final req = GPlotConfigsReq(
-      (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
-    );
-
-    return _queryAcsys(
-      req,
-      xlat:
-          (GPlotConfigsData data) =>
-              data.plotConfiguration
-                  .map(
-                    (e) => PlotConfigurationListing(
-                      configurationId: PlotConfigId._fromInt(e.configId),
-                      configurationName: e.configName,
-                    ),
-                  )
-                  .toList(),
-    );
-  }
+  Future<List<PlotConfigurationListing>> listPlotConfigurations() =>
+      _queryAcsys(
+        GPlotConfigsReq((b) => b..fetchPolicy = FetchPolicy.NetworkOnly),
+        xlat:
+            (GPlotConfigsData data) =>
+                data.plotConfiguration
+                    .map(
+                      (e) => PlotConfigurationListing(
+                        configurationId: PlotConfigId._fromInt(e.configId),
+                        configurationName: e.configName,
+                      ),
+                    )
+                    .toList(),
+      );
 
   @override
   Future<void> removePlotConfiguration({
     required PlotConfigId configurationId,
-  }) {
-    final req = GDeletePlotConfigReq(
-      (b) => b..vars.id = configurationId._value,
-    );
-
-    return _queryAcsys(req, xlat: (GDeletePlotConfigData data) => ());
-  }
+  }) => _queryAcsys(
+    GDeletePlotConfigReq((b) => b..vars.id = configurationId._value),
+    xlat: (GDeletePlotConfigData data) => (),
+  );
 
   @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
-    final req = GUsersLastConfigReq();
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() =>
+      _queryAcsys(
+        GUsersLastConfigReq(),
+        xlat: (GUsersLastConfigData data) {
+          final e = data.usersLastConfiguration;
 
-    return _queryAcsys(
-      req,
-      xlat: (GUsersLastConfigData data) {
-        final e = data.usersLastConfiguration;
-
-        return e == null
-            ? null
-            : PlotConfigurationSnapshot.fromJson(
-              PlotConfigId._fromInt(0),
-              "n/a",
-              jsonDecode(e),
-            );
-      },
-    );
-  }
+          return e == null
+              ? null
+              : PlotConfigurationSnapshot.fromJson(
+                PlotConfigId._fromInt(0),
+                "n/a",
+                jsonDecode(e),
+              );
+        },
+      );
 
   @override
   Future<void> saveUserConfiguration({
     required PlotConfigurationSnapshot snapshot,
-  }) {
-    final req = GSetUsersConfigReq(
-      (b) => b..vars.cfg = jsonEncode(snapshot.toJson()),
-    );
-
-    return _queryAcsys(req, xlat: (GSetUsersConfigData data) => ());
-  }
+  }) => _queryAcsys(
+    GSetUsersConfigReq((b) => b..vars.cfg = jsonEncode(snapshot.toJson())),
+    xlat: (GSetUsersConfigData data) => (),
+  );
 
   @override
   Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
     required PlotConfigId configurationId,
-  }) {
-    final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
-
-    return _queryAcsys(
-      req,
-      xlat:
-          (GPlotConfigsData data) => data.plotConfiguration.map(
-            (e) => PlotConfigurationSnapshot.fromJson(
-              PlotConfigId._fromInt(e.configId),
-              e.configName,
-              jsonDecode(e.config),
+  }) async =>
+      (await _queryAcsys(
+        GPlotConfigsReq((b) => b..vars.id = configurationId._value),
+        xlat:
+            (GPlotConfigsData data) => data.plotConfiguration.map(
+              (e) => PlotConfigurationSnapshot.fromJson(
+                PlotConfigId._fromInt(e.configId),
+                e.configName,
+                jsonDecode(e.config),
+              ),
             ),
-          ),
-    ).then((value) {
-      switch (value.toList()) {
-        case []:
-          return null;
-        case [PlotConfigurationSnapshot e]:
-          return e;
-        default:
-          throw const ACSysConfigurationException(
-            "multiple configurations found",
-          );
-      }
-    });
-  }
+      )).firstOrNull;
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({
