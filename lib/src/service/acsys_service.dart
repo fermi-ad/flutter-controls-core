@@ -1334,7 +1334,7 @@ final class ACSysService implements ACSysServiceAPI {
   Future<SettingStatus> sendCommand({
     required String toDRF,
     required String value,
-  }) => submit(forDRF: toDRF, newSetting: DevText(value));
+  }) => submit(forDRF: toDRF, newSetting: value.toDevVal());
 
   @override
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) =>
@@ -1468,11 +1468,10 @@ final class ACSysService implements ACSysServiceAPI {
 
 extension on GStartPlotData_startPlot_data_channelData_result {
   DeviceValue toDevValue() => switch (this) {
-    GStartPlotData_startPlot_data_channelData_result__asScalar val => DevScalar(
-      val.scalarValue,
-    ),
+    GStartPlotData_startPlot_data_channelData_result__asScalar val =>
+      val.scalarValue.toDevVal(),
     GStartPlotData_startPlot_data_channelData_result__asScalarArray val =>
-      DevScalarArray(val.scalarArrayValue.toList()),
+      val.scalarArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
 }
@@ -1480,17 +1479,15 @@ extension on GStartPlotData_startPlot_data_channelData_result {
 extension on GStreamDataData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
     GStreamDataData_acceleratorData_data_result__asStatusReply val =>
-      DevStatusCode(Status.fromInt(val.status)),
-    GStreamDataData_acceleratorData_data_result__asScalar val => DevScalar(
-      val.scalarValue,
-    ),
+      Status.fromInt(val.status).toDevVal(),
+    GStreamDataData_acceleratorData_data_result__asScalar val =>
+      val.scalarValue.toDevVal(),
     GStreamDataData_acceleratorData_data_result__asScalarArray val =>
-      DevScalarArray(val.scalarArrayValue.toList()),
-    GStreamDataData_acceleratorData_data_result__asText val => DevText(
-      val.textValue,
-    ),
+      val.scalarArrayValue.toList().toDevVal(),
+    GStreamDataData_acceleratorData_data_result__asText val =>
+      val.textValue.toDevVal(),
     GStreamDataData_acceleratorData_data_result__asTextArray val =>
-      DevTextArray(val.textArrayValue.toList()),
+      val.textArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
 }
@@ -1498,17 +1495,15 @@ extension on GStreamDataData_acceleratorData_data_result {
 extension on GReadDevicesData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
     GReadDevicesData_acceleratorData_data_result__asStatusReply val =>
-      DevStatusCode(Status.fromInt(val.status)),
-    GReadDevicesData_acceleratorData_data_result__asScalar val => DevScalar(
-      val.scalarValue,
-    ),
+      Status.fromInt(val.status).toDevVal(),
+    GReadDevicesData_acceleratorData_data_result__asScalar val =>
+      val.scalarValue.toDevVal(),
     GReadDevicesData_acceleratorData_data_result__asScalarArray val =>
-      DevScalarArray(val.scalarArrayValue.toList()),
-    GReadDevicesData_acceleratorData_data_result__asText val => DevText(
-      val.textValue,
-    ),
+      val.scalarArrayValue.toList().toDevVal(),
+    GReadDevicesData_acceleratorData_data_result__asText val =>
+      val.textValue.toDevVal(),
     GReadDevicesData_acceleratorData_data_result__asTextArray val =>
-      DevTextArray(val.textArrayValue.toList()),
+      val.textArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
 }

@@ -187,6 +187,10 @@ extension ToDeviceValue on DeviceValue {
   DeviceValue toDevVal() => this;
 }
 
+extension StatusToDeviceValue on Status {
+  DeviceValue toDevVal() => DevStatusCode(this);
+}
+
 extension DoubleToDeviceValue on double {
   DeviceValue toDevVal() => DevScalar(this);
 }
