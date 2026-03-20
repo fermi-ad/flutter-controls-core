@@ -1,6 +1,0 @@
-query AlarmsSnapshot {
-    alarmsSnapshot {
-        key
-        value
-    }
-}

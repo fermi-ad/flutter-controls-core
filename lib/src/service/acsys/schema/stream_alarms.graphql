@@ -1,6 +1,0 @@
-subscription StreamAlarms {
-    alarms {
-      key
-      value
-    }
-}
