@@ -879,79 +879,48 @@ final class ACSysService implements ACSysServiceAPI {
   // The caller sends in a GraphQL request and, optionally, a function to
   // translate the GraphQL response data into some other data type.
 
+  Future<Result> _executeRequest<TData, TVars, Result>(
+    Client client,
+    OperationRequest<TData, TVars> req, {
+    Result Function(TData)? xlat,
+  }) async {
+    final response = await client
+        .request(req)
+        .firstWhere((response) => !response.loading);
+
+    if (response.hasErrors) {
+      if (response.linkException != null) {
+        throw response.linkException!;
+      } else if (response.graphqlErrors != null) {
+        throw ACSysGraphQLException(response.graphqlErrors.toString());
+      } else {
+        throw ACSysGraphQLException("unknown error");
+      }
+    } else {
+      final data = response.data;
+
+      if (data != null) {
+        return xlat != null ? xlat(data) : data as Result;
+      } else {
+        throw ACSysGraphQLException("no data was returned from request");
+      }
+    }
+  }
+
   Future<Result> _queryAcsys<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) =>
-      _q.request(req).firstWhere((response) => !response.loading).then((value) {
-        if (value.hasErrors) {
-          if (value.linkException != null) {
-            throw value.linkException!;
-          } else if (value.graphqlErrors != null) {
-            throw ACSysGraphQLException(value.graphqlErrors.toString());
-          } else {
-            throw ACSysGraphQLException("unknown error");
-          }
-        } else {
-          final data = value.data;
-
-          if (data != null) {
-            return xlat != null ? xlat(data) : data as Result;
-          } else {
-            throw ACSysGraphQLException("no data was returned from request");
-          }
-        }
-      });
+  }) => _executeRequest(_q, req, xlat: xlat);
 
   Future<Result> _queryDevDb<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
-    value,
-  ) {
-    if (value.hasErrors) {
-      if (value.linkException != null) {
-        throw value.linkException!;
-      } else if (value.graphqlErrors != null) {
-        throw ACSysGraphQLException(value.graphqlErrors.toString());
-      } else {
-        throw ACSysGraphQLException("unknown error");
-      }
-    } else {
-      final data = value.data;
-
-      if (data != null) {
-        return xlat != null ? xlat(data) : data as Result;
-      } else {
-        throw ACSysGraphQLException("no data was returned from request");
-      }
-    }
-  });
+  }) => _executeRequest(_qDevDb, req, xlat: xlat);
 
   Future<Result> _queryAlarms<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _qAlarms.request(req).firstWhere((response) => !response.loading).then((
-    value,
-  ) {
-    if (value.hasErrors) {
-      if (value.linkException != null) {
-        throw value.linkException!;
-      } else if (value.graphqlErrors != null) {
-        throw ACSysGraphQLException(value.graphqlErrors.toString());
-      } else {
-        throw ACSysGraphQLException("unknown error");
-      }
-    } else {
-      final data = value.data;
-
-      if (data != null) {
-        return xlat != null ? xlat(data) : data as Result;
-      } else {
-        throw ACSysGraphQLException("no data was returned from request");
-      }
-    }
-  });
+  }) => _executeRequest(_qAlarms, req, xlat: xlat);
 
   /// Returns information about devices. The caller provides a list of device
   /// names and will receive a list of `DeviceInfo` objects. The order of the
