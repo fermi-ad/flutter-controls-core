@@ -1446,23 +1446,20 @@ final class ACSysService implements ACSysServiceAPI {
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({
     required PlotConfigurationSnapshot snapshot,
-  }) {
-    final req = GUpdatePlotConfigReq(
-      (b) =>
-          b
-            ..vars.cfg = jsonEncode(snapshot.toJson())
-            ..vars.id = snapshot.configurationId?._value
-            ..vars.name = snapshot.configurationName,
+  }) async {
+    final id = await _queryAcsys(
+      GUpdatePlotConfigReq(
+        (b) =>
+            b
+              ..vars.cfg = jsonEncode(snapshot.toJson())
+              ..vars.id = snapshot.configurationId?._value
+              ..vars.name = snapshot.configurationName,
+      ),
+      xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration,
     );
 
-    return _queryAcsys(
-      req,
-      xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration,
-    ).then(
-      (id) =>
-          snapshot
-            ..configurationId = id == null ? null : PlotConfigId._fromInt(id),
-    );
+    snapshot.configurationId = id == null ? null : PlotConfigId._fromInt(id);
+    return snapshot;
   }
 }
 
