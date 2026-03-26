@@ -32,39 +32,110 @@ final class _GlobalAppTheme {
 Widget buildAuthHeader(
   final IconData icon,
   final String account,
-  final (String, void Function())? buttonInfo,
-) => Row(
-  mainAxisAlignment: MainAxisAlignment.start,
-  crossAxisAlignment: CrossAxisAlignment.center,
-  children: <Widget>[
-    Expanded(
-      child: Center(
+  final (String, void Function())? buttonInfo, [
+  final Widget? subtitle,
+]) => Padding(
+  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+  child: Row(
+    children: [
+      Expanded(
+        flex: 3,
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
+          mainAxisSize: MainAxisSize.max,
           children: <Widget>[
-            Icon(icon, size: 40.0),
-            SizedBox(height: 4.0), // Spacer
-            Text(account),
+            Icon(icon, size: 48.0),
+            const SizedBox(height: 8.0),
+            Text(
+              account,
+              style: const TextStyle(fontWeight: FontWeight.bold),
+              textAlign: TextAlign.center,
+            ),
+            if (subtitle != null) subtitle,
           ],
         ),
       ),
-    ),
-    if (buttonInfo != null)
-      Expanded(
-        child: Center(
+      if (buttonInfo != null) ...[
+        const SizedBox(height: 12.0),
+        Expanded(
+          flex: 2,
           child: ElevatedButton(
             onPressed: buttonInfo.$2,
             child: Text(buttonInfo.$1),
           ),
         ),
-      ),
-  ],
+      ],
+    ],
+  ),
 );
+
+Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
+  final missing =
+      needed.where((role) => !AuthService.inRole(context, role)).toList();
+
+  if (missing.isEmpty) return null;
+
+  final colorScheme = Theme.of(context).colorScheme;
+
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      const SizedBox(height: 12.0),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Icon(
+            Icons.warning_amber_rounded,
+            color: colorScheme.error,
+            size: 16.0,
+          ),
+          const SizedBox(width: 4.0),
+          Text(
+            "Missing Roles",
+            style: Theme.of(context).textTheme.labelSmall?.copyWith(
+              color: colorScheme.error,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ],
+      ),
+      const SizedBox(height: 8.0),
+      Wrap(
+        spacing: 4.0,
+        runSpacing: 4.0,
+        alignment: WrapAlignment.center,
+        children:
+            missing
+                .map(
+                  (role) => Container(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0,
+                      vertical: 2.0,
+                    ),
+                    decoration: BoxDecoration(
+                      color: colorScheme.errorContainer,
+                      borderRadius: BorderRadius.circular(4.0),
+                    ),
+                    child: Text(
+                      role,
+                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                        color: colorScheme.onErrorContainer,
+                      ),
+                    ),
+                  ),
+                )
+                .toList(),
+      ),
+    ],
+  );
+}
 
 // Private widget used to display content in the side, drawer menu's header.
 
 final class _DrawerHeader extends StatelessWidget {
+  final Set<String> neededRoles;
+
+  const _DrawerHeader({this.neededRoles = const {}});
+
   @override
   Widget build(BuildContext context) {
     final UserInfo? userInfo = AuthService.getUserInfo(context);
@@ -89,6 +160,7 @@ final class _DrawerHeader extends StatelessWidget {
         Icons.account_circle,
         user.name ?? "UNKNOWN",
         ("Logout", () => AuthService.requestLogout(context)),
+        _buildMissingRolesWarning(context, neededRoles),
       ),
     };
 
@@ -98,8 +170,9 @@ final class _DrawerHeader extends StatelessWidget {
 
 final class _Drawer extends StatelessWidget {
   final Widget? content;
+  final Set<String> neededRoles;
 
-  const _Drawer(this.content);
+  const _Drawer(this.content, this.neededRoles);
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +183,7 @@ final class _Drawer extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Column(
           children: [
-            _DrawerHeader(),
+            _DrawerHeader(neededRoles: neededRoles),
             Divider(),
             Expanded(
               child: SingleChildScrollView(
@@ -199,7 +272,9 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   /// [appBar] will be displayed as the application's title bar.
   final PreferredSizeWidget? appBar;
 
-  const StandardApp({
+  final Set<String> _neededRoles;
+
+  StandardApp({
     required this.title,
     T? model,
     this.appBar,
@@ -207,8 +282,10 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
     this.drawerContent,
     this.floatingActionButton,
     this.providers = const [],
+    List<String>? neededRoles,
     super.key,
-  }) : _model = model;
+  }) : _model = model,
+       _neededRoles = neededRoles?.toSet() ?? {};
 
   /// Returns the model shared by the whole application.
   ///
@@ -225,7 +302,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       Scaffold(
         appBar: appBar,
         body: body,
-        drawer: _Drawer(drawerContent),
+        drawer: _Drawer(drawerContent, _neededRoles),
         floatingActionButton: floatingActionButton,
       ),
       (w, p) => p(child: w),
