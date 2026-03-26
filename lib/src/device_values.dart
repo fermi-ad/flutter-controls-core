@@ -79,7 +79,7 @@ sealed class DeviceValue {
 /// data buffers (i.e. image data.)
 
 final class DevRaw extends DeviceValue {
-  final List<int> value;
+  final Uint8List value;
 
   const DevRaw(this.value);
 }
@@ -145,7 +145,7 @@ extension TextToDeviceValue on String {
   DeviceValue toDevVal() => DevText(this);
 }
 
-extension RawToDeviceValue on List<int> {
+extension RawToDeviceValue on Uint8List {
   DeviceValue toDevVal() => DevRaw(this);
 }
 
@@ -185,7 +185,7 @@ extension FromDevValToText on DeviceValue {
 }
 
 extension FromDevValToRaw on DeviceValue {
-  List<int>? toRaw() => switch (this) {
+  Uint8List? toRaw() => switch (this) {
     DevRaw(value: var value) => value,
     _ => null,
   };
