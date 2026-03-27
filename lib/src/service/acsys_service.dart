@@ -821,6 +821,7 @@ final class ACSysService implements ACSysServiceAPI {
            Client(
              link: WebSocketLink(
                null,
+               initialPayload: _buildAuthHeader(jwt),
                channelGenerator:
                    () => WebSocketChannel.connect(
                      Uri(
@@ -858,6 +859,7 @@ final class ACSysService implements ACSysServiceAPI {
            Client(
              link: WebSocketLink(
                null,
+               initialPayload: _buildAuthHeader(jwt),
                channelGenerator:
                    () => WebSocketChannel.connect(
                      Uri(
