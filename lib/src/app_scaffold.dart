@@ -32,9 +32,9 @@ final class _GlobalAppTheme {
 Widget buildAuthHeader(
   final IconData icon,
   final String account,
-  final (String, void Function())? buttonInfo, [
+  final (String, void Function())? buttonInfo,
   final Widget? subtitle,
-]) => Padding(
+) => Padding(
   padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
   child: Row(
     children: [
@@ -140,7 +140,10 @@ final class _DrawerHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     final UserInfo? userInfo = AuthService.getUserInfo(context);
 
-    final content = switch ((userInfo, AuthService.authRequired)) {
+    final content = switch ((
+      userInfo,
+      AuthService.authRequired || neededRoles.isNotEmpty,
+    )) {
       // For this case, the application didn't set up authentication parameters
       // so it plans to run with no privilieges. If the application tries to
       // use a service that needs authorization, the service will return an
@@ -149,12 +152,15 @@ final class _DrawerHeader extends StatelessWidget {
         Icons.no_accounts_sharp,
         "No login required",
         null,
+        null,
       ),
 
-      (null, true) => buildAuthHeader(Icons.no_accounts_sharp, "Unauthorized", (
-        "Login",
-        () => AuthService.requestLogin(context),
-      )),
+      (null, true) => buildAuthHeader(
+        Icons.no_accounts_sharp,
+        "Unauthorized",
+        ("Login", () => AuthService.requestLogin(context)),
+        _buildMissingRolesWarning(context, neededRoles),
+      ),
 
       (UserInfo user, true) => buildAuthHeader(
         Icons.account_circle,
