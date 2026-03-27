@@ -793,11 +793,8 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _qAlarms;
   final Client _sAlarms;
 
-  static Map<String, String> _buildAuthHeader(String? jwt) {
-    dev.log("building header with jwt: $jwt");
-
-    return jwt != null ? {"Authorization": "Bearer $jwt"} : {};
-  }
+  static Map<String, String> _buildAuthHeader(String? jwt) =>
+      jwt != null ? {"Authorization": "Bearer $jwt"} : {};
 
   // Constructor. This creates the HTTP links needed to communicate with our
   // GraphQL endpoints.
