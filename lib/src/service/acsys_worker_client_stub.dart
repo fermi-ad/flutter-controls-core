@@ -7,10 +7,7 @@ import 'dart:convert' as convert;
 /// synchronously on the calling thread; on web it is offloaded to a dedicated
 /// [Worker] (see `acsys_worker_client_web.dart`).
 class ACSysWorkerClient {
-  /// URL of the compiled worker script (ignored on non-web platforms).
-  final String workerUrl;
-
-  ACSysWorkerClient({this.workerUrl = 'acsys_worker.dart.js'});
+  ACSysWorkerClient();
 
   /// Decodes [payload] as JSON and returns the result.
   ///

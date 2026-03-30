@@ -805,13 +805,12 @@ final class ACSysService implements ACSysServiceAPI {
   ACSysService({
     String? jwt,
     int? port,
-    String workerUrl = 'acsys_worker.dart.js',
     Client? queryClient,
     Client? subscriptionClient,
     Client? devDbClient,
     Client? alarmsQueryClient,
     Client? alarmsSubscriptionClient,
-  }) : _workerClient = ACSysWorkerClient(workerUrl: workerUrl),
+  }) : _workerClient = ACSysWorkerClient(),
        _q =
            queryClient ??
            Client(
@@ -1642,7 +1641,6 @@ final class ACSysProvider extends StatelessWidget {
   final Widget child;
   final ACSysServiceAPI? service;
   final int? port;
-  final String? workerUrl;
 
   /// A factory function that creates a [ACSysProvider] widget.
   ///
@@ -1652,22 +1650,14 @@ final class ACSysProvider extends StatelessWidget {
   /// - [service] is an optional object which implements the [ACSysServiceAPI]
   ///   interface. If this option is omitted, the widget will use communicate
   ///   with the official GraphQL service.
-  /// - [workerUrl] is the URL of the compiled `acsys_worker.dart.js` script.
-  ///   Defaults to `'acsys_worker.dart.js'` (served from the web root). Only
-  ///   relevant on web targets.
   /// - [key] is an optional identifier for the widget.
 
   static ACSysProvider Function({required Widget child}) factory({
     ACSysServiceAPI? service,
-    String? workerUrl,
     Key? key,
   }) =>
-      ({required Widget child}) => ACSysProvider._(
-        service: service,
-        workerUrl: workerUrl,
-        key: key,
-        child: child,
-      );
+      ({required Widget child}) =>
+          ACSysProvider._(service: service, key: key, child: child);
 
   /// A factory function that creates a [ACSysProvider] widget.
   ///
@@ -1675,22 +1665,14 @@ final class ACSysProvider extends StatelessWidget {
   /// the `providers` parameter of the [StandardApp] widget.
   ///
   /// - [port] is the port number to use to communite with the GraphQL service.
-  /// - [workerUrl] is the URL of the compiled `acsys_worker.dart.js` script.
-  ///   Defaults to `'acsys_worker.dart.js'` (served from the web root). Only
-  ///   relevant on web targets.
   /// - [key] is an optional identifier for the widget.
 
   static ACSysProvider Function({required Widget child}) factoryUsingPort({
     required int port,
-    String? workerUrl,
     Key? key,
   }) =>
-      ({required Widget child}) => ACSysProvider._(
-        port: port,
-        workerUrl: workerUrl,
-        key: key,
-        child: child,
-      );
+      ({required Widget child}) =>
+          ACSysProvider._(port: port, key: key, child: child);
 
   // Creates the widget.
   //
@@ -1705,11 +1687,9 @@ final class ACSysProvider extends StatelessWidget {
   //   implementation that communicates over the network to the offcial
   //   control system API. This option is mainly to mock-up a service to
   //   use in unit tests.
-  // - [workerUrl] is the URL of the compiled acsys_worker.dart.js script.
   const ACSysProvider._({
     this.service,
     this.port,
-    this.workerUrl,
     required this.child,
     super.key,
   });
@@ -1717,12 +1697,7 @@ final class ACSysProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) => _ACSysProviderIW(
     service:
-        service ??
-        ACSysService(
-          port: port,
-          workerUrl: workerUrl ?? 'acsys_worker.dart.js',
-          jwt: AuthService.getJwt(context),
-        ),
+        service ?? ACSysService(port: port, jwt: AuthService.getJwt(context)),
     child: child,
   );
 }

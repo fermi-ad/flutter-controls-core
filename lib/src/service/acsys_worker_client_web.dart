@@ -7,30 +7,25 @@ import 'dart:async';
 import 'dart:js_interop';
 import 'package:web/web.dart';
 
+// The compiled worker script must be served from the web root as this file.
+const String _workerUrl = 'acsys_worker.dart.js';
+
 /// Decodes ACSys JSON payloads inside a dedicated [Worker], keeping the main
 /// UI thread free from synchronous JSON parsing work.
 ///
 /// A single worker instance is created lazily on the first [decode] call and
 /// reused for all subsequent calls.
 class ACSysWorkerClient {
-  /// URL of the compiled worker script.
-  ///
-  /// Defaults to `'acsys_worker.dart.js'`, which assumes the script was
-  /// placed at the root of the web server (e.g. `web/acsys_worker.dart.js`
-  /// in the Flutter app's build output).  Set this to a different value if
-  /// the script is served from another path.
-  final String workerUrl;
-
   Worker? _worker;
   int _nextId = 0;
   final Map<int, Completer<dynamic>> _pending = {};
 
-  ACSysWorkerClient({this.workerUrl = 'acsys_worker.dart.js'});
+  ACSysWorkerClient();
 
   Worker _ensureWorker() {
     if (_worker != null) return _worker!;
 
-    final w = Worker(workerUrl);
+    final w = Worker(_workerUrl);
 
     w.onmessage = (MessageEvent event) {
       final data =
