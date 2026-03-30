@@ -43,6 +43,8 @@ import 'package:flutter_controls_core/src/service/devdb/schema/__generated__/get
 
 import 'dart:developer' as dev;
 
+import 'acsys_worker_client.dart';
+
 // Declare an exception type that's specific to the ACSys API.
 
 class ACSysException implements Exception {
@@ -792,6 +794,7 @@ final class ACSysService implements ACSysServiceAPI {
   final Client _qDevDb;
   final Client _qAlarms;
   final Client _sAlarms;
+  final ACSysWorkerClient _workerClient;
 
   static Map<String, String> _buildAuthHeader(String? jwt) =>
       jwt != null ? {"Authorization": "Bearer $jwt"} : {};
@@ -802,12 +805,14 @@ final class ACSysService implements ACSysServiceAPI {
   ACSysService({
     String? jwt,
     int? port,
+    String workerUrl = 'acsys_worker.dart.js',
     Client? queryClient,
     Client? subscriptionClient,
     Client? devDbClient,
     Client? alarmsQueryClient,
     Client? alarmsSubscriptionClient,
-  }) : _q =
+  }) : _workerClient = ACSysWorkerClient(workerUrl: workerUrl),
+       _q =
            queryClient ??
            Client(
              link: HttpLink(
@@ -1449,22 +1454,19 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() async {
     final req = GUsersLastConfigReq();
 
-    return _queryAcsys(
+    final raw = await _queryAcsys(
       req,
-      xlat: (GUsersLastConfigData data) {
-        final e = data.usersLastConfiguration;
+      xlat: (GUsersLastConfigData data) => data.usersLastConfiguration,
+    );
 
-        return e == null
-            ? null
-            : PlotConfigurationSnapshot.fromJson(
-              PlotConfigId._fromInt(0),
-              "n/a",
-              jsonDecode(e),
-            );
-      },
+    if (raw == null) return null;
+    return PlotConfigurationSnapshot.fromJson(
+      PlotConfigId._fromInt(0),
+      "n/a",
+      await _workerClient.decode(raw),
     );
   }
 
@@ -1482,31 +1484,25 @@ final class ACSysService implements ACSysServiceAPI {
   @override
   Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
     required PlotConfigId configurationId,
-  }) {
+  }) async {
     final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
 
-    return _queryAcsys(
+    final configs = await _queryAcsys(
       req,
-      xlat:
-          (GPlotConfigsData data) => data.plotConfiguration.map(
-            (e) => PlotConfigurationSnapshot.fromJson(
-              PlotConfigId._fromInt(e.configId),
-              e.configName,
-              jsonDecode(e.config),
-            ),
-          ),
-    ).then((value) {
-      switch (value.toList()) {
-        case []:
-          return null;
-        case [PlotConfigurationSnapshot e]:
-          return e;
-        default:
-          throw const ACSysConfigurationException(
-            "multiple configurations found",
-          );
-      }
-    });
+      xlat: (GPlotConfigsData data) => data.plotConfiguration.toList(),
+    );
+
+    // Guard against unexpected multiple results before doing async work.
+    if (configs.length > 1) {
+      throw const ACSysConfigurationException("multiple configurations found");
+    }
+    if (configs.isEmpty) return null;
+
+    return PlotConfigurationSnapshot.fromJson(
+      PlotConfigId._fromInt(configs.first.configId),
+      configs.first.configName,
+      await _workerClient.decode(configs.first.config),
+    );
   }
 
   @override
@@ -1646,6 +1642,7 @@ final class ACSysProvider extends StatelessWidget {
   final Widget child;
   final ACSysServiceAPI? service;
   final int? port;
+  final String? workerUrl;
 
   /// A factory function that creates a [ACSysProvider] widget.
   ///
@@ -1655,14 +1652,22 @@ final class ACSysProvider extends StatelessWidget {
   /// - [service] is an optional object which implements the [ACSysServiceAPI]
   ///   interface. If this option is omitted, the widget will use communicate
   ///   with the official GraphQL service.
+  /// - [workerUrl] is the URL of the compiled `acsys_worker.dart.js` script.
+  ///   Defaults to `'acsys_worker.dart.js'` (served from the web root). Only
+  ///   relevant on web targets.
   /// - [key] is an optional identifier for the widget.
 
   static ACSysProvider Function({required Widget child}) factory({
     ACSysServiceAPI? service,
+    String? workerUrl,
     Key? key,
   }) =>
-      ({required Widget child}) =>
-          ACSysProvider._(service: service, key: key, child: child);
+      ({required Widget child}) => ACSysProvider._(
+        service: service,
+        workerUrl: workerUrl,
+        key: key,
+        child: child,
+      );
 
   /// A factory function that creates a [ACSysProvider] widget.
   ///
@@ -1670,14 +1675,22 @@ final class ACSysProvider extends StatelessWidget {
   /// the `providers` parameter of the [StandardApp] widget.
   ///
   /// - [port] is the port number to use to communite with the GraphQL service.
+  /// - [workerUrl] is the URL of the compiled `acsys_worker.dart.js` script.
+  ///   Defaults to `'acsys_worker.dart.js'` (served from the web root). Only
+  ///   relevant on web targets.
   /// - [key] is an optional identifier for the widget.
 
   static ACSysProvider Function({required Widget child}) factoryUsingPort({
     required int port,
+    String? workerUrl,
     Key? key,
   }) =>
-      ({required Widget child}) =>
-          ACSysProvider._(port: port, key: key, child: child);
+      ({required Widget child}) => ACSysProvider._(
+        port: port,
+        workerUrl: workerUrl,
+        key: key,
+        child: child,
+      );
 
   // Creates the widget.
   //
@@ -1692,9 +1705,11 @@ final class ACSysProvider extends StatelessWidget {
   //   implementation that communicates over the network to the offcial
   //   control system API. This option is mainly to mock-up a service to
   //   use in unit tests.
+  // - [workerUrl] is the URL of the compiled acsys_worker.dart.js script.
   const ACSysProvider._({
     this.service,
     this.port,
+    this.workerUrl,
     required this.child,
     super.key,
   });
@@ -1702,7 +1717,12 @@ final class ACSysProvider extends StatelessWidget {
   @override
   Widget build(BuildContext context) => _ACSysProviderIW(
     service:
-        service ?? ACSysService(port: port, jwt: AuthService.getJwt(context)),
+        service ??
+        ACSysService(
+          port: port,
+          workerUrl: workerUrl ?? 'acsys_worker.dart.js',
+          jwt: AuthService.getJwt(context),
+        ),
     child: child,
   );
 }

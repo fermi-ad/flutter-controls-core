@@ -28,6 +28,10 @@ dependencies:
 
     opentelemetry: ^0.18.10
 
+    # Provides browser API bindings (dart:js_interop-based, WasmGC-compatible)
+    # used by the web worker client.
+    web: ^1.1.0
+
     # Needed for KeyCloak authentication support.
 
     flutter_controls_auth:

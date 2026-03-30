@@ -61,6 +61,59 @@ Then run the formatter:
 $ dart format lib
 ```
 
+## Web Worker (JSON parsing off the main thread)
+
+On web targets, ACSys plot-configuration JSON is decoded inside a dedicated
+[Web Worker](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API)
+so that the main UI thread is never blocked by large JSON payloads.
+
+### Compiling the worker script
+
+The worker source lives at `web/acsys_worker.dart` inside this package.
+Add the following step to your app's build pipeline (run it once, or whenever
+you update the package):
+
+```shell
+dart compile js -O2 \
+  -o web/acsys_worker.dart.js \
+  $(dart pub cache dir)/hosted/pub.dev/flutter_controls_core-*/web/acsys_worker.dart
+```
+
+If you are consuming the package via a `git:` dependency the path will be
+inside `~/.pub-cache/git/` instead.  A convenient cross-platform alternative
+is to resolve the path from the package config:
+
+```shell
+# Resolve package source directory
+WORKER_SRC=$(dart run - <<'EOF'
+import 'dart:io';
+import 'package:package_config/package_config.dart';
+void main() async {
+  final cfg = await findPackageConfig(Directory.current);
+  final pkg = cfg!.packages.firstWhere((p) => p.name == 'flutter_controls_core');
+  print('${pkg.root.toFilePath()}web/acsys_worker.dart');
+}
+EOF
+)
+dart compile js -O2 -o web/acsys_worker.dart.js "$WORKER_SRC"
+```
+
+### Custom worker URL
+
+By default the worker script is expected to be served from the web root as
+`acsys_worker.dart.js`.  If your build system places it elsewhere, pass the
+`workerUrl` parameter to the `ACSysProvider` factory:
+
+```dart
+ACSysProvider.factory(workerUrl: 'assets/workers/acsys_worker.dart.js')
+```
+
+### Non-web / mobile targets
+
+On Android, iOS, macOS, Windows, and Linux the worker client falls back to
+synchronous `jsonDecode` on the calling thread.  No extra build step is needed
+for those targets.
+
 ## Telemetry/Tracing (OpenTelemetry)
 
 OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints (`runFermiApp`, `runFermiRouterApp`).
