@@ -1614,8 +1614,8 @@ extension on GStartPlotData_startPlot {
 
 extension on DeviceValue {
   GDevValueBuilder _toGDevValue() => switch (this) {
-    DevStatusCode() => throw ACSysGraphQLException(
-      "can't send DevStatusCode types",
+    DevStatusCode() => throw ACSysInvArgException(
+      "DevStatusCode is a read-only status reply and is not writable",
     ),
     DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
     DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
