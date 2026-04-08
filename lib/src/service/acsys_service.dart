@@ -1545,6 +1545,8 @@ extension on GStartPlotData_startPlot_data_channelData_result {
 
 extension on GStreamDataData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
+    GStreamDataData_acceleratorData_data_result__asStatusReply val =>
+      DevStatusCode(Status.fromInt(val.status)),
     GStreamDataData_acceleratorData_data_result__asScalar val => DevScalar(
       val.scalarValue,
     ),
@@ -1561,6 +1563,8 @@ extension on GStreamDataData_acceleratorData_data_result {
 
 extension on GReadDevicesData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
+    GReadDevicesData_acceleratorData_data_result__asStatusReply val =>
+      DevStatusCode(Status.fromInt(val.status)),
     GReadDevicesData_acceleratorData_data_result__asScalar val => DevScalar(
       val.scalarValue,
     ),
@@ -1610,6 +1614,9 @@ extension on GStartPlotData_startPlot {
 
 extension on DeviceValue {
   GDevValueBuilder _toGDevValue() => switch (this) {
+    DevStatusCode() => throw ACSysGraphQLException(
+      "can't send DevStatusCode types",
+    ),
     DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
     DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
     DevScalarArray(value: var v) =>

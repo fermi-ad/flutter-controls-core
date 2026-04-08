@@ -28,6 +28,7 @@
 library;
 
 import 'package:flutter/foundation.dart';
+import 'status.dart';
 
 /// Use this type to indicate any device type is allowed.
 ///
@@ -55,6 +56,8 @@ sealed class DeviceValue {
         return listEquals(v, o);
       case ((DevTimeSeries(values: var v), DevTimeSeries(values: var o))):
         return listEquals(v, o);
+      case ((DevStatusCode(status: var v), DevStatusCode(status: var o))):
+        return v == o;
       default:
         return false;
     }
@@ -68,7 +71,17 @@ sealed class DeviceValue {
     DevScalarArray(value: var v) => v.hashCode,
     DevTextArray(value: var v) => v.hashCode,
     DevTimeSeries(values: var v) => v.hashCode,
+    DevStatusCode(status: var v) => v.hashCode,
   };
+}
+
+final class DevStatusCode extends DeviceValue {
+  final Status status;
+
+  const DevStatusCode(this.status);
+
+  @override
+  String toString() => "[${status.facility} ${status.error}]";
 }
 
 /// Represents a raw, byte array.
@@ -173,6 +186,13 @@ extension TimeSeriesToDeviceValue on List<(DateTime, double)> {
 extension FromDevValToDouble on DeviceValue {
   double? toDouble() => switch (this) {
     DevScalar(value: var value) => value,
+    _ => null,
+  };
+}
+
+extension FromDevValToStatus on DeviceValue {
+  Status? toStatus() => switch (this) {
+    DevStatusCode(status: var value) => value,
     _ => null,
   };
 }

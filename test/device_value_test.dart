@@ -76,6 +76,15 @@ void main() {
       _makeScalarArray([1.0, 2.0, 3.0]),
       isNot(equals(_makeScalarArray([1.0, 3.0]))),
     );
+
+    expect(
+      DevStatusCode(Status.fromInt(273)),
+      equals(DevStatusCode(Status.fromInt(273))),
+    );
+    expect(
+      DevStatusCode(Status.fromInt(273)),
+      isNot(equals(DevStatusCode(Status.fromInt(-6143)))),
+    );
   });
 
   test("Test device value conversions", () {
@@ -103,5 +112,9 @@ void main() {
     expect("Hello".toDevVal(), equals(_makeText("Hello")));
 
     expect(_makeTextArray(["A"]).toDevVal(), equals(_makeTextArray(["A"])));
+    expect(
+      DevStatusCode(Status.fromInt(273)).toStatus(),
+      equals(Status.fromInt(273)),
+    );
   });
 }
