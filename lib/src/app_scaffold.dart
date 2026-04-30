@@ -347,13 +347,15 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       theme: theme.light,
       darkTheme: theme.dark,
       themeMode: themeMode,
-      home: AuthService(
-        child: null is T
-            ? scaffold
-            : _GlobalStateProvider(
-                model: _model as ChangeNotifier,
-                child: scaffold,
-              ),
+      home: SelectionArea(
+        child: AuthService(
+          child: null is T
+              ? scaffold
+              : _GlobalStateProvider(
+                  model: _model as ChangeNotifier,
+                  child: scaffold,
+                ),
+        ),
       ),
     );
   }
@@ -385,6 +387,8 @@ final class _RouterApp extends StatelessWidget {
       theme: theme.light,
       darkTheme: theme.dark,
       routerConfig: router,
+      builder: (context, child) =>
+          SelectionArea(child: child ?? const SizedBox()),
     );
   }
 }
