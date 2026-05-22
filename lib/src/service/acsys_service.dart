@@ -840,7 +840,7 @@ final class ACSysService implements ACSysServiceAPI {
            devDbClient ??
            Client(
              link: HttpLink(
-               "https://acsys-proxy.fnal.gov:8000/devdb",
+               "https://acsys-proxy.fnal.gov:${port ?? 8000}/devdb",
                defaultHeaders: _buildAuthHeader(jwt),
              ),
              cache: Cache(),
