@@ -840,7 +840,7 @@ final class ACSysService implements ACSysServiceAPI {
            devDbClient ??
            Client(
              link: HttpLink(
-               "https://acsys-proxy.fnal.gov:8000/devdb",
+               "https://acsys-proxy.fnal.gov:${port ?? 8000}/devdb",
                defaultHeaders: _buildAuthHeader(jwt),
              ),
              cache: Cache(),
@@ -1614,9 +1614,10 @@ extension on GStartPlotData_startPlot {
 
 extension on DeviceValue {
   GDevValueBuilder _toGDevValue() => switch (this) {
-    DevStatusCode() => throw ACSysInvArgException(
-      "DevStatusCode is a read-only status reply and is not writable",
-    ),
+    DevStatusCode() =>
+      throw ACSysInvArgException(
+        "DevStatusCode is a read-only status reply and is not writable",
+      ),
     DevRaw(value: var v) => GDevValueBuilder()..rawVal = ListBuilder(v),
     DevScalar(value: var v) => GDevValueBuilder()..scalarVal = v,
     DevScalarArray(value: var v) =>
