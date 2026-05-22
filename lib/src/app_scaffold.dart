@@ -291,6 +291,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   final PreferredSizeWidget? appBar;
 
   final Set<String> _neededRoles;
+  final ThemeMode themeMode;
 
   StandardApp({
     required this.title,
@@ -301,6 +302,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
     this.floatingActionButton,
     this.providers = const [],
     List<String>? neededRoles,
+    this.themeMode = ThemeMode.system,
     super.key,
   }) : _model = model,
        _neededRoles = neededRoles?.toSet() ?? {};
@@ -330,6 +332,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       title: title,
       theme: _GlobalAppTheme.lightTheme,
       darkTheme: _GlobalAppTheme.darkTheme,
+      themeMode: themeMode,
       home: AuthService(
         child:
             null is T
