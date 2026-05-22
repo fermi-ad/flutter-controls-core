@@ -11,7 +11,7 @@ export 'src/status.dart';
 export 'src/device_values.dart';
 export 'src/app_scaffold.dart';
 export 'package:flutter_controls_auth/flutter_controls_auth.dart'
-    show ScopeList, AuthInfo, AuthService, Credential, UserInfo;
+    show AuthInfo, AuthService, Credential, UserInfo;
 
 export 'src/service/acsys_service.dart';
 export 'src/otel_tracing.dart' show AppTracer, appTracer, Span;
