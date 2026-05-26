@@ -382,6 +382,7 @@ enum Source {
 enum State {
   UNKNOWN
   OK
+  ALARMED
   BYPASSED
   LATCHED
   ACKNOWLEDGED

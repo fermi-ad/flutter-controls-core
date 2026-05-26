@@ -306,6 +306,7 @@ AlarmSource _convertSourceForTest(GSource source) => switch (source) {
 
 AlarmState _convertStateForTest(GState state) => switch (state) {
   GState.OK => AlarmState.ok,
+  GState.ALARMED => AlarmState.alarmed,
   GState.BYPASSED => AlarmState.bypassed,
   GState.LATCHED => AlarmState.latched,
   GState.ACKNOWLEDGED => AlarmState.acknowledged,

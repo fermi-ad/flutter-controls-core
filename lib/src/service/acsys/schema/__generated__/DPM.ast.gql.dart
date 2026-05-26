@@ -1058,6 +1058,10 @@ const State = _i1.EnumTypeDefinitionNode(
       directives: [],
     ),
     _i1.EnumValueDefinitionNode(
+      name: _i1.NameNode(value: 'ALARMED'),
+      directives: [],
+    ),
+    _i1.EnumValueDefinitionNode(
       name: _i1.NameNode(value: 'BYPASSED'),
       directives: [],
     ),

@@ -56,6 +56,7 @@ final BuiltSet<GSource> _$gSourceValues = BuiltSet<GSource>(const <GSource>[
 
 const GState _$gStateUNKNOWN = const GState._('UNKNOWN');
 const GState _$gStateOK = const GState._('OK');
+const GState _$gStateALARMED = const GState._('ALARMED');
 const GState _$gStateBYPASSED = const GState._('BYPASSED');
 const GState _$gStateLATCHED = const GState._('LATCHED');
 const GState _$gStateACKNOWLEDGED = const GState._('ACKNOWLEDGED');
@@ -67,6 +68,8 @@ GState _$gStateValueOf(String name) {
       return _$gStateUNKNOWN;
     case 'OK':
       return _$gStateOK;
+    case 'ALARMED':
+      return _$gStateALARMED;
     case 'BYPASSED':
       return _$gStateBYPASSED;
     case 'LATCHED':
@@ -83,6 +86,7 @@ GState _$gStateValueOf(String name) {
 final BuiltSet<GState> _$gStateValues = BuiltSet<GState>(const <GState>[
   _$gStateUNKNOWN,
   _$gStateOK,
+  _$gStateALARMED,
   _$gStateBYPASSED,
   _$gStateLATCHED,
   _$gStateACKNOWLEDGED,

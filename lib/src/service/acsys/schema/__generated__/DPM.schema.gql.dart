@@ -110,6 +110,8 @@ class GState extends EnumClass {
 
   static const GState OK = _$gStateOK;
 
+  static const GState ALARMED = _$gStateALARMED;
+
   static const GState BYPASSED = _$gStateBYPASSED;
 
   static const GState LATCHED = _$gStateLATCHED;
