@@ -8,6 +8,7 @@ import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/rea
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.data.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/read_alarms.var.gql.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/stream_alarms.var.gql.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart';
 
 /// Mock [Client] for testing Ferry GraphQL operations.
 class MockClient extends Mock implements Client {}
@@ -60,47 +61,86 @@ class MockAlarmsSnapshotRequest extends Fake
 class MockStreamAlarmsRequest extends Fake
     implements OperationRequest<GStreamAlarmsData, GStreamAlarmsVars> {}
 
-/// Helper to create a mock [GAlarmsSnapshotData] with given alarm data.
+/// A record representing a structured alarm for use in test helpers.
+typedef AlarmRecord =
+    ({
+      String device,
+      GSource source,
+      GState state,
+      GSeverity severity,
+      bool acknowledgeable,
+      String? time,
+      String epicsType,
+      String user,
+      String? wake,
+    });
+
+/// Default alarm record for tests that don't care about specific field values.
+const AlarmRecord defaultAlarmRecord = (
+  device: 'TEST:DEVICE',
+  source: GSource.ANALOG,
+  state: GState.OK,
+  severity: GSeverity.LOW,
+  acknowledgeable: false,
+  time: '2024-01-01T00:00:00.000Z',
+  epicsType: '',
+  user: '',
+  wake: '2024-01-01T00:00:00.000Z',
+);
+
+/// Helper to build a [GAlarmsSnapshotData_alarmsSnapshot] from an [AlarmRecord].
+GAlarmsSnapshotData_alarmsSnapshot buildSnapshotItem(AlarmRecord alarm) {
+  final b =
+      GAlarmsSnapshotData_alarmsSnapshotBuilder()
+        ..device = alarm.device
+        ..source = alarm.source
+        ..state = alarm.state
+        ..severity = alarm.severity
+        ..acknowledgeable = alarm.acknowledgeable
+        ..epicsType = alarm.epicsType
+        ..user = alarm.user;
+  if (alarm.time != null) b.time.value = alarm.time!;
+  if (alarm.wake != null) b.wake.value = alarm.wake!;
+  return b.build();
+}
+
+/// Helper to create a mock [GAlarmsSnapshotData] with given alarm records.
 GAlarmsSnapshotData createMockAlarmsSnapshot({
-  required List<(String? key, String value)> alarms,
+  required List<AlarmRecord> alarms,
 }) {
   final snapshotBuilder = GAlarmsSnapshotDataBuilder();
-
-  // Build the list of alarm snapshots
-  final alarmSnapshots =
-      alarms.map((alarm) {
-        final (key, value) = alarm;
-        final snapshotItemBuilder = GAlarmsSnapshotData_alarmsSnapshotBuilder();
-        snapshotItemBuilder
-          ..key = key
-          ..value = value;
-        return snapshotItemBuilder.build();
-      }).toList();
-
+  final alarmSnapshots = alarms.map(buildSnapshotItem).toList();
   snapshotBuilder.alarmsSnapshot.replace(alarmSnapshots);
   return snapshotBuilder.build();
 }
 
+/// Helper to build a [GStreamAlarmsData_alarms] from an [AlarmRecord].
+GStreamAlarmsData_alarms buildStreamAlarm(AlarmRecord alarm) {
+  final b =
+      GStreamAlarmsData_alarmsBuilder()
+        ..device = alarm.device
+        ..source = alarm.source
+        ..state = alarm.state
+        ..severity = alarm.severity
+        ..acknowledgeable = alarm.acknowledgeable
+        ..epicsType = alarm.epicsType
+        ..user = alarm.user;
+  if (alarm.time != null) b.time.value = alarm.time!;
+  if (alarm.wake != null) b.wake.value = alarm.wake!;
+  return b.build();
+}
+
 /// Helper to create a mock [GStreamAlarmsData] with given alarm data.
-GStreamAlarmsData createMockStreamAlarmData({
-  required String? key,
-  required String value,
-}) {
+GStreamAlarmsData createMockStreamAlarmData({required AlarmRecord alarm}) {
   final dataBuilder = GStreamAlarmsDataBuilder();
-  final alarmBuilder = GStreamAlarmsData_alarmsBuilder();
-
-  alarmBuilder
-    ..key = key
-    ..value = value;
-
-  dataBuilder.alarms.replace(alarmBuilder.build());
+  dataBuilder.alarms.replace(buildStreamAlarm(alarm));
   return dataBuilder.build();
 }
 
 /// Helper to create a mock [OperationResponse] for successful alarm snapshot queries.
 OperationResponse<GAlarmsSnapshotData, GAlarmsSnapshotVars>
 createMockAlarmsSnapshotResponse({
-  required List<(String? key, String value)> alarms,
+  required List<AlarmRecord> alarms,
   bool loading = false,
 }) {
   final data = createMockAlarmsSnapshot(alarms: alarms);
@@ -117,11 +157,10 @@ createMockAlarmsSnapshotResponse({
 /// Helper to create a mock [OperationResponse] for successful alarm stream updates.
 OperationResponse<GStreamAlarmsData, GStreamAlarmsVars>
 createMockStreamAlarmResponse({
-  required String? key,
-  required String value,
+  required AlarmRecord alarm,
   bool loading = false,
 }) {
-  final data = createMockStreamAlarmData(key: key, value: value);
+  final data = createMockStreamAlarmData(alarm: alarm);
   final response =
       MockOperationResponse<GStreamAlarmsData, GStreamAlarmsVars>();
   when(() => response.data).thenReturn(data);
