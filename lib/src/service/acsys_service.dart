@@ -265,16 +265,46 @@ final class Reading {
   });
 }
 
-class Message<T> {
-  final String? key;
-  final T value;
+class Alarm {
+  final String device;
+  final AlarmSource source;
+  final AlarmState state;
+  final AlarmSeverity severity;
+  final bool acknowledgeable;
+  final DateTime time;
+  final String epicsType;
+  final String user;
+  final DateTime wake;
 
-  const Message({this.key, required this.value});
+  const Alarm({
+    required this.device,
+    required this.source,
+    required this.state,
+    required this.severity,
+    required this.acknowledgeable,
+    required this.time,
+    required this.epicsType,
+    required this.user,
+    required this.wake,
+  });
 }
 
-final class AlarmMessage extends Message<String> {
-  const AlarmMessage({super.key, required super.value});
+/// Enumeration representing the Alarm Source
+enum AlarmSource { unknown, analog, digital, epics }
+
+/// Enumeration representing the alarm state
+enum AlarmState {
+  unknown,
+  ok,
+  alarmed,
+  bypassed,
+  latched,
+  acknowledged,
+  unbypassed,
 }
+
+/// Enumeration representing Alarm Severity
+enum AlarmSeverity { unknown, low, high }
 
 /// Enumeration representing console colors.
 ///
@@ -714,11 +744,11 @@ abstract interface class ACSysServiceAPI {
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
   /// Gets a snapshot of the current alarms.
-  Future<List<AlarmMessage>> getAlarmsSnapshot();
+  Future<List<Alarm>> getAlarmsSnapshot();
 
   /// Takes no parameters and returns a stream that provides the current
   /// alarm info for all alarms.
-  Stream<AlarmMessage> monitorAlarms();
+  Stream<Alarm> monitorAlarms();
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
@@ -1155,22 +1185,20 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<List<AlarmMessage>> getAlarmsSnapshot() {
+  Future<List<Alarm>> getAlarmsSnapshot() {
     final req = GAlarmsSnapshotReq();
 
     return _queryAlarms(
       req,
       xlat: (GAlarmsSnapshotData data) {
-        return data.alarmsSnapshot.map((snapshot) {
-          return AlarmMessage(key: snapshot.key, value: snapshot.value);
-        }).toList();
+        return data.alarmsSnapshot.map(_convertToAlarm).toList();
       },
     );
   }
 
   // Returns a stream of alarm information for all known alarms.
   @override
-  Stream<AlarmMessage> monitorAlarms() {
+  Stream<Alarm> monitorAlarms() {
     final req = GStreamAlarmsReq(
       (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
     );
@@ -1186,10 +1214,7 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            yield AlarmMessage(
-              key: e.data!.alarms.key,
-              value: e.data!.alarms.value,
-            );
+            yield _convertToAlarm(e.data!.alarms);
           } else {
             if (e.linkException != null) {
               throw e.linkException!;
@@ -1201,6 +1226,44 @@ final class ACSysService implements ACSysServiceAPI {
           }
         });
   }
+
+  static AlarmSource _convertSource(GSource source) => switch (source) {
+    GSource.ANALOG => AlarmSource.analog,
+    GSource.DIGITAL => AlarmSource.digital,
+    GSource.EPICS => AlarmSource.epics,
+    _ => AlarmSource.unknown,
+  };
+
+  static AlarmState _convertState(GState state) => switch (state) {
+    GState.OK => AlarmState.ok,
+    GState.BYPASSED => AlarmState.bypassed,
+    GState.LATCHED => AlarmState.latched,
+    GState.ACKNOWLEDGED => AlarmState.acknowledged,
+    GState.UNBYPASSED => AlarmState.unbypassed,
+    _ => AlarmState.unknown,
+  };
+
+  static AlarmSeverity _convertSeverity(GSeverity severity) =>
+      switch (severity) {
+        GSeverity.LOW => AlarmSeverity.low,
+        GSeverity.HIGH => AlarmSeverity.high,
+        _ => AlarmSeverity.unknown,
+      };
+
+  static DateTime _gDateTimeToDateTime(GDateTime? gdt) =>
+      gdt != null ? DateTime.parse(gdt.value) : DateTime(0);
+
+  static Alarm _convertToAlarm(dynamic snapshot) => Alarm(
+    device: snapshot.device as String,
+    source: _convertSource(snapshot.source as GSource),
+    state: _convertState(snapshot.state as GState),
+    severity: _convertSeverity(snapshot.severity as GSeverity),
+    acknowledgeable: snapshot.acknowledgeable as bool,
+    time: _gDateTimeToDateTime(snapshot.time as GDateTime?),
+    epicsType: snapshot.epicsType as String,
+    user: snapshot.user as String,
+    wake: _gDateTimeToDateTime(snapshot.wake as GDateTime?),
+  );
 
   static DateTime fromFloatTs(double ts) =>
       DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0).toInt());
