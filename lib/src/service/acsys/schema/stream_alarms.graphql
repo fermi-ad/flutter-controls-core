@@ -1,6 +1,13 @@
 subscription StreamAlarms {
-    alarms {
-      key
-      value
-    }
+  alarms {
+    device
+    source
+    state
+    severity
+    acknowledgeable
+    time
+    epicsType
+    user
+    wake
+  }
 }

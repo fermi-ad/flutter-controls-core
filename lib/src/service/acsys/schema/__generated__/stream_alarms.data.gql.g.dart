@@ -100,19 +100,60 @@ class _$GStreamAlarmsData_alarmsSerializer
         object.G__typename,
         specifiedType: const FullType(String),
       ),
-      'value',
+      'device',
       serializers.serialize(
-        object.value,
+        object.device,
         specifiedType: const FullType(String),
       ),
+      'source',
+      serializers.serialize(
+        object.source,
+        specifiedType: const FullType(_i2.GSource),
+      ),
+      'state',
+      serializers.serialize(
+        object.state,
+        specifiedType: const FullType(_i2.GState),
+      ),
+      'severity',
+      serializers.serialize(
+        object.severity,
+        specifiedType: const FullType(_i2.GSeverity),
+      ),
+      'acknowledgeable',
+      serializers.serialize(
+        object.acknowledgeable,
+        specifiedType: const FullType(bool),
+      ),
+      'epicsType',
+      serializers.serialize(
+        object.epicsType,
+        specifiedType: const FullType(String),
+      ),
+      'user',
+      serializers.serialize(object.user, specifiedType: const FullType(String)),
     ];
     Object? value;
-    value = object.key;
+    value = object.time;
     if (value != null) {
       result
-        ..add('key')
+        ..add('time')
         ..add(
-          serializers.serialize(value, specifiedType: const FullType(String)),
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GDateTime),
+          ),
+        );
+    }
+    value = object.wake;
+    if (value != null) {
+      result
+        ..add('wake')
+        ..add(
+          serializers.serialize(
+            value,
+            specifiedType: const FullType(_i2.GDateTime),
+          ),
         );
     }
     return result;
@@ -140,21 +181,79 @@ class _$GStreamAlarmsData_alarmsSerializer
                   )!
                   as String;
           break;
-        case 'key':
-          result.key =
-              serializers.deserialize(
-                    value,
-                    specifiedType: const FullType(String),
-                  )
-                  as String?;
-          break;
-        case 'value':
-          result.value =
+        case 'device':
+          result.device =
               serializers.deserialize(
                     value,
                     specifiedType: const FullType(String),
                   )!
                   as String;
+          break;
+        case 'source':
+          result.source =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GSource),
+                  )!
+                  as _i2.GSource;
+          break;
+        case 'state':
+          result.state =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GState),
+                  )!
+                  as _i2.GState;
+          break;
+        case 'severity':
+          result.severity =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(_i2.GSeverity),
+                  )!
+                  as _i2.GSeverity;
+          break;
+        case 'acknowledgeable':
+          result.acknowledgeable =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(bool),
+                  )!
+                  as bool;
+          break;
+        case 'time':
+          result.time.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GDateTime),
+                )!
+                as _i2.GDateTime,
+          );
+          break;
+        case 'epicsType':
+          result.epicsType =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
+          break;
+        case 'user':
+          result.user =
+              serializers.deserialize(
+                    value,
+                    specifiedType: const FullType(String),
+                  )!
+                  as String;
+          break;
+        case 'wake':
+          result.wake.replace(
+            serializers.deserialize(
+                  value,
+                  specifiedType: const FullType(_i2.GDateTime),
+                )!
+                as _i2.GDateTime,
+          );
           break;
       }
     }
@@ -286,9 +385,23 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
   @override
   final String G__typename;
   @override
-  final String? key;
+  final String device;
   @override
-  final String value;
+  final _i2.GSource source;
+  @override
+  final _i2.GState state;
+  @override
+  final _i2.GSeverity severity;
+  @override
+  final bool acknowledgeable;
+  @override
+  final _i2.GDateTime? time;
+  @override
+  final String epicsType;
+  @override
+  final String user;
+  @override
+  final _i2.GDateTime? wake;
 
   factory _$GStreamAlarmsData_alarms([
     void Function(GStreamAlarmsData_alarmsBuilder)? updates,
@@ -296,8 +409,15 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
 
   _$GStreamAlarmsData_alarms._({
     required this.G__typename,
-    this.key,
-    required this.value,
+    required this.device,
+    required this.source,
+    required this.state,
+    required this.severity,
+    required this.acknowledgeable,
+    this.time,
+    required this.epicsType,
+    required this.user,
+    this.wake,
   }) : super._();
   @override
   GStreamAlarmsData_alarms rebuild(
@@ -313,16 +433,30 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
     if (identical(other, this)) return true;
     return other is GStreamAlarmsData_alarms &&
         G__typename == other.G__typename &&
-        key == other.key &&
-        value == other.value;
+        device == other.device &&
+        source == other.source &&
+        state == other.state &&
+        severity == other.severity &&
+        acknowledgeable == other.acknowledgeable &&
+        time == other.time &&
+        epicsType == other.epicsType &&
+        user == other.user &&
+        wake == other.wake;
   }
 
   @override
   int get hashCode {
     var _$hash = 0;
     _$hash = $jc(_$hash, G__typename.hashCode);
-    _$hash = $jc(_$hash, key.hashCode);
-    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jc(_$hash, device.hashCode);
+    _$hash = $jc(_$hash, source.hashCode);
+    _$hash = $jc(_$hash, state.hashCode);
+    _$hash = $jc(_$hash, severity.hashCode);
+    _$hash = $jc(_$hash, acknowledgeable.hashCode);
+    _$hash = $jc(_$hash, time.hashCode);
+    _$hash = $jc(_$hash, epicsType.hashCode);
+    _$hash = $jc(_$hash, user.hashCode);
+    _$hash = $jc(_$hash, wake.hashCode);
     _$hash = $jf(_$hash);
     return _$hash;
   }
@@ -331,8 +465,15 @@ class _$GStreamAlarmsData_alarms extends GStreamAlarmsData_alarms {
   String toString() {
     return (newBuiltValueToStringHelper(r'GStreamAlarmsData_alarms')
           ..add('G__typename', G__typename)
-          ..add('key', key)
-          ..add('value', value))
+          ..add('device', device)
+          ..add('source', source)
+          ..add('state', state)
+          ..add('severity', severity)
+          ..add('acknowledgeable', acknowledgeable)
+          ..add('time', time)
+          ..add('epicsType', epicsType)
+          ..add('user', user)
+          ..add('wake', wake))
         .toString();
   }
 }
@@ -346,13 +487,42 @@ class GStreamAlarmsData_alarmsBuilder
   String? get G__typename => _$this._G__typename;
   set G__typename(String? G__typename) => _$this._G__typename = G__typename;
 
-  String? _key;
-  String? get key => _$this._key;
-  set key(String? key) => _$this._key = key;
+  String? _device;
+  String? get device => _$this._device;
+  set device(String? device) => _$this._device = device;
 
-  String? _value;
-  String? get value => _$this._value;
-  set value(String? value) => _$this._value = value;
+  _i2.GSource? _source;
+  _i2.GSource? get source => _$this._source;
+  set source(_i2.GSource? source) => _$this._source = source;
+
+  _i2.GState? _state;
+  _i2.GState? get state => _$this._state;
+  set state(_i2.GState? state) => _$this._state = state;
+
+  _i2.GSeverity? _severity;
+  _i2.GSeverity? get severity => _$this._severity;
+  set severity(_i2.GSeverity? severity) => _$this._severity = severity;
+
+  bool? _acknowledgeable;
+  bool? get acknowledgeable => _$this._acknowledgeable;
+  set acknowledgeable(bool? acknowledgeable) =>
+      _$this._acknowledgeable = acknowledgeable;
+
+  _i2.GDateTimeBuilder? _time;
+  _i2.GDateTimeBuilder get time => _$this._time ??= _i2.GDateTimeBuilder();
+  set time(_i2.GDateTimeBuilder? time) => _$this._time = time;
+
+  String? _epicsType;
+  String? get epicsType => _$this._epicsType;
+  set epicsType(String? epicsType) => _$this._epicsType = epicsType;
+
+  String? _user;
+  String? get user => _$this._user;
+  set user(String? user) => _$this._user = user;
+
+  _i2.GDateTimeBuilder? _wake;
+  _i2.GDateTimeBuilder get wake => _$this._wake ??= _i2.GDateTimeBuilder();
+  set wake(_i2.GDateTimeBuilder? wake) => _$this._wake = wake;
 
   GStreamAlarmsData_alarmsBuilder() {
     GStreamAlarmsData_alarms._initializeBuilder(this);
@@ -362,8 +532,15 @@ class GStreamAlarmsData_alarmsBuilder
     final $v = _$v;
     if ($v != null) {
       _G__typename = $v.G__typename;
-      _key = $v.key;
-      _value = $v.value;
+      _device = $v.device;
+      _source = $v.source;
+      _state = $v.state;
+      _severity = $v.severity;
+      _acknowledgeable = $v.acknowledgeable;
+      _time = $v.time?.toBuilder();
+      _epicsType = $v.epicsType;
+      _user = $v.user;
+      _wake = $v.wake?.toBuilder();
       _$v = null;
     }
     return this;
@@ -383,21 +560,71 @@ class GStreamAlarmsData_alarmsBuilder
   GStreamAlarmsData_alarms build() => _build();
 
   _$GStreamAlarmsData_alarms _build() {
-    final _$result =
-        _$v ??
-        _$GStreamAlarmsData_alarms._(
-          G__typename: BuiltValueNullFieldError.checkNotNull(
-            G__typename,
-            r'GStreamAlarmsData_alarms',
-            'G__typename',
-          ),
-          key: key,
-          value: BuiltValueNullFieldError.checkNotNull(
-            value,
-            r'GStreamAlarmsData_alarms',
-            'value',
-          ),
+    _$GStreamAlarmsData_alarms _$result;
+    try {
+      _$result =
+          _$v ??
+          _$GStreamAlarmsData_alarms._(
+            G__typename: BuiltValueNullFieldError.checkNotNull(
+              G__typename,
+              r'GStreamAlarmsData_alarms',
+              'G__typename',
+            ),
+            device: BuiltValueNullFieldError.checkNotNull(
+              device,
+              r'GStreamAlarmsData_alarms',
+              'device',
+            ),
+            source: BuiltValueNullFieldError.checkNotNull(
+              source,
+              r'GStreamAlarmsData_alarms',
+              'source',
+            ),
+            state: BuiltValueNullFieldError.checkNotNull(
+              state,
+              r'GStreamAlarmsData_alarms',
+              'state',
+            ),
+            severity: BuiltValueNullFieldError.checkNotNull(
+              severity,
+              r'GStreamAlarmsData_alarms',
+              'severity',
+            ),
+            acknowledgeable: BuiltValueNullFieldError.checkNotNull(
+              acknowledgeable,
+              r'GStreamAlarmsData_alarms',
+              'acknowledgeable',
+            ),
+            time: _time?.build(),
+            epicsType: BuiltValueNullFieldError.checkNotNull(
+              epicsType,
+              r'GStreamAlarmsData_alarms',
+              'epicsType',
+            ),
+            user: BuiltValueNullFieldError.checkNotNull(
+              user,
+              r'GStreamAlarmsData_alarms',
+              'user',
+            ),
+            wake: _wake?.build(),
+          );
+    } catch (_) {
+      late String _$failedField;
+      try {
+        _$failedField = 'time';
+        _time?.build();
+
+        _$failedField = 'wake';
+        _wake?.build();
+      } catch (e) {
+        throw BuiltValueNestedFieldError(
+          r'GStreamAlarmsData_alarms',
+          _$failedField,
+          e.toString(),
         );
+      }
+      rethrow;
+    }
     replace(_$result);
     return _$result;
   }

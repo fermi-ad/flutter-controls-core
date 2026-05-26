@@ -6,9 +6,95 @@ part of 'DPM.schema.gql.dart';
 // BuiltValueGenerator
 // **************************************************************************
 
+const GSeverity _$gSeverityUNKNOWN = const GSeverity._('UNKNOWN');
+const GSeverity _$gSeverityLOW = const GSeverity._('LOW');
+const GSeverity _$gSeverityHIGH = const GSeverity._('HIGH');
+
+GSeverity _$gSeverityValueOf(String name) {
+  switch (name) {
+    case 'UNKNOWN':
+      return _$gSeverityUNKNOWN;
+    case 'LOW':
+      return _$gSeverityLOW;
+    case 'HIGH':
+      return _$gSeverityHIGH;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<GSeverity> _$gSeverityValues = BuiltSet<GSeverity>(
+  const <GSeverity>[_$gSeverityUNKNOWN, _$gSeverityLOW, _$gSeverityHIGH],
+);
+
+const GSource _$gSourceUNKNOWN = const GSource._('UNKNOWN');
+const GSource _$gSourceANALOG = const GSource._('ANALOG');
+const GSource _$gSourceDIGITAL = const GSource._('DIGITAL');
+const GSource _$gSourceEPICS = const GSource._('EPICS');
+
+GSource _$gSourceValueOf(String name) {
+  switch (name) {
+    case 'UNKNOWN':
+      return _$gSourceUNKNOWN;
+    case 'ANALOG':
+      return _$gSourceANALOG;
+    case 'DIGITAL':
+      return _$gSourceDIGITAL;
+    case 'EPICS':
+      return _$gSourceEPICS;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<GSource> _$gSourceValues = BuiltSet<GSource>(const <GSource>[
+  _$gSourceUNKNOWN,
+  _$gSourceANALOG,
+  _$gSourceDIGITAL,
+  _$gSourceEPICS,
+]);
+
+const GState _$gStateUNKNOWN = const GState._('UNKNOWN');
+const GState _$gStateOK = const GState._('OK');
+const GState _$gStateBYPASSED = const GState._('BYPASSED');
+const GState _$gStateLATCHED = const GState._('LATCHED');
+const GState _$gStateACKNOWLEDGED = const GState._('ACKNOWLEDGED');
+const GState _$gStateUNBYPASSED = const GState._('UNBYPASSED');
+
+GState _$gStateValueOf(String name) {
+  switch (name) {
+    case 'UNKNOWN':
+      return _$gStateUNKNOWN;
+    case 'OK':
+      return _$gStateOK;
+    case 'BYPASSED':
+      return _$gStateBYPASSED;
+    case 'LATCHED':
+      return _$gStateLATCHED;
+    case 'ACKNOWLEDGED':
+      return _$gStateACKNOWLEDGED;
+    case 'UNBYPASSED':
+      return _$gStateUNBYPASSED;
+    default:
+      throw ArgumentError(name);
+  }
+}
+
+final BuiltSet<GState> _$gStateValues = BuiltSet<GState>(const <GState>[
+  _$gStateUNKNOWN,
+  _$gStateOK,
+  _$gStateBYPASSED,
+  _$gStateLATCHED,
+  _$gStateACKNOWLEDGED,
+  _$gStateUNBYPASSED,
+]);
+
 Serializer<GDevValue> _$gDevValueSerializer = _$GDevValueSerializer();
 Serializer<GTimeSeriesEntryIn> _$gTimeSeriesEntryInSerializer =
     _$GTimeSeriesEntryInSerializer();
+Serializer<GSeverity> _$gSeveritySerializer = _$GSeveritySerializer();
+Serializer<GSource> _$gSourceSerializer = _$GSourceSerializer();
+Serializer<GState> _$gStateSerializer = _$GStateSerializer();
 
 class _$GDevValueSerializer implements StructuredSerializer<GDevValue> {
   @override
@@ -251,6 +337,69 @@ class _$GTimeSeriesEntryInSerializer
 
     return result.build();
   }
+}
+
+class _$GSeveritySerializer implements PrimitiveSerializer<GSeverity> {
+  @override
+  final Iterable<Type> types = const <Type>[GSeverity];
+  @override
+  final String wireName = 'GSeverity';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    GSeverity object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => object.name;
+
+  @override
+  GSeverity deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => GSeverity.valueOf(serialized as String);
+}
+
+class _$GSourceSerializer implements PrimitiveSerializer<GSource> {
+  @override
+  final Iterable<Type> types = const <Type>[GSource];
+  @override
+  final String wireName = 'GSource';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    GSource object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => object.name;
+
+  @override
+  GSource deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => GSource.valueOf(serialized as String);
+}
+
+class _$GStateSerializer implements PrimitiveSerializer<GState> {
+  @override
+  final Iterable<Type> types = const <Type>[GState];
+  @override
+  final String wireName = 'GState';
+
+  @override
+  Object serialize(
+    Serializers serializers,
+    GState object, {
+    FullType specifiedType = FullType.unspecified,
+  }) => object.name;
+
+  @override
+  GState deserialize(
+    Serializers serializers,
+    Object serialized, {
+    FullType specifiedType = FullType.unspecified,
+  }) => GState.valueOf(serialized as String);
 }
 
 class _$GDevValue extends GDevValue {
@@ -532,6 +681,88 @@ class GTimeSeriesEntryInBuilder
           value: BuiltValueNullFieldError.checkNotNull(
             value,
             r'GTimeSeriesEntryIn',
+            'value',
+          ),
+        );
+    replace(_$result);
+    return _$result;
+  }
+}
+
+class _$GDateTime extends GDateTime {
+  @override
+  final String value;
+
+  factory _$GDateTime([void Function(GDateTimeBuilder)? updates]) =>
+      (GDateTimeBuilder()..update(updates))._build();
+
+  _$GDateTime._({required this.value}) : super._();
+  @override
+  GDateTime rebuild(void Function(GDateTimeBuilder) updates) =>
+      (toBuilder()..update(updates)).build();
+
+  @override
+  GDateTimeBuilder toBuilder() => GDateTimeBuilder()..replace(this);
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    return other is GDateTime && value == other.value;
+  }
+
+  @override
+  int get hashCode {
+    var _$hash = 0;
+    _$hash = $jc(_$hash, value.hashCode);
+    _$hash = $jf(_$hash);
+    return _$hash;
+  }
+
+  @override
+  String toString() {
+    return (newBuiltValueToStringHelper(r'GDateTime')
+      ..add('value', value)).toString();
+  }
+}
+
+class GDateTimeBuilder implements Builder<GDateTime, GDateTimeBuilder> {
+  _$GDateTime? _$v;
+
+  String? _value;
+  String? get value => _$this._value;
+  set value(String? value) => _$this._value = value;
+
+  GDateTimeBuilder();
+
+  GDateTimeBuilder get _$this {
+    final $v = _$v;
+    if ($v != null) {
+      _value = $v.value;
+      _$v = null;
+    }
+    return this;
+  }
+
+  @override
+  void replace(GDateTime other) {
+    _$v = other as _$GDateTime;
+  }
+
+  @override
+  void update(void Function(GDateTimeBuilder)? updates) {
+    if (updates != null) updates(this);
+  }
+
+  @override
+  GDateTime build() => _build();
+
+  _$GDateTime _build() {
+    final _$result =
+        _$v ??
+        _$GDateTime._(
+          value: BuiltValueNullFieldError.checkNotNull(
+            value,
+            r'GDateTime',
             'value',
           ),
         );

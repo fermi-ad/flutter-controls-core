@@ -191,7 +191,7 @@ type Query {
   """
   Retrieve a snapshot of the current alarms.
   """
-  alarmsSnapshot: [Message!]!
+  alarmsSnapshot: [Alarm!]!
 }
 
 """
@@ -327,7 +327,7 @@ type Subscription {
   Takes no arguments and returns a stream of raw alarms messages. Each message
   contains information about all known alarms in a JSON-formatted object.
   """
-  alarms: Message!
+  alarms: Alarm!
 }
 
 """
@@ -345,9 +345,46 @@ type TextArray {
 }
 
 """
-Represents a generic message with an optional key and required value.
+Represents a structured alarm message returned by the alarms query and subscription.
 """
-type Message {
-  key: String
-  value: String!
+type Alarm {
+  device: String!
+  source: Source!
+  state: State!
+  severity: Severity!
+  acknowledgeable: Boolean!
+  time: DateTime
+  epicsType: String!
+  user: String!
+  wake: DateTime
 }
+
+"""
+Implement the DateTime<Utc> scalar
+
+The input/output is a string in RFC339 format.
+"""
+scalar DateTime
+
+enum Severity {
+  UNKNOWN
+  LOW
+  HIGH
+}
+
+enum Source {
+  UNKNOWN
+  ANALOG
+  DIGITAL
+  EPICS
+}
+
+enum State {
+  UNKNOWN
+  OK
+  BYPASSED
+  LATCHED
+  ACKNOWLEDGED
+  UNBYPASSED
+}
+
