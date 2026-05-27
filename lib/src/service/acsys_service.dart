@@ -879,79 +879,48 @@ final class ACSysService implements ACSysServiceAPI {
   // The caller sends in a GraphQL request and, optionally, a function to
   // translate the GraphQL response data into some other data type.
 
+  Future<Result> _executeRequest<TData, TVars, Result>(
+    Client client,
+    OperationRequest<TData, TVars> req, {
+    Result Function(TData)? xlat,
+  }) async {
+    final response = await client
+        .request(req)
+        .firstWhere((response) => !response.loading);
+
+    if (response.hasErrors) {
+      if (response.linkException != null) {
+        throw response.linkException!;
+      } else if (response.graphqlErrors != null) {
+        throw ACSysGraphQLException(response.graphqlErrors.toString());
+      } else {
+        throw ACSysGraphQLException("unknown error");
+      }
+    } else {
+      final data = response.data;
+
+      if (data != null) {
+        return xlat != null ? xlat(data) : data as Result;
+      } else {
+        throw ACSysGraphQLException("no data was returned from request");
+      }
+    }
+  }
+
   Future<Result> _queryAcsys<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) =>
-      _q.request(req).firstWhere((response) => !response.loading).then((value) {
-        if (value.hasErrors) {
-          if (value.linkException != null) {
-            throw value.linkException!;
-          } else if (value.graphqlErrors != null) {
-            throw ACSysGraphQLException(value.graphqlErrors.toString());
-          } else {
-            throw ACSysGraphQLException("unknown error");
-          }
-        } else {
-          final data = value.data;
-
-          if (data != null) {
-            return xlat != null ? xlat(data) : data as Result;
-          } else {
-            throw ACSysGraphQLException("no data was returned from request");
-          }
-        }
-      });
+  }) => _executeRequest(_q, req, xlat: xlat);
 
   Future<Result> _queryDevDb<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _qDevDb.request(req).firstWhere((response) => !response.loading).then((
-    value,
-  ) {
-    if (value.hasErrors) {
-      if (value.linkException != null) {
-        throw value.linkException!;
-      } else if (value.graphqlErrors != null) {
-        throw ACSysGraphQLException(value.graphqlErrors.toString());
-      } else {
-        throw ACSysGraphQLException("unknown error");
-      }
-    } else {
-      final data = value.data;
-
-      if (data != null) {
-        return xlat != null ? xlat(data) : data as Result;
-      } else {
-        throw ACSysGraphQLException("no data was returned from request");
-      }
-    }
-  });
+  }) => _executeRequest(_qDevDb, req, xlat: xlat);
 
   Future<Result> _queryAlarms<TData, TVars, Result>(
     OperationRequest<TData, TVars> req, {
     Result Function(TData)? xlat,
-  }) => _qAlarms.request(req).firstWhere((response) => !response.loading).then((
-    value,
-  ) {
-    if (value.hasErrors) {
-      if (value.linkException != null) {
-        throw value.linkException!;
-      } else if (value.graphqlErrors != null) {
-        throw ACSysGraphQLException(value.graphqlErrors.toString());
-      } else {
-        throw ACSysGraphQLException("unknown error");
-      }
-    } else {
-      final data = value.data;
-
-      if (data != null) {
-        return xlat != null ? xlat(data) : data as Result;
-      } else {
-        throw ACSysGraphQLException("no data was returned from request");
-      }
-    }
-  });
+  }) => _executeRequest(_qAlarms, req, xlat: xlat);
 
   /// Returns information about devices. The caller provides a list of device
   /// names and will receive a list of `DeviceInfo` objects. The order of the
@@ -1347,32 +1316,25 @@ final class ACSysService implements ACSysServiceAPI {
   Future<SettingStatus> submit({
     required String forDRF,
     required DeviceValue newSetting,
-  }) {
-    // Define a nested function which converts the GraphQL reply into a
-    // SettingStatus.
-
-    xlat(e) => SettingStatus(
-      facilityCode: e.setDevice.status & 255,
-      errorCode: e.setDevice.status ~/ 256,
-    );
-
-    // Build the request.
-
-    final req = GSetDeviceReq(
+  }) => _queryAcsys(
+    GSetDeviceReq(
       (b) =>
           b
             ..vars.device = forDRF
             ..vars.value = newSetting._toGDevValue(),
-    );
-
-    return _queryAcsys(req, xlat: xlat);
-  }
+    ),
+    xlat:
+        (e) => SettingStatus(
+          facilityCode: e.setDevice.status & 255,
+          errorCode: e.setDevice.status ~/ 256,
+        ),
+  );
 
   @override
   Future<SettingStatus> sendCommand({
     required String toDRF,
     required String value,
-  }) => submit(forDRF: toDRF, newSetting: DevText(value));
+  }) => submit(forDRF: toDRF, newSetting: value.toDevVal());
 
   @override
   Stream<AnalogAlarmStatus> monitorAnalogAlarmProperty(List<String> drfs) =>
@@ -1417,128 +1379,96 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<List<PlotConfigurationListing>> listPlotConfigurations() {
-    final req = GPlotConfigsReq(
-      (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
-    );
-
-    return _queryAcsys(
-      req,
-      xlat:
-          (GPlotConfigsData data) =>
-              data.plotConfiguration
-                  .map(
-                    (e) => PlotConfigurationListing(
-                      configurationId: PlotConfigId._fromInt(e.configId),
-                      configurationName: e.configName,
-                    ),
-                  )
-                  .toList(),
-    );
-  }
+  Future<List<PlotConfigurationListing>> listPlotConfigurations() =>
+      _queryAcsys(
+        GPlotConfigsReq((b) => b..fetchPolicy = FetchPolicy.NetworkOnly),
+        xlat:
+            (GPlotConfigsData data) =>
+                data.plotConfiguration
+                    .map(
+                      (e) => PlotConfigurationListing(
+                        configurationId: PlotConfigId._fromInt(e.configId),
+                        configurationName: e.configName,
+                      ),
+                    )
+                    .toList(),
+      );
 
   @override
   Future<void> removePlotConfiguration({
     required PlotConfigId configurationId,
-  }) {
-    final req = GDeletePlotConfigReq(
-      (b) => b..vars.id = configurationId._value,
-    );
-
-    return _queryAcsys(req, xlat: (GDeletePlotConfigData data) => ());
-  }
+  }) => _queryAcsys(
+    GDeletePlotConfigReq((b) => b..vars.id = configurationId._value),
+    xlat: (GDeletePlotConfigData data) => (),
+  );
 
   @override
-  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() {
-    final req = GUsersLastConfigReq();
+  Future<PlotConfigurationSnapshot?> retrieveLastUserConfiguration() =>
+      _queryAcsys(
+        GUsersLastConfigReq(),
+        xlat: (GUsersLastConfigData data) {
+          final e = data.usersLastConfiguration;
 
-    return _queryAcsys(
-      req,
-      xlat: (GUsersLastConfigData data) {
-        final e = data.usersLastConfiguration;
-
-        return e == null
-            ? null
-            : PlotConfigurationSnapshot.fromJson(
-              PlotConfigId._fromInt(0),
-              "n/a",
-              jsonDecode(e),
-            );
-      },
-    );
-  }
+          return e == null
+              ? null
+              : PlotConfigurationSnapshot.fromJson(
+                PlotConfigId._fromInt(0),
+                "n/a",
+                jsonDecode(e),
+              );
+        },
+      );
 
   @override
   Future<void> saveUserConfiguration({
     required PlotConfigurationSnapshot snapshot,
-  }) {
-    final req = GSetUsersConfigReq(
-      (b) => b..vars.cfg = jsonEncode(snapshot.toJson()),
-    );
-
-    return _queryAcsys(req, xlat: (GSetUsersConfigData data) => ());
-  }
+  }) => _queryAcsys(
+    GSetUsersConfigReq((b) => b..vars.cfg = jsonEncode(snapshot.toJson())),
+    xlat: (GSetUsersConfigData data) => (),
+  );
 
   @override
   Future<PlotConfigurationSnapshot?> retrievePlotConfiguration({
     required PlotConfigId configurationId,
-  }) {
-    final req = GPlotConfigsReq((b) => b..vars.id = configurationId._value);
-
-    return _queryAcsys(
-      req,
-      xlat:
-          (GPlotConfigsData data) => data.plotConfiguration.map(
-            (e) => PlotConfigurationSnapshot.fromJson(
-              PlotConfigId._fromInt(e.configId),
-              e.configName,
-              jsonDecode(e.config),
+  }) async =>
+      (await _queryAcsys(
+        GPlotConfigsReq((b) => b..vars.id = configurationId._value),
+        xlat:
+            (GPlotConfigsData data) => data.plotConfiguration.map(
+              (e) => PlotConfigurationSnapshot.fromJson(
+                PlotConfigId._fromInt(e.configId),
+                e.configName,
+                jsonDecode(e.config),
+              ),
             ),
-          ),
-    ).then((value) {
-      switch (value.toList()) {
-        case []:
-          return null;
-        case [PlotConfigurationSnapshot e]:
-          return e;
-        default:
-          throw const ACSysConfigurationException(
-            "multiple configurations found",
-          );
-      }
-    });
-  }
+      )).firstOrNull;
 
   @override
   Future<PlotConfigurationSnapshot> savePlotConfiguration({
     required PlotConfigurationSnapshot snapshot,
-  }) {
-    final req = GUpdatePlotConfigReq(
-      (b) =>
-          b
-            ..vars.cfg = jsonEncode(snapshot.toJson())
-            ..vars.id = snapshot.configurationId?._value
-            ..vars.name = snapshot.configurationName,
+  }) async {
+    final id = await _queryAcsys(
+      GUpdatePlotConfigReq(
+        (b) =>
+            b
+              ..vars.cfg = jsonEncode(snapshot.toJson())
+              ..vars.id = snapshot.configurationId?._value
+              ..vars.name = snapshot.configurationName,
+      ),
+      xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration,
     );
 
-    return _queryAcsys(
-      req,
-      xlat: (GUpdatePlotConfigData data) => data.updatePlotConfiguration,
-    ).then(
-      (id) =>
-          snapshot
-            ..configurationId = id == null ? null : PlotConfigId._fromInt(id),
-    );
+    snapshot.configurationId = id == null ? null : PlotConfigId._fromInt(id);
+    return snapshot;
   }
 }
 
 extension on GStartPlotData_startPlot_data_channelData_result {
   DeviceValue toDevValue() => switch (this) {
-    GStartPlotData_startPlot_data_channelData_result__asScalar val => DevScalar(
-      val.scalarValue,
-    ),
+    GStartPlotData_startPlot_data_channelData_result__asScalar val =>
+      val.scalarValue.toDevVal(),
     GStartPlotData_startPlot_data_channelData_result__asScalarArray val =>
-      DevScalarArray(val.scalarArrayValue.toList()),
+      val.scalarArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
 }
@@ -1546,17 +1476,15 @@ extension on GStartPlotData_startPlot_data_channelData_result {
 extension on GStreamDataData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
     GStreamDataData_acceleratorData_data_result__asStatusReply val =>
-      DevStatusCode(Status.fromInt(val.status)),
-    GStreamDataData_acceleratorData_data_result__asScalar val => DevScalar(
-      val.scalarValue,
-    ),
+      Status.fromInt(val.status).toDevVal(),
+    GStreamDataData_acceleratorData_data_result__asScalar val =>
+      val.scalarValue.toDevVal(),
     GStreamDataData_acceleratorData_data_result__asScalarArray val =>
-      DevScalarArray(val.scalarArrayValue.toList()),
-    GStreamDataData_acceleratorData_data_result__asText val => DevText(
-      val.textValue,
-    ),
+      val.scalarArrayValue.toList().toDevVal(),
+    GStreamDataData_acceleratorData_data_result__asText val =>
+      val.textValue.toDevVal(),
     GStreamDataData_acceleratorData_data_result__asTextArray val =>
-      DevTextArray(val.textArrayValue.toList()),
+      val.textArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
 }
@@ -1564,17 +1492,15 @@ extension on GStreamDataData_acceleratorData_data_result {
 extension on GReadDevicesData_acceleratorData_data_result {
   DeviceValue toDevValue() => switch (this) {
     GReadDevicesData_acceleratorData_data_result__asStatusReply val =>
-      DevStatusCode(Status.fromInt(val.status)),
-    GReadDevicesData_acceleratorData_data_result__asScalar val => DevScalar(
-      val.scalarValue,
-    ),
+      Status.fromInt(val.status).toDevVal(),
+    GReadDevicesData_acceleratorData_data_result__asScalar val =>
+      val.scalarValue.toDevVal(),
     GReadDevicesData_acceleratorData_data_result__asScalarArray val =>
-      DevScalarArray(val.scalarArrayValue.toList()),
-    GReadDevicesData_acceleratorData_data_result__asText val => DevText(
-      val.textValue,
-    ),
+      val.scalarArrayValue.toList().toDevVal(),
+    GReadDevicesData_acceleratorData_data_result__asText val =>
+      val.textValue.toDevVal(),
     GReadDevicesData_acceleratorData_data_result__asTextArray val =>
-      DevTextArray(val.textArrayValue.toList()),
+      val.textArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
 }
