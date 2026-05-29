@@ -4,6 +4,8 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:built_value/built_value.dart';
 import 'package:built_value/serializer.dart';
+import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
+    as _i2;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/serializers.gql.dart'
     as _i1;
 
@@ -44,12 +46,19 @@ abstract class GStreamAlarmsData_alarms
   ]) = _$GStreamAlarmsData_alarms;
 
   static void _initializeBuilder(GStreamAlarmsData_alarmsBuilder b) =>
-      b..G__typename = 'Message';
+      b..G__typename = 'Alarm';
 
   @BuiltValueField(wireName: '__typename')
   String get G__typename;
-  String? get key;
-  String get value;
+  String get device;
+  _i2.GSource get source;
+  _i2.GState get state;
+  _i2.GSeverity get severity;
+  bool get acknowledgeable;
+  _i2.GDateTime? get time;
+  String get epicsType;
+  String get user;
+  _i2.GDateTime? get wake;
   static Serializer<GStreamAlarmsData_alarms> get serializer =>
       _$gStreamAlarmsDataAlarmsSerializer;
 

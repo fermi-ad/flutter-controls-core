@@ -265,16 +265,46 @@ final class Reading {
   });
 }
 
-class Message<T> {
-  final String? key;
-  final T value;
+class Alarm {
+  final String device;
+  final AlarmSource source;
+  final AlarmState state;
+  final AlarmSeverity severity;
+  final bool acknowledgeable;
+  final DateTime time;
+  final String epicsType;
+  final String user;
+  final DateTime wake;
 
-  const Message({this.key, required this.value});
+  const Alarm({
+    required this.device,
+    required this.source,
+    required this.state,
+    required this.severity,
+    required this.acknowledgeable,
+    required this.time,
+    required this.epicsType,
+    required this.user,
+    required this.wake,
+  });
 }
 
-final class AlarmMessage extends Message<String> {
-  const AlarmMessage({super.key, required super.value});
+/// Enumeration representing the Alarm Source
+enum AlarmSource { unknown, analog, digital, epics }
+
+/// Enumeration representing the alarm state
+enum AlarmState {
+  unknown,
+  ok,
+  alarmed,
+  bypassed,
+  latched,
+  acknowledged,
+  unbypassed,
 }
+
+/// Enumeration representing Alarm Severity
+enum AlarmSeverity { unknown, low, high }
 
 /// Enumeration representing console colors.
 ///
@@ -714,11 +744,11 @@ abstract interface class ACSysServiceAPI {
   Stream<DigitalStatus> monitorDigitalStatusDevices(List<String> devices);
 
   /// Gets a snapshot of the current alarms.
-  Future<List<AlarmMessage>> getAlarmsSnapshot();
+  Future<List<Alarm>> getAlarmsSnapshot();
 
   /// Takes no parameters and returns a stream that provides the current
   /// alarm info for all alarms.
-  Stream<AlarmMessage> monitorAlarms();
+  Stream<Alarm> monitorAlarms();
 
   /// Takes a list of data acquisition strings and returns a stream that
   /// provides a sample of the analog alarm property.
@@ -1155,22 +1185,20 @@ final class ACSysService implements ACSysServiceAPI {
   }
 
   @override
-  Future<List<AlarmMessage>> getAlarmsSnapshot() {
+  Future<List<Alarm>> getAlarmsSnapshot() {
     final req = GAlarmsSnapshotReq();
 
     return _queryAlarms(
       req,
-      xlat: (GAlarmsSnapshotData data) {
-        return data.alarmsSnapshot.map((snapshot) {
-          return AlarmMessage(key: snapshot.key, value: snapshot.value);
-        }).toList();
-      },
+      xlat:
+          (GAlarmsSnapshotData data) =>
+              data.alarmsSnapshot.map((alarm) => alarm.toAlarm()).toList(),
     );
   }
 
   // Returns a stream of alarm information for all known alarms.
   @override
-  Stream<AlarmMessage> monitorAlarms() {
+  Stream<Alarm> monitorAlarms() {
     final req = GStreamAlarmsReq(
       (b) => b..fetchPolicy = FetchPolicy.NetworkOnly,
     );
@@ -1186,10 +1214,7 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            yield AlarmMessage(
-              key: e.data!.alarms.key,
-              value: e.data!.alarms.value,
-            );
+            yield e.data!.alarms.toAlarm();
           } else {
             if (e.linkException != null) {
               throw e.linkException!;
@@ -1201,6 +1226,9 @@ final class ACSysService implements ACSysServiceAPI {
           }
         });
   }
+
+  static DateTime _gDateTimeToDateTime(GDateTime? gdt) =>
+      gdt != null ? DateTime.parse(gdt.value) : DateTime(0);
 
   static DateTime fromFloatTs(double ts) =>
       DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0).toInt());
@@ -1503,6 +1531,64 @@ extension on GReadDevicesData_acceleratorData_data_result {
       val.textArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
+}
+
+extension on GSource {
+  AlarmSource toAlarmSource() {
+    try {
+      return AlarmSource.values.byName(name.toLowerCase());
+    } catch (_) {
+      return AlarmSource.unknown;
+    }
+  }
+}
+
+extension on GState {
+  AlarmState toAlarmState() {
+    try {
+      return AlarmState.values.byName(name.toLowerCase());
+    } catch (_) {
+      return AlarmState.unknown;
+    }
+  }
+}
+
+extension on GSeverity {
+  AlarmSeverity toAlarmSeverity() {
+    try {
+      return AlarmSeverity.values.byName(name.toLowerCase());
+    } catch (_) {
+      return AlarmSeverity.unknown;
+    }
+  }
+}
+
+extension on GAlarmsSnapshotData_alarmsSnapshot {
+  Alarm toAlarm() => Alarm(
+    device: device,
+    source: source.toAlarmSource(),
+    state: state.toAlarmState(),
+    severity: severity.toAlarmSeverity(),
+    acknowledgeable: acknowledgeable,
+    time: ACSysService._gDateTimeToDateTime(time),
+    epicsType: epicsType,
+    user: user,
+    wake: ACSysService._gDateTimeToDateTime(wake),
+  );
+}
+
+extension on GStreamAlarmsData_alarms {
+  Alarm toAlarm() => Alarm(
+    device: device,
+    source: source.toAlarmSource(),
+    state: state.toAlarmState(),
+    severity: severity.toAlarmSeverity(),
+    acknowledgeable: acknowledgeable,
+    time: ACSysService._gDateTimeToDateTime(time),
+    epicsType: epicsType,
+    user: user,
+    wake: ACSysService._gDateTimeToDateTime(wake),
+  );
 }
 
 extension on GStartPlotData_startPlot_data {

@@ -1,6 +1,6 @@
 name: flutter_controls_core
 description: A Flutter package to write Fermilab applications.
-version: 0.4.0
+version: 0.5.0
 publish_to: none
 
 environment:
@@ -33,6 +33,11 @@ dependencies:
     flutter_controls_auth:
       git:
         url: https://github.com/fermi-ad/flutter-controls-auth.git
+        ref: main
+    
+    bison_design_system:
+      git:
+        url: https://github.com/fermi-ad/design-system.git
         ref: main
 
 dev_dependencies:

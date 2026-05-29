@@ -1,6 +1,13 @@
 query AlarmsSnapshot {
-    alarmsSnapshot {
-        key
-        value
-    }
+  alarmsSnapshot {
+    device
+    source
+    state
+    severity
+    acknowledgeable
+    time
+    epicsType
+    user
+    wake
+  }
 }

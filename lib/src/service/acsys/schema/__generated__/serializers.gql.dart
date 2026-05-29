@@ -6,7 +6,7 @@ import 'package:built_value/serializer.dart';
 import 'package:built_value/standard_json_plugin.dart' show StandardJsonPlugin;
 import 'package:ferry_exec/ferry_exec.dart';
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/DPM.schema.gql.dart'
-    show GDevValue, GTimeSeriesEntryIn;
+    show GDateTime, GDevValue, GSeverity, GSource, GState, GTimeSeriesEntryIn;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.data.gql.dart'
     show GPlotConfigsData, GPlotConfigsData_plotConfiguration;
 import 'package:flutter_controls_core/src/service/acsys/schema/__generated__/plot_configs.req.gql.dart'
@@ -121,6 +121,7 @@ final SerializersBuilder _serializersBuilder =
   GAlarmsSnapshotData_alarmsSnapshot,
   GAlarmsSnapshotReq,
   GAlarmsSnapshotVars,
+  GDateTime,
   GDeletePlotConfigData,
   GDeletePlotConfigData_deletePlotConfiguration,
   GDeletePlotConfigReq,
@@ -149,6 +150,8 @@ final SerializersBuilder _serializersBuilder =
   GSetUsersConfigData_usersConfiguration,
   GSetUsersConfigReq,
   GSetUsersConfigVars,
+  GSeverity,
+  GSource,
   GStartPlotData,
   GStartPlotData_startPlot,
   GStartPlotData_startPlot_data,
@@ -158,6 +161,7 @@ final SerializersBuilder _serializersBuilder =
   GStartPlotData_startPlot_data_channelData_result__base,
   GStartPlotReq,
   GStartPlotVars,
+  GState,
   GStreamAlarmsData,
   GStreamAlarmsData_alarms,
   GStreamAlarmsReq,
