@@ -1190,9 +1190,9 @@ final class ACSysService implements ACSysServiceAPI {
 
     return _queryAlarms(
       req,
-      xlat: (GAlarmsSnapshotData data) {
-        return data.alarmsSnapshot.map(_convertToAlarm).toList();
-      },
+      xlat:
+          (GAlarmsSnapshotData data) =>
+              data.alarmsSnapshot.map((alarm) => alarm.toAlarm()).toList(),
     );
   }
 
@@ -1214,7 +1214,7 @@ final class ACSysService implements ACSysServiceAPI {
           OperationResponse<GStreamAlarmsData, GStreamAlarmsVars> e,
         ) sync* {
           if (!e.hasErrors) {
-            yield _convertToAlarm(e.data!.alarms);
+            yield e.data!.alarms.toAlarm();
           } else {
             if (e.linkException != null) {
               throw e.linkException!;
@@ -1227,44 +1227,8 @@ final class ACSysService implements ACSysServiceAPI {
         });
   }
 
-  static AlarmSource _convertSource(GSource source) => switch (source) {
-    GSource.ANALOG => AlarmSource.analog,
-    GSource.DIGITAL => AlarmSource.digital,
-    GSource.EPICS => AlarmSource.epics,
-    _ => AlarmSource.unknown,
-  };
-
-  static AlarmState _convertState(GState state) => switch (state) {
-    GState.OK => AlarmState.ok,
-    GState.ALARMED => AlarmState.alarmed,
-    GState.BYPASSED => AlarmState.bypassed,
-    GState.LATCHED => AlarmState.latched,
-    GState.ACKNOWLEDGED => AlarmState.acknowledged,
-    GState.UNBYPASSED => AlarmState.unbypassed,
-    _ => AlarmState.unknown,
-  };
-
-  static AlarmSeverity _convertSeverity(GSeverity severity) =>
-      switch (severity) {
-        GSeverity.LOW => AlarmSeverity.low,
-        GSeverity.HIGH => AlarmSeverity.high,
-        _ => AlarmSeverity.unknown,
-      };
-
   static DateTime _gDateTimeToDateTime(GDateTime? gdt) =>
       gdt != null ? DateTime.parse(gdt.value) : DateTime(0);
-
-  static Alarm _convertToAlarm(dynamic snapshot) => Alarm(
-    device: snapshot.device as String,
-    source: _convertSource(snapshot.source as GSource),
-    state: _convertState(snapshot.state as GState),
-    severity: _convertSeverity(snapshot.severity as GSeverity),
-    acknowledgeable: snapshot.acknowledgeable as bool,
-    time: _gDateTimeToDateTime(snapshot.time as GDateTime?),
-    epicsType: snapshot.epicsType as String,
-    user: snapshot.user as String,
-    wake: _gDateTimeToDateTime(snapshot.wake as GDateTime?),
-  );
 
   static DateTime fromFloatTs(double ts) =>
       DateTime.fromMicrosecondsSinceEpoch((ts * 1000000.0).toInt());
@@ -1567,6 +1531,64 @@ extension on GReadDevicesData_acceleratorData_data_result {
       val.textArrayValue.toList().toDevVal(),
     _ => throw ACSysTypeException("unexpected data type, $runtimeType"),
   };
+}
+
+extension on GSource {
+  AlarmSource toAlarmSource() {
+    try {
+      return AlarmSource.values.byName(name.toLowerCase());
+    } catch (_) {
+      return AlarmSource.unknown;
+    }
+  }
+}
+
+extension on GState {
+  AlarmState toAlarmState() {
+    try {
+      return AlarmState.values.byName(name.toLowerCase());
+    } catch (_) {
+      return AlarmState.unknown;
+    }
+  }
+}
+
+extension on GSeverity {
+  AlarmSeverity toAlarmSeverity() {
+    try {
+      return AlarmSeverity.values.byName(name.toLowerCase());
+    } catch (_) {
+      return AlarmSeverity.unknown;
+    }
+  }
+}
+
+extension on GAlarmsSnapshotData_alarmsSnapshot {
+  Alarm toAlarm() => Alarm(
+    device: device,
+    source: source.toAlarmSource(),
+    state: state.toAlarmState(),
+    severity: severity.toAlarmSeverity(),
+    acknowledgeable: acknowledgeable,
+    time: ACSysService._gDateTimeToDateTime(time),
+    epicsType: epicsType,
+    user: user,
+    wake: ACSysService._gDateTimeToDateTime(wake),
+  );
+}
+
+extension on GStreamAlarmsData_alarms {
+  Alarm toAlarm() => Alarm(
+    device: device,
+    source: source.toAlarmSource(),
+    state: state.toAlarmState(),
+    severity: severity.toAlarmSeverity(),
+    acknowledgeable: acknowledgeable,
+    time: ACSysService._gDateTimeToDateTime(time),
+    epicsType: epicsType,
+    user: user,
+    wake: ACSysService._gDateTimeToDateTime(wake),
+  );
 }
 
 extension on GStartPlotData_startPlot_data {
