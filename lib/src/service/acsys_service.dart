@@ -873,7 +873,11 @@ final class ACSysService implements ACSysServiceAPI {
                "https://acsys-proxy.fnal.gov:${port ?? 8000}/devdb",
                defaultHeaders: _buildAuthHeader(jwt),
              ),
-             cache: Cache(),
+             cache: Cache(
+               possibleTypes: {
+                 'DeviceProperty': {'ReadingProp', 'SettingProp'},
+               },
+             ),
            ),
        _qAlarms =
            alarmsQueryClient ??
