@@ -51,7 +51,7 @@ Widget buildAuthHeader(
               style: const TextStyle(fontWeight: FontWeight.bold),
               textAlign: TextAlign.center,
             ),
-            if (subtitle != null) subtitle,
+            ?subtitle,
           ],
         ),
       ),
@@ -70,8 +70,9 @@ Widget buildAuthHeader(
 );
 
 Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
-  final missing =
-      needed.where((role) => !AuthService.inRole(context, role)).toList();
+  final missing = needed
+      .where((role) => !AuthService.inRole(context, role))
+      .toList();
 
   if (missing.isEmpty) return null;
 
@@ -104,27 +105,23 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
         spacing: 4.0,
         runSpacing: 4.0,
         alignment: WrapAlignment.center,
-        children:
-            missing
-                .map(
-                  (role) => Container(
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 8.0,
-                      vertical: 2.0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: colorScheme.errorContainer,
-                      borderRadius: BorderRadius.circular(4.0),
-                    ),
-                    child: Text(
-                      role,
-                      style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                        color: colorScheme.onErrorContainer,
-                      ),
-                    ),
+        children: missing
+            .map(
+              (role) => Container(
+                padding: const .symmetric(horizontal: 8.0, vertical: 2.0),
+                decoration: BoxDecoration(
+                  color: colorScheme.errorContainer,
+                  borderRadius: .circular(4.0),
+                ),
+                child: Text(
+                  role,
+                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
+                    color: colorScheme.onErrorContainer,
                   ),
-                )
-                .toList(),
+                ),
+              ),
+            )
+            .toList(),
       ),
     ],
   );
@@ -334,13 +331,12 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       darkTheme: _GlobalAppTheme.darkTheme,
       themeMode: themeMode,
       home: AuthService(
-        child:
-            null is T
-                ? scaffold
-                : _GlobalStateProvider(
-                  model: _model as ChangeNotifier,
-                  child: scaffold,
-                ),
+        child: null is T
+            ? scaffold
+            : _GlobalStateProvider(
+                model: _model as ChangeNotifier,
+                child: scaffold,
+              ),
       ),
     );
   }
