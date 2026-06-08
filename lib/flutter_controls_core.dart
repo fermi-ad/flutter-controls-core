@@ -15,6 +15,8 @@ export 'package:flutter_controls_auth/flutter_controls_auth.dart'
 
 export 'src/service/acsys_service.dart';
 export 'src/otel_tracing.dart' show AppTracer, appTracer, Span;
+export 'src/widgets/display_panel.dart' show DisplayPanel;
+export 'src/widgets/panel_row.dart' show PanelRow;
 
 /// Entry point for Fermilab applications
 ///
