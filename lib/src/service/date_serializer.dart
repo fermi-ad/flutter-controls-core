@@ -5,7 +5,7 @@ class DateSerializer implements PrimitiveSerializer<DateTime> {
   DateTime deserialize(
     Serializers serializers,
     Object serialized, {
-    FullType specifiedType = FullType.unspecified,
+    FullType specifiedType = .unspecified,
   }) {
     assert(
       serialized is String,
