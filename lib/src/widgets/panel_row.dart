@@ -2,18 +2,24 @@ import 'package:flutter/material.dart';
 
 /// A row displaying a label and a value, with optional editing capabilities.
 ///
-/// Layout: Label (flex 2) on the left, value + units (flex 1) on the right.
-/// Only the value portion is editable; units remain static.
+/// This widget is designed to be used within a [DisplayPanel] to present
+/// individual data points or settings in a structured format. A `PanelRow` will
+/// display a label on the left side and a value with its engineering units on
+/// the right.
+///
+/// The value can be specified in one of two ways:
+/// 1. Static: Provide a fixed string via the [value] parameter. It is up to
+/// the parent widget to trigger rebuilds when this value changes.
+/// 2. Reactive: Provide a [valueBuilder] function that generates the value
+/// string based on the current context. This allows the value to update
+/// automatically when the underlying data changes (by registering with an
+/// [InheritedWidget] or similar mechanism).
 ///
 /// When [onValueChanged] is provided (non-null), the widget becomes editable:
 /// - The value portion has a highlighted background to indicate it's settable
 /// - Clicking the value enters edit mode with a text field
 /// - Clicking outside exits edit mode without saving
 /// - Pressing ENTER saves the value via [onValueChanged] callback
-///
-/// This widget comes in two flavors:
-/// 1. Static: Pass [value] directly for non-changing data
-/// 2. Reactive: Pass [valueBuilder] for data that changes - only the value portion rebuilds
 class PanelRow extends StatefulWidget {
   const PanelRow({
     super.key,
