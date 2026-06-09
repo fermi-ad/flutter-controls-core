@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// A styled panel widget that displays a title and a list of content widgets.
 ///
-/// [DisplayPanel] creates a card-based container with a blue-grey border and
+/// [ParameterPanel] creates a card-based container with a blue-grey border and
 /// rounded corners. The panel features a cyan-accented title at the top,
 /// followed by vertically-stacked content widgets with consistent padding.
 ///
@@ -11,7 +11,7 @@ import 'package:flutter/material.dart';
 ///
 /// Example:
 /// ```dart
-/// DisplayPanel(
+/// ParameterPanel(
 ///   title: 'Device Status',
 ///   contents: [
 ///     Text('Temperature: 25°C'),
@@ -26,7 +26,7 @@ import 'package:flutter/material.dart';
 ///
 /// Although the [contents] can be any list of widgets, it was originally
 /// designed to be used with [PanelRow] widgets.
-class DisplayPanel extends StatelessWidget {
+class ParameterPanel extends StatelessWidget {
   /// The title text displayed at the top of the panel.
   final String title;
 
@@ -36,8 +36,12 @@ class DisplayPanel extends StatelessWidget {
   /// below the title.
   final List<Widget> contents;
 
-  /// Creates a [DisplayPanel] with the specified [title] and [contents].
-  const DisplayPanel({required this.title, required this.contents, super.key});
+  /// Creates a [ParameterPanel] with the specified [title] and [contents].
+  const ParameterPanel({
+    required this.title,
+    required this.contents,
+    super.key,
+  });
 
   @override
   Widget build(final BuildContext context) => Card(

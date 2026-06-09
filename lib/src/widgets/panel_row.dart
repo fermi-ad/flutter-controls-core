@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 /// A row displaying a label and a value, with optional editing capabilities.
 ///
-/// This widget is designed to be used within a [DisplayPanel] to present
+/// This widget is designed to be used within a [ParameterPanel] to present
 /// individual data points or settings in a structured format. A `PanelRow` will
 /// display a label on the left side and a value with its engineering units on
 /// the right.
@@ -20,8 +20,8 @@ import 'package:flutter/material.dart';
 /// - Clicking the value enters edit mode with a text field
 /// - Clicking outside exits edit mode without saving
 /// - Pressing ENTER saves the value via [onValueChanged] callback
-class PanelRow extends StatefulWidget {
-  const PanelRow({
+class ParameterPanelRow extends StatefulWidget {
+  const ParameterPanelRow({
     super.key,
     required this.label,
     this.value,
@@ -42,10 +42,10 @@ class PanelRow extends StatefulWidget {
   final String? units;
 
   @override
-  State<PanelRow> createState() => _PanelRowState();
+  State<ParameterPanelRow> createState() => _ParameterPanelRowState();
 }
 
-class _PanelRowState extends State<PanelRow> {
+class _ParameterPanelRowState extends State<ParameterPanelRow> {
   bool _isEditing = false;
   late TextEditingController _controller;
   late FocusNode _focusNode;
