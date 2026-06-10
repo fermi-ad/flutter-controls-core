@@ -103,7 +103,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.titleMedium;
+    final style = theme.textTheme.titleMedium!;
     final isEditable = widget.onValueChanged != null;
 
     return Row(
@@ -140,9 +140,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
                           onTap: _enterEditMode,
                           child: Container(
                             decoration: BoxDecoration(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.surfaceContainerHighest,
+                              color: theme.colorScheme.surfaceContainerHighest,
                               borderRadius: .circular(4.0),
                             ),
                             child: widget.valueBuilder != null
@@ -160,11 +158,14 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
                         ),
                 )
               else if (widget.valueBuilder != null)
-                _ValueBuilder(builder: widget.valueBuilder!, style: style)
+                _ValueBuilder(
+                  builder: widget.valueBuilder!,
+                  style: style.copyWith(color: widget.valueColor),
+                )
               else
                 Text(
                   widget.value!,
-                  style: style,
+                  style: style.copyWith(color: widget.valueColor),
                   overflow: .clip,
                   textAlign: .right,
                 ),
