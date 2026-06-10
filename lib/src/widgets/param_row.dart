@@ -103,7 +103,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.titleMedium!;
+    final style = theme.textTheme.bodyMedium!;
 
     return Row(
       mainAxisAlignment: .spaceBetween,
