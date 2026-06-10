@@ -104,7 +104,6 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
     final style = theme.textTheme.titleMedium!;
-    final isEditable = widget.onValueChanged != null;
 
     return Row(
       mainAxisAlignment: .spaceBetween,
@@ -117,7 +116,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
           child: Row(
             mainAxisAlignment: .end,
             children: [
-              if (isEditable)
+              if (widget.onValueChanged != null)
                 Flexible(
                   child: _isEditing
                       ? _buildTextField(style)
