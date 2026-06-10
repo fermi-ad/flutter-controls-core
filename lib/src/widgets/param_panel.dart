@@ -44,39 +44,47 @@ class ParameterPanel extends StatelessWidget {
   });
 
   @override
-  Widget build(final BuildContext context) => Card(
-    margin: const .only(bottom: 16.0),
-    shape: RoundedRectangleBorder(
-      side: const BorderSide(color: Colors.blueGrey, width: 1, style: .solid),
-      borderRadius: .circular(6.0),
-    ),
-    child: Padding(
-      padding: const .all(8.0),
-      child: SizedBox(
-        width: .infinity,
-        child: Column(
-          mainAxisSize: .min,
-          children: [
-            Padding(
-              padding: const .only(bottom: 8.0),
-              child: Text(
-                title,
-                style: const TextStyle(
-                  color: Colors.cyanAccent,
-                  fontSize: 16,
-                  fontWeight: .bold,
+  Widget build(final BuildContext context) {
+    final theme = Theme.of(context);
+
+    return Card(
+      margin: const .only(bottom: 16.0),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+          color: theme.colorScheme.secondaryContainer,
+          width: 1,
+          style: .solid,
+        ),
+        borderRadius: .circular(6.0),
+      ),
+      child: Padding(
+        padding: const .all(8.0),
+        child: SizedBox(
+          width: .infinity,
+          child: Column(
+            mainAxisSize: .min,
+            children: [
+              Padding(
+                padding: const .only(bottom: 8.0),
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    color: theme.colorScheme.primary,
+                    fontSize: 16,
+                    fontWeight: .bold,
+                  ),
                 ),
               ),
-            ),
-            ...contents.map(
-              (final widget) => Padding(
-                padding: const .symmetric(vertical: 2.0, horizontal: 8.0),
-                child: widget,
+              ...contents.map(
+                (final widget) => Padding(
+                  padding: const .symmetric(vertical: 2.0, horizontal: 8.0),
+                  child: widget,
+                ),
               ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
-    ),
-  );
+    );
+  }
 }

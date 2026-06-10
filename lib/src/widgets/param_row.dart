@@ -102,12 +102,8 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
 
   @override
   Widget build(final BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
-    final style = textTheme.titleMedium?.copyWith(
-      fontWeight: .w500,
-      color: widget.valueColor,
-    );
-
+    final theme = Theme.of(context);
+    final style = theme.textTheme.titleMedium;
     final isEditable = widget.onValueChanged != null;
 
     return Row(
@@ -115,11 +111,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
       children: [
         Expanded(
           flex: 2,
-          child: Text(
-            widget.label,
-            style: textTheme.titleMedium,
-            overflow: .clip,
-          ),
+          child: Text(widget.label, style: style, overflow: .clip),
         ),
         Expanded(
           flex: 1,
