@@ -125,10 +125,8 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
                 )
               else
                 _buildValueWidget(style),
-              if (widget.units != null) ...[
-                const SizedBox(width: 4),
+              if (widget.units != null)
                 Text(widget.units!, style: style, overflow: .clip),
-              ],
             ],
           ),
         ),
@@ -164,14 +162,17 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
   Widget _buildValueWidget(TextStyle style) {
     final valueStyle = style.copyWith(color: widget.valueColor);
 
-    return widget.valueBuilder != null
-        ? _ValueBuilder(builder: widget.valueBuilder!, style: valueStyle)
-        : Text(
-            widget.value!,
-            style: valueStyle,
-            overflow: .clip,
-            textAlign: .right,
-          );
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: widget.valueBuilder != null
+          ? _ValueBuilder(builder: widget.valueBuilder!, style: valueStyle)
+          : Text(
+              widget.value!,
+              style: valueStyle,
+              overflow: .clip,
+              textAlign: .right,
+            ),
+    );
   }
 }
 
