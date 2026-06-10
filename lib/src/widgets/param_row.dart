@@ -103,8 +103,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
   @override
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
-    final style = theme.textTheme.titleMedium;
-    final isEditable = widget.onValueChanged != null;
+    final style = theme.textTheme.bodyMedium!;
 
     return Row(
       mainAxisAlignment: .spaceBetween,
@@ -114,68 +113,64 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
           child: Text(widget.label, style: style, overflow: .clip),
         ),
         Expanded(
-          flex: 1,
           child: Row(
             mainAxisAlignment: .end,
             children: [
-              if (isEditable)
+              if (widget.onValueChanged != null)
                 Flexible(
                   child: _isEditing
-                      ? TextField(
-                          controller: _controller,
-                          focusNode: _focusNode,
-                          style: style,
-                          textAlign: .right,
-                          decoration: const InputDecoration(
-                            isDense: true,
-                            contentPadding: .symmetric(
-                              horizontal: 8.0,
-                              vertical: 4.0,
-                            ),
-                            border: OutlineInputBorder(),
-                          ),
-                          onSubmitted: (_) => _submitValue(),
-                        )
-                      : GestureDetector(
-                          onTap: _enterEditMode,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: Theme.of(
-                                context,
-                              ).colorScheme.surfaceContainerHighest,
-                              borderRadius: .circular(4.0),
-                            ),
-                            child: widget.valueBuilder != null
-                                ? _ValueBuilder(
-                                    builder: widget.valueBuilder!,
-                                    style: style,
-                                  )
-                                : Text(
-                                    widget.value!,
-                                    style: style,
-                                    overflow: .clip,
-                                    textAlign: .right,
-                                  ),
-                          ),
-                        ),
+                      ? _buildTextField(style)
+                      : _buildEditableValue(theme, style),
                 )
-              else if (widget.valueBuilder != null)
-                _ValueBuilder(builder: widget.valueBuilder!, style: style)
               else
-                Text(
-                  widget.value!,
-                  style: style,
-                  overflow: .clip,
-                  textAlign: .right,
-                ),
-              if (widget.units != null) ...[
-                const SizedBox(width: 4),
+                _buildValueWidget(style),
+              if (widget.units != null)
                 Text(widget.units!, style: style, overflow: .clip),
-              ],
             ],
           ),
         ),
       ],
+    );
+  }
+
+  Widget _buildTextField(TextStyle style) => TextField(
+    controller: _controller,
+    focusNode: _focusNode,
+    style: style,
+    textAlign: .right,
+    decoration: const InputDecoration(
+      isDense: true,
+      contentPadding: .symmetric(horizontal: 8.0, vertical: 4.0),
+      border: OutlineInputBorder(),
+    ),
+    onSubmitted: (_) => _submitValue(),
+  );
+
+  Widget _buildEditableValue(ThemeData theme, TextStyle style) =>
+      GestureDetector(
+        onTap: _enterEditMode,
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surfaceContainerHighest,
+            borderRadius: .circular(4.0),
+          ),
+          child: _buildValueWidget(style),
+        ),
+      );
+
+  Widget _buildValueWidget(TextStyle style) {
+    final valueStyle = style.copyWith(color: widget.valueColor);
+
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 4.0),
+      child: widget.valueBuilder != null
+          ? _ValueBuilder(builder: widget.valueBuilder!, style: valueStyle)
+          : Text(
+              widget.value!,
+              style: valueStyle,
+              overflow: .clip,
+              textAlign: .right,
+            ),
     );
   }
 }
