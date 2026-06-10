@@ -114,61 +114,17 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
           child: Text(widget.label, style: style, overflow: .clip),
         ),
         Expanded(
-          flex: 1,
           child: Row(
             mainAxisAlignment: .end,
             children: [
               if (isEditable)
                 Flexible(
                   child: _isEditing
-                      ? TextField(
-                          controller: _controller,
-                          focusNode: _focusNode,
-                          style: style,
-                          textAlign: .right,
-                          decoration: const InputDecoration(
-                            isDense: true,
-                            contentPadding: .symmetric(
-                              horizontal: 8.0,
-                              vertical: 4.0,
-                            ),
-                            border: OutlineInputBorder(),
-                          ),
-                          onSubmitted: (_) => _submitValue(),
-                        )
-                      : GestureDetector(
-                          onTap: _enterEditMode,
-                          child: Container(
-                            decoration: BoxDecoration(
-                              color: theme.colorScheme.surfaceContainerHighest,
-                              borderRadius: .circular(4.0),
-                            ),
-                            child: widget.valueBuilder != null
-                                ? _ValueBuilder(
-                                    builder: widget.valueBuilder!,
-                                    style: style,
-                                  )
-                                : Text(
-                                    widget.value!,
-                                    style: style,
-                                    overflow: .clip,
-                                    textAlign: .right,
-                                  ),
-                          ),
-                        ),
-                )
-              else if (widget.valueBuilder != null)
-                _ValueBuilder(
-                  builder: widget.valueBuilder!,
-                  style: style.copyWith(color: widget.valueColor),
+                      ? _buildTextField(style)
+                      : _buildEditableValue(theme, style),
                 )
               else
-                Text(
-                  widget.value!,
-                  style: style.copyWith(color: widget.valueColor),
-                  overflow: .clip,
-                  textAlign: .right,
-                ),
+                _buildValueWidget(style),
               if (widget.units != null) ...[
                 const SizedBox(width: 4),
                 Text(widget.units!, style: style, overflow: .clip),
@@ -178,6 +134,44 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
         ),
       ],
     );
+  }
+
+  Widget _buildTextField(TextStyle style) => TextField(
+    controller: _controller,
+    focusNode: _focusNode,
+    style: style,
+    textAlign: .right,
+    decoration: const InputDecoration(
+      isDense: true,
+      contentPadding: .symmetric(horizontal: 8.0, vertical: 4.0),
+      border: OutlineInputBorder(),
+    ),
+    onSubmitted: (_) => _submitValue(),
+  );
+
+  Widget _buildEditableValue(ThemeData theme, TextStyle style) =>
+      GestureDetector(
+        onTap: _enterEditMode,
+        child: Container(
+          decoration: BoxDecoration(
+            color: theme.colorScheme.surfaceContainerHighest,
+            borderRadius: .circular(4.0),
+          ),
+          child: _buildValueWidget(style),
+        ),
+      );
+
+  Widget _buildValueWidget(TextStyle style) {
+    final valueStyle = style.copyWith(color: widget.valueColor);
+
+    return widget.valueBuilder != null
+        ? _ValueBuilder(builder: widget.valueBuilder!, style: valueStyle)
+        : Text(
+            widget.value!,
+            style: valueStyle,
+            overflow: .clip,
+            textAlign: .right,
+          );
   }
 }
 
