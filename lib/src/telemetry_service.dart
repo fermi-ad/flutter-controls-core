@@ -31,17 +31,8 @@ class TelemetryService {
             ? '10.200.24.113'
             : (Platform.environment['OTEL_COLLECTOR_HOST'] ?? 'localhost');
 
-    final defaultPort =
-        kIsWeb
-            ? 4318
-            : (int.tryParse(
-                  Platform.environment['OTEL_COLLECTOR_PORT_HTTP'] ?? '4318',
-                ) ??
-                4318);
-
     final metricsEndpoint =
-        endpoint ?? 'http://${host ?? defaultHost}/v1/metrics';
-    // 'http://${host ?? defaultHost}:${port ?? defaultPort}/v1/metrics';
+        endpoint ?? 'https://${host ?? defaultHost}/v1/metrics';
     _instance = TelemetryService._(
       metricsEndpoint: metricsEndpoint,
       serviceName: serviceName,
@@ -342,11 +333,14 @@ class TelemetryService {
     final body = jsonEncode(metricsData);
 
     try {
-      final response = await http
+      // ignore: avoid_print
+      print('[TelemetryService] POST metrics to $metricsEndpoint');
+      await http
           .post(Uri.parse(metricsEndpoint), headers: headers, body: body)
           .timeout(Duration(seconds: 5));
     } catch (e) {
-      // Silent fail
+      // ignore: avoid_print
+      print('[TelemetryService] metrics POST failed: $e');
     }
   }
 }
