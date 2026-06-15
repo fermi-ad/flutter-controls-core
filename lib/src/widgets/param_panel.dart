@@ -68,10 +68,8 @@ class ParameterPanel extends StatelessWidget {
                 padding: const .only(bottom: 8.0),
                 child: Text(
                   title,
-                  style: TextStyle(
+                  style: theme.textTheme.titleMedium!.copyWith(
                     color: theme.colorScheme.primary,
-                    fontSize: 16,
-                    fontWeight: .bold,
                   ),
                 ),
               ),
