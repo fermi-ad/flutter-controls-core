@@ -36,7 +36,7 @@ Widget buildAuthHeader(
   final (String, void Function())? buttonInfo,
   final Widget? subtitle,
 ) => Padding(
-  padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+  padding: const .symmetric(vertical: 8.0, horizontal: 8.0),
   child: Row(
     mainAxisAlignment: MainAxisAlignment.start,
     crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,14 +44,14 @@ Widget buildAuthHeader(
       Expanded(
         flex: 3,
         child: Column(
-          mainAxisSize: MainAxisSize.max,
+          mainAxisSize: .max,
           children: <Widget>[
             Icon(icon, size: 48.0),
             const SizedBox(height: 8.0),
             Text(
               account,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-              textAlign: TextAlign.center,
+              style: const TextStyle(fontWeight: .bold),
+              textAlign: .center,
             ),
             ?subtitle,
           ],
@@ -81,11 +81,11 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
   final colorScheme = Theme.of(context).colorScheme;
 
   return Column(
-    mainAxisSize: MainAxisSize.min,
+    mainAxisSize: .min,
     children: [
       const SizedBox(height: 12.0),
       Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: .center,
         children: [
           Icon(
             Icons.warning_amber_rounded,
@@ -97,7 +97,7 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
             "Missing Roles",
             style: Theme.of(context).textTheme.labelSmall?.copyWith(
               color: colorScheme.error,
-              fontWeight: FontWeight.bold,
+              fontWeight: .bold,
             ),
           ),
         ],
@@ -106,17 +106,14 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
       Wrap(
         spacing: 4.0,
         runSpacing: 4.0,
-        alignment: WrapAlignment.center,
+        alignment: .center,
         children: missing
             .map(
               (role) => Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 2.0,
-                ),
+                padding: const .symmetric(horizontal: 8.0, vertical: 2.0),
                 decoration: BoxDecoration(
                   color: colorScheme.errorContainer,
-                  borderRadius: BorderRadius.circular(4.0),
+                  borderRadius: .circular(4.0),
                 ),
                 child: Text(
                   role,
@@ -189,7 +186,7 @@ final class _Drawer extends StatelessWidget {
 
     return Drawer(
       child: Padding(
-        padding: const EdgeInsets.all(8.0),
+        padding: const .all(8.0),
         child: Column(
           children: [
             _DrawerHeader(neededRoles: neededRoles),
@@ -197,7 +194,7 @@ final class _Drawer extends StatelessWidget {
             Expanded(
               child: SingleChildScrollView(
                 child: SizedBox(
-                  width: double.infinity,
+                  width: .infinity,
                   child: content ?? Container(),
                 ),
               ),
@@ -205,7 +202,7 @@ final class _Drawer extends StatelessWidget {
             Divider(),
             Text(
               "© 2025, 2026 Fermi Forward Discovery\nGroup, LLC, All rights reserved.",
-              textAlign: TextAlign.center,
+              textAlign: .center,
               style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor),
             ),
           ],
