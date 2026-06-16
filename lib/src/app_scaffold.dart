@@ -29,18 +29,23 @@ final class _GlobalAppTheme {
     fontFamily: _fontFamily,
     package: 'flutter_controls_core',
   );
+
+  static final ThemeData bisonLightTheme = BisonThemeData.light();
+  static final ThemeData bisonDarkTheme = BisonThemeData.dark();
 }
 
-// Resolves the light and dark [ThemeData] based on the [useBison] flag.
-//
-// When [useBison] is true, the Bison design system themes are returned.
-// When false (default), the Fermi core themes are returned.
+/// Resolves the light and dark [ThemeData] based on the [useBison] flag.
+///
+/// When [useBison] is `true`, the [BisonThemeData] themes are returned.
+/// When `false` (default), the Fermi core themes are returned.
 ({ThemeData light, ThemeData dark}) _resolveTheme(bool useBison) => (
-  light: useBison ? BisonThemeData.light() : _GlobalAppTheme.lightTheme,
-  dark: useBison ? BisonThemeData.dark() : _GlobalAppTheme.darkTheme,
+  light: useBison
+      ? _GlobalAppTheme.bisonLightTheme
+      : _GlobalAppTheme.lightTheme,
+  dark: useBison ? _GlobalAppTheme.bisonDarkTheme : _GlobalAppTheme.darkTheme,
 );
 
-Widget buildAuthHeader(
+Widget _buildAuthHeader(
   final IconData icon,
   final String account,
   final (String, void Function())? buttonInfo,
@@ -158,21 +163,21 @@ final class _DrawerHeader extends StatelessWidget {
       // so it plans to run with no privilieges. If the application tries to
       // use a service that needs authorization, the service will return an
       // error.
-      (_, false) => buildAuthHeader(
+      (_, false) => _buildAuthHeader(
         Icons.no_accounts_sharp,
         "No login required",
         null,
         null,
       ),
 
-      (null, true) => buildAuthHeader(
+      (null, true) => _buildAuthHeader(
         Icons.no_accounts_sharp,
         "Unauthorized",
         ("Login", () => AuthService.requestLogin(context)),
         _buildMissingRolesWarning(context, neededRoles),
       ),
 
-      (UserInfo user, true) => buildAuthHeader(
+      (UserInfo user, true) => _buildAuthHeader(
         Icons.account_circle,
         user.name ?? "UNKNOWN",
         ("Logout", () => AuthService.requestLogout(context)),
