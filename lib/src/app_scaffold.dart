@@ -5,6 +5,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
 import 'fermi_theme.dart';
 
 // Our Fermi theme generated with -
@@ -331,13 +332,15 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       theme: _GlobalAppTheme.lightTheme,
       darkTheme: _GlobalAppTheme.darkTheme,
       themeMode: themeMode,
-      home: AuthService(
-        child: null is T
-            ? scaffold
-            : _GlobalStateProvider(
-                model: model as ChangeNotifier,
-                child: scaffold,
-              ),
+      home: ToastificationWrapper(
+        child: AuthService(
+          child: null is T
+              ? scaffold
+              : _GlobalStateProvider(
+                  model: model as ChangeNotifier,
+                  child: scaffold,
+                ),
+        ),
       ),
     );
   }
