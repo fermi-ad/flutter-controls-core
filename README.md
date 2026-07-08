@@ -42,9 +42,48 @@ For iOS targets, you need to open the `.codeproj` file in `XCode` and add the
 permissions for network access in the application's profile. The appropriate
 `.xml` files will be modified.
 
-## Usage
+## Using GraphQL
 
-TODO: Need to add content here.
+GraphQL support has been removed from this package. Your application now must
+specify which GraphQL endpoints it wants to use. For instance, if your app
+needs to read or set control system devices, it will need the ACSys GraphQL API.
+In `pubspec.yaml`, you'll add
+
+```yaml
+dependencies:
+  flutter_gql_acsys:
+    git:
+      url: https://github.com/fermi-ad/flutter-gql-acsys.git
+      ref: main
+
+  flutter_controls_core:
+    git:
+      url: https://github.com/fermi-ad/flutter-controls-core.git
+      ref: main
+```
+
+and where your application constructs the `StandardApp`, you specify the
+provider of the GraphQL API:
+
+```dart
+final appTitle = "My App";
+
+class App extends StatelessWidget {
+  const App();
+
+  @override
+  Widget build(final BuildContext context) => StandardApp(
+    title: appTitle,
+    providers: [ACSysProvider.factory()],
+    appBar: AppBar(title: const Text(appTitle)),
+    body: const MyAppBody(),
+  );
+}
+```
+
+The `.build()` method of your app's widgets can do `ACSys.api(context)` to get
+the object that implements the GraphQL client interface. See the documentation
+for the various GraphQL clients to see what's available.
 
 ## Telemetry/Tracing (OpenTelemetry)
 
