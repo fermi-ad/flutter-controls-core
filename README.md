@@ -46,21 +46,6 @@ permissions for network access in the application's profile. The appropriate
 
 TODO: Need to add content here.
 
-## Additional information
-
-If more GraphQL queries are added, the `builder` needs to run to generate the
-code. The command to do this is:
-
-```shell
-$ dart run build_runner build --delete-conflicting-outputs
-```
-
-Then run the formatter:
-
-```shell
-$ dart format lib
-```
-
 ## Telemetry/Tracing (OpenTelemetry)
 
 OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints (`runFermiApp`, `runFermiRouterApp`).
