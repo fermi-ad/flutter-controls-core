@@ -5,6 +5,7 @@ library;
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:go_router/go_router.dart';
+import 'package:toastification/toastification.dart';
 import 'fermi_theme.dart';
 
 // Our Fermi theme generated with -
@@ -38,7 +39,9 @@ Widget buildAuthHeader(
 ) => Padding(
   padding: const .symmetric(vertical: 8.0, horizontal: 8.0),
   child: Row(
-    children: [
+    mainAxisAlignment: MainAxisAlignment.start,
+    crossAxisAlignment: CrossAxisAlignment.center,
+    children: <Widget>[
       Expanded(
         flex: 3,
         child: Column(
@@ -248,7 +251,7 @@ class _GlobalStateProvider<T extends ChangeNotifier> extends InheritedWidget {
 ///
 
 final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
-  final T? _model;
+  final T? model;
 
   /// Used for the title of the web page (for web targets.)
   final String title;
@@ -292,7 +295,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
 
   StandardApp({
     required this.title,
-    T? model,
+    this.model,
     this.appBar,
     this.body,
     this.drawerContent,
@@ -301,8 +304,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
     List<String>? neededRoles,
     this.themeMode = ThemeMode.system,
     super.key,
-  }) : _model = model,
-       _neededRoles = neededRoles?.toSet() ?? {};
+  }) : _neededRoles = neededRoles?.toSet() ?? {};
 
   /// Returns the model shared by the whole application.
   ///
@@ -330,13 +332,15 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       theme: _GlobalAppTheme.lightTheme,
       darkTheme: _GlobalAppTheme.darkTheme,
       themeMode: themeMode,
-      home: AuthService(
-        child: null is T
-            ? scaffold
-            : _GlobalStateProvider(
-                model: _model as ChangeNotifier,
-                child: scaffold,
-              ),
+      home: ToastificationWrapper(
+        child: AuthService(
+          child: null is T
+              ? scaffold
+              : _GlobalStateProvider(
+                  model: model as ChangeNotifier,
+                  child: scaffold,
+                ),
+        ),
       ),
     );
   }

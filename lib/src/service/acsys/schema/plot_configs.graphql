@@ -1,7 +1,0 @@
-query PlotConfigs($id: Int) {
-  plotConfiguration(id: $id) {
-    configId
-    configName
-    config
-  }
-}

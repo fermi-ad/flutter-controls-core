@@ -1,5 +1,0 @@
-mutation SetUsersConfig($cfg: String!) {
-  usersConfiguration(config: $cfg) {
-    status
-  }
-}

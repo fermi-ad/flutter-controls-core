@@ -1,3 +1,0 @@
-mutation UpdatePlotConfig($id: Int, $name: String!, $cfg: String!) {
-  updatePlotConfiguration(id: $id, name: $name, config: $cfg)
-}
