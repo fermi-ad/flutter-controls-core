@@ -7,9 +7,9 @@ import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
 import 'fermi_theme.dart';
+import 'package:bison_design_system/bison_design_system.dart';
 
-// Our Fermi theme generated with -
-// https://m3.material.io/theme-builder#/custom
+// Our Fermi theme generated with - https://m3.material.io/theme-builder#/custom
 
 final class _GlobalAppTheme {
   _GlobalAppTheme._();
@@ -29,9 +29,23 @@ final class _GlobalAppTheme {
     fontFamily: _fontFamily,
     package: 'flutter_controls_core',
   );
+
+  static final ThemeData bisonLightTheme = BisonThemeData.light();
+  static final ThemeData bisonDarkTheme = BisonThemeData.dark();
 }
 
-Widget buildAuthHeader(
+/// Resolves the light and dark [ThemeData] based on the [useBison] flag.
+///
+/// When [useBison] is `true`, the [BisonThemeData] themes are returned.
+/// When `false` (default), the Fermi core themes are returned.
+({ThemeData light, ThemeData dark}) _resolveTheme(bool useBison) => (
+  light: useBison
+      ? _GlobalAppTheme.bisonLightTheme
+      : _GlobalAppTheme.lightTheme,
+  dark: useBison ? _GlobalAppTheme.bisonDarkTheme : _GlobalAppTheme.darkTheme,
+);
+
+Widget _buildAuthHeader(
   final IconData icon,
   final String account,
   final (String, void Function())? buttonInfo,
@@ -149,21 +163,21 @@ final class _DrawerHeader extends StatelessWidget {
       // so it plans to run with no privilieges. If the application tries to
       // use a service that needs authorization, the service will return an
       // error.
-      (_, false) => buildAuthHeader(
+      (_, false) => _buildAuthHeader(
         Icons.no_accounts_sharp,
         "No login required",
         null,
         null,
       ),
 
-      (null, true) => buildAuthHeader(
+      (null, true) => _buildAuthHeader(
         Icons.no_accounts_sharp,
         "Unauthorized",
         ("Login", () => AuthService.requestLogin(context)),
         _buildMissingRolesWarning(context, neededRoles),
       ),
 
-      (UserInfo user, true) => buildAuthHeader(
+      (UserInfo user, true) => _buildAuthHeader(
         Icons.account_circle,
         user.name ?? "UNKNOWN",
         ("Logout", () => AuthService.requestLogout(context)),
@@ -293,6 +307,11 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   final Set<String> _neededRoles;
   final ThemeMode themeMode;
 
+  /// Defines what design to use. When set to false (default) the theme used
+  /// will be the one defined by the core library. When true, the theme defined by
+  /// [BisonThemeData] will be used
+  final bool useBison;
+
   StandardApp({
     required this.title,
     this.model,
@@ -303,6 +322,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
     this.providers = const [],
     List<String>? neededRoles,
     this.themeMode = ThemeMode.system,
+    this.useBison = false,
     super.key,
   }) : _neededRoles = neededRoles?.toSet() ?? {};
 
@@ -327,19 +347,23 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       (w, p) => p(child: w),
     );
 
+    final theme = _resolveTheme(useBison);
+
     return MaterialApp(
       title: title,
-      theme: _GlobalAppTheme.lightTheme,
-      darkTheme: _GlobalAppTheme.darkTheme,
+      theme: theme.light,
+      darkTheme: theme.dark,
       themeMode: themeMode,
       home: ToastificationWrapper(
-        child: AuthService(
-          child: null is T
-              ? scaffold
-              : _GlobalStateProvider(
-                  model: model as ChangeNotifier,
-                  child: scaffold,
-                ),
+        child: SelectionArea(
+          child: AuthService(
+            child: null is T
+                ? scaffold
+                : _GlobalStateProvider(
+                    model: model as ChangeNotifier,
+                    child: scaffold,
+                  ),
+          ),
         ),
       ),
     );
@@ -350,17 +374,32 @@ final class _RouterApp extends StatelessWidget {
   final String title;
   final GoRouter router;
 
-  const _RouterApp({required this.title, required this.router});
+  /// Defines what design to use. When set to false (default) the theme used
+  /// will be the one defined by the core library. When true, the theme defined by
+  /// the [BisonThemeData] will be used
+  final bool useBison;
+
+  const _RouterApp({
+    required this.title,
+    required this.router,
+    this.useBison = false,
+  });
 
   // Return the MaterialApp widget which will define the look-and-feel for
   // the application.
   @override
-  Widget build(BuildContext context) => MaterialApp.router(
-    title: title,
-    theme: _GlobalAppTheme.lightTheme,
-    darkTheme: _GlobalAppTheme.darkTheme,
-    routerConfig: router,
-  );
+  Widget build(BuildContext context) {
+    final theme = _resolveTheme(useBison);
+
+    return MaterialApp.router(
+      title: title,
+      theme: theme.light,
+      darkTheme: theme.dark,
+      routerConfig: router,
+      builder: (context, child) =>
+          SelectionArea(child: child ?? const SizedBox()),
+    );
+  }
 }
 
 /// Creates an application scaffold that uses the `GoRouter` package.
@@ -372,8 +411,12 @@ final class _RouterApp extends StatelessWidget {
 final class NonAuthRouterApp extends StatelessWidget {
   final _RouterApp _app;
 
-  NonAuthRouterApp({required String title, required GoRouter router, super.key})
-    : _app = _RouterApp(title: title, router: router);
+  NonAuthRouterApp({
+    required String title,
+    required GoRouter router,
+    bool useBison = false,
+    super.key,
+  }) : _app = _RouterApp(title: title, router: router, useBison: useBison);
 
   // Return the MaterialApp widget which will define the look-and-feel for the
   // application.
@@ -391,8 +434,12 @@ final class NonAuthRouterApp extends StatelessWidget {
 final class AuthRouterApp extends StatelessWidget {
   final _RouterApp _app;
 
-  AuthRouterApp({required String title, required GoRouter router, super.key})
-    : _app = _RouterApp(title: title, router: router);
+  AuthRouterApp({
+    required String title,
+    required GoRouter router,
+    bool useBison = false,
+    super.key,
+  }) : _app = _RouterApp(title: title, router: router, useBison: useBison);
 
   // Return the MaterialApp widget which will define the look-and-feel for the
   // application.
