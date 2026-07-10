@@ -47,16 +47,8 @@ class ParameterPanel extends StatelessWidget {
   Widget build(final BuildContext context) {
     final theme = Theme.of(context);
 
-    return Card(
+    return Card.outlined(
       margin: const .only(bottom: 16.0),
-      shape: RoundedRectangleBorder(
-        side: BorderSide(
-          color: theme.colorScheme.secondaryContainer,
-          width: 1,
-          style: .solid,
-        ),
-        borderRadius: .circular(6.0),
-      ),
       child: Padding(
         padding: const .all(8.0),
         child: SizedBox(
@@ -66,12 +58,7 @@ class ParameterPanel extends StatelessWidget {
             children: [
               Padding(
                 padding: const .only(bottom: 8.0),
-                child: Text(
-                  title,
-                  style: theme.textTheme.titleMedium!.copyWith(
-                    color: theme.colorScheme.primary,
-                  ),
-                ),
+                child: Text(title, style: theme.textTheme.titleMedium),
               ),
               ...contents.map(
                 (final widget) => Padding(
