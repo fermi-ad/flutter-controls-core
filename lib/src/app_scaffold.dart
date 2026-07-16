@@ -190,11 +190,21 @@ final class _DrawerHeader extends StatelessWidget {
 }
 
 final class _Drawer extends StatelessWidget {
+  static const _appName = String.fromEnvironment('APP_NAME');
+  static const _appVersion = String.fromEnvironment('APP_VERSION');
+
+  static String get _appInfo {
+    if (_appName.isEmpty && _appVersion.isEmpty) return 'Unknown App Info';
+    final name = _appName.isEmpty ? '' : _appName;
+    final version = _appVersion.isEmpty ? '' : 'v$_appVersion';
+    final sep = name.isNotEmpty && version.isNotEmpty ? ' ' : '';
+    return '$name$sep$version';
+  }
+
   final Widget? content;
   final Set<String> neededRoles;
 
   const _Drawer(this.content, this.neededRoles);
-
   @override
   Widget build(BuildContext context) {
     final ThemeData td = Theme.of(context);
@@ -215,8 +225,18 @@ final class _Drawer extends StatelessWidget {
               ),
             ),
             Divider(),
+            Padding(
+              padding: const .only(bottom: 8.0),
+              child: Text(
+                _appInfo,
+                textAlign: .center,
+                style: td.textTheme.bodySmall?.copyWith(
+                  color: td.disabledColor,
+                ),
+              ),
+            ),
             Text(
-              "© 2025, 2026 Fermi Forward Discovery\nGroup, LLC, All rights reserved.",
+              '© 2025, 2026 Fermi Forward Discovery\nGroup, LLC, All rights reserved.',
               textAlign: .center,
               style: td.textTheme.bodySmall?.copyWith(color: td.disabledColor),
             ),
