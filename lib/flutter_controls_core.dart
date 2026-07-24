@@ -11,6 +11,7 @@ export 'src/app_scaffold.dart';
 export 'package:flutter_controls_auth/flutter_controls_auth.dart'
     show AuthInfo, AuthService, Credential, UserInfo;
 
+export 'src/message_boxes.dart' show errorBox, warningBox, infoBox;
 export 'src/otel_tracing.dart' show AppTracer, appTracer, Span;
 export 'src/widgets/param_panel.dart' show ParameterPanel;
 export 'src/widgets/param_row.dart' show ParameterPanelRow;
