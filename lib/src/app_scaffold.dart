@@ -157,6 +157,12 @@ final class _DrawerHeader extends StatelessWidget {
     final UserInfo? userInfo = AuthService.getUserInfo(context);
     final bool authRequired = authInfo != null || neededRoles.isNotEmpty;
 
+    void closeDrawerThen(void Function() action) {
+      Scaffold.of(context).closeDrawer();
+      WidgetsBinding.instance.addPostFrameCallback((_) => action());
+      WidgetsBinding.instance.scheduleFrame();
+    }
+
     final content = switch ((userInfo, authRequired)) {
       // For this case, the application didn't set up authentication parameters
       // so it plans to run with no privilieges. If the application tries to
@@ -172,14 +178,20 @@ final class _DrawerHeader extends StatelessWidget {
       (null, true) => _buildAuthHeader(
         Icons.no_accounts_sharp,
         "Unauthorized",
-        ("Login", () => AuthService.requestLogin(context)),
+        (
+          "Login",
+          () => closeDrawerThen(() => AuthService.requestLogin(context)),
+        ),
         _buildMissingRolesWarning(context, neededRoles),
       ),
 
       (UserInfo user, true) => _buildAuthHeader(
         Icons.account_circle,
         user.name ?? "UNKNOWN",
-        ("Logout", () => AuthService.requestLogout(context)),
+        (
+          "Logout",
+          () => closeDrawerThen(() => AuthService.requestLogout(context)),
+        ),
         _buildMissingRolesWarning(context, neededRoles),
       ),
     };
