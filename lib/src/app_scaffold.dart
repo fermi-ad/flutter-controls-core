@@ -4,10 +4,11 @@ library;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_auth/flutter_controls_auth.dart';
+import 'package:bison_design_system/bison_design_system.dart';
 import 'package:go_router/go_router.dart';
 import 'package:toastification/toastification.dart';
+
 import 'fermi_theme.dart';
-import 'package:bison_design_system/bison_design_system.dart';
 
 // Our Fermi theme generated with - https://m3.material.io/theme-builder#/custom
 
@@ -180,7 +181,10 @@ final class _DrawerHeader extends StatelessWidget {
         "Unauthorized",
         (
           "Login",
-          () => closeDrawerThen(() => AuthService.requestLogin(context)),
+          () => closeDrawerThen(() {
+            infoBox(context, "Log in", "Contacting KeyCloak ...");
+            AuthService.requestLogin(context);
+          }),
         ),
         _buildMissingRolesWarning(context, neededRoles),
       ),
