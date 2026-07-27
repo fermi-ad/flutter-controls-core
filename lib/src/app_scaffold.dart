@@ -147,18 +147,17 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
 // Private widget used to display content in the side, drawer menu's header.
 
 final class _DrawerHeader extends StatelessWidget {
+  final AuthInfo? authInfo;
   final Set<String> neededRoles;
 
-  const _DrawerHeader({this.neededRoles = const {}});
+  const _DrawerHeader({this.authInfo, this.neededRoles = const {}});
 
   @override
   Widget build(BuildContext context) {
     final UserInfo? userInfo = AuthService.getUserInfo(context);
+    final bool authRequired = authInfo != null || neededRoles.isNotEmpty;
 
-    final content = switch ((
-      userInfo,
-      AuthService.authRequired || neededRoles.isNotEmpty,
-    )) {
+    final content = switch ((userInfo, authRequired)) {
       // For this case, the application didn't set up authentication parameters
       // so it plans to run with no privilieges. If the application tries to
       // use a service that needs authorization, the service will return an
@@ -202,9 +201,10 @@ final class _Drawer extends StatelessWidget {
   }
 
   final Widget? content;
+  final AuthInfo? authInfo;
   final Set<String> neededRoles;
 
-  const _Drawer(this.content, this.neededRoles);
+  const _Drawer(this.content, this.authInfo, this.neededRoles);
   @override
   Widget build(BuildContext context) {
     final ThemeData td = Theme.of(context);
@@ -214,7 +214,7 @@ final class _Drawer extends StatelessWidget {
         padding: const .all(8.0),
         child: Column(
           children: [
-            _DrawerHeader(neededRoles: neededRoles),
+            _DrawerHeader(authInfo: authInfo, neededRoles: neededRoles),
             Divider(),
             Expanded(
               child: SingleChildScrollView(
@@ -332,6 +332,11 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
   /// [BisonThemeData] will be used
   final bool useBison;
 
+  /// Authentication configuration. When provided, the app will use
+  /// [AuthService] to handle login/logout. When `null`, no authentication
+  /// is set up and the drawer will show "No login required".
+  final AuthInfo? authInfo;
+
   StandardApp({
     required this.title,
     this.model,
@@ -340,6 +345,7 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
     this.drawerContent,
     this.floatingActionButton,
     this.providers = const [],
+    this.authInfo,
     List<String>? neededRoles,
     this.themeMode = ThemeMode.system,
     this.useBison = false,
@@ -361,13 +367,16 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       Scaffold(
         appBar: appBar,
         body: body,
-        drawer: _Drawer(drawerContent, _neededRoles),
+        drawer: _Drawer(drawerContent, authInfo, _neededRoles),
         floatingActionButton: floatingActionButton,
       ),
       (w, p) => p(child: w),
     );
 
     final theme = _resolveTheme(useBison);
+    final child = null is T
+        ? scaffold
+        : _GlobalStateProvider(model: model as ChangeNotifier, child: scaffold);
 
     return MaterialApp(
       title: title,
@@ -376,14 +385,9 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
       themeMode: themeMode,
       home: ToastificationWrapper(
         child: SelectionArea(
-          child: AuthService(
-            child: null is T
-                ? scaffold
-                : _GlobalStateProvider(
-                    model: model as ChangeNotifier,
-                    child: scaffold,
-                  ),
-          ),
+          child: authInfo != null
+              ? AuthService(authInfo: authInfo!, child: child)
+              : child,
         ),
       ),
     );
@@ -453,10 +457,12 @@ final class NonAuthRouterApp extends StatelessWidget {
 
 final class AuthRouterApp extends StatelessWidget {
   final _RouterApp _app;
+  final AuthInfo authInfo;
 
   AuthRouterApp({
     required String title,
     required GoRouter router,
+    required this.authInfo,
     bool useBison = false,
     super.key,
   }) : _app = _RouterApp(title: title, router: router, useBison: useBison);
@@ -464,5 +470,6 @@ final class AuthRouterApp extends StatelessWidget {
   // Return the MaterialApp widget which will define the look-and-feel for the
   // application.
   @override
-  Widget build(BuildContext context) => AuthService(child: _app);
+  Widget build(BuildContext context) =>
+      AuthService(authInfo: authInfo, child: _app);
 }
