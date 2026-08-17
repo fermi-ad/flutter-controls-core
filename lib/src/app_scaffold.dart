@@ -379,33 +379,49 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final scaffold = providers.fold<Widget>(
-      Scaffold(
-        appBar: appBar,
-        body: body,
-        drawer: _Drawer(drawerContent, authInfo, _neededRoles),
-        floatingActionButton: floatingActionButton,
-      ),
-      (w, p) => p(child: w),
+    // Build the base scaffold for the application. We don't just return it
+    // because it may need to be "wrapped" in other widgets.
+
+    Widget tmpScaffold = Scaffold(
+      appBar: appBar,
+      body: body,
+      drawer: _Drawer(drawerContent, authInfo, _neededRoles),
+      floatingActionButton: floatingActionButton,
     );
 
+    // Wrap the scaffold with the AuthService if authentication is being used.
+    // This is done here so that the AuthService is below the providers and
+    // global state. This is important because when you log in and log out, the
+    // providers and global state will reinitialize.
+
+    if (authInfo != null) {
+      tmpScaffold = AuthService(authInfo: authInfo!, child: tmpScaffold);
+    }
+
+    // Now wrap the scaffold with any global state used by the application.
+
+    if (null is! T) {
+      tmpScaffold = _GlobalStateProvider(
+        model: model as ChangeNotifier,
+        child: tmpScaffold,
+      );
+    }
+
+    // Iterate over the list of providers, wrapping -- and eventually returning
+    // -- the accumulated widgets. We need the AuthService to be below the
+    // providers because when you log in and log out, the providers will
+    // restart their data aquisition.
+
+    final scaffold = providers.fold<Widget>(tmpScaffold, (w, p) => p(child: w));
+
     final theme = _resolveTheme(useBison);
-    final child = null is T
-        ? scaffold
-        : _GlobalStateProvider(model: model as ChangeNotifier, child: scaffold);
 
     return MaterialApp(
       title: title,
       theme: theme.light,
       darkTheme: theme.dark,
       themeMode: themeMode,
-      home: ToastificationWrapper(
-        child: SelectionArea(
-          child: authInfo != null
-              ? AuthService(authInfo: authInfo!, child: child)
-              : child,
-        ),
-      ),
+      home: ToastificationWrapper(child: SelectionArea(child: scaffold)),
     );
   }
 }
