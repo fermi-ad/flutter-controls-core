@@ -21,12 +21,12 @@ dependencies:
   flutter_controls_auth:
     git:
       url: https://github.com/fermi-ad/flutter-controls-auth.git
-      ref: deb0eb6bbbaf74a70d637dbcfca5c298d8340119
+      ref: main
 
   bison_design_system:
     git:
       url: https://github.com/fermi-ad/flutter-bison-design-system.git
-      ref: 5ffc3a5eddd792e9c039ed732246982ca350b243
+      ref: main
 
 dev_dependencies:
   flutter_test:
