@@ -12,7 +12,7 @@ void main() {
             body: ParameterPanel(
               title: 'Device Status',
               contents: [
-                Text('Temperature: 25°C'),
+                Text('Temperature: 25 C'),
                 Text('Pressure: 101.3 kPa'),
               ],
             ),
@@ -21,7 +21,7 @@ void main() {
       );
 
       expect(find.text('Device Status'), findsOneWidget);
-      expect(find.text('Temperature: 25°C'), findsOneWidget);
+      expect(find.text('Temperature: 25 C'), findsOneWidget);
       expect(find.text('Pressure: 101.3 kPa'), findsOneWidget);
     });
   });

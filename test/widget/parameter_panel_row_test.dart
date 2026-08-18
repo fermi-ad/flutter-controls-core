@@ -12,7 +12,7 @@ void main() {
             body: ParameterPanelRow(
               label: 'Temperature',
               value: '25',
-              units: '°C',
+              units: 'C',
             ),
           ),
         ),
@@ -20,7 +20,7 @@ void main() {
 
       expect(find.text('Temperature'), findsOneWidget);
       expect(find.text('25'), findsOneWidget);
-      expect(find.text('°C'), findsOneWidget);
+      expect(find.text('C'), findsOneWidget);
     });
 
     testWidgets('builds with valueBuilder', (tester) async {
