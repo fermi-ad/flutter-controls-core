@@ -12,6 +12,9 @@ jobs:
   test:
     uses: fermi-ad/.github/.github/workflows/flutter-integration.yaml@add7aae28c8a3f714dbd11341776cede88a3f33e
     secrets: inherit
+    permissions:
+      contents: write
+      pull-requests: write
     strategy:
       fail-fast: false
       matrix:
