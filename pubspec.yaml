@@ -39,7 +39,6 @@ dev_dependencies:
   test: ^1.24.3
   mocktail: ^1.0.4
   gql_exec: ^1.1.1-alpha+1699813812660
-  fixnum: ^1.1.1
 
 flutter:
     fonts:
