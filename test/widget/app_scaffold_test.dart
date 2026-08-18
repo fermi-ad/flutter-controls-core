@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:flutter_controls_core/flutter_controls_core.dart';
-import 'package:go_router/go_router.dart';
+import 'package:flutter_controls_core/flutter_controls_core.dart'
+    show NonAuthRouterApp, StandardApp;
+import 'package:go_router/go_router.dart' show GoRoute, GoRouter;
 
 void main() {
   group('App scaffolds (smoke)', () {
