@@ -61,7 +61,7 @@ export 'package:opentelemetry/api.dart' show Span;
 ///
 /// ## Opting Out
 ///
-/// To disable tracing, you can override `initOpenTelemetry` with a no-op exporter or skip calling it (not recommended for most apps).
+/// To disable tracing, you can call `initOpenTelemetry` with a no-op exporter or skip calling it (not recommended for most apps).
 /// ---
 
 /// OpenTelemetry singleton tracer for manual instrumentation
