@@ -17,9 +17,6 @@ jobs:
       pull-requests: write
     strategy:
       fail-fast: false
-      matrix:
-        test: 
-          - smoke_test
     # Change to true to pull in git submodules during build
     with:
       pull-git-submodules: false
