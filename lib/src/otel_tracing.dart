@@ -1,26 +1,84 @@
 import 'package:opentelemetry/api.dart' as otel;
 import 'package:opentelemetry/sdk.dart'
     show TracerProviderBase, SimpleSpanProcessor, ConsoleExporter, SpanExporter;
-import 'package:opentelemetry/api.dart'
-    show registerGlobalTracerProvider, globalTracerProvider, Attribute;
 
 export 'package:opentelemetry/api.dart' show Span;
+
+/// ---
+/// # OpenTelemetry Usage Guidance
+///
+/// ## Overview
+///
+/// OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints.
+///
+/// - Auto-instrumentation is initialized automatically in `runFermiApp` and `runFermiRouterApp`.
+/// - All spans are exported to the console by default (see `ConsoleExporter`).
+/// - You can override the exporter by calling `initOpenTelemetry(exporter: ...)` before app startup.
+///
+/// ## Manual Instrumentation
+///
+/// Use the helpers below for manual spans and events:
+///
+/// ```dart
+/// final span = startSpan('operation', attributes: {'key': 'value'});
+/// try {
+///   // ... your code ...
+///   addEvent(span, 'eventName', attributes: {'foo': 42});
+/// } finally {
+///   endSpan(span);
+/// }
+/// ```
+///
+/// Or use the convenience wrappers for automatic span management:
+///
+/// ```dart
+/// runWithSpan('operation', (span) {
+///   // ... your code ...
+/// });
+///
+/// await runWithSpanAsync('asyncOp', (span) async {
+///   // ... your async code ...
+/// });
+/// ```
+///
+/// ## Dependency Injection and Testing
+///
+/// Use the `AppTracer` interface and the `appTracer` instance for testable code:
+///
+/// ```dart
+/// class MyService {
+///   final AppTracer tracer;
+///   MyService(this.tracer);
+///   void doWork() {
+///     tracer.runWithSpan('work', (span) {
+///       // ...
+///     });
+///   }
+/// }
+/// ```
+///
+/// In tests, inject a mock tracer if needed.
+///
+/// ## Opting Out
+///
+/// To disable tracing, you can call `initOpenTelemetry` with a no-op exporter or skip calling it (not recommended for most apps).
+/// ---
 
 /// OpenTelemetry singleton tracer for manual instrumentation
 late final otel.Tracer otelTracer;
 bool _otelInitialized = false;
 
 /// More idiomatic Dart 3+ pattern matching for attribute conversion
-Attribute _toAttribute(String key, Object? value) => switch (value) {
-  String v => Attribute.fromString(key, v),
-  bool v => Attribute.fromBoolean(key, v),
-  double v => Attribute.fromDouble(key, v),
-  int v => Attribute.fromInt(key, v),
-  List<String> v => Attribute.fromStringList(key, v),
-  List<bool> v => Attribute.fromBooleanList(key, v),
-  List<double> v => Attribute.fromDoubleList(key, v),
-  List<int> v => Attribute.fromIntList(key, v),
-  _ => Attribute.fromString(key, value.toString()),
+otel.Attribute _toAttribute(String key, Object? value) => switch (value) {
+  String v => otel.Attribute.fromString(key, v),
+  bool v => otel.Attribute.fromBoolean(key, v),
+  double v => otel.Attribute.fromDouble(key, v),
+  int v => otel.Attribute.fromInt(key, v),
+  List<String> v => otel.Attribute.fromStringList(key, v),
+  List<bool> v => otel.Attribute.fromBooleanList(key, v),
+  List<double> v => otel.Attribute.fromDoubleList(key, v),
+  List<int> v => otel.Attribute.fromIntList(key, v),
+  _ => otel.Attribute.fromString(key, value.toString()),
 };
 
 /// Initializes OpenTelemetry auto-instrumentation and tracer provider.
@@ -33,8 +91,8 @@ Future<void> initOpenTelemetry({
   final tracerProvider = TracerProviderBase(
     processors: [SimpleSpanProcessor(exporter ?? ConsoleExporter())],
   );
-  registerGlobalTracerProvider(tracerProvider);
-  otelTracer = globalTracerProvider.getTracer(serviceName);
+  otel.registerGlobalTracerProvider(tracerProvider);
+  otelTracer = otel.globalTracerProvider.getTracer(serviceName);
   _otelInitialized = true;
 }
 
@@ -164,63 +222,3 @@ class _GlobalAppTracer implements AppTracer {
 
 /// The default tracer instance for use in most apps (opt-out global).
 AppTracer appTracer = _GlobalAppTracer();
-
-/// ---
-/// # OpenTelemetry Usage Guidance
-///
-/// ## Overview
-///
-/// OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints.
-///
-/// - Auto-instrumentation is initialized automatically in `runFermiApp` and `runFermiRouterApp`.
-/// - All spans are exported to the console by default (see `ConsoleExporter`).
-/// - You can override the exporter by calling `initOpenTelemetry(exporter: ...)` before app startup.
-///
-/// ## Manual Instrumentation
-///
-/// Use the helpers below for manual spans and events:
-///
-/// ```dart
-/// final span = startSpan('operation', attributes: {'key': 'value'});
-/// try {
-///   // ... your code ...
-///   addEvent(span, 'eventName', attributes: {'foo': 42});
-/// } finally {
-///   endSpan(span);
-/// }
-/// ```
-///
-/// Or use the convenience wrappers for automatic span management:
-///
-/// ```dart
-/// runWithSpan('operation', (span) {
-///   // ... your code ...
-/// });
-///
-/// await runWithSpanAsync('asyncOp', (span) async {
-///   // ... your async code ...
-/// });
-/// ```
-///
-/// ## Dependency Injection and Testing
-///
-/// Use the `AppTracer` interface and the `appTracer` instance for testable code:
-///
-/// ```dart
-/// class MyService {
-///   final AppTracer tracer;
-///   MyService(this.tracer);
-///   void doWork() {
-///     tracer.runWithSpan('work', (span) {
-///       // ...
-///     });
-///   }
-/// }
-/// ```
-///
-/// In tests, inject a mock tracer if needed.
-///
-/// ## Opting Out
-///
-/// To disable tracing, you can override `initOpenTelemetry` with a no-op exporter or skip calling it (not recommended for most apps).
-/// ---
