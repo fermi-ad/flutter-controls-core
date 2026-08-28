@@ -2,6 +2,8 @@
 
 library;
 
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:bison_design_system/bison_design_system.dart';
@@ -145,18 +147,51 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
   );
 }
 
+// Formats the remaining time until [expiry] as "#h#m", or "Expired" if past.
+
+String _formatExpiry(DateTime expiry) {
+  final remaining = expiry.difference(DateTime.now());
+
+  if (remaining.isNegative) return 'Expired';
+
+  final h = remaining.inHours;
+  final m = remaining.inMinutes.remainder(60);
+
+  return '${h}h${m}m';
+}
+
 // Private widget used to display content in the side, drawer menu's header.
 
-final class _DrawerHeader extends StatelessWidget {
+final class _DrawerHeader extends StatefulWidget {
   final AuthInfo? authInfo;
   final Set<String> neededRoles;
 
   const _DrawerHeader({this.authInfo, this.neededRoles = const {}});
 
   @override
+  State<_DrawerHeader> createState() => _DrawerHeaderState();
+}
+
+final class _DrawerHeaderState extends State<_DrawerHeader> {
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    _timer = Timer.periodic(const Duration(minutes: 1), (_) => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     final UserInfo? userInfo = AuthService.getUserInfo(context);
-    final bool authRequired = authInfo != null || neededRoles.isNotEmpty;
+    final bool authRequired =
+        widget.authInfo != null || widget.neededRoles.isNotEmpty;
 
     void closeDrawerThen(void Function() action) {
       Scaffold.of(context).closeDrawer();
@@ -186,7 +221,7 @@ final class _DrawerHeader extends StatelessWidget {
             AuthService.requestLogin(context);
           }),
         ),
-        _buildMissingRolesWarning(context, neededRoles),
+        _buildMissingRolesWarning(context, widget.neededRoles),
       ),
 
       (UserInfo user, true) => _buildAuthHeader(
@@ -196,12 +231,34 @@ final class _DrawerHeader extends StatelessWidget {
           "Logout",
           () => closeDrawerThen(() => AuthService.requestLogout(context)),
         ),
-        _buildMissingRolesWarning(context, neededRoles),
+        _buildLoggedInSubtitle(context, widget.neededRoles),
       ),
     };
 
     return content;
   }
+}
+
+// Builds the subtitle shown under the user's name when logged in: the JWT
+// expiry countdown and any missing-roles warning.
+
+Widget? _buildLoggedInSubtitle(BuildContext context, Set<String> neededRoles) {
+  final expiry = AuthService.getJwtExpiry(context);
+  final rolesWarning = _buildMissingRolesWarning(context, neededRoles);
+
+  if (expiry == null && rolesWarning == null) return null;
+
+  return Column(
+    mainAxisSize: MainAxisSize.min,
+    children: [
+      if (expiry != null)
+        Text(
+          _formatExpiry(expiry),
+          style: Theme.of(context).textTheme.labelSmall,
+        ),
+      ?rolesWarning,
+    ],
+  );
 }
 
 final class _Drawer extends StatelessWidget {

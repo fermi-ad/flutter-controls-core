@@ -9,9 +9,8 @@ A core set of widgets, types, and services to create Fermilab applications.
 
 ## Getting started
 
-The latest, stable branch is v0.3, which is managed by the `main` branch. To
-add this package to your application, add this dependency to your
-`pubspec.yaml` file:
+The latest, stable branch is managed by the `main` branch. To add this package
+to your application, add this dependency to your `pubspec.yaml` file:
 
 ```yaml
 flutter_controls_core:
@@ -87,11 +86,14 @@ for the various GraphQL clients to see what's available.
 
 ## Telemetry/Tracing (OpenTelemetry)
 
-OpenTelemetry tracing is enabled by default (opt-out) for all apps using this package's entrypoints (`runFermiApp`, `runFermiRouterApp`).
+OpenTelemetry tracing is enabled by default (opt-out) for all apps using this
+package's entrypoints (`runFermiApp`, `runFermiRouterApp`).
 
 - Traces are exported to the console by default (see `ConsoleExporter`).
-  - In the future we will need a custom exporter for GraphQL. Good news is that otel is gRPC by default.
-- You can override the exporter by calling `initOpenTelemetry(exporter: ...)` before app startup.
+  - In the future we will need a custom exporter for GraphQL. Good news is that
+  otel is gRPC by default.
+- You can override the exporter by calling `initOpenTelemetry(exporter: ...)`
+before app startup.
 - Manual instrumentation is available for custom spans and events.
 
 ### Manual Instrumentation Example
@@ -140,7 +142,8 @@ In tests, inject a mock tracer if needed.
 
 ### Opting Out
 
-To disable tracing, you can override `initOpenTelemetry` with a no-op exporter or skip calling it (not recommended for most apps).
+To disable tracing, you can override `initOpenTelemetry` with a no-op exporter
+or skip calling it (not recommended for most apps).
 
 For more details, see the API documentation in `lib/src/otel_tracing.dart`.
 
