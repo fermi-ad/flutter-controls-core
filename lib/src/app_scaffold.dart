@@ -49,10 +49,10 @@ final class _GlobalAppTheme {
 );
 
 Widget _buildAuthHeader(
-  final IconData icon,
-  final String account,
-  final (String, void Function())? buttonInfo,
-  final Widget? subtitle,
+  IconData icon,
+  String account,
+  (String, void Function())? buttonInfo,
+  Widget? subtitle,
 ) => Padding(
   padding: const .symmetric(vertical: 8.0, horizontal: 8.0),
   child: Row(
@@ -113,10 +113,8 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
           const SizedBox(width: 4.0),
           Text(
             "Missing Roles",
-            style: Theme.of(context).textTheme.labelSmall?.copyWith(
-              color: colorScheme.error,
-              fontWeight: .bold,
-            ),
+            style: Theme.of(context).textTheme.labelSmall
+                ?.copyWith(color: colorScheme.error, fontWeight: .bold),
           ),
         ],
       ),
@@ -135,9 +133,8 @@ Widget? _buildMissingRolesWarning(BuildContext context, Set<String> needed) {
                 ),
                 child: Text(
                   role,
-                  style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                    color: colorScheme.onErrorContainer,
-                  ),
+                  style: Theme.of(context).textTheme.labelSmall
+                      ?.copyWith(color: colorScheme.onErrorContainer),
                 ),
               ),
             )

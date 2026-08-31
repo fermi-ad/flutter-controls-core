@@ -73,7 +73,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
     }
   }
 
-  String _getCurrentValue(final BuildContext context) =>
+  String _getCurrentValue(BuildContext context) =>
       widget.value ?? widget.valueBuilder!(context);
 
   void _enterEditMode() {
@@ -101,7 +101,7 @@ class _ParameterPanelRowState extends State<ParameterPanelRow> {
   }
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final style = theme.textTheme.bodyMedium!;
 
@@ -183,6 +183,6 @@ class _ValueBuilder extends StatelessWidget {
   final TextStyle? style;
 
   @override
-  Widget build(final BuildContext context) =>
+  Widget build(BuildContext context) =>
       Text(builder(context), style: style, overflow: .clip, textAlign: .right);
 }
