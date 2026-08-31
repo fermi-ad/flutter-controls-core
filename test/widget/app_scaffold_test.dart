@@ -9,7 +9,7 @@ void main() {
   group('App scaffolds (smoke)', () {
     testWidgets('StandardApp builds (no auth)', (tester) async {
       await tester.pumpWidget(
-        StandardApp<ChangeNotifier?>(
+        StandardApp(
           title: 'Test App',
           body: const Center(child: Text('Hello')),
         ),
