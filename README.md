@@ -17,7 +17,7 @@ flutter_controls_core:
   git:
     url: https://github.com/fermi-ad/flutter-controls-core.git
     tag_pattern: v{{version}}
-  version: ^1.2.0
+  version: ^1.3.0
 ```
 
 _NOTE:_ This project is under very active development so calling this the
