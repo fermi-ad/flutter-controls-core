@@ -357,7 +357,7 @@ class _GlobalStateProvider<T extends ChangeNotifier> extends InheritedWidget {
 /// [StandardApp.getGlobalState] in its [build] method.
 ///
 
-final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
+final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
   final T? model;
 
   /// Used for the title of the web page (for web targets.)
@@ -457,11 +457,8 @@ final class StandardApp<T extends ChangeNotifier?> extends StatelessWidget {
 
     // Now wrap the scaffold with any global state used by the application.
 
-    if (null is! T) {
-      tmpScaffold = _GlobalStateProvider(
-        model: model as ChangeNotifier,
-        child: tmpScaffold,
-      );
+    if (model != null) {
+      tmpScaffold = _GlobalStateProvider<T>(model: model!, child: tmpScaffold);
     }
 
     // Iterate over the list of providers, wrapping -- and eventually returning
