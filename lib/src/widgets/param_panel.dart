@@ -44,7 +44,7 @@ class ParameterPanel extends StatelessWidget {
   });
 
   @override
-  Widget build(final BuildContext context) {
+  Widget build(BuildContext context) {
     final theme = Theme.of(context);
 
     return Card.outlined(
@@ -61,7 +61,7 @@ class ParameterPanel extends StatelessWidget {
                 child: Text(title, style: theme.textTheme.titleMedium),
               ),
               ...contents.map(
-                (final widget) => Padding(
+                (widget) => Padding(
                   padding: const .symmetric(vertical: 2.0, horizontal: 8.0),
                   child: widget,
                 ),
