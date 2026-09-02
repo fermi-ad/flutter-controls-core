@@ -14,9 +14,10 @@ to your application, add this dependency to your `pubspec.yaml` file:
 
 ```yaml
 flutter_controls_core:
-    git:
-        url: https://github.com/fermi-ad/flutter-controls-core.git
-        ref: main
+  git:
+    url: https://github.com/fermi-ad/flutter-controls-core.git
+    tag_pattern: v{{version}}
+  version: ^1.2.0
 ```
 
 _NOTE:_ This project is under very active development so calling this the

@@ -211,18 +211,14 @@ final class _DrawerHeaderState extends State<_DrawerHeader> {
         null,
       ),
 
-      (null, true) => _buildAuthHeader(
-        Icons.no_accounts_sharp,
-        "Unauthorized",
-        (
+      (null, true) =>
+        _buildAuthHeader(Icons.no_accounts_sharp, "Unauthorized", (
           "Login",
           () => closeDrawerThen(() {
             infoBox(context, "Log in", "Contacting KeyCloak ...");
             AuthService.requestLogin(context);
           }),
-        ),
-        _buildMissingRolesWarning(context, widget.neededRoles),
-      ),
+        ), _buildMissingRolesWarning(context, widget.neededRoles)),
 
       (UserInfo user, true) => _buildAuthHeader(
         Icons.account_circle,
@@ -439,34 +435,31 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
     // Build the base scaffold for the application. We don't just return it
     // because it may need to be "wrapped" in other widgets.
 
-    Widget tmpScaffold = Scaffold(
+    Widget scaffold = Scaffold(
       appBar: appBar,
       body: body,
       drawer: _Drawer(drawerContent, authInfo, _neededRoles),
       floatingActionButton: floatingActionButton,
     );
 
-    // Wrap the scaffold with the AuthService if authentication is being used.
-    // This is done here so that the AuthService is below the providers and
-    // global state. This is important because when you log in and log out, the
-    // providers and global state will reinitialize.
+    // Iterate over the list of providers, wrapping -- and eventually returning
+    // -- the accumulated widgets around the base scaffold.
+
+    scaffold = providers.fold<Widget>(scaffold, (w, p) => p(child: w));
+
+    // Wrap with the AuthService if authentication is being used. This is done
+    // here so that the providers can use the AuthService to access the current
+    // user and their JWT.
 
     if (authInfo != null) {
-      tmpScaffold = AuthService(authInfo: authInfo!, child: tmpScaffold);
+      scaffold = AuthService(authInfo: authInfo!, child: scaffold);
     }
 
     // Now wrap the scaffold with any global state used by the application.
 
     if (model != null) {
-      tmpScaffold = _GlobalStateProvider<T>(model: model!, child: tmpScaffold);
+      scaffold = _GlobalStateProvider<T>(model: model!, child: scaffold);
     }
-
-    // Iterate over the list of providers, wrapping -- and eventually returning
-    // -- the accumulated widgets. We need the AuthService to be below the
-    // providers because when you log in and log out, the providers will
-    // restart their data aquisition.
-
-    final scaffold = providers.fold<Widget>(tmpScaffold, (w, p) => p(child: w));
 
     final theme = _resolveTheme(useBison);
 
