@@ -208,14 +208,18 @@ final class _DrawerHeaderState extends State<_DrawerHeader> {
         null,
       ),
 
-      (null, true) =>
-        _buildAuthHeader(Icons.no_accounts_sharp, "Unauthorized", (
+      (null, true) => _buildAuthHeader(
+        Icons.no_accounts_sharp,
+        "Unauthorized",
+        (
           "Login",
           () => closeDrawerThen(() {
             infoBox(context, "Log in", "Contacting KeyCloak ...");
             AuthService.requestLogin(context);
           }),
-        ), _buildMissingRolesWarning(context, widget.neededRoles)),
+        ),
+        _buildMissingRolesWarning(context, widget.neededRoles),
+      ),
 
       (UserInfo user, true) => _buildAuthHeader(
         Icons.account_circle,
@@ -496,8 +500,7 @@ final class _RouterApp extends StatelessWidget {
       theme: theme.light,
       darkTheme: theme.dark,
       routerConfig: router,
-      builder: (context, child) =>
-          SelectionArea(child: child ?? const SizedBox()),
+      builder: (context, child) => child ?? const SizedBox(),
     );
   }
 }
