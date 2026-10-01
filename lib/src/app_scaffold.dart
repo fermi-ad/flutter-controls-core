@@ -407,6 +407,13 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
   /// is set up and the drawer will show "No login required".
   final AuthInfo? authInfo;
 
+  /// Whether the app's text can be selected with the mouse (the default).
+  ///
+  /// When `true` the whole app sits in a [SelectionArea], so every [Text]
+  /// registers as selectable. Apps whose text changes many times a second
+  /// (live readings) can pass `false` to skip that work.
+  final bool selectable;
+
   StandardApp({
     required this.title,
     this.model,
@@ -419,6 +426,7 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
     List<String>? neededRoles,
     this.themeMode = ThemeMode.system,
     this.useBison = false,
+    this.selectable = true,
     super.key,
   }) : _neededRoles = neededRoles?.toSet() ?? {};
 
@@ -469,7 +477,9 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
       theme: theme.light,
       darkTheme: theme.dark,
       themeMode: themeMode,
-      home: ToastificationWrapper(child: SelectionArea(child: scaffold)),
+      home: ToastificationWrapper(
+        child: selectable ? SelectionArea(child: scaffold) : scaffold,
+      ),
     );
   }
 }
