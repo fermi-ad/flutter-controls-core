@@ -407,11 +407,6 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
   /// is set up and the drawer will show "No login required".
   final AuthInfo? authInfo;
 
-  /// Whether the app's text can be selected with the mouse (the default).
-  ///
-  /// When `true` the whole app sits in a [SelectionArea], so every [Text]
-  /// registers as selectable. Apps whose text changes many times a second
-  /// (live readings) can pass `false` to skip that work.
   final bool selectable;
 
   StandardApp({
