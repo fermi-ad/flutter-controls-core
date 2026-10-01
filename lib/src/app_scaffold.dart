@@ -407,6 +407,8 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
   /// is set up and the drawer will show "No login required".
   final AuthInfo? authInfo;
 
+  final bool selectable;
+
   StandardApp({
     required this.title,
     this.model,
@@ -419,6 +421,7 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
     List<String>? neededRoles,
     this.themeMode = ThemeMode.system,
     this.useBison = false,
+    this.selectable = true,
     super.key,
   }) : _neededRoles = neededRoles?.toSet() ?? {};
 
@@ -469,7 +472,9 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
       theme: theme.light,
       darkTheme: theme.dark,
       themeMode: themeMode,
-      home: ToastificationWrapper(child: SelectionArea(child: scaffold)),
+      home: ToastificationWrapper(
+        child: selectable ? SelectionArea(child: scaffold) : scaffold,
+      ),
     );
   }
 }
