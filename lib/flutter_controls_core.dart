@@ -4,10 +4,12 @@ library;
 import "package:flutter/material.dart";
 import "package:flutter_controls_auth/flutter_controls_auth.dart";
 import 'package:go_router/go_router.dart';
+
 import 'src/app_scaffold.dart';
 import 'src/otel_tracing.dart';
 
 export 'src/app_scaffold.dart';
+
 export 'package:flutter_controls_auth/flutter_controls_auth.dart'
     show
         AuthInfo,
@@ -19,8 +21,12 @@ export 'package:flutter_controls_auth/flutter_controls_auth.dart'
         warningBox;
 
 export 'src/otel_tracing.dart' show AppTracer, appTracer, Span;
+export 'src/logging/app_log.dart'
+    show AppLog, LogEntry, LogLevel, appLog, logClock;
+export 'src/widgets/log_panel.dart' show LogPanel, logPanelWidth;
 export 'src/widgets/param_panel.dart' show ParameterPanel;
 export 'src/widgets/param_row.dart' show ParameterPanelRow;
+
 export 'package:bison_design_system/bison_design_system.dart';
 
 /// Entry point for Fermilab applications
