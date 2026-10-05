@@ -4,8 +4,7 @@ library;
 
 import 'dart:math' as math;
 
-import 'package:bison_design_system/bison_design_system.dart'
-    show BisonThemeTokens, BisonTypographyTokens;
+import 'package:bison_design_system/bison_design_system.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 
