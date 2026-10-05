@@ -38,12 +38,17 @@ class _LogPanelState extends State<LogPanel> {
     (LogLevel.error, 'Errors', 'Errors only'),
   ];
 
+  static const double _maxSource = 120;
+
   LogLevel _min = LogLevel.info;
 
   AppLog get _log => widget.log ?? appLog;
 
-  Future<void> _copy(int n) async {
-    await Clipboard.setData(ClipboardData(text: _log.asText(min: _min)));
+  /// Copies [shown] (newest first) oldest first: what the panel shows.
+  Future<void> _copy(List<LogEntry> shown) async {
+    final n = shown.length;
+    final text = shown.reversed.map((e) => e.line).join('\n');
+    await Clipboard.setData(ClipboardData(text: text));
     if (!mounted) return;
     ScaffoldMessenger.maybeOf(context)?.showSnackBar(
       SnackBar(
@@ -78,7 +83,7 @@ class _LogPanelState extends State<LogPanel> {
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _header(look, total, shown.length),
+                _header(look, total, shown),
                 Divider(height: 9, color: look.border),
                 Expanded(
                   child: shown.isEmpty
@@ -98,12 +103,12 @@ class _LogPanelState extends State<LogPanel> {
     );
   }
 
-  Widget _header(_Look look, int total, int shown) {
+  Widget _header(_Look look, int total, List<LogEntry> shown) {
     final count = [
       if (_min == LogLevel.info)
         '$total entr${total == 1 ? 'y' : 'ies'}'
       else
-        '$shown of $total',
+        '${shown.length} of $total',
       if (_log.dropped > 0) '${_log.dropped} older dropped',
     ].join(' · ');
     Widget button(String id, IconData icon, String tip, VoidCallback? f) =>
@@ -143,7 +148,7 @@ class _LogPanelState extends State<LogPanel> {
           'log-copy',
           Icons.copy,
           'Copy the entries shown',
-          shown == 0 ? null : () => _copy(shown),
+          shown.isEmpty ? null : () => _copy(shown),
         ),
         button(
           'log-clear',
@@ -157,7 +162,7 @@ class _LogPanelState extends State<LogPanel> {
   }
 
   Widget _filter(_Look look) => Container(
-    height: 24,
+    constraints: const BoxConstraints(minHeight: 24),
     decoration: BoxDecoration(
       border: Border.all(color: look.border),
       borderRadius: BorderRadius.circular(3),
@@ -167,20 +172,24 @@ class _LogPanelState extends State<LogPanel> {
       mainAxisSize: MainAxisSize.min,
       children: [
         for (final (level, label, tip) in _filters)
-          Tooltip(
-            message: tip,
-            child: InkWell(
-              key: ValueKey('log-filter-${level.name}'),
-              onTap: () => setState(() => _min = level),
-              child: Container(
-                color: level == _min ? look.selected : null,
-                padding: const EdgeInsets.symmetric(horizontal: 8),
-                alignment: Alignment.center,
-                child: Text(
-                  label,
-                  style: look.body.copyWith(
-                    fontWeight: FontWeight.w500,
-                    color: level == _min ? look.accent : look.text,
+          Semantics(
+            button: true,
+            selected: level == _min,
+            child: Tooltip(
+              message: tip,
+              child: InkWell(
+                key: ValueKey('log-filter-${level.name}'),
+                onTap: () => setState(() => _min = level),
+                child: Container(
+                  color: level == _min ? look.selected : null,
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  alignment: Alignment.center,
+                  child: Text(
+                    label,
+                    style: look.body.copyWith(
+                      fontWeight: FontWeight.w500,
+                      color: level == _min ? look.accent : look.text,
+                    ),
                   ),
                 ),
               ),
@@ -190,7 +199,8 @@ class _LogPanelState extends State<LogPanel> {
     ),
   );
 
-  /// Time, level and source columns sized to their widest text.
+  /// Time, level and source columns sized to their widest text; the source
+  /// column at most [_maxSource] wide.
   Widget _list(BuildContext context, _Look look, List<LogEntry> shown) {
     final scaler = MediaQuery.textScalerOf(context);
     double width(String text) {
@@ -206,12 +216,19 @@ class _LogPanelState extends State<LogPanel> {
 
     final time = width('00:00:00.000');
     final level = width(LogLevel.error.tag);
-    final source = {for (final e in shown) e.source}
-        .map(width)
-        .fold(0.0, math.max);
+    final source = math.min(
+      _maxSource,
+      {for (final e in shown) e.source}.map(width).fold(0.0, math.max),
+    );
     Widget cell(double w, String text, TextStyle style) => SizedBox(
       width: w,
-      child: Text(text, style: style),
+      child: Text(
+        text,
+        style: style,
+        maxLines: 1,
+        softWrap: false,
+        overflow: TextOverflow.ellipsis,
+      ),
     );
     return ListView.builder(
       key: const ValueKey('log-list'),

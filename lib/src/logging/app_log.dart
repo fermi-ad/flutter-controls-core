@@ -63,7 +63,7 @@ class AppLog extends ChangeNotifier {
   bool mirror;
   final DateTime Function() now;
 
-  /// Longer messages are cut.
+  /// Longer messages are cut (in Unicode code points).
   static const int maxMessage = 1000;
   static final RegExp _breaks = RegExp(r'\s*[\r\n]+\s*');
 
@@ -85,7 +85,9 @@ class AppLog extends ChangeNotifier {
   /// Logs [message] on one line, cut to [maxMessage].
   LogEntry add(LogLevel level, String source, String message) {
     var m = message.replaceAll(_breaks, ' ');
-    if (m.length > maxMessage) m = '${m.substring(0, maxMessage)}…';
+    if (m.runes.length > maxMessage) {
+      m = '${String.fromCharCodes(m.runes.take(maxMessage))}…';
+    }
     final e = LogEntry(now(), level, source, m);
     if (_entries.length >= capacity) {
       _entries.removeFirst();
