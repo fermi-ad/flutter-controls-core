@@ -5,16 +5,20 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_controls_core/flutter_controls_core.dart'
     show AppLog, BisonThemeData, BisonThemeTokens, LogPanel;
 
-Widget _host(AppLog log, {ThemeData? theme, VoidCallback? onClose}) =>
-    MaterialApp(
-      theme: theme ?? BisonThemeData.dark(),
-      home: Scaffold(
-        body: Align(
-          alignment: Alignment.centerRight,
-          child: LogPanel(log: log, onClose: onClose ?? () {}),
-        ),
-      ),
-    );
+Widget _host(
+  AppLog log, {
+  ThemeData? theme,
+  VoidCallback? onClose,
+  double width = 600,
+}) => MaterialApp(
+  theme: theme ?? BisonThemeData.dark(),
+  home: Scaffold(
+    body: Align(
+      alignment: Alignment.centerRight,
+      child: LogPanel(log: log, onClose: onClose ?? () {}, width: width),
+    ),
+  ),
+);
 
 AppLog _filled() {
   final log = AppLog(mirror: false, now: () => DateTime(2026, 10, 1, 12));
@@ -92,6 +96,15 @@ void main() {
     expect(find.text('Nothing logged yet'), findsOneWidget);
     await tester.tap(find.byKey(const ValueKey('log-close')));
     expect(closed, 1);
+    log.dispose();
+  });
+
+  testWidgets('the header fits a narrow panel', (tester) async {
+    final log = _filled();
+    await tester.pumpWidget(_host(log, width: 440));
+    expect(tester.takeException(), isNull);
+    expect(find.byTooltip('Copy the entries shown'), findsOneWidget);
+    expect(find.byTooltip('Clear the log'), findsOneWidget);
     log.dispose();
   });
 
