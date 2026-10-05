@@ -138,26 +138,22 @@ class _LogPanelState extends State<LogPanel> {
           look: look,
           id: 'log-copy',
           icon: Icons.copy,
-          label: 'Copy',
-          tooltip: 'copy the entries shown, oldest first, one line each',
+          tooltip: 'Copy the entries shown',
           onPressed: shown == 0 ? null : _copy,
         ),
         _HeaderButton(
           look: look,
           id: 'log-clear',
           icon: Icons.delete_outline,
-          label: 'Clear',
-          tooltip: 'empty the log',
+          tooltip: 'Clear the log',
           onPressed: total == 0 ? null : _log.clear,
         ),
-        IconButton(
-          key: const ValueKey('log-close'),
-          tooltip: 'close',
-          iconSize: 16,
-          color: look.text,
-          visualDensity: VisualDensity.compact,
+        _HeaderButton(
+          look: look,
+          id: 'log-close',
+          icon: Icons.close,
+          tooltip: 'Close',
           onPressed: widget.onClose,
-          icon: const Icon(Icons.close),
         ),
       ],
     );
@@ -397,13 +393,12 @@ class _Filter extends StatelessWidget {
   );
 }
 
-/// A small text button with an icon, for the header.
+/// A small icon button for the header; its tooltip names it.
 class _HeaderButton extends StatelessWidget {
   const _HeaderButton({
     required this.look,
     required this.id,
     required this.icon,
-    required this.label,
     required this.tooltip,
     required this.onPressed,
   });
@@ -411,27 +406,18 @@ class _HeaderButton extends StatelessWidget {
   final _Look look;
   final String id;
   final IconData icon;
-  final String label;
   final String tooltip;
   final VoidCallback? onPressed;
 
   @override
-  Widget build(BuildContext context) => Tooltip(
-    message: tooltip,
-    child: TextButton.icon(
-      key: ValueKey(id),
-      style: TextButton.styleFrom(
-        visualDensity: VisualDensity.compact,
-        tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        minimumSize: const Size(0, 24),
-        padding: const EdgeInsets.symmetric(horizontal: 6),
-        foregroundColor: look.text,
-        disabledForegroundColor: look.disabled,
-        textStyle: look.body,
-      ),
-      onPressed: onPressed,
-      icon: Icon(icon, size: 14),
-      label: Text(label),
-    ),
+  Widget build(BuildContext context) => IconButton(
+    key: ValueKey(id),
+    tooltip: tooltip,
+    iconSize: 16,
+    color: look.text,
+    disabledColor: look.disabled,
+    visualDensity: VisualDensity.compact,
+    onPressed: onPressed,
+    icon: Icon(icon),
   );
 }
