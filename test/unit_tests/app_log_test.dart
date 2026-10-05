@@ -85,6 +85,8 @@ void main() {
     log.info('link', 'x' * 5000);
     expect(log.entries.last.message, hasLength(AppLog.maxMessage + 1));
     expect(log.entries.last.message, endsWith('…'));
+    log.info('link', '${'a' * 999}😀😀');
+    expect(log.entries.last.message, '${'a' * 999}😀…', reason: 'whole emoji');
   });
 
   testWidgets('a burst of entries is one notification, at most every '

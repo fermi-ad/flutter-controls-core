@@ -108,6 +108,53 @@ void main() {
     log.dispose();
   });
 
+  testWidgets('Copy takes what is shown, not entries not yet drawn', (
+    tester,
+  ) async {
+    String? copied;
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
+      SystemChannels.platform,
+      (call) async {
+        if (call.method == 'Clipboard.setData') {
+          copied = (call.arguments as Map)['text'] as String?;
+        }
+        return null;
+      },
+    );
+    final log = _filled();
+    await tester.pumpWidget(_host(log));
+    log.info('late', 'not drawn yet');
+    await tester.tap(find.byKey(const ValueKey('log-copy')));
+    await tester.pump();
+    expect(copied, isNot(contains('not drawn yet')));
+    await tester.pump(const Duration(milliseconds: 300));
+    log.dispose();
+  });
+
+  testWidgets('a long source is cut, not overflowing', (tester) async {
+    final log = _filled()..info('x' * 200, 'message');
+    await tester.pumpWidget(_host(log, width: 440));
+    expect(tester.takeException(), isNull);
+    expect(find.text('message'), findsOneWidget);
+    log.dispose();
+  });
+
+  testWidgets('the selected filter is announced', (tester) async {
+    final handle = tester.ensureSemantics();
+    final log = _filled();
+    await tester.pumpWidget(_host(log));
+    expect(
+      tester.getSemantics(find.byKey(const ValueKey('log-filter-info'))),
+      isSemantics(isSelected: true),
+    );
+    expect(
+      tester.getSemantics(find.byKey(const ValueKey('log-filter-error'))),
+      isNot(isSemantics(isSelected: true)),
+    );
+    log.dispose();
+    handle.dispose();
+  });
+
   testWidgets('works under a plain Material theme too', (tester) async {
     final log = _filled();
     await tester.pumpWidget(_host(log, theme: ThemeData.dark()));
