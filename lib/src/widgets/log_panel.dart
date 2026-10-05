@@ -1,6 +1,5 @@
-/// A side panel showing an [AppLog]: newest first, filtered to every entry,
-/// warnings and errors, or errors only. Copy puts the entries shown on the
-/// clipboard (oldest first, one line each); Clear empties the log.
+/// A side panel listing an [AppLog], newest first, with a level filter,
+/// Copy and Clear.
 library;
 
 import 'dart:math' as math;
@@ -12,13 +11,9 @@ import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 
 import '../logging/app_log.dart';
 
-/// The panel's default width.
 const double logPanelWidth = 600;
 
-/// The panel.
 class LogPanel extends StatefulWidget {
-  /// Creates the panel for [log] (the shared [appLog] when `null`);
-  /// [onClose] is its ✕.
   const LogPanel({
     required this.onClose,
     this.log,
@@ -26,13 +21,11 @@ class LogPanel extends StatefulWidget {
     super.key,
   });
 
-  /// Closes the panel.
+  /// Called by the close button.
   final VoidCallback onClose;
 
-  /// The log shown, or `null` for [appLog].
+  /// Defaults to [appLog].
   final AppLog? log;
-
-  /// The panel's width.
   final double width;
 
   @override
@@ -40,12 +33,17 @@ class LogPanel extends StatefulWidget {
 }
 
 class _LogPanelState extends State<LogPanel> {
+  static const _filters = [
+    (LogLevel.info, 'All', 'Every entry'),
+    (LogLevel.warn, 'Warnings', 'Warnings and errors'),
+    (LogLevel.error, 'Errors', 'Errors only'),
+  ];
+
   LogLevel _min = LogLevel.info;
 
   AppLog get _log => widget.log ?? appLog;
 
-  Future<void> _copy() async {
-    final n = _log.atLeast(_min).length;
+  Future<void> _copy(int n) async {
     await Clipboard.setData(ClipboardData(text: _log.asText(min: _min)));
     if (!mounted) return;
     ScaffoldMessenger.maybeOf(context)?.showSnackBar(
@@ -58,7 +56,7 @@ class _LogPanelState extends State<LogPanel> {
 
   @override
   Widget build(BuildContext context) {
-    final look = _Look.of(context);
+    final look = _lookOf(context);
     return Material(
       color: look.surface,
       elevation: 12,
@@ -71,23 +69,24 @@ class _LogPanelState extends State<LogPanel> {
         child: ListenableBuilder(
           listenable: _log,
           builder: (context, _) {
-            final all = _log.entries;
-            final shown = _log.atLeast(_min);
+            final total = _log.entries.length;
+            final shown = _log.atLeast(_min).reversed.toList();
+            final empty = total == 0
+                ? 'Nothing logged yet'
+                : _min == LogLevel.warn
+                ? 'No warnings or errors'
+                : 'No errors';
             return Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                _header(look, all.length, shown.length),
+                _header(look, total, shown.length),
                 Divider(height: 9, color: look.border),
                 Expanded(
                   child: shown.isEmpty
                       ? Center(
                           child: Text(
-                            all.isEmpty
-                                ? 'Nothing logged yet'
-                                : _min == LogLevel.warn
-                                ? 'No warnings or errors'
-                                : 'No errors',
-                            style: look.body.copyWith(color: look.label),
+                            empty,
+                            style: look.body.copyWith(color: look.muted),
                           ),
                         )
                       : _list(context, look, shown),
@@ -101,13 +100,24 @@ class _LogPanelState extends State<LogPanel> {
   }
 
   Widget _header(_Look look, int total, int shown) {
-    final dropped = _log.dropped;
     final count = [
-      _min == LogLevel.info
-          ? '$total entr${total == 1 ? 'y' : 'ies'}'
-          : '$shown of $total',
-      if (dropped > 0) '$dropped older dropped',
+      if (_min == LogLevel.info)
+        '$total entr${total == 1 ? 'y' : 'ies'}'
+      else
+        '$shown of $total',
+      if (_log.dropped > 0) '${_log.dropped} older dropped',
     ].join(' · ');
+    Widget button(String id, IconData icon, String tip, VoidCallback? f) =>
+        IconButton(
+          key: ValueKey(id),
+          tooltip: tip,
+          iconSize: 16,
+          color: look.text,
+          disabledColor: look.disabled,
+          visualDensity: VisualDensity.compact,
+          onPressed: f,
+          icon: Icon(icon),
+        );
     return Row(
       children: [
         Text(
@@ -115,7 +125,7 @@ class _LogPanelState extends State<LogPanel> {
           style: look.body.copyWith(
             fontSize: 13,
             fontWeight: FontWeight.bold,
-            color: look.title,
+            color: look.accent,
           ),
         ),
         const SizedBox(width: 10),
@@ -125,240 +135,29 @@ class _LogPanelState extends State<LogPanel> {
             key: const ValueKey('log-count'),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: look.body.copyWith(color: look.label),
+            style: look.body.copyWith(color: look.muted),
           ),
         ),
-        _Filter(
-          look: look,
-          value: _min,
-          onChanged: (l) => setState(() => _min = l),
-        ),
+        _filter(look),
         const SizedBox(width: 8),
-        _HeaderButton(
-          look: look,
-          id: 'log-copy',
-          icon: Icons.copy,
-          tooltip: 'Copy the entries shown',
-          onPressed: shown == 0 ? null : _copy,
+        button(
+          'log-copy',
+          Icons.copy,
+          'Copy the entries shown',
+          shown == 0 ? null : () => _copy(shown),
         ),
-        _HeaderButton(
-          look: look,
-          id: 'log-clear',
-          icon: Icons.delete_outline,
-          tooltip: 'Clear the log',
-          onPressed: total == 0 ? null : _log.clear,
+        button(
+          'log-clear',
+          Icons.delete_outline,
+          'Clear the log',
+          total == 0 ? null : _log.clear,
         ),
-        _HeaderButton(
-          look: look,
-          id: 'log-close',
-          icon: Icons.close,
-          tooltip: 'Close',
-          onPressed: widget.onClose,
-        ),
+        button('log-close', Icons.close, 'Close', widget.onClose),
       ],
     );
   }
 
-  /// Newest first; time, level and source in columns as wide as their
-  /// widest text, the message wrapping beside them.
-  Widget _list(BuildContext context, _Look look, List<LogEntry> shown) {
-    final scaler = MediaQuery.textScalerOf(context);
-    double width(String text) {
-      final p = TextPainter(
-        text: TextSpan(text: text, style: look.body),
-        textDirection: TextDirection.ltr,
-        textScaler: scaler,
-        maxLines: 1,
-      )..layout();
-      final w = p.width;
-      p.dispose();
-      return w.ceilToDouble();
-    }
-
-    final sources = {for (final e in shown) e.source};
-    final columns = (
-      time: width('00:00:00.000'),
-      level: width(LogLevel.error.tag),
-      source: sources.map(width).fold<double>(0, math.max),
-    );
-    return ListView.builder(
-      key: const ValueKey('log-list'),
-      itemCount: shown.length,
-      itemBuilder: (context, i) => _EntryRow(
-        look: look,
-        entry: shown[shown.length - 1 - i],
-        columns: columns,
-      ),
-    );
-  }
-}
-
-/// The panel's colours and text style: the Bison tokens when the theme
-/// carries them, else the Material colour scheme.
-class _Look {
-  const _Look({
-    required this.surface,
-    required this.border,
-    required this.title,
-    required this.text,
-    required this.muted,
-    required this.label,
-    required this.source,
-    required this.warn,
-    required this.error,
-    required this.selected,
-    required this.disabled,
-    required this.body,
-  });
-
-  factory _Look.of(BuildContext context) {
-    final theme = Theme.of(context);
-    final typography = theme.extension<BisonTypographyTokens>();
-    final body =
-        (typography?.bodySmall ??
-                theme.textTheme.bodySmall ??
-                const TextStyle())
-            .copyWith(
-              fontSize: 11,
-              fontFeatures: const [FontFeature.tabularFigures()],
-            );
-    final t = theme.extension<BisonThemeTokens>();
-    if (t != null) {
-      return _Look(
-        surface: t.surfaceDefault,
-        border: t.borderPlain,
-        title: t.textPrimary,
-        text: t.textPlain,
-        muted: t.textMuted,
-        label: t.textSecondary,
-        source: t.textPrimary,
-        warn: t.iconWarning,
-        error: t.textError,
-        selected: t.surfacePressed,
-        disabled: t.textDisabled,
-        body: body.copyWith(color: t.textPlain),
-      );
-    }
-    final s = theme.colorScheme;
-    return _Look(
-      surface: s.surface,
-      border: s.outlineVariant,
-      title: s.primary,
-      text: s.onSurface,
-      muted: s.onSurfaceVariant,
-      label: s.onSurfaceVariant,
-      source: s.primary,
-      warn: Colors.amber.shade700,
-      error: s.error,
-      selected: s.primary.withValues(alpha: 0.16),
-      disabled: s.onSurface.withValues(alpha: 0.38),
-      body: body.copyWith(color: s.onSurface),
-    );
-  }
-
-  final Color surface;
-  final Color border;
-  final Color title;
-  final Color text;
-  final Color muted;
-  final Color label;
-  final Color source;
-  final Color warn;
-  final Color error;
-  final Color selected;
-  final Color disabled;
-  final TextStyle body;
-
-  /// The colour an entry's level is drawn in.
-  Color level(LogLevel l) => switch (l) {
-    LogLevel.info => text,
-    LogLevel.warn => warn,
-    LogLevel.error => error,
-  };
-}
-
-/// One entry: `12:00:01.234  WARN  link  message…`.
-class _EntryRow extends StatelessWidget {
-  const _EntryRow({
-    required this.look,
-    required this.entry,
-    required this.columns,
-  });
-
-  final _Look look;
-  final LogEntry entry;
-  final ({double time, double level, double source}) columns;
-
-  @override
-  Widget build(BuildContext context) {
-    const gap = SizedBox(width: 8);
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 1.5),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(
-            width: columns.time,
-            child: Text(
-              logClock(entry.time),
-              style: look.body.copyWith(color: look.muted),
-            ),
-          ),
-          gap,
-          SizedBox(
-            width: columns.level,
-            child: Text(
-              entry.level.tag,
-              style: look.body.copyWith(
-                color: look.level(entry.level),
-                fontWeight: entry.level == LogLevel.info
-                    ? FontWeight.normal
-                    : FontWeight.bold,
-              ),
-            ),
-          ),
-          gap,
-          SizedBox(
-            width: columns.source,
-            child: Text(
-              entry.source,
-              style: look.body.copyWith(color: look.source),
-            ),
-          ),
-          gap,
-          Expanded(child: Text(entry.message, style: look.body)),
-        ],
-      ),
-    );
-  }
-}
-
-/// All · Warnings · Errors, joined.
-class _Filter extends StatelessWidget {
-  const _Filter({
-    required this.look,
-    required this.value,
-    required this.onChanged,
-  });
-
-  final _Look look;
-  final LogLevel value;
-  final ValueChanged<LogLevel> onChanged;
-
-  static String _label(LogLevel l) => switch (l) {
-    LogLevel.info => 'All',
-    LogLevel.warn => 'Warnings',
-    LogLevel.error => 'Errors',
-  };
-
-  static String _tip(LogLevel l) => switch (l) {
-    LogLevel.info => 'every entry',
-    LogLevel.warn => 'warnings and errors',
-    LogLevel.error => 'errors only',
-  };
-
-  @override
-  Widget build(BuildContext context) => Container(
+  Widget _filter(_Look look) => Container(
     height: 24,
     decoration: BoxDecoration(
       border: Border.all(color: look.border),
@@ -368,21 +167,21 @@ class _Filter extends StatelessWidget {
     child: Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        for (final l in LogLevel.values)
+        for (final (level, label, tip) in _filters)
           Tooltip(
-            message: _tip(l),
+            message: tip,
             child: InkWell(
-              key: ValueKey('log-filter-${l.name}'),
-              onTap: () => onChanged(l),
+              key: ValueKey('log-filter-${level.name}'),
+              onTap: () => setState(() => _min = level),
               child: Container(
-                color: l == value ? look.selected : null,
+                color: level == _min ? look.selected : null,
                 padding: const EdgeInsets.symmetric(horizontal: 8),
                 alignment: Alignment.center,
                 child: Text(
-                  _label(l),
+                  label,
                   style: look.body.copyWith(
                     fontWeight: FontWeight.w500,
-                    color: l == value ? look.title : look.text,
+                    color: level == _min ? look.accent : look.text,
                   ),
                 ),
               ),
@@ -391,33 +190,118 @@ class _Filter extends StatelessWidget {
       ],
     ),
   );
+
+  /// Time, level and source columns sized to their widest text.
+  Widget _list(BuildContext context, _Look look, List<LogEntry> shown) {
+    final scaler = MediaQuery.textScalerOf(context);
+    double width(String text) {
+      final p = TextPainter(
+        text: TextSpan(text: text, style: look.body),
+        textDirection: TextDirection.ltr,
+        textScaler: scaler,
+      )..layout();
+      final w = p.width.ceilToDouble();
+      p.dispose();
+      return w;
+    }
+
+    final time = width('00:00:00.000');
+    final level = width(LogLevel.error.tag);
+    final source = {for (final e in shown) e.source}
+        .map(width)
+        .fold(0.0, math.max);
+    Widget cell(double w, String text, TextStyle style) => SizedBox(
+      width: w,
+      child: Text(text, style: style),
+    );
+    return ListView.builder(
+      key: const ValueKey('log-list'),
+      itemCount: shown.length,
+      itemBuilder: (context, i) {
+        final e = shown[i];
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 1.5),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 8,
+            children: [
+              cell(
+                time,
+                logClock(e.time),
+                look.body.copyWith(color: look.muted),
+              ),
+              cell(
+                level,
+                e.level.tag,
+                look.body.copyWith(
+                  color: switch (e.level) {
+                    LogLevel.info => look.text,
+                    LogLevel.warn => look.warn,
+                    LogLevel.error => look.error,
+                  },
+                  fontWeight: e.level == LogLevel.info ? null : FontWeight.bold,
+                ),
+              ),
+              cell(source, e.source, look.body.copyWith(color: look.accent)),
+              Expanded(child: Text(e.message, style: look.body)),
+            ],
+          ),
+        );
+      },
+    );
+  }
 }
 
-/// A small icon button for the header; its tooltip names it.
-class _HeaderButton extends StatelessWidget {
-  const _HeaderButton({
-    required this.look,
-    required this.id,
-    required this.icon,
-    required this.tooltip,
-    required this.onPressed,
-  });
+typedef _Look = ({
+  Color surface,
+  Color border,
+  Color accent,
+  Color text,
+  Color muted,
+  Color warn,
+  Color error,
+  Color selected,
+  Color disabled,
+  TextStyle body,
+});
 
-  final _Look look;
-  final String id;
-  final IconData icon;
-  final String tooltip;
-  final VoidCallback? onPressed;
-
-  @override
-  Widget build(BuildContext context) => IconButton(
-    key: ValueKey(id),
-    tooltip: tooltip,
-    iconSize: 16,
-    color: look.text,
-    disabledColor: look.disabled,
-    visualDensity: VisualDensity.compact,
-    onPressed: onPressed,
-    icon: Icon(icon),
+/// Bison tokens when the theme has them, else the Material colour scheme.
+_Look _lookOf(BuildContext context) {
+  final theme = Theme.of(context);
+  final body =
+      (theme.extension<BisonTypographyTokens>()?.bodySmall ??
+              theme.textTheme.bodySmall ??
+              const TextStyle())
+          .copyWith(
+            fontSize: 11,
+            fontFeatures: const [FontFeature.tabularFigures()],
+          );
+  final t = theme.extension<BisonThemeTokens>();
+  if (t != null) {
+    return (
+      surface: t.surfaceDefault,
+      border: t.borderPlain,
+      accent: t.textPrimary,
+      text: t.textPlain,
+      muted: t.textSecondary,
+      warn: t.iconWarning,
+      error: t.textError,
+      selected: t.surfacePressed,
+      disabled: t.textDisabled,
+      body: body.copyWith(color: t.textPlain),
+    );
+  }
+  final s = theme.colorScheme;
+  return (
+    surface: s.surface,
+    border: s.outlineVariant,
+    accent: s.primary,
+    text: s.onSurface,
+    muted: s.onSurfaceVariant,
+    warn: Colors.amber.shade700,
+    error: s.error,
+    selected: s.primary.withValues(alpha: 0.16),
+    disabled: s.onSurface.withValues(alpha: 0.38),
+    body: body.copyWith(color: s.onSurface),
   );
 }
