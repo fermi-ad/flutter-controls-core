@@ -421,7 +421,7 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
     List<String>? neededRoles,
     this.themeMode = ThemeMode.system,
     this.useBison = false,
-    this.selectable = true,
+    this.selectable = false,
     super.key,
   }) : _neededRoles = neededRoles?.toSet() ?? {};
 
