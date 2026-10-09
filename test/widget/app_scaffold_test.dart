@@ -119,4 +119,31 @@ void main() {
       expect(find.text('no-model'), findsOneWidget);
     });
   });
+
+  group('StandardApp text selection', () {
+    testWidgets('text is selectable by default', (tester) async {
+      await tester.pumpWidget(StandardApp(title: 'T', body: const Text('x')));
+      expect(find.byType(SelectionArea), findsNothing);
+    });
+
+    testWidgets('selectable: false leaves out the SelectionArea', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        StandardApp(title: 'T', selectable: false, body: const Text('x')),
+      );
+      expect(find.byType(SelectionArea), findsNothing);
+      expect(find.text('x'), findsOneWidget);
+    });
+
+    testWidgets('selectable: true adds the SelectionArea', (
+      tester,
+    ) async {
+      await tester.pumpWidget(
+        StandardApp(title: 'T', selectable: true, body: const Text('x')),
+      );
+      expect(find.byType(SelectionArea), findsOneWidget);
+      expect(find.text('x'), findsOneWidget);
+    });
+  });
 }
