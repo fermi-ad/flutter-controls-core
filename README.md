@@ -17,7 +17,7 @@ flutter_controls_core:
   git:
     url: https://github.com/fermi-ad/flutter-controls-core.git
     tag_pattern: v{{version}}
-  version: ^1.3.0
+  version: ^1.4.0
 ```
 
 _NOTE:_ This project is under very active development so calling this the
@@ -54,12 +54,14 @@ dependencies:
   flutter_gql_acsys:
     git:
       url: https://github.com/fermi-ad/flutter-gql-acsys.git
-      ref: main
+      tag_pattern: v{{version}}
+    version: ^1.1.0
 
   flutter_controls_core:
     git:
       url: https://github.com/fermi-ad/flutter-controls-core.git
-      ref: main
+      tag_pattern: v{{version}}
+    version: ^1.4.0
 ```
 
 and where your application constructs the `StandardApp`, you specify the
