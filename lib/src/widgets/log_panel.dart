@@ -5,6 +5,7 @@ library;
 import 'dart:math' as math;
 
 import 'package:bison_design_system/bison_design_system.dart';
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show Clipboard, ClipboardData;
 
