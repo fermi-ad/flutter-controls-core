@@ -4,6 +4,7 @@ library;
 
 import 'dart:async';
 
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_controls_auth/flutter_controls_auth.dart';
 import 'package:bison_design_system/bison_design_system.dart';

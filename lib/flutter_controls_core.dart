@@ -1,6 +1,7 @@
 /// A Flutter package with resources that most Fermi applications need.
 library;
 
+// ignore: deprecated_member_use
 import "package:flutter/material.dart";
 import "package:flutter_controls_auth/flutter_controls_auth.dart";
 import 'package:go_router/go_router.dart';
