@@ -482,6 +482,7 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
 final class _RouterApp extends StatelessWidget {
   final String title;
   final GoRouter router;
+  final AuthInfo? authInfo;
 
   /// Defines what design to use. When set to false (default) the theme used
   /// will be the one defined by the core library. When true, the theme defined by
@@ -491,6 +492,7 @@ final class _RouterApp extends StatelessWidget {
   const _RouterApp({
     required this.title,
     required this.router,
+    this.authInfo,
     this.useBison = false,
   });
 
@@ -505,7 +507,21 @@ final class _RouterApp extends StatelessWidget {
       theme: theme.light,
       darkTheme: theme.dark,
       routerConfig: router,
-      builder: (context, child) => child ?? const SizedBox(),
+      builder: (context, child) {
+        final content = child ?? const SizedBox();
+        final auth = authInfo;
+        if (auth == null) return content;
+
+        final authenticatedContent = AuthService(
+          authInfo: auth,
+          child: content,
+        );
+        final existingWrapper = context
+            .findAncestorWidgetOfExactType<ToastificationWrapper>();
+        return existingWrapper == null
+            ? ToastificationWrapper(child: authenticatedContent)
+            : authenticatedContent;
+      },
     );
   }
 }
@@ -549,11 +565,15 @@ final class AuthRouterApp extends StatelessWidget {
     required this.authInfo,
     bool useBison = false,
     super.key,
-  }) : _app = _RouterApp(title: title, router: router, useBison: useBison);
+  }) : _app = _RouterApp(
+         title: title,
+         router: router,
+         authInfo: authInfo,
+         useBison: useBison,
+       );
 
   // Return the MaterialApp widget which will define the look-and-feel for the
   // application.
   @override
-  Widget build(BuildContext context) =>
-      AuthService(authInfo: authInfo, child: _app);
+  Widget build(BuildContext context) => _app;
 }
