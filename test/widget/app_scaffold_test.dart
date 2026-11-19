@@ -1,9 +1,17 @@
+// ignore: deprecated_member_use
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 import 'package:flutter_controls_core/flutter_controls_core.dart'
-    show NonAuthRouterApp, StandardApp;
+    show
+        AuthInfo,
+        AuthRouterApp,
+        AuthService,
+        NonAuthRouterApp,
+        StandardApp,
+        infoBox;
 import 'package:go_router/go_router.dart' show GoRoute, GoRouter;
+import 'package:toastification/toastification.dart' show ToastificationWrapper;
 
 /// A minimal [ChangeNotifier] used to exercise [StandardApp]'s global state.
 class _CounterModel extends ChangeNotifier {
@@ -61,6 +69,106 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Home'), findsOneWidget);
+    });
+
+    testWidgets('AuthRouterApp shows auth toasts under the app theme', (
+      tester,
+    ) async {
+      final dispatcher = tester.binding.platformDispatcher;
+      dispatcher.platformBrightnessTestValue = Brightness.dark;
+      addTearDown(dispatcher.clearPlatformBrightnessTestValue);
+
+      final router = GoRouter(
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                const Scaffold(body: Center(child: Text('Home'))),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        AuthRouterApp(
+          title: 'Router App',
+          router: router,
+          authInfo: const AuthInfo(clientId: 'test-client'),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      final auth = tester.element(find.byType(AuthService));
+      final home = tester.element(find.text('Home'));
+      expect(Theme.of(auth).brightness, Brightness.dark);
+      expect(Theme.of(auth).colorScheme, Theme.of(home).colorScheme);
+
+      infoBox(auth, 'Notice', 'You are logged in.');
+      await tester.pumpAndSettle();
+      expect(find.text('You are logged in.'), findsOneWidget);
+
+      await tester.tap(find.byIcon(Icons.close));
+      await tester.pumpAndSettle();
+      expect(find.text('Notice'), findsNothing);
+    });
+
+    testWidgets('A routed StandardApp shares the auth toast host', (
+      tester,
+    ) async {
+      final router = GoRouter(
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                StandardApp(title: 'Nested App', body: const Text('Home')),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        AuthRouterApp(
+          title: 'Router App',
+          router: router,
+          authInfo: const AuthInfo(clientId: 'test-client'),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Home'), findsOneWidget);
+      expect(find.byType(ToastificationWrapper), findsOneWidget);
+      infoBox(tester.element(find.byType(AuthService)), 'Notice', 'Logged in.');
+      await tester.pumpAndSettle();
+      expect(find.text('Logged in.'), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.close));
+      await tester.pumpAndSettle();
+    });
+
+    testWidgets('AuthRouterApp can reuse an existing toast wrapper', (
+      tester,
+    ) async {
+      final router = GoRouter(
+        routes: [
+          GoRoute(path: '/', builder: (context, state) => const Scaffold()),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        ToastificationWrapper(
+          child: AuthRouterApp(
+            title: 'Router App',
+            router: router,
+            authInfo: const AuthInfo(clientId: 'test-client'),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      expect(find.byType(ToastificationWrapper), findsOneWidget);
+
+      infoBox(tester.element(find.byType(AuthService)), 'Notice', 'Logged in.');
+      await tester.pumpAndSettle();
+      expect(find.text('Logged in.'), findsOneWidget);
+
+      await tester.tap(find.byIcon(Icons.close));
+      await tester.pumpAndSettle();
     });
   });
 
@@ -136,9 +244,7 @@ void main() {
       expect(find.text('x'), findsOneWidget);
     });
 
-    testWidgets('selectable: true adds the SelectionArea', (
-      tester,
-    ) async {
+    testWidgets('selectable: true adds the SelectionArea', (tester) async {
       await tester.pumpWidget(
         StandardApp(title: 'T', selectable: true, body: const Text('x')),
       );
