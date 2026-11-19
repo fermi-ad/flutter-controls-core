@@ -111,6 +111,37 @@ void main() {
       expect(find.text('Notice'), findsNothing);
     });
 
+    testWidgets('A routed StandardApp shares the auth toast host', (
+      tester,
+    ) async {
+      final router = GoRouter(
+        routes: [
+          GoRoute(
+            path: '/',
+            builder: (context, state) =>
+                StandardApp(title: 'Nested App', body: const Text('Home')),
+          ),
+        ],
+      );
+      addTearDown(router.dispose);
+      await tester.pumpWidget(
+        AuthRouterApp(
+          title: 'Router App',
+          router: router,
+          authInfo: const AuthInfo(clientId: 'test-client'),
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Home'), findsOneWidget);
+      expect(find.byType(ToastificationWrapper), findsOneWidget);
+      infoBox(tester.element(find.byType(AuthService)), 'Notice', 'Logged in.');
+      await tester.pumpAndSettle();
+      expect(find.text('Logged in.'), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.close));
+      await tester.pumpAndSettle();
+    });
+
     testWidgets('AuthRouterApp can reuse an existing toast wrapper', (
       tester,
     ) async {
@@ -213,9 +244,7 @@ void main() {
       expect(find.text('x'), findsOneWidget);
     });
 
-    testWidgets('selectable: true adds the SelectionArea', (
-      tester,
-    ) async {
+    testWidgets('selectable: true adds the SelectionArea', (tester) async {
       await tester.pumpWidget(
         StandardApp(title: 'T', selectable: true, body: const Text('x')),
       );

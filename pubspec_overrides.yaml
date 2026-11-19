@@ -1,6 +1,0 @@
-# Temporary CI pin until the themed auth change is released.
-dependency_overrides:
-  flutter_controls_auth:
-    git:
-      url: https://github.com/fermi-ad/flutter-controls-auth.git
-      ref: 991977bcebe359cdec9edf6b682dff675f4c7fee

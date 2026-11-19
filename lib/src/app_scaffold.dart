@@ -473,11 +473,17 @@ final class StandardApp<T extends ChangeNotifier> extends StatelessWidget {
       theme: theme.light,
       darkTheme: theme.dark,
       themeMode: themeMode,
-      home: ToastificationWrapper(
-        child: selectable ? SelectionArea(child: scaffold) : scaffold,
+      home: _withToastHost(
+        context,
+        selectable ? SelectionArea(child: scaffold) : scaffold,
       ),
     );
   }
+}
+
+Widget _withToastHost(BuildContext context, Widget child) {
+  final host = context.findAncestorWidgetOfExactType<ToastificationWrapper>();
+  return host == null ? ToastificationWrapper(child: child) : child;
 }
 
 final class _RouterApp extends StatelessWidget {
@@ -517,11 +523,7 @@ final class _RouterApp extends StatelessWidget {
           authInfo: auth,
           child: content,
         );
-        final existingWrapper = context
-            .findAncestorWidgetOfExactType<ToastificationWrapper>();
-        return existingWrapper == null
-            ? ToastificationWrapper(child: authenticatedContent)
-            : authenticatedContent;
+        return _withToastHost(context, authenticatedContent);
       },
     );
   }
